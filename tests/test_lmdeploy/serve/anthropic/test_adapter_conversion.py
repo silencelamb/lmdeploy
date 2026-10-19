@@ -266,7 +266,7 @@ def test_to_openai_messages_maps_user_tool_result_to_tool_role_message():
     }
 
 
-def test_to_openai_messages_maps_user_tool_result_images_to_user_message():
+def test_to_openai_messages_preserves_tool_result_image_ownership():
     request = _make_request(
         messages=[{
             'role': 'user',
@@ -293,11 +293,7 @@ def test_to_openai_messages_maps_user_tool_result_images_to_user_message():
         {
             'role': 'tool',
             'tool_call_id': 'toolu_123',
-            'content': 'see image',
-        },
-        {
-            'role': 'user',
-            'content': [{
+            'content': [{'type': 'text', 'text': 'see image'}, {
                 'type': 'image_url',
                 'image_url': {
                     'url': 'data:image/jpeg;base64,xyz789',

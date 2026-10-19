@@ -251,37 +251,61 @@ def _merge_system_messages(messages: list[_MessageT]) -> list[_MessageT]:
 
 
 def _convert_user_tool_result(block: ContentBlockParam | dict[str, Any]) -> list[dict[str, Any]]:
-    tool_text = ''
-    tool_image_urls: list[str] = []
     content = _block_get(block, 'content')
-
+    tool_content: str | list[dict[str, Any]] = ''
     if isinstance(content, str):
-        tool_text = content
+        tool_content = content
     elif isinstance(content, list):
-        text_parts: list[str] = []
+        parts: list[dict[str, Any]] = []
         for item in content:
             if _block_get(item, 'type') == 'text':
-                text_parts.append(_block_get(item, 'text', ''))
+                parts.append(dict(type='text', text=_block_get(item, 'text', '')))
             elif _block_get(item, 'type') == 'image':
                 url = _convert_image_source_to_url(_block_get(item, 'source', {}))
                 if url:
-                    tool_image_urls.append(url)
-        tool_text = '\n'.join(text_parts)
+                    parts.append(dict(type='image_url', image_url=dict(url=url)))
+        # A separate user image message loses its tool_call_id and interrupts
+        # the contiguous tool-result group used by chat templates.
+        if any(part['type'] == 'image_url' for part in parts):
+            tool_content = parts
+        else:
+            tool_content = '\n'.join(part['text'] for part in parts)
+    return [dict(role='tool',
+                 tool_call_id=_block_get(block, 'tool_use_id') or _block_get(block, 'id') or '',
+                 content=tool_content)]
 
-    messages = [
-        dict(
-            role='tool',
-            tool_call_id=_block_get(block, 'tool_use_id') or _block_get(block, 'id') or '',
-            content=tool_text or '',
-        )
-    ]
-    if tool_image_urls:
-        messages.append(
-            dict(
-                role='user',
-                content=[dict(type='image_url', image_url=dict(url=url)) for url in tool_image_urls],
-            ))
-    return messages
+
+def _order_multimodal_tool_results(messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Align image data and tool-result rendering before multimodal
+    preprocessing.
+
+    Some chat templates render a tool-result group in tool-call order. Images are collected from the message list
+    separately, so both must see the same order. Never infer associations for missing, duplicate, or unknown ids.
+    """
+    ordered = list(messages)
+    start = 0
+    while start < len(ordered):
+        if ordered[start]['role'] != 'tool':
+            start += 1
+            continue
+        end = start + 1
+        while end < len(ordered) and ordered[end]['role'] == 'tool':
+            end += 1
+        group = ordered[start:end]
+        has_images = any(isinstance(message.get('content'), list)
+                         and any(part.get('type') == 'image_url' for part in message['content'])
+                         for message in group)
+        previous = ordered[start - 1] if start else {}
+        calls = previous.get('tool_calls', []) if previous.get('role') == 'assistant' else []
+        call_ids = [call.get('id') for call in calls]
+        result_ids = [message.get('tool_call_id') for message in group]
+        if (has_images and call_ids and all(call_ids) and all(result_ids)
+                and len(set(call_ids)) == len(call_ids) and len(set(result_ids)) == len(result_ids)
+                and set(result_ids).issubset(call_ids)):
+            positions = {identifier: index for index, identifier in enumerate(call_ids)}
+            ordered[start:end] = sorted(group, key=lambda message: positions[message['tool_call_id']])
+        start = end
+    return ordered
 
 
 def to_openai_messages(
@@ -373,6 +397,7 @@ def to_openai_messages(
         if ('content' in openai_message or 'tool_calls' in openai_message
                 or 'reasoning_content' in openai_message):
             openai_messages.append(openai_message)
+    openai_messages = _order_multimodal_tool_results(openai_messages)
     if merge_inline_system:
         return _merge_system_messages(openai_messages)
     return openai_messages
