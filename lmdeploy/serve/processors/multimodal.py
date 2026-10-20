@@ -426,6 +426,7 @@ class MultimodalProcessor:
         messages = await self.async_parse_multimodal_item(messages,
                                                           media_io_kwargs,
                                                           allowed_media_domains=self.allowed_media_domains)
+        messages = chat_template.prepare_multimodal_messages(messages)
 
         if self.backend == 'turbomind':
             if self.vl_encoder._uses_new_preprocess:

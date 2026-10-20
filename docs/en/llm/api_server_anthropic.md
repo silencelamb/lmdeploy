@@ -18,6 +18,7 @@ For Anthropic `POST` endpoints, include:
 ## Notes and Current Limits
 
 - `POST /v1/messages` supports text output, reasoning output (`thinking` blocks), and tool-use output (`tool_use` blocks).
+- With a vision-capable model, `tool_result.content` can contain text and image blocks. These blocks remain in the same tool result, retaining `tool_use_id` and their internal order. Ordinary user content before, between, or after tool results retains its position.
 - Tool use requires launching API server with a configured tool parser (`--tool-call-parser ...`).
 - Reasoning block extraction depends on parser configuration (same parser stack used by OpenAI-compatible chat endpoint).
 - `count_tokens` is tokenizer/chat-template based and is intended for practical estimation.
