@@ -792,6 +792,7 @@ class HFChatTemplate(BaseChatTemplate):
                 self.stop_words.append(self.tokenizer.eot_token)
             arch, _ = get_model_arch(model_path)
             self.is_gpt_oss = arch == 'GptOssForCausalLM'
+            # GLM-5.3-Flash's multimodal architecture, not the text-only GLM-5.3.
             self.is_glm5_next = arch == 'Glm5NextForConditionalGeneration'
             if self.is_gpt_oss:
                 self.stop_words.append('<|call|>')
@@ -799,7 +800,7 @@ class HFChatTemplate(BaseChatTemplate):
             raise ValueError(f'Try apply_chat_template failed: {e}')
 
     def prepare_multimodal_messages(self, messages: list[dict]) -> list[dict]:
-        """Match GLM-5.3 tool rendering order before collecting media.
+        """Match GLM-5.3-Flash tool rendering order before collecting media.
 
         Its template renders an unambiguous, contiguous result group in the preceding assistant's tool-call order. Both
         the prompt and media collector must see that order. Other templates keep their original message order.

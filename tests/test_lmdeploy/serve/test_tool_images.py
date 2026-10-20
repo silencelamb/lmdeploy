@@ -1,4 +1,9 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+"""Three-protocol conversion and shared preprocessing tests, without HTTP or
+generation.
+
+HTTP/SSE tool-image tests live in each protocol's endpoint test directory.
+"""
 import asyncio
 import base64
 import copy
