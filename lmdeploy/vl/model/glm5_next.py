@@ -225,7 +225,7 @@ class GLM5NextVisionModel(VisionModel):
                    messages: list[dict],
                    input_prompt: str | list[int],
                    mm_processor_kwargs: dict[str, Any] | None = None):
-        mm_items = self.collect_multimodal_items(messages)
+        mm_items = self.collect_multimodal_items(messages, input_prompt, self.mm_tokens)
         modalities = {item[0] for item in mm_items}
         is_raw_video = (not isinstance(input_prompt, str)
                         and Modality.VIDEO in modalities)

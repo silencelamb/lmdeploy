@@ -130,7 +130,7 @@ class VisionModel(ABC):
         New-style models inherit this implementation. Legacy models override with `def preprocess(self, messages)`.
         """
 
-        mm_items = self.collect_multimodal_items(messages)
+        mm_items = self.collect_multimodal_items(messages, input_prompt, self.mm_tokens)
 
         raw_images, raw_videos, video_metadatas = [], [], []
         raw_audios = []
@@ -330,12 +330,15 @@ class VisionModel(ABC):
             raise NotImplementedError()
 
     @staticmethod
-    def collect_multimodal_items(messages):
+    def collect_multimodal_items(messages, input_prompt=None, mm_tokens=None):
         """Gather all multimodal items along with their respective parameters
         from the messages and compile them into a single list.
 
         Args:
             messages (list[dict]): a list of message
+            input_prompt: Optional rendered prompt carrying media references.
+            mm_tokens: Model placeholder strings, used to validate references
+                before feature extraction in the new preprocessing path.
         Returns:
             list[tuple[Modality, Any, dict]]: a list of (modality, data, params) for each multimodal item
         """
@@ -357,6 +360,23 @@ class VisionModel(ABC):
                 params = {k: v for k, v in x.items() if k not in ['type', 'data']}
                 multimodal_items.append((modality, data, params))
 
+        from lmdeploy.vl.media_order import MultimodalPrompt
+        if isinstance(input_prompt, MultimodalPrompt):
+            order = input_prompt.media_order
+            if sorted(order) != list(range(len(multimodal_items))):
+                raise ValueError('Rendered media references do not match the input media.')
+            multimodal_items = [multimodal_items[index] for index in order]
+            if mm_tokens is not None:
+                tokens = {Modality.IMAGE: mm_tokens.image_token, Modality.VIDEO: mm_tokens.video_token,
+                          Modality.AUDIO: mm_tokens.audio_token, Modality.TIME_SERIES: mm_tokens.ts_token}
+                counts = {}
+                for (modality, _, _), content in zip(multimodal_items, input_prompt.media_contents):
+                    token = tokens.get(modality)
+                    if not token or content.count(token) != 1:
+                        raise ValueError(f'Rendered {modality} reference must contain exactly one media placeholder.')
+                    counts[token] = counts.get(token, 0) + 1
+                if any(input_prompt.count(token) != count for token, count in counts.items()):
+                    raise ValueError('Chat template emitted media placeholders outside their tracked references.')
         return multimodal_items
 
     @staticmethod

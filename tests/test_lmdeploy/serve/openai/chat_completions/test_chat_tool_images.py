@@ -10,8 +10,9 @@ from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from PIL import Image
 
-from lmdeploy.model import HFChatTemplate
 from lmdeploy.serve.openai.chat_completions import register
+from lmdeploy.serve.openai.protocol import ChatCompletionRequest
+from lmdeploy.serve.parsers.response_parser import normalize_chat_request
 from lmdeploy.serve.processors.multimodal import MultimodalProcessor
 from lmdeploy.vl.model.base import VisionModel
 
@@ -24,19 +25,25 @@ def _image(color):
 
 
 @pytest.mark.parametrize('stream', [False, True])
-def test_http_tool_images_reach_shared_preprocessing_with_correct_ownership(chat_endpoint, stream):
+def test_http_tool_images_reach_shared_preprocessing_with_correct_ownership(chat_endpoint, stream, hf_media_template):
     _, context = chat_endpoint
     seen = {}
-    template = HFChatTemplate.__new__(HFChatTemplate)
-    template.is_glm5_next = True
+    template = hf_media_template()
+
+    class NormalizedParser(context.response_parser_cls):
+
+        def __init__(self, request):
+            super().__init__(normalize_chat_request(request))
+
+    context.response_parser_cls = NormalizedParser
 
     def get_input_prompt(messages, **kwargs):
         seen['rendered'] = messages
-        return 'prompt'
+        return VisionModel.get_input_prompt(messages, **kwargs)
 
     async def preprocess_images(messages, input_prompt, **kwargs):
         assert messages is seen['rendered']
-        seen['media'] = VisionModel.collect_multimodal_items(messages)
+        seen['media'] = VisionModel.collect_multimodal_items(messages, input_prompt)
         return messages
 
     encoder = SimpleNamespace(_uses_new_preprocess=True, model=SimpleNamespace(get_input_prompt=get_input_prompt),
@@ -73,9 +80,10 @@ def test_http_tool_images_reach_shared_preprocessing_with_correct_ownership(chat
         assert response.json()['choices'][0]['message']['content'] == 'choice-1'
         assert response.json()['choices'][0]['finish_reason'] == 'stop'
     # Request validation/forwarding keeps IDs, content, and arrival order;
-    # GLM-5.3-Flash preprocessing then aligns both media and prompt order.
-    assert seen['received'] == messages
-    assert [m['tool_call_id'] for m in seen['rendered'][2:]] == ['first', 'second']
+    # Media collection follows the rendered template without sorting messages.
+    assert seen['received'] == normalize_chat_request(
+        ChatCompletionRequest(model='fake-model', messages=messages)).messages
+    assert [m['tool_call_id'] for m in seen['rendered'][2:]] == ['second', 'first']
     for message in seen['rendered'][2:]:
         assert [p['type'] for p in message['content']] == ['text', 'image', 'text', 'image', 'text']
         assert [p['text'] for p in message['content'] if p['type'] == 'text'] == ['before', 'between', 'after']

@@ -114,10 +114,6 @@ class ChatTemplateConfig:
 class BaseChatTemplate:
     """Base Chat template."""
 
-    def prepare_multimodal_messages(self, messages: list[dict]) -> list[dict]:
-        """Prepare message order before rendering and collecting media."""
-        return messages
-
     def __init__(self,
                  system='',
                  meta_instruction='',
@@ -792,49 +788,10 @@ class HFChatTemplate(BaseChatTemplate):
                 self.stop_words.append(self.tokenizer.eot_token)
             arch, _ = get_model_arch(model_path)
             self.is_gpt_oss = arch == 'GptOssForCausalLM'
-            # GLM-5.3-Flash's multimodal architecture, not the text-only GLM-5.3.
-            self.is_glm5_next = arch == 'Glm5NextForConditionalGeneration'
             if self.is_gpt_oss:
                 self.stop_words.append('<|call|>')
         except Exception as e:
             raise ValueError(f'Try apply_chat_template failed: {e}')
-
-    def prepare_multimodal_messages(self, messages: list[dict]) -> list[dict]:
-        """Match GLM-5.3-Flash tool rendering order before collecting media.
-
-        Its template renders an unambiguous, contiguous result group in the preceding assistant's tool-call order. Both
-        the prompt and media collector must see that order. Other templates keep their original message order.
-        """
-        if not self.is_glm5_next:
-            return messages
-        ordered = list(messages)
-        start = 0
-        while start < len(ordered):
-            if ordered[start]['role'] != 'tool':
-                start += 1
-                continue
-            end = start + 1
-            while end < len(ordered) and ordered[end]['role'] == 'tool':
-                end += 1
-            group = ordered[start:end]
-            has_media = any(isinstance(message.get('content'), list)
-                            and any(isinstance(part, dict) and part.get('type') in ('image', 'video', 'audio')
-                                    for part in message['content']) for message in group)
-            previous = ordered[start - 1] if start else {}
-            calls = (previous.get('tool_calls') or []) if previous.get('role') == 'assistant' else []
-            # Match the template's tool_call_id/id fallback. Ambiguous groups
-            # are rendered in input order, so leave their media in that order.
-            call_ids = [call.get('tool_call_id') or call.get('id') for call in calls]
-            result_ids = [message.get('tool_call_id') or message.get('id') for message in group]
-            valid_ids = all(isinstance(identifier, str) and identifier for identifier in call_ids + result_ids)
-            if (has_media and call_ids and valid_ids
-                    and len(set(call_ids)) == len(call_ids) and len(set(result_ids)) == len(result_ids)
-                    and set(result_ids).issubset(call_ids)):
-                positions = {identifier: index for index, identifier in enumerate(call_ids)}
-                ordered[start:end] = sorted(group, key=lambda message: positions[message.get('tool_call_id')
-                                                                                or message.get('id')])
-            start = end
-        return ordered
 
     def get_prompt(self, prompt, **kwargs):
         messages = [{'role': 'user', 'content': prompt}]
@@ -853,15 +810,28 @@ class HFChatTemplate(BaseChatTemplate):
         if 'reasoning_effort' in kwargs and kwargs['reasoning_effort'] is None:
             kwargs.pop('reasoning_effort')
         add_generation_prompt = messages[-1]['role'] != 'assistant'
-        prompt = self.tokenizer.apply_chat_template(messages,
-                                                    tokenize=False,
-                                                    add_generation_prompt=add_generation_prompt,
-                                                    **kwargs)
+        has_media = any(isinstance(message['content'], list)
+                        and any(isinstance(part, dict) and part.get('type') in ('image', 'video', 'audio')
+                                and 'data' in part for part in message['content']) for message in messages)
+        media_order = None
+        media_contents = None
+        if has_media:
+            from lmdeploy.vl.media_order import render_with_media_order
+            prompt = render_with_media_order(self.tokenizer, messages,
+                                             add_generation_prompt=add_generation_prompt, **kwargs)
+            media_order = prompt.media_order
+            media_contents = prompt.media_contents
+        else:
+            prompt = self.tokenizer.apply_chat_template(messages, tokenize=False,
+                                                        add_generation_prompt=add_generation_prompt, **kwargs)
         if messages[-1]['role'] == 'assistant' and len(self.assistant_end) > 0:
             prompt = prompt[:-len(self.assistant_end)]  # prefix of response to let the model complete the response
         if self.is_gpt_oss and not kwargs.get('tools'):
             # for gpt-oss model, remove this seems more conducive to instruction following.
             prompt = prompt.replace('commentary, ', '', 1)
+        if media_order is not None:
+            from lmdeploy.vl.media_order import MultimodalPrompt
+            prompt = MultimodalPrompt(prompt, media_order, media_contents)
         return prompt
 
     def _user_instruction(self):

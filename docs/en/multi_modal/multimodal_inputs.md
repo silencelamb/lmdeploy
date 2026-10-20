@@ -565,6 +565,28 @@ print(response.choices[0].message.content)
 
 ______________________________________________________________________
 
+## Images in tool results
+
+Tool-result images retain their association with `tool_call_id` in Chat Completions,
+`tool_use_id` in Messages, and `call_id` in Responses. Return the identifier from
+the corresponding tool call, including when parallel tools finish out of order.
+
+For models using HuggingFace chat templates and the new preprocessing API,
+LMDeploy tracks media references through template rendering and collects image
+data in the rendered order. This also handles templates that reorder tool
+results: it does not sort request messages or require a model architecture check.
+The prompt is checked against ordinary template rendering, and internal reference
+markers are removed before tokenization. This requires a second template render;
+template compilation is cached.
+
+Custom templates must render each media block once through a content loop.
+Macros and captured output are supported. Templates that drop, duplicate, or
+render media through an untraceable path are rejected rather than assigning
+images to uncertain positions. The new preprocessor also checks that each
+reference encloses its model's media placeholder. Legacy model preprocessors
+retain their own placeholder conversion; InternVL supports both user and tool
+images, including the legacy `<IMAGE_TOKEN>` form.
+
 ## Processor and IO kwargs
 
 Two optional parameters let you control media processing:
