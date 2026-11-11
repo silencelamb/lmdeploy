@@ -1,2 +1,8 @@
 
 include lmdeploy/bin/*
+
+recursive-include requirements *.txt
+recursive-include lmdeploy/pytorch/kernels/ascend *.md
+recursive-include tests/pytorch/ascend *.py
+recursive-include tools/ascend *.py
+include docs/zh_cn/advance/ascend_a3_migration.md

@@ -14,8 +14,8 @@ def _get_backend() -> type[OpsBackend]:
     if device_type == 'cuda':
         from .cuda import CudaOpsBackend
         return CudaOpsBackend
-    if device_type == 'ascend':
-        from .dlinfer.ascend import AscendOpsBackend
+    if device_type in ('ascend', 'npu'):
+        from .ascend import AscendOpsBackend
         return AscendOpsBackend
     if device_type == 'maca':
         from .dlinfer.maca import MacaOpsBackend
