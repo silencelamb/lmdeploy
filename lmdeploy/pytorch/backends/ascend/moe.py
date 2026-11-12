@@ -3,13 +3,13 @@ from collections.abc import Callable
 
 import torch
 
-from lmdeploy.pytorch.kernels.ascend import (
+from lmdeploy.pytorch.kernels.ascend.fused_moe import (
     AscendMoECommType,  # noqa: F401
     AscendMoeMetadata,  # noqa: F401
     fused_moe,
     fused_moe_w8a8,
-    moe_gating_topk_softmax,
 )
+from lmdeploy.pytorch.kernels.ascend.moe_gating_topk_softmax import moe_gating_topk_softmax
 from lmdeploy.pytorch.model_inputs import get_step_ctx_manager
 
 from ..moe import (

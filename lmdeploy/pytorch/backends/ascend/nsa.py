@@ -6,7 +6,8 @@ from torch import Tensor
 
 from lmdeploy.pytorch.consts import DSA_INDEXER_K_CACHE_NAME
 from lmdeploy.pytorch.engine.cache_engine.schema import BlockCacheGeometry, BlockCacheRequest
-from lmdeploy.pytorch.kernels.ascend import fill_kv_cache, lightning_indexer
+from lmdeploy.pytorch.kernels.ascend.fill_kv_cache import fill_kv_cache
+from lmdeploy.pytorch.kernels.ascend.lightning_indexer import lightning_indexer
 from lmdeploy.utils import get_logger
 
 from ..nsa import NSAIndexFP8BuildSpec, NSAIndexFP8Impl, NSAIndexMeta

@@ -32,7 +32,7 @@ class AscendFlashAttentionImpl(FlashAttentionImpl):
         self.causal = causal
         self.sliding_window = sliding_window
         self.logit_softcapping = logit_softcapping
-        from lmdeploy.pytorch.kernels.ascend import flash_attention_fwd
+        from lmdeploy.pytorch.kernels.ascend.flash_attention import flash_attention_fwd
 
         self.flash_attention_fwd = flash_attention_fwd
 

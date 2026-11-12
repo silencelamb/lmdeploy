@@ -57,7 +57,9 @@ class AscendAttentionImpl(AttentionImpl[AscendAttentionMetadata]):
             **kwargs,
         )
 
-        from lmdeploy.pytorch.kernels.ascend import fill_kv_cache, paged_attention_fwd, sparse_attention_fwd
+        from lmdeploy.pytorch.kernels.ascend.fill_kv_cache import fill_kv_cache
+        from lmdeploy.pytorch.kernels.ascend.pagedattention import paged_attention_fwd
+        from lmdeploy.pytorch.kernels.ascend.sparse_attention import sparse_attention_fwd
 
         self.fill_kv_cache = fill_kv_cache
         self.paged_attention_fwd = paged_attention_fwd

@@ -1,7 +1,10 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from torch import Tensor
 
-from lmdeploy.pytorch.kernels.ascend import apply_rotary_pos_emb, apply_rotary_pos_emb_interleaved
+from lmdeploy.pytorch.kernels.ascend.apply_rotary_pos_emb import (
+    apply_rotary_pos_emb,
+    apply_rotary_pos_emb_interleaved,
+)
 
 from ..apply_rotary_emb import ApplyRotaryEmbImpl
 

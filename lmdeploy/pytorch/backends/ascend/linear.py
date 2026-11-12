@@ -4,7 +4,7 @@ import os
 import torch
 import torch.distributed as dist
 
-from lmdeploy.pytorch.kernels.ascend import linear
+from lmdeploy.pytorch.kernels.ascend.linear import linear
 
 from ..linear import LinearImpl
 

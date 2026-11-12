@@ -2,7 +2,7 @@
 
 import torch
 
-from lmdeploy.pytorch.kernels.ascend import awq_linear
+from lmdeploy.pytorch.kernels.ascend.awq_kernels import awq_linear
 
 from ..awq_modules import LinearW4A16Impl
 

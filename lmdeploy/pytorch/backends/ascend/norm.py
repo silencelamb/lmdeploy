@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from lmdeploy.pytorch.kernels.ascend import rms_norm
+from lmdeploy.pytorch.kernels.ascend.rms_norm import rms_norm
 
 from ..norm import RMSNormImpl
 
