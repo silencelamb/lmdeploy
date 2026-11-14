@@ -1,6 +1,15 @@
 # Ascend A3 原生 PyTorch backend 迁移记录
 
-本次交付是源码迁移和验证准备，**未通过 A3 或 NVIDIA GPU 实机验证**，没有性能测量结果。两个 fork 使用配套分支 `codex/ascend-a3-native`；LMDeploy 承接原生实现，dlinfer 删除已经迁出的 LMDeploy Ascend patch。没有创建上游 PR。
+截至 2026-11-14，已完成下面列出的 A3 代表性对照，NVIDIA GPU 实机回归仍未执行。两个 fork 使用配套分支 `codex/ascend-a3-native`；LMDeploy 承接原生实现，dlinfer 删除已经迁出的 LMDeploy Ascend patch。此分支不包含尚未合入的 Mooncake PR #5030，相关验证使用独立集成分支。
+
+## A3 实测摘要
+
+- 固定旧基线为下表两个 commit；迁移后的实测源码为 `6421cefea94edd350e419f556158639556357a27`。该提交修复 Ascend kernel 延迟导出被同名子模块覆盖的问题，不改变计算体。
+- Sage-A1.5 / Agents-A1 的已测非 MTP 数值对照、实际 prefix cache 命中与 261845-token 检索通过；native 环境未安装或导入 dlinfer。原生 CPU contract suite 为 33 passed。
+- Sage MTP 长生成在旧基线自身也不严格重复；新旧严格等价验收仍未通过。HTTP C4 总吞吐超过 5% 的下降未在反向复测中重复确认，但逐请求流式速度两轮均出现下降。按维护者 2026-11-14 的决定，作为非阻塞观察项保留；不将这些现象认定为已定位的迁移新增回归，也不改写为已修复。
+- 三项 paged/decode MLA 算子在新旧环境均有 CANN keyRope 连续性错误，MTP 输入评分路径也有共同失败。Python 3.12 / torch 2.10 / CANN 9.1.0 镜像超出部分依赖声明，pip check 未通过。未测配置不能外推为通过。
+
+完整报告、固定版本、结果、复现命令及 Mooncake 独立验证维护在 fork 的 [验证文档分支](https://github.com/silencelamb/lmdeploy/tree/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation)，不属于迁移实现的必要改动。下文保留迁移设计、Mac 检查及其他配置的验收步骤；这些步骤不等于所有场景已在 A3 执行。
 
 源码基线：
 
@@ -51,7 +60,7 @@
 | CANN、NNAL/ATB | 保留；`torch_npu/lib/libop_plugin_atb.so` 提供 reshape/cache 等扩展，不能只安装 Python 包。`lmd_fork/lmdeploy/pytorch/backends/ascend/runtime.py:12`；`lmd_fork/lmdeploy/pytorch/kernels/ascend/npu_ops.py:427` |
 | `torch_npu.contrib.transfer_to_npu` | 显式初始化时仍加载其 CUDA API compatibility shim；引擎沿用的 stream/device API 需要它。本次去除的是仓库自己的 framework monkey patch，**不声称该 vendor shim 没有进程级副作用**。CUDA 单独进程不会初始化它。`lmd_fork/lmdeploy/pytorch/backends/ascend/runtime.py:41` |
 | Triton Ascend | GDN/decode convolution/gated RMSNorm 和可选 Triton rejection 需要它。`lmd_fork/lmdeploy/pytorch/backends/ascend/causal_conv1d.py:15`、`gated_delta_rule.py:54`、`op_backend.py:178` |
-| `triton-ascend-kernels` | 原始源码只引用该外部库，两个 fork 内均没有它的 kernel 实现。继续依赖其 chunk GDN 和 L2Norm；不是 dlinfer 依赖。`lmd_fork/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py:10`。安装入口为 `requirements/ascend_kernels.txt`；当前 Git 依赖为 master，必须在 A3 首轮验证记录并固定实际 commit，不宣称版本组合已验证 |
+| `triton-ascend-kernels` | 原始源码只引用该外部库，两个 fork 内均没有它的 kernel 实现。继续依赖其 chunk GDN 和 L2Norm；不是 dlinfer 依赖。`lmd_fork/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py:10`。安装入口为 `requirements/ascend_kernels.txt`；A3 实测固定 `8e70a44afa537fcbcdc6d59e6d2196a38f1e7b6f` 加镜像原有 5 文件补丁，快照与哈希见验证报告。requirements 中的 master 不等于该实测快照 |
 | CANN Python prerequisites | 过去由 dlinfer 安装的 requirements 已补入 Ascend runtime requirements；`cloudpickle` 已由 common requirements 提供。`dlinfer_fork/requirements/ascend/torch.txt:5`、`cann.txt:1` → `lmd_fork/requirements/runtime_ascend.txt:11` |
 | 旧环境变量 | 保留 `DLINFER_LINEAR_USE_NN_LAYOUT`、`DLINFER_MAX_GROUP_LIST_SIZE`、`DLINFER_MOE_PREFILL_CATCHALL`、`DLINFER_ASCEND_REJECT_SAMPLE_USE_TRITON` 的拼写，避免更改既有启动配置；名字不意味着 import 依赖。`lmd_fork/lmdeploy/pytorch/backends/ascend/linear.py:17`、`lmd_fork/lmdeploy/pytorch/kernels/ascend/moe.py:12`、native `rejection_sampling.py:73` |
 | 原有不支持项 | 不扩展静态 W8A8 MoE、FP8 indexer 或 fused indexer 支持；仍显式报错或沿用 BF16 fallback。`lmd_fork/lmdeploy/pytorch/backends/ascend/modelslim.py:35`、`nsa.py:164`。独立 DeepSeek-V3.2 的 CUDA fused/Hadamard indexer 不能因为 GLM 适配已迁移就声称可在 A3 完整运行，相关模型端到端能力未核实 |
@@ -90,7 +99,7 @@ LMDEPLOY_TARGET_DEVICE=cuda DISABLE_TURBOMIND=1 python -m build --wheel --outdir
 
 ## A3 安装与验收
 
-以下命令在 A3 上、迁移分支的 `lmd_fork` 根目录执行。使用独立 Python 环境，不安装 dlinfer，也不要将其源码目录加入 `PYTHONPATH`。沿用原 A3 Dockerfile 的 torch 2.9 / CANN 8.5 组合准备首轮验证；该组合不是本次实测结论。Dockerfile 已改为安装本地构建上下文：`lmd_fork/docker/Dockerfile_ascend_a3:1`。
+以下命令是迁移时准备的验收模板，在 A3 上、迁移分支的 `lmd_fork` 根目录执行。使用独立 Python 环境，不安装 dlinfer，也不要将其源码目录加入 `PYTHONPATH`。模板沿用原 A3 Dockerfile 的 torch 2.9 / CANN 8.5 组合；实际 A3 对照使用用户提供的 torch 2.10 / CANN 9.1.0 镜像，准确命令与环境见验证报告，不能混用两者的结果。Dockerfile 已改为安装本地构建上下文：`lmd_fork/docker/Dockerfile_ascend_a3:1`。
 
 ```bash
 # 先按机器实际安装路径加载 CANN 与 NNAL 的 set_env.sh；确认驱动和 A3 可见。
@@ -190,4 +199,4 @@ python tools/ascend/validate_pipeline.py --device cuda --model /models/DENSE \
 
 继续对 CUDA Qwen3.5/MTP、GLM/MTP、AWQ、InternVL vision 输入运行同样的 before/after 和 eager/graph 比较，重点检查 shared builder、weight loader、GDN norm dispatch、MoE factory、graph 子类和 vision compilation 的变化。支持 FA3 的 GPU 再运行 `tests/pytorch/kernel/test_fa3_attention.py`；不支持的测试保留 skip 原因。需要跨分支运行时，可把 `tools/ascend/validate_pipeline.py` 复制到独立验证目录，使用该分支环境中的已安装 LMDeploy，避免 `PYTHONPATH` 指向另一份源码。
 
-验收记录应保存版本清单、命令、模型 revision、成功/失败/skip 数、trace 和异常栈。实机验证完成前，本分支只具备本地迁移交付状态。
+验收记录应保存版本清单、命令、模型 revision、成功/失败/skip 数、trace 和异常栈。本分支已有上述代表性 A3 实测；CUDA、其他模型/量化和多机等未覆盖项仍须独立完成验证。
