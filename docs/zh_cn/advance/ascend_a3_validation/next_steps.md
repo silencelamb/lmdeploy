@@ -2,15 +2,17 @@
 
 2026-11-14。本文是基于当前代码与实测边界的建议，未实现新的 megakernel，也没有测得其性能收益；只在 fork 文档分支维护。
 
+同事的其他 Ascend 功能按 [接入清单](colleague_prs.md) 分别适配到当前原生后端；rebase 用于同步基线，功能迁移另做明确提交。
+
 ## 迁移 PR 与同事 Mooncake PR
 
-**建议先提交不含 Mooncake 的迁移 PR，无须等 #5030。** 原生 Ascend 迁移的 `OpsBackend`、`BuildSpec`、`GraphRunner`、算子和模型适配不依赖 Store 的设备传输层。当前 `codex/ascend-a3-native` 正好保留这个边界。
+**建议先提交不含 Mooncake 的迁移 PR，无须等 #5030。** 原生 Ascend 迁移的 `OpsBackend`、`BuildSpec`、`GraphRunner`、算子和模型适配不依赖 Store 的设备传输层。当前 `dev/ascend-a3-native` 正好保留这个边界。
 
 [InternLM/lmdeploy#5030](https://github.com/InternLM/lmdeploy/pull/5030) 在本次查询时仍是 open draft、未合并；本机验证固定在 `1a09270b0835bb871be4eb4df70f9d04c8ccaec2`。适配由同事 wanfengcxz 提供，来源与合并处理在集成提交中保留。状态快照见 [记录](evidence/pr5030-status-20261114.json)。
 
 | 目标 | 推荐分支/提交方式 |
 | --- | --- |
-| 上游审查 Ascend 去 dlinfer 迁移 | 从 `codex/ascend-a3-native` 提 PR，描述已测范围与非阻塞观察 |
+| 上游审查 Ascend 去 dlinfer 迁移 | 从 `dev/ascend-a3-native` 提 PR，描述已测范围与非阻塞观察 |
 | 保持 Mooncake 可用供开发验证 | fork 的 `codex/ascend-a3-native-mooncake` 独立保留 |
 | 上游交付 Mooncake 集成功能 | 等 #5030 合入后，基于最终上游实现 rebase/重新集成，只提交剩余必要适配并复测 |
 | 合入前确有协同评审需求 | 可建立显式依赖 #5030 的 stacked draft；注明来源、基线和依赖，避免把同事改动 squash 成自己的迁移工作 |
@@ -18,7 +20,7 @@
 
 dlinfer 的 patch 删除与 LMDeploy 原生实现配套：可以关联两个 PR 进行审查，合入/发布清理版时须保证对应 LMDeploy 原生路径已可用，避免旧 LMDeploy 用户先失去 Ascend patch。两个库不要求同步版本号，但应明确最低配套版本与迁移顺序。
 
-提交前查看 `upstream/main...codex/ascend-a3-native` 的实际 diff；上游更新时先处理冲突，再跑受影响的验收项。此次没有创建或更新任何上游 PR，也没有把当前上游 HEAD 冒充实测基线。
+提交前查看 `upstream/main...dev/ascend-a3-native` 的实际 diff；上游更新时先处理冲突，再跑受影响的验收项。此次没有创建或更新任何上游 PR，也没有把当前上游 HEAD 冒充实测基线。
 
 ## Monokernel 的分支选择
 

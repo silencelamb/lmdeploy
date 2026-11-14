@@ -1,0 +1,142 @@
+{
+  "checked_date": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "scope": "wanfengcxz open Ascend PRs in InternLM/lmdeploy and DeepLink-org/dlinfer",
+  "review_only": true,
+  "other_open_prs_excluded": [
+    5093,
+    5123
+  ],
+  "prs": [
+    {
+      "repository": "InternLM/lmdeploy",
+      "number": 5001,
+      "url": "https://github.com/InternLM/lmdeploy/pull/5001",
+      "title": "[ascend] Optimize  GLM-5.2 W8A8 in the dlinfer backend",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head_sha": "8e559f484a54adfd6e2b97e3c1a7a268f474a62f",
+      "base_sha": "7998cdbaf713393b9155358a147226def2557467",
+      "head": "wq/optimize_glm52",
+      "head_repo_full_name": "wanfengcxz/lmdeploy",
+      "user": {
+        "login": "wanfengcxz",
+        "name": "wanfengcxz",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/49198408?v=4",
+        "id": 49198408
+      },
+      "changed_files": [
+        "lmdeploy/pytorch/backends/dlinfer/ascend/op_backend.py",
+        "lmdeploy/pytorch/backends/dlinfer/attention.py",
+        "lmdeploy/pytorch/backends/dlinfer/moe.py",
+        "lmdeploy/pytorch/backends/dlinfer/moe_router.py",
+        "lmdeploy/pytorch/backends/dlinfer/op_backend.py",
+        "lmdeploy/pytorch/kernels/dlinfer/__init__.py",
+        "lmdeploy/pytorch/kernels/dlinfer/fused_moe.py",
+        "lmdeploy/pytorch/kernels/dlinfer/moe_router.py",
+        "lmdeploy/pytorch/kernels/dlinfer/sparse_attention.py"
+      ]
+    },
+    {
+      "repository": "InternLM/lmdeploy",
+      "number": 5030,
+      "url": "https://github.com/InternLM/lmdeploy/pull/5030",
+      "title": "[ascend] support mooncake store KV offloading on Ascend NPU",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head_sha": "1a09270b0835bb871be4eb4df70f9d04c8ccaec2",
+      "base_sha": "3f99ed1502ce3f7cf9747afc2138ff624e5d5457",
+      "head": "wq/support_mooncake_v1",
+      "head_repo_full_name": "wanfengcxz/lmdeploy",
+      "user": {
+        "login": "wanfengcxz",
+        "name": "wanfengcxz",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/49198408?v=4",
+        "id": 49198408
+      },
+      "changed_files": [
+        "lmdeploy/pytorch/kv_connector/mooncake/store/data.py",
+        "lmdeploy/pytorch/kv_connector/mooncake/store/transfer_backend.py",
+        "lmdeploy/pytorch/kv_connector/mooncake/store/worker.py"
+      ]
+    },
+    {
+      "repository": "DeepLink-org/dlinfer",
+      "number": 355,
+      "url": "https://github.com/DeepLink-org/dlinfer/pull/355",
+      "title": "[Ascend] GLM-5.2 W8A8 ops: fused MC2 MoE, MLAPO decode, on-device NZ conversion",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head_sha": "9102cc598a7af2b88652b7930ddbf22740c70a9b",
+      "base_sha": "bd37fd38c7831525d962c29925db7244113b7bcf",
+      "head": "wq/optimize_glm52",
+      "head_repo_full_name": "wanfengcxz/dlinfer",
+      "user": {
+        "login": "wanfengcxz",
+        "name": "wanfengcxz",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/49198408?v=4",
+        "id": 49198408
+      },
+      "changed_files": [
+        "dlinfer/framework/lmdeploy_ext/device/__init__.py",
+        "dlinfer/ops/llm.py",
+        "dlinfer/vendor/ascend/mlapo.py",
+        "dlinfer/vendor/ascend/moe.py",
+        "dlinfer/vendor/ascend/torch_npu_ops.py",
+        "setup.py"
+      ]
+    },
+    {
+      "repository": "DeepLink-org/dlinfer",
+      "number": 324,
+      "url": "https://github.com/DeepLink-org/dlinfer/pull/324",
+      "title": "[ascend] optimize gated rmsnorm",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head_sha": "f6ac78b38818d0f2fc16302b19ad3e3e571a27fe",
+      "base_sha": "1a391de85e92cb4098ca9a77064f4055b00e2d4c",
+      "head": "wq/optim_gated_rmsnorm",
+      "head_repo_full_name": "wanfengcxz/dlinfer",
+      "user": {
+        "login": "wanfengcxz",
+        "name": "wanfengcxz",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/49198408?v=4",
+        "id": 49198408
+      },
+      "changed_files": [
+        "dlinfer/vendor/ascend/triton_ops/rms_norm_gated.py"
+      ]
+    },
+    {
+      "repository": "DeepLink-org/dlinfer",
+      "number": 295,
+      "url": "https://github.com/DeepLink-org/dlinfer/pull/295",
+      "title": "[ascend] fix awq",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head_sha": "1974cec23a3839d032d4befe172c88bd1d557151",
+      "base_sha": "667e659cd8f2aa4aa5159f260a015404b95d116c",
+      "head": "wq/fix_awq",
+      "head_repo_full_name": "wanfengcxz/dlinfer",
+      "user": {
+        "login": "wanfengcxz",
+        "name": "wanfengcxz",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/49198408?v=4",
+        "id": 49198408
+      },
+      "changed_files": [
+        "dlinfer/framework/lmdeploy_ext/quants/ascend_awq.py"
+      ]
+    }
+  ]
+}
