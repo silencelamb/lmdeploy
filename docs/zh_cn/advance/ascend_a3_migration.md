@@ -1,6 +1,6 @@
 # Ascend A3 原生 PyTorch backend 迁移记录
 
-截至 2026-11-14，已完成下面列出的 A3 代表性对照，NVIDIA GPU 实机回归仍未执行。两个 fork 使用配套分支 `codex/ascend-a3-native`；LMDeploy 承接原生实现，dlinfer 删除已经迁出的 LMDeploy Ascend patch。此分支不包含尚未合入的 Mooncake PR #5030，相关验证使用独立集成分支。
+截至 2026-11-14，已完成下面列出的 A3 代表性对照，NVIDIA GPU 实机回归仍未执行。两个 fork 使用配套分支 `dev/ascend-a3-native`；LMDeploy 承接原生实现，dlinfer 删除已经迁出的 LMDeploy Ascend patch。此分支不包含尚未合入的 Mooncake PR #5030，相关验证使用独立集成分支。
 
 ## A3 实测摘要
 
@@ -20,7 +20,7 @@
 
 迁移清单的“原实现”列引用上述基线 commit；dlinfer 配套清理后，已删除文件应通过 `git show 3b909634:<文件>` 查看。其余位置指迁移后的源码，不把说明文档的兼容性或性能陈述视为实测。
 
-配套分支：[LMDeploy](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-native)、[dlinfer](https://github.com/silencelamb/dlinfer/tree/codex/ascend-a3-native)。dlinfer 清理范围与保留项见其 [迁移说明](https://github.com/silencelamb/dlinfer/blob/codex/ascend-a3-native/docs/ascend_native_migration.md)。
+配套分支：[LMDeploy](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native)、[dlinfer](https://github.com/silencelamb/dlinfer/tree/dev/ascend-a3-native)。dlinfer 清理范围与保留项见其 [迁移说明](https://github.com/silencelamb/dlinfer/blob/dev/ascend-a3-native/docs/ascend_native_migration.md)。
 
 ## 迁移清单
 
