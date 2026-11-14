@@ -1,0 +1,151 @@
+{
+  "baseline": "results/baseline-agents-http-recheck.json",
+  "native": "results/native-agents-http-recheck.json",
+  "complete": true,
+  "identical_server_arguments_and_workloads": true,
+  "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+  "functional_answers": [
+    true,
+    true
+  ],
+  "scenarios": {
+    "1": {
+      "baseline": {
+        "repetitions": 7,
+        "requests": 7,
+        "throughput_repetitions": [
+          52.29184506489094,
+          56.0015279521443,
+          61.060679598497266,
+          46.361939708593276,
+          50.70291932777495,
+          60.71096245134865,
+          59.078102739441874
+        ],
+        "median_throughput": 56.0015279521443,
+        "ttft_p50": 0.6108489720209036,
+        "ttft_p95": 0.6940933511999902,
+        "output_tps_p50": 79.71154708475926,
+        "output_tps_p05": 61.56796245937934,
+        "slo_pass_requests": 7,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 7,
+        "requests": 7,
+        "throughput_repetitions": [
+          42.897081447306206,
+          42.90243600290421,
+          55.63273568971666,
+          55.00278255632753,
+          57.664012959220464,
+          44.21439870884197,
+          55.49119925156685
+        ],
+        "median_throughput": 55.00278255632753,
+        "ttft_p50": 0.6286732050066348,
+        "ttft_p95": 0.7292694420088083,
+        "output_tps_p50": 73.9212896983786,
+        "output_tps_p05": 54.47708385273139,
+        "slo_pass_requests": 7,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": -1.7834252605933187,
+        "ttft_p50": 2.917944336840317,
+        "ttft_p95": 5.067919286073486,
+        "output_tps_p50": -7.26401330565537,
+        "output_tps_p05": -11.51715652653974
+      },
+      "paired_throughput_changes": [
+        -17.96602052562195,
+        -23.390597414473802,
+        -8.889425968515074,
+        18.637794065662572,
+        13.72917718296398,
+        -27.172298175517096,
+        -6.071460188379286
+      ],
+      "review_required": true
+    },
+    "4": {
+      "baseline": {
+        "repetitions": 7,
+        "requests": 28,
+        "throughput_repetitions": [
+          123.50847171190587,
+          121.18771855563077,
+          116.57442056187229,
+          117.23143220876584,
+          121.62764264580004,
+          119.73605304977593,
+          121.65274598884872
+        ],
+        "median_throughput": 121.18771855563077,
+        "ttft_p50": 1.6637275340035558,
+        "ttft_p95": 2.464315943697875,
+        "output_tps_p50": 50.64254806462465,
+        "output_tps_p05": 38.42718842938561,
+        "slo_pass_requests": 22,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 7,
+        "requests": 28,
+        "throughput_repetitions": [
+          117.95705908161992,
+          120.67591606280901,
+          115.89018888447433,
+          107.51329897663305,
+          114.80707229234187,
+          123.10502860630446,
+          125.78576976153002
+        ],
+        "median_throughput": 117.95705908161992,
+        "ttft_p50": 1.6176787430013064,
+        "ttft_p95": 2.4265528152143814,
+        "output_tps_p50": 46.09168553485823,
+        "output_tps_p05": 36.95513305214427,
+        "slo_pass_requests": 21,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": -2.665830756214649,
+        "ttft_p50": -2.7678084338388365,
+        "ttft_p95": -1.5323980100874324,
+        "output_tps_p50": -8.9862431960554,
+        "output_tps_p05": -3.8307652404661607
+      },
+      "paired_throughput_changes": [
+        -4.494762629105398,
+        -0.4223220792681337,
+        -0.5869483837878553,
+        -8.289699314452392,
+        -5.6077468946107984,
+        2.8136684571755444,
+        3.3973945586564414
+      ],
+      "review_required": true
+    }
+  }
+}

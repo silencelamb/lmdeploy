@@ -1,0 +1,5 @@
+# Preserve archived pytest failure text byte-for-byte, including trailing spaces.
+evidence/** -text
+evidence/*/results/*.xml -whitespace
+# Python csv.writer generated CRLF in the original measurements.
+evidence/*/results/*.csv whitespace=cr-at-eol

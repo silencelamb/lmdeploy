@@ -1,0 +1,70 @@
+{
+  "baseline": "results/baseline-agents-c4-pipeline-control.json",
+  "native": "results/native-agents-c4-pipeline-control.json",
+  "complete": true,
+  "exact_sequences": 0,
+  "sequences": 0,
+  "tokens": 0,
+  "first_mismatches": [],
+  "bench": {
+    "4": {
+      "baseline": {
+        "repetitions": 7,
+        "requests": 28,
+        "throughput": [
+          125.42296285268236,
+          126.837380256832,
+          103.37228360235714,
+          129.2449572858561,
+          116.77812612297855,
+          123.60071011390757,
+          128.3857019754672
+        ],
+        "median_throughput": 125.42296285268236,
+        "ttft_p50": 1.4718120869947597,
+        "ttft_p95": 2.3682148739608238,
+        "output_tps_p50": 45.40941763611431,
+        "amortized_itl_p50": 0.014450913004111499,
+        "amortized_itl_p95": 0.023616972503077704,
+        "slo_pass_requests": 20
+      },
+      "native": {
+        "repetitions": 7,
+        "requests": 28,
+        "throughput": [
+          129.5221763820555,
+          120.49418281053642,
+          138.45859822184224,
+          128.02878269453112,
+          134.71878556915718,
+          133.38628365846975,
+          136.17865986255268
+        ],
+        "median_throughput": 133.38628365846975,
+        "ttft_p50": 1.2300888620084152,
+        "ttft_p95": 1.945986166613875,
+        "output_tps_p50": 47.672292451672575,
+        "amortized_itl_p50": 0.014305116012110375,
+        "amortized_itl_p95": 0.02112793048581807,
+        "slo_pass_requests": 21
+      },
+      "change_percent": {
+        "median_throughput": 6.349172930271818,
+        "ttft_p50": -16.42351133831973,
+        "ttft_p95": -17.828986380816623,
+        "output_tps_p50": 4.983272046542586,
+        "amortized_itl_p50": -1.0089119764242094,
+        "amortized_itl_p95": -10.539208685343848
+      },
+      "needs_regression_review": false
+    }
+  },
+  "numerics": {
+    "max_abs": 0,
+    "rms": 0.0,
+    "compared_scores": 0
+  },
+  "token_pass": false,
+  "numerical_pass": false,
+  "numerical_status": "unverified-no-scores"
+}

@@ -1,0 +1,53 @@
+{
+  "baseline-operator-tests-logical2": {
+    "total": 28,
+    "failures": [
+      {
+        "name": "test_paged_prefill_attention_mla_matches_torch",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:36:10 (PID:209810, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 209810] 2026-11-12-15:36:10.399.438 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      },
+      {
+        "name": "test_paged_prefill_attention_mla_graph_replay",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:36:10 (PID:209810, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 209810] 2026-11-12-15:36:10.562.807 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      },
+      {
+        "name": "test_decode_attention_mla_matches_torch",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:36:10 (PID:209810, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 209810] 2026-11-12-15:36:10.641.377 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      }
+    ]
+  },
+  "native-operator-tests": {
+    "total": 29,
+    "failures": [
+      {
+        "name": "test_paged_prefill_attention_mla_matches_torch",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:27 (PID:213052, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213052] 2026-11-12-15:37:27.484.759 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      },
+      {
+        "name": "test_paged_prefill_attention_mla_graph_replay",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:27 (PID:213052, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213052] 2026-11-12-15:37:27.638.499 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      },
+      {
+        "name": "test_decode_attention_mla_matches_torch",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:27 (PID:213052, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213052] 2026-11-12-15:37:27.708.513 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      }
+    ]
+  },
+  "standalone-operator-tests": {
+    "total": 28,
+    "failures": [
+      {
+        "name": "test_paged_prefill_attention_mla_matches_torch",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213079] 2026-11-12-15:37:28.296.970 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      },
+      {
+        "name": "test_paged_prefill_attention_mla_graph_replay",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213079] 2026-11-12-15:37:28.448.645 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      },
+      {
+        "name": "test_decode_attention_mla_matches_torch",
+        "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213079] 2026-11-12-15:37:28.523.993 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+      }
+    ]
+  }
+}

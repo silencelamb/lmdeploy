@@ -1,0 +1,61 @@
+{
+  "baseline-pr5030-fabric-sdk": {
+    "complete": false,
+    "writes": 1,
+    "reads": 0,
+    "ready": 2,
+    "child_exitcodes": [
+      0,
+      1
+    ],
+    "options": {
+      "port": 55061,
+      "segment_gib": 1
+    }
+  },
+  "baseline-pr5030-fabric-sdk-batch": {
+    "complete": true,
+    "writes": 6,
+    "reads": 6,
+    "ready": 2,
+    "child_exitcodes": [
+      0,
+      0
+    ],
+    "options": {
+      "port": 55061,
+      "segment_gib": 1,
+      "io_api": "batch"
+    }
+  },
+  "native-pr5030-fabric-sdk-batch": {
+    "complete": true,
+    "writes": 6,
+    "reads": 6,
+    "ready": 2,
+    "child_exitcodes": [
+      0,
+      0
+    ],
+    "options": {
+      "port": 55061,
+      "segment_gib": 1,
+      "io_api": "batch"
+    }
+  },
+  "native-pr5030-fabric-sdk-8g": {
+    "complete": true,
+    "writes": 6,
+    "reads": 6,
+    "ready": 2,
+    "child_exitcodes": [
+      0,
+      0
+    ],
+    "options": {
+      "port": 55061,
+      "segment_gib": 8,
+      "io_api": "batch"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "utc": "2026-11-13T14:34:54.817512+00:00",
+  "checks": {
+    "lmdeploy": {
+      "head_unchanged": true,
+      "diff_unchanged": true
+    },
+    "dlinfer": {
+      "head_unchanged": true,
+      "diff_unchanged": true
+    },
+    "code-lmdeploy": {
+      "head_unchanged": true,
+      "diff_unchanged": true
+    },
+    "code-dlinfer": {
+      "head_unchanged": true,
+      "diff_unchanged": true
+    },
+    "code-triton-ascend-kernels": {
+      "head_unchanged": true,
+      "diff_unchanged": true
+    },
+    "wangqing-lmdeploy": {
+      "head_unchanged": true,
+      "diff_unchanged": true
+    },
+    "/afs-weights/wangqing/kv_offloading_dev/dense_impl/serve_glm52_tpep_1015.sh": {
+      "sha256_unchanged": true
+    },
+    "/afs-weights/wangqing/kv_offloading_dev/dense_impl/launch_mooncake.sh": {
+      "sha256_unchanged": true
+    },
+    "/afs-weights/wangqing/kv_offloading_dev/dense_impl/mooncake_ascend.json": {
+      "sha256_unchanged": true
+    },
+    "/afs-weights/wangqing/glm53flash/vllm_ascend_rc30_env.sh": {
+      "sha256_unchanged": true
+    },
+    "comparison-baseline": {
+      "expected_head": true,
+      "clean": true
+    },
+    "comparison-native": {
+      "expected_head": true,
+      "clean": true
+    },
+    "/afs-weights/Sage-A1.5": {
+      "size_mtime_unchanged": true
+    },
+    "/afs-weights/Qwen3-8B": {
+      "size_mtime_unchanged": true
+    },
+    "/afs-weights/Qwen3.5-0.8B": {
+      "size_mtime_unchanged": true
+    },
+    "/afs-weights/Agents-A1": {
+      "size_mtime_unchanged": true
+    },
+    "original-evidence-archive": {
+      "sha256_unchanged": true
+    },
+    "native-isolation": {
+      "no_forbidden_import_events": true,
+      "no_dlinfer_artifacts": true,
+      "guard_present": true
+    }
+  },
+  "pass": true
+}

@@ -1,0 +1,75 @@
+{
+  "label": "baseline-mooncake-ascend-config-original",
+  "env": "baseline-mooncake",
+  "command": [
+    "python",
+    "-c",
+    "from lmdeploy.pytorch.kv_connector.mooncake.store.data import MooncakeStoreConfig; print(MooncakeStoreConfig(\"P2PHANDSHAKE\",\"127.0.0.1:55051\",\"ascend\",\"\"))"
+  ],
+  "cwd": "/root/workspace/a3-validation-20261112",
+  "environment": {
+    "PYTHONPATH": "/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-validation-20261112/envs/baseline-mooncake/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-validation-20261112/envs/baseline-mooncake",
+    "PYTHONNOUSERSITE": "1",
+    "ASCEND_RT_VISIBLE_DEVICES": "4",
+    "OMP_PROC_BIND": "false",
+    "OMP_NUM_THREADS": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE": "1",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "DEVICE": "ascend",
+    "DLINFER_BUILD_DICP": "OFF",
+    "VALIDATION_ENV": "baseline-mooncake",
+    "VALIDATION_ROOT": "/root/workspace/a3-validation-20261112",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-validation-20261112/artifacts/triton-cache-baseline-mooncake",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "start_utc": "2026-11-12T16:54:17.399590+00:00",
+  "harness_sha256": {
+    "setup_envs.py": "4d9a696d7b9c601e7ad271da5e589773f59291e6b03e2a83cec34c70e18c20dd",
+    "run.py": "0674c3044acb4b49993a0a9a013b1a3d960c72ebd8065f2f377785a5561cca41",
+    "sitecustomize_native.py": "80597e482ed5d8d0791347e9bd96190b806a2c59a263b29214b08b49ac111fcd",
+    "pipeline_case.py": "fd485072babab85e76923c020b13e3db1226e8ed62ee80484b6cbf4e4ac7f0a4",
+    "env_audit.py": "2784938529f02b6701141bf017f85f653edfc2fdc2008b7b733b02c1e2519dea",
+    "standalone_moe.py": "f150b7dd620681279ebb2219840b93217b619ce87c8ae2400e5ec8e4d1edc09c",
+    "model_manifest.py": "11ec92ef3c321ab3717a27922dc2c695df615771205d12b228e91fbe98dcab92",
+    "compare.py": "3de6152bf9468bc5c39b7b93eb3cd011fe9ae903e2278905897dab22b7e8603c",
+    "extra_cases.py": "7b92d10d4e4e62dc62162411db2399c39f68d27c276808465c6b2e6a93db5648",
+    "run_matrix.py": "65132d6a63ed25512b1d286a18cb49be8f087c2842c191bd00fec251c3eb8035",
+    "http_case.py": "eee2a6cc2bcc4a51596d209abc0c43d422d2ffb12167da18b2639359f54c90b1",
+    "seed_startup.py": "81b45b6fc2f484b00b86577a7bd7a55f9b86c71bb1aaee1e03641ce1188f4cae",
+    "run_followup.py": "11b9753939f13844f51c5005754a3d1838b01618220c4783245cc60b31293cc7",
+    "rejection_check.py": "aa0da504af79cc7ea5e2d3d894be45b47ac2a4c137da687518afcf22f5e3b774",
+    "http_compare.py": "e1bbe9c47cca241cda975bbd328ee8e6a07c15311cbb238f923a219270e3d6f4",
+    "run_final_cases.py": "9303acaa0cac6f1da57d240f66adc8a5a28edc4a5717ee96564a38c94ff6e675",
+    "summarize.py": "b7a4fbed2eac9116bc1fa044c4d0fc10dcf7a75a87dc6860e756111a099bc0a2",
+    "run_http_recheck.py": "fa757f5b5c5aba93e7c9be55f117213c81cc6d2f8fde84cccacfcfb83cd0ace3",
+    "preservation_audit.py": "cb428c1874df5e944931b9bd71bfd2a0fb61dafa1cc0668da42a8f4cf1e6730c",
+    "cross_mode_audit.py": "31b6cf2389c9f33eca177efd25c10afe424dc8dbfd77dbdb21678743818b1839",
+    "run_agents_cases.py": "baed5d7607c08d06177de2e645004a077468be1bda494b3c9dd566fb2fd08a14",
+    "setup_mooncake_envs.py": "69b8c1ba8e74e26f3a54cd65b83dfb8319eda5b6100c5e24ef68daba9a5400b6",
+    "mooncake_sdk_probe.py": "0689f0c1a15bcf0fac4fda6b81533cc78569f24e865bdbfdf9ab9fb53c5a5788"
+  },
+  "source_revisions": {
+    "lmdeploy-baseline-mooncake": {
+      "head": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+      "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dlinfer-baseline": {
+      "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+      "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "pid": 336723,
+  "returncode": 1,
+  "elapsed_seconds": 11.481788470002357,
+  "end_utc": "2026-11-12T16:54:29.003328+00:00"
+}

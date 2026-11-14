@@ -1,0 +1,26 @@
+{
+  "implementation": "torch",
+  "random_cases": [
+    {
+      "mixed": false,
+      "draws": 65536,
+      "first_token_frequencies": [
+        0.101043701171875,
+        0.1999664306640625,
+        0.2984466552734375,
+        0.400543212890625
+      ]
+    },
+    {
+      "mixed": true,
+      "draws": 32768,
+      "first_token_frequencies": [
+        0.099761962890625,
+        0.20098876953125,
+        0.30120849609375,
+        0.398040771484375
+      ]
+    }
+  ],
+  "greedy_patterns": 8
+}

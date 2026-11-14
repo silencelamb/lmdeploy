@@ -1,0 +1,28 @@
+{
+  "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-long260k.json",
+  "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-long260k.json",
+  "complete": true,
+  "exact_sequences": 0,
+  "sequences": 1,
+  "tokens": 64,
+  "first_mismatches": [
+    {
+      "event": "long-retrieval",
+      "request": 0,
+      "position": 9,
+      "baseline_token": 15,
+      "native_token": 271,
+      "baseline_scores": {},
+      "native_scores": {}
+    }
+  ],
+  "bench": {},
+  "numerics": {
+    "max_abs": 0,
+    "rms": 0.0,
+    "compared_scores": 0
+  },
+  "token_pass": false,
+  "numerical_pass": false,
+  "numerical_status": "unverified-no-scores"
+}

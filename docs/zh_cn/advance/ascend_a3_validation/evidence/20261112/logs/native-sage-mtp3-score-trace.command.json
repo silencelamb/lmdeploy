@@ -1,0 +1,68 @@
+{
+  "label": "native-sage-mtp3-score-trace",
+  "env": "native",
+  "command": [
+    "python",
+    "/root/workspace/a3-validation-20261112/scripts/pipeline_case.py",
+    "--mtp",
+    "3",
+    "--prefix",
+    "--scores",
+    "--suite",
+    "trace",
+    "--new-tokens",
+    "64",
+    "--output",
+    "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-score-trace.json"
+  ],
+  "cwd": "/root/workspace/a3-validation-20261112",
+  "environment": {
+    "PYTHONPATH": "/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-validation-20261112/envs/native/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-validation-20261112/envs/native",
+    "PYTHONNOUSERSITE": "1",
+    "ASCEND_RT_VISIBLE_DEVICES": "0,1",
+    "OMP_PROC_BIND": "false",
+    "OMP_NUM_THREADS": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE": "1",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "DEVICE": "ascend",
+    "DLINFER_BUILD_DICP": "OFF",
+    "VALIDATION_ENV": "native",
+    "VALIDATION_ROOT": "/root/workspace/a3-validation-20261112",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-validation-20261112/artifacts/triton-cache-native",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "start_utc": "2026-11-12T16:02:59.476126+00:00",
+  "harness_sha256": {
+    "setup_envs.py": "4d9a696d7b9c601e7ad271da5e589773f59291e6b03e2a83cec34c70e18c20dd",
+    "run.py": "94c1d417f159cb3709ad27c38598cf0eafa671079e433ea97d578d3fd20f4407",
+    "sitecustomize_native.py": "80597e482ed5d8d0791347e9bd96190b806a2c59a263b29214b08b49ac111fcd",
+    "pipeline_case.py": "28d617ecf6a1b0cae7dfe9c56ea05800fe24e4c02ca99ce5f3f9f42afb5a3e38",
+    "env_audit.py": "2784938529f02b6701141bf017f85f653edfc2fdc2008b7b733b02c1e2519dea",
+    "standalone_moe.py": "f150b7dd620681279ebb2219840b93217b619ce87c8ae2400e5ec8e4d1edc09c",
+    "model_manifest.py": "f169057c6e73eb1cfc1e62eef1876b8213bf72ea244559a8f578f2ed63580f84",
+    "compare.py": "3de6152bf9468bc5c39b7b93eb3cd011fe9ae903e2278905897dab22b7e8603c",
+    "extra_cases.py": "f32faf5fbd5a577187b5d65c7d23a1117dfc818d3e83d48c436fbf04f5616b96",
+    "run_matrix.py": "65132d6a63ed25512b1d286a18cb49be8f087c2842c191bd00fec251c3eb8035",
+    "http_case.py": "8147702b9dc5dd84ca1b4b0160ada352981e65e127a040ecbc4652456679db01"
+  },
+  "source_revisions": {
+    "lmdeploy-native": {
+      "head": "39dbaa841080d9b9b6b0326197b9de7fe9495a1b",
+      "diff_sha256": "d540adbc00fa2a8bc6f05d1c980cf317b40c25a774da6fb996c97ac8fa3d511c"
+    }
+  },
+  "pid": 258575,
+  "returncode": 0,
+  "elapsed_seconds": 76.83849139499944,
+  "end_utc": "2026-11-12T16:04:16.388610+00:00"
+}

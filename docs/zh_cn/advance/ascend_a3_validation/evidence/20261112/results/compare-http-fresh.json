@@ -1,0 +1,204 @@
+{
+  "baseline": "results/baseline-sage-http-fresh-connections.json",
+  "native": "results/native-sage-http-fresh-connections.json",
+  "complete": true,
+  "identical_server_arguments_and_workloads": true,
+  "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+  "functional_answers": [
+    true,
+    true
+  ],
+  "scenarios": {
+    "1": {
+      "baseline": {
+        "repetitions": 5,
+        "requests": 5,
+        "throughput_repetitions": [
+          70.15872758732708,
+          59.75366456550322,
+          52.64990427473354,
+          66.20471680688188,
+          73.96544259595258
+        ],
+        "median_throughput": 66.20471680688188,
+        "ttft_p50": 0.6864505349949468,
+        "ttft_p95": 0.8206536099954973,
+        "output_tps_p50": 101.94335615248018,
+        "output_tps_p05": 78.12611484360005,
+        "slo_pass_requests": 5,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 5,
+        "requests": 5,
+        "throughput_repetitions": [
+          51.925625747029166,
+          67.473663276235,
+          55.040881744355154,
+          55.89439758326568,
+          67.5155750145159
+        ],
+        "median_throughput": 55.89439758326568,
+        "ttft_p50": 0.6974832399864681,
+        "ttft_p95": 0.7868411482020747,
+        "output_tps_p50": 83.63219660962618,
+        "output_tps_p05": 73.0853474998061,
+        "slo_pass_requests": 5,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": -15.57339072031867,
+        "ttft_p50": 1.6072104877305593,
+        "ttft_p95": -4.120186809829307,
+        "output_tps_p50": -17.962092120515795,
+        "output_tps_p05": -6.452090128742494
+      },
+      "paired_throughput_changes": [
+        -25.988358779174035,
+        12.919707547424064,
+        4.541276005261485,
+        -15.57339072031867,
+        -8.720109493118366
+      ],
+      "review_required": true
+    },
+    "4": {
+      "baseline": {
+        "repetitions": 5,
+        "requests": 20,
+        "throughput_repetitions": [
+          116.66083155577066,
+          125.19936543935506,
+          127.7436709867736,
+          124.18917222899474,
+          126.92547007161117
+        ],
+        "median_throughput": 125.19936543935506,
+        "ttft_p50": 1.8865834699972766,
+        "ttft_p95": 2.6868944025904056,
+        "output_tps_p50": 57.04741461891486,
+        "output_tps_p05": 41.95480984344944,
+        "slo_pass_requests": 20,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 5,
+        "requests": 20,
+        "throughput_repetitions": [
+          115.35204655106936,
+          123.47837362098575,
+          117.20320522222411,
+          124.2429816886344,
+          91.23475051645059
+        ],
+        "median_throughput": 117.20320522222411,
+        "ttft_p50": 1.8420192934863735,
+        "ttft_p95": 2.844934674697288,
+        "output_tps_p50": 50.098760885814514,
+        "output_tps_p05": 34.041284012939904,
+        "slo_pass_requests": 15,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": -6.3867418090103545,
+        "ttft_p50": -2.3621629903800345,
+        "ttft_p95": 5.881893681959283,
+        "output_tps_p50": -12.18048842268905,
+        "output_tps_p05": -18.862022876609707
+      },
+      "paired_throughput_changes": [
+        -1.1218718289999652,
+        -1.3746010711235934,
+        -8.251262612956245,
+        0.043328624125504867,
+        -28.119430666692768
+      ],
+      "review_required": true
+    },
+    "16": {
+      "baseline": {
+        "repetitions": 5,
+        "requests": 80,
+        "throughput_repetitions": [
+          137.36379760051665,
+          133.74077181704072,
+          129.6780183365243,
+          140.2876577117444,
+          135.76705379957005
+        ],
+        "median_throughput": 135.76705379957005,
+        "ttft_p50": 6.96355227350432,
+        "ttft_p95": 13.008616818212612,
+        "output_tps_p50": 28.312662882305553,
+        "output_tps_p05": 14.381691839340755,
+        "slo_pass_requests": 0,
+        "input_lengths": [
+          172,
+          173
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 5,
+        "requests": 80,
+        "throughput_repetitions": [
+          132.03814426149353,
+          131.72490677924986,
+          131.43443270689818,
+          132.3108311386237,
+          130.23422317943832
+        ],
+        "median_throughput": 131.72490677924986,
+        "ttft_p50": 6.919892609017552,
+        "ttft_p95": 13.181279936850478,
+        "output_tps_p50": 26.793586102633785,
+        "output_tps_p05": 15.300840834201043,
+        "slo_pass_requests": 0,
+        "input_lengths": [
+          172,
+          173
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": -2.9772665070036175,
+        "ttft_p50": -0.626974032389882,
+        "ttft_p95": 1.3272980598223905,
+        "output_tps_p50": -5.365361732262697,
+        "output_tps_p05": 6.391104781886514
+      },
+      "paired_throughput_changes": [
+        -3.877042883242976,
+        -1.5072928101152239,
+        1.3544426363887307,
+        -5.686050150976962,
+        -4.0752380384564635
+      ],
+      "review_required": true
+    }
+  }
+}

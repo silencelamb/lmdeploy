@@ -1,0 +1,216 @@
+{
+  "version": "0.3.13.post1",
+  "options": {
+    "port": 55061,
+    "segment_gib": 8,
+    "io_api": "batch"
+  },
+  "environment": "native",
+  "events": [
+    {
+      "role": "a",
+      "event": "setup-start",
+      "pid": 753050,
+      "device": 0,
+      "hostname": "10.119.246.138",
+      "segment_bytes": 8589934592,
+      "effective_local_buffer": 0,
+      "external_engine": false,
+      "client_buffer_registration": false
+    },
+    {
+      "role": "a",
+      "event": "ready",
+      "ret": 0,
+      "seconds": 1.5974667000118643
+    },
+    {
+      "role": "b",
+      "event": "setup-start",
+      "pid": 753051,
+      "device": 1,
+      "hostname": "10.119.246.138",
+      "segment_bytes": 8589934592,
+      "effective_local_buffer": 0,
+      "external_engine": false,
+      "client_buffer_registration": false
+    },
+    {
+      "role": "b",
+      "event": "ready",
+      "ret": 0,
+      "seconds": 2.204022154008271
+    },
+    {
+      "role": "a",
+      "event": "put",
+      "key": "pr5030-753014-a-0",
+      "bytes": 131072,
+      "ret": [
+        0
+      ],
+      "seconds": 0.007651282998267561,
+      "sha256": "81775961d8d5170d6c60caab73a2891285c971d835167d91da5bbb05fcfdc45e",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "get",
+      "key": "pr5030-753014-a-0",
+      "bytes": 131072,
+      "ret": [
+        131072
+      ],
+      "seconds": 0.005988196993712336,
+      "sha256": "81775961d8d5170d6c60caab73a2891285c971d835167d91da5bbb05fcfdc45e",
+      "exact": true
+    },
+    {
+      "role": "a",
+      "event": "put",
+      "key": "pr5030-753014-a-1",
+      "bytes": 2097152,
+      "ret": [
+        0
+      ],
+      "seconds": 0.004430392989888787,
+      "sha256": "68858a1ff6df2d80170a7b2bbdac3cafca35cfd639265ef0db43198551652bd9",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "get",
+      "key": "pr5030-753014-a-1",
+      "bytes": 2097152,
+      "ret": [
+        2097152
+      ],
+      "seconds": 0.002919688995461911,
+      "sha256": "68858a1ff6df2d80170a7b2bbdac3cafca35cfd639265ef0db43198551652bd9",
+      "exact": true
+    },
+    {
+      "role": "a",
+      "event": "put",
+      "key": "pr5030-753014-a-2",
+      "bytes": 8388608,
+      "ret": [
+        0
+      ],
+      "seconds": 0.0064468289783690125,
+      "sha256": "cc252ab443f2e82feaa77f1a8a7f1f8b8bc3a42703191de1dcb0908f30218124",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "get",
+      "key": "pr5030-753014-a-2",
+      "bytes": 8388608,
+      "ret": [
+        8388608
+      ],
+      "seconds": 0.0063708689995110035,
+      "sha256": "cc252ab443f2e82feaa77f1a8a7f1f8b8bc3a42703191de1dcb0908f30218124",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "put",
+      "key": "pr5030-753014-b-0",
+      "bytes": 131072,
+      "ret": [
+        0
+      ],
+      "seconds": 0.0006880220025777817,
+      "sha256": "81775961d8d5170d6c60caab73a2891285c971d835167d91da5bbb05fcfdc45e",
+      "exact": true
+    },
+    {
+      "role": "a",
+      "event": "get",
+      "key": "pr5030-753014-b-0",
+      "bytes": 131072,
+      "ret": [
+        131072
+      ],
+      "seconds": 0.0008111319912131876,
+      "sha256": "81775961d8d5170d6c60caab73a2891285c971d835167d91da5bbb05fcfdc45e",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "put",
+      "key": "pr5030-753014-b-1",
+      "bytes": 2097152,
+      "ret": [
+        0
+      ],
+      "seconds": 0.00198207501671277,
+      "sha256": "68858a1ff6df2d80170a7b2bbdac3cafca35cfd639265ef0db43198551652bd9",
+      "exact": true
+    },
+    {
+      "role": "a",
+      "event": "get",
+      "key": "pr5030-753014-b-1",
+      "bytes": 2097152,
+      "ret": [
+        2097152
+      ],
+      "seconds": 0.0022445659851655364,
+      "sha256": "68858a1ff6df2d80170a7b2bbdac3cafca35cfd639265ef0db43198551652bd9",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "put",
+      "key": "pr5030-753014-b-2",
+      "bytes": 8388608,
+      "ret": [
+        0
+      ],
+      "seconds": 0.006549409008584917,
+      "sha256": "cc252ab443f2e82feaa77f1a8a7f1f8b8bc3a42703191de1dcb0908f30218124",
+      "exact": true
+    },
+    {
+      "role": "a",
+      "event": "get",
+      "key": "pr5030-753014-b-2",
+      "bytes": 8388608,
+      "ret": [
+        8388608
+      ],
+      "seconds": 0.006736519018886611,
+      "sha256": "cc252ab443f2e82feaa77f1a8a7f1f8b8bc3a42703191de1dcb0908f30218124",
+      "exact": true
+    },
+    {
+      "role": "a",
+      "event": "closed",
+      "seconds": 1.7438599160232116
+    },
+    {
+      "role": "b",
+      "event": "closed",
+      "seconds": 1.7814586659951601
+    }
+  ],
+  "complete": true,
+  "master_argv": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/mooncake/mooncake_master",
+    "--rpc_port=55061",
+    "--metrics_port=55062",
+    "--rpc_thread_num=4",
+    "--eviction_high_watermark_ratio=0.9",
+    "--eviction_ratio=0.1",
+    "--default_kv_lease_ttl=30000",
+    "--enable_offload=false",
+    "--client_ttl=120",
+    "--logtostderr"
+  ],
+  "child_exitcodes": [
+    0,
+    0
+  ]
+}

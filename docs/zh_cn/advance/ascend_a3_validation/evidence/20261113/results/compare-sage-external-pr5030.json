@@ -1,0 +1,372 @@
+{
+  "baseline": {
+    "complete": true,
+    "source": "results/baseline-sage-external-pr5030.json",
+    "cold_to_external": {
+      "shared-3": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": false,
+        "cold_ttft": 0.9640751619881485,
+        "external_ttft": 0.35745441098697484,
+        "cold_elapsed": 1.0404089009971358,
+        "external_elapsed": 0.4029984289954882
+      },
+      "shared-0": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": true,
+        "cold_ttft": 1.3670117550063878,
+        "external_ttft": 0.2982649850018788,
+        "cold_elapsed": 1.445842396991793,
+        "external_elapsed": 0.34226708600181155
+      },
+      "shared-1": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": false,
+        "cold_ttft": 1.3899638619914185,
+        "external_ttft": 0.7017985770071391,
+        "cold_elapsed": 1.4453902340028435,
+        "external_elapsed": 0.7415659370017238
+      },
+      "shared-2": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": false,
+        "cold_ttft": 0.9171222829900216,
+        "external_ttft": 0.31848956597968936,
+        "cold_elapsed": 0.9631865579867736,
+        "external_elapsed": 0.3616764129837975
+      }
+    },
+    "logs": {
+      "producer": {
+        "successful_save_batches": 8,
+        "successful_load_batches": 0,
+        "load_records": [],
+        "failures": [],
+        "raw_worker_files": [
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-6435bd0e5abf9733af00eecbee3df5183f713575d5829e7ff760f76c-ffffffff-769808.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-6435bd0e5abf9733af00eecbee3df5183f713575d5829e7ff760f76c-ffffffff-769808.err",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-99534eae7aee648330561cdd05838ca53ecde0e4f240a30ba1ab3aca-ffffffff-769807.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-99534eae7aee648330561cdd05838ca53ecde0e4f240a30ba1ab3aca-ffffffff-769807.err",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-6905d73795c017885bcd454361394da0f9f71fd38f034bb5ddd73a48-01000000-770127.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-6905d73795c017885bcd454361394da0f9f71fd38f034bb5ddd73a48-01000000-770127.err",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-a3ec6e7759f36025cc8294217d60536fa1580edff8142ac8cd27febf-01000000-770128.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/producer/worker-a3ec6e7759f36025cc8294217d60536fa1580edff8142ac8cd27febf-01000000-770128.err"
+        ],
+        "driver_log_sha256": "2625d7688f700b6d9ecb9c45d3a150e07e99627b7886dd990a9aef8911a23ffb"
+      },
+      "consumer": {
+        "successful_save_batches": 2,
+        "successful_load_batches": 8,
+        "load_records": [
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=1 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=6.975 ready_wait_ms=0.033",
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=2 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=6.480 ready_wait_ms=0.019",
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=3 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=7.624 ready_wait_ms=0.030",
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=4 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=7.081 ready_wait_ms=0.025",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=1 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=12.273 ready_wait_ms=0.073",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=2 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=8.598 ready_wait_ms=0.113",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=3 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=8.307 ready_wait_ms=0.056",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=4 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=8.786 ready_wait_ms=0.052"
+        ],
+        "failures": [],
+        "raw_worker_files": [
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-cd32ea3761f2c8c9909f9a2e87acacf7cc01b741604d9b9d35fb3529-ffffffff-772607.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-cd32ea3761f2c8c9909f9a2e87acacf7cc01b741604d9b9d35fb3529-ffffffff-772607.err",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-0179194e542949fcdfb7d5cd98fe5c226f8f2694b8774fa34ea535e3-ffffffff-772608.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-0179194e542949fcdfb7d5cd98fe5c226f8f2694b8774fa34ea535e3-ffffffff-772608.err",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-e86c97eaa5f230b8580deb8a2dfe54e4f3215afcc640aca751db0e04-01000000-772915.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-e86c97eaa5f230b8580deb8a2dfe54e4f3215afcc640aca751db0e04-01000000-772915.err",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-8c38662a113d0c50647f8d2c5e0e105155d1552f1f13528814327b89-01000000-772916.out",
+          "artifacts/ray-logs/baseline-sage-external-pr5030/consumer/worker-8c38662a113d0c50647f8d2c5e0e105155d1552f1f13528814327b89-01000000-772916.err"
+        ],
+        "driver_log_sha256": "2c1fcb5598d95c8c8d779b3004f23b64c87710a0d0038229657aef94b22f7f7e"
+      }
+    },
+    "child_exitcodes": [
+      0,
+      0
+    ],
+    "lifecycle_pass": true,
+    "external_function_pass": true,
+    "strict_precision_pass": true,
+    "timing": {
+      "cold_ttft": 0.9640751619881485,
+      "external_ttft": 0.35745441098697484,
+      "cold_elapsed": 1.0404089009971358,
+      "external_elapsed": 0.4029984289954882,
+      "samples": 3,
+      "external_ttft_speedup": 2.697057673246276
+    }
+  },
+  "native": {
+    "complete": true,
+    "source": "results/native-sage-external-pr5030.json",
+    "cold_to_external": {
+      "shared-3": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": false,
+        "cold_ttft": 0.9299677730014082,
+        "external_ttft": 0.3489865190058481,
+        "cold_elapsed": 0.9810603360238019,
+        "external_elapsed": 0.39383976999670267
+      },
+      "shared-0": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": true,
+        "cold_ttft": 1.2379259770095814,
+        "external_ttft": 0.3181703200098127,
+        "cold_elapsed": 1.3246128130122088,
+        "external_elapsed": 0.36311692200251855
+      },
+      "shared-1": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": false,
+        "cold_ttft": 1.2997296050016303,
+        "external_ttft": 0.7214790389989503,
+        "cold_elapsed": 1.3447248569864314,
+        "external_elapsed": 0.7735277469910216
+      },
+      "shared-2": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true,
+        "input_tokens": 7498,
+        "cold_cached": 0,
+        "external_cached": 7424,
+        "correct": true,
+        "warmup": false,
+        "cold_ttft": 0.9481580470164772,
+        "external_ttft": 0.3512823799974285,
+        "cold_elapsed": 0.99392075301148,
+        "external_elapsed": 0.4069366869807709
+      }
+    },
+    "logs": {
+      "producer": {
+        "successful_save_batches": 8,
+        "successful_load_batches": 0,
+        "load_records": [],
+        "failures": [],
+        "raw_worker_files": [
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-c66464c72a3a22f53405b4c455c60cb0eab4de27e318fa1e8a1393cd-ffffffff-774391.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-c66464c72a3a22f53405b4c455c60cb0eab4de27e318fa1e8a1393cd-ffffffff-774391.err",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-50e08480b0240ce5eae563bbbb4b1b3c05890c10790ce39e98f16a99-ffffffff-774390.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-50e08480b0240ce5eae563bbbb4b1b3c05890c10790ce39e98f16a99-ffffffff-774390.err",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-e8e6726c63f37fc53a926e3e1bf489f50e661fe6c64c057b2deff4bb-01000000-774697.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-e8e6726c63f37fc53a926e3e1bf489f50e661fe6c64c057b2deff4bb-01000000-774697.err",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-dd7ad04767c6e5c071adec5209e0a26856a20556c73b4a4621605cf5-01000000-774698.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/producer/worker-dd7ad04767c6e5c071adec5209e0a26856a20556c73b4a4621605cf5-01000000-774698.err"
+        ],
+        "driver_log_sha256": "a5ff9cf52313658f519eb2fafc5f5898ff579f4669b15b22377eb7ecdfdf1426"
+      },
+      "consumer": {
+        "successful_save_batches": 2,
+        "successful_load_batches": 8,
+        "load_records": [
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=1 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=10.084 ready_wait_ms=0.047",
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=2 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=8.522 ready_wait_ms=0.014",
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=3 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=10.241 ready_wait_ms=0.018",
+          "operation=load_batch_get_into_multi_buffers global_rank=0 tp_rank=0 tp_size=2 request_id=4 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=8.741 ready_wait_ms=0.021",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=1 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=9.280 ready_wait_ms=0.057",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=2 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=15.311 ready_wait_ms=0.032",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=3 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=8.803 ready_wait_ms=0.047",
+          "operation=load_batch_get_into_multi_buffers global_rank=1 tp_rank=1 tp_size=2 request_id=4 status=ok keys=59 failed=0 state_failed=False bytes=211173376 elapsed_ms=14.177 ready_wait_ms=0.052"
+        ],
+        "failures": [],
+        "raw_worker_files": [
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-7f05afe52281f53511de14e9700653503baaf580c8c606248bdb59a4-ffffffff-776814.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-7f05afe52281f53511de14e9700653503baaf580c8c606248bdb59a4-ffffffff-776814.err",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-f62968a763136b482a9d74cf12f673dc25975e2f2e7bf3960b3f17d0-ffffffff-776815.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-f62968a763136b482a9d74cf12f673dc25975e2f2e7bf3960b3f17d0-ffffffff-776815.err",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-93d9ed5a5785736c52a143ccab4f3f0262cc2d39ab5ae5edbc947eba-01000000-777124.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-93d9ed5a5785736c52a143ccab4f3f0262cc2d39ab5ae5edbc947eba-01000000-777124.err",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-752dfd8345ddd2a5314a36ce1046e98ef1742f54f4bca20c46f7e67d-01000000-777125.out",
+          "artifacts/ray-logs/native-sage-external-pr5030/consumer/worker-752dfd8345ddd2a5314a36ce1046e98ef1742f54f4bca20c46f7e67d-01000000-777125.err"
+        ],
+        "driver_log_sha256": "ecd5f528a27193f19ac3e289525e05750e83ac60e2f946d29b5371232f38c0f1"
+      }
+    },
+    "child_exitcodes": [
+      0,
+      0
+    ],
+    "lifecycle_pass": true,
+    "external_function_pass": true,
+    "strict_precision_pass": true,
+    "timing": {
+      "cold_ttft": 0.9481580470164772,
+      "external_ttft": 0.3512823799974285,
+      "cold_elapsed": 0.99392075301148,
+      "external_elapsed": 0.4069366869807709,
+      "samples": 3,
+      "external_ttft_speedup": 2.6991335205125235
+    }
+  },
+  "migration_comparison": {
+    "producer": {
+      "shared-3": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-0": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-1": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-2": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      }
+    },
+    "consumer": {
+      "consumer-cold-warmup-9": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-2": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-1": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-3": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      },
+      "shared-0": {
+        "exact_tokens": true,
+        "same_input_length": true,
+        "score_count": 40,
+        "common_history_steps": 8,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "numerical_pass": true
+      }
+    }
+  },
+  "migration_precision_pass": true,
+  "timing_change_percent": {
+    "cold_ttft": -1.651024276867219,
+    "external_ttft": -1.7266624217909698,
+    "cold_elapsed": -4.468257426584987,
+    "external_elapsed": 0.9772390416258325
+  }
+}

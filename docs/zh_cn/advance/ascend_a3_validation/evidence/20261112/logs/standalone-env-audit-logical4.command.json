@@ -1,0 +1,39 @@
+{
+  "label": "standalone-env-audit-logical4",
+  "env": "standalone",
+  "command": [
+    "python",
+    "/root/workspace/a3-validation-20261112/scripts/env_audit.py"
+  ],
+  "cwd": "/root/workspace/a3-validation-20261112",
+  "environment": {
+    "PYTHONPATH": "/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-validation-20261112/envs/standalone/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-validation-20261112/envs/standalone",
+    "PYTHONNOUSERSITE": "1",
+    "ASCEND_RT_VISIBLE_DEVICES": "4",
+    "OMP_PROC_BIND": "false",
+    "OMP_NUM_THREADS": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE": "1",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "DEVICE": "ascend",
+    "DLINFER_BUILD_DICP": "OFF",
+    "VALIDATION_ENV": "standalone",
+    "VALIDATION_ROOT": "/root/workspace/a3-validation-20261112",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-validation-20261112/artifacts/triton-cache-standalone",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "start_utc": "2026-11-12T15:35:38.279260+00:00",
+  "pid": 208906,
+  "returncode": 0,
+  "elapsed_seconds": 13.88400788299623,
+  "end_utc": "2026-11-12T15:35:52.163661+00:00"
+}

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="28" time="11.434" timestamp="2026-11-12T15:37:17.255090+00:00" hostname="dev-56007a17-0"><testcase classname="tests.test_ascend_attention_precision" name="test_prefill_attention_standard_matches_torch" time="0.998" /><testcase classname="tests.test_ascend_attention_precision" name="test_prefill_attention_dense_matches_torch" time="0.051" /><testcase classname="tests.test_ascend_attention_precision" name="test_prefill_attention_mla_matches_torch" time="0.053" /><testcase classname="tests.test_ascend_attention_precision" name="test_paged_prefill_attention_mla_matches_torch" time="0.013"><failure message="RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002&#10;[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.&#10;[PID: 213079] 2026-11-12-15:37:28.296.970 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.&#10;        Solution: Check whether the input/output tensor meets the condition.&#10;TraceBack (most recent call last):&#10;        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.&#10;        Check NnopbaseExecutorDoTiling(executor) failed&#10;        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed&#10;        Check NnopbaseExecutorMatchCache(executor) failed&#10;        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed">fai_causal_mask = tensor([[0, 1, 1,  ..., 1, 1, 1],
+        [0, 0, 1,  ..., 1, 1, 1],
+        [0, 0, 0,  ..., 1, 1, 1],
+        ...,
+   ...  ..., 0, 1, 1],
+        [0, 0, 0,  ..., 0, 0, 1],
+        [0, 0, 0,  ..., 0, 0, 0]], device='npu:0', dtype=torch.int8)
+
+    def test_paged_prefill_attention_mla_matches_torch(fai_causal_mask):
+        torch.manual_seed(20260814)
+        q_seq_lens = [3, 2]
+        kv_seq_lens = [130, 77]
+        cumulative_q_seq_lens = [3, 5]
+        block_size = 128
+        num_blocks = 4
+        block_table = torch.tensor([[2, 0], [3, 1]], dtype=torch.int32)
+    
+        query = _randn((sum(q_seq_lens), NUM_Q_HEADS, MLA_QK_HEAD_DIM))
+        key_cache = _randn((num_blocks, block_size, NUM_KV_HEADS, MLA_QK_HEAD_DIM))
+        expected = _torch_paged_prefill_attention(
+            query, key_cache, block_table, q_seq_lens, kv_seq_lens
+        )
+    
+        query = query.to(DEVICE)
+        key_cache = key_cache.to(DEVICE)
+        value_cache = key_cache[..., :MLA_V_HEAD_DIM]
+        output = torch.empty(
+            (sum(q_seq_lens), NUM_Q_HEADS, MLA_V_HEAD_DIM),
+            dtype=DTYPE,
+            device=DEVICE,
+        )
+    
+&gt;       actual = paged_prefill_attention(
+            query=query,
+            key=query[:, :NUM_KV_HEADS],
+            value=query[:, :NUM_KV_HEADS, :MLA_V_HEAD_DIM],
+            key_cache=key_cache,
+            value_cache=value_cache,
+            block_table=block_table.to(DEVICE),
+            block_size=block_size,
+            q_seq_len=torch.tensor(cumulative_q_seq_lens, dtype=torch.int32),
+            kv_seq_len=torch.tensor(kv_seq_lens, dtype=torch.int32),
+            max_q_seq_len=max(q_seq_lens),
+            max_kv_seq_len=max(kv_seq_lens),
+            num_q_heads=NUM_Q_HEADS,
+            num_kv_heads=NUM_KV_HEADS,
+            attn_mask=[fai_causal_mask],
+            softmax_scale=MLA_SOFTMAX_SCALE,
+            alibi_slopes=None,
+            attn_output=output,
+            kv_scales=None,
+            kv_zeros=None,
+            quant_bits=0,
+            head_size_v=MLA_V_HEAD_DIM,
+        )
+
+sources/dlinfer-clean/tests/test_ascend_attention_precision.py:225: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+sources/dlinfer-clean/dlinfer/graph/custom_op.py:69: in patched_func
+    return func_with_default(*args, **kwargs)
+sources/dlinfer-clean/dlinfer/ops/llm.py:535: in paged_prefill_attention
+    return vendor_ops_registry["paged_prefill_attention"](
+sources/dlinfer-clean/dlinfer/vendor/ascend/torch_npu_ops.py:666: in paged_prefill_attention
+    output, _ = torch_npu.npu_fused_infer_attention_score_v2(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;OpOverloadPacket(op='npu.npu_fused_infer_attention_score_v2')&gt;
+args = (tensor([[[ 0.5391, -0.7656, -0.0284,  ...,  0.7891,  0.1338,  1.9609],
+         [ 1.0547, -0.5781, -0.4062,  ..., -1....59e-02,  1.4531e+00,  ...,  1.7812e+00,
+            5.7812e-01,  1.0625e+00]]]], device='npu:0', dtype=torch.bfloat16))
+kwargs = {'actual_seq_kvlen': tensor([130,  77], dtype=torch.int32), 'actual_seq_qlen': tensor([3, 5], dtype=torch.int32), 'att...[0, 0, 0,  ..., 0, 0, 1],
+        [0, 0, 0,  ..., 0, 0, 0]], device='npu:0', dtype=torch.int8), 'block_size': 128, ...}
+
+    def __call__(self, /, *args: _P.args, **kwargs: _P.kwargs) -&gt; _T:
+        # overloading __call__ to ensure torch.ops.foo.bar()
+        # is still callable from JIT
+        # We save the function ptr as the `op` attribute on
+        # OpOverloadPacket to access it here.
+    
+        # Directly calling OverloadPacket goes into C++, which will check
+        # the schema and cause an error for torchbind op when inputs consist of FakeScriptObject so we
+        # intercept it here and call TorchBindOpverload instead.
+        if self._has_torchbind_op_overload and _must_dispatch_in_python(args, kwargs):
+            # pyrefly: ignore [bad-argument-type]
+            return _call_overload_packet_from_python(self, *args, **kwargs)
+&gt;       return self._op(*args, **kwargs)
+E       RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002
+E       [ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
+E       [PID: 213079] 2026-11-12-15:37:28.296.970 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.
+E               Solution: Check whether the input/output tensor meets the condition.
+E       TraceBack (most recent call last):
+E               Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.
+E               Check NnopbaseExecutorDoTiling(executor) failed
+E               Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed
+E               Check NnopbaseExecutorMatchCache(executor) failed
+E               Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed
+
+envs/standalone/lib/python3.12/site-packages/torch/_ops.py:1209: RuntimeError</failure></testcase><testcase classname="tests.test_ascend_attention_precision" name="test_paged_prefill_attention_mla_graph_replay" time="0.004"><failure message="RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002&#10;[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.&#10;[PID: 213079] 2026-11-12-15:37:28.448.645 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.&#10;        Solution: Check whether the input/output tensor meets the condition.&#10;TraceBack (most recent call last):&#10;        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.&#10;        Check NnopbaseExecutorDoTiling(executor) failed&#10;        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed&#10;        Check NnopbaseExecutorMatchCache(executor) failed&#10;        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed">fai_causal_mask = tensor([[0, 1, 1,  ..., 1, 1, 1],
+        [0, 0, 1,  ..., 1, 1, 1],
+        [0, 0, 0,  ..., 1, 1, 1],
+        ...,
+   ...  ..., 0, 1, 1],
+        [0, 0, 0,  ..., 0, 0, 1],
+        [0, 0, 0,  ..., 0, 0, 0]], device='npu:0', dtype=torch.int8)
+
+    def test_paged_prefill_attention_mla_graph_replay(fai_causal_mask):
+        torch.manual_seed(20260814)
+        q_seq_lens = [2]
+        capture_kv_seq_lens = [9]
+        replay_kv_seq_lens = [7]
+        block_size = 128
+        block_table = torch.tensor([[0]], dtype=torch.int32)
+        query = _randn((sum(q_seq_lens), NUM_Q_HEADS, MLA_QK_HEAD_DIM))
+        key_cache = _randn((1, block_size, NUM_KV_HEADS, MLA_QK_HEAD_DIM))
+        expected = _torch_paged_prefill_attention(
+            query, key_cache, block_table, q_seq_lens, replay_kv_seq_lens
+        )
+    
+        query = query.to(DEVICE)
+        key_cache = key_cache.to(DEVICE)
+        output = torch.empty(
+            (sum(q_seq_lens), NUM_Q_HEADS, MLA_V_HEAD_DIM),
+            dtype=DTYPE,
+            device=DEVICE,
+        )
+        kwargs = dict(
+            query=query,
+            key=query[:, :NUM_KV_HEADS],
+            value=query[:, :NUM_KV_HEADS, :MLA_V_HEAD_DIM],
+            key_cache=key_cache,
+            value_cache=key_cache[..., :MLA_V_HEAD_DIM],
+            block_table=block_table.to(DEVICE),
+            block_size=block_size,
+            q_seq_len=torch.tensor(q_seq_lens, dtype=torch.int32),
+            kv_seq_len=torch.tensor(capture_kv_seq_lens, dtype=torch.int32),
+            max_q_seq_len=max(q_seq_lens),
+            max_kv_seq_len=max(capture_kv_seq_lens),
+            num_q_heads=NUM_Q_HEADS,
+            num_kv_heads=NUM_KV_HEADS,
+            attn_mask=[fai_causal_mask],
+            softmax_scale=MLA_SOFTMAX_SCALE,
+            alibi_slopes=None,
+            attn_output=output,
+            kv_scales=None,
+            kv_zeros=None,
+            quant_bits=0,
+            head_size_v=MLA_V_HEAD_DIM,
+        )
+    
+        # Warm up allocations before capture, matching the model graph runner.
+&gt;       paged_prefill_attention(**kwargs)
+
+sources/dlinfer-clean/tests/test_ascend_attention_precision.py:298: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+sources/dlinfer-clean/dlinfer/graph/custom_op.py:69: in patched_func
+    return func_with_default(*args, **kwargs)
+sources/dlinfer-clean/dlinfer/ops/llm.py:535: in paged_prefill_attention
+    return vendor_ops_registry["paged_prefill_attention"](
+sources/dlinfer-clean/dlinfer/vendor/ascend/torch_npu_ops.py:666: in paged_prefill_attention
+    output, _ = torch_npu.npu_fused_infer_attention_score_v2(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;OpOverloadPacket(op='npu.npu_fused_infer_attention_score_v2')&gt;
+args = (tensor([[[ 0.5391, -0.7656, -0.0284,  ...,  0.7891,  0.1338,  1.9609],
+         [ 1.0547, -0.5781, -0.4062,  ..., -1....         [ 0.6523,  0.1768,  1.2031,  ..., -0.0540,  0.6016,  0.2773]]]],
+       device='npu:0', dtype=torch.bfloat16))
+kwargs = {'actual_seq_kvlen': tensor([9], dtype=torch.int32), 'actual_seq_qlen': tensor([2], dtype=torch.int32), 'atten_mask': ...[0, 0, 0,  ..., 0, 0, 1],
+        [0, 0, 0,  ..., 0, 0, 0]], device='npu:0', dtype=torch.int8), 'block_size': 128, ...}
+
+    def __call__(self, /, *args: _P.args, **kwargs: _P.kwargs) -&gt; _T:
+        # overloading __call__ to ensure torch.ops.foo.bar()
+        # is still callable from JIT
+        # We save the function ptr as the `op` attribute on
+        # OpOverloadPacket to access it here.
+    
+        # Directly calling OverloadPacket goes into C++, which will check
+        # the schema and cause an error for torchbind op when inputs consist of FakeScriptObject so we
+        # intercept it here and call TorchBindOpverload instead.
+        if self._has_torchbind_op_overload and _must_dispatch_in_python(args, kwargs):
+            # pyrefly: ignore [bad-argument-type]
+            return _call_overload_packet_from_python(self, *args, **kwargs)
+&gt;       return self._op(*args, **kwargs)
+E       RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002
+E       [ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
+E       [PID: 213079] 2026-11-12-15:37:28.448.645 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.
+E               Solution: Check whether the input/output tensor meets the condition.
+E       TraceBack (most recent call last):
+E               Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.
+E               Check NnopbaseExecutorDoTiling(executor) failed
+E               Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed
+E               Check NnopbaseExecutorMatchCache(executor) failed
+E               Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed
+
+envs/standalone/lib/python3.12/site-packages/torch/_ops.py:1209: RuntimeError</failure></testcase><testcase classname="tests.test_ascend_attention_precision" name="test_decode_attention_mla_matches_torch" time="0.014"><failure message="RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002&#10;[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.&#10;[PID: 213079] 2026-11-12-15:37:28.523.993 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.&#10;        Solution: Check whether the input/output tensor meets the condition.&#10;TraceBack (most recent call last):&#10;        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.&#10;        Check NnopbaseExecutorDoTiling(executor) failed&#10;        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed&#10;        Check NnopbaseExecutorMatchCache(executor) failed&#10;        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed">def test_decode_attention_mla_matches_torch():
+        torch.manual_seed(20260813)
+        batch_size = 3
+        block_size = 128
+        num_blocks = 6
+        kv_seq_lens = [130, 77, 17]
+        block_table = torch.tensor(
+            [[4, 1], [3, 0], [5, 2]],
+            dtype=torch.int32,
+        )
+    
+        query = _randn((batch_size, NUM_Q_HEADS, MLA_QK_HEAD_DIM))
+        key_cache = _randn((num_blocks, block_size, NUM_KV_HEADS, MLA_QK_HEAD_DIM))
+        expected = _torch_decode_attention(query, key_cache, block_table, kv_seq_lens)
+    
+        query = query.to(DEVICE)
+        key_cache = key_cache.to(DEVICE)
+        output = torch.empty(
+            (batch_size, NUM_Q_HEADS, MLA_V_HEAD_DIM), dtype=DTYPE, device=DEVICE
+        )
+    
+&gt;       actual = decode_attention_mla(
+            query=query,
+            key_cache=key_cache,
+            num_kv_heads=NUM_KV_HEADS,
+            num_q_heads=NUM_Q_HEADS,
+            scale_value=MLA_SOFTMAX_SCALE,
+            block_table=block_table.to(DEVICE),
+            kv_seqlens_cpu=torch.tensor(kv_seq_lens, dtype=torch.int32),
+            mla_vheadsize=MLA_V_HEAD_DIM,
+            attn_output=output,
+        )
+
+sources/dlinfer-clean/tests/test_ascend_attention_precision.py:342: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+sources/dlinfer-clean/dlinfer/vendor/ascend/attention.py:73: in decode_attention_mla
+    fai_output, _ = torch_npu.npu_fused_infer_attention_score_v2(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;OpOverloadPacket(op='npu.npu_fused_infer_attention_score_v2')&gt;
+args = (tensor([[[[-0.2539,  0.4492,  0.1123,  ...,  0.1196,  3.0625, -1.0078]],
+
+         [[ 1.7500,  1.4219,  1.9219,  ...,...         [-0.5547, -0.4844,  0.3848,  ...,  0.6211,  0.1318, -0.2891]]]],
+       device='npu:0', dtype=torch.bfloat16))
+kwargs = {'actual_seq_kvlen': tensor([130,  77,  17], dtype=torch.int32), 'actual_seq_qlen': None, 'atten_mask': None, 'block_size': 128, ...}
+
+    def __call__(self, /, *args: _P.args, **kwargs: _P.kwargs) -&gt; _T:
+        # overloading __call__ to ensure torch.ops.foo.bar()
+        # is still callable from JIT
+        # We save the function ptr as the `op` attribute on
+        # OpOverloadPacket to access it here.
+    
+        # Directly calling OverloadPacket goes into C++, which will check
+        # the schema and cause an error for torchbind op when inputs consist of FakeScriptObject so we
+        # intercept it here and call TorchBindOpverload instead.
+        if self._has_torchbind_op_overload and _must_dispatch_in_python(args, kwargs):
+            # pyrefly: ignore [bad-argument-type]
+            return _call_overload_packet_from_python(self, *args, **kwargs)
+&gt;       return self._op(*args, **kwargs)
+E       RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002
+E       [ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
+E       [PID: 213079] 2026-11-12-15:37:28.523.993 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.
+E               Solution: Check whether the input/output tensor meets the condition.
+E       TraceBack (most recent call last):
+E               Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.
+E               Check NnopbaseExecutorDoTiling(executor) failed
+E               Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed
+E               Check NnopbaseExecutorMatchCache(executor) failed
+E               Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed
+
+envs/standalone/lib/python3.12/site-packages/torch/_ops.py:1209: RuntimeError</failure></testcase><testcase classname="tests.test_ascend_interleaved_rope" name="test_interleaved_rope_matches_adjacent_pair_reference[1]" time="0.020" /><testcase classname="tests.test_ascend_interleaved_rope" name="test_interleaved_rope_matches_adjacent_pair_reference[3]" time="0.002" /><testcase classname="tests.test_ascend_interleaved_rope" name="test_interleaved_rope_matches_adjacent_pair_reference[32]" time="0.003" /><testcase classname="tests.test_ascend_sparse_attention" name="test_lightning_indexer_matches_native_torch_npu" time="0.004" /><testcase classname="tests.test_ascend_sparse_attention" name="test_sparse_flash_attention_matches_native_torch_npu" time="0.013" /><testcase classname="tests.test_ascend_sparse_attention" name="test_fill_kv_cache_writes_split_mla_caches" time="0.014" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_fresh_request[1]" time="0.003" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_fresh_request[2]" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_fresh_request[3]" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_fresh_request[4]" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_fresh_request[5]" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_fresh_request[8]" time="0.003" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[4-1]" time="0.001" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[5-2]" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[3-3]" time="0.003" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[6-4]" time="0.003" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[7-1]" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[2-2]" time="0.001" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_continuation[1-1]" time="0.001" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_mixed_batch_cross_request_isolation" time="0.002" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_chunked_prefill_matches_one_shot" time="0.003" /><testcase classname="tests.test_ascend_causal_conv1d_ring" name="test_prefill_output_matches_reference" time="0.002" /></testsuite></testsuites>

@@ -1,0 +1,66 @@
+{
+  "label": "install-baseline-pr5030",
+  "env": "baseline",
+  "command": [
+    "python",
+    "-m",
+    "pip",
+    "install",
+    "--no-deps",
+    "--no-build-isolation",
+    "--ignore-requires-python",
+    "-e",
+    "sources/lmdeploy-baseline",
+    "-e",
+    "/root/workspace/a3-validation-20261112/sources/dlinfer-baseline"
+  ],
+  "cwd": "/root/workspace/a3-mooncake-pr5030-20261113",
+  "environment": {
+    "CMAKE_PREFIX_PATH": "/usr/local/Ascend/cann-9.1.0/toolkit/tools/tikicpulib/lib/cmake:/usr/local/Ascend/cann-9.1.0/lib64/cmake:/usr/local/Ascend/cann-9.1.0/toolkit/tools/tikicpulib/lib/cmake:/usr/local/Ascend/cann-9.1.0/lib64/cmake",
+    "PYTHONPATH": "/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "LD_LIBRARY_PATH": "/usr/local/Ascend/cann-9.1.0/lib64:/usr/local/Ascend/cann-9.1.0/lib64/plugin/opskernel:/usr/local/Ascend/cann-9.1.0/lib64/plugin/nnengine:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common:/usr/local/Ascend/driver/lib64/driver:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64/plugin:/usr/local/Ascend/ascend-toolkit/latest/lib64:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/opskernel:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/nnengine:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/python3.12.13/lib::/usr/local/lib",
+    "PATH": "/root/workspace/a3-mooncake-pr5030-20261113/envs/baseline/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-mooncake-pr5030-20261113/envs/baseline",
+    "PYTHONNOUSERSITE": "1",
+    "ASCEND_RT_VISIBLE_DEVICES": "0,1",
+    "OMP_PROC_BIND": "false",
+    "OMP_NUM_THREADS": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE": "1",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "DEVICE": "ascend",
+    "DLINFER_BUILD_DICP": "OFF",
+    "VALIDATION_ENV": "baseline",
+    "VALIDATION_ROOT": "/root/workspace/a3-mooncake-pr5030-20261113",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-mooncake-pr5030-20261113/artifacts/triton-cache-baseline",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1",
+    "ACL_OP_INIT_MODE": "1"
+  },
+  "start_utc": "2026-11-13T13:40:38.454576+00:00",
+  "harness_sha256": {
+    "run.py": "42302f2fc93d35fe624ee3604e7bd2c325b1367717e2d97ddd1742e2afb2e82e",
+    "sitecustomize_native.py": "80597e482ed5d8d0791347e9bd96190b806a2c59a263b29214b08b49ac111fcd",
+    "seed_startup.py": "81b45b6fc2f484b00b86577a7bd7a55f9b86c71bb1aaee1e03641ce1188f4cae",
+    "pipeline_case.py": "39eb448c5016d39c2615802d5555c1c61b34742e0af9f718668053afc4b083c8",
+    "compare.py": "c7f95c337cff420032deab6d72e4873d5679176a3e857a44fb11529b72fbd5c3",
+    "setup_envs.py": "35aa67786a6c967d468b76eae7cd902cc92c7eb12a95e850e01ed583418db5a3"
+  },
+  "dlinfer_revision": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+  "source_revisions": {
+    "lmdeploy-baseline": {
+      "head": "b334d7aaf8afd8fc5f77fcf34e3c5f028a2b7c9d",
+      "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "pid": 749117,
+  "returncode": 0,
+  "elapsed_seconds": 4.721724901988637,
+  "end_utc": "2026-11-13T13:40:43.187079+00:00"
+}

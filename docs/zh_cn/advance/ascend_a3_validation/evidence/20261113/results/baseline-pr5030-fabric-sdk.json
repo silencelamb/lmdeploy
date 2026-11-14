@@ -1,0 +1,77 @@
+{
+  "version": "0.3.13.post1",
+  "options": {
+    "port": 55061,
+    "segment_gib": 1
+  },
+  "environment": "baseline",
+  "events": [
+    {
+      "role": "b",
+      "event": "setup-start",
+      "pid": 750073,
+      "device": 1,
+      "hostname": "10.119.246.138",
+      "segment_bytes": 1073741824,
+      "effective_local_buffer": 0,
+      "external_engine": false,
+      "client_buffer_registration": false
+    },
+    {
+      "role": "b",
+      "event": "ready",
+      "ret": 0,
+      "seconds": 1.1564547960006166
+    },
+    {
+      "role": "a",
+      "event": "setup-start",
+      "pid": 750072,
+      "device": 0,
+      "hostname": "10.119.246.138",
+      "segment_bytes": 1073741824,
+      "effective_local_buffer": 0,
+      "external_engine": false,
+      "client_buffer_registration": false
+    },
+    {
+      "role": "a",
+      "event": "ready",
+      "ret": 0,
+      "seconds": 1.0047201480192598
+    },
+    {
+      "role": "a",
+      "event": "put",
+      "key": "pr5030-750036-a-0",
+      "bytes": 131072,
+      "ret": 0,
+      "seconds": 0.00791850098175928,
+      "sha256": "81775961d8d5170d6c60caab73a2891285c971d835167d91da5bbb05fcfdc45e",
+      "exact": true
+    },
+    {
+      "role": "b",
+      "event": "error",
+      "traceback": "Traceback (most recent call last):\n  File \"/root/workspace/a3-mooncake-pr5030-20261113/scripts/fabric_probe.py\", line 58, in worker\n    assert ret==n,(ret,n)\n           ^^^^^^\nAssertionError: (-200, 131072)\n"
+    }
+  ],
+  "complete": false,
+  "master_argv": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/baseline/lib/python3.12/site-packages/mooncake/mooncake_master",
+    "--rpc_port=55061",
+    "--metrics_port=55062",
+    "--rpc_thread_num=4",
+    "--eviction_high_watermark_ratio=0.9",
+    "--eviction_ratio=0.1",
+    "--default_kv_lease_ttl=30000",
+    "--enable_offload=false",
+    "--client_ttl=120",
+    "--logtostderr"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"/root/workspace/a3-mooncake-pr5030-20261113/scripts/fabric_probe.py\", line 119, in main\n    inboxes[direction[1]].put(dict(task,op='get'));loaded=receive('get')\n                                                          ^^^^^^^^^^^^^^\n  File \"/root/workspace/a3-mooncake-pr5030-20261113/scripts/fabric_probe.py\", line 112, in receive\n    assert result['event']==event,result\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'role': 'b', 'event': 'error', 'traceback': 'Traceback (most recent call last):\\n  File \"/root/workspace/a3-mooncake-pr5030-20261113/scripts/fabric_probe.py\", line 58, in worker\\n    assert ret==n,(ret,n)\\n           ^^^^^^\\nAssertionError: (-200, 131072)\\n'}\n",
+  "child_exitcodes": [
+    0,
+    1
+  ]
+}

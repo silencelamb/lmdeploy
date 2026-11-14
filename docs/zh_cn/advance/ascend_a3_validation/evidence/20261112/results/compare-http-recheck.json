@@ -1,0 +1,222 @@
+{
+  "baseline": "results/baseline-sage-http-recheck.json",
+  "native": "results/native-sage-http-recheck.json",
+  "complete": true,
+  "identical_server_arguments_and_workloads": true,
+  "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+  "functional_answers": [
+    true,
+    true
+  ],
+  "scenarios": {
+    "1": {
+      "baseline": {
+        "repetitions": 7,
+        "requests": 7,
+        "throughput_repetitions": [
+          56.89356589353324,
+          63.84316801249344,
+          62.5549958897743,
+          68.91823747345086,
+          57.400618567126145,
+          51.55846328883412,
+          57.820761847987406
+        ],
+        "median_throughput": 57.820761847987406,
+        "ttft_p50": 0.6494432099862024,
+        "ttft_p95": 0.7757056624046527,
+        "output_tps_p50": 87.30769450889926,
+        "output_tps_p05": 74.48184013506706,
+        "slo_pass_requests": 7,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 7,
+        "requests": 7,
+        "throughput_repetitions": [
+          76.10670364030544,
+          64.24067234615121,
+          65.80967105675002,
+          64.91773059712415,
+          56.445910614225134,
+          66.38990286090117,
+          70.79484798861641
+        ],
+        "median_throughput": 65.80967105675002,
+        "ttft_p50": 0.6717121640103869,
+        "ttft_p95": 0.7329911100998288,
+        "output_tps_p50": 101.18324676594361,
+        "output_tps_p05": 84.93061169005007,
+        "slo_pass_requests": 7,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": 13.816679257471055,
+        "ttft_p50": 3.4289301484355494,
+        "ttft_p95": -5.506541253342245,
+        "output_tps_p50": 15.892702625001753,
+        "output_tps_p05": 14.028616285573726
+      },
+      "paired_throughput_changes": [
+        33.7703173373354,
+        0.6226262668857174,
+        5.202902055513925,
+        -5.80471443116608,
+        -1.6632363495953317,
+        28.766256063491056,
+        22.438455886725063
+      ],
+      "review_required": false
+    },
+    "4": {
+      "baseline": {
+        "repetitions": 7,
+        "requests": 28,
+        "throughput_repetitions": [
+          119.40915898470358,
+          130.65336507843097,
+          130.31483482990143,
+          116.14250739074109,
+          133.22658265433333,
+          121.49755570131654,
+          134.53424192850804
+        ],
+        "median_throughput": 130.31483482990143,
+        "ttft_p50": 1.898318092993577,
+        "ttft_p95": 2.6967220380829526,
+        "output_tps_p50": 58.202099444115206,
+        "output_tps_p05": 40.74950396983724,
+        "slo_pass_requests": 26,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 7,
+        "requests": 28,
+        "throughput_repetitions": [
+          111.32450963870906,
+          130.05326250609502,
+          129.70212472509195,
+          131.73852025543363,
+          131.74850561637436,
+          133.3645008254291,
+          132.4027760053942
+        ],
+        "median_throughput": 131.73852025543363,
+        "ttft_p50": 1.7295400064904243,
+        "ttft_p95": 2.461044968791248,
+        "output_tps_p50": 54.78566568513244,
+        "output_tps_p05": 42.04214093910836,
+        "slo_pass_requests": 27,
+        "input_lengths": [
+          171
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": 1.0924968192535633,
+        "ttft_p50": -8.890927559827233,
+        "ttft_p95": -8.739390488284915,
+        "output_tps_p50": -5.869949351677894,
+        "output_tps_p05": 3.1721538751193767
+      },
+      "paired_throughput_changes": [
+        -6.770543746171242,
+        -0.45930892937636747,
+        -0.4701767880911256,
+        13.4283417975664,
+        -1.1094460343503365,
+        9.767229518004171,
+        -1.5843296788683014
+      ],
+      "review_required": true
+    },
+    "16": {
+      "baseline": {
+        "repetitions": 7,
+        "requests": 112,
+        "throughput_repetitions": [
+          153.8584326207045,
+          148.13512979859897,
+          149.60123124890055,
+          149.6595422074852,
+          154.4738792373054,
+          143.52629784885985,
+          146.04057145850265
+        ],
+        "median_throughput": 149.60123124890055,
+        "ttft_p50": 6.4312847904948285,
+        "ttft_p95": 11.816581073857376,
+        "output_tps_p50": 29.88957111534758,
+        "output_tps_p05": 16.777679759509894,
+        "slo_pass_requests": 0,
+        "input_lengths": [
+          172,
+          173
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "native": {
+        "repetitions": 7,
+        "requests": 112,
+        "throughput_repetitions": [
+          153.56880458222895,
+          148.89603196756923,
+          145.86028059419147,
+          147.1815332897875,
+          172.2674417715517,
+          152.35121672196834,
+          145.17127892422067
+        ],
+        "median_throughput": 148.89603196756923,
+        "ttft_p50": 5.8623902014951454,
+        "ttft_p95": 11.592359728252632,
+        "output_tps_p50": 29.145125917558847,
+        "output_tps_p05": 16.191629021958065,
+        "slo_pass_requests": 0,
+        "input_lengths": [
+          172,
+          173
+        ],
+        "output_lengths": [
+          128
+        ]
+      },
+      "change_percent": {
+        "median_throughput": -0.47138601430227745,
+        "ttft_p50": -8.845737788512887,
+        "ttft_p95": -1.897514553518398,
+        "output_tps_p50": -2.490651990006232,
+        "output_tps_p05": -3.4930380478841005
+      },
+      "paired_throughput_changes": [
+        -0.18824320093624447,
+        0.5136541008232021,
+        -2.5006148836335673,
+        -1.6557640636520432,
+        11.518816399315979,
+        6.148642447672947,
+        -0.5952404359969132
+      ],
+      "review_required": false
+    }
+  }
+}

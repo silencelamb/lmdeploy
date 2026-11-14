@@ -1,0 +1,2246 @@
+{
+  "revisions": {
+    "lmdeploy-baseline": {
+      "head": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+      "status": "",
+      "branch": ""
+    },
+    "dlinfer-baseline": {
+      "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+      "status": "",
+      "branch": ""
+    },
+    "lmdeploy-native": {
+      "head": "6421cefea94edd350e419f556158639556357a27",
+      "status": "",
+      "branch": "codex/ascend-a3-validation-20261112"
+    },
+    "dlinfer-clean": {
+      "head": "05ede38ae879347be33c8f6ebb136d84f3f4ee88",
+      "status": "",
+      "branch": "codex/ascend-a3-validation-20261112"
+    }
+  },
+  "comparisons": {
+    "compare-agents-c4-pipeline-control": {
+      "baseline": "results/baseline-agents-c4-pipeline-control.json",
+      "native": "results/native-agents-c4-pipeline-control.json",
+      "complete": true,
+      "sequences": 0,
+      "exact_sequences": 0,
+      "tokens": 0,
+      "numerics": {
+        "max_abs": 0,
+        "rms": 0.0,
+        "compared_scores": 0
+      },
+      "token_pass": false,
+      "numerical_status": "unverified-no-scores",
+      "fixed_history": null
+    },
+    "compare-agents-context-boundary": {
+      "baseline": "results/baseline-agents-context-boundary.json",
+      "native": "results/native-agents-context-boundary.json",
+      "complete": true,
+      "sequences": 1,
+      "exact_sequences": 1,
+      "tokens": 8,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 40
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-agents-eager": {
+      "baseline": "results/baseline-agents-eager-trace.json",
+      "native": "results/native-agents-eager-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 21,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 6720
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-agents-graph-prefix-extra": {
+      "baseline": "results/baseline-agents-graph-prefix-extra.json",
+      "native": "results/native-agents-graph-prefix-extra.json",
+      "complete": true,
+      "sequences": 20,
+      "exact_sequences": 20,
+      "tokens": 56,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 280
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": {
+        "rows": 123,
+        "compared_scores": 635,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "top1_mismatches": [],
+        "pass": true
+      }
+    },
+    "compare-baseline-seeded-repeat": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-seeded-r0.json",
+      "native": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-seeded-r1.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 14,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 1.4687480926513672,
+        "rms": 0.138433739977215,
+        "compared_scores": 5388
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    },
+    "compare-context-boundary": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-context-boundary.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-context-boundary.json",
+      "complete": true,
+      "sequences": 1,
+      "exact_sequences": 1,
+      "tokens": 8,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 40
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-dense-eager-score-trace": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-dense-eager-score-trace.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-dense-eager-score-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 21,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 6720
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-dense-graph-prefix-extra": {
+      "baseline": "results/baseline-dense-graph-prefix-extra.json",
+      "native": "results/native-dense-graph-prefix-extra.json",
+      "complete": true,
+      "sequences": 20,
+      "exact_sequences": 20,
+      "tokens": 56,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 280
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": {
+        "rows": 123,
+        "compared_scores": 658,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "top1_mismatches": [],
+        "pass": true
+      }
+    },
+    "compare-native-seeded-repeat": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-seeded-r0.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-seeded-r1.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 13,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 1.618086338043213,
+        "rms": 0.14444225613099107,
+        "compared_scores": 5219
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    },
+    "compare-primary-full": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-prefix-full.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-prefix-full-importfix.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 10,
+      "tokens": 2688,
+      "numerics": {
+        "max_abs": 0,
+        "rms": 0.0,
+        "compared_scores": 0
+      },
+      "token_pass": false,
+      "numerical_status": "unverified-no-scores",
+      "fixed_history": null
+    },
+    "compare-sage-eager-score-trace": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-eager-score-trace.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-eager-score-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 21,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 6720
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-sage-graph-chunk256-score-trace": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-graph-chunk256-score-trace.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-graph-chunk256-score-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 21,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 6720
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-sage-graph-prefix-extra": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-graph-prefix-extra.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-graph-prefix-extra.json",
+      "complete": true,
+      "sequences": 20,
+      "exact_sequences": 20,
+      "tokens": 56,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 280
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": {
+        "rows": 123,
+        "compared_scores": 640,
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "top1_mismatches": [],
+        "pass": true
+      }
+    },
+    "compare-sage-mtp1-score-trace": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp1-score-trace.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp1-score-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 17,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 1.5624980926513672,
+        "rms": 0.1393125347036739,
+        "compared_scores": 6417
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    },
+    "compare-sage-mtp3-eager": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-eager-score-trace.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-eager-score-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 15,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 1.4542531967163086,
+        "rms": 0.1458377692664391,
+        "compared_scores": 5518
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    },
+    "compare-sage-mtp3-long260k": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-long260k.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-long260k.json",
+      "complete": true,
+      "sequences": 1,
+      "exact_sequences": 0,
+      "tokens": 64,
+      "numerics": {
+        "max_abs": 0,
+        "rms": 0.0,
+        "compared_scores": 0
+      },
+      "token_pass": false,
+      "numerical_status": "unverified-no-scores",
+      "fixed_history": null
+    },
+    "compare-sage-mtp3-prefix-quality": {
+      "baseline": "results/baseline-sage-mtp3-prefix-quality.json",
+      "native": "results/native-sage-mtp3-prefix-quality.json",
+      "complete": true,
+      "sequences": 16,
+      "exact_sequences": 16,
+      "tokens": 56,
+      "numerics": {
+        "max_abs": 0.0,
+        "rms": 0.0,
+        "compared_scores": 280
+      },
+      "token_pass": true,
+      "numerical_status": "pass",
+      "fixed_history": null
+    },
+    "compare-sage-mtp3-score-trace": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-score-trace.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-score-trace.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 13,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 2.4374589920043945,
+        "rms": 0.1474607604495964,
+        "compared_scores": 5009
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    },
+    "compare-seeded-migration-r0": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-seeded-r0.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-seeded-r0.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 15,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 1.8676753044128418,
+        "rms": 0.14863840032616885,
+        "compared_scores": 5379
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    },
+    "compare-seeded-migration-r1": {
+      "baseline": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-seeded-r1.json",
+      "native": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-seeded-r1.json",
+      "complete": true,
+      "sequences": 21,
+      "exact_sequences": 16,
+      "tokens": 1344,
+      "numerics": {
+        "max_abs": 1.3946113586425781,
+        "rms": 0.14387030246909427,
+        "compared_scores": 5840
+      },
+      "token_pass": false,
+      "numerical_status": "fail",
+      "fixed_history": null
+    }
+  },
+  "test_suites": {
+    "native-cpu-contracts-importfix": {
+      "total": 33,
+      "passed": 33,
+      "failed": [],
+      "skipped": [],
+      "cpu_ring_cases": 0
+    },
+    "standalone-cpu-contracts": {
+      "total": 16,
+      "passed": 16,
+      "failed": [],
+      "skipped": [],
+      "cpu_ring_cases": 0
+    },
+    "baseline-operator-tests-logical2": {
+      "total": 28,
+      "passed": 25,
+      "failed": [
+        {
+          "name": "test_paged_prefill_attention_mla_matches_torch",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:36:10 (PID:209810, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 209810] 2026-11-12-15:36:10.399.438 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        },
+        {
+          "name": "test_paged_prefill_attention_mla_graph_replay",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:36:10 (PID:209810, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 209810] 2026-11-12-15:36:10.562.807 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        },
+        {
+          "name": "test_decode_attention_mla_matches_torch",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:36:10 (PID:209810, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 209810] 2026-11-12-15:36:10.641.377 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        }
+      ],
+      "skipped": [],
+      "cpu_ring_cases": 16
+    },
+    "native-operator-tests": {
+      "total": 29,
+      "passed": 26,
+      "failed": [
+        {
+          "name": "test_paged_prefill_attention_mla_matches_torch",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:27 (PID:213052, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213052] 2026-11-12-15:37:27.484.759 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        },
+        {
+          "name": "test_paged_prefill_attention_mla_graph_replay",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:27 (PID:213052, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213052] 2026-11-12-15:37:27.638.499 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        },
+        {
+          "name": "test_decode_attention_mla_matches_torch",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:27 (PID:213052, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213052] 2026-11-12-15:37:27.708.513 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        }
+      ],
+      "skipped": [],
+      "cpu_ring_cases": 16
+    },
+    "standalone-operator-tests": {
+      "total": 28,
+      "passed": 25,
+      "failed": [
+        {
+          "name": "test_paged_prefill_attention_mla_matches_torch",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213079] 2026-11-12-15:37:28.296.970 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        },
+        {
+          "name": "test_paged_prefill_attention_mla_graph_replay",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213079] 2026-11-12-15:37:28.448.645 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        },
+        {
+          "name": "test_decode_attention_mla_matches_torch",
+          "message": "RuntimeError: npu_fused_infer_attention_score_v2_symint:../third_party/op-plugin/op_plugin/ops/opapi/FusedInferAttentionScoreV2KernelNpuOpApi.cpp:459 NPU function error: call aclnnFusedInferAttentionScoreV4 failed, error code is 561002\n[ERROR] 2026-11-12-15:37:28 (PID:213079, Device:0, RankID:-1) ERR00100 PTA call acl api failed.\n[PID: 213079] 2026-11-12-15:37:28.523.993 Invalid_Argument(EZ0037): Parameter keyRope of FusedInferAttentionScore is invalid. Reason: In PA and not MXFP8 Fullquant scenarios, keyRope does not support non-contiguous tensors.\n        Solution: Check whether the input/output tensor meets the condition.\nTraceBack (most recent call last):\n        Failed to execute operator FusedInferAttentionScore_0. Reason: Failed to execute tiling function.\n        Check NnopbaseExecutorDoTiling(executor) failed\n        Check NnopbaseExecutorTilingAndUpdateBinInfo(executor) failed\n        Check NnopbaseExecutorMatchCache(executor) failed\n        Check NnopbaseRunForWorkspace(*executor, workspaceSize) failed"
+        }
+      ],
+      "skipped": [],
+      "cpu_ring_cases": 16
+    }
+  },
+  "commands": {
+    "audit-baseline-mooncake": {
+      "env": "baseline-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 13.836576069006696,
+      "start_utc": "2026-11-12T17:10:29.392420+00:00",
+      "end_utc": "2026-11-12T17:10:43.282372+00:00"
+    },
+    "audit-native-mooncake": {
+      "env": "native-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 16.542317790008383,
+      "start_utc": "2026-11-12T17:10:29.389250+00:00",
+      "end_utc": "2026-11-12T17:10:45.959461+00:00"
+    },
+    "baseline-agents-c4-pipeline-control": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 103.63754907401744,
+      "start_utc": "2026-11-12T17:20:30.906236+00:00",
+      "end_utc": "2026-11-12T17:22:14.599875+00:00"
+    },
+    "baseline-agents-context-boundary": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 108.73396773901186,
+      "start_utc": "2026-11-12T16:54:47.813464+00:00",
+      "end_utc": "2026-11-12T16:56:36.571242+00:00"
+    },
+    "baseline-agents-eager-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 118.25098647701088,
+      "start_utc": "2026-11-12T16:48:51.755841+00:00",
+      "end_utc": "2026-11-12T16:50:50.044399+00:00"
+    },
+    "baseline-agents-graph-prefix-extra": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 71.32752429798711,
+      "start_utc": "2026-11-12T16:52:25.055412+00:00",
+      "end_utc": "2026-11-12T16:53:36.410964+00:00"
+    },
+    "baseline-agents-http-recheck": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 133.96270363297663,
+      "start_utc": "2026-11-12T17:14:52.681567+00:00",
+      "end_utc": "2026-11-12T17:17:06.669814+00:00"
+    },
+    "baseline-agents-http": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 211.79792594499304,
+      "start_utc": "2026-11-12T17:00:58.070734+00:00",
+      "end_utc": "2026-11-12T17:04:29.892044+00:00"
+    },
+    "baseline-dense-eager-score-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 47.78584637699532,
+      "start_utc": "2026-11-12T15:56:13.936715+00:00",
+      "end_utc": "2026-11-12T15:57:01.862182+00:00"
+    },
+    "baseline-dense-graph-prefix-extra": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 29.9622457769874,
+      "start_utc": "2026-11-12T15:57:40.474285+00:00",
+      "end_utc": "2026-11-12T15:58:10.532023+00:00"
+    },
+    "baseline-env-audit-logical2": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 13.936335962003795,
+      "start_utc": "2026-11-12T15:35:38.277156+00:00",
+      "end_utc": "2026-11-12T15:35:52.213801+00:00"
+    },
+    "baseline-env-audit": {
+      "env": "baseline",
+      "returncode": 1,
+      "elapsed_seconds": 9.178507358999923,
+      "start_utc": "2026-11-12T15:34:58.791572+00:00",
+      "end_utc": "2026-11-12T15:35:07.970365+00:00"
+    },
+    "baseline-mooncake-agents-a1-fabric-model": {
+      "env": "baseline-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 62.51073215401266,
+      "start_utc": "2026-11-12T17:10:30.840877+00:00",
+      "end_utc": "2026-11-12T17:11:33.383281+00:00"
+    },
+    "baseline-mooncake-ascend-config-original": {
+      "env": "baseline-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 11.481788470002357,
+      "start_utc": "2026-11-12T16:54:17.399590+00:00",
+      "end_utc": "2026-11-12T16:54:29.003328+00:00"
+    },
+    "baseline-mooncake-config-tests": {
+      "env": "baseline-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 11.333219410997117,
+      "start_utc": "2026-11-12T16:59:58.970604+00:00",
+      "end_utc": "2026-11-12T17:00:10.389240+00:00"
+    },
+    "baseline-mooncake-sage-a1-5-fabric-model": {
+      "env": "baseline-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 71.8325367590005,
+      "start_utc": "2026-11-12T17:08:04.676016+00:00",
+      "end_utc": "2026-11-12T17:09:16.533004+00:00"
+    },
+    "baseline-mooncake-sdk-fabric1": {
+      "env": "baseline-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 17.544400169019355,
+      "start_utc": "2026-11-12T17:00:27.591029+00:00",
+      "end_utc": "2026-11-12T17:00:45.219328+00:00"
+    },
+    "baseline-operator-tests-logical2": {
+      "env": "baseline",
+      "returncode": 1,
+      "elapsed_seconds": 23.40055023500463,
+      "start_utc": "2026-11-12T15:35:50.531652+00:00",
+      "end_utc": "2026-11-12T15:36:13.932485+00:00"
+    },
+    "baseline-operator-tests": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 12.233965680992696,
+      "start_utc": "2026-11-12T15:35:12.788034+00:00",
+      "end_utc": "2026-11-12T15:35:25.022320+00:00"
+    },
+    "baseline-rejection-reference": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 15.339622956991661,
+      "start_utc": "2026-11-12T16:12:21.985742+00:00",
+      "end_utc": "2026-11-12T16:12:37.466579+00:00"
+    },
+    "baseline-sage-context-boundary": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 117.48928491701372,
+      "start_utc": "2026-11-12T16:14:17.526307+00:00",
+      "end_utc": "2026-11-12T16:16:15.146768+00:00"
+    },
+    "baseline-sage-eager-score-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 102.48603877998539,
+      "start_utc": "2026-11-12T15:50:05.895297+00:00",
+      "end_utc": "2026-11-12T15:51:48.508136+00:00"
+    },
+    "baseline-sage-eager-smoke": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 163.48986288902233,
+      "start_utc": "2026-11-12T15:34:03.499703+00:00",
+      "end_utc": "2026-11-12T15:36:46.989859+00:00"
+    },
+    "baseline-sage-graph-chunk256-score-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 79.62377565397765,
+      "start_utc": "2026-11-12T15:53:35.394245+00:00",
+      "end_utc": "2026-11-12T15:54:55.115843+00:00"
+    },
+    "baseline-sage-graph-prefix-extra": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 92.32062511699041,
+      "start_utc": "2026-11-12T15:46:53.018435+00:00",
+      "end_utc": "2026-11-12T15:48:25.341433+00:00"
+    },
+    "baseline-sage-http-bench": {
+      "env": "baseline",
+      "returncode": 1,
+      "elapsed_seconds": 166.96617749301367,
+      "start_utc": "2026-11-12T16:21:03.392318+00:00",
+      "end_utc": "2026-11-12T16:23:50.385516+00:00"
+    },
+    "baseline-sage-http-fresh-connections": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 209.41025190401706,
+      "start_utc": "2026-11-12T16:28:33.133040+00:00",
+      "end_utc": "2026-11-12T16:32:02.565607+00:00"
+    },
+    "baseline-sage-http-recheck": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 242.673359856999,
+      "start_utc": "2026-11-12T16:42:30.017789+00:00",
+      "end_utc": "2026-11-12T16:46:32.722737+00:00"
+    },
+    "baseline-sage-mtp1-score-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 91.20479715100373,
+      "start_utc": "2026-11-12T15:58:40.830598+00:00",
+      "end_utc": "2026-11-12T16:00:12.148430+00:00"
+    },
+    "baseline-sage-mtp3-eager-score-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 80.64338689800934,
+      "start_utc": "2026-11-12T16:09:26.635960+00:00",
+      "end_utc": "2026-11-12T16:10:47.395326+00:00"
+    },
+    "baseline-sage-mtp3-extra": {
+      "env": "baseline",
+      "returncode": 1,
+      "elapsed_seconds": 72.5324091950024,
+      "start_utc": "2026-11-12T16:18:36.422482+00:00",
+      "end_utc": "2026-11-12T16:19:48.977095+00:00"
+    },
+    "baseline-sage-mtp3-long260k": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 114.89261573299882,
+      "start_utc": "2026-11-12T16:04:16.526683+00:00",
+      "end_utc": "2026-11-12T16:06:11.512667+00:00"
+    },
+    "baseline-sage-mtp3-prefix-full": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 177.92793110999628,
+      "start_utc": "2026-11-12T15:37:14.661647+00:00",
+      "end_utc": "2026-11-12T15:40:12.589877+00:00"
+    },
+    "baseline-sage-mtp3-prefix-quality": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 74.43109136400744,
+      "start_utc": "2026-11-12T16:35:41.607711+00:00",
+      "end_utc": "2026-11-12T16:36:56.061213+00:00"
+    },
+    "baseline-sage-mtp3-score-trace": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 78.48378176099504,
+      "start_utc": "2026-11-12T16:01:40.829061+00:00",
+      "end_utc": "2026-11-12T16:02:59.418658+00:00"
+    },
+    "baseline-sage-mtp3-seeded-r0": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 95.01736330499989,
+      "start_utc": "2026-11-12T16:12:10.219651+00:00",
+      "end_utc": "2026-11-12T16:13:45.331286+00:00"
+    },
+    "baseline-sage-mtp3-seeded-r1": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 94.25553743299679,
+      "start_utc": "2026-11-12T16:13:45.396271+00:00",
+      "end_utc": "2026-11-12T16:15:19.789256+00:00"
+    },
+    "install-baseline-dlinfer": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 2.8194080560060684,
+      "start_utc": "2026-11-12T15:32:20.443686+00:00",
+      "end_utc": "2026-11-12T15:32:23.263351+00:00"
+    },
+    "install-baseline-lmdeploy": {
+      "env": "baseline",
+      "returncode": 0,
+      "elapsed_seconds": 2.819823208003072,
+      "start_utc": "2026-11-12T15:32:58.617866+00:00",
+      "end_utc": "2026-11-12T15:33:01.437997+00:00"
+    },
+    "install-baseline-mooncake-0.3.13.post1": {
+      "env": "baseline-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 5.373370128014358,
+      "start_utc": "2026-11-12T16:50:28.963900+00:00",
+      "end_utc": "2026-11-12T16:50:34.468074+00:00"
+    },
+    "install-native-lmdeploy": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 3.2197210809972603,
+      "start_utc": "2026-11-12T15:32:21.604615+00:00",
+      "end_utc": "2026-11-12T15:32:24.824643+00:00"
+    },
+    "install-native-mooncake-0.3.13.post1": {
+      "env": "native-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 4.021114220988238,
+      "start_utc": "2026-11-12T16:50:29.017817+00:00",
+      "end_utc": "2026-11-12T16:50:33.140429+00:00"
+    },
+    "install-standalone-dlinfer": {
+      "env": "standalone",
+      "returncode": 0,
+      "elapsed_seconds": 2.8692044819763396,
+      "start_utc": "2026-11-12T15:32:22.763515+00:00",
+      "end_utc": "2026-11-12T15:32:25.633089+00:00"
+    },
+    "native-agents-c4-pipeline-control": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 99.61883514301735,
+      "start_utc": "2026-11-12T17:22:14.661995+00:00",
+      "end_utc": "2026-11-12T17:23:54.302575+00:00"
+    },
+    "native-agents-context-boundary": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 108.64666804400622,
+      "start_utc": "2026-11-12T16:56:36.632700+00:00",
+      "end_utc": "2026-11-12T16:58:25.323411+00:00"
+    },
+    "native-agents-eager-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 94.85586218099343,
+      "start_utc": "2026-11-12T16:50:50.110024+00:00",
+      "end_utc": "2026-11-12T16:52:24.989547+00:00"
+    },
+    "native-agents-graph-prefix-extra": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 71.26944776801975,
+      "start_utc": "2026-11-12T16:53:36.475608+00:00",
+      "end_utc": "2026-11-12T16:54:47.760655+00:00"
+    },
+    "native-agents-http-recheck": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 135.42425943899434,
+      "start_utc": "2026-11-12T17:12:37.178429+00:00",
+      "end_utc": "2026-11-12T17:14:52.627467+00:00"
+    },
+    "native-agents-http": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 212.90721346699866,
+      "start_utc": "2026-11-12T17:04:29.964357+00:00",
+      "end_utc": "2026-11-12T17:08:02.895837+00:00"
+    },
+    "native-cpu-contracts-importfix": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 41.63605163001921,
+      "start_utc": "2026-11-12T15:44:48.908647+00:00",
+      "end_utc": "2026-11-12T15:45:30.546829+00:00"
+    },
+    "native-cpu-contracts": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 20.503054175002035,
+      "start_utc": "2026-11-12T15:34:18.068039+00:00",
+      "end_utc": "2026-11-12T15:34:38.571442+00:00"
+    },
+    "native-dense-eager-score-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 38.275336546998005,
+      "start_utc": "2026-11-12T15:57:01.937258+00:00",
+      "end_utc": "2026-11-12T15:57:40.322080+00:00"
+    },
+    "native-dense-graph-prefix-extra": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 30.062289677996887,
+      "start_utc": "2026-11-12T15:58:10.585209+00:00",
+      "end_utc": "2026-11-12T15:58:40.725658+00:00"
+    },
+    "native-env-audit-logical3": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 23.351959363993956,
+      "start_utc": "2026-11-12T15:35:38.283167+00:00",
+      "end_utc": "2026-11-12T15:36:01.635419+00:00"
+    },
+    "native-env-audit": {
+      "env": "native",
+      "returncode": 1,
+      "elapsed_seconds": 10.079062852979405,
+      "start_utc": "2026-11-12T15:35:13.933116+00:00",
+      "end_utc": "2026-11-12T15:35:24.012489+00:00"
+    },
+    "native-import-order-fix-tests": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 21.89758820197312,
+      "start_utc": "2026-11-12T15:43:06.381744+00:00",
+      "end_utc": "2026-11-12T15:43:28.281305+00:00"
+    },
+    "native-mooncake-agents-a1-fabric-model": {
+      "env": "native-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 61.22299805498915,
+      "start_utc": "2026-11-12T17:11:33.914533+00:00",
+      "end_utc": "2026-11-12T17:12:35.157390+00:00"
+    },
+    "native-mooncake-config-tests": {
+      "env": "native-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 10.933949803991709,
+      "start_utc": "2026-11-12T16:59:58.957738+00:00",
+      "end_utc": "2026-11-12T17:00:09.974130+00:00"
+    },
+    "native-mooncake-sage-a1-5-fabric-model": {
+      "env": "native-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 72.37922338198405,
+      "start_utc": "2026-11-12T17:09:17.752820+00:00",
+      "end_utc": "2026-11-12T17:10:30.160421+00:00"
+    },
+    "native-mooncake-sdk-api": {
+      "env": "native-mooncake",
+      "returncode": 0,
+      "elapsed_seconds": 0.3658606300014071,
+      "start_utc": "2026-11-12T16:51:56.537878+00:00",
+      "end_utc": "2026-11-12T16:51:56.994130+00:00"
+    },
+    "native-mooncake-sdk-detail": {
+      "env": "native-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 12.142802121990826,
+      "start_utc": "2026-11-12T16:53:07.276064+00:00",
+      "end_utc": "2026-11-12T16:53:19.507891+00:00"
+    },
+    "native-mooncake-sdk-fabric-unset": {
+      "env": "native-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 35.47036114000366,
+      "start_utc": "2026-11-12T16:57:17.132877+00:00",
+      "end_utc": "2026-11-12T16:57:52.684070+00:00"
+    },
+    "native-mooncake-sdk-fabric0": {
+      "env": "native-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 17.55973867099965,
+      "start_utc": "2026-11-12T16:55:05.288748+00:00",
+      "end_utc": "2026-11-12T16:55:22.953715+00:00"
+    },
+    "native-mooncake-sdk-fabric1": {
+      "env": "native-mooncake",
+      "returncode": 1,
+      "elapsed_seconds": 16.59927556401817,
+      "start_utc": "2026-11-12T16:54:17.393824+00:00",
+      "end_utc": "2026-11-12T16:54:34.089903+00:00"
+    },
+    "native-operator-tests": {
+      "env": "native",
+      "returncode": 1,
+      "elapsed_seconds": 15.037627344980137,
+      "start_utc": "2026-11-12T15:37:15.832995+00:00",
+      "end_utc": "2026-11-12T15:37:30.870928+00:00"
+    },
+    "native-rejection-reference": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 15.040409057983197,
+      "start_utc": "2026-11-12T16:12:23.138945+00:00",
+      "end_utc": "2026-11-12T16:12:38.192807+00:00"
+    },
+    "native-sage-context-boundary": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 116.59908296400681,
+      "start_utc": "2026-11-12T16:17:31.339941+00:00",
+      "end_utc": "2026-11-12T16:19:27.952425+00:00"
+    },
+    "native-sage-eager-score-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 106.57785872998647,
+      "start_utc": "2026-11-12T15:51:48.582973+00:00",
+      "end_utc": "2026-11-12T15:53:35.254677+00:00"
+    },
+    "native-sage-graph-chunk256-score-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 78.48554591400898,
+      "start_utc": "2026-11-12T15:54:55.181724+00:00",
+      "end_utc": "2026-11-12T15:56:13.793991+00:00"
+    },
+    "native-sage-graph-prefix-extra": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 100.32693846098846,
+      "start_utc": "2026-11-12T15:48:25.402274+00:00",
+      "end_utc": "2026-11-12T15:50:05.731615+00:00"
+    },
+    "native-sage-http-bench": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 194.01178933499614,
+      "start_utc": "2026-11-12T16:23:50.453430+00:00",
+      "end_utc": "2026-11-12T16:27:04.495123+00:00"
+    },
+    "native-sage-http-fresh-connections": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 218.91252285600058,
+      "start_utc": "2026-11-12T16:32:02.618519+00:00",
+      "end_utc": "2026-11-12T16:35:41.546229+00:00"
+    },
+    "native-sage-http-recheck": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 239.52127372298855,
+      "start_utc": "2026-11-12T16:38:30.341364+00:00",
+      "end_utc": "2026-11-12T16:42:29.902073+00:00"
+    },
+    "native-sage-mtp1-score-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 88.3551206389966,
+      "start_utc": "2026-11-12T16:00:12.221566+00:00",
+      "end_utc": "2026-11-12T16:01:40.684528+00:00"
+    },
+    "native-sage-mtp3-eager-score-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 82.6897898040188,
+      "start_utc": "2026-11-12T16:10:47.460662+00:00",
+      "end_utc": "2026-11-12T16:12:10.163681+00:00"
+    },
+    "native-sage-mtp3-extra": {
+      "env": "native",
+      "returncode": 1,
+      "elapsed_seconds": 74.28314364200924,
+      "start_utc": "2026-11-12T16:19:49.035771+00:00",
+      "end_utc": "2026-11-12T16:21:03.332322+00:00"
+    },
+    "native-sage-mtp3-long260k": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 113.903898095974,
+      "start_utc": "2026-11-12T16:06:11.586329+00:00",
+      "end_utc": "2026-11-12T16:08:05.593828+00:00"
+    },
+    "native-sage-mtp3-prefix-full-importfix": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 181.1961152299773,
+      "start_utc": "2026-11-12T15:43:27.619600+00:00",
+      "end_utc": "2026-11-12T15:46:28.817859+00:00"
+    },
+    "native-sage-mtp3-prefix-full": {
+      "env": "native",
+      "returncode": 1,
+      "elapsed_seconds": 95.15580062600202,
+      "start_utc": "2026-11-12T15:40:12.660633+00:00",
+      "end_utc": "2026-11-12T15:41:47.816752+00:00"
+    },
+    "native-sage-mtp3-prefix-quality": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 75.9836340819893,
+      "start_utc": "2026-11-12T16:36:56.124530+00:00",
+      "end_utc": "2026-11-12T16:38:12.143332+00:00"
+    },
+    "native-sage-mtp3-score-trace": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 76.83849139499944,
+      "start_utc": "2026-11-12T16:02:59.476126+00:00",
+      "end_utc": "2026-11-12T16:04:16.388610+00:00"
+    },
+    "native-sage-mtp3-seeded-r0": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 100.54404736598372,
+      "start_utc": "2026-11-12T16:15:19.854685+00:00",
+      "end_utc": "2026-11-12T16:17:00.437471+00:00"
+    },
+    "native-sage-mtp3-seeded-r1": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 95.81444720900618,
+      "start_utc": "2026-11-12T16:17:00.513730+00:00",
+      "end_utc": "2026-11-12T16:18:36.368241+00:00"
+    },
+    "native-triton-rejection-reference": {
+      "env": "native",
+      "returncode": 0,
+      "elapsed_seconds": 25.913845097995363,
+      "start_utc": "2026-11-12T16:12:55.964572+00:00",
+      "end_utc": "2026-11-12T16:13:21.897722+00:00"
+    },
+    "standalone-cpu-contracts": {
+      "env": "standalone",
+      "returncode": 0,
+      "elapsed_seconds": 7.275566185999196,
+      "start_utc": "2026-11-12T15:34:19.183783+00:00",
+      "end_utc": "2026-11-12T15:34:26.459604+00:00"
+    },
+    "standalone-env-audit-logical4": {
+      "env": "standalone",
+      "returncode": 0,
+      "elapsed_seconds": 13.88400788299623,
+      "start_utc": "2026-11-12T15:35:38.279260+00:00",
+      "end_utc": "2026-11-12T15:35:52.163661+00:00"
+    },
+    "standalone-moe-real-graph": {
+      "env": "standalone",
+      "returncode": 0,
+      "elapsed_seconds": 23.202807697991375,
+      "start_utc": "2026-11-12T15:36:41.472041+00:00",
+      "end_utc": "2026-11-12T15:37:04.675124+00:00"
+    },
+    "standalone-operator-tests": {
+      "env": "standalone",
+      "returncode": 1,
+      "elapsed_seconds": 14.621592629002407,
+      "start_utc": "2026-11-12T15:37:16.985504+00:00",
+      "end_utc": "2026-11-12T15:37:31.607389+00:00"
+    }
+  },
+  "explicit_limits": [
+    "MTP strict token/logprob equivalence did not pass; baseline itself is nonrepeatable.",
+    "Three MLA hardware failures reproduce on baseline, native and standalone.",
+    "MTP input-logprob scoring crashes the shared sequence path on both branches.",
+    "Package dependency metadata / pip check do not pass in the supplied image.",
+    "Unrun: GPQA, multi-node/DP/EP, quantized models, vision, CUDA, four-instance router, production-scale KV-copy stress.",
+    "Unrun: complete-model random/mixed sampling and bad words, optional Triton full-model rejection, profiler trace, supported-version clean wheel installation.",
+    "Both models show repeated C4 HTTP streaming output-rate degradation; the Agents fixed-batch pipeline control does not reproduce it. Cause remains unresolved.",
+    "Mooncake NPU 0.3.13.post1 installs, but all four model startup attempts and both fabric SDK probes fail before cache transfer. External hits, data correctness and performance remain unverified."
+  ],
+  "http": {
+    "compare-http-agents-recheck": {
+      "baseline": "results/baseline-agents-http-recheck.json",
+      "native": "results/native-agents-http-recheck.json",
+      "complete": true,
+      "identical_server_arguments_and_workloads": true,
+      "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+      "functional_answers": [
+        true,
+        true
+      ],
+      "scenarios": {
+        "1": {
+          "baseline": {
+            "repetitions": 7,
+            "requests": 7,
+            "throughput_repetitions": [
+              52.29184506489094,
+              56.0015279521443,
+              61.060679598497266,
+              46.361939708593276,
+              50.70291932777495,
+              60.71096245134865,
+              59.078102739441874
+            ],
+            "median_throughput": 56.0015279521443,
+            "ttft_p50": 0.6108489720209036,
+            "ttft_p95": 0.6940933511999902,
+            "output_tps_p50": 79.71154708475926,
+            "output_tps_p05": 61.56796245937934,
+            "slo_pass_requests": 7,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 7,
+            "requests": 7,
+            "throughput_repetitions": [
+              42.897081447306206,
+              42.90243600290421,
+              55.63273568971666,
+              55.00278255632753,
+              57.664012959220464,
+              44.21439870884197,
+              55.49119925156685
+            ],
+            "median_throughput": 55.00278255632753,
+            "ttft_p50": 0.6286732050066348,
+            "ttft_p95": 0.7292694420088083,
+            "output_tps_p50": 73.9212896983786,
+            "output_tps_p05": 54.47708385273139,
+            "slo_pass_requests": 7,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -1.7834252605933187,
+            "ttft_p50": 2.917944336840317,
+            "ttft_p95": 5.067919286073486,
+            "output_tps_p50": -7.26401330565537,
+            "output_tps_p05": -11.51715652653974
+          },
+          "paired_throughput_changes": [
+            -17.96602052562195,
+            -23.390597414473802,
+            -8.889425968515074,
+            18.637794065662572,
+            13.72917718296398,
+            -27.172298175517096,
+            -6.071460188379286
+          ],
+          "review_required": true
+        },
+        "4": {
+          "baseline": {
+            "repetitions": 7,
+            "requests": 28,
+            "throughput_repetitions": [
+              123.50847171190587,
+              121.18771855563077,
+              116.57442056187229,
+              117.23143220876584,
+              121.62764264580004,
+              119.73605304977593,
+              121.65274598884872
+            ],
+            "median_throughput": 121.18771855563077,
+            "ttft_p50": 1.6637275340035558,
+            "ttft_p95": 2.464315943697875,
+            "output_tps_p50": 50.64254806462465,
+            "output_tps_p05": 38.42718842938561,
+            "slo_pass_requests": 22,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 7,
+            "requests": 28,
+            "throughput_repetitions": [
+              117.95705908161992,
+              120.67591606280901,
+              115.89018888447433,
+              107.51329897663305,
+              114.80707229234187,
+              123.10502860630446,
+              125.78576976153002
+            ],
+            "median_throughput": 117.95705908161992,
+            "ttft_p50": 1.6176787430013064,
+            "ttft_p95": 2.4265528152143814,
+            "output_tps_p50": 46.09168553485823,
+            "output_tps_p05": 36.95513305214427,
+            "slo_pass_requests": 21,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -2.665830756214649,
+            "ttft_p50": -2.7678084338388365,
+            "ttft_p95": -1.5323980100874324,
+            "output_tps_p50": -8.9862431960554,
+            "output_tps_p05": -3.8307652404661607
+          },
+          "paired_throughput_changes": [
+            -4.494762629105398,
+            -0.4223220792681337,
+            -0.5869483837878553,
+            -8.289699314452392,
+            -5.6077468946107984,
+            2.8136684571755444,
+            3.3973945586564414
+          ],
+          "review_required": true
+        }
+      }
+    },
+    "compare-http-agents": {
+      "baseline": "results/baseline-agents-http.json",
+      "native": "results/native-agents-http.json",
+      "complete": true,
+      "identical_server_arguments_and_workloads": true,
+      "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+      "functional_answers": [
+        true,
+        true
+      ],
+      "scenarios": {
+        "1": {
+          "baseline": {
+            "repetitions": 5,
+            "requests": 5,
+            "throughput_repetitions": [
+              55.335817934998516,
+              57.81581526867475,
+              60.816628593808616,
+              47.335293962883,
+              46.58581756488402
+            ],
+            "median_throughput": 55.335817934998516,
+            "ttft_p50": 0.6015272509830538,
+            "ttft_p95": 0.6638415364024695,
+            "output_tps_p50": 74.24439014204447,
+            "output_tps_p05": 59.932781630589936,
+            "slo_pass_requests": 5,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 5,
+            "requests": 5,
+            "throughput_repetitions": [
+              55.05096727780181,
+              55.20794712707849,
+              52.229497356233274,
+              57.65451610987572,
+              54.748327888374284
+            ],
+            "median_throughput": 55.05096727780181,
+            "ttft_p50": 0.649207281996496,
+            "ttft_p95": 0.7034065206011292,
+            "output_tps_p50": 75.35348880721553,
+            "output_tps_p05": 73.69863457109285,
+            "slo_pass_requests": 5,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -0.5147672300268802,
+            "ttft_p50": 7.926495588607252,
+            "ttft_p95": 5.960004312636524,
+            "output_tps_p50": 1.4938484416790798,
+            "output_tps_p05": 22.96882034501928
+          },
+          "paired_throughput_changes": [
+            -0.5147672300268802,
+            -4.510648391754546,
+            -14.119709421790516,
+            21.800270544605315,
+            17.52144912369875
+          ],
+          "review_required": true
+        },
+        "4": {
+          "baseline": {
+            "repetitions": 5,
+            "requests": 20,
+            "throughput_repetitions": [
+              124.42375667489821,
+              124.33357821275582,
+              124.02702076997664,
+              119.60282351362102,
+              109.46503232642557
+            ],
+            "median_throughput": 124.02702076997664,
+            "ttft_p50": 1.769872952514561,
+            "ttft_p95": 2.377622044898453,
+            "output_tps_p50": 46.977308500633654,
+            "output_tps_p05": 38.17360852727799,
+            "slo_pass_requests": 17,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 5,
+            "requests": 20,
+            "throughput_repetitions": [
+              107.05545689113006,
+              103.941935434528,
+              116.92665628374957,
+              117.2897438658734,
+              100.8811472870822
+            ],
+            "median_throughput": 107.05545689113006,
+            "ttft_p50": 1.7182923704967834,
+            "ttft_p95": 2.4936908800445967,
+            "output_tps_p50": 43.6296142226753,
+            "output_tps_p05": 33.05105844484873,
+            "slo_pass_requests": 11,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -13.683763242465075,
+            "ttft_p50": -2.9143663642350104,
+            "ttft_p95": 4.88171933782271,
+            "output_tps_p50": -7.126194294237176,
+            "output_tps_p05": -13.419087898826243
+          },
+          "paired_throughput_changes": [
+            -13.958990025633987,
+            -16.400752774390725,
+            -5.724852892657628,
+            -1.9339674263494144,
+            -7.841668573893223
+          ],
+          "review_required": true
+        },
+        "16": {
+          "baseline": {
+            "repetitions": 5,
+            "requests": 80,
+            "throughput_repetitions": [
+              141.08594057045957,
+              133.36630615556825,
+              139.84829095686786,
+              133.92106950505345,
+              130.94086081315507
+            ],
+            "median_throughput": 133.92106950505345,
+            "ttft_p50": 6.240068261497072,
+            "ttft_p95": 12.394503022152639,
+            "output_tps_p50": 19.81726322362247,
+            "output_tps_p05": 13.338358940015803,
+            "slo_pass_requests": 0,
+            "input_lengths": [
+              172,
+              173
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 5,
+            "requests": 80,
+            "throughput_repetitions": [
+              145.4155802239557,
+              144.9372934681697,
+              133.6973456473076,
+              142.2126904563906,
+              136.64860398292586
+            ],
+            "median_throughput": 142.2126904563906,
+            "ttft_p50": 6.140145027500694,
+            "ttft_p95": 12.015858376539835,
+            "output_tps_p50": 20.425063806766914,
+            "output_tps_p05": 13.92619574107894,
+            "slo_pass_requests": 0,
+            "input_lengths": [
+              172,
+              173
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": 6.191423785653272,
+            "ttft_p50": -1.6013163607989989,
+            "ttft_p95": -3.0549401209233995,
+            "output_tps_p50": 3.067025836443138,
+            "output_tps_p05": 4.407114876025675
+          },
+          "paired_throughput_changes": [
+            3.0687959664796427,
+            8.676094919435062,
+            -4.398298518683608,
+            6.191423785653272,
+            4.35902371064707
+          ],
+          "review_required": false
+        }
+      }
+    },
+    "compare-http-fresh": {
+      "baseline": "results/baseline-sage-http-fresh-connections.json",
+      "native": "results/native-sage-http-fresh-connections.json",
+      "complete": true,
+      "identical_server_arguments_and_workloads": true,
+      "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+      "functional_answers": [
+        true,
+        true
+      ],
+      "scenarios": {
+        "1": {
+          "baseline": {
+            "repetitions": 5,
+            "requests": 5,
+            "throughput_repetitions": [
+              70.15872758732708,
+              59.75366456550322,
+              52.64990427473354,
+              66.20471680688188,
+              73.96544259595258
+            ],
+            "median_throughput": 66.20471680688188,
+            "ttft_p50": 0.6864505349949468,
+            "ttft_p95": 0.8206536099954973,
+            "output_tps_p50": 101.94335615248018,
+            "output_tps_p05": 78.12611484360005,
+            "slo_pass_requests": 5,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 5,
+            "requests": 5,
+            "throughput_repetitions": [
+              51.925625747029166,
+              67.473663276235,
+              55.040881744355154,
+              55.89439758326568,
+              67.5155750145159
+            ],
+            "median_throughput": 55.89439758326568,
+            "ttft_p50": 0.6974832399864681,
+            "ttft_p95": 0.7868411482020747,
+            "output_tps_p50": 83.63219660962618,
+            "output_tps_p05": 73.0853474998061,
+            "slo_pass_requests": 5,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -15.57339072031867,
+            "ttft_p50": 1.6072104877305593,
+            "ttft_p95": -4.120186809829307,
+            "output_tps_p50": -17.962092120515795,
+            "output_tps_p05": -6.452090128742494
+          },
+          "paired_throughput_changes": [
+            -25.988358779174035,
+            12.919707547424064,
+            4.541276005261485,
+            -15.57339072031867,
+            -8.720109493118366
+          ],
+          "review_required": true
+        },
+        "4": {
+          "baseline": {
+            "repetitions": 5,
+            "requests": 20,
+            "throughput_repetitions": [
+              116.66083155577066,
+              125.19936543935506,
+              127.7436709867736,
+              124.18917222899474,
+              126.92547007161117
+            ],
+            "median_throughput": 125.19936543935506,
+            "ttft_p50": 1.8865834699972766,
+            "ttft_p95": 2.6868944025904056,
+            "output_tps_p50": 57.04741461891486,
+            "output_tps_p05": 41.95480984344944,
+            "slo_pass_requests": 20,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 5,
+            "requests": 20,
+            "throughput_repetitions": [
+              115.35204655106936,
+              123.47837362098575,
+              117.20320522222411,
+              124.2429816886344,
+              91.23475051645059
+            ],
+            "median_throughput": 117.20320522222411,
+            "ttft_p50": 1.8420192934863735,
+            "ttft_p95": 2.844934674697288,
+            "output_tps_p50": 50.098760885814514,
+            "output_tps_p05": 34.041284012939904,
+            "slo_pass_requests": 15,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -6.3867418090103545,
+            "ttft_p50": -2.3621629903800345,
+            "ttft_p95": 5.881893681959283,
+            "output_tps_p50": -12.18048842268905,
+            "output_tps_p05": -18.862022876609707
+          },
+          "paired_throughput_changes": [
+            -1.1218718289999652,
+            -1.3746010711235934,
+            -8.251262612956245,
+            0.043328624125504867,
+            -28.119430666692768
+          ],
+          "review_required": true
+        },
+        "16": {
+          "baseline": {
+            "repetitions": 5,
+            "requests": 80,
+            "throughput_repetitions": [
+              137.36379760051665,
+              133.74077181704072,
+              129.6780183365243,
+              140.2876577117444,
+              135.76705379957005
+            ],
+            "median_throughput": 135.76705379957005,
+            "ttft_p50": 6.96355227350432,
+            "ttft_p95": 13.008616818212612,
+            "output_tps_p50": 28.312662882305553,
+            "output_tps_p05": 14.381691839340755,
+            "slo_pass_requests": 0,
+            "input_lengths": [
+              172,
+              173
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 5,
+            "requests": 80,
+            "throughput_repetitions": [
+              132.03814426149353,
+              131.72490677924986,
+              131.43443270689818,
+              132.3108311386237,
+              130.23422317943832
+            ],
+            "median_throughput": 131.72490677924986,
+            "ttft_p50": 6.919892609017552,
+            "ttft_p95": 13.181279936850478,
+            "output_tps_p50": 26.793586102633785,
+            "output_tps_p05": 15.300840834201043,
+            "slo_pass_requests": 0,
+            "input_lengths": [
+              172,
+              173
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -2.9772665070036175,
+            "ttft_p50": -0.626974032389882,
+            "ttft_p95": 1.3272980598223905,
+            "output_tps_p50": -5.365361732262697,
+            "output_tps_p05": 6.391104781886514
+          },
+          "paired_throughput_changes": [
+            -3.877042883242976,
+            -1.5072928101152239,
+            1.3544426363887307,
+            -5.686050150976962,
+            -4.0752380384564635
+          ],
+          "review_required": true
+        }
+      }
+    },
+    "compare-http-recheck": {
+      "baseline": "results/baseline-sage-http-recheck.json",
+      "native": "results/native-sage-http-recheck.json",
+      "complete": true,
+      "identical_server_arguments_and_workloads": true,
+      "metric_note": "Throughput includes prefill and HTTP time. TTFT is first nonempty SSE. Output speed=(completion_tokens-1)/(last-first nonempty SSE time), a streaming proxy with MTP burst granularity.",
+      "functional_answers": [
+        true,
+        true
+      ],
+      "scenarios": {
+        "1": {
+          "baseline": {
+            "repetitions": 7,
+            "requests": 7,
+            "throughput_repetitions": [
+              56.89356589353324,
+              63.84316801249344,
+              62.5549958897743,
+              68.91823747345086,
+              57.400618567126145,
+              51.55846328883412,
+              57.820761847987406
+            ],
+            "median_throughput": 57.820761847987406,
+            "ttft_p50": 0.6494432099862024,
+            "ttft_p95": 0.7757056624046527,
+            "output_tps_p50": 87.30769450889926,
+            "output_tps_p05": 74.48184013506706,
+            "slo_pass_requests": 7,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 7,
+            "requests": 7,
+            "throughput_repetitions": [
+              76.10670364030544,
+              64.24067234615121,
+              65.80967105675002,
+              64.91773059712415,
+              56.445910614225134,
+              66.38990286090117,
+              70.79484798861641
+            ],
+            "median_throughput": 65.80967105675002,
+            "ttft_p50": 0.6717121640103869,
+            "ttft_p95": 0.7329911100998288,
+            "output_tps_p50": 101.18324676594361,
+            "output_tps_p05": 84.93061169005007,
+            "slo_pass_requests": 7,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": 13.816679257471055,
+            "ttft_p50": 3.4289301484355494,
+            "ttft_p95": -5.506541253342245,
+            "output_tps_p50": 15.892702625001753,
+            "output_tps_p05": 14.028616285573726
+          },
+          "paired_throughput_changes": [
+            33.7703173373354,
+            0.6226262668857174,
+            5.202902055513925,
+            -5.80471443116608,
+            -1.6632363495953317,
+            28.766256063491056,
+            22.438455886725063
+          ],
+          "review_required": false
+        },
+        "4": {
+          "baseline": {
+            "repetitions": 7,
+            "requests": 28,
+            "throughput_repetitions": [
+              119.40915898470358,
+              130.65336507843097,
+              130.31483482990143,
+              116.14250739074109,
+              133.22658265433333,
+              121.49755570131654,
+              134.53424192850804
+            ],
+            "median_throughput": 130.31483482990143,
+            "ttft_p50": 1.898318092993577,
+            "ttft_p95": 2.6967220380829526,
+            "output_tps_p50": 58.202099444115206,
+            "output_tps_p05": 40.74950396983724,
+            "slo_pass_requests": 26,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 7,
+            "requests": 28,
+            "throughput_repetitions": [
+              111.32450963870906,
+              130.05326250609502,
+              129.70212472509195,
+              131.73852025543363,
+              131.74850561637436,
+              133.3645008254291,
+              132.4027760053942
+            ],
+            "median_throughput": 131.73852025543363,
+            "ttft_p50": 1.7295400064904243,
+            "ttft_p95": 2.461044968791248,
+            "output_tps_p50": 54.78566568513244,
+            "output_tps_p05": 42.04214093910836,
+            "slo_pass_requests": 27,
+            "input_lengths": [
+              171
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": 1.0924968192535633,
+            "ttft_p50": -8.890927559827233,
+            "ttft_p95": -8.739390488284915,
+            "output_tps_p50": -5.869949351677894,
+            "output_tps_p05": 3.1721538751193767
+          },
+          "paired_throughput_changes": [
+            -6.770543746171242,
+            -0.45930892937636747,
+            -0.4701767880911256,
+            13.4283417975664,
+            -1.1094460343503365,
+            9.767229518004171,
+            -1.5843296788683014
+          ],
+          "review_required": true
+        },
+        "16": {
+          "baseline": {
+            "repetitions": 7,
+            "requests": 112,
+            "throughput_repetitions": [
+              153.8584326207045,
+              148.13512979859897,
+              149.60123124890055,
+              149.6595422074852,
+              154.4738792373054,
+              143.52629784885985,
+              146.04057145850265
+            ],
+            "median_throughput": 149.60123124890055,
+            "ttft_p50": 6.4312847904948285,
+            "ttft_p95": 11.816581073857376,
+            "output_tps_p50": 29.88957111534758,
+            "output_tps_p05": 16.777679759509894,
+            "slo_pass_requests": 0,
+            "input_lengths": [
+              172,
+              173
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "native": {
+            "repetitions": 7,
+            "requests": 112,
+            "throughput_repetitions": [
+              153.56880458222895,
+              148.89603196756923,
+              145.86028059419147,
+              147.1815332897875,
+              172.2674417715517,
+              152.35121672196834,
+              145.17127892422067
+            ],
+            "median_throughput": 148.89603196756923,
+            "ttft_p50": 5.8623902014951454,
+            "ttft_p95": 11.592359728252632,
+            "output_tps_p50": 29.145125917558847,
+            "output_tps_p05": 16.191629021958065,
+            "slo_pass_requests": 0,
+            "input_lengths": [
+              172,
+              173
+            ],
+            "output_lengths": [
+              128
+            ]
+          },
+          "change_percent": {
+            "median_throughput": -0.47138601430227745,
+            "ttft_p50": -8.845737788512887,
+            "ttft_p95": -1.897514553518398,
+            "output_tps_p50": -2.490651990006232,
+            "output_tps_p05": -3.4930380478841005
+          },
+          "paired_throughput_changes": [
+            -0.18824320093624447,
+            0.5136541008232021,
+            -2.5006148836335673,
+            -1.6557640636520432,
+            11.518816399315979,
+            6.148642447672947,
+            -0.5952404359969132
+          ],
+          "review_required": false
+        }
+      }
+    }
+  },
+  "cross_mode": {
+    "baseline": {
+      "total": 21,
+      "exact": 19,
+      "first_mismatches": [
+        {
+          "event": "mixed-long-short",
+          "request": 0,
+          "position": 49,
+          "eager_token": 16561,
+          "graph_chunk256_token": 6587
+        },
+        {
+          "event": "mixed-long-short",
+          "request": 2,
+          "position": 30,
+          "eager_token": 279,
+          "graph_chunk256_token": 1066
+        }
+      ]
+    },
+    "native": {
+      "total": 21,
+      "exact": 19,
+      "first_mismatches": [
+        {
+          "event": "mixed-long-short",
+          "request": 0,
+          "position": 49,
+          "eager_token": 16561,
+          "graph_chunk256_token": 6587
+        },
+        {
+          "event": "mixed-long-short",
+          "request": 2,
+          "position": 30,
+          "eager_token": 279,
+          "graph_chunk256_token": 1066
+        }
+      ]
+    },
+    "same_mismatches_on_both_branches": true,
+    "scope": "Changes both eager/graph and prefill chunk size; not a single-variable graph diagnosis. Each same-mode migration pair passes separately."
+  },
+  "preservation": {
+    "utc": "2026-11-12T17:32:16.737439+00:00",
+    "original_workspaces": {
+      "lmdeploy": {
+        "head": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+        "head_unchanged": true,
+        "diff_unchanged": true,
+        "status": "## main...origin/main\n"
+      },
+      "dlinfer": {
+        "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+        "head_unchanged": true,
+        "diff_unchanged": true,
+        "status": "## main...origin/main\n"
+      },
+      "code-lmdeploy": {
+        "head": "bbfff937a8875bc3074e3f983a7db2bb6299065e",
+        "head_unchanged": true,
+        "diff_unchanged": true,
+        "status": "## fix/qwen35-gdn-ascend-specs...origin/fix/qwen35-gdn-ascend-specs [ahead 29, behind 4]\n"
+      },
+      "code-dlinfer": {
+        "head": "40cfc6c992a3934c4cf1f747e2748fd201478364",
+        "head_unchanged": true,
+        "diff_unchanged": true,
+        "status": "## HEAD (no branch)\n M setup.py\n?? dlinfer/framework/lmdeploy_ext/device/__init__state_fix.py\n"
+      },
+      "code-triton-ascend-kernels": {
+        "head": "8e70a44afa537fcbcdc6d59e6d2196a38f1e7b6f",
+        "head_unchanged": true,
+        "diff_unchanged": true,
+        "status": "## master...origin/master [behind 50]\n M pyproject.toml\n M src/triton_ascend_kernels/attention/decoder_mha_attention.py\n M src/triton_ascend_kernels/attention/fla/cumsum.py\n M src/triton_ascend_kernels/attention/fla/solve_tril.py\n M src/triton_ascend_kernels/conv/causal_conv1d_update.py\n"
+      }
+    },
+    "comparison_worktrees": {
+      "lmdeploy-baseline": {
+        "head": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+        "expected_head": true,
+        "clean": true,
+        "status": ""
+      },
+      "dlinfer-baseline": {
+        "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+        "expected_head": true,
+        "clean": true,
+        "status": ""
+      },
+      "lmdeploy-native": {
+        "head": "6421cefea94edd350e419f556158639556357a27",
+        "expected_head": true,
+        "clean": true,
+        "status": ""
+      },
+      "dlinfer-clean": {
+        "head": "05ede38ae879347be33c8f6ebb136d84f3f4ee88",
+        "expected_head": true,
+        "clean": true,
+        "status": ""
+      }
+    },
+    "models": {
+      "/afs-weights/Sage-A1.5": {
+        "files": 23,
+        "size_and_mtime_unchanged": true,
+        "mismatches": [],
+        "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+      },
+      "/afs-weights/Qwen3-8B": {
+        "files": 11,
+        "size_and_mtime_unchanged": true,
+        "mismatches": [],
+        "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+      },
+      "/afs-weights/Qwen3.5-0.8B": {
+        "files": 10,
+        "size_and_mtime_unchanged": true,
+        "mismatches": [],
+        "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+      },
+      "/afs-weights/Agents-A1": {
+        "files": 23,
+        "size_and_mtime_unchanged": true,
+        "mismatches": [],
+        "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+      }
+    },
+    "external_kernel": {
+      "original": {
+        "files": 173,
+        "sha256_unchanged": true,
+        "mismatches": []
+      },
+      "snapshot": {
+        "files": 173,
+        "sha256_unchanged": true,
+        "mismatches": []
+      }
+    },
+    "colleague_install_script_unchanged": true,
+    "native_forbidden_import_events": 0,
+    "native_dlinfer_artifacts": [],
+    "native_guard_present": true,
+    "mooncake_worktrees": {
+      "baseline": {
+        "head": "e285fa49d1759d709660588764ce4091566240af",
+        "expected_head": true,
+        "clean": true,
+        "status": ""
+      },
+      "native": {
+        "head": "9f76d08a26b484b5bd23391ffb829a9f50c4f635",
+        "expected_head": true,
+        "clean": true,
+        "status": ""
+      }
+    },
+    "native_mooncake_dlinfer_artifacts": [],
+    "native_mooncake_guard_present": true,
+    "pass": true
+  },
+  "cleanup": {
+    "utc": "2026-11-12T17:32:16.476848+00:00",
+    "matching_processes": [],
+    "validation_port_listeners": [],
+    "npu_smi_returncode": 0,
+    "no_npu_processes": true,
+    "command_records": 88,
+    "unfinished_commands": [],
+    "passed": true
+  },
+  "agents_c4_pipeline_control": {
+    "comparison": {
+      "baseline": "results/baseline-agents-c4-pipeline-control.json",
+      "native": "results/native-agents-c4-pipeline-control.json",
+      "complete": true,
+      "exact_sequences": 0,
+      "sequences": 0,
+      "tokens": 0,
+      "first_mismatches": [],
+      "bench": {
+        "4": {
+          "baseline": {
+            "repetitions": 7,
+            "requests": 28,
+            "throughput": [
+              125.42296285268236,
+              126.837380256832,
+              103.37228360235714,
+              129.2449572858561,
+              116.77812612297855,
+              123.60071011390757,
+              128.3857019754672
+            ],
+            "median_throughput": 125.42296285268236,
+            "ttft_p50": 1.4718120869947597,
+            "ttft_p95": 2.3682148739608238,
+            "output_tps_p50": 45.40941763611431,
+            "amortized_itl_p50": 0.014450913004111499,
+            "amortized_itl_p95": 0.023616972503077704,
+            "slo_pass_requests": 20
+          },
+          "native": {
+            "repetitions": 7,
+            "requests": 28,
+            "throughput": [
+              129.5221763820555,
+              120.49418281053642,
+              138.45859822184224,
+              128.02878269453112,
+              134.71878556915718,
+              133.38628365846975,
+              136.17865986255268
+            ],
+            "median_throughput": 133.38628365846975,
+            "ttft_p50": 1.2300888620084152,
+            "ttft_p95": 1.945986166613875,
+            "output_tps_p50": 47.672292451672575,
+            "amortized_itl_p50": 0.014305116012110375,
+            "amortized_itl_p95": 0.02112793048581807,
+            "slo_pass_requests": 21
+          },
+          "change_percent": {
+            "median_throughput": 6.349172930271818,
+            "ttft_p50": -16.42351133831973,
+            "ttft_p95": -17.828986380816623,
+            "output_tps_p50": 4.983272046542586,
+            "amortized_itl_p50": -1.0089119764242094,
+            "amortized_itl_p95": -10.539208685343848
+          },
+          "needs_regression_review": false
+        }
+      },
+      "numerics": {
+        "max_abs": 0,
+        "rms": 0.0,
+        "compared_scores": 0
+      },
+      "token_pass": false,
+      "numerical_pass": false,
+      "numerical_status": "unverified-no-scores"
+    },
+    "output_audit": {
+      "pipeline_requests": 28,
+      "pipeline_exact_token_sequences": 28,
+      "http_recheck_exact_texts": 28,
+      "baseline_http_vs_pipeline_exact_texts": 28,
+      "native_http_vs_pipeline_exact_texts": 28,
+      "pipeline_input_lengths": [
+        171
+      ],
+      "http_input_lengths": [
+        171
+      ],
+      "note": "Different entry/scheduling paths; counts diagnose output comparability, not a full logits check."
+    }
+  },
+  "mooncake_revisions": {
+    "baseline": {
+      "head": "e285fa49d1759d709660588764ce4091566240af",
+      "branch": "codex/ascend-a3-mooncake-baseline-20261112",
+      "scope": "Common platform enabling adapter; separate from untouched-main migration comparison."
+    },
+    "native": {
+      "head": "9f76d08a26b484b5bd23391ffb829a9f50c4f635",
+      "branch": "codex/ascend-a3-mooncake-20261112",
+      "scope": "Common platform enabling adapter; separate from untouched-main migration comparison."
+    }
+  },
+  "mooncake_sdk": {
+    "baseline-mooncake-sdk-fabric1": {
+      "version": "0.3.13.post1",
+      "fabric_requested": "1",
+      "environment": "baseline-mooncake",
+      "events": [
+        {
+          "role": "consumer",
+          "event": "error",
+          "traceback": "Traceback (most recent call last):\n  File \"/root/workspace/a3-validation-20261112/scripts/mooncake_sdk_probe.py\", line 26, in worker\n    ret=store.setup('127.0.0.1','P2PHANDSHAKE',64*1024**2,16*1024**2,'ascend','',master)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nMemoryError: std::bad_alloc\n"
+        }
+      ],
+      "complete": false
+    },
+    "native-mooncake-sdk-fabric-unset": {
+      "version": "0.3.13.post1",
+      "fabric_requested": null,
+      "environment": "native-mooncake",
+      "events": [
+        {
+          "role": "producer",
+          "event": "error",
+          "traceback": "Traceback (most recent call last):\n  File \"/root/workspace/a3-validation-20261112/scripts/mooncake_sdk_probe.py\", line 28, in worker\n    assert ret==0,ret\n           ^^^^^^\nAssertionError: -1\n"
+        }
+      ],
+      "complete": false
+    },
+    "native-mooncake-sdk-fabric0": {
+      "version": "0.3.13.post1",
+      "fabric_requested": "0",
+      "environment": "native-mooncake",
+      "events": [
+        {
+          "role": "producer",
+          "event": "error",
+          "traceback": "Traceback (most recent call last):\n  File \"/root/workspace/a3-validation-20261112/scripts/mooncake_sdk_probe.py\", line 26, in worker\n    ret=store.setup('127.0.0.1','P2PHANDSHAKE',64*1024**2,16*1024**2,'ascend','',master)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nMemoryError: std::bad_alloc\n"
+        }
+      ],
+      "complete": false
+    },
+    "native-mooncake-sdk-fabric1": {
+      "version": "0.3.13.post1",
+      "fabric_requested": "1",
+      "environment": "native-mooncake",
+      "events": [
+        {
+          "role": "consumer",
+          "event": "error",
+          "traceback": "Traceback (most recent call last):\n  File \"/root/workspace/a3-validation-20261112/scripts/mooncake_sdk_probe.py\", line 26, in worker\n    ret=store.setup('127.0.0.1','P2PHANDSHAKE',64*1024**2,16*1024**2,'ascend','',master)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nMemoryError: std::bad_alloc\n"
+        }
+      ],
+      "complete": false
+    }
+  },
+  "mooncake_models": {
+    "baseline-mooncake-agents-a1-fabric-model": {
+      "complete": false,
+      "returncode": 1,
+      "source_revisions": {
+        "lmdeploy-baseline-mooncake": {
+          "head": "e285fa49d1759d709660588764ce4091566240af",
+          "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "dlinfer-baseline": {
+          "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+          "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "fabric_map_failure": true,
+      "model": "/afs-weights/Agents-A1",
+      "mtp": 0,
+      "events": 0
+    },
+    "baseline-mooncake-sage-a1-5-fabric-model": {
+      "complete": false,
+      "returncode": 1,
+      "source_revisions": {
+        "lmdeploy-baseline-mooncake": {
+          "head": "e285fa49d1759d709660588764ce4091566240af",
+          "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "dlinfer-baseline": {
+          "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+          "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "fabric_map_failure": true,
+      "model": "/afs-weights/Sage-A1.5",
+      "mtp": 3,
+      "events": 0
+    },
+    "native-mooncake-agents-a1-fabric-model": {
+      "complete": false,
+      "returncode": 1,
+      "source_revisions": {
+        "lmdeploy-native-mooncake": {
+          "head": "9f76d08a26b484b5bd23391ffb829a9f50c4f635",
+          "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "fabric_map_failure": true,
+      "model": "/afs-weights/Agents-A1",
+      "mtp": 0,
+      "events": 0
+    },
+    "native-mooncake-sage-a1-5-fabric-model": {
+      "complete": false,
+      "returncode": 1,
+      "source_revisions": {
+        "lmdeploy-native-mooncake": {
+          "head": "9f76d08a26b484b5bd23391ffb829a9f50c4f635",
+          "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "fabric_map_failure": true,
+      "model": "/afs-weights/Sage-A1.5",
+      "mtp": 3,
+      "events": 0
+    }
+  }
+}

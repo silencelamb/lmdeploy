@@ -1,0 +1,14 @@
+Official sources inspected for the 2026-11-13 TileLang installation:
+https://github.com/tile-ai/tilelang/blob/main/docs/get_started/Installation.md
+https://pypi.org/project/tilelang/0.1.15/
+https://pypi.org/pypi/tilelang/0.1.15/json
+https://pypi.org/pypi/apache-tvm-ffi/0.1.12/json
+https://pypi.org/pypi/torch-c-dlpack-ext/0.1.5/json
+https://pypi.org/pypi/ml-dtypes/0.6.0/json
+https://pypi.org/pypi/z3-solver/4.15.4.0/json
+
+Selected prebuilt Linux aarch64 wheels compatible with Python 3.12.
+TileLang 0.1.15 requires apache-tvm-ffi>=0.1.11,<0.1.13; select 0.1.12.
+XGrammar 0.2.8's declared FFI constraint also permits 0.1.12, and actual grammar
+parsing passed in both environments after the change. All other dependency
+versions and selected wheel SHA256 values are pinned in selected-wheels.json.

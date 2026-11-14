@@ -1,0 +1,120 @@
+{
+  "utc": "2026-11-12T17:32:16.737439+00:00",
+  "original_workspaces": {
+    "lmdeploy": {
+      "head": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+      "head_unchanged": true,
+      "diff_unchanged": true,
+      "status": "## main...origin/main\n"
+    },
+    "dlinfer": {
+      "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+      "head_unchanged": true,
+      "diff_unchanged": true,
+      "status": "## main...origin/main\n"
+    },
+    "code-lmdeploy": {
+      "head": "bbfff937a8875bc3074e3f983a7db2bb6299065e",
+      "head_unchanged": true,
+      "diff_unchanged": true,
+      "status": "## fix/qwen35-gdn-ascend-specs...origin/fix/qwen35-gdn-ascend-specs [ahead 29, behind 4]\n"
+    },
+    "code-dlinfer": {
+      "head": "40cfc6c992a3934c4cf1f747e2748fd201478364",
+      "head_unchanged": true,
+      "diff_unchanged": true,
+      "status": "## HEAD (no branch)\n M setup.py\n?? dlinfer/framework/lmdeploy_ext/device/__init__state_fix.py\n"
+    },
+    "code-triton-ascend-kernels": {
+      "head": "8e70a44afa537fcbcdc6d59e6d2196a38f1e7b6f",
+      "head_unchanged": true,
+      "diff_unchanged": true,
+      "status": "## master...origin/master [behind 50]\n M pyproject.toml\n M src/triton_ascend_kernels/attention/decoder_mha_attention.py\n M src/triton_ascend_kernels/attention/fla/cumsum.py\n M src/triton_ascend_kernels/attention/fla/solve_tril.py\n M src/triton_ascend_kernels/conv/causal_conv1d_update.py\n"
+    }
+  },
+  "comparison_worktrees": {
+    "lmdeploy-baseline": {
+      "head": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+      "expected_head": true,
+      "clean": true,
+      "status": ""
+    },
+    "dlinfer-baseline": {
+      "head": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+      "expected_head": true,
+      "clean": true,
+      "status": ""
+    },
+    "lmdeploy-native": {
+      "head": "6421cefea94edd350e419f556158639556357a27",
+      "expected_head": true,
+      "clean": true,
+      "status": ""
+    },
+    "dlinfer-clean": {
+      "head": "05ede38ae879347be33c8f6ebb136d84f3f4ee88",
+      "expected_head": true,
+      "clean": true,
+      "status": ""
+    }
+  },
+  "models": {
+    "/afs-weights/Sage-A1.5": {
+      "files": 23,
+      "size_and_mtime_unchanged": true,
+      "mismatches": [],
+      "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+    },
+    "/afs-weights/Qwen3-8B": {
+      "files": 11,
+      "size_and_mtime_unchanged": true,
+      "mismatches": [],
+      "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+    },
+    "/afs-weights/Qwen3.5-0.8B": {
+      "files": 10,
+      "size_and_mtime_unchanged": true,
+      "mismatches": [],
+      "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+    },
+    "/afs-weights/Agents-A1": {
+      "files": 23,
+      "size_and_mtime_unchanged": true,
+      "mismatches": [],
+      "hash_note": "Initial full SHA256 retained; final check compares size and mtime, not rehashed weights."
+    }
+  },
+  "external_kernel": {
+    "original": {
+      "files": 173,
+      "sha256_unchanged": true,
+      "mismatches": []
+    },
+    "snapshot": {
+      "files": 173,
+      "sha256_unchanged": true,
+      "mismatches": []
+    }
+  },
+  "colleague_install_script_unchanged": true,
+  "native_forbidden_import_events": 0,
+  "native_dlinfer_artifacts": [],
+  "native_guard_present": true,
+  "mooncake_worktrees": {
+    "baseline": {
+      "head": "e285fa49d1759d709660588764ce4091566240af",
+      "expected_head": true,
+      "clean": true,
+      "status": ""
+    },
+    "native": {
+      "head": "9f76d08a26b484b5bd23391ffb829a9f50c4f635",
+      "expected_head": true,
+      "clean": true,
+      "status": ""
+    }
+  },
+  "native_mooncake_dlinfer_artifacts": [],
+  "native_mooncake_guard_present": true,
+  "pass": true
+}

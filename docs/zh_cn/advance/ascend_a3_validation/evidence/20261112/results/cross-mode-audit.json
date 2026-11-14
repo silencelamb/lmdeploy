@@ -1,0 +1,44 @@
+{
+  "baseline": {
+    "total": 21,
+    "exact": 19,
+    "first_mismatches": [
+      {
+        "event": "mixed-long-short",
+        "request": 0,
+        "position": 49,
+        "eager_token": 16561,
+        "graph_chunk256_token": 6587
+      },
+      {
+        "event": "mixed-long-short",
+        "request": 2,
+        "position": 30,
+        "eager_token": 279,
+        "graph_chunk256_token": 1066
+      }
+    ]
+  },
+  "native": {
+    "total": 21,
+    "exact": 19,
+    "first_mismatches": [
+      {
+        "event": "mixed-long-short",
+        "request": 0,
+        "position": 49,
+        "eager_token": 16561,
+        "graph_chunk256_token": 6587
+      },
+      {
+        "event": "mixed-long-short",
+        "request": 2,
+        "position": 30,
+        "eager_token": 279,
+        "graph_chunk256_token": 1066
+      }
+    ]
+  },
+  "same_mismatches_on_both_branches": true,
+  "scope": "Changes both eager/graph and prefill chunk size; not a single-variable graph diagnosis. Each same-mode migration pair passes separately."
+}

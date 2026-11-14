@@ -1,0 +1,8 @@
+{
+  "local_buffer_bytes": 268435456,
+  "global_segment_bytes": 1073741824,
+  "version": "0.3.13.post1",
+  "fabric": "1",
+  "setup_success": false,
+  "error": "Traceback (most recent call last):\n  File \"/root/workspace/a3-mooncake-pr5030-20261113/scripts/local_buffer_control.py\", line 42, in main\n    ret=store.setup(local_hostname=_get_local_hostname(),metadata_server='P2PHANDSHAKE',\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nMemoryError: std::bad_alloc\n"
+}
