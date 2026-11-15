@@ -1,0 +1,171 @@
+{
+  "result": {
+    "event_counts": {
+      "irq_handler_entry": 2,
+      "tasklet_schedule": 1,
+      "irq_handler_exit": 2,
+      "softirq_entry": 1,
+      "cb000_entry": 2,
+      "cb000_exit": 2,
+      "softirq_exit": 1
+    },
+    "callback_statistics": {
+      "cb000": {
+        "callback": {
+          "name": "synthetic_callback",
+          "module": "synthetic",
+          "address": "0x200"
+        },
+        "count": 1,
+        "max_ms": 550.0000000000114,
+        "over50": 1
+      }
+    },
+    "slow_softirq": [
+      {
+        "start_s": 100.001,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "softirq",
+        "id": "6",
+        "entry": "vec=6 [action=TASKLET]",
+        "end_s": 100.553,
+        "duration_ms": 551.9999999999925,
+        "callbacks": [
+          {
+            "start_s": 100.002,
+            "cpu": 18,
+            "pid": 118,
+            "task": "ksoftirqd/18",
+            "kind": "callback",
+            "id": "cb000",
+            "entry": "(synthetic_callback+0x0/0x100) arg0=0x300",
+            "scheduled_from": {
+              "time_s": 100.00001,
+              "tasklet": "0x100",
+              "callback": "0x200",
+              "data": "0x300",
+              "use_cb": "0",
+              "origin_irq": {
+                "irq": 1982,
+                "entry": "irq=1982 name=synthetic",
+                "start_s": 100.0
+              }
+            },
+            "end_s": 100.552,
+            "duration_ms": 550.0000000000114,
+            "callback": {
+              "name": "synthetic_callback",
+              "module": "synthetic",
+              "address": "0x200"
+            },
+            "nested_irq_ms": 1.9999999999953388,
+            "excluding_recorded_irq_ms": 548.000000000016
+          }
+        ]
+      }
+    ],
+    "complete_pairs": [
+      {
+        "start_s": 100.0,
+        "cpu": 18,
+        "pid": 0,
+        "task": "irq/host",
+        "kind": "irq",
+        "id": "1982",
+        "entry": "irq=1982 name=synthetic",
+        "end_s": 100.00002,
+        "duration_ms": 0.020000000006348273
+      },
+      {
+        "start_s": 100.2,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "irq",
+        "id": "42",
+        "entry": "irq=42 name=nested",
+        "end_s": 100.202,
+        "duration_ms": 1.9999999999953388
+      },
+      {
+        "start_s": 100.002,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "callback",
+        "id": "cb000",
+        "entry": "(synthetic_callback+0x0/0x100) arg0=0x300",
+        "scheduled_from": {
+          "time_s": 100.00001,
+          "tasklet": "0x100",
+          "callback": "0x200",
+          "data": "0x300",
+          "use_cb": "0",
+          "origin_irq": {
+            "irq": 1982,
+            "entry": "irq=1982 name=synthetic",
+            "start_s": 100.0
+          }
+        },
+        "end_s": 100.552,
+        "duration_ms": 550.0000000000114,
+        "callback": {
+          "name": "synthetic_callback",
+          "module": "synthetic",
+          "address": "0x200"
+        },
+        "nested_irq_ms": 1.9999999999953388,
+        "excluding_recorded_irq_ms": 548.000000000016
+      },
+      {
+        "start_s": 100.001,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "softirq",
+        "id": "6",
+        "entry": "vec=6 [action=TASKLET]",
+        "end_s": 100.553,
+        "duration_ms": 551.9999999999925
+      }
+    ],
+    "unmatched": [
+      {
+        "kind": "callback",
+        "id": "cb000",
+        "cpu": 18,
+        "pid": 118,
+        "end_s": 101.0,
+        "reason": "exit_without_entry"
+      },
+      {
+        "start_s": 102.0,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "callback",
+        "id": "cb000",
+        "entry": "truncated-end",
+        "reason": "entry_without_exit"
+      }
+    ],
+    "probe_misses": [
+      "a3h2/cb000_exit 10 1"
+    ],
+    "buffer_loss": {
+      "overrun": 0,
+      "commit overrun": 0
+    },
+    "capture_errors": [],
+    "cleanup_errors": [],
+    "limitations": [
+      "Only callbacks observed during discovery were attached for phase2.",
+      "CPU18-only trace omits cross-CPU wakeup sources; unmatched boundary events are excluded from durations.",
+      "Callback entry/exit brackets function time, including nested interrupts; inspect IRQ pairs before blaming callback work.",
+      "A correlation without timed callback entry/exit is not callback identification."
+    ]
+  },
+  "status": "Synthetic assertions passed. Host kernel collection NOT executed."
+}

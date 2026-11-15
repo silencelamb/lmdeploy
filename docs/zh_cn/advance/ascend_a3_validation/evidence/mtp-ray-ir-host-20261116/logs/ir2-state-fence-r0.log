@@ -1,0 +1,428 @@
+[W1115 23:00:47.725567959 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W1115 23:00:54.136934316 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+Dumping intermediate results to /root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-debug-dumps-r2/tgK3onZ3E_UMLz4b84Yx5n90IGTvKCGwrV5cebl-J_A
+[DEBUG] cmd_list: /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile /tmp/tmpe88va0ie/kernel.ttadapter.mlir --target=Ascend910_9392 --enable-auto-multi-buffer=True --enable-auto-bind-sub-block=True --enable-auto-blockify-loop --enable-hfusion-compile=true --enable-hivm-compile=true --enable-triton-kernel-compile=true --mlir-print-ir-after-failure --mlir-print-stacktrace-on-diagnostic --bishengir-print-ir-after=hivm-graph-sync-solver -o /tmp/tmpe88va0ie/kernel
+Traceback (most recent call last):
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/compiler/compiler.py", line 289, in compile
+    next_module = compile_ir(module, metadata)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/compiler.py", line 1229, in <lambda>
+    lambda src, metadata: linalg_to_bin_enable_npu_compile_A2_A3(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/compiler.py", line 877, in linalg_to_bin_enable_npu_compile_A2_A3
+    ret = subprocess.run(
+          ^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/gdn_ir2_probe.py", line 57, in compiler_run
+    ret=original_run(patched,*args,**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile', '/tmp/tmpe88va0ie/kernel.ttadapter.mlir', '--target=Ascend910_9392', '--enable-auto-multi-buffer=True', '--enable-auto-bind-sub-block=True', '--enable-auto-blockify-loop', '--enable-hfusion-compile=true', '--enable-hivm-compile=true', '--enable-triton-kernel-compile=true', '--mlir-print-ir-after-failure', '--mlir-print-stacktrace-on-diagnostic', '--bishengir-print-ir-after=hivm-graph-sync-solver', '-o', '/tmp/tmpe88va0ie/kernel', '--inject-ir-from-file=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-patch-r0.mlir', '--save-temps=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-r0/compile00/temps', '--mlir-print-ir-after-all', '--mlir-print-ir-module-scope']' returned non-zero exit status 1.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/gdn_ir2_probe.py", line 122, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/gdn_ir2_probe.py", line 82, in main
+    call();torch.npu.synchronize()
+    ^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/gdn_ir2_probe.py", line 79, in call
+    return module.fused_recurrent_gated_delta_rule(q,k,v,g,beta,initial_state=state,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py", line 427, in fused_recurrent_gated_delta_rule
+    o, final_state = FusedRecurrentFunction.apply(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/autograd/function.py", line 583, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py", line 314, in forward
+    o, final_state = fused_recurrent_gated_delta_rule_fwd(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py", line 254, in fused_recurrent_gated_delta_rule_fwd
+    fused_recurrent_gated_delta_rule_fwd_kernel[grid](
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/gdn_ir2_probe.py", line 73, in run
+    result=launch(*args,**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/runtime/jit.py", line 333, in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/runtime/autotuner.py", line 386, in run
+    return self.fn.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/runtime/jit.py", line 622, in run
+    kernel = self._do_compile(key, signature, device, backend, target, constants, options, configs[0], warmup)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/runtime/jit.py", line 787, in _do_compile
+    kernel = self.compile(src, target=target, options=options.__dict__)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/compiler/compiler.py", line 303, in compile
+    raise MLIRCompilationError(stage_name, error_detail) from e
+triton.compiler.errors.MLIRCompilationError: 
+///------------------[ERROR][Triton][BEG]------------------
+[ConvertLinalgRToBinary] encounters error:
+// -----// IR Dump After GraphSyncSolver (hivm-graph-sync-solver) //----- //
+func.func @fused_recurrent_gated_delta_rule_fwd_kernel(%arg0: i64 {hacc.arg_type = #hacc.arg_type<ffts_base_address>}, %arg1: memref<?xi8, #hivm.address_space<gm>> {hacc.arg_type = #hacc.arg_type<sync_block_lock>}, %arg2: memref<?xi8, #hivm.address_space<gm>> {hacc.arg_type = #hacc.arg_type<workspace>}, %arg3: memref<?xbf16, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg4: memref<?xbf16, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg5: memref<?xbf16, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg6: memref<?xf32, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg7: memref<?xbf16, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg8: memref<?xbf16, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 1 : i32}, %arg9: memref<?xf32, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg10: memref<?xf32, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 1 : i32}, %arg11: memref<?xi32, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg12: memref<?xi32, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg13: memref<?xi64, #hivm.address_space<gm>> {tt.divisibility = 16 : i32, tt.tensor_kind = 0 : i32}, %arg14: f32, %arg15: i64, %arg16: i64, %arg17: i32, %arg18: i32, %arg19: i32) attributes {SyncBlockLockArgIdx = 0 : i64, WorkspaceArgIdx = 1 : i64, func_dyn_memref_args = dense<[false, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false]> : vector<20xi1>, hacc.entry, hacc.function_kind = #hacc.function_kind<DEVICE>, hivm.func_core_type = #hivm.func_core_type<AIV>, hivm.storage_aligned, mix_mode = "aiv", parallel_mode = "simd"} {
+  %c94880_i64 = arith.constant 94880 : i64
+  %c120032_i64 = arith.constant 120032 : i64
+  %c94752_i64 = arith.constant 94752 : i64
+  %c78368_i64 = arith.constant 78368 : i64
+  %c60960_i64 = arith.constant 60960 : i64
+  %c44576_i64 = arith.constant 44576 : i64
+  %c44544_i64 = arith.constant 44544 : i64
+  %c44512_i64 = arith.constant 44512 : i64
+  %c36320_i64 = arith.constant 36320 : i64
+  %c36192_i64 = arith.constant 36192 : i64
+  %c19808_i64 = arith.constant 19808 : i64
+  %c3424_i64 = arith.constant 3424 : i64
+  %c3392_i64 = arith.constant 3392 : i64
+  %c3360_i64 = arith.constant 3360 : i64
+  %c3104_i64 = arith.constant 3104 : i64
+  %c3072_i64 = arith.constant 3072 : i64
+  %c2560_i64 = arith.constant 2560 : i64
+  %c2528_i64 = arith.constant 2528 : i64
+  %c2272_i64 = arith.constant 2272 : i64
+  %c2240_i64 = arith.constant 2240 : i64
+  %c1728_i64 = arith.constant 1728 : i64
+  %c1600_i64 = arith.constant 1600 : i64
+  %c103584_i64 = arith.constant 103584 : i64
+  %c1536_i64 = arith.constant 1536 : i64
+  %c1024_i64 = arith.constant 1024 : i64
+  %c103328_i64 = arith.constant 103328 : i64
+  %c768_i64 = arith.constant 768 : i64
+  %c256_i64 = arith.constant 256 : i64
+  %c103072_i64 = arith.constant 103072 : i64
+  %c103648_i64 = arith.constant 103648 : i64
+  %c61984_i64 = arith.constant 61984 : i64
+  %cst = arith.constant 9.99999997E-7 : f32
+  %c0 = arith.constant 0 : index
+  %c0_i64 = arith.constant 0 : i64
+  %c16_i32 = arith.constant 16 : i32
+  %c2_i32 = arith.constant 2 : i32
+  %c128_i32 = arith.constant 128 : i32
+  %c32_i32 = arith.constant 32 : i32
+  %c8_i64 = arith.constant 8 : i64
+  %c128_i64 = arith.constant 128 : i64
+  %c16_i64 = arith.constant 16 : i64
+  %c4_i64 = arith.constant 4 : i64
+  %c262144_i64 = arith.constant 262144 : i64
+  %c1_i64 = arith.constant 1 : i64
+  %c16384_i32 = arith.constant 16384 : i32
+  %cst_0 = arith.constant 0.000000e+00 : f32
+  %c128 = arith.constant 128 : index
+  %c32 = arith.constant 32 : index
+  %cst_1 = arith.constant 0.000000e+00 : bf16
+  %c48_i32 = arith.constant 48 : i32
+  %0 = arith.muli %arg17, %arg18 : i32
+  %1 = arith.muli %0, %arg19 : i32
+  annotation.mark %1 {logical_block_num} : i32
+  %2 = hivm.hir.get_block_idx -> i64
+  %3 = arith.trunci %2 : i64 to i32
+  %4 = arith.muli %arg19, %arg18 : i32
+  hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_MTE2>, <EVENT_ID0>]
+  scf.for %arg20 = %3 to %1 step %c48_i32  : i32 {
+    %5 = hivm.hir.pointer_cast(%c61984_i64, %c103648_i64) : memref<32x128xf32, #hivm.address_space<ub>>
+    annotation.mark %5 {hivm.multi_buffer = 2 : i32} : memref<32x128xf32, #hivm.address_space<ub>>
+    hivm.hir.set_mask_norm
+    %6 = arith.remsi %arg20, %arg19 : i32
+    %7 = arith.divsi %arg20, %arg19 : i32
+    %8 = arith.remsi %7, %arg18 : i32
+    %9 = arith.divsi %arg20, %4 : i32
+    %10 = arith.remsi %9, %arg17 : i32
+    %11 = arith.divsi %6, %c16_i32 : i32
+    %12 = arith.remsi %6, %c16_i32 : i32
+    %13 = arith.divsi %12, %c2_i32 : i32
+    %14 = arith.index_cast %11 : i32 to index
+    %reinterpret_cast = memref.reinterpret_cast %arg11 to offset: [%14], sizes: [1], strides: [1] : memref<?xi32, #hivm.address_space<gm>> to memref<1xi32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+    %15 = memref.load %reinterpret_cast[%c0] : memref<1xi32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+    %16 = arith.extsi %15 : i32 to i64
+    %17 = affine.apply affine_map<()[s0] -> (s0 + 1)>()[%14]
+    %reinterpret_cast_2 = memref.reinterpret_cast %arg11 to offset: [%17], sizes: [1], strides: [1] : memref<?xi32, #hivm.address_space<gm>> to memref<1xi32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+    %18 = memref.load %reinterpret_cast_2[%c0] : memref<1xi32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+    %19 = arith.extsi %18 : i32 to i64
+    %20 = arith.subi %19, %16 : i64
+    %21 = arith.cmpi eq, %20, %c0_i64 : i64
+    scf.if %21 {
+    } else {
+      %22 = arith.muli %10, %c128_i32 : i32
+      %23 = arith.muli %8, %c32_i32 : i32
+      %24 = arith.muli %16, %c8_i64 : i64
+      %25 = arith.extsi %13 : i32 to i64
+      %26 = arith.addi %24, %25 : i64
+      %27 = arith.muli %26, %c128_i64 : i64
+      %28 = arith.muli %16, %c16_i64 : i64
+      %29 = arith.extsi %12 : i32 to i64
+      %30 = arith.addi %28, %29 : i64
+      %31 = arith.muli %30, %c128_i64 : i64
+      %32 = arith.extsi %10 : i32 to i64
+      %33 = arith.muli %32, %arg16 : i64
+      %34 = arith.addi %33, %16 : i64
+      %35 = arith.muli %34, %c16_i64 : i64
+      %36 = arith.addi %35, %29 : i64
+      %37 = arith.muli %36, %c128_i64 : i64
+      %reinterpret_cast_3 = memref.reinterpret_cast %arg12 to offset: [%14], sizes: [1], strides: [1] : memref<?xi32, #hivm.address_space<gm>> to memref<1xi32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+      %38 = memref.load %reinterpret_cast_3[%c0] : memref<1xi32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+      %39 = arith.extsi %38 : i32 to i64
+      %reinterpret_cast_4 = memref.reinterpret_cast %arg13 to offset: [%14], sizes: [1], strides: [1] : memref<?xi64, #hivm.address_space<gm>> to memref<1xi64, strided<[1], offset: ?>, #hivm.address_space<gm>>
+      %40 = memref.load %reinterpret_cast_4[%c0] : memref<1xi64, strided<[1], offset: ?>, #hivm.address_space<gm>>
+      %41 = arith.cmpi sle, %40, %c0_i64 : i64
+      scf.if %41 {
+      } else {
+        %42 = arith.muli %40, %c4_i64 : i64
+        %43 = arith.remsi %39, %c4_i64 : i64
+        %44 = arith.addi %42, %43 : i64
+        %45 = arith.muli %44, %c262144_i64 : i64
+        %46 = arith.muli %12, %c16384_i32 : i32
+        %47 = arith.index_cast %45 : i64 to index
+        %48 = arith.index_cast %46 : i32 to index
+        %49 = arith.index_cast %23 : i32 to index
+        %50 = arith.index_cast %22 : i32 to index
+        %51 = affine.apply affine_map<()[s0, s1, s2, s3] -> (s0 + s1 + s2 + s3 * 128)>()[%50, %47, %48, %49]
+        %reinterpret_cast_5 = memref.reinterpret_cast %arg9 to offset: [%51], sizes: [32, 128], strides: [128, 1] : memref<?xf32, #hivm.address_space<gm>> to memref<32x128xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>
+        %52 = affine.max affine_map<()[s0] -> (128, s0)>()[%49]
+        %53 = affine.min affine_map<()[s0, s1] -> (s1 + 32, s0)>()[%52, %49]
+        %54 = affine.apply affine_map<()[s0, s1] -> (s0 - s1)>()[%53, %49]
+        %55 = affine.max affine_map<()[s0] -> (128, s0)>()[%50]
+        %56 = affine.min affine_map<()[s0, s1] -> (s1 + 128, s0)>()[%55, %50]
+        %57 = affine.apply affine_map<()[s0, s1] -> (s0 - s1)>()[%56, %50]
+        %58 = affine.min affine_map<()[s0, s1] -> (32, s0 - s1)>()[%53, %49]
+        %59 = affine.max affine_map<()[s0] -> (0, s0)>()[%58]
+        %60 = affine.min affine_map<()[s0, s1] -> (128, s0 - s1)>()[%56, %50]
+        %61 = affine.max affine_map<()[s0] -> (0, s0)>()[%60]
+        %62 = arith.cmpi slt, %59, %c32 : index
+        %63 = arith.cmpi slt, %61, %c128 : index
+        %64 = arith.ori %62, %63 : i1
+        %subview = memref.subview %reinterpret_cast_5[0, 0] [%59, %61] [1, 1] : memref<32x128xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>> to memref<?x?xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>
+        %subview_6 = memref.subview %5[0, 0] [%59, %61] [1, 1] : memref<32x128xf32, #hivm.address_space<ub>> to memref<?x?xf32, strided<[128, 1]>, #hivm.address_space<ub>>
+        scf.if %64 {
+          hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID0>]
+          %collapse_shape = memref.collapse_shape %5 [[0, 1]] : memref<32x128xf32, #hivm.address_space<ub>> into memref<4096xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.vbrc ins(%cst_0 : f32) outs(%collapse_shape : memref<4096xf32, #hivm.address_space<ub>>)
+          hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+          hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+        } {hivm.unlikely_condition}
+        hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_MTE2>, <EVENT_ID0>]
+        hivm.hir.pipe_barrier[<PIPE_MTE2>]
+        hivm.hir.load ins(%subview : memref<?x?xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_6 : memref<?x?xf32, strided<[128, 1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : f32 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false
+        %65 = arith.index_cast %27 : i64 to index
+        %66 = arith.index_cast %37 : i64 to index
+        %67 = arith.index_cast %31 : i64 to index
+        %68 = arith.cmpi slt, %57, %c128 : index
+        %69 = arith.cmpi slt, %54, %c32 : index
+        hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID1>]
+        hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID2>]
+        %70:7 = scf.for %arg21 = %c0_i64 to %20 step %c1_i64 iter_args(%arg22 = %5, %arg23 = %30, %arg24 = %30, %arg25 = %50, %arg26 = %50, %arg27 = %49, %arg28 = %49) -> (memref<32x128xf32, #hivm.address_space<ub>>, i64, i64, index, index, index, index)  : i64 {
+          %71 = arith.index_cast %arg21 : i64 to index
+          %72 = arith.index_cast %c0_i64 : i64 to index
+          %73 = arith.index_cast %20 : i64 to index
+          %74 = arith.index_cast %c1_i64 : i64 to index
+          %75 = arith.index_cast %arg20 : i32 to index
+          %76 = arith.index_cast %3 : i32 to index
+          %77 = arith.index_cast %1 : i32 to index
+          %78 = arith.index_cast %c48_i32 : i32 to index
+          %79 = affine.apply affine_map<()[s0, s1, s2, s3, s4, s5, s6] -> (((s0 - s1) floordiv s3 + ((s4 - s5) floordiv s6) * ((-s1 + s2 + s3 - 1) floordiv s3)) mod 2)>()[%71, %72, %73, %74, %75, %76, %78]
+          %80 = arith.index_cast %79 : index to i1
+          %c1_i64_7 = arith.constant 1 : i64
+          %c2_i64 = arith.constant 2 : i64
+          %81 = arith.select %80, %c1_i64_7, %c2_i64 : i64
+          %82 = hivm.hir.pointer_cast(%c94752_i64, %c120032_i64) : memref<32xbf16, #hivm.address_space<ub>>
+          annotation.mark %82 {hivm.multi_buffer = 2 : i32} : memref<32xbf16, #hivm.address_space<ub>>
+          %83 = hivm.hir.pointer_cast(%c61984_i64, %c103648_i64) : memref<32x128xf32, #hivm.address_space<ub>>
+          annotation.mark %83 {hivm.multi_buffer = 2 : i32} : memref<32x128xf32, #hivm.address_space<ub>>
+          %84 = hivm.hir.pointer_cast(%c1536_i64, %c103584_i64) : memref<32xbf16, #hivm.address_space<ub>>
+          annotation.mark %84 {hivm.multi_buffer = 2 : i32} : memref<32xbf16, #hivm.address_space<ub>>
+          %85 = hivm.hir.pointer_cast(%c768_i64, %c103328_i64) : memref<128xbf16, #hivm.address_space<ub>>
+          annotation.mark %85 {hivm.multi_buffer = 2 : i32} : memref<128xbf16, #hivm.address_space<ub>>
+          %86 = hivm.hir.pointer_cast(%c0_i64, %c103072_i64) : memref<128xbf16, #hivm.address_space<ub>>
+          annotation.mark %86 {hivm.multi_buffer = 2 : i32} : memref<128xbf16, #hivm.address_space<ub>>
+          %87 = arith.index_cast %arg24 : i64 to index
+          %reinterpret_cast_8 = memref.reinterpret_cast %arg7 to offset: [%87], sizes: [1], strides: [1] : memref<?xbf16, #hivm.address_space<gm>> to memref<1xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %88 = arith.index_cast %arg23 : i64 to index
+          %reinterpret_cast_9 = memref.reinterpret_cast %arg6 to offset: [%88], sizes: [1], strides: [1] : memref<?xf32, #hivm.address_space<gm>> to memref<1xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %89 = affine.apply affine_map<()[s0, s1] -> (s0 + s1)>()[%65, %arg25]
+          %reinterpret_cast_10 = memref.reinterpret_cast %arg3 to offset: [%89], sizes: [128], strides: [1] : memref<?xbf16, #hivm.address_space<gm>> to memref<128xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %90 = affine.apply affine_map<()[s0, s1] -> (s0 + s1)>()[%65, %arg26]
+          %reinterpret_cast_11 = memref.reinterpret_cast %arg4 to offset: [%90], sizes: [128], strides: [1] : memref<?xbf16, #hivm.address_space<gm>> to memref<128xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %91 = affine.apply affine_map<()[s0, s1] -> (s0 + s1)>()[%66, %arg27]
+          %reinterpret_cast_12 = memref.reinterpret_cast %arg8 to offset: [%91], sizes: [32], strides: [1] : memref<?xbf16, #hivm.address_space<gm>> to memref<32xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %92 = affine.apply affine_map<()[s0, s1] -> (s0 + s1)>()[%67, %arg28]
+          %reinterpret_cast_13 = memref.reinterpret_cast %arg5 to offset: [%92], sizes: [32], strides: [1] : memref<?xbf16, #hivm.address_space<gm>> to memref<32xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %subview_14 = memref.subview %reinterpret_cast_10[0] [%57] [1] : memref<128xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>> to memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %subview_15 = memref.subview %86[0] [%57] [1] : memref<128xbf16, #hivm.address_space<ub>> to memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>
+          scf.if %68 {
+            hivm.hir.vbrc ins(%cst_1 : bf16) outs(%86 : memref<128xbf16, #hivm.address_space<ub>>)
+            hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+            hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+          } {hivm.unlikely_condition}
+          hivm.hir.load ins(%subview_14 : memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_15 : memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_1 : bf16 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false
+          hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          %93 = hivm.hir.pointer_cast(%c256_i64) : memref<128xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.vcast ins(%86 : memref<128xbf16, #hivm.address_space<ub>>) outs(%93 : memref<128xf32, #hivm.address_space<ub>>)
+          %subview_16 = memref.subview %reinterpret_cast_11[0] [%57] [1] : memref<128xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>> to memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %subview_17 = memref.subview %85[0] [%57] [1] : memref<128xbf16, #hivm.address_space<ub>> to memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>
+          scf.if %68 {
+            hivm.hir.vbrc ins(%cst_1 : bf16) outs(%85 : memref<128xbf16, #hivm.address_space<ub>>)
+            hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+            hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+          } {hivm.unlikely_condition}
+          hivm.hir.load ins(%subview_16 : memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_17 : memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_1 : bf16 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false
+          hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          %94 = hivm.hir.pointer_cast(%c1024_i64) : memref<128xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.vcast ins(%85 : memref<128xbf16, #hivm.address_space<ub>>) outs(%94 : memref<128xf32, #hivm.address_space<ub>>)
+          %subview_18 = memref.subview %reinterpret_cast_13[0] [%54] [1] : memref<32xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>> to memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %subview_19 = memref.subview %84[0] [%54] [1] : memref<32xbf16, #hivm.address_space<ub>> to memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>
+          scf.if %69 {
+            hivm.hir.vbrc ins(%cst_1 : bf16) outs(%84 : memref<32xbf16, #hivm.address_space<ub>>)
+            hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+            hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]
+          } {hivm.unlikely_condition}
+          hivm.hir.load ins(%subview_18 : memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_19 : memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_1 : bf16 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false
+          hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          %95 = hivm.hir.pointer_cast(%c1600_i64) : memref<32xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.vcast ins(%84 : memref<32xbf16, #hivm.address_space<ub>>) outs(%95 : memref<32xf32, #hivm.address_space<ub>>)
+          %96 = hivm.hir.pointer_cast(%c1728_i64) : memref<128xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vmul ins(%93, %93 : memref<128xf32, #hivm.address_space<ub>>, memref<128xf32, #hivm.address_space<ub>>) outs(%96 : memref<128xf32, #hivm.address_space<ub>>)
+          %97 = hivm.hir.pointer_cast(%c2240_i64) : memref<1xf32, #hivm.address_space<ub>>
+          %98 = hivm.hir.pointer_cast(%c2272_i64) : memref<64xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vreduce <sum> ins(%96 : memref<128xf32, #hivm.address_space<ub>>) outs(%97 : memref<1xf32, #hivm.address_space<ub>>) temp_buffer(%98 : memref<64xf32, #hivm.address_space<ub>>) reduce_dims = [0]
+          hivm.hir.set_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          hivm.hir.wait_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          %99 = memref.load %97[%c0] : memref<1xf32, #hivm.address_space<ub>>
+          %100 = arith.addf %99, %cst : f32
+          %101 = math.sqrt %100 : f32
+          %102 = hivm.hir.pointer_cast(%c256_i64) : memref<128xf32, #hivm.address_space<ub>>
+          %103 = hivm.hir.pointer_cast(%c2528_i64) : memref<8xf32, #hivm.address_space<ub>>
+          hivm.hir.vdiv ins(%93, %101 : memref<128xf32, #hivm.address_space<ub>>, f32) outs(%102 : memref<128xf32, #hivm.address_space<ub>>) temp_buffer(%103 : memref<8xf32, #hivm.address_space<ub>>)
+          %104 = hivm.hir.pointer_cast(%c2560_i64) : memref<128xf32, #hivm.address_space<ub>>
+          hivm.hir.vmul ins(%94, %94 : memref<128xf32, #hivm.address_space<ub>>, memref<128xf32, #hivm.address_space<ub>>) outs(%104 : memref<128xf32, #hivm.address_space<ub>>)
+          %105 = hivm.hir.pointer_cast(%c3072_i64) : memref<1xf32, #hivm.address_space<ub>>
+          %106 = hivm.hir.pointer_cast(%c3104_i64) : memref<64xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vreduce <sum> ins(%104 : memref<128xf32, #hivm.address_space<ub>>) outs(%105 : memref<1xf32, #hivm.address_space<ub>>) temp_buffer(%106 : memref<64xf32, #hivm.address_space<ub>>) reduce_dims = [0]
+          hivm.hir.set_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          hivm.hir.wait_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          %107 = memref.load %105[%c0] : memref<1xf32, #hivm.address_space<ub>>
+          %108 = arith.addf %107, %cst : f32
+          %109 = math.sqrt %108 : f32
+          %110 = hivm.hir.pointer_cast(%c1024_i64) : memref<128xf32, #hivm.address_space<ub>>
+          %111 = hivm.hir.pointer_cast(%c3360_i64) : memref<8xf32, #hivm.address_space<ub>>
+          hivm.hir.vdiv ins(%94, %109 : memref<128xf32, #hivm.address_space<ub>>, f32) outs(%110 : memref<128xf32, #hivm.address_space<ub>>) temp_buffer(%111 : memref<8xf32, #hivm.address_space<ub>>)
+          %112 = hivm.hir.pointer_cast(%c256_i64) : memref<128xf32, #hivm.address_space<ub>>
+          hivm.hir.vmul ins(%102, %arg14 : memref<128xf32, #hivm.address_space<ub>>, f32) outs(%112 : memref<128xf32, #hivm.address_space<ub>>)
+          %113 = memref.load %reinterpret_cast_9[%c0] : memref<1xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %114 = hivm.hir.pointer_cast(%c3392_i64) : memref<1xf32, #hivm.address_space<ub>>
+          memref.store %113, %114[%c0] : memref<1xf32, #hivm.address_space<ub>>
+          hivm.hir.set_flag[<PIPE_S>, <PIPE_V>, <EVENT_ID0>]
+          %115 = hivm.hir.pointer_cast(%c3392_i64) : memref<1xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_S>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.vexp ins(%114 : memref<1xf32, #hivm.address_space<ub>>) outs(%115 : memref<1xf32, #hivm.address_space<ub>>)
+          hivm.hir.set_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          hivm.hir.wait_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          %116 = memref.load %115[%c0] : memref<1xf32, #hivm.address_space<ub>>
+          %117 = hivm.hir.pointer_cast(%c3424_i64) : memref<32x128xf32, #hivm.address_space<ub>>
+          %collapse_shape = memref.collapse_shape %arg22 [[0, 1]] : memref<32x128xf32, #hivm.address_space<ub>> into memref<4096xf32, #hivm.address_space<ub>>
+          %collapse_shape_20 = memref.collapse_shape %117 [[0, 1]] : memref<32x128xf32, #hivm.address_space<ub>> into memref<4096xf32, #hivm.address_space<ub>>
+          hivm.hir.vmul ins(%collapse_shape, %116 : memref<4096xf32, #hivm.address_space<ub>>, f32) outs(%collapse_shape_20 : memref<4096xf32, #hivm.address_space<ub>>)
+          %expand_shape = memref.expand_shape %110 [[0, 1]] output_shape [1, 128] : memref<128xf32, #hivm.address_space<ub>> into memref<1x128xf32, #hivm.address_space<ub>>
+          %118 = hivm.hir.pointer_cast(%c19808_i64) : memref<32x128xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vmul ins(%117, %expand_shape : memref<32x128xf32, #hivm.address_space<ub>>, memref<1x128xf32, #hivm.address_space<ub>>) outs(%118 : memref<32x128xf32, #hivm.address_space<ub>>) broadcast = [0]
+          %119 = hivm.hir.pointer_cast(%c36192_i64) : memref<32x1xf32, #hivm.address_space<ub>>
+          %120 = hivm.hir.pointer_cast(%c36320_i64) : memref<2048xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vreduce <sum> ins(%118 : memref<32x128xf32, #hivm.address_space<ub>>) outs(%119 : memref<32x1xf32, #hivm.address_space<ub>>) temp_buffer(%120 : memref<2048xf32, #hivm.address_space<ub>>) reduce_dims = [1]
+          %collapse_shape_21 = memref.collapse_shape %119 [[0, 1]] : memref<32x1xf32, #hivm.address_space<ub>> into memref<32xf32, #hivm.address_space<ub>>
+          %121 = hivm.hir.pointer_cast(%c1600_i64) : memref<32xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vsub ins(%95, %collapse_shape_21 : memref<32xf32, #hivm.address_space<ub>>, memref<32xf32, #hivm.address_space<ub>>) outs(%121 : memref<32xf32, #hivm.address_space<ub>>)
+          %122 = memref.load %reinterpret_cast_8[%c0] : memref<1xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          %123 = hivm.hir.pointer_cast(%c44512_i64) : memref<1xbf16, #hivm.address_space<ub>>
+          memref.store %122, %123[%c0] : memref<1xbf16, #hivm.address_space<ub>>
+          hivm.hir.set_flag[<PIPE_S>, <PIPE_V>, <EVENT_ID0>]
+          %124 = hivm.hir.pointer_cast(%c44544_i64) : memref<1xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_S>, <PIPE_V>, <EVENT_ID0>]
+          hivm.hir.vcast ins(%123 : memref<1xbf16, #hivm.address_space<ub>>) outs(%124 : memref<1xf32, #hivm.address_space<ub>>)
+          hivm.hir.set_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          hivm.hir.wait_flag[<PIPE_V>, <PIPE_S>, <EVENT_ID0>]
+          %125 = memref.load %124[%c0] : memref<1xf32, #hivm.address_space<ub>>
+          %126 = hivm.hir.pointer_cast(%c1600_i64) : memref<32xf32, #hivm.address_space<ub>>
+          hivm.hir.vmul ins(%121, %125 : memref<32xf32, #hivm.address_space<ub>>, f32) outs(%126 : memref<32xf32, #hivm.address_space<ub>>)
+          %expand_shape_22 = memref.expand_shape %126 [[0, 1]] output_shape [32, 1] : memref<32xf32, #hivm.address_space<ub>> into memref<32x1xf32, #hivm.address_space<ub>>
+          %127 = hivm.hir.pointer_cast(%c44576_i64) : memref<32x128xf32, #hivm.address_space<ub>>
+          %128 = hivm.hir.pointer_cast(%c60960_i64) : memref<256xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vmul ins(%expand_shape_22, %expand_shape : memref<32x1xf32, #hivm.address_space<ub>>, memref<1x128xf32, #hivm.address_space<ub>>) outs(%127 : memref<32x128xf32, #hivm.address_space<ub>>) temp_buffer(%128 : memref<256xf32, #hivm.address_space<ub>>) broadcast = [0, 1]
+          %collapse_shape_23 = memref.collapse_shape %127 [[0, 1]] : memref<32x128xf32, #hivm.address_space<ub>> into memref<4096xf32, #hivm.address_space<ub>>
+          %collapse_shape_24 = memref.collapse_shape %83 [[0, 1]] : memref<32x128xf32, #hivm.address_space<ub>> into memref<4096xf32, #hivm.address_space<ub>>
+          hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, %81]
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vadd ins(%collapse_shape_20, %collapse_shape_23 : memref<4096xf32, #hivm.address_space<ub>>, memref<4096xf32, #hivm.address_space<ub>>) outs(%collapse_shape_24 : memref<4096xf32, #hivm.address_space<ub>>)
+          %expand_shape_25 = memref.expand_shape %112 [[0, 1]] output_shape [1, 128] : memref<128xf32, #hivm.address_space<ub>> into memref<1x128xf32, #hivm.address_space<ub>>
+          %129 = hivm.hir.pointer_cast(%c78368_i64) : memref<32x128xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vmul ins(%83, %expand_shape_25 : memref<32x128xf32, #hivm.address_space<ub>>, memref<1x128xf32, #hivm.address_space<ub>>) outs(%129 : memref<32x128xf32, #hivm.address_space<ub>>) broadcast = [0]
+          %130 = hivm.hir.pointer_cast(%c94752_i64, %c120032_i64) : memref<32x1xf32, #hivm.address_space<ub>>
+          %131 = hivm.hir.pointer_cast(%c94880_i64) : memref<2048xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vreduce <sum> ins(%129 : memref<32x128xf32, #hivm.address_space<ub>>) outs(%130 : memref<32x1xf32, #hivm.address_space<ub>>) temp_buffer(%131 : memref<2048xf32, #hivm.address_space<ub>>) reduce_dims = [1]
+          %collapse_shape_26 = memref.collapse_shape %130 [[0, 1]] : memref<32x1xf32, #hivm.address_space<ub>> into memref<32xf32, #hivm.address_space<ub>>
+          hivm.hir.pipe_barrier[<PIPE_V>]
+          hivm.hir.vcast ins(%collapse_shape_26 : memref<32xf32, #hivm.address_space<ub>>) outs(%82 : memref<32xbf16, #hivm.address_space<ub>>)
+          hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]
+          %subview_27 = memref.subview %82[0] [%54] [1] : memref<32xbf16, #hivm.address_space<ub>> to memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>
+          %subview_28 = memref.subview %reinterpret_cast_12[0] [%54] [1] : memref<32xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>> to memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>
+          hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]
+          hivm.hir.pipe_barrier[<PIPE_MTE3>]
+          hivm.hir.store ins(%subview_27 : memref<?xbf16, strided<[1]>, #hivm.address_space<ub>>) outs(%subview_28 : memref<?xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>)
+          %132 = arith.addi %39, %arg21 : i64
+          %133 = arith.addi %132, %c1_i64 : i64
+          %134 = arith.remsi %133, %c4_i64 : i64
+          %135 = arith.addi %42, %134 : i64
+          %136 = arith.muli %135, %c262144_i64 : i64
+          %137 = arith.index_cast %136 : i64 to index
+          %138 = affine.apply affine_map<()[s0, s1, s2, s3] -> (s0 + s1 + s2 + s3 * 128)>()[%50, %137, %48, %49]
+          %reinterpret_cast_29 = memref.reinterpret_cast %arg10 to offset: [%138], sizes: [32, 128], strides: [128, 1] : memref<?xf32, #hivm.address_space<gm>> to memref<32x128xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>
+          %subview_30 = memref.subview %83[0, 0] [%59, %61] [1, 1] : memref<32x128xf32, #hivm.address_space<ub>> to memref<?x?xf32, strided<[128, 1]>, #hivm.address_space<ub>>
+          %subview_31 = memref.subview %reinterpret_cast_29[0, 0] [%59, %61] [1, 1] : memref<32x128xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>> to memref<?x?xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>
+          hivm.hir.store ins(%subview_30 : memref<?x?xf32, strided<[128, 1]>, #hivm.address_space<ub>>) outs(%subview_31 : memref<?x?xf32, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>)
+          hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_V>, %81]
+          %139 = arith.addi %arg23, %c16_i64 : i64
+          %140 = arith.addi %arg24, %c16_i64 : i64
+          %141 = affine.apply affine_map<()[s0] -> (s0 + 1024)>()[%arg25]
+          %142 = affine.apply affine_map<()[s0] -> (s0 + 1024)>()[%arg26]
+          %143 = affine.apply affine_map<()[s0] -> (s0 + 2048)>()[%arg27]
+          %144 = affine.apply affine_map<()[s0] -> (s0 + 2048)>()[%arg28]
+          scf.yield %83, %139, %140, %141, %142, %143, %144 : memref<32x128xf32, #hivm.address_space<ub>>, i64, i64, index, index, index, index
+        }
+        hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID1>]
+        hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID2>]
+        hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_MTE2>, <EVENT_ID0>]
+      }
+    } {pipeline.veconly}
+  } {autoblockify.subloop}
+  hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_MTE2>, <EVENT_ID0>]
+  hivm.hir.pipe_barrier[<PIPE_ALL>]
+  return
+}
+
+hivmc: Unknown command line argument '--inject-ir-from-file=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-patch-r0.mlir'.  Try: '/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/hivmc --help'
+hivmc: Did you mean '--enable-lir-compile=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-patch-r0.mlir'?
+[ERROR] Executing: /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/hivmc /root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-r0/compile00/temps/module.hivm.opt.mlir --enable-debug-info=false --enable-static-bare-ptr=true --enable-bin-relocation=true --inject-ir-from-file=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-patch-r0.mlir --enable-hivm-inject-barrier-all-sync=false --enable-sanitizer=false -o /tmp/tmpe88va0ie/kernel
+loc("/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py":38:0): error: External hivmc run fails, returning module before running external compiler
+[ERROR] Failed to run BiShengIR pipeline
+
+
+[INFO]: The compiled kernel cache is in /root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-state-fence-r0/triton-cache/tgK3onZ3E_UMLz4b84Yx5n90IGTvKCGwrV5cebl-J_A
+
+///------------------[ERROR][Triton][END]------------------
+
+[ERROR] 2026-11-15-23:01:04 (PID:1795175, Device:0, RankID:-1) ERR99999 UNKNOWN applicaiton exception

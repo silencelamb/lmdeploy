@@ -1,0 +1,33 @@
+{
+  "frozen_target": {
+    "labels": [
+      "original-r0",
+      "original-r1",
+      "fixed-r0",
+      "fixed-r1",
+      "original-r2",
+      "original-v2-r0",
+      "original-v2-r1",
+      "fixed-v2-r1",
+      "fixed-v2-r2",
+      "original-v2-r2"
+    ],
+    "environment": "PERF2_LABEL=<label>, PYTHONHASHSEED=42; exclude CPU18 with launch_affinity or sched_setaffinity; native run_deep logs capture effective affinity.",
+    "valid_labels": [
+      "original-v2-r1",
+      "fixed-v2-r1",
+      "fixed-v2-r2",
+      "original-v2-r2"
+    ]
+  },
+  "ir_dump": "TRITON_DUMP_DIR=artifacts/ir2-debug-dumps[-r1..-r4], exact paths in stdout. Per-label TRITON_CACHE_DIR overrides recorded in result JSON.",
+  "host_probe_command": [
+    "taskset",
+    "-c",
+    "18",
+    "tools/pipe_control_v2",
+    "results/host2-cpu18-r0.json",
+    "1000",
+    "0"
+  ]
+}

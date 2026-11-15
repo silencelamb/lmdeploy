@@ -1,0 +1,7 @@
+{
+  "source": "artifacts/ir2-multi-r1/compile00/temps/module.hivm.opt.mlir",
+  "source_sha": "4513cf82585ae5afc034e7f6c5aabebb6f7eb857deeb91b5316585cf76dbd842",
+  "patch": "artifacts/ir2-state-fence-patch-r0.mlir",
+  "patch_sha": "4b1f5a6afb204ddbd3290eae58ab6e7322f6e95260b596780e05ff7ba823fada",
+  "change": "Only two MTE3->V state/output reuse event IDs become constant 1; all buffer selections and arithmetic remain byte-for-byte unchanged."
+}

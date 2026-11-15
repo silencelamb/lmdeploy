@@ -2,7 +2,9 @@
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
-**接续结论：MTP 已定位到 Ascend GDN 循环状态写回的自动多缓冲编译路径，并在独立研究分支完成修复验证；Ray 的约半秒停顿已追到本机 CPU 18 的周期性 softirq 占用，已验证进程 CPU 亲和性规避。具体内核回调仍未确认。**
+**最新结论：本次 MTP 分歧已定位到编译器源码和 IR 中“状态缓冲轮转层级”与“同步事件轮转层级”不一致；两种独立 IR 修复均通过硬件重放，现有 LMDeploy 单缓冲修复继续保留。CPU 18 的具体 softirq/tasklet 回调仍受宿主机权限限制，已提供可直接在宿主机执行的发现、计时和内核栈采集工具。亲和性规避不是永久修复。**
+
+最新源码、因果对照和性能数据见本文末尾[编译器错误点与宿主机取证](#编译器错误点与宿主机取证2026-11-16-第三轮)。前两轮结论保留为历史记录，其中尚未完成条目应以最新章节为准。
 
 修复：[dfa3049f](https://github.com/silencelamb/lmdeploy/commit/dfa3049f1575305b7564d6f15c48022661bd902a)，回归夹具补强：[d2d933da](https://github.com/silencelamb/lmdeploy/commit/d2d933dad7c6eb55b26ad5b83667c2077e23ca6c)，分支 `research/ascend-mtp-gdn-state-20261116`；未改动原生迁移 PR。详细实验、限制和复现见本文末尾[接续调查](#接续调查固定状态重放与主机调度定位)。
 
@@ -296,3 +298,117 @@ python scripts/launch_affinity.py --exclude 18 -- python scripts/run_deep.py \
 失败/漏检均保留：首次 seed 入口漏显式导入 torch_npu；首次全量快照在 0.95 cache 预算下 OOM；首次真实输入微复现误用超出可见逻辑设备范围的 ID 8，改为逻辑 ID 2；首次 pytest 缺 `--run-ascend-hardware`；旧核一次组合 pytest 未复现，不将其改写成旧核正确，后续模块来源审计也不支持凭空归因为 checkout 选择错误，最终以固定夹具、显式锁定来源的前后回归为准；环境检查中普通 `find_spec` 被 import guard 拒绝，随后用与 guard 启动检查相同的 PathFinder 只检查包是否存在。诊断入口失败不混入迁移或模型回归。
 
 未验证：其他模型、长上下文/高并发 MTP、MTP1 的完整模型链路、eager/prefix 关闭的完整模型矩阵、CUDA/H200、其他 CANN/Triton 版本、修复后的整模型吞吐。内核回调/驱动层根因及永久修复仍需要宿主机取证；编译器内部具体依赖错误也仍需低层 IR 分析。本轮的通过范围是上面列出的硬件状态回归、固定状态重放、Sage 21 响应重复性和本机 HTTP CPU 亲和性缓解。
+
+## 编译器错误点与宿主机取证：2026-11-16 第三轮
+
+本轮从 2026-11-16 06:53 Asia/Shanghai 开始；原始日志保留 UTC。固定原生源码 `5f1b1b3c`、修复计算代码 `d2d933da`、原 native venv 和已保存的真实第 0 层输入。本轮没有替换安装的编译器或驱动，也没有安装/导入 dlinfer。最新研究分支 [f9ab50d8](https://github.com/silencelamb/lmdeploy/commit/f9ab50d877c384bfb04ae43afa6af0c388fc451b) 补充根因注释和诊断工具，计算逻辑不变；原生迁移 PR 仍保持干净。
+
+总览：[机器可读结果](evidence/mtp-ray-ir-host-20261116/results/ir2-host2-summary-r0.json)、[证据索引](evidence/mtp-ray-ir-host-20261116/index.json)。本轮[判据](evidence/mtp-ray-ir-host-20261116/ACCEPTANCE-ir2.md)要求具体 buffer/同步关系和干预对照，不能仅凭“关闭优化后正常”声称定位完成。
+
+### MTP：已经定位的具体错误
+
+实际调用的是 native venv 中 Triton Ascend 随包提供的编译器，不是另行安装的新版本：
+
+- `bishengir-compile/opt 1.2.0`，源码 commit **`042c923d02a22e5845cf10311cf2d192b17a5d77`**，LLVM 19.1.7。
+- `hivmc 0.3.0`，构建 `923475c46003`。
+- 保存了可执行文件 SHA256、完整命令、Triton IR、GraphSyncSolver 输出、单独运行 EnableMultiBuffer pass 的输出、最终 HIVM IR 与二进制。[版本记录](evidence/mtp-ray-ir-host-20261116/inventory/ir2-compiler-versions-r0.json)
+
+源码与机器上的构建号一致。问题发生在两个 pass 对同一状态缓冲使用不同的循环层级：
+
+1. GraphSyncSolver 的 `MemInfo.cpp::getPointerLikeInfo(PointerCastOp)` 用 `pointerCastOp->getParentOfType<LoopLikeOpInterface>()`，记录**词法父循环**。`SyncSolver.cpp::getMultiBufferLoop()` 将它用于 `eventIdInfo.multibufferLoop`，codegen 据此轮转同步事件。
+2. `EnableMultiBuffer.cpp` 通过 `createNestedIndexModular(Operation*)` 选择物理缓冲；这个重载调用 `Utils.cpp::getParentLoop()`。当值由内层循环 `yield` 出去时，该 helper 沿循环结果继续向外找，因而对 loop-carried recurrent state 选择了**外层 program/block 循环**。
+
+源码依据：[MemInfo.cpp](https://github.com/Ascend/AscendNPU-IR/blob/042c923d02a22e5845cf10311cf2d192b17a5d77/bishengir/lib/Dialect/HIVM/Transforms/GraphSyncSolver/MemInfo.cpp#L50)、[SyncSolver.cpp](https://github.com/Ascend/AscendNPU-IR/blob/042c923d02a22e5845cf10311cf2d192b17a5d77/bishengir/lib/Dialect/HIVM/Transforms/GraphSyncSolver/SyncSolver.cpp#L344)、[Utils.cpp](https://github.com/Ascend/AscendNPU-IR/blob/042c923d02a22e5845cf10311cf2d192b17a5d77/bishengir/lib/Dialect/HIVM/Utils/Utils.cpp#L1014)、[EnableMultiBuffer.cpp](https://github.com/Ascend/AscendNPU-IR/blob/042c923d02a22e5845cf10311cf2d192b17a5d77/bishengir/lib/Dialect/HIVM/Transforms/EnableMultiBuffer.cpp)。下载的八个源码文件已核对 Git blob SHA，与固定上游版本一致。[源码校验](evidence/mtp-ray-ir-host-20261116/inventory/ir2-upstream-source-pins-r0.json)
+
+在真实 Q=4 输入的最终 IR 中：
+
+- recurrent state 的两个 UB 地址为 `61984` / `103648`，`%30` 的选择只依赖外层循环，在内层四个 token 内保持不变；同一 `%30` 被 Vector 更新并作为 MTE3 store 的源。
+- `MTE3 → Vector` 的复用事件 `%142` 却依赖内层 token，交替选择 event 2 / 1。
+- 因而 token 1 可能等待已经初始化就绪的 event 1，却没有等待 token 0 的 MTE3 store 所发布的 event 2，随后覆盖同一个 UB 地址。输出的当前值仍可正确，已经发起但尚未完成的历史状态拷贝则可能读到下一 token 的新值。
+
+对第一份错误快照，状态槽 4/5/6 中超过 `1e-5` 的 **9413 / 7908 / 7260 个异常元素，分别全部与下一正确状态逐位相同**；最后一个槽没有后继更新，逐位正确。这不是一般浮点容差解释。[数值对应关系](evidence/mtp-ray-ir-host-20261116/results/ir2-exact-state-pattern-r1.json)
+
+### 两种正交修复验证了这条因果链
+
+使用同一套冻结真实输入和初始状态，先用保存的最终 IR 重新调用原 `hivmc`。所得对照二进制与原编译结果**字节完全相同**，SHA256 为 `7bb8765c9a067583758147510fa6cd3c1ec85ac0d1ea0300aa4b2e4e23c29ed6`。
+
+随后分别做两种最小 IR 编辑，未更改计算公式、参数、dtype 或其他缓冲配置：
+
+| 对照 | 编辑内容 | 重放数 | 状态不通过 | 当前输出不同 |
+| --- | --- | ---: | ---: | ---: |
+| 原二进制复编译对照 | 无，二进制字节相同 | 200 | 200 | 0 |
+| 同步修复 | 仅把这对 MTE3→Vector set/wait 的事件 ID 固定为同一个 ID | 200 | 0 | 0 |
+| 缓冲选择修复 | 同步完全不动，仅让状态地址选择跟随已有内层 token parity | 200 | 0 | 0 |
+
+两个修复结果的全部状态均与已通过 CPU oracle 的固定结果逐位相同，max-abs=0。前者让等待匹配实际的单地址复用，后者让实际地址匹配原有的事件轮转；两条独立干预都消除了错误。[IR 编辑与命令](evidence/mtp-ray-ir-host-20261116/ir-artifacts.tar.gz)
+
+又将复现缩小为不依赖 LMDeploy、模型或 Ray 的 Triton kernel：`h = 0.5*h + x*q`，每轮保存当前输出和所有中间状态。多缓冲 **100/100** 重放产生历史状态错误，单缓冲 **0/100**；公开的研究分支工具也已在 A3 复跑相同结果。[最小复现](https://github.com/silencelamb/lmdeploy/blob/f9ab50d877c384bfb04ae43afa6af0c388fc451b/tools/ascend_a3/diagnostics/reproduce_state_writeback.py)
+
+因此，**本次观察到的 MTP target logits 分歧已追到具体的编译器同步/缓冲选择错误**。这不等于所有 MTP 模型和配置已经验收，也不表示安装的编译器已有正式修正版：
+
+- LMDeploy 当前继续使用已验证的 circular-state 单缓冲修复；本轮没有把固定形状 IR 二进制替换装入生产环境。
+- [编译器源码候选补丁](evidence/mtp-ray-ir-host-20261116/artifacts/ir2-compiler-source-candidate.patch)使 `MemInfo` 的循环选择与 yielded-value-aware helper 一致，**仅完成源码推导，未构建新编译器或运行其完整回归**。无外层循环、插入 CopyBeforeLoopYield 等其他情形仍须专项检查。
+
+### 性能影响：本轮进一步测了什么
+
+上轮约 +1.1% 来自一种单形状、单调用打点方式，不是整模型性能结论。本轮以固定输入、AB/BA 交错顺序，测 batch=1/4/16、query tokens=2/4；每种形状 8 轮、每方案每轮 500 次 graph replay，下面是设备事件测得的**均摊微内核耗时**。它与上轮单调用测量的打点/主机提交开销不同，绝对数值不应混用。
+
+| Batch | Query tokens | 原始中位数（µs） | 单缓冲中位数（µs） | 耗时变化 |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | 2 | 18.486 | 18.045 | −2.39% |
+| 1 | 4 | 26.228 | 24.901 | −5.06% |
+| 4 | 2 | 34.761 | 34.108 | −1.88% |
+| 4 | 4 | 45.341 | 44.356 | −2.17% |
+| 16 | 2 | 76.287 | 76.537 | +0.33% |
+| 16 | 4 | 140.627 | 127.031 | −9.67% |
+
+修复开销依形状而变，没有观察到统一的性能损失；该表也不把有错误状态写回的原实现当作合格精度基线。各轮原始值、范围及独立正确性检查见[微基准](evidence/mtp-ray-ir-host-20261116/results/perf2-gdn-matrix-r0.json)。
+
+另外测了 Sage TP2、B=1/Q=4 的**40 层 target 主干 forward**。固定 27-token 历史、输入 IDs、位置、活动卷积/GDN/KV 状态和 fresh metadata；缓存恢复在计时外。每次启动重放 48 次，前 8 次预热不计，两轮按原始→修复、修复→原始顺序运行。两个版本对应 rank 的初始状态哈希相同，所有 48 次输出哈希均相同。
+
+| 顺序 | Rank | 原始中位数（ms） | 修复中位数（ms） |
+| --- | ---: | ---: | ---: |
+| 原始→修复 | 0 | 13.181 | 13.055 |
+| 原始→修复 | 1 | 13.178 | 13.100 |
+| 修复→原始 | 0 | 13.118 | 12.986 |
+| 修复→原始 | 1 | 13.099 | 13.073 |
+
+两个 rank 是同一个 TP forward 的两个视角，不是独立请求样本。本例未观察到 target 主干耗时回归，差值约 −0.2% 至 −1.0%，不据此承诺吞吐提升。这个计时**不含 lm_head、draft、拒绝采样、RPC 和请求调度，也不是在线 TPS/TTFT 验收**；恢复正确状态还可能改变 draft 接受率。完整线上吞吐仍须独立负载回归。[冻结主干原始数据与哈希](evidence/mtp-ray-ir-host-20261116/results/ir2-host2-summary-r0.json)
+
+早期冻结主干探针复用了会被 GraphRunner 改写的 metadata，输出哈希不一致，其四次时序记录已排除；最终 v2-r1/r2 每次使用 fresh metadata/context，并校验所有输出。另有诊断类序列化和局部变量遮蔽失败，全部保留，不归为 LMDeploy 回归。
+
+### CPU 18：当前限制与可执行的宿主机采集
+
+本轮 CPU 18 的纯 C++ 控制仍复现：1000 次中 6 次 sleep 超过 50 ms，最大 571.864 ms。但本容器没有 `CAP_SYS_ADMIN`、`CAP_SYSLOG`、`CAP_PERFMON` 或 `CAP_BPF`；tracefs 没有可用实例目录，`kallsyms` 函数地址被屏蔽。**没有获得具体 softirq/tasklet 回调身份，也没有永久修复宿主机问题。**[权限记录](evidence/mtp-ray-ir-host-20261116/inventory/host2-permission-limits-r0.json)
+
+该 5.10 内核没有可用的 tasklet entry/exit tracepoint。研究分支新增了独立、仅使用 Python 标准库的[宿主机采集工具与说明](https://github.com/silencelamb/lmdeploy/tree/f9ab50d877c384bfb04ae43afa6af0c388fc451b/tools/ascend_a3/diagnostics)，也可下载[独立工具包](evidence/mtp-ray-ir-host-20261116/host-tools.tar.gz)。
+
+采集流程不是按 IRQ 名字猜函数：
+
+1. 从运行内核 BTF 读取 `tasklet_struct` 布局。本机实际大小48字节，包含KABI保留字段；回调位于24、data位于32，脚本不硬编码这些偏移。
+2. 第一阶段探测 `__tasklet_schedule` / `__tasklet_hi_schedule`，记录 tasklet 指针、callback、data/ABI 标志及当时的 IRQ。
+3. 解析真实回调地址后，第二阶段自动对回调加入口/返回探针，与 softirq entry/exit 关联，计算时长、匹配 tasklet 实例和来源 IRQ，并单列嵌套 IRQ 时间。
+4. 可选 `perf` 在目标 CPU 以49Hz采集内核栈，继续定位长回调内部的等待/循环。保留原始 trace、符号、模块、BTF哈希、丢事件、kretprobe miss 和清理结果。
+
+在**宿主机**有权限的环境执行（tracefs 若未挂载，先由宿主机管理员挂载）：
+
+```bash
+sudo mount -t tracefs tracefs /sys/kernel/tracing  # 仅在尚未挂载时
+TASKLET_OUT=/var/tmp/a3-tasklet-$(date -u +%Y%m%dT%H%M%SZ)
+sudo python3 tools/ascend_a3/diagnostics/capture_tasklet.py \
+  --cpu 18 --seconds 40 --discover-seconds 10 \
+  --perf-stacks --output "$TASKLET_OUT"
+sudo python3 tools/ascend_a3/diagnostics/analyze_tasklet.py "$TASKLET_OUT"
+```
+
+没有 perf 时可去掉 `--perf-stacks`，但内部调用栈仍未覆盖。脚本只创建唯一命名的 tracefs 实例和探针，退出清理自己创建的设施；不清空其他 tracer、不改 IRQ affinity/sysctl、不停止服务。记录限制为指定 CPU，但 kprobe 插入本身是全局的，其他 CPU 调用同一函数也有探针开销。采集时长、缓冲、输出大小和回调数量均有界。
+
+已验证脚本语法、Ruff、实际 BTF 解析、CPU mask 格式，以及合成 trace 的回调/IRQ匹配、嵌套 IRQ、截断和漏事件处理；当前容器 preflight 正确返回失败。**这些检查不等于宿主机真实采集已通过。** 无法解析地址、回调未在发现阶段出现、探针失败或丢事件时，分析必须保留限制，不能认证具体回调。H200/x86 仍未验证。
+
+### 本轮交付与剩余事项
+
+- 已闭环：该 MTP 分歧的编译器源码/IR 错误点、错误状态值来源、两种独立 IR 修复、无模型最小复现；现有 LMDeploy 修复在已测场景继续有效。
+- 已补充性能证据：六个微内核形状、同输入/状态/metadata 的 TP2 target 主干 forward；没有将它们外推为完整线上吞吐。
+- 待宿主机执行：具体 tasklet/softirq 回调及内部调用栈、驱动/内核永久修复。CPU亲和性避让仍只是临时缓解。
+- 待编译器验证：源码候选补丁的实际构建、通用 pass 回归和其他模型/shape/版本；本机安装的编译器未修改。
+- 新失败均保留：IR采集首版误拦截编译器 `--help` 探测；该版本 `--inject-ir-from-file` 被转发到不支持它的 `hivmc`，随后改用显式、字节一致的离线二进制复编译；冻结主干探针的 metadata 别名及入口错误均单列排除。

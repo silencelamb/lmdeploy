@@ -1,0 +1,261 @@
+[W1115 23:18:40.507006461 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+2026-11-15 23:18:49,668 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=262144, max_batch_size=16, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.7, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=True, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode=None, enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 23:18:49,668 - lmdeploy - INFO - async_engine.py:154 - speculative_config=SpeculativeConfig(method='qwen3_5_mtp', model='', num_speculative_tokens=3, dflash_block_size=None)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 23:18:54.912034115 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 23:18:54,610 - lmdeploy - INFO - __init__.py:146 - Build <ray> executor.
+2026-11-15 23:18:54,610 - lmdeploy - INFO - ray_executor.py:277 - Init ray cluster.
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-15 23:18:56,604	INFO worker.py:1927 -- Started a local Ray instance.
+2026-11-15 23:18:57,171 - lmdeploy - INFO - ray.py:107 - Ray initialized with address: 10.119.246.138:54023
+2026-11-15 23:18:57,428 - lmdeploy - INFO - ray_executor.py:308 - Init ray workers.
+2026-11-15 23:18:57,544 - lmdeploy - INFO - ray_executor.py:320 - Init distributed environment by device.
+[36m(pid=1815559)[0m [W1115 23:18:59.502037172 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(FrozenTargetWorker pid=1815559)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(FrozenTargetWorker pid=1815559)[0m     *************************************************************************************************************
+[36m(FrozenTargetWorker pid=1815559)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(FrozenTargetWorker pid=1815559)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(FrozenTargetWorker pid=1815559)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(FrozenTargetWorker pid=1815559)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(FrozenTargetWorker pid=1815559)[0m     The device parameters have been replaced with npu in the function below:
+[36m(FrozenTargetWorker pid=1815559)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(FrozenTargetWorker pid=1815559)[0m     *************************************************************************************************************
+[36m(FrozenTargetWorker pid=1815559)[0m     
+[36m(FrozenTargetWorker pid=1815559)[0m   warnings.warn(msg, ImportWarning)
+[36m(FrozenTargetWorker pid=1815559)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(FrozenTargetWorker pid=1815559)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(pid=1815560)[0m [W1115 23:18:59.522649646 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(FrozenTargetWorker pid=1815560)[0m     
+2026-11-15 23:19:09,867 - lmdeploy - INFO - ray_executor.py:324 - Init distributed process group.
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:09,871 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=37605
+[36m(FrozenTargetWorker pid=1815559)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+2026-11-15 23:19:09,892 - lmdeploy - INFO - ray_executor.py:331 - Warming up distribute environment, this might take long time, please waiting...
+[36m(FrozenTargetWorker pid=1815559)[0m [rank0]:[W1115 23:19:09.441960614 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 23:19:12,384 - lmdeploy - INFO - base.py:574 - Building Model.
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:12,386 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1815559 for current process 1815559
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:   0%|          | 0/15 [00:00<?, ?it/s]
+[36m(FrozenTargetWorker pid=1815560)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(FrozenTargetWorker pid=1815560)[0m     *************************************************************************************************************[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(FrozenTargetWorker pid=1815560)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(FrozenTargetWorker pid=1815560)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(FrozenTargetWorker pid=1815560)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(FrozenTargetWorker pid=1815560)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(FrozenTargetWorker pid=1815560)[0m     The device parameters have been replaced with npu in the function below:
+[36m(FrozenTargetWorker pid=1815560)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(FrozenTargetWorker pid=1815560)[0m   warnings.warn(msg, ImportWarning)
+[36m(FrozenTargetWorker pid=1815560)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(FrozenTargetWorker pid=1815560)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(FrozenTargetWorker pid=1815560)[0m [rank1]:[W1115 23:19:09.440733408 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:   7%|▋         | 1/15 [00:00<00:11,  1.22it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  13%|█▎        | 2/15 [00:01<00:11,  1.12it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  20%|██        | 3/15 [00:02<00:10,  1.18it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  33%|███▎      | 5/15 [00:03<00:06,  1.55it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  40%|████      | 6/15 [00:04<00:06,  1.34it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  47%|████▋     | 7/15 [00:05<00:06,  1.24it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  53%|█████▎    | 8/15 [00:06<00:06,  1.15it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  67%|██████▋   | 10/15 [00:07<00:03,  1.38it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  73%|███████▎  | 11/15 [00:08<00:03,  1.27it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  80%|████████  | 12/15 [00:09<00:02,  1.26it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  87%|████████▋ | 13/15 [00:10<00:01,  1.25it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  93%|█████████▎| 14/15 [00:11<00:00,  1.23it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors: 100%|██████████| 15/15 [00:12<00:00,  1.18it/s]Loading weights from safetensors: 100%|██████████| 15/15 [00:12<00:00,  1.25it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:   0%|          | 0/15 [00:00<?, ?it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  13%|█▎        | 2/15 [00:00<00:00, 16.92it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  27%|██▋       | 4/15 [00:00<00:00, 14.91it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  40%|████      | 6/15 [00:00<00:00, 13.84it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  53%|█████▎    | 8/15 [00:00<00:00, 13.05it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  73%|███████▎  | 11/15 [00:00<00:00, 14.48it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors:  87%|████████▋ | 13/15 [00:00<00:00, 13.37it/s]
+[36m(FrozenTargetWorker pid=1815560)[0m 2026-11-15 23:19:31,144 - lmdeploy - INFO - qwen3_5_mtp.py:17 - Using embed_tokens from target model.
+[36m(FrozenTargetWorker pid=1815560)[0m 2026-11-15 23:19:09,871 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=37605
+[36m(FrozenTargetWorker pid=1815560)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 3x across cluster][0m
+[36m(FrozenTargetWorker pid=1815560)[0m 2026-11-15 23:19:12,386 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1815560 for current process 1815560
+2026-11-15 23:19:31,458 - lmdeploy - INFO - base.py:576 - Updating configs.
+2026-11-15 23:19:31,521 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-15 23:19:31,523 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=16, block_size=128, num_cpu_blocks=0, num_gpu_blocks=9298, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.7, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, enable_prefix_caching=True, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=34, compact_state_capacity=None, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=1, states_shapes=[((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-15 23:19:31,523 - lmdeploy - INFO - base.py:586 - Building Spec CacheEngine with config: 
+CacheConfig(max_batches=16, block_size=128, num_cpu_blocks=0, num_gpu_blocks=9298, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.7, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=None, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=1024, prefill_save_last_only=False, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[], num_reserved_gpu_blocks=0, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+[36m(FrozenTargetWorker pid=1815559)[0m Loading weights from safetensors: 100%|██████████| 15/15 [00:01<00:00,  8.33it/s]Loading weights from safetensors: 100%|██████████| 15/15 [00:01<00:00, 10.77it/s]
+2026-11-15 23:19:33,353 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 1,190,016 tokens (9,297 usable blocks/rank, DCP=1).
+2026-11-15 23:19:33,353 - lmdeploy - INFO - base.py:591 - Warming up model.
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:33,357 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[36m(FrozenTargetWorker pid=1815559)[0m /root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(FrozenTargetWorker pid=1815559)[0m   torch.remainder(cache_seqlens, state_slots),
+[36m(FrozenTargetWorker pid=1815559)[0m Warming up decoding:   0%|          | 0/5 [00:00<?, ?it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Warming up decoding:  20%|██        | 1/5 [00:00<00:01,  2.72it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Warming up decoding:  40%|████      | 2/5 [00:00<00:01,  2.98it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Warming up decoding:  60%|██████    | 3/5 [00:01<00:00,  2.80it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Warming up decoding:  80%|████████  | 4/5 [00:01<00:00,  2.62it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m Warming up decoding: 100%|██████████| 5/5 [00:01<00:00,  2.82it/s]Warming up decoding: 100%|██████████| 5/5 [00:01<00:00,  2.79it/s]
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:36,900 - lmdeploy - INFO - agent.py:590 - Engine warmup completed in 3.54 seconds.
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:31,449 - lmdeploy - INFO - qwen3_5_mtp.py:17 - Using embed_tokens from target model.
+2026-11-15 23:19:37,130 - lmdeploy - INFO - async_engine.py:188 - updated backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=262144, max_batch_size=16, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.7, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=9298, adapters=None, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=True, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode=None, enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 23:19:37,581 - lmdeploy - INFO - async_engine.py:259 - enable metrics, with dp: 1 dp_rank: 0
+2026-11-15 23:19:37,622 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-15 23:19:37,625 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-15 23:19:37,625 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-15 23:19:37,625 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-15 23:19:37,625 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-15 23:19:37,628 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=27, max_new_tokens=8, prep=True
+2026-11-15 23:19:37,628 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 23:19:37,628 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(FrozenTargetWorker pid=1815559)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+2026-11-15 23:19:37,968 - lmdeploy - ERROR - ray_executor.py:503 - RayExecutor DP[0] wait_tasks failed.
+2026-11-15 23:19:37,969 - lmdeploy - ERROR - engine_loop.py:756 - EngineLoop wait_tasks failed.
+2026-11-15 23:19:37,969 - lmdeploy - ERROR - engine.py:687 - Engine main loop failed.
+Traceback (most recent call last):
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/engine.py", line 680, in async_loop
+    await engine_loop.wait_tasks()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/engine_loop.py", line 751, in wait_tasks
+    await wait_for_async_tasks(tasks)
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/utils.py", line 213, in wait_for_async_tasks
+    raise exc from None
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 498, in wait_tasks
+    await wait_for_async_tasks(tasks)
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/utils.py", line 213, in wait_for_async_tasks
+    raise exc from None
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 486, in _wait_single_worker
+    await task
+ray.exceptions.RayTaskError(UnboundLocalError): [36mray::FrozenTargetWorker.wait_tasks()[39m (pid=1815560, ip=10.119.246.138, actor_id=2f2babc90e528f028b6f57e301000000, repr=<perf2_frozen_target_v2.FrozenTargetWorker object at 0xffec376d5430>)
+  File "/usr/local/python3.12.13/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/base_worker.py", line 175, in wait_tasks
+    await self.model_agent.wait_tasks()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1409, in wait_tasks
+    raise e from None
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1404, in wait_tasks
+    await wait_for_async_tasks(self.tasks)
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/utils.py", line 213, in wait_for_async_tasks
+    raise exc from None
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1321, in _async_loop_background
+    await self._async_step(**forward_inputs, )
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1141, in _async_step
+    output = await self._async_model_forward(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 631, in _async_model_forward
+    ret = await self.async_forward(inputs, cache_inputs=cache_inputs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1765, in async_forward
+    output = self._forward_impl(inputs, cache_inputs=cache_inputs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1746, in _forward_impl
+    output = model_forward(
+             ^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 280, in model_forward
+    output = model(**input_dict)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/perf2_frozen_target_v2.py", line 62, in traced
+    context_template=copy.copy(context)
+                     ^^^^
+UnboundLocalError: cannot access local variable 'copy' where it is not associated with a value
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:37,964 - lmdeploy - ERROR - base_worker.py:182 - WorkerWrapper rank[0] wait_tasks failed.
+[36m(FrozenTargetWorker pid=1815559)[0m Traceback (most recent call last):
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/base_worker.py", line 175, in wait_tasks
+[36m(FrozenTargetWorker pid=1815559)[0m     await self.model_agent.wait_tasks()
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1409, in wait_tasks
+[36m(FrozenTargetWorker pid=1815559)[0m     raise e from None
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1404, in wait_tasks
+[36m(FrozenTargetWorker pid=1815559)[0m     await wait_for_async_tasks(self.tasks)
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/utils.py", line 213, in wait_for_async_tasks
+[36m(FrozenTargetWorker pid=1815559)[0m     raise exc from None
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1321, in _async_loop_background
+[36m(FrozenTargetWorker pid=1815559)[0m     await self._async_step(**forward_inputs, )
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1141, in _async_step
+[36m(FrozenTargetWorker pid=1815559)[0m     output = await self._async_model_forward(
+[36m(FrozenTargetWorker pid=1815559)[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 631, in _async_model_forward
+[36m(FrozenTargetWorker pid=1815559)[0m     ret = await self.async_forward(inputs, cache_inputs=cache_inputs)
+[36m(FrozenTargetWorker pid=1815559)[0m           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1765, in async_forward
+[36m(FrozenTargetWorker pid=1815559)[0m     output = self._forward_impl(inputs, cache_inputs=cache_inputs)
+[36m(FrozenTargetWorker pid=1815559)[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1746, in _forward_impl
+[36m(FrozenTargetWorker pid=1815559)[0m     output = model_forward(
+[36m(FrozenTargetWorker pid=1815559)[0m              ^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+[36m(FrozenTargetWorker pid=1815559)[0m     return func(*args, **kwargs)
+[36m(FrozenTargetWorker pid=1815559)[0m            ^^^^^^^^^^^^^^^^^^^^^
+2026-11-15 23:19:37,974 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 280, in model_forward
+[36m(FrozenTargetWorker pid=1815559)[0m     output = model(**input_dict)
+[36m(FrozenTargetWorker pid=1815559)[0m              ^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815559)[0m   File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/perf2_frozen_target_v2.py", line 62, in traced
+[36m(FrozenTargetWorker pid=1815559)[0m     context_template=copy.copy(context)
+[36m(FrozenTargetWorker pid=1815559)[0m                      ^^^^
+[36m(FrozenTargetWorker pid=1815559)[0m UnboundLocalError: cannot access local variable 'copy' where it is not associated with a value
+[36m(FrozenTargetWorker pid=1815560)[0m 2026-11-15 23:19:37,971 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1815560)[0m 2026-11-15 23:19:37,960 - lmdeploy - ERROR - base_worker.py:182 - WorkerWrapper rank[1] wait_tasks failed.
+[36m(FrozenTargetWorker pid=1815560)[0m Traceback (most recent call last):
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1404, in wait_tasks[32m [repeated 3x across cluster][0m
+[36m(FrozenTargetWorker pid=1815560)[0m     await self.model_agent.wait_tasks()
+[36m(FrozenTargetWorker pid=1815560)[0m     raise e from None
+[36m(FrozenTargetWorker pid=1815560)[0m     await wait_for_async_tasks(self.tasks)
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/utils.py", line 213, in wait_for_async_tasks
+[36m(FrozenTargetWorker pid=1815560)[0m     raise exc from None
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1321, in _async_loop_background
+[36m(FrozenTargetWorker pid=1815560)[0m     await self._async_step(**forward_inputs, )
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1141, in _async_step
+[36m(FrozenTargetWorker pid=1815560)[0m     output = await self._async_model_forward(
+[36m(FrozenTargetWorker pid=1815560)[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 631, in _async_model_forward
+[36m(FrozenTargetWorker pid=1815560)[0m     ret = await self.async_forward(inputs, cache_inputs=cache_inputs)
+[36m(FrozenTargetWorker pid=1815560)[0m           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1765, in async_forward
+[36m(FrozenTargetWorker pid=1815560)[0m     output = self._forward_impl(inputs, cache_inputs=cache_inputs)
+[36m(FrozenTargetWorker pid=1815560)[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1746, in _forward_impl
+[36m(FrozenTargetWorker pid=1815560)[0m     output = model_forward(
+[36m(FrozenTargetWorker pid=1815560)[0m              ^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+[36m(FrozenTargetWorker pid=1815560)[0m     return func(*args, **kwargs)
+[36m(FrozenTargetWorker pid=1815560)[0m            ^^^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 280, in model_forward
+[36m(FrozenTargetWorker pid=1815560)[0m     output = model(**input_dict)
+[36m(FrozenTargetWorker pid=1815560)[0m              ^^^^^^^^^^^^^^^^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m   File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/perf2_frozen_target_v2.py", line 62, in traced
+[36m(FrozenTargetWorker pid=1815560)[0m     context_template=copy.copy(context)
+[36m(FrozenTargetWorker pid=1815560)[0m                      ^^^^
+[36m(FrozenTargetWorker pid=1815560)[0m UnboundLocalError: cannot access local variable 'copy' where it is not associated with a value
+[36m(FrozenTargetWorker pid=1815559)[0m 2026-11-15 23:19:37,974 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1815560)[0m /root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(FrozenTargetWorker pid=1815560)[0m   torch.remainder(cache_seqlens, state_slots),
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1815026 is still running
+  _warn("subprocess %s is still running" % self.pid,
+2026-11-15 23:19:40,165 - lmdeploy - ERROR - async_engine.py:834 - session 0 finished, ResponseType.ENGINE_STOP_ERROR, reason "error"
+2026-11-15 23:19:41,166 - lmdeploy - WARNING - engine_instance.py:23 - Failed to end session 0: ResponseType.ENGINE_STOP_ERROR
+Traceback (most recent call last):
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/perf2_frozen_target_v2.py", line 130, in <module>
+    main()
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/pipeline_case.py", line 105, in main
+    infer('smoke', prompts[:1])
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/pipeline_case.py", line 96, in infer
+    assert row['finish_reason'] not in ('error','abort'), row
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'token_ids': [90700], 'text': 'Thinking', 'logprobs': None, 'input_token_len': 27, 'generate_token_len': 0, 'cached_tokens': 0, 'finish_reason': 'error'}
+[ERROR] 2026-11-15-23:19:41 (PID:1814511, Device:0, RankID:-1) ERR99999 UNKNOWN applicaiton exception

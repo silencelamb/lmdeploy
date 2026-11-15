@@ -1,0 +1,146 @@
+{
+  "replay_cases": {
+    "ir2-multi-r1": {
+      "iterations": 100,
+      "state_bad": 100,
+      "output_bad": 0,
+      "max_abs": 0.02308945171535015
+    },
+    "ir2-single-r1": {
+      "iterations": 100,
+      "state_bad": 0,
+      "output_bad": 0,
+      "max_abs": 0.0
+    },
+    "ir2-binary-control-r0": {
+      "iterations": 200,
+      "state_bad": 200,
+      "output_bad": 0,
+      "max_abs": 3.1906213760375977
+    },
+    "ir2-binary-fence-r0": {
+      "iterations": 200,
+      "state_bad": 0,
+      "output_bad": 0,
+      "max_abs": 0.0
+    },
+    "ir2-binary-selector-r0": {
+      "iterations": 200,
+      "state_bad": 0,
+      "output_bad": 0,
+      "max_abs": 0.0
+    }
+  },
+  "minimal": {
+    "ir2-minimal-multi-r0": {
+      "iterations": 100,
+      "bad": 100,
+      "output_bad": 0,
+      "max_abs": 13.568138122558594
+    },
+    "ir2-minimal-single-r0": {
+      "iterations": 100,
+      "bad": 0,
+      "output_bad": 0,
+      "max_abs": 0.0
+    },
+    "ir2-research-minimal-r0": {
+      "iterations": 100,
+      "bad": 100,
+      "output_bad": 0,
+      "max_abs": 13.568138122558594
+    },
+    "ir2-research-minimal-single-r0": {
+      "iterations": 100,
+      "bad": 0,
+      "output_bad": 0,
+      "max_abs": 0.0
+    }
+  },
+  "frozen_backbone": [
+    {
+      "run": "r1",
+      "rank": 0,
+      "original_ms": 13.181300163269043,
+      "fixed_ms": 13.054679870605469,
+      "change_pct": -0.9606054872827618,
+      "original_range": [
+        12.895580291748047,
+        13.643400192260742
+      ],
+      "fixed_range": [
+        12.87362003326416,
+        13.324080467224121
+      ],
+      "state_sha256": "a3608ed3d1dad989630c9fa1839df99cecd14ae79a34a76497484c3a2f85ba3d",
+      "output_sha256": "05d80f4f12cadf5ea143d7e40ee425aacfc8e627b3ed2fd760c9b38d3e76be69",
+      "all_48_output_hashes_equal": true
+    },
+    {
+      "run": "r1",
+      "rank": 1,
+      "original_ms": 13.17839002609253,
+      "fixed_ms": 13.09961986541748,
+      "change_pct": -0.5977221839624458,
+      "original_range": [
+        13.067299842834473,
+        13.604960441589355
+      ],
+      "fixed_range": [
+        13.019100189208984,
+        14.086400032043457
+      ],
+      "state_sha256": "3c707a40590786bdd0521c21f5a1a6f757b053513cd720815e7116324c780ce9",
+      "output_sha256": "05d80f4f12cadf5ea143d7e40ee425aacfc8e627b3ed2fd760c9b38d3e76be69",
+      "all_48_output_hashes_equal": true
+    },
+    {
+      "run": "r2",
+      "rank": 0,
+      "original_ms": 13.118120193481445,
+      "fixed_ms": 12.986299991607666,
+      "change_pct": -1.0048711242886976,
+      "original_range": [
+        12.983400344848633,
+        16.00305938720703
+      ],
+      "fixed_range": [
+        12.817460060119629,
+        13.42273998260498
+      ],
+      "state_sha256": "a3608ed3d1dad989630c9fa1839df99cecd14ae79a34a76497484c3a2f85ba3d",
+      "output_sha256": "05d80f4f12cadf5ea143d7e40ee425aacfc8e627b3ed2fd760c9b38d3e76be69",
+      "all_48_output_hashes_equal": true
+    },
+    {
+      "run": "r2",
+      "rank": 1,
+      "original_ms": 13.098720073699951,
+      "fixed_ms": 13.07263994216919,
+      "change_pct": -0.1991044268754627,
+      "original_range": [
+        12.988960266113281,
+        14.301340103149414
+      ],
+      "fixed_range": [
+        12.865779876708984,
+        13.595379829406738
+      ],
+      "state_sha256": "3c707a40590786bdd0521c21f5a1a6f757b053513cd720815e7116324c780ce9",
+      "output_sha256": "05d80f4f12cadf5ea143d7e40ee425aacfc8e627b3ed2fd760c9b38d3e76be69",
+      "all_48_output_hashes_equal": true
+    }
+  ],
+  "host": {
+    "permission_report": "inventory/host2-permission-limits-r0.json",
+    "actual_callback_capture_executed": false,
+    "callback_identity": null,
+    "permanent_host_fix": false,
+    "preflight": "blocked as expected",
+    "current_cpu18_control": {
+      "iterations": 1000,
+      "sleep_over50": 6,
+      "max_sleep_ms": 571.864199
+    }
+  }
+}

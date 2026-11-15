@@ -1,0 +1,6 @@
+{
+  "upstream_commit": "042c923d02a22e5845cf10311cf2d192b17a5d77",
+  "status": "Source-level candidate only; NOT compiled or broad compiler-regression tested. Installed compiler unchanged.",
+  "evidence": "Exact-version source + isolated EnableMultiBuffer pass output + two independently validated IR/binary repairs",
+  "limitation": "Cases with no effective parent loop require full pass/sync regression, including InsertCopyBeforeLoopYield."
+}

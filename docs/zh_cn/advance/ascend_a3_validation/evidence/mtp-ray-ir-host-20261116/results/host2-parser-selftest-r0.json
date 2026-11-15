@@ -1,0 +1,154 @@
+{
+  "result": {
+    "event_counts": {
+      "softirq_entry": 1,
+      "cb000_entry": 2,
+      "irq_handler_entry": 1,
+      "irq_handler_exit": 1,
+      "cb000_exit": 2,
+      "softirq_exit": 1
+    },
+    "callback_statistics": {
+      "cb000": {
+        "callback": {
+          "name": "synthetic_callback",
+          "module": "synthetic"
+        },
+        "count": 1,
+        "max_ms": 549.9999999999972,
+        "over50": 1
+      }
+    },
+    "slow_softirq": [
+      {
+        "start_s": 100.0,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "softirq",
+        "id": "6",
+        "entry": "vec=6 [action=TASKLET]",
+        "end_s": 100.552,
+        "duration_ms": 552.0000000000067,
+        "callbacks": [
+          {
+            "start_s": 100.001,
+            "cpu": 18,
+            "pid": 118,
+            "task": "ksoftirqd/18",
+            "kind": "callback",
+            "id": "cb000",
+            "entry": "(example_callback+0x0/0x100) arg0=0xff00",
+            "end_s": 100.551,
+            "duration_ms": 549.9999999999972,
+            "callback": {
+              "name": "synthetic_callback",
+              "module": "synthetic"
+            }
+          }
+        ]
+      }
+    ],
+    "complete_pairs": [
+      {
+        "start_s": 100.2,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "irq",
+        "id": "1982",
+        "entry": "irq=1982 name=sample",
+        "end_s": 100.202,
+        "duration_ms": 1.9999999999953388
+      },
+      {
+        "start_s": 100.001,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "callback",
+        "id": "cb000",
+        "entry": "(example_callback+0x0/0x100) arg0=0xff00",
+        "end_s": 100.551,
+        "duration_ms": 549.9999999999972,
+        "callback": {
+          "name": "synthetic_callback",
+          "module": "synthetic"
+        }
+      },
+      {
+        "start_s": 100.0,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "softirq",
+        "id": "6",
+        "entry": "vec=6 [action=TASKLET]",
+        "end_s": 100.552,
+        "duration_ms": 552.0000000000067
+      }
+    ],
+    "unmatched": [
+      {
+        "kind": "callback",
+        "id": "cb000",
+        "cpu": 18,
+        "pid": 118,
+        "end_s": 101.0,
+        "reason": "exit_without_entry"
+      },
+      {
+        "start_s": 102.0,
+        "cpu": 18,
+        "pid": 118,
+        "task": "ksoftirqd/18",
+        "kind": "callback",
+        "id": "cb000",
+        "entry": "truncated-end",
+        "reason": "entry_without_exit"
+      }
+    ],
+    "probe_misses": [
+      "a3h2/cb000_exit 10 1"
+    ],
+    "buffer_loss": {
+      "overrun": 0,
+      "commit overrun": 0
+    },
+    "capture_errors": [],
+    "cleanup_errors": [],
+    "limitations": [
+      "Only callbacks observed during discovery were attached for phase2.",
+      "CPU18-only trace omits cross-CPU wakeup sources; unmatched boundary events are excluded from durations.",
+      "Callback entry/exit brackets function time, including nested interrupts; inspect IRQ pairs before blaming callback work.",
+      "A correlation without timed callback entry/exit is not callback identification."
+    ]
+  },
+  "actual_btf": {
+    "btf_path": "/sys/kernel/btf/vmlinux",
+    "btf_sha256": "7384ba32f851d3e7c980427d6b58b919cdb8d75ff98d1a660504012945a46743",
+    "type_id": 11629,
+    "size": 48,
+    "offsets": {
+      "next": 0,
+      "state": 8,
+      "count": 16,
+      "use_callback": 20,
+      "func": 24,
+      "callback": 24,
+      "data": 32,
+      "kabi_reserved1": 40
+    }
+  },
+  "definitions": [
+    [
+      "tasklet_schedule",
+      "p:a3h2_test/tasklet_schedule __tasklet_schedule tasklet=$arg1:x64 callback=+24($arg1):x64 data=+32($arg1):x64 use_cb=+20($arg1):u8"
+    ],
+    [
+      "tasklet_hi_schedule",
+      "p:a3h2_test/tasklet_hi_schedule __tasklet_hi_schedule tasklet=$arg1:x64 callback=+24($arg1):x64 data=+32($arg1):x64 use_cb=+20($arg1):u8"
+    ]
+  ],
+  "status": "synthetic parser assertions passed; no host probes executed"
+}

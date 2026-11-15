@@ -1,0 +1,68 @@
+[
+  {
+    "label": "ir2-hivmc-control-r0",
+    "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116",
+    "command": [
+      "/root/workspace/a3-validation-20261112/envs/dependencies/triton/backends/ascend/bishengir/bin/hivmc",
+      "artifacts/ir2-multi-r1/compile00/temps/module.hivm.opt.mlir",
+      "--enable-debug-info=false",
+      "--enable-static-bare-ptr=true",
+      "--enable-bin-relocation=true",
+      "--enable-hivm-inject-barrier-all-sync=false",
+      "--enable-sanitizer=false",
+      "-o",
+      "artifacts/ir2-hivmc-control-r0/kernel"
+    ],
+    "returncode": 0,
+    "input_sha256": "4513cf82585ae5afc034e7f6c5aabebb6f7eb857deeb91b5316585cf76dbd842",
+    "binary_sha256": "7bb8765c9a067583758147510fa6cd3c1ec85ac0d1ea0300aa4b2e4e23c29ed6"
+  },
+  {
+    "label": "ir2-hivmc-fence-r0",
+    "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116",
+    "command": [
+      "/root/workspace/a3-validation-20261112/envs/dependencies/triton/backends/ascend/bishengir/bin/hivmc",
+      "artifacts/ir2-state-fence-patch-r0.mlir",
+      "--enable-debug-info=false",
+      "--enable-static-bare-ptr=true",
+      "--enable-bin-relocation=true",
+      "--enable-hivm-inject-barrier-all-sync=false",
+      "--enable-sanitizer=false",
+      "-o",
+      "artifacts/ir2-hivmc-fence-r0/kernel"
+    ],
+    "returncode": 0,
+    "input_sha256": "4b1f5a6afb204ddbd3290eae58ab6e7322f6e95260b596780e05ff7ba823fada",
+    "binary_sha256": "45f855e1b6efd04e807fb91697942d7c0ff0dc4709bc175505bd040fbb5eeaf3"
+  },
+  {
+    "label": "ir2-hivmc-selector-r0",
+    "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116",
+    "command": [
+      "/root/workspace/a3-validation-20261112/envs/dependencies/triton/backends/ascend/bishengir/bin/hivmc",
+      "artifacts/ir2-state-selector-patch-r0.mlir",
+      "--enable-debug-info=false",
+      "--enable-static-bare-ptr=true",
+      "--enable-bin-relocation=true",
+      "--enable-hivm-inject-barrier-all-sync=false",
+      "--enable-sanitizer=false",
+      "-o",
+      "artifacts/ir2-hivmc-selector-r0/kernel"
+    ],
+    "returncode": 0,
+    "input_sha256": "c186a18f54620fe21b2c133d994636a09e60103a948a820bf2099797bc22549a",
+    "binary_sha256": "fdec6e27624750b89b12d0bad5fd33a817ba36821312fb46e68f50c225b62fa9"
+  },
+  {
+    "label": "ir2-enable-multibuffer-pass-r0",
+    "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116",
+    "command": [
+      "/root/workspace/a3-validation-20261112/envs/dependencies/triton/backends/ascend/bishengir/bin/bishengir-opt",
+      "artifacts/ir2-after-syncsolver-r0.mlir",
+      "--hivm-enable-multi-buffer",
+      "-o",
+      "artifacts/ir2-after-enable-multibuffer-r0.mlir"
+    ],
+    "returncode": 0
+  }
+]

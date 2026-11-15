@@ -1,0 +1,3843 @@
+{
+  "source": "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py",
+  "options": {
+    "num_stages": 3,
+    "debug": true
+  },
+  "graph": true,
+  "fixture": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-real-fixed-graph-r0.pt",
+  "runtime_cache": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-binary-fence-r0/triton-cache",
+  "extra_compiler_options": [],
+  "binary_override": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-hivmc-fence-r0/kernel.o",
+  "input_hashes": {
+    "q": "043698663a902b8d827ca06a1ce098f029bd171a71e9a93ad8305dbf8a077eb5",
+    "k": "05b3a89b4dd56e467404d70ef42fc8de456aa90894d903b39af1558c816abded",
+    "v": "47f9883f364d7cd6746e7edf7832fda0fae7fce4c507331547c87e8b6b7708d0",
+    "g": "b3ffb403b6bf0322a1366137ff4a714c69b2e086c4fa74f381b7e658fc960747",
+    "beta": "62ec8fad139c8fe7d920b6c5314402aaa6d4a8bb3c9e4667a5eac024738d1f65",
+    "initial": "8bbf0cc682800781644ad6cae185bebedb50c354cc11cb0fe58308ee35c7c8f3"
+  },
+  "results": [
+    {
+      "iteration": 0,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 1,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 2,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 3,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 4,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 5,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 6,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 7,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 8,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 9,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 10,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 11,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 12,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 13,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 14,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 15,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 16,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 17,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 18,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 19,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 20,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 21,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 22,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 23,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 24,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 25,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 26,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 27,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 28,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 29,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 30,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 31,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 32,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 33,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 34,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 35,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 36,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 37,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 38,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 39,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 40,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 41,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 42,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 43,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 44,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 45,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 46,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 47,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 48,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 49,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 50,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 51,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 52,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 53,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 54,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 55,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 56,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 57,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 58,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 59,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 60,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 61,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 62,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 63,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 64,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 65,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 66,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 67,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 68,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 69,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 70,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 71,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 72,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 73,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 74,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 75,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 76,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 77,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 78,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 79,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 80,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 81,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 82,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 83,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 84,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 85,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 86,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 87,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 88,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 89,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 90,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 91,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 92,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 93,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 94,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 95,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 96,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 97,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 98,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 99,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 100,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 101,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 102,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 103,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 104,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 105,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 106,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 107,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 108,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 109,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 110,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 111,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 112,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 113,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 114,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 115,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 116,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 117,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 118,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 119,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 120,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 121,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 122,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 123,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 124,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 125,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 126,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 127,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 128,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 129,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 130,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 131,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 132,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 133,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 134,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 135,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 136,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 137,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 138,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 139,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 140,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 141,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 142,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 143,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 144,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 145,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 146,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 147,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 148,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 149,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 150,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 151,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 152,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 153,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 154,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 155,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 156,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 157,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 158,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 159,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 160,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 161,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 162,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 163,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 164,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 165,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 166,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 167,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 168,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 169,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 170,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 171,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 172,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 173,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 174,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 175,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 176,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 177,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 178,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 179,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 180,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 181,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 182,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 183,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 184,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 185,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 186,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 187,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 188,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 189,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 190,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 191,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 192,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 193,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 194,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 195,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 196,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 197,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 198,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "iteration": 199,
+      "state_exact_reference": true,
+      "state_close_reference": true,
+      "max_abs": 0.0,
+      "mismatch": 0,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "compiler_commands": [
+    [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile",
+      "/tmp/tmp3ruyoclh/kernel.ttadapter.mlir",
+      "--target=Ascend910_9392",
+      "--enable-auto-multi-buffer=True",
+      "--enable-auto-bind-sub-block=True",
+      "--enable-auto-blockify-loop",
+      "--enable-hfusion-compile=true",
+      "--enable-hivm-compile=true",
+      "--enable-triton-kernel-compile=true",
+      "--mlir-print-ir-after-failure",
+      "--mlir-print-stacktrace-on-diagnostic",
+      "--bishengir-print-ir-after=hivm-graph-sync-solver",
+      "-o",
+      "/tmp/tmp3ruyoclh/kernel",
+      "--save-temps=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-binary-fence-r0/compile00/temps",
+      "--mlir-print-ir-after-all",
+      "--mlir-print-ir-module-scope"
+    ]
+  ]
+}

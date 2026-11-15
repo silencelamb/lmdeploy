@@ -1,0 +1,3843 @@
+{
+  "source": "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py",
+  "options": {
+    "num_stages": 3,
+    "debug": true
+  },
+  "graph": true,
+  "fixture": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-real-fixed-graph-r0.pt",
+  "runtime_cache": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-binary-control-r0/triton-cache",
+  "extra_compiler_options": [],
+  "binary_override": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-hivmc-control-r0/kernel.o",
+  "input_hashes": {
+    "q": "043698663a902b8d827ca06a1ce098f029bd171a71e9a93ad8305dbf8a077eb5",
+    "k": "05b3a89b4dd56e467404d70ef42fc8de456aa90894d903b39af1558c816abded",
+    "v": "47f9883f364d7cd6746e7edf7832fda0fae7fce4c507331547c87e8b6b7708d0",
+    "g": "b3ffb403b6bf0322a1366137ff4a714c69b2e086c4fa74f381b7e658fc960747",
+    "beta": "62ec8fad139c8fe7d920b6c5314402aaa6d4a8bb3c9e4667a5eac024738d1f65",
+    "initial": "8bbf0cc682800781644ad6cae185bebedb50c354cc11cb0fe58308ee35c7c8f3"
+  },
+  "results": [
+    {
+      "iteration": 0,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39272,
+      "output_exact_reference": true,
+      "state_equal_first": true,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11538,
+        19730,
+        0
+      ]
+    },
+    {
+      "iteration": 1,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43518,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        14962,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 2,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 36618,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1208,
+        11540,
+        16960,
+        0
+      ]
+    },
+    {
+      "iteration": 3,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 32499,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        11110,
+        14406,
+        0
+      ]
+    },
+    {
+      "iteration": 4,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39528,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11791,
+        19737,
+        0
+      ]
+    },
+    {
+      "iteration": 5,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36200,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        8218,
+        20194,
+        0
+      ]
+    },
+    {
+      "iteration": 6,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39188,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11417,
+        19553,
+        0
+      ]
+    },
+    {
+      "iteration": 7,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11574,
+        20031,
+        0
+      ]
+    },
+    {
+      "iteration": 8,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40018,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11725,
+        20155,
+        0
+      ]
+    },
+    {
+      "iteration": 9,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 41331,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        14664,
+        18042,
+        0
+      ]
+    },
+    {
+      "iteration": 10,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40808,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1160,
+        11817,
+        20291,
+        0
+      ]
+    },
+    {
+      "iteration": 11,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40615,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        12015,
+        20153,
+        0
+      ]
+    },
+    {
+      "iteration": 12,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36499,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        14537,
+        14847,
+        0
+      ]
+    },
+    {
+      "iteration": 13,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11574,
+        20077,
+        0
+      ]
+    },
+    {
+      "iteration": 14,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36147,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        719,
+        9594,
+        19809,
+        0
+      ]
+    },
+    {
+      "iteration": 15,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40146,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        892,
+        11355,
+        20198,
+        0
+      ]
+    },
+    {
+      "iteration": 16,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35710,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11691,
+        16635,
+        0
+      ]
+    },
+    {
+      "iteration": 17,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35656,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        8002,
+        19853,
+        0
+      ]
+    },
+    {
+      "iteration": 18,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39572,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1016,
+        11417,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 19,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40552,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15764,
+        17105,
+        0
+      ]
+    },
+    {
+      "iteration": 20,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40125,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11907,
+        19852,
+        0
+      ]
+    },
+    {
+      "iteration": 21,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35326,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        772,
+        7597,
+        19923,
+        0
+      ]
+    },
+    {
+      "iteration": 22,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43123,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        14962,
+        19693,
+        0
+      ]
+    },
+    {
+      "iteration": 23,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35583,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        720,
+        7941,
+        19695,
+        0
+      ]
+    },
+    {
+      "iteration": 24,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35326,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        890,
+        7724,
+        19777,
+        0
+      ]
+    },
+    {
+      "iteration": 25,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36306,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11791,
+        16943,
+        0
+      ]
+    },
+    {
+      "iteration": 26,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43752,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15433,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 27,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 35338,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1206,
+        10988,
+        15971,
+        0
+      ]
+    },
+    {
+      "iteration": 28,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31486,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1142,
+        11110,
+        13765,
+        0
+      ]
+    },
+    {
+      "iteration": 29,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39784,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11791,
+        19879,
+        0
+      ]
+    },
+    {
+      "iteration": 30,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40424,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        897,
+        11979,
+        20053,
+        0
+      ]
+    },
+    {
+      "iteration": 31,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 42100,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1393,
+        15185,
+        18278,
+        0
+      ]
+    },
+    {
+      "iteration": 32,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35070,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7640,
+        19755,
+        0
+      ]
+    },
+    {
+      "iteration": 33,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43262,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15216,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 34,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 41886,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        14751,
+        18755,
+        0
+      ]
+    },
+    {
+      "iteration": 35,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35699,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11809,
+        16742,
+        0
+      ]
+    },
+    {
+      "iteration": 36,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43613,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15179,
+        19839,
+        0
+      ]
+    },
+    {
+      "iteration": 37,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1143,
+        15127,
+        16600,
+        0
+      ]
+    },
+    {
+      "iteration": 38,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35070,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11320,
+        16488,
+        0
+      ]
+    },
+    {
+      "iteration": 39,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36531,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        616,
+        9847,
+        20024,
+        0
+      ]
+    },
+    {
+      "iteration": 40,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37459,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        11205,
+        17973,
+        0
+      ]
+    },
+    {
+      "iteration": 41,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35688,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11447,
+        16939,
+        0
+      ]
+    },
+    {
+      "iteration": 42,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35400,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7897,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 43,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35721,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        897,
+        7846,
+        19960,
+        0
+      ]
+    },
+    {
+      "iteration": 44,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40914,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1149,
+        15667,
+        17268,
+        0
+      ]
+    },
+    {
+      "iteration": 45,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35422,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7886,
+        19730,
+        0
+      ]
+    },
+    {
+      "iteration": 46,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35187,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7546,
+        19923,
+        0
+      ]
+    },
+    {
+      "iteration": 47,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39645,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19747,
+        0
+      ]
+    },
+    {
+      "iteration": 48,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36190,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        720,
+        8371,
+        19835,
+        0
+      ]
+    },
+    {
+      "iteration": 49,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37769,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        891,
+        9603,
+        19853,
+        0
+      ]
+    },
+    {
+      "iteration": 50,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37330,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1152,
+        11297,
+        17993,
+        0
+      ]
+    },
+    {
+      "iteration": 51,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43986,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15433,
+        19981,
+        0
+      ]
+    },
+    {
+      "iteration": 52,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 35316,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11540,
+        16095,
+        0
+      ]
+    },
+    {
+      "iteration": 53,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31347,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        11110,
+        13711,
+        0
+      ]
+    },
+    {
+      "iteration": 54,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 36328,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        8110,
+        20260,
+        0
+      ]
+    },
+    {
+      "iteration": 55,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39144,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11284,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 56,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35220,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        10917,
+        16858,
+        0
+      ]
+    },
+    {
+      "iteration": 57,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 38910,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11321,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 58,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35560,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        646,
+        7712,
+        20074,
+        0
+      ]
+    },
+    {
+      "iteration": 59,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 42600,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        15127,
+        18737,
+        0
+      ]
+    },
+    {
+      "iteration": 60,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11827,
+        20074,
+        0
+      ]
+    },
+    {
+      "iteration": 61,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 42827,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        14602,
+        19725,
+        0
+      ]
+    },
+    {
+      "iteration": 62,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 33193,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        10908,
+        15340,
+        0
+      ]
+    },
+    {
+      "iteration": 63,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 42750,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        14489,
+        19755,
+        0
+      ]
+    },
+    {
+      "iteration": 64,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37122,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        719,
+        10208,
+        20007,
+        0
+      ]
+    },
+    {
+      "iteration": 65,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39806,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1142,
+        10964,
+        19984,
+        0
+      ]
+    },
+    {
+      "iteration": 66,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35794,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11447,
+        16992,
+        0
+      ]
+    },
+    {
+      "iteration": 67,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 41039,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1149,
+        11653,
+        20429,
+        0
+      ]
+    },
+    {
+      "iteration": 68,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35732,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7608,
+        20354,
+        0
+      ]
+    },
+    {
+      "iteration": 69,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11733,
+        19835,
+        0
+      ]
+    },
+    {
+      "iteration": 70,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.13175678253173828,
+      "mismatch": 36914,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        8030,
+        20613,
+        0
+      ]
+    },
+    {
+      "iteration": 71,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35326,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        897,
+        7471,
+        19918,
+        0
+      ]
+    },
+    {
+      "iteration": 72,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39634,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19785,
+        0
+      ]
+    },
+    {
+      "iteration": 73,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35656,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7680,
+        19981,
+        0
+      ]
+    },
+    {
+      "iteration": 74,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39049,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        648,
+        10941,
+        19924,
+        0
+      ]
+    },
+    {
+      "iteration": 75,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35582,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11574,
+        16631,
+        0
+      ]
+    },
+    {
+      "iteration": 76,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 44242,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15651,
+        20037,
+        0
+      ]
+    },
+    {
+      "iteration": 77,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 41332,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1395,
+        14756,
+        17624,
+        0
+      ]
+    },
+    {
+      "iteration": 78,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31603,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1142,
+        11363,
+        13711,
+        0
+      ]
+    },
+    {
+      "iteration": 79,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35710,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        781,
+        7893,
+        20008,
+        0
+      ]
+    },
+    {
+      "iteration": 80,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43496,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1149,
+        15179,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 81,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37012,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1268,
+        11163,
+        17729,
+        0
+      ]
+    },
+    {
+      "iteration": 82,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39550,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11539,
+        19732,
+        0
+      ]
+    },
+    {
+      "iteration": 83,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43624,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15324,
+        19835,
+        0
+      ]
+    },
+    {
+      "iteration": 84,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36445,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1142,
+        11200,
+        17162,
+        0
+      ]
+    },
+    {
+      "iteration": 85,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39561,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11551,
+        19982,
+        0
+      ]
+    },
+    {
+      "iteration": 86,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43368,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1032,
+        15179,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 87,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36841,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1141,
+        14716,
+        14720,
+        0
+      ]
+    },
+    {
+      "iteration": 88,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39934,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1152,
+        11424,
+        19926,
+        0
+      ]
+    },
+    {
+      "iteration": 89,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36275,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        848,
+        9594,
+        19785,
+        0
+      ]
+    },
+    {
+      "iteration": 90,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36200,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        7862,
+        20344,
+        0
+      ]
+    },
+    {
+      "iteration": 91,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35443,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        781,
+        11372,
+        16852,
+        0
+      ]
+    },
+    {
+      "iteration": 92,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39902,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        720,
+        11918,
+        19853,
+        0
+      ]
+    },
+    {
+      "iteration": 93,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 34964,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7609,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 94,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11788,
+        19835,
+        0
+      ]
+    },
+    {
+      "iteration": 95,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.13175678253173828,
+      "mismatch": 39762,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19963,
+        0
+      ]
+    },
+    {
+      "iteration": 96,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35198,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        897,
+        7684,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 97,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39762,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19858,
+        0
+      ]
+    },
+    {
+      "iteration": 98,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39745,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        720,
+        12097,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 99,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40029,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        11344,
+        20153,
+        0
+      ]
+    },
+    {
+      "iteration": 100,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37469,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        774,
+        11411,
+        18269,
+        0
+      ]
+    },
+    {
+      "iteration": 101,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43518,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        14962,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 102,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 39306,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        964,
+        15002,
+        15971,
+        0
+      ]
+    },
+    {
+      "iteration": 103,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 27518,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1142,
+        7640,
+        13889,
+        0
+      ]
+    },
+    {
+      "iteration": 104,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35048,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        649,
+        7766,
+        19734,
+        0
+      ]
+    },
+    {
+      "iteration": 105,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40808,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11991,
+        20306,
+        0
+      ]
+    },
+    {
+      "iteration": 106,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35220,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11417,
+        16823,
+        0
+      ]
+    },
+    {
+      "iteration": 107,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1023,
+        11194,
+        20228,
+        0
+      ]
+    },
+    {
+      "iteration": 108,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43997,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15284,
+        20074,
+        0
+      ]
+    },
+    {
+      "iteration": 109,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36712,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1141,
+        11566,
+        17318,
+        0
+      ]
+    },
+    {
+      "iteration": 110,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40402,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11791,
+        20215,
+        0
+      ]
+    },
+    {
+      "iteration": 111,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43624,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15289,
+        19853,
+        0
+      ]
+    },
+    {
+      "iteration": 112,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 38382,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        14664,
+        16038,
+        0
+      ]
+    },
+    {
+      "iteration": 113,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 42152,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        13851,
+        19913,
+        0
+      ]
+    },
+    {
+      "iteration": 114,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35902,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        503,
+        9629,
+        19901,
+        0
+      ]
+    },
+    {
+      "iteration": 115,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 36350,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        648,
+        10952,
+        17564,
+        0
+      ]
+    },
+    {
+      "iteration": 116,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35070,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11321,
+        16623,
+        0
+      ]
+    },
+    {
+      "iteration": 117,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40008,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        8591,
+        21949,
+        0
+      ]
+    },
+    {
+      "iteration": 118,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35476,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        7735,
+        19841,
+        0
+      ]
+    },
+    {
+      "iteration": 119,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40424,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11987,
+        20088,
+        0
+      ]
+    },
+    {
+      "iteration": 120,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40691,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        12257,
+        20009,
+        0
+      ]
+    },
+    {
+      "iteration": 121,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39283,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        908,
+        11034,
+        19919,
+        0
+      ]
+    },
+    {
+      "iteration": 122,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39528,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19637,
+        0
+      ]
+    },
+    {
+      "iteration": 123,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31326,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        720,
+        7758,
+        16061,
+        0
+      ]
+    },
+    {
+      "iteration": 124,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39155,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1025,
+        10856,
+        19725,
+        0
+      ]
+    },
+    {
+      "iteration": 125,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35582,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1026,
+        11194,
+        16948,
+        0
+      ]
+    },
+    {
+      "iteration": 126,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43507,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15192,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 127,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.03435152769088745,
+      "mismatch": 35188,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11540,
+        15971,
+        0
+      ]
+    },
+    {
+      "iteration": 128,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35582,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        11110,
+        16634,
+        0
+      ]
+    },
+    {
+      "iteration": 129,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36072,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        8201,
+        19994,
+        0
+      ]
+    },
+    {
+      "iteration": 130,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39901,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11852,
+        19897,
+        0
+      ]
+    },
+    {
+      "iteration": 131,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39700,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1141,
+        11417,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 132,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39038,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11321,
+        19637,
+        0
+      ]
+    },
+    {
+      "iteration": 133,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39656,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1149,
+        11284,
+        19755,
+        0
+      ]
+    },
+    {
+      "iteration": 134,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39112,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1393,
+        11769,
+        18734,
+        0
+      ]
+    },
+    {
+      "iteration": 135,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39890,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11700,
+        20113,
+        0
+      ]
+    },
+    {
+      "iteration": 136,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.13175678253173828,
+      "mismatch": 40008,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        12034,
+        19742,
+        0
+      ]
+    },
+    {
+      "iteration": 137,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39038,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1143,
+        14537,
+        16401,
+        0
+      ]
+    },
+    {
+      "iteration": 138,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39155,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11447,
+        19693,
+        0
+      ]
+    },
+    {
+      "iteration": 139,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36392,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        836,
+        9962,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 140,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40446,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1142,
+        11177,
+        20350,
+        0
+      ]
+    },
+    {
+      "iteration": 141,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35304,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11574,
+        16709,
+        0
+      ]
+    },
+    {
+      "iteration": 142,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35539,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        468,
+        7735,
+        20088,
+        0
+      ]
+    },
+    {
+      "iteration": 143,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35838,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        530,
+        8319,
+        19960,
+        0
+      ]
+    },
+    {
+      "iteration": 144,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11789,
+        19835,
+        0
+      ]
+    },
+    {
+      "iteration": 145,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 36062,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        7645,
+        20304,
+        0
+      ]
+    },
+    {
+      "iteration": 146,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39528,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11278,
+        20144,
+        0
+      ]
+    },
+    {
+      "iteration": 147,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39400,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 148,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36658,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        12215,
+        16282,
+        0
+      ]
+    },
+    {
+      "iteration": 149,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39038,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        774,
+        10941,
+        19835,
+        0
+      ]
+    },
+    {
+      "iteration": 150,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39144,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11791,
+        19089,
+        0
+      ]
+    },
+    {
+      "iteration": 151,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 44626,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        15433,
+        20196,
+        0
+      ]
+    },
+    {
+      "iteration": 152,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36106,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1206,
+        7999,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 153,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31464,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        11110,
+        13936,
+        0
+      ]
+    },
+    {
+      "iteration": 154,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35293,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7983,
+        19706,
+        0
+      ]
+    },
+    {
+      "iteration": 155,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35816,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11772,
+        16920,
+        0
+      ]
+    },
+    {
+      "iteration": 156,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 45780,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        16816,
+        19755,
+        0
+      ]
+    },
+    {
+      "iteration": 157,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39550,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11447,
+        19755,
+        0
+      ]
+    },
+    {
+      "iteration": 158,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 44392,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15839,
+        19853,
+        0
+      ]
+    },
+    {
+      "iteration": 159,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35560,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1024,
+        11067,
+        16967,
+        0
+      ]
+    },
+    {
+      "iteration": 160,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40146,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11827,
+        20237,
+        0
+      ]
+    },
+    {
+      "iteration": 161,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43240,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15179,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 162,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36350,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1143,
+        14664,
+        14468,
+        0
+      ]
+    },
+    {
+      "iteration": 163,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1149,
+        11574,
+        19785,
+        0
+      ]
+    },
+    {
+      "iteration": 164,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36264,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        719,
+        9620,
+        20024,
+        0
+      ]
+    },
+    {
+      "iteration": 165,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        11205,
+        20198,
+        0
+      ]
+    },
+    {
+      "iteration": 166,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 30974,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7893,
+        16488,
+        0
+      ]
+    },
+    {
+      "iteration": 167,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35422,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        962,
+        7758,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 168,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35838,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7955,
+        20199,
+        0
+      ]
+    },
+    {
+      "iteration": 169,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40402,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11987,
+        20006,
+        0
+      ]
+    },
+    {
+      "iteration": 170,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39166,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11321,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 171,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39411,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1024,
+        11067,
+        19852,
+        0
+      ]
+    },
+    {
+      "iteration": 172,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40135,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        20160,
+        0
+      ]
+    },
+    {
+      "iteration": 173,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36059,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        720,
+        9402,
+        19916,
+        0
+      ]
+    },
+    {
+      "iteration": 174,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35187,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        404,
+        7724,
+        20052,
+        0
+      ]
+    },
+    {
+      "iteration": 175,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36200,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1033,
+        11791,
+        16954,
+        0
+      ]
+    },
+    {
+      "iteration": 176,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 44008,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        15433,
+        19760,
+        0
+      ]
+    },
+    {
+      "iteration": 177,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39306,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        964,
+        11107,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 178,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31720,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        11110,
+        13936,
+        0
+      ]
+    },
+    {
+      "iteration": 179,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31560,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        4584,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 180,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40680,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        897,
+        12233,
+        20053,
+        0
+      ]
+    },
+    {
+      "iteration": 181,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 37652,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1151,
+        11163,
+        18304,
+        0
+      ]
+    },
+    {
+      "iteration": 182,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35432,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        7616,
+        20139,
+        0
+      ]
+    },
+    {
+      "iteration": 183,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 43858,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        15306,
+        20074,
+        0
+      ]
+    },
+    {
+      "iteration": 184,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36200,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        11320,
+        17336,
+        0
+      ]
+    },
+    {
+      "iteration": 185,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39784,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        11574,
+        20097,
+        0
+      ]
+    },
+    {
+      "iteration": 186,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39752,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11907,
+        19614,
+        0
+      ]
+    },
+    {
+      "iteration": 187,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31241,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        899,
+        10781,
+        14035,
+        0
+      ]
+    },
+    {
+      "iteration": 188,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39539,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11447,
+        19847,
+        0
+      ]
+    },
+    {
+      "iteration": 189,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 36448,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        808,
+        9630,
+        19903,
+        0
+      ]
+    },
+    {
+      "iteration": 190,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39912,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        900,
+        11205,
+        20198,
+        0
+      ]
+    },
+    {
+      "iteration": 191,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 31582,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        655,
+        8304,
+        16600,
+        0
+      ]
+    },
+    {
+      "iteration": 192,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39773,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11756,
+        19693,
+        0
+      ]
+    },
+    {
+      "iteration": 193,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 3.1906213760375977,
+      "mismatch": 36200,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        898,
+        8401,
+        19888,
+        0
+      ]
+    },
+    {
+      "iteration": 194,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40424,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1152,
+        11788,
+        20088,
+        0
+      ]
+    },
+    {
+      "iteration": 195,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39667,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11574,
+        19824,
+        0
+      ]
+    },
+    {
+      "iteration": 196,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 35198,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        897,
+        7236,
+        19950,
+        0
+      ]
+    },
+    {
+      "iteration": 197,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39645,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        907,
+        11538,
+        19842,
+        0
+      ]
+    },
+    {
+      "iteration": 198,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 40122,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        1149,
+        11841,
+        19660,
+        0
+      ]
+    },
+    {
+      "iteration": 199,
+      "state_exact_reference": false,
+      "state_close_reference": false,
+      "max_abs": 0.05033962428569794,
+      "mismatch": 39539,
+      "output_exact_reference": true,
+      "state_equal_first": false,
+      "per_slot_bad": [
+        0,
+        0,
+        0,
+        0,
+        648,
+        11200,
+        19925,
+        0
+      ]
+    }
+  ],
+  "compiler_commands": [
+    [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile",
+      "/tmp/tmp4zw7c_5g/kernel.ttadapter.mlir",
+      "--target=Ascend910_9392",
+      "--enable-auto-multi-buffer=True",
+      "--enable-auto-bind-sub-block=True",
+      "--enable-auto-blockify-loop",
+      "--enable-hfusion-compile=true",
+      "--enable-hivm-compile=true",
+      "--enable-triton-kernel-compile=true",
+      "--mlir-print-ir-after-failure",
+      "--mlir-print-stacktrace-on-diagnostic",
+      "--bishengir-print-ir-after=hivm-graph-sync-solver",
+      "-o",
+      "/tmp/tmp4zw7c_5g/kernel",
+      "--save-temps=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ir2-binary-control-r0/compile00/temps",
+      "--mlir-print-ir-after-all",
+      "--mlir-print-ir-module-scope"
+    ]
+  ]
+}

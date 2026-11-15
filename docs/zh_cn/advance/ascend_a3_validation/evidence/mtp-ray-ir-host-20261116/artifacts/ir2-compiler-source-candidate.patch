@@ -1,0 +1,13 @@
+--- a/bishengir/lib/Dialect/HIVM/Transforms/GraphSyncSolver/MemInfo.cpp
++++ b/bishengir/lib/Dialect/HIVM/Transforms/GraphSyncSolver/MemInfo.cpp
+@@ -58,7 +58,9 @@
+   if (auto spaceAttr = GetBufferSpaceAttr(pointerCastOp.getResult())) {
+     pointerLikeInfo.addressSpace = spaceAttr->getAddressSpace();
+   }
+-  if (auto parentLoop = pointerCastOp->getParentOfType<LoopLikeOpInterface>()) {
++  // Match EnableMultiBuffer: loop-carried/yielded buffers may rotate only
++  // in an outer loop. Lexical nesting can assign an event to the wrong slot.
++  if (auto parentLoop = hivm::getParentLoop(pointerCastOp.getResult())) {
+     pointerLikeInfo.parentLoop = parentLoop;
+   }
+   return pointerLikeInfo;

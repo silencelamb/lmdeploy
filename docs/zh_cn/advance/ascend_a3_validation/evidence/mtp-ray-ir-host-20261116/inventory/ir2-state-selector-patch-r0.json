@@ -1,0 +1,6 @@
+{
+  "source": "artifacts/ir2-multi-r1/compile00/temps/module.hivm.opt.mlir",
+  "patch": "artifacts/ir2-state-selector-patch-r0.mlir",
+  "sha256": "c186a18f54620fe21b2c133d994636a09e60103a948a820bf2099797bc22549a",
+  "change": "Move only recurrent-state buffer selection to existing inner-token parity %102; leave all synchronization and arithmetic unchanged."
+}
