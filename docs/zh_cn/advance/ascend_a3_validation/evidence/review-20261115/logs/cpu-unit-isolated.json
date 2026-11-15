@@ -1,0 +1,25 @@
+{
+  "label": "cpu-unit-isolated",
+  "command": [
+    "/root/workspace/a3-review-20261115/envs/cpu-no-torch-npu/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/pytorch/ascend",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=/root/workspace/a3-review-20261115/results/cpu-unit-isolated.xml"
+  ],
+  "cwd": "/root/workspace/a3-publish-20261114/lmdeploy",
+  "no_vendor": true,
+  "start_utc": "2026-11-15T09:05:25.161082+00:00",
+  "source_head": "13225de0f6863aaea1e7093a2c7d6c582a9fc18f",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-review-20261115/guard:/root/workspace/a3-publish-20261114/lmdeploy:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PYTHONNOUSERSITE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "ASCEND_REVIEW_NO_VENDOR": "1"
+  },
+  "returncode": 0,
+  "elapsed_seconds": 14.586353854974732
+}

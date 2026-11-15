@@ -72,7 +72,18 @@ def test_front_door_initializes_native_runtime(monkeypatch):
     try_import_deeplink("ascend")
     try_import_deeplink("npu")
     try_import_deeplink("cuda")
-    assert calls == ["native", "native"]
+    assert calls == ["native"]
+
+
+def test_engine_platform_name_is_ascend():
+    from lmdeploy.pytorch.devices import is_ascend
+
+    with _context('ascend'):
+        assert is_ascend()
+    with _context('npu'):
+        assert not is_ascend()
+        with pytest.raises(RuntimeError, match='Unsupported device type: npu'):
+            get_backend()
 
 
 def test_shared_vision_compile_policy_is_local_to_cuda(monkeypatch):

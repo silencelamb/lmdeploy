@@ -3,3 +3,6 @@ evidence/** -text
 evidence/*/results/*.xml -whitespace
 # Python csv.writer generated CRLF in the original measurements.
 evidence/*/results/*.csv whitespace=cr-at-eol
+
+# Preserve this review's raw command output.
+evidence/review-20261115/logs/*.log -whitespace

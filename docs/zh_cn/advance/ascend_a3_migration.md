@@ -114,7 +114,7 @@ mkdir -p validation/a3
 python -m pip freeze > validation/a3/environment.txt
 python -m pip check
 python tools/ascend/check_runtime.py --require-kernels > validation/a3/runtime.json
-python -m pytest -q tests/pytorch/ascend/hardware \
+python -m pytest -q tests/pytorch/ascend/hardware --run-ascend-hardware \
   --junitxml=validation/a3/kernels.xml
 ```
 

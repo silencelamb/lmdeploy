@@ -1,0 +1,25 @@
+{
+  "label": "explicit-hardware-without-optin",
+  "command": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+    "-m",
+    "pytest",
+    "--collect-only",
+    "-q",
+    "tests/pytorch/ascend/hardware/test_native_cache_copy.py",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "cwd": "/root/workspace/a3-publish-20261114/lmdeploy",
+  "no_vendor": false,
+  "start_utc": "2026-11-15T09:04:24.075533+00:00",
+  "source_head": "13225de0f6863aaea1e7093a2c7d6c582a9fc18f",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-review-20261115/guard:/root/workspace/a3-publish-20261114/lmdeploy:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PYTHONNOUSERSITE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "ASCEND_REVIEW_NO_VENDOR": "0"
+  },
+  "returncode": 4,
+  "elapsed_seconds": 0.31424993299879134
+}

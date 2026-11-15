@@ -1,6 +1,6 @@
 # Ascend A3 迁移验证与提交记录
 
-更新：2026-11-14，Asia/Shanghai。原始运行时间保留 UTC，便于与日志对应。
+更新：2026-11-15，Asia/Shanghai。原始运行时间保留 UTC，便于与日志对应。
 
 本目录仅在用户 fork 的 `docs/ascend-a3-validation-20261114` 分支维护。上游迁移 PR 使用 `dev/ascend-a3-native`，不要把整个文档分支合入 PR。
 
@@ -29,13 +29,13 @@
 
 | 仓库 / 分支 | 发布源码 HEAD | 用途 |
 | --- | --- | --- |
-| [LMDeploy `dev/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native) | [`13225de0`](https://github.com/silencelamb/lmdeploy/commit/13225de0f6863aaea1e7093a2c7d6c582a9fc18f) | 原迁移 + 已测导入修复 + 简短验证说明；不含 PR #5030 |
+| [LMDeploy `dev/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native) | [`c3947a93`](https://github.com/silencelamb/lmdeploy/commit/c3947a93c786876e17bb64dfb6f61ee9f1e7b221) | 原迁移、已测导入修复、测试隔离与平台名称收敛；不含 PR #5030 |
 | [dlinfer `dev/ascend-a3-native`](https://github.com/silencelamb/dlinfer/tree/dev/ascend-a3-native) | [`25b81c69`](https://github.com/silencelamb/dlinfer/commit/25b81c69cde38e61afc52c50ea92b1d625793db8) | patch 清理 + A3 独立功能说明 |
 | [LMDeploy `codex/ascend-a3-native-mooncake`](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-native-mooncake) | [`2c85cdc8`](https://github.com/silencelamb/lmdeploy/commit/2c85cdc888e313c4c32a15e7f7b2a81cf4d95d2b) | 原生迁移 + 同事 PR #5030 的独立集成验证 |
 | [LMDeploy `codex/ascend-a3-pr5030-baseline-20261113`](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-pr5030-baseline-20261113) | [`b334d7aa`](https://github.com/silencelamb/lmdeploy/commit/b334d7aaf8afd8fc5f77fcf34e3c5f028a2b7c9d) | 旧基线加同一 Mooncake 适配，便于公平复现 |
 | LMDeploy `docs/ascend-a3-validation-20261114` | 当前文档分支 | 完整报告、结果、命令、设计建议；不进入迁移 PR |
 
-发布中的简短说明/merge 没有改变实测计算代码。实际比较 commit 必须固定如下，不能用未来移动的 branch HEAD 替代：
+2026-11-14 发布中的简短说明/merge 没有改变实测计算代码。11-15 新增硬件测试显式开关与 `ascend` 平台名称收敛，针对性结果见[本轮审查](code_review_20261115.md)，没有重跑完整模型/性能。实际历史比较 commit 必须固定如下，不能用未来移动的 branch HEAD 替代：
 
 | 对象 | 实测 commit |
 | --- | --- |
@@ -49,6 +49,8 @@
 | 同事 Mooncake PR head | `1a09270b0835bb871be4eb4df70f9d04c8ccaec2` |
 
 ## 报告与复现
+
+- [2026-11-15：测试来源、CI 隔离与公共接口审查](code_review_20261115.md)。包含 `ascend` 命名修正、无 torch_npu 的 CPU 验证及硬件 opt-in 检查。
 
 - [第一阶段：迁移、精度、性能、dlinfer 独立验证](migration_validation.md)。保留旧结论上下文；其中 Mooncake 阻塞判断以第二阶段为准。
 - [第二阶段：Mooncake fabric 与 TileLang 补测](mooncake_validation.md)。实测 PR 适配、外部缓存数值、C1 延迟及 101/101 单测。

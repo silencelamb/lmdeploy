@@ -1,0 +1,43 @@
+{
+  "ruff_command": [
+    "/root/workspace/a3-pr-prep-20261115/lint-env/bin/ruff",
+    "check",
+    "lmdeploy/pytorch/backends/selector.py",
+    "lmdeploy/pytorch/configurations/deepseek_v2.py",
+    "lmdeploy/pytorch/configurations/deepseek_v32.py",
+    "lmdeploy/pytorch/configurations/glm_moe_dsa.py",
+    "lmdeploy/pytorch/configurations/qwen3_5.py",
+    "lmdeploy/pytorch/devices/__init__.py",
+    "lmdeploy/pytorch/kernels/dispatcher.py",
+    "lmdeploy/utils.py",
+    "tests/pytorch/ascend/test_native_integration.py",
+    "tests/pytorch/ascend/conftest.py"
+  ],
+  "ruff_returncode": 0,
+  "ast_files": [
+    "lmdeploy/pytorch/backends/selector.py",
+    "lmdeploy/pytorch/configurations/deepseek_v2.py",
+    "lmdeploy/pytorch/configurations/deepseek_v32.py",
+    "lmdeploy/pytorch/configurations/glm_moe_dsa.py",
+    "lmdeploy/pytorch/configurations/qwen3_5.py",
+    "lmdeploy/pytorch/devices/__init__.py",
+    "lmdeploy/pytorch/kernels/dispatcher.py",
+    "lmdeploy/utils.py",
+    "tests/pytorch/ascend/test_native_integration.py",
+    "tests/pytorch/ascend/conftest.py"
+  ],
+  "changed_files": [
+    "docs/zh_cn/advance/ascend_a3_migration.md",
+    "lmdeploy/pytorch/backends/selector.py",
+    "lmdeploy/pytorch/configurations/deepseek_v2.py",
+    "lmdeploy/pytorch/configurations/deepseek_v32.py",
+    "lmdeploy/pytorch/configurations/glm_moe_dsa.py",
+    "lmdeploy/pytorch/configurations/qwen3_5.py",
+    "lmdeploy/pytorch/devices/__init__.py",
+    "lmdeploy/pytorch/kernels/dispatcher.py",
+    "lmdeploy/utils.py",
+    "tests/pytorch/ascend/test_native_integration.py",
+    "tests/pytorch/ascend/README.md",
+    "tests/pytorch/ascend/conftest.py"
+  ]
+}
