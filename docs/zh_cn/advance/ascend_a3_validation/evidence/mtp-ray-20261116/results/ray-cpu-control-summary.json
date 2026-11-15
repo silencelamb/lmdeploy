@@ -1,0 +1,117 @@
+{
+  "ray_version": "2.48.0",
+  "cpu_arch": "aarch64",
+  "torch_imported": false,
+  "npu_imported": false,
+  "complete": true,
+  "modes": {
+    "put": {
+      "joins": 3000,
+      "max_wait_ms": 546.998874,
+      "max_delivery_ms": 471.454951,
+      "delivery_over100ms": 3,
+      "all_workers_without_torch": true,
+      "all_workers_without_npu": true
+    },
+    "direct": {
+      "joins": 3000,
+      "max_wait_ms": 553.567866,
+      "max_delivery_ms": 28.079729,
+      "delivery_over100ms": 0,
+      "all_workers_without_torch": true,
+      "all_workers_without_npu": true
+    }
+  },
+  "slow_events": [
+    {
+      "item": 248,
+      "mode": "put",
+      "block": 0,
+      "wait_ms": 153.61049,
+      "delivery_ms": [
+        164.387103,
+        3.197636
+      ],
+      "driver_wait_after_dispatch_ms": 13.197125,
+      "entry_to_done_ms": [
+        2.420512,
+        163.609979
+      ]
+    },
+    {
+      "item": 979,
+      "mode": "put",
+      "block": 0,
+      "wait_ms": 459.274631,
+      "delivery_ms": [
+        471.454951,
+        471.445511
+      ],
+      "driver_wait_after_dispatch_ms": 13.343986,
+      "entry_to_done_ms": [
+        1.163666,
+        1.173106
+      ]
+    },
+    {
+      "item": 1346,
+      "mode": "put",
+      "block": 0,
+      "wait_ms": 546.998874,
+      "delivery_ms": [
+        1.473337,
+        1.491497
+      ],
+      "driver_wait_after_dispatch_ms": 12.642172,
+      "entry_to_done_ms": [
+        558.167709,
+        558.149549
+      ]
+    },
+    {
+      "item": 1506,
+      "mode": "direct",
+      "block": 1,
+      "wait_ms": 535.283026,
+      "delivery_ms": [
+        1.575517,
+        1.263856
+      ],
+      "driver_wait_after_dispatch_ms": 12.602792,
+      "entry_to_done_ms": [
+        546.310301,
+        546.621962
+      ]
+    },
+    {
+      "item": 2234,
+      "mode": "direct",
+      "block": 1,
+      "wait_ms": 553.567866,
+      "delivery_ms": [
+        1.121366,
+        1.148036
+      ],
+      "driver_wait_after_dispatch_ms": 12.462272,
+      "entry_to_done_ms": [
+        564.908772,
+        564.882102
+      ]
+    },
+    {
+      "item": 2808,
+      "mode": "direct",
+      "block": 1,
+      "wait_ms": 504.653134,
+      "delivery_ms": [
+        0.763814,
+        0.910784
+      ],
+      "driver_wait_after_dispatch_ms": 12.503662,
+      "entry_to_done_ms": [
+        516.392982,
+        516.246012
+      ]
+    }
+  ]
+}

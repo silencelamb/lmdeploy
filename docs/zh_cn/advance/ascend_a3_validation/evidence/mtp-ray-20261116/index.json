@@ -1,0 +1,452 @@
+{
+  "local_root": "/root/workspace/a3-mtp-ray-investigation-20261116",
+  "source_commits": {
+    "pr": {
+      "path": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+      "head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "status": ""
+    },
+    "dev": {
+      "path": "/root/workspace/a3-publish-20261114/lmdeploy",
+      "head": "7d984d0abce61849237d436ac4243fc964e93e7b",
+      "status": ""
+    }
+  },
+  "files": [
+    {
+      "path": "logs/http-agents-ray-r0-server.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r0-server.log",
+      "bytes": 7239,
+      "sha256": "d9832ca24cca05178cdcfcd590564aa3cdc4092241ede2b5516e839764207a20",
+      "source_sha256": "d9832ca24cca05178cdcfcd590564aa3cdc4092241ede2b5516e839764207a20"
+    },
+    {
+      "path": "logs/http-agents-ray-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r0.json",
+      "bytes": 2940,
+      "sha256": "2d9ca20dc34df60b25bec8e5483de5063984aeff83810a6ebdf718ea43dcf683",
+      "source_sha256": "2d9ca20dc34df60b25bec8e5483de5063984aeff83810a6ebdf718ea43dcf683"
+    },
+    {
+      "path": "logs/http-agents-ray-r0.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r0.log",
+      "bytes": 232,
+      "sha256": "50da9bfebb80a6a44f543dfd5d1299deb1d60616a9d1bc7c15086abd984df7bc",
+      "source_sha256": "50da9bfebb80a6a44f543dfd5d1299deb1d60616a9d1bc7c15086abd984df7bc"
+    },
+    {
+      "path": "logs/http-agents-ray-r1-analysis.txt",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r1-analysis.txt",
+      "bytes": 1280,
+      "sha256": "17aac6003255abaec9dd4d3fa696ba968879bcd8d7255e092cbebd7955e9d1e3",
+      "source_sha256": "17aac6003255abaec9dd4d3fa696ba968879bcd8d7255e092cbebd7955e9d1e3"
+    },
+    {
+      "path": "logs/http-agents-ray-r1-server.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r1-server.log",
+      "bytes": 19504,
+      "sha256": "d24fc3711f9f82a53588ecbdf492c5d4a9bbae83550a7f0572360f7292cde448",
+      "source_sha256": "d24fc3711f9f82a53588ecbdf492c5d4a9bbae83550a7f0572360f7292cde448"
+    },
+    {
+      "path": "logs/http-agents-ray-r1.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r1.json",
+      "bytes": 2941,
+      "sha256": "0aea9a57b000f80b31c708376062acd8d6a93be2ae109c84c8ecc8b0af34b0d1",
+      "source_sha256": "0aea9a57b000f80b31c708376062acd8d6a93be2ae109c84c8ecc8b0af34b0d1"
+    },
+    {
+      "path": "logs/http-agents-ray-r1.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r1.log",
+      "bytes": 299,
+      "sha256": "9b3d267d6abad0a349014ca23e25d19526d0de43689798d192eff05255b1a46c",
+      "source_sha256": "9b3d267d6abad0a349014ca23e25d19526d0de43689798d192eff05255b1a46c"
+    },
+    {
+      "path": "logs/mtp3-greedy-runtime-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/mtp3-greedy-runtime-r0.json",
+      "bytes": 3167,
+      "sha256": "fe5a4f6c2e96f10151f492f572b84869488efe5398a4f2637e256829eb68bb9b",
+      "source_sha256": "fe5a4f6c2e96f10151f492f572b84869488efe5398a4f2637e256829eb68bb9b"
+    },
+    {
+      "path": "logs/mtp3-greedy-runtime-r0.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/mtp3-greedy-runtime-r0.log",
+      "bytes": 35107,
+      "sha256": "ead9f676d73900427379dade3276c497e1c0986ca6c033e258e73ab29afcf1ab",
+      "source_sha256": "ead9f676d73900427379dade3276c497e1c0986ca6c033e258e73ab29afcf1ab"
+    },
+    {
+      "path": "logs/mtp3-greedy-runtime-r1.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/mtp3-greedy-runtime-r1.json",
+      "bytes": 3167,
+      "sha256": "f6423db15df36f8ddb4bb1375723a9bb7eb63eb43d8b03d7b47edd24c109fe34",
+      "source_sha256": "f6423db15df36f8ddb4bb1375723a9bb7eb63eb43d8b03d7b47edd24c109fe34"
+    },
+    {
+      "path": "logs/mtp3-greedy-runtime-r1.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/mtp3-greedy-runtime-r1.log",
+      "bytes": 35462,
+      "sha256": "e7ca9b2e073e2f1a969247998eed2a5baf337dcb5c7d1fc91ee02cf6893a19f8",
+      "source_sha256": "e7ca9b2e073e2f1a969247998eed2a5baf337dcb5c7d1fc91ee02cf6893a19f8"
+    },
+    {
+      "path": "logs/ray-cpu-control-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/ray-cpu-control-r0.json",
+      "bytes": 2891,
+      "sha256": "afc29d9e76f8dc0d9f1256cc5293e93f990c94d5c7847276d64bd08c81a874db",
+      "source_sha256": "afc29d9e76f8dc0d9f1256cc5293e93f990c94d5c7847276d64bd08c81a874db"
+    },
+    {
+      "path": "logs/ray-cpu-control-r0.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/ray-cpu-control-r0.log",
+      "bytes": 327,
+      "sha256": "8fe18057f4dd8cf1244089c1393ce6ac51657ba52643773040aa7d6312d4b015",
+      "source_sha256": "8fe18057f4dd8cf1244089c1393ce6ac51657ba52643773040aa7d6312d4b015"
+    },
+    {
+      "path": "results/first-single-r0-target-trace.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/first-single-r0-target-trace.json",
+      "bytes": 16880,
+      "sha256": "83e74871a37ea137ca65286e44abb3d2d12a54d07030b205dfa8240cc389016b",
+      "source_sha256": "83e74871a37ea137ca65286e44abb3d2d12a54d07030b205dfa8240cc389016b"
+    },
+    {
+      "path": "results/first-single-r1-target-trace.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/first-single-r1-target-trace.json",
+      "bytes": 16550,
+      "sha256": "eb964e383f957f8cbff584a30ccdf75f2e0800d37d702dd912ec12d0c4ad04bb",
+      "source_sha256": "eb964e383f957f8cbff584a30ccdf75f2e0800d37d702dd912ec12d0c4ad04bb"
+    },
+    {
+      "path": "results/http-agents-r1-summary.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/http-agents-r1-summary.json",
+      "bytes": 27036,
+      "sha256": "b59c2a91143da757b1cc91ca33e1a34b30e42ca39dae51d17937bdb4478c2203",
+      "source_sha256": "b59c2a91143da757b1cc91ca33e1a34b30e42ca39dae51d17937bdb4478c2203"
+    },
+    {
+      "path": "results/http-agents-ray-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/http-agents-ray-r0.json",
+      "bytes": 1121,
+      "sha256": "33b55a135e9c6a384c0b662c11f66c8fe47170fff9be67c4a78c17dba864efe9",
+      "source_sha256": "33b55a135e9c6a384c0b662c11f66c8fe47170fff9be67c4a78c17dba864efe9"
+    },
+    {
+      "path": "results/http-agents-ray-r1.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/http-agents-ray-r1.json",
+      "bytes": 1221670,
+      "sha256": "ae6a3e399d8e5e81614b0e3a124e2b850c5df3fb02bf286c506817a94c680354",
+      "source_sha256": "ae6a3e399d8e5e81614b0e3a124e2b850c5df3fb02bf286c506817a94c680354"
+    },
+    {
+      "path": "results/mtp-runtime-mtp3-greedy-r0-rank0.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp-runtime-mtp3-greedy-r0-rank0.jsonl",
+      "bytes": 132672,
+      "sha256": "45f47b10b067c91f014d20f48a659d31dda8a20fbde1fa3cc99d8a9c81c367f9",
+      "source_sha256": "45f47b10b067c91f014d20f48a659d31dda8a20fbde1fa3cc99d8a9c81c367f9"
+    },
+    {
+      "path": "results/mtp-runtime-mtp3-greedy-r1-rank0.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp-runtime-mtp3-greedy-r1-rank0.jsonl",
+      "bytes": 133621,
+      "sha256": "bf297243fb52fd0058aba33be0d90f078605d8d0fc3bc4e86911d5f717206b4d",
+      "source_sha256": "bf297243fb52fd0058aba33be0d90f078605d8d0fc3bc4e86911d5f717206b4d"
+    },
+    {
+      "path": "results/mtp-runtime-summary.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp-runtime-summary.json",
+      "bytes": 4434,
+      "sha256": "ce146e57da4db62266123cbd08925b0edf8bdbc0a45e338351bfbb76ace4adaf",
+      "source_sha256": "ce146e57da4db62266123cbd08925b0edf8bdbc0a45e338351bfbb76ace4adaf"
+    },
+    {
+      "path": "results/mtp3-greedy-runtime-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp3-greedy-runtime-r0.json",
+      "bytes": 369614,
+      "sha256": "6cec9fb7a16db0688b2685968fccfcc90ac3169f794653bfeaa2158e174eaa80",
+      "source_sha256": "6cec9fb7a16db0688b2685968fccfcc90ac3169f794653bfeaa2158e174eaa80"
+    },
+    {
+      "path": "results/mtp3-greedy-runtime-r1.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp3-greedy-runtime-r1.json",
+      "bytes": 369588,
+      "sha256": "79ecdc328415a1b2d861675ee9d9a9d91915432d50a3f56fb557810704d66d52",
+      "source_sha256": "79ecdc328415a1b2d861675ee9d9a9d91915432d50a3f56fb557810704d66d52"
+    },
+    {
+      "path": "results/ray-cpu-control-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-cpu-control-r0.json",
+      "bytes": 4051146,
+      "sha256": "ee4fa6a2ac8207a6ef8820a618efde80a899a25a5aaf4818b48a8715b7695d7e",
+      "source_sha256": "ee4fa6a2ac8207a6ef8820a618efde80a899a25a5aaf4818b48a8715b7695d7e"
+    },
+    {
+      "path": "results/ray-cpu-control-summary.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-cpu-control-summary.json",
+      "bytes": 2375,
+      "sha256": "fb5f789ff6eec48cff6457778c0154605d9524035f6c7d039b875648e2b4b879",
+      "source_sha256": "fb5f789ff6eec48cff6457778c0154605d9524035f6c7d039b875648e2b4b879"
+    },
+    {
+      "path": "results/ray-http-agents-r0-1619175.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-http-agents-r0-1619175.jsonl",
+      "bytes": 143,
+      "sha256": "357661844f18fa09d9fcd91a1aa5863618e6567cd91efcaf21880c854a687bc1",
+      "source_sha256": "357661844f18fa09d9fcd91a1aa5863618e6567cd91efcaf21880c854a687bc1"
+    },
+    {
+      "path": "results/ray-http-agents-r0-1619947.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-http-agents-r0-1619947.jsonl",
+      "bytes": 143,
+      "sha256": "d100c1918844bcc5dc7afb725a8e754b3e3248d714af873a6711029073f44242",
+      "source_sha256": "d100c1918844bcc5dc7afb725a8e754b3e3248d714af873a6711029073f44242"
+    },
+    {
+      "path": "results/ray-http-agents-r1-1620634.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-http-agents-r1-1620634.jsonl",
+      "bytes": 143,
+      "sha256": "2f6ac959c3256252dc3489691ccea6cb78cc944812bab5706bdaa9406af12c88",
+      "source_sha256": "2f6ac959c3256252dc3489691ccea6cb78cc944812bab5706bdaa9406af12c88"
+    },
+    {
+      "path": "results/ray-http-agents-r1-1620700.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-http-agents-r1-1620700.jsonl",
+      "bytes": 6610238,
+      "sha256": "ff9478be5d4baf0ea5f99b925e7de8b75e57b674c91fbbbdf552526af145ed35",
+      "source_sha256": "ff9478be5d4baf0ea5f99b925e7de8b75e57b674c91fbbbdf552526af145ed35"
+    },
+    {
+      "path": "results/ray-http-agents-r1-1621822.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-http-agents-r1-1621822.jsonl",
+      "bytes": 1586278,
+      "sha256": "cb591f1fa63211a8b7cb9841426f4457c17d9fbdf17b8ac97ab767c8e1523f71",
+      "source_sha256": "cb591f1fa63211a8b7cb9841426f4457c17d9fbdf17b8ac97ab767c8e1523f71"
+    },
+    {
+      "path": "results/ray-http-agents-r1-1621823.jsonl",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-http-agents-r1-1621823.jsonl",
+      "bytes": 1586281,
+      "sha256": "e2831db5f9f151c944151347a30f61cca5165d929bd3aed394d29a3a1c44ce8a",
+      "source_sha256": "e2831db5f9f151c944151347a30f61cca5165d929bd3aed394d29a3a1c44ce8a"
+    },
+    {
+      "path": "inventory/completion.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/inventory/completion.json",
+      "bytes": 914,
+      "sha256": "5dd0a67d2da9e6006925475fa3187c8c2f506283effcdceaf3e8d60765459c27",
+      "source_sha256": "5dd0a67d2da9e6006925475fa3187c8c2f506283effcdceaf3e8d60765459c27"
+    },
+    {
+      "path": "inventory/environment.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/inventory/environment.json",
+      "bytes": 660,
+      "sha256": "420bbda04923afcc6e31f3c9762893369b1de1ffe9cec18648404192cf786033",
+      "source_sha256": "420bbda04923afcc6e31f3c9762893369b1de1ffe9cec18648404192cf786033"
+    },
+    {
+      "path": "inventory/launchers.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/inventory/launchers.json",
+      "bytes": 3976,
+      "sha256": "fa11cd7273bc26609e7fa3b27ff84992130dca2547703d3239b26a49320cb75f",
+      "source_sha256": "fa11cd7273bc26609e7fa3b27ff84992130dca2547703d3239b26a49320cb75f"
+    },
+    {
+      "path": "inventory/source-sampling-path.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/inventory/source-sampling-path.json",
+      "bytes": 699,
+      "sha256": "2cd378520833af3ef0b35e03595cbf68981942e88a4355533f78523b1f03c3bb",
+      "source_sha256": "2cd378520833af3ef0b35e03595cbf68981942e88a4355533f78523b1f03c3bb"
+    },
+    {
+      "path": "scripts/analyze.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/analyze.py",
+      "bytes": 9993,
+      "sha256": "d594603b6b1399766b6e1799aa9ea230b006d4119240aa0d741da0589aeebd4d",
+      "source_sha256": "0286118180a5804d9d5a06235499f489c50efe30ae702f0550e61b7cbd723716"
+    },
+    {
+      "path": "scripts/archive_evidence.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/archive_evidence.py",
+      "bytes": 2232,
+      "sha256": "e12d241991e654970ed41835bbe55a95bd257ced49f5e289946dfd817e5b69cb",
+      "source_sha256": "f2ad6f4c06ef26b5d45584e0a3c1ff2de0614407cd8f1e80762016b72ef19174"
+    },
+    {
+      "path": "scripts/http_ray_case.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/http_ray_case.py",
+      "bytes": 5625,
+      "sha256": "358dff781fed36b20fc356ca3f7b040dab052e208fdc797edf836377b2e7b2da",
+      "source_sha256": "394c2641f795dc378a001636e49c98d19d89b7deaaa410013581f6a10cd3ca5e"
+    },
+    {
+      "path": "scripts/mtp_audit.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/mtp_audit.py",
+      "bytes": 3643,
+      "sha256": "6ad685b7ab50e38b14d864824f161c5e2ee015d4c4970c0ce4cb076671a40ea5",
+      "source_sha256": "13296e88d5b21d635515795e119470cc1098851c26af2ac7de9646aa96deffd0"
+    },
+    {
+      "path": "scripts/pipeline_case.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/pipeline_case.py",
+      "bytes": 10205,
+      "sha256": "529523bb9b34b65c519860e68713a210a93734bf6e9605064d8f0c9ae14ca08d",
+      "source_sha256": "ab4f270c71b5b0c1c99466099d43e37b3b2733d84e889ca0287956a77293898d"
+    },
+    {
+      "path": "scripts/ray_cpu_control.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/ray_cpu_control.py",
+      "bytes": 3966,
+      "sha256": "8055f97248c02a66bbc99cd15463bcb18478afd7bb505cb1c09cef0fd4aecbf6",
+      "source_sha256": "f502118d10b9cbcd2337837971fd2135e46e8837713076d5548610537967a232"
+    },
+    {
+      "path": "scripts/ray_trace.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/ray_trace.py",
+      "bytes": 5474,
+      "sha256": "c7e09d7ca5b897567b3fa149952d5308477655620fe0cd5a8074b25c99363904",
+      "source_sha256": "06181c11c242823a70abab793a5da5211888c1eae391483e65f3ec818e29fde4"
+    },
+    {
+      "path": "scripts/run.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/run.py",
+      "bytes": 3247,
+      "sha256": "a879b2c419012b36f429d6bf8444b354d7d5168bb928c63150e34c40ce40ffcc",
+      "source_sha256": "9f66843e4f77a614947a24375d7d77e10a1f03b7f6d641c6e0ec3d9485b1b5df"
+    },
+    {
+      "path": "scripts/run_mtp_audit.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/run_mtp_audit.py",
+      "bytes": 414,
+      "sha256": "49b9b3c00d61ecea90190f1be37d21f2e70ebada0eaf5853deeaff5524ddb84f",
+      "source_sha256": "8d77ca10fb8759212d8064931456c79cd45845a92caa9eca92d8dee1653d2246"
+    },
+    {
+      "path": "scripts/serve_ray_trace.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/serve_ray_trace.py",
+      "bytes": 237,
+      "sha256": "83fb90d9eb96f32d33389a6793618311e73289a71e2e0a68e1f42281897aa33c",
+      "source_sha256": "5210b1526b0110054538c299b63210b14d0bff1c1a438c1862e0b52874ade117"
+    },
+    {
+      "path": "guard/sitecustomize.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/guard/sitecustomize.py",
+      "bytes": 728,
+      "sha256": "1fd6ced6a9f496f1b35bdcdb514c4cc4e40cb57fe7b71b05459759661e2edcb1",
+      "source_sha256": "30440e7d015751f814276d9b3c23ffe5ee983e014d71506faccbdbe539b659c0"
+    },
+    {
+      "path": "patches/http-agents-ray-r0.patch",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/http-agents-ray-r0.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "patches/http-agents-ray-r1.patch",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/http-agents-ray-r1.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "patches/mtp3-greedy-runtime-r0.patch",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/mtp3-greedy-runtime-r0.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "patches/mtp3-greedy-runtime-r1.patch",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/mtp3-greedy-runtime-r1.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "patches/ray-cpu-control-r0.patch",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-cpu-control-r0.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ray-runtime-logs/gcs_server.err",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/gcs_server.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ray-runtime-logs/gcs_server.out",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/gcs_server.out",
+      "bytes": 43550,
+      "sha256": "7ca159ddd0880155d88b4d73ff243dea67de40d4e32682a535367efad6e1dbea",
+      "source_sha256": "7ca159ddd0880155d88b4d73ff243dea67de40d4e32682a535367efad6e1dbea"
+    },
+    {
+      "path": "ray-runtime-logs/python-core-driver-01000000ffffffffffffffffffffffffffffffffffffffffffffffff_1620700.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/python-core-driver-01000000ffffffffffffffffffffffffffffffffffffffffffffffff_1620700.log",
+      "bytes": 23457,
+      "sha256": "27cf8f09dbdb4fa1c7e3cddfa4d6a2a4733f906de4db12c7a7a344488105d1c6",
+      "source_sha256": "27cf8f09dbdb4fa1c7e3cddfa4d6a2a4733f906de4db12c7a7a344488105d1c6"
+    },
+    {
+      "path": "ray-runtime-logs/python-core-worker-393f5e2fbfbef1e811da0028584f7346f0acc0796f497baf47dba56f_1621502.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/python-core-worker-393f5e2fbfbef1e811da0028584f7346f0acc0796f497baf47dba56f_1621502.log",
+      "bytes": 12626,
+      "sha256": "c53a0fe958507126637c4a7d4538f99b8302560961fd32f49d7114d4873c003a",
+      "source_sha256": "c53a0fe958507126637c4a7d4538f99b8302560961fd32f49d7114d4873c003a"
+    },
+    {
+      "path": "ray-runtime-logs/python-core-worker-91b0c7da02d74f2942532f28f95e38ce55a849359dc45b3e095accc4_1621501.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/python-core-worker-91b0c7da02d74f2942532f28f95e38ce55a849359dc45b3e095accc4_1621501.log",
+      "bytes": 11515,
+      "sha256": "01e3e08c0b878b388ea6d9528b451c32e34847b0616923209abf1bd080a69336",
+      "source_sha256": "01e3e08c0b878b388ea6d9528b451c32e34847b0616923209abf1bd080a69336"
+    },
+    {
+      "path": "ray-runtime-logs/python-core-worker-cc98555dc52a9d514caff408e7401ef1b645be1ce319b2011a6b2566_1621822.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/python-core-worker-cc98555dc52a9d514caff408e7401ef1b645be1ce319b2011a6b2566_1621822.log",
+      "bytes": 14011,
+      "sha256": "2496d3781a4145fa6f365db88f4ff1317bbbc6f53056e9cd55cb3c47825508fe",
+      "source_sha256": "2496d3781a4145fa6f365db88f4ff1317bbbc6f53056e9cd55cb3c47825508fe"
+    },
+    {
+      "path": "ray-runtime-logs/python-core-worker-f935178cd51e2cf159f5c126595fc7e47649e2e13eb4798eceb67155_1621823.log",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/python-core-worker-f935178cd51e2cf159f5c126595fc7e47649e2e13eb4798eceb67155_1621823.log",
+      "bytes": 14231,
+      "sha256": "15272235fe372a7a38029e63e02980e4951ce3a9becfd43fc6095e20f002b94e",
+      "source_sha256": "15272235fe372a7a38029e63e02980e4951ce3a9becfd43fc6095e20f002b94e"
+    },
+    {
+      "path": "ray-runtime-logs/raylet.err",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/raylet.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ray-runtime-logs/raylet.out",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ray-http-r1/raylet.out",
+      "bytes": 50504,
+      "sha256": "a22f0e88e7c216779059ee61f1adcd2c6d3190da0ae87cfc7de365e6eee25a02",
+      "source_sha256": "a22f0e88e7c216779059ee61f1adcd2c6d3190da0ae87cfc7de365e6eee25a02"
+    },
+    {
+      "path": "scripts/serve_ray_trace-r0-failed.py.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/serve_ray_trace-r0-failed.py",
+      "bytes": 213,
+      "sha256": "d2620936f38b488d692b11ba24a3332d2fa9e3809a9f98c058dc7a6b9734ee0c",
+      "source_sha256": "dc6a215295f4f5795ac622629869a090aafd9f8b17e03c7221dd49e4bf78f73f"
+    },
+    {
+      "path": "ACCEPTANCE.md",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/ACCEPTANCE.md",
+      "bytes": 1946,
+      "sha256": "f25adb234aae6e7de22220b2ae6f915a7c5aff5ba00b3123cb4be8ba79973a07",
+      "source_sha256": "f25adb234aae6e7de22220b2ae6f915a7c5aff5ba00b3123cb4be8ba79973a07"
+    }
+  ],
+  "excluded": "Native environment, Triton cache, local session/window handoff. Runtime logs, failures, full model results, RPC timelines and CPU control are included."
+}

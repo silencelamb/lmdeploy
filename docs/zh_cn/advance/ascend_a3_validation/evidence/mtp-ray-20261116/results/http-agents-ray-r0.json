@@ -1,0 +1,50 @@
+{
+  "command": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/serve_ray_trace.py",
+    "serve",
+    "api_server",
+    "/afs-weights/Agents-A1",
+    "--backend",
+    "pytorch",
+    "--device",
+    "ascend",
+    "--tp",
+    "2",
+    "--dtype",
+    "bfloat16",
+    "--model-name",
+    "agents-a1",
+    "--server-name",
+    "127.0.0.1",
+    "--server-port",
+    "25516",
+    "--cache-block-seq-len",
+    "128",
+    "--cache-max-entry-count",
+    "0.5",
+    "--max-batch-size",
+    "8",
+    "--session-len",
+    "8192",
+    "--max-prefill-token-num",
+    "256",
+    "--trust-remote-code",
+    "--language-model-only"
+  ],
+  "options": {
+    "output": "/root/workspace/a3-mtp-ray-investigation-20261116/results/http-agents-ray-r0.json",
+    "port": 25516,
+    "repeats": 6,
+    "tokens": 256,
+    "concurrency": [
+      1,
+      4
+    ]
+  },
+  "events": [],
+  "complete": false,
+  "server_log": "/root/workspace/a3-mtp-ray-investigation-20261116/logs/http-agents-ray-r0-server.log",
+  "server_pid": 1619175,
+  "server_returncode": 1
+}

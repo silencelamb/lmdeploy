@@ -1,0 +1,106 @@
+[W1115 17:08:41.285879638 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W1115 17:08:55.860262299 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/spawn.py", line 131, in _main
+    prepare(preparation_data)
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/spawn.py", line 246, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/spawn.py", line 297, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/serve_ray_trace.py", line 8, in <module>
+    run()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/cli/entrypoint.py", line 39, in run
+    args.run(args)
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/cli/serve.py", line 348, in api_server
+    run_api_server(
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/openai/api_server.py", line 409, in serve
+    server_context.async_engine = pipeline_class(
+                                  ^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/core/async_engine.py", line 177, in __init__
+    self.engine = self._build_pytorch(model_path=model_path,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/core/async_engine.py", line 244, in _build_pytorch
+    return Engine.from_pretrained(model_path,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/engine.py", line 283, in from_pretrained
+    return build_mp_engine(
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/mp_engine/__init__.py", line 10, in build_mp_engine
+    return ZMQMPEngine(model_path, engine_config=engine_config, trust_remote_code=trust_remote_code, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/mp_engine/zmq_engine.py", line 47, in __init__
+    self._start_mp_proc(model_path, engine_config, speculative_config=speculative_config,
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/mp_engine/zmq_engine.py", line 97, in _start_mp_proc
+    self.proc.start()
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+                  ^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/context.py", line 289, in _Popen
+    return Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/popen_spawn_posix.py", line 42, in _launch
+    prep_data = spawn.get_preparation_data(process_obj._name)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/spawn.py", line 164, in get_preparation_data
+    _check_not_importing_main()
+  File "/usr/local/python3.12.13/lib/python3.12/multiprocessing/spawn.py", line 140, in _check_not_importing_main
+    raise RuntimeError('''
+RuntimeError: 
+        An attempt has been made to start a new process before the
+        current process has finished its bootstrapping phase.
+
+        This probably means that you are not using fork to start your
+        child processes and you have forgotten to use the proper idiom
+        in the main module:
+
+            if __name__ == '__main__':
+                freeze_support()
+                ...
+
+        The "freeze_support()" line can be omitted if the program
+        is not going to be frozen to produce an executable.
+
+        To fix this issue, refer to the "Safe importing of main module"
+        section in https://docs.python.org/3/library/multiprocessing.html
+        
+[ERROR] 2026-11-15-17:09:00 (PID:1619947, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+Traceback (most recent call last):
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/serve_ray_trace.py", line 8, in <module>
+    run()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/cli/entrypoint.py", line 39, in run
+    args.run(args)
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/cli/serve.py", line 348, in api_server
+    run_api_server(
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/openai/api_server.py", line 409, in serve
+    server_context.async_engine = pipeline_class(
+                                  ^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/core/async_engine.py", line 177, in __init__
+    self.engine = self._build_pytorch(model_path=model_path,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/core/async_engine.py", line 244, in _build_pytorch
+    return Engine.from_pretrained(model_path,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/engine.py", line 283, in from_pretrained
+    return build_mp_engine(
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/mp_engine/__init__.py", line 10, in build_mp_engine
+    return ZMQMPEngine(model_path, engine_config=engine_config, trust_remote_code=trust_remote_code, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/mp_engine/zmq_engine.py", line 47, in __init__
+    self._start_mp_proc(model_path, engine_config, speculative_config=speculative_config,
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/mp_engine/zmq_engine.py", line 102, in _start_mp_proc
+    raise RuntimeError('PyTorch ZMQ engine process exited before publishing RPC server port.')
+RuntimeError: PyTorch ZMQ engine process exited before publishing RPC server port.
+[ERROR] 2026-11-15-17:09:02 (PID:1619175, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception

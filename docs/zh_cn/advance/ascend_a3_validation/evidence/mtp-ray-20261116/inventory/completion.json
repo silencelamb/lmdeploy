@@ -1,0 +1,37 @@
+{
+  "sources": {
+    "pr": {
+      "path": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+      "head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "status": ""
+    },
+    "dev": {
+      "path": "/root/workspace/a3-publish-20261114/lmdeploy",
+      "head": "7d984d0abce61849237d436ac4243fc964e93e7b",
+      "status": ""
+    }
+  },
+  "production_code_changed": false,
+  "experiments": {
+    "mtp3-greedy-runtime-r0": {
+      "returncode": 0,
+      "elapsed_seconds": 143.6065396029735
+    },
+    "mtp3-greedy-runtime-r1": {
+      "returncode": 0,
+      "elapsed_seconds": 77.63147618697258
+    },
+    "http-agents-ray-r0": {
+      "returncode": 1,
+      "elapsed_seconds": 34.27546901901951
+    },
+    "http-agents-ray-r1": {
+      "returncode": 0,
+      "elapsed_seconds": 151.65623879799386
+    },
+    "ray-cpu-control-r0": {
+      "returncode": 0,
+      "elapsed_seconds": 90.36896621901542
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "mtp3-greedy-runtime-r0": {
+    "outer_environment": {
+      "VALIDATION_AUDIT_LABEL": "mtp3-greedy-r0",
+      "PYTHONHASHSEED": "42"
+    },
+    "inner_command": [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/run_mtp_audit.py",
+      "--model",
+      "/afs-weights/Sage-A1.5",
+      "--tp",
+      "2",
+      "--mtp",
+      "3",
+      "--prefix",
+      "--scores",
+      "--prefill",
+      "8192",
+      "--session",
+      "262144",
+      "--batch",
+      "16",
+      "--cache-fraction",
+      "0.95",
+      "--suite",
+      "trace",
+      "--new-tokens",
+      "64",
+      "--output",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp3-greedy-runtime-r0.json"
+    ],
+    "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+    "note": "Supplementary record of the environment passed to the harness; original logs/*.json records only harness-changed variables."
+  },
+  "mtp3-greedy-runtime-r1": {
+    "outer_environment": {
+      "VALIDATION_AUDIT_LABEL": "mtp3-greedy-r1",
+      "PYTHONHASHSEED": "42"
+    },
+    "inner_command": [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/run_mtp_audit.py",
+      "--model",
+      "/afs-weights/Sage-A1.5",
+      "--tp",
+      "2",
+      "--mtp",
+      "3",
+      "--prefix",
+      "--scores",
+      "--prefill",
+      "8192",
+      "--session",
+      "262144",
+      "--batch",
+      "16",
+      "--cache-fraction",
+      "0.95",
+      "--suite",
+      "trace",
+      "--new-tokens",
+      "64",
+      "--output",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/results/mtp3-greedy-runtime-r1.json"
+    ],
+    "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+    "note": "Supplementary record of the environment passed to the harness; original logs/*.json records only harness-changed variables."
+  },
+  "http-agents-ray-r0": {
+    "outer_environment": {
+      "VALIDATION_RAY_LABEL": "http-agents-r0"
+    },
+    "inner_command": [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/http_ray_case.py",
+      "--port",
+      "25516",
+      "--repeats",
+      "6",
+      "--tokens",
+      "256",
+      "--output",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/results/http-agents-ray-r0.json"
+    ],
+    "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+    "note": "Supplementary record of the environment passed to the harness; original logs/*.json records only harness-changed variables."
+  },
+  "http-agents-ray-r1": {
+    "outer_environment": {
+      "VALIDATION_RAY_LABEL": "http-agents-r1"
+    },
+    "inner_command": [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/http_ray_case.py",
+      "--port",
+      "25516",
+      "--repeats",
+      "6",
+      "--tokens",
+      "256",
+      "--output",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/results/http-agents-ray-r1.json"
+    ],
+    "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+    "note": "Supplementary record of the environment passed to the harness; original logs/*.json records only harness-changed variables."
+  },
+  "ray-cpu-control-r0": {
+    "outer_environment": {},
+    "inner_command": [
+      "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/ray_cpu_control.py",
+      "--iterations",
+      "1500",
+      "--output",
+      "/root/workspace/a3-mtp-ray-investigation-20261116/results/ray-cpu-control-r0.json"
+    ],
+    "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+    "note": "Supplementary record of the environment passed to the harness; original logs/*.json records only harness-changed variables."
+  }
+}

@@ -10,6 +10,8 @@
 
 最新复查：[Agents gated norm 性能定位](gated_norm_performance_20261116.md)。实际旧/新 NPU kernel 二进制相同，交替对照未稳定复现原来的 C4 −5.15%；流式长停顿已在主机输入提交等待处复现，完整证据与尚未解决的限制单列。
 
+继续定位：[MTP 贪婪验证与在线 Ray RPC](mtp_ray_investigation_20261116.md)。897 个请求级验证结果全部符合贪婪规则，首次分歧前 target logits 已不同；真实 HTTP C4 捕获约 484 ms 的共享停顿，主要时间在 worker 输入提交方法开始之前；纯 Ray CPU 对照也出现数百毫秒等待。算子级数值来源、Ray 内部触发条件与 H200 对照仍待完成。
+
 2026-11-14 两个 fork 的迁移主分支已由 `codex/ascend-a3-native` 正式改名为 `dev/ascend-a3-native`；提交历史保留，当前说明和链接已更新。原始证据中的旧分支名是当时的记录，不作回写。Mooncake 集成分支和报告分支沿用原名。
 
 ## 当前结论

@@ -1,0 +1,25 @@
+{
+  "packages": {
+    "numpy": "2.2.6",
+    "torch": "2.10.0+cpu",
+    "torch_npu": "2.10.0.post4",
+    "transformers": "5.14.1",
+    "triton": "3.5.0",
+    "triton_ascend": "3.2.2",
+    "ray": "2.48.0",
+    "aiohttp": "3.14.5"
+  },
+  "python": "3.12.13",
+  "arch": "aarch64",
+  "kernel": "5.10.0-216.0.0.115.oe2203sp4.shengteng.aarch64",
+  "models": {
+    "Sage-A1.5": {
+      "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "model_type": "qwen3_5_moe"
+    },
+    "Agents-A1": {
+      "config_sha256": "5e4d7f74fec2f360eb9cfbfcd6ec0c4c76e684d3a11caaed259d9fd9bfbc7944",
+      "model_type": "qwen3_5_moe"
+    }
+  }
+}

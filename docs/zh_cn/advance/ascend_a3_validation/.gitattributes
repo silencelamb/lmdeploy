@@ -18,3 +18,8 @@ evidence/gated-norm-20261115/patches/*.patch -whitespace
 evidence/norm-perf-20261116/logs/*.log -whitespace
 evidence/norm-perf-20261116/patches/*.patch -whitespace
 evidence/norm-perf-20261116/inventory/norm-kernel/*.md -whitespace
+
+# Preserve MTP/Ray runtime traces and the failed diagnostic entry verbatim.
+evidence/mtp-ray-20261116/logs/*.log -whitespace
+evidence/mtp-ray-20261116/patches/*.patch -whitespace
+evidence/mtp-ray-20261116/ray-runtime-logs/* -whitespace
