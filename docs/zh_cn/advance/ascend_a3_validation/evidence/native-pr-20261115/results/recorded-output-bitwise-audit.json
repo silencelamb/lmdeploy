@@ -1,0 +1,199 @@
+{
+  "checked_at_utc": "2026-11-15T09:50:06.473730+00:00",
+  "scope": "Re-audit saved output traces; no model rerun. Token IDs match exactly, complete top-k token-ID sets match, and every saved score has identical IEEE-754 binary64 bytes after lossless JSON parsing. This checks returned values, not full internal logit tensors or kernel intermediates.",
+  "results": [
+    {
+      "model": "Sage-A1.5",
+      "category": "non-MTP",
+      "source_comparison": "compare-sage-eager-score-trace.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-sage-eager-score-trace.json",
+          "sha256": "b57b968a4a54359279864ba60db18c5be1d3015024017ed61ed8ba80e5615be7"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-sage-eager-score-trace.json",
+          "sha256": "4b57260682d853387af81e8dbf39a70d3fef415034f948f303e054cb269f1c5c"
+        }
+      ],
+      "responses": 21,
+      "generated_tokens": 1344,
+      "score_rows": 1344,
+      "score_values": 6720,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Sage-A1.5",
+      "category": "non-MTP",
+      "source_comparison": "compare-sage-graph-chunk256-score-trace.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-sage-graph-chunk256-score-trace.json",
+          "sha256": "78e9cbf020d619fd9f27740db7eaf0c67753c0ed7c6ebebd61d818b6c4f96b17"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-sage-graph-chunk256-score-trace.json",
+          "sha256": "2efe546093b696670fe807506adf4fe67f70701f9b2e16a134f5ced91991e015"
+        }
+      ],
+      "responses": 21,
+      "generated_tokens": 1344,
+      "score_rows": 1344,
+      "score_values": 6720,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Sage-A1.5",
+      "category": "non-MTP",
+      "source_comparison": "compare-sage-graph-prefix-extra.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-sage-graph-prefix-extra.json",
+          "sha256": "f3c427d3d5797502fc3b64e39562598b45d326dae63eed7ccbcf41fe3fe5fa2d"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-sage-graph-prefix-extra.json",
+          "sha256": "0e3e3e273eb78985dce551e6832293f36b7b90d84ffad6ee60f19932781e4a4a"
+        }
+      ],
+      "responses": 20,
+      "generated_tokens": 56,
+      "score_rows": 179,
+      "score_values": 920,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Agents-A1",
+      "category": "non-MTP",
+      "source_comparison": "compare-agents-eager.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-agents-eager-trace.json",
+          "sha256": "0d9d417ec22940b49a2cae7d6aa69b575e7a88e4f044516d3a3801e7d982f07a"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-agents-eager-trace.json",
+          "sha256": "c5fd7c6f00500f56127a16ed4a75a7bb90262dce34a0fb12e4785121c57da5a9"
+        }
+      ],
+      "responses": 21,
+      "generated_tokens": 1344,
+      "score_rows": 1344,
+      "score_values": 6720,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Agents-A1",
+      "category": "non-MTP",
+      "source_comparison": "compare-agents-graph-prefix-extra.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-agents-graph-prefix-extra.json",
+          "sha256": "c9ba66e71251c2d41ce49757171f506941934a49df3aa017bb1c341cd6c7f974"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-agents-graph-prefix-extra.json",
+          "sha256": "c6a20a29f150b8f8b9eb7d99e0afaf1ab012dc10b0b2f76d03f73badc01e2c6e"
+        }
+      ],
+      "responses": 20,
+      "generated_tokens": 56,
+      "score_rows": 179,
+      "score_values": 915,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Agents-A1",
+      "category": "non-MTP",
+      "source_comparison": "compare-agents-context-boundary.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-agents-context-boundary.json",
+          "sha256": "f0a97705dc8bf57ce67dbadec0db0d08ad5c12d89b4834eb0c265f03843e554d"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-agents-context-boundary.json",
+          "sha256": "a337581da04283470405abd84581fee96fc1dc99ce115d90fc05ccd3fe239570"
+        }
+      ],
+      "responses": 1,
+      "generated_tokens": 8,
+      "score_rows": 8,
+      "score_values": 40,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Sage-A1.5",
+      "category": "MTP3 prefix targeted case",
+      "source_comparison": "compare-sage-mtp3-prefix-quality.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-sage-mtp3-prefix-quality.json",
+          "sha256": "680b9c67092cb118217283b25fef578bcfd3c373014e4583b3360553d9878d5b"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-sage-mtp3-prefix-quality.json",
+          "sha256": "1ba7201508e97bbf791464af15f4360a9b8574f1846686114b7565b5d1620006"
+        }
+      ],
+      "responses": 16,
+      "generated_tokens": 56,
+      "score_rows": 56,
+      "score_values": 280,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    },
+    {
+      "model": "Sage-A1.5",
+      "category": "MTP3 long-context targeted case",
+      "source_comparison": "compare-context-boundary.json",
+      "sources": [
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/baseline-sage-context-boundary.json",
+          "sha256": "87f15966ac65291b2c23ceefee8262f4c99a7a53f9329746e34991ea6c821cc2"
+        },
+        {
+          "path": "/root/workspace/a3-validation-20261112/results/native-sage-context-boundary.json",
+          "sha256": "4357d32a47a158b3e7b110bb1cc6f322a8ff83002e0fa51ce95b88cb2c499903"
+        }
+      ],
+      "responses": 1,
+      "generated_tokens": 8,
+      "score_rows": 8,
+      "score_values": 40,
+      "token_mismatch_responses": 0,
+      "topk_key_mismatch_rows": 0,
+      "score_bit_mismatches": 0,
+      "first_mismatches": [],
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}
