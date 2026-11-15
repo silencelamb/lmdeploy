@@ -32,11 +32,14 @@ def test_circular_state_writeback(tokens, graph_mode):
     torch.npu.manual_seed_all(42)
     device = 'npu'
     slots, history = max(2, tokens), 27
-    q, k = (torch.randn(1, tokens, 8, 128, dtype=torch.bfloat16, device=device) for _ in range(2))
-    v = torch.randn(1, tokens, 16, 128, dtype=torch.bfloat16, device=device)
-    g = -torch.rand(1, tokens, 16, dtype=torch.float32, device=device)
-    beta = torch.rand(1, tokens, 16, dtype=torch.bfloat16, device=device)
-    initial = torch.randn(2 * slots, 16, 128, 128, dtype=torch.float32, device=device) * .01
+    # Preserve the fixed-input reproducer's CPU/device RNG split. Generating
+    # every input on device did not reliably expose the original write hazard.
+    q = torch.randn(1, tokens, 8, 128, dtype=torch.bfloat16, device='cpu').to(device)
+    k = torch.randn_like(q)
+    v = torch.randn(1, tokens, 16, 128, dtype=torch.bfloat16, device='cpu').to(device)
+    g = -torch.rand(1, tokens, 16, dtype=torch.float32, device='cpu').to(device)
+    beta = torch.rand(1, tokens, 16, dtype=torch.bfloat16, device='cpu').to(device)
+    initial = torch.randn(2 * slots, 16, 128, 128, dtype=torch.float32, device='cpu').to(device) * .01
     state = initial.clone()
     cu_seqlens = torch.tensor([0, tokens], dtype=torch.int32, device=device)
     state_ids = torch.tensor([1], dtype=torch.int64, device=device)
