@@ -1,0 +1,133 @@
+[W1115 17:54:11.874659439 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W1115 17:54:21.784505131 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 17:54:27.094462715 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-15 17:54:29,618	INFO worker.py:1927 -- Started a local Ray instance.
+[36m(TraceWorker pid=1686680)[0m [W1115 17:54:38.266658930 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(TraceWorker pid=1686680)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(TraceWorker pid=1686680)[0m     *************************************************************************************************************
+[36m(TraceWorker pid=1686680)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(TraceWorker pid=1686680)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(TraceWorker pid=1686680)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(TraceWorker pid=1686680)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(TraceWorker pid=1686680)[0m     The device parameters have been replaced with npu in the function below:
+[36m(TraceWorker pid=1686680)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(TraceWorker pid=1686680)[0m     *************************************************************************************************************
+[36m(TraceWorker pid=1686680)[0m     
+[36m(TraceWorker pid=1686680)[0m   warnings.warn(msg, ImportWarning)
+[36m(TraceWorker pid=1686680)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(TraceWorker pid=1686680)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(TraceWorker pid=1686681)[0m     
+[36m(TraceWorker pid=1686680)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(TraceWorker pid=1686680)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(TraceWorker pid=1686680)[0m [rank0]:[W1115 17:54:42.019962490 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:   0%|          | 0/14 [00:00<?, ?it/s]
+[36m(TraceWorker pid=1686681)[0m [W1115 17:54:38.267683185 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(TraceWorker pid=1686681)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(TraceWorker pid=1686681)[0m     *************************************************************************************************************[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(TraceWorker pid=1686681)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(TraceWorker pid=1686681)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(TraceWorker pid=1686681)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(TraceWorker pid=1686681)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(TraceWorker pid=1686681)[0m     The device parameters have been replaced with npu in the function below:
+[36m(TraceWorker pid=1686681)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(TraceWorker pid=1686681)[0m   warnings.warn(msg, ImportWarning)
+[36m(TraceWorker pid=1686681)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(TraceWorker pid=1686681)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(TraceWorker pid=1686681)[0m [rank1]:[W1115 17:54:42.019722219 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:   7%|▋         | 1/14 [00:00<00:12,  1.07it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  14%|█▍        | 2/14 [00:01<00:11,  1.03it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  21%|██▏       | 3/14 [00:03<00:11,  1.04s/it]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  29%|██▊       | 4/14 [00:04<00:10,  1.03s/it]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  43%|████▎     | 6/14 [00:05<00:05,  1.37it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  50%|█████     | 7/14 [00:05<00:05,  1.40it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  57%|█████▋    | 8/14 [00:06<00:04,  1.25it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  64%|██████▍   | 9/14 [00:07<00:04,  1.20it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  71%|███████▏  | 10/14 [00:08<00:03,  1.16it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  79%|███████▊  | 11/14 [00:09<00:02,  1.14it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  86%|████████▌ | 12/14 [00:10<00:01,  1.08it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors:  93%|█████████▎| 13/14 [00:11<00:00,  1.10it/s]
+[36m(TraceWorker pid=1686680)[0m Loading weights from safetensors: 100%|██████████| 14/14 [00:12<00:00,  1.14it/s]Loading weights from safetensors: 100%|██████████| 14/14 [00:12<00:00,  1.15it/s]
+[36m(TraceWorker pid=1686681)[0m [rank1]:[W1115 17:55:04.766636025 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+[36m(TraceWorker pid=1686680)[0m Warming up decoding:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(TraceWorker pid=1686680)[0m Warming up decoding:  25%|██▌       | 1/4 [00:00<00:01,  2.75it/s]
+[36m(TraceWorker pid=1686680)[0m Warming up decoding:  50%|█████     | 2/4 [00:00<00:00,  3.19it/s]
+[36m(TraceWorker pid=1686680)[0m Warming up decoding:  75%|███████▌  | 3/4 [00:00<00:00,  3.30it/s]
+[36m(TraceWorker pid=1686680)[0m Warming up decoding: 100%|██████████| 4/4 [00:01<00:00,  3.27it/s]Warming up decoding: 100%|██████████| 4/4 [00:01<00:00,  3.22it/s]
+HINT:    Please open [93m[1mhttp://127.0.0.1:25526[0m in a browser for detailed api usage!!!
+HINT:    Please open [93m[1mhttp://127.0.0.1:25526[0m in a browser for detailed api usage!!!
+HINT:    Please open [93m[1mhttp://127.0.0.1:25526[0m in a browser for detailed api usage!!!
+INFO:     Started server process [1685367]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:25526 (Press CTRL+C to quit)
+INFO:     127.0.0.1:45522 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45524 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-15 17:55:08,449 - lmdeploy - WARNING - messages.py:123 - `temperature` is 0, set top_k=1.
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(TraceWorker pid=1686680)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+[36m(TraceWorker pid=1686681)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 2x across cluster][0m
+/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+INFO:     127.0.0.1:45536 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45550 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 17:55:17 DP0] Avg thr (in/out): 50.7 / 64.1 tokens/s, Server (succeeded/failed/routed/waiting): 2 / 0 / 1 / 0, Engine (running/waiting): 1 / 0, KV cache: 0.0%, 
+INFO:     127.0.0.1:37998 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38010 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38020 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 17:55:27 DP0] Avg thr (in/out): 51.3 / 74.0 tokens/s, Server (succeeded/failed/routed/waiting): 5 / 0 / 1 / 0, Engine (running/waiting): 1 / 0, KV cache: 0.0%, 
+INFO:     127.0.0.1:59210 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59226 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59242 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59254 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59268 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 17:55:37 DP0] Avg thr (in/out): 85.3 / 140.0 tokens/s, Server (succeeded/failed/routed/waiting): 7 / 0 / 4 / 0, Engine (running/waiting): 4 / 0, KV cache: 0.2%, 
+INFO:     127.0.0.1:47576 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47580 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47592 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47598 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47600 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47616 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47630 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47642 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47652 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47668 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47682 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 17:55:47 DP0] Avg thr (in/out): 153.9 / 207.3 tokens/s, Server (succeeded/failed/routed/waiting): 19 / 0 / 4 / 0, Engine (running/waiting): 2 / 2, KV cache: 0.1%, 
+INFO:     127.0.0.1:43596 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43612 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43620 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43624 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43640 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43642 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43650 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43658 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 17:55:57 DP0] Avg thr (in/out): 171.0 / 205.0 tokens/s, Server (succeeded/failed/routed/waiting): 27 / 0 / 4 / 0, Engine (running/waiting): 4 / 0, KV cache: 0.1%, 
+INFO:     127.0.0.1:59780 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59796 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59802 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59814 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+[36m(TraceWorker pid=1686680)[0m [rank0]:[W1115 17:55:04.810510983 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1686136 is still running
+  _warn("subprocess %s is still running" % self.pid,
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1685367]

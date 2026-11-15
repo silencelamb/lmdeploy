@@ -1,0 +1,15 @@
+[2026-11-15 17:36:21,410 I 1645387 1645387] core_worker_process.cc:192: Constructing CoreWorkerProcess. pid: 1645387
+[2026-11-15 17:36:21,413 I 1645387 1645387] io_service_pool.cc:37: IOServicePool is running with 1 io_service.
+[2026-11-15 17:36:21,416 I 1645387 1645387] grpc_server.cc:140: worker server started, listening on port 44079.
+[2026-11-15 17:36:21,417 I 1645387 1645387] core_worker.cc:544: Initializing worker at address: 10.119.246.138:44079 worker_id=b70af7774cc0420b4e24f826ef29dd2ebef2c7e62c723da6ee307310 node_id=c03881523ddf12e7fedb829c107fb2ce0cb8ab8969f15f4f4654be87
+[2026-11-15 17:36:21,418 I 1645387 1645387] task_event_buffer.cc:287: Reporting task events to GCS every 1000ms.
+[2026-11-15 17:36:21,418 I 1645387 1645387] core_worker.cc:980: Adjusted worker niceness to 15
+[2026-11-15 17:36:21,419 I 1645387 1645387] event.cc:500: Ray Event initialized for CORE_WORKER
+[2026-11-15 17:36:21,419 I 1645387 1645387] event.cc:500: Ray Event initialized for EXPORT_TASK
+[2026-11-15 17:36:21,419 I 1645387 1645387] event.cc:331: Set ray event level to warning
+[2026-11-15 17:36:21,420 I 1645387 1645657] accessor.cc:784: Received notification for node, IsAlive = 1 node_id=c03881523ddf12e7fedb829c107fb2ce0cb8ab8969f15f4f4654be87
+[2026-11-15 17:36:21,420 I 1645387 1645657] core_worker.cc:5148: Number of alive nodes:1
+[2026-11-15 17:36:31,422 W 1645387 1645650] metric_exporter.cc:105: [1] Export metrics to agent failed: RpcError: RPC Error message: failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:62795: Failed to connect to remote host: Connection refused; RPC Error details:  rpc_code: 14. This won't affect Ray, but you can lose metrics from the cluster.
+[2026-11-15 17:37:53,687 I 1645387 1645657] accessor.cc:784: Received notification for node, IsAlive = 0 node_id=c03881523ddf12e7fedb829c107fb2ce0cb8ab8969f15f4f4654be87
+[2026-11-15 17:37:53,687 I 1645387 1645657] core_worker.cc:627: Node failure. All objects pinned on that node will be lost if object reconstruction is not enabled. node_id=c03881523ddf12e7fedb829c107fb2ce0cb8ab8969f15f4f4654be87
+[2026-11-15 17:37:53,687 I 1645387 1645657] core_worker.cc:5148: Number of alive nodes:0

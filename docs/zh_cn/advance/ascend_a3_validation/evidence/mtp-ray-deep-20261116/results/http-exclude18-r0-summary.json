@@ -1,0 +1,1018 @@
+{
+  "http_complete": true,
+  "http_batches": 14,
+  "measured_requests": 30,
+  "rpc_count": 3618,
+  "record_count": 39886,
+  "setup": [
+    {
+      "ray_version": "2.48.0",
+      "node": "dev-56007a17-0",
+      "cpu_arch": "aarch64",
+      "kind": "driver_setup",
+      "t_ns": 430750542656888,
+      "pid": 1685367,
+      "tid": 1685367
+    },
+    {
+      "ray_version": "2.48.0",
+      "node": "dev-56007a17-0",
+      "cpu_arch": "aarch64",
+      "kind": "driver_setup",
+      "t_ns": 430764495267456,
+      "pid": 1685633,
+      "tid": 1685633
+    }
+  ],
+  "long_rpc_waits": [],
+  "sse_gaps_over_100ms": [
+    {
+      "concurrency": 4,
+      "repeat": -1,
+      "warmup": true,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 672.800468,
+      "began_ns": 430836616772350,
+      "done_ns": 430837289572818,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": -1,
+      "warmup": true,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 448.491499,
+      "began_ns": 430836840649087,
+      "done_ns": 430837289140586,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": -1,
+      "warmup": true,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 232.801372,
+      "began_ns": 430837055767201,
+      "done_ns": 430837288568573,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 0,
+      "warmup": false,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 478.138497,
+      "began_ns": 430841597641842,
+      "done_ns": 430842075780339,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 0,
+      "warmup": false,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 462.420848,
+      "began_ns": 430841613017219,
+      "done_ns": 430842075438067,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 0,
+      "warmup": false,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 244.955033,
+      "began_ns": 430841830086172,
+      "done_ns": 430842075041205,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 1,
+      "warmup": false,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 646.98832,
+      "began_ns": 430846144068646,
+      "done_ns": 430846791056966,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 1,
+      "warmup": false,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 430.468449,
+      "began_ns": 430846360424626,
+      "done_ns": 430846790893075,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 1,
+      "warmup": false,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 220.015918,
+      "began_ns": 430846570705426,
+      "done_ns": 430846790721344,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 2,
+      "warmup": false,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 676.671198,
+      "began_ns": 430850913897065,
+      "done_ns": 430851590568263,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 2,
+      "warmup": false,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 457.020502,
+      "began_ns": 430851133376500,
+      "done_ns": 430851590397002,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 2,
+      "warmup": false,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 236.25639,
+      "began_ns": 430851353711470,
+      "done_ns": 430851589967860,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 3,
+      "warmup": false,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 684.392777,
+      "began_ns": 430855622125446,
+      "done_ns": 430856306518223,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 3,
+      "warmup": false,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 464.215277,
+      "began_ns": 430855842126125,
+      "done_ns": 430856306341402,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 3,
+      "warmup": false,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 224.443731,
+      "began_ns": 430856081461719,
+      "done_ns": 430856305905450,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 4,
+      "warmup": false,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 725.811163,
+      "began_ns": 430860452272276,
+      "done_ns": 430861178083439,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 4,
+      "warmup": false,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 500.559349,
+      "began_ns": 430860677361390,
+      "done_ns": 430861177920739,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 4,
+      "warmup": false,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 259.572986,
+      "began_ns": 430860918177642,
+      "done_ns": 430861177750628,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 5,
+      "warmup": false,
+      "response": 0,
+      "chunk_index": 1,
+      "gap_ms": 669.054649,
+      "began_ns": 430865453330610,
+      "done_ns": 430866122385259,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 5,
+      "warmup": false,
+      "response": 1,
+      "chunk_index": 1,
+      "gap_ms": 435.044741,
+      "began_ns": 430865687178347,
+      "done_ns": 430866122223088,
+      "slow_rpc_items": []
+    },
+    {
+      "concurrency": 4,
+      "repeat": 5,
+      "warmup": false,
+      "response": 2,
+      "chunk_index": 1,
+      "gap_ms": 227.403335,
+      "began_ns": 430865894645962,
+      "done_ns": 430866122049297,
+      "slow_rpc_items": []
+    }
+  ],
+  "heartbeat_delays": [
+    {
+      "role": "driver",
+      "expected_ns": 430870114485926,
+      "actual_ns": 430875063532009,
+      "late_ms": 4949.046083,
+      "kind": "heartbeat_late",
+      "t_ns": 430875063539000,
+      "pid": 1685633,
+      "tid": 1685633
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430812027807015,
+      "actual_ns": 430812313849704,
+      "late_ms": 286.042689,
+      "kind": "heartbeat_late",
+      "t_ns": 430812313853884,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430815698884707,
+      "actual_ns": 430815919285777,
+      "late_ms": 220.40107,
+      "kind": "heartbeat_late",
+      "t_ns": 430815919289507,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430819090718837,
+      "actual_ns": 430819308172473,
+      "late_ms": 217.453636,
+      "kind": "heartbeat_late",
+      "t_ns": 430819308177203,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430822580800478,
+      "actual_ns": 430822767655331,
+      "late_ms": 186.854853,
+      "kind": "heartbeat_late",
+      "t_ns": 430822767658731,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430825919462034,
+      "actual_ns": 430826140937489,
+      "late_ms": 221.475455,
+      "kind": "heartbeat_late",
+      "t_ns": 430826140940949,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430829495452893,
+      "actual_ns": 430829726829138,
+      "late_ms": 231.376245,
+      "kind": "heartbeat_late",
+      "t_ns": 430829726836038,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430832927025252,
+      "actual_ns": 430833120087326,
+      "late_ms": 193.062074,
+      "kind": "heartbeat_late",
+      "t_ns": 430833120091016,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430836390127239,
+      "actual_ns": 430836608780040,
+      "late_ms": 218.652801,
+      "kind": "heartbeat_late",
+      "t_ns": 430836608783540,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430836618867970,
+      "actual_ns": 430836832601817,
+      "late_ms": 213.733847,
+      "kind": "heartbeat_late",
+      "t_ns": 430836832604797,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430836842676928,
+      "actual_ns": 430837049431420,
+      "late_ms": 206.754492,
+      "kind": "heartbeat_late",
+      "t_ns": 430837049434510,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430837059496130,
+      "actual_ns": 430837259331487,
+      "late_ms": 199.835357,
+      "kind": "heartbeat_late",
+      "t_ns": 430837259337837,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430841175883667,
+      "actual_ns": 430841385962926,
+      "late_ms": 210.079259,
+      "kind": "heartbeat_late",
+      "t_ns": 430841385967756,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430841396052486,
+      "actual_ns": 430841594192475,
+      "late_ms": 198.139989,
+      "kind": "heartbeat_late",
+      "t_ns": 430841594195635,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430841615100349,
+      "actual_ns": 430841821020507,
+      "late_ms": 205.920158,
+      "kind": "heartbeat_late",
+      "t_ns": 430841821023027,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430841831085698,
+      "actual_ns": 430842048479333,
+      "late_ms": 217.393635,
+      "kind": "heartbeat_late",
+      "t_ns": 430842048481753,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430845932668211,
+      "actual_ns": 430846136027706,
+      "late_ms": 203.359495,
+      "kind": "heartbeat_late",
+      "t_ns": 430846136031276,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430846146112636,
+      "actual_ns": 430846352516197,
+      "late_ms": 206.403561,
+      "kind": "heartbeat_late",
+      "t_ns": 430846352519907,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430846362598957,
+      "actual_ns": 430846561187068,
+      "late_ms": 198.588111,
+      "kind": "heartbeat_late",
+      "t_ns": 430846561190348,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430846571262638,
+      "actual_ns": 430846758893505,
+      "late_ms": 187.630867,
+      "kind": "heartbeat_late",
+      "t_ns": 430846758896195,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430850689380474,
+      "actual_ns": 430850904955520,
+      "late_ms": 215.575046,
+      "kind": "heartbeat_late",
+      "t_ns": 430850904959210,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430850915039131,
+      "actual_ns": 430851125432571,
+      "late_ms": 210.39344,
+      "kind": "heartbeat_late",
+      "t_ns": 430851125435981,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430851135515851,
+      "actual_ns": 430851346037432,
+      "late_ms": 210.521581,
+      "kind": "heartbeat_late",
+      "t_ns": 430851346041012,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430851356120592,
+      "actual_ns": 430851563195896,
+      "late_ms": 207.075304,
+      "kind": "heartbeat_late",
+      "t_ns": 430851563201516,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430855386274849,
+      "actual_ns": 430855611687634,
+      "late_ms": 225.412785,
+      "kind": "heartbeat_late",
+      "t_ns": 430855611692674,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430855621764285,
+      "actual_ns": 430855833494751,
+      "late_ms": 211.730466,
+      "kind": "heartbeat_late",
+      "t_ns": 430855833497641,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430855843559842,
+      "actual_ns": 430856071387859,
+      "late_ms": 227.828017,
+      "kind": "heartbeat_late",
+      "t_ns": 430856071390969,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430856081445319,
+      "actual_ns": 430856282103761,
+      "late_ms": 200.658442,
+      "kind": "heartbeat_late",
+      "t_ns": 430856282107471,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430860233683725,
+      "actual_ns": 430860441945755,
+      "late_ms": 208.26203,
+      "kind": "heartbeat_late",
+      "t_ns": 430860441949195,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430860452022685,
+      "actual_ns": 430860666875658,
+      "late_ms": 214.852973,
+      "kind": "heartbeat_late",
+      "t_ns": 430860666878778,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430860676941928,
+      "actual_ns": 430860906975746,
+      "late_ms": 230.033818,
+      "kind": "heartbeat_late",
+      "t_ns": 430860906979426,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430860917046176,
+      "actual_ns": 430861148559852,
+      "late_ms": 231.513676,
+      "kind": "heartbeat_late",
+      "t_ns": 430861148563262,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430865219761354,
+      "actual_ns": 430865443914723,
+      "late_ms": 224.153369,
+      "kind": "heartbeat_late",
+      "t_ns": 430865443918043,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430865453982433,
+      "actual_ns": 430865677679659,
+      "late_ms": 223.697226,
+      "kind": "heartbeat_late",
+      "t_ns": 430865677682879,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430865687745780,
+      "actual_ns": 430865887443146,
+      "late_ms": 199.697366,
+      "kind": "heartbeat_late",
+      "t_ns": 430865887446456,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430865897510857,
+      "actual_ns": 430866096898832,
+      "late_ms": 199.387975,
+      "kind": "heartbeat_late",
+      "t_ns": 430866096901922,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430870130033404,
+      "actual_ns": 430873098505401,
+      "late_ms": 2968.471997,
+      "kind": "heartbeat_late",
+      "t_ns": 430873098510321,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-1",
+      "expected_ns": 430873159527796,
+      "actual_ns": 430873704604306,
+      "late_ms": 545.07651,
+      "kind": "heartbeat_late",
+      "t_ns": 430873704727557,
+      "pid": 1686681,
+      "tid": 1686952
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430812033643274,
+      "actual_ns": 430812313275871,
+      "late_ms": 279.632597,
+      "kind": "heartbeat_late",
+      "t_ns": 430812313279631,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430815698642396,
+      "actual_ns": 430815919154136,
+      "late_ms": 220.51174,
+      "kind": "heartbeat_late",
+      "t_ns": 430815919158426,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430819093055929,
+      "actual_ns": 430819308196603,
+      "late_ms": 215.140674,
+      "kind": "heartbeat_late",
+      "t_ns": 430819308201403,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430822538659198,
+      "actual_ns": 430822767089058,
+      "late_ms": 228.42986,
+      "kind": "heartbeat_late",
+      "t_ns": 430822767092828,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430825920525079,
+      "actual_ns": 430826141702433,
+      "late_ms": 221.177354,
+      "kind": "heartbeat_late",
+      "t_ns": 430826141709923,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430829497482454,
+      "actual_ns": 430829726571587,
+      "late_ms": 229.089133,
+      "kind": "heartbeat_late",
+      "t_ns": 430829726574837,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430832927050852,
+      "actual_ns": 430833120487108,
+      "late_ms": 193.436256,
+      "kind": "heartbeat_late",
+      "t_ns": 430833120490838,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430836392287369,
+      "actual_ns": 430836609263212,
+      "late_ms": 216.975843,
+      "kind": "heartbeat_late",
+      "t_ns": 430836609267172,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430836619341983,
+      "actual_ns": 430836833082740,
+      "late_ms": 213.740757,
+      "kind": "heartbeat_late",
+      "t_ns": 430836833086300,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430836843142600,
+      "actual_ns": 430837048384814,
+      "late_ms": 205.242214,
+      "kind": "heartbeat_late",
+      "t_ns": 430837048388114,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430837058442985,
+      "actual_ns": 430837258570743,
+      "late_ms": 200.127758,
+      "kind": "heartbeat_late",
+      "t_ns": 430837258573803,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430841175459815,
+      "actual_ns": 430841384637709,
+      "late_ms": 209.177894,
+      "kind": "heartbeat_late",
+      "t_ns": 430841384641409,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430841394703489,
+      "actual_ns": 430841593820563,
+      "late_ms": 199.117074,
+      "kind": "heartbeat_late",
+      "t_ns": 430841593823783,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430841614160395,
+      "actual_ns": 430841821249448,
+      "late_ms": 207.089053,
+      "kind": "heartbeat_late",
+      "t_ns": 430841821253088,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430841831322649,
+      "actual_ns": 430842048547263,
+      "late_ms": 217.224614,
+      "kind": "heartbeat_late",
+      "t_ns": 430842048549743,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430845932997113,
+      "actual_ns": 430846136440238,
+      "late_ms": 203.443125,
+      "kind": "heartbeat_late",
+      "t_ns": 430846136443808,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430846146505038,
+      "actual_ns": 430846352215385,
+      "late_ms": 205.710347,
+      "kind": "heartbeat_late",
+      "t_ns": 430846352218425,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430846362279245,
+      "actual_ns": 430846561618340,
+      "late_ms": 199.339095,
+      "kind": "heartbeat_late",
+      "t_ns": 430846561620990,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430846571685391,
+      "actual_ns": 430846759078496,
+      "late_ms": 187.393105,
+      "kind": "heartbeat_late",
+      "t_ns": 430846759081426,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430850689537555,
+      "actual_ns": 430850905807705,
+      "late_ms": 216.27015,
+      "kind": "heartbeat_late",
+      "t_ns": 430850905812625,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430850915873225,
+      "actual_ns": 430851126081594,
+      "late_ms": 210.208369,
+      "kind": "heartbeat_late",
+      "t_ns": 430851126084664,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430851136135814,
+      "actual_ns": 430851346727145,
+      "late_ms": 210.591331,
+      "kind": "heartbeat_late",
+      "t_ns": 430851346730265,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430851356779886,
+      "actual_ns": 430851564582863,
+      "late_ms": 207.802977,
+      "kind": "heartbeat_late",
+      "t_ns": 430851564587983,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430855397434985,
+      "actual_ns": 430855612250857,
+      "late_ms": 214.815872,
+      "kind": "heartbeat_late",
+      "t_ns": 430855612253987,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430855622307687,
+      "actual_ns": 430855833510882,
+      "late_ms": 211.203195,
+      "kind": "heartbeat_late",
+      "t_ns": 430855833514072,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430855843563472,
+      "actual_ns": 430856070947297,
+      "late_ms": 227.383825,
+      "kind": "heartbeat_late",
+      "t_ns": 430856070950757,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430856081031557,
+      "actual_ns": 430856281086126,
+      "late_ms": 200.054569,
+      "kind": "heartbeat_late",
+      "t_ns": 430856281090536,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430860233207413,
+      "actual_ns": 430860442044435,
+      "late_ms": 208.837022,
+      "kind": "heartbeat_late",
+      "t_ns": 430860442049545,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430860452129666,
+      "actual_ns": 430860667767382,
+      "late_ms": 215.637716,
+      "kind": "heartbeat_late",
+      "t_ns": 430860667774542,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430860677856842,
+      "actual_ns": 430860909155307,
+      "late_ms": 231.298465,
+      "kind": "heartbeat_late",
+      "t_ns": 430860909160797,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430860919241517,
+      "actual_ns": 430861149255265,
+      "late_ms": 230.013748,
+      "kind": "heartbeat_late",
+      "t_ns": 430861149259305,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430865217222471,
+      "actual_ns": 430865443519201,
+      "late_ms": 226.29673,
+      "kind": "heartbeat_late",
+      "t_ns": 430865443523881,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430865453577081,
+      "actual_ns": 430865678239672,
+      "late_ms": 224.662591,
+      "kind": "heartbeat_late",
+      "t_ns": 430865678242872,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430865688316653,
+      "actual_ns": 430865886717293,
+      "late_ms": 198.40064,
+      "kind": "heartbeat_late",
+      "t_ns": 430865886720883,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430865896793363,
+      "actual_ns": 430866096090518,
+      "late_ms": 199.297155,
+      "kind": "heartbeat_late",
+      "t_ns": 430866096093728,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430870129252570,
+      "actual_ns": 430873035018644,
+      "late_ms": 2905.766074,
+      "kind": "heartbeat_late",
+      "t_ns": 430873035029244,
+      "pid": 1686680,
+      "tid": 1686951
+    },
+    {
+      "role": "worker-0",
+      "expected_ns": 430873177223034,
+      "actual_ns": 430873729301840,
+      "late_ms": 552.078806,
+      "kind": "heartbeat_late",
+      "t_ns": 430873729353090,
+      "pid": 1686680,
+      "tid": 1686951
+    }
+  ],
+  "limitations": [
+    "Probe changes acknowledgement payload and adds timestamps/heartbeats.",
+    "SSE chunks are not necessarily one token; first gaps may include prefill/capture.",
+    "worker exit -> deserialization does not by itself isolate Ray C++ or transport."
+  ]
+}

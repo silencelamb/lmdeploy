@@ -1,0 +1,603 @@
+{
+  "file": "results/ray-deep-nostats-r0.json",
+  "joins": 6000,
+  "slow_join_count": 14,
+  "maxima": {
+    "submit": 25.378567,
+    "to_input_restore": 532.868538,
+    "restore_to_handler": 16.902168,
+    "handler": 0.155371,
+    "exit_to_serialize": 2.993975,
+    "result_transport": 561.606053,
+    "restore_to_future": 2.428022,
+    "future_to_join": 544.150962
+  },
+  "slow": [
+    {
+      "item": 587,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 544.490174,
+      "delivery_ms": 2.01163,
+      "submit": 0.974695,
+      "to_input_restore": 0.812424,
+      "restore_to_handler": 0.224511,
+      "handler": 0.00509,
+      "exit_to_serialize": 0.112761,
+      "result_transport": 11.422539,
+      "restore_to_future": 0.05053,
+      "future_to_join": 544.150962
+    },
+    {
+      "item": 587,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 544.490174,
+      "delivery_ms": 2.208621,
+      "submit": 0.974695,
+      "to_input_restore": 0.990055,
+      "restore_to_handler": 0.243871,
+      "handler": 0.00708,
+      "exit_to_serialize": 0.148801,
+      "result_transport": 555.115839,
+      "restore_to_future": 0.0601,
+      "future_to_join": 0.213071
+    },
+    {
+      "item": 904,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 57.382256,
+      "delivery_ms": 2.333302,
+      "submit": 1.307077,
+      "to_input_restore": 0.865214,
+      "restore_to_handler": 0.161011,
+      "handler": 0.00526,
+      "exit_to_serialize": 0.09102,
+      "result_transport": 67.849821,
+      "restore_to_future": 0.03323,
+      "future_to_join": 0.608603
+    },
+    {
+      "item": 904,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 57.382256,
+      "delivery_ms": 4.008211,
+      "submit": 1.307077,
+      "to_input_restore": 2.524283,
+      "restore_to_handler": 0.176851,
+      "handler": 0.00438,
+      "exit_to_serialize": 0.08887,
+      "result_transport": 65.684219,
+      "restore_to_future": 0.049491,
+      "future_to_join": 1.086065
+    },
+    {
+      "item": 1293,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 79.27583,
+      "delivery_ms": 1.641348,
+      "submit": 0.744844,
+      "to_input_restore": 0.775494,
+      "restore_to_handler": 0.12101,
+      "handler": 0.00427,
+      "exit_to_serialize": 0.082121,
+      "result_transport": 89.458322,
+      "restore_to_future": 0.06253,
+      "future_to_join": 1.057806
+    },
+    {
+      "item": 1293,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 79.27583,
+      "delivery_ms": 1.98332,
+      "submit": 0.744844,
+      "to_input_restore": 1.026965,
+      "restore_to_handler": 0.211511,
+      "handler": 0.00428,
+      "exit_to_serialize": 0.150341,
+      "result_transport": 89.740363,
+      "restore_to_future": 0.034881,
+      "future_to_join": 0.393212
+    },
+    {
+      "item": 1630,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 238.913445,
+      "delivery_ms": 249.46465,
+      "submit": 0.609124,
+      "to_input_restore": 248.538694,
+      "restore_to_handler": 0.316832,
+      "handler": 0.01016,
+      "exit_to_serialize": 0.197901,
+      "result_transport": 1.838539,
+      "restore_to_future": 0.063021,
+      "future_to_join": 0.1256
+    },
+    {
+      "item": 1630,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 238.913445,
+      "delivery_ms": 1.91709,
+      "submit": 0.609124,
+      "to_input_restore": 1.158075,
+      "restore_to_handler": 0.149891,
+      "handler": 0.00518,
+      "exit_to_serialize": 0.085101,
+      "result_transport": 10.990367,
+      "restore_to_future": 0.03042,
+      "future_to_join": 238.671713
+    },
+    {
+      "item": 1796,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 1.551168,
+      "delivery_ms": 1.197916,
+      "submit": 0.672243,
+      "to_input_restore": 0.369912,
+      "restore_to_handler": 0.155761,
+      "handler": 0.00481,
+      "exit_to_serialize": 0.103731,
+      "result_transport": 561.21512,
+      "restore_to_future": 0.087241,
+      "future_to_join": 0.581663
+    },
+    {
+      "item": 1796,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 1.551168,
+      "delivery_ms": 1.370897,
+      "submit": 0.672243,
+      "to_input_restore": 0.570553,
+      "restore_to_handler": 0.128101,
+      "handler": 0.00302,
+      "exit_to_serialize": 0.07444,
+      "result_transport": 561.606053,
+      "restore_to_future": 0.03569,
+      "future_to_join": 0.100381
+    },
+    {
+      "item": 2477,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 522.605248,
+      "delivery_ms": 533.753142,
+      "submit": 0.624993,
+      "to_input_restore": 532.868538,
+      "restore_to_handler": 0.259611,
+      "handler": 0.00914,
+      "exit_to_serialize": 0.188651,
+      "result_transport": 1.206957,
+      "restore_to_future": 0.057491,
+      "future_to_join": 0.215351
+    },
+    {
+      "item": 2477,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 522.605248,
+      "delivery_ms": 1.371988,
+      "submit": 0.624993,
+      "to_input_restore": 0.614394,
+      "restore_to_handler": 0.132601,
+      "handler": 0.00338,
+      "exit_to_serialize": 0.07961,
+      "result_transport": 11.651888,
+      "restore_to_future": 0.0419,
+      "future_to_join": 522.281966
+    },
+    {
+      "item": 2985,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 498.276806,
+      "delivery_ms": 509.662932,
+      "submit": 0.706004,
+      "to_input_restore": 508.741767,
+      "restore_to_handler": 0.215161,
+      "handler": 0.00815,
+      "exit_to_serialize": 0.122531,
+      "result_transport": 1.114967,
+      "restore_to_future": 0.0621,
+      "future_to_join": 0.187391
+    },
+    {
+      "item": 2985,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 498.276806,
+      "delivery_ms": 1.475978,
+      "submit": 0.706004,
+      "to_input_restore": 0.599303,
+      "restore_to_handler": 0.170671,
+      "handler": 0.00438,
+      "exit_to_serialize": 0.096671,
+      "result_transport": 11.653458,
+      "restore_to_future": 0.04611,
+      "future_to_join": 497.881474
+    },
+    {
+      "item": 3133,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 519.150838,
+      "delivery_ms": 1.170857,
+      "submit": 0.694024,
+      "to_input_restore": 0.308962,
+      "restore_to_handler": 0.167871,
+      "handler": 0.00463,
+      "exit_to_serialize": 0.101911,
+      "result_transport": 11.870229,
+      "restore_to_future": 0.03468,
+      "future_to_join": 518.834506
+    },
+    {
+      "item": 3133,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 519.150838,
+      "delivery_ms": 1.378318,
+      "submit": 0.694024,
+      "to_input_restore": 0.548084,
+      "restore_to_handler": 0.13621,
+      "handler": 0.00329,
+      "exit_to_serialize": 0.075731,
+      "result_transport": 529.984541,
+      "restore_to_future": 0.09187,
+      "future_to_join": 0.483063
+    },
+    {
+      "item": 3639,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 459.494501,
+      "delivery_ms": 470.835617,
+      "submit": 0.679294,
+      "to_input_restore": 469.906521,
+      "restore_to_handler": 0.249802,
+      "handler": 0.00625,
+      "exit_to_serialize": 0.146091,
+      "result_transport": 1.228417,
+      "restore_to_future": 0.06434,
+      "future_to_join": 0.142661
+    },
+    {
+      "item": 3639,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 459.494501,
+      "delivery_ms": 1.541189,
+      "submit": 0.679294,
+      "to_input_restore": 0.679924,
+      "restore_to_handler": 0.181971,
+      "handler": 0.00442,
+      "exit_to_serialize": 0.116651,
+      "result_transport": 11.546607,
+      "restore_to_future": 0.04307,
+      "future_to_join": 459.171439
+    },
+    {
+      "item": 3969,
+      "mode": "direct",
+      "rank": 0,
+      "wait_ms": 454.562757,
+      "delivery_ms": 465.991294,
+      "submit": 0.699603,
+      "to_input_restore": 465.09231,
+      "restore_to_handler": 0.199381,
+      "handler": 0.00571,
+      "exit_to_serialize": 0.12639,
+      "result_transport": 1.048496,
+      "restore_to_future": 0.04961,
+      "future_to_join": 0.238291
+    },
+    {
+      "item": 3969,
+      "mode": "direct",
+      "rank": 1,
+      "wait_ms": 454.562757,
+      "delivery_ms": 1.704478,
+      "submit": 0.699603,
+      "to_input_restore": 0.790754,
+      "restore_to_handler": 0.214121,
+      "handler": 0.00543,
+      "exit_to_serialize": 0.125221,
+      "result_transport": 11.357487,
+      "restore_to_future": 0.03682,
+      "future_to_join": 454.230355
+    },
+    {
+      "item": 4505,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 308.11682,
+      "delivery_ms": 2.01322,
+      "submit": 1.121326,
+      "to_input_restore": 0.742513,
+      "restore_to_handler": 0.149381,
+      "handler": 0.00384,
+      "exit_to_serialize": 0.090501,
+      "result_transport": 318.863224,
+      "restore_to_future": 0.04364,
+      "future_to_join": 0.483752
+    },
+    {
+      "item": 4505,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 308.11682,
+      "delivery_ms": 2.145511,
+      "submit": 1.121326,
+      "to_input_restore": 0.842414,
+      "restore_to_handler": 0.181771,
+      "handler": 0.00544,
+      "exit_to_serialize": 0.11604,
+      "result_transport": 319.082616,
+      "restore_to_future": 0.03723,
+      "future_to_join": 0.11134
+    },
+    {
+      "item": 5525,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 491.616603,
+      "delivery_ms": 6.284232,
+      "submit": 1.97304,
+      "to_input_restore": 4.0403,
+      "restore_to_handler": 0.270892,
+      "handler": 0.00563,
+      "exit_to_serialize": 0.192251,
+      "result_transport": 499.139961,
+      "restore_to_future": 0.05287,
+      "future_to_join": 0.199891
+    },
+    {
+      "item": 5525,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 491.616603,
+      "delivery_ms": 3.256897,
+      "submit": 1.97304,
+      "to_input_restore": 1.109436,
+      "restore_to_handler": 0.174421,
+      "handler": 0.00361,
+      "exit_to_serialize": 0.08357,
+      "result_transport": 11.378357,
+      "restore_to_future": 0.04599,
+      "future_to_join": 491.106411
+    },
+    {
+      "item": 5668,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 499.350972,
+      "delivery_ms": 1.619248,
+      "submit": 0.898635,
+      "to_input_restore": 0.580063,
+      "restore_to_handler": 0.14055,
+      "handler": 0.00475,
+      "exit_to_serialize": 0.082491,
+      "result_transport": 511.308472,
+      "restore_to_future": 0.03816,
+      "future_to_join": 0.399972
+    },
+    {
+      "item": 5668,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 499.350972,
+      "delivery_ms": 1.781979,
+      "submit": 0.898635,
+      "to_input_restore": 0.750523,
+      "restore_to_handler": 0.132821,
+      "handler": 0.00387,
+      "exit_to_serialize": 0.0811,
+      "result_transport": 510.310548,
+      "restore_to_future": 0.06793,
+      "future_to_join": 1.207666
+    },
+    {
+      "item": 5791,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 89.566691,
+      "delivery_ms": 2.09907,
+      "submit": 1.118165,
+      "to_input_restore": 0.839265,
+      "restore_to_handler": 0.14164,
+      "handler": 0.00531,
+      "exit_to_serialize": 0.087681,
+      "result_transport": 100.269864,
+      "restore_to_future": 0.051941,
+      "future_to_join": 0.395312
+    },
+    {
+      "item": 5791,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 89.566691,
+      "delivery_ms": 3.391037,
+      "submit": 1.118165,
+      "to_input_restore": 2.018041,
+      "restore_to_handler": 0.254831,
+      "handler": 0.00873,
+      "exit_to_serialize": 0.739674,
+      "result_transport": 98.677256,
+      "restore_to_future": 0.03234,
+      "future_to_join": 0.060141
+    },
+    {
+      "item": 5847,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 161.373882,
+      "delivery_ms": 1.90864,
+      "submit": 0.830194,
+      "to_input_restore": 0.889015,
+      "restore_to_handler": 0.189431,
+      "handler": 0.00409,
+      "exit_to_serialize": 0.15526,
+      "result_transport": 12.283572,
+      "restore_to_future": 0.04861,
+      "future_to_join": 160.96499
+    },
+    {
+      "item": 5847,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 161.373882,
+      "delivery_ms": 5.302637,
+      "submit": 0.830194,
+      "to_input_restore": 4.111091,
+      "restore_to_handler": 0.361352,
+      "handler": 0.00547,
+      "exit_to_serialize": 0.228491,
+      "result_transport": 169.657073,
+      "restore_to_future": 0.050231,
+      "future_to_join": 0.12126
+    }
+  ],
+  "beats": {
+    "driver": [
+      {
+        "start_ns": 429699022426664,
+        "end_ns": 429699059994588,
+        "late_ms": 27.567923999999998
+      },
+      {
+        "start_ns": 429704477985448,
+        "end_ns": 429704558123752,
+        "late_ms": 70.138304
+      },
+      {
+        "start_ns": 429711831260540,
+        "end_ns": 429712388301968,
+        "late_ms": 547.041428
+      },
+      {
+        "start_ns": 429713488497531,
+        "end_ns": 429713516897177,
+        "late_ms": 18.399646
+      },
+      {
+        "start_ns": 429715025477446,
+        "end_ns": 429715040568543,
+        "late_ms": 5.0910969999999995
+      },
+      {
+        "start_ns": 429716813984852,
+        "end_ns": 429716836043800,
+        "late_ms": 12.058948000000001
+      },
+      {
+        "start_ns": 429736066981966,
+        "end_ns": 429736084754630,
+        "late_ms": 7.772663999999999
+      },
+      {
+        "start_ns": 429748120837255,
+        "end_ns": 429748151583790,
+        "late_ms": 20.746535
+      },
+      {
+        "start_ns": 429751094006612,
+        "end_ns": 429751110522835,
+        "late_ms": 6.516223
+      },
+      {
+        "start_ns": 429753279566977,
+        "end_ns": 429753588973323,
+        "late_ms": 299.406346
+      },
+      {
+        "start_ns": 429754333563869,
+        "end_ns": 429754353150498,
+        "late_ms": 9.586628999999999
+      },
+      {
+        "start_ns": 429756875728498,
+        "end_ns": 429756898732403,
+        "late_ms": 13.003905
+      },
+      {
+        "start_ns": 429759717441923,
+        "end_ns": 429759735813925,
+        "late_ms": 8.372001999999998
+      },
+      {
+        "start_ns": 429771748213395,
+        "end_ns": 429771776668998,
+        "late_ms": 18.455603
+      },
+      {
+        "start_ns": 429771840530299,
+        "end_ns": 429771856395909,
+        "late_ms": 5.86561
+      },
+      {
+        "start_ns": 429773278368082,
+        "end_ns": 429773368912008,
+        "late_ms": 80.543926
+      }
+    ],
+    "workers": [
+      [
+        {
+          "start_ns": 429722356469520,
+          "end_ns": 429722376050673,
+          "late_ms": 9.581153
+        },
+        {
+          "start_ns": 429739114992124,
+          "end_ns": 429739131707691,
+          "late_ms": 6.715567
+        },
+        {
+          "start_ns": 429768428702826,
+          "end_ns": 429768934419250,
+          "late_ms": 495.716424
+        }
+      ],
+      [
+        {
+          "start_ns": 429717867506316,
+          "end_ns": 429717884760766,
+          "late_ms": 7.2544499999999985
+        },
+        {
+          "start_ns": 429724220893897,
+          "end_ns": 429724236050735,
+          "late_ms": 5.1568380000000005
+        },
+        {
+          "start_ns": 429725104296182,
+          "end_ns": 429725121202530,
+          "late_ms": 6.906348000000001
+        },
+        {
+          "start_ns": 429734969797999,
+          "end_ns": 429734992018308,
+          "late_ms": 12.220309
+        },
+        {
+          "start_ns": 429739491265611,
+          "end_ns": 429739510458153,
+          "late_ms": 9.192542
+        },
+        {
+          "start_ns": 429739510469213,
+          "end_ns": 429739529950606,
+          "late_ms": 9.481393
+        }
+      ]
+    ]
+  },
+  "no_torch_npu": true
+}

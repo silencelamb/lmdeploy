@@ -1,0 +1,77 @@
+[2026-11-15 17:43:28,415 I 1660272 1660272] core_worker_process.cc:192: Constructing CoreWorkerProcess. pid: 1660272
+[2026-11-15 17:43:28,420 I 1660272 1660272] io_service_pool.cc:37: IOServicePool is running with 1 io_service.
+[2026-11-15 17:43:28,422 I 1660272 1660272] grpc_server.cc:140: worker server started, listening on port 46525.
+[2026-11-15 17:43:28,423 I 1660272 1660272] core_worker.cc:544: Initializing worker at address: 10.119.246.138:46525 worker_id=8643d09942dc9cdebf1b26a026834b8eb309e9f887f89c2c1efc4ea0 node_id=6ea2954533978db0f5b586524ec2e9b0bbb2124ac64c977a83256129
+[2026-11-15 17:43:28,424 I 1660272 1660272] task_event_buffer.cc:287: Reporting task events to GCS every 1000ms.
+[2026-11-15 17:43:28,425 I 1660272 1660272] core_worker.cc:980: Adjusted worker niceness to 15
+[2026-11-15 17:43:28,425 I 1660272 1660272] event.cc:500: Ray Event initialized for CORE_WORKER
+[2026-11-15 17:43:28,425 I 1660272 1660479] core_worker.cc:915: Event stats:
+
+
+Global stats: 13 total (9 active)
+Queueing time: mean = 18.675 us, max = 219.381 us, min = 8.550 us, total = 242.771 us
+Execution time:  mean = 59.700 us, total = 776.104 us
+Event stats:
+	PeriodicalRunner.RunFnPeriodically - 7 total (5 active, 1 running), Execution time: mean = 3.979 us, total = 27.850 us, Queueing time: mean = 32.562 us, max = 219.381 us, min = 8.550 us, total = 227.931 us
+	ray::rpc::WorkerInfoGcsService.grpc_client.AddWorkerInfo.OnReplyReceived - 1 total (0 active), Execution time: mean = 31.430 us, total = 31.430 us, Queueing time: mean = 14.840 us, max = 14.840 us, min = 14.840 us, total = 14.840 us
+	ray::rpc::WorkerInfoGcsService.grpc_client.AddWorkerInfo - 1 total (0 active), Execution time: mean = 716.824 us, total = 716.824 us, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	Publisher.CheckDeadSubscribers - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberCommandBatch - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberPoll - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorker.ExitIfParentRayletDies - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+
+-----------------
+Task execution event stats:
+
+Global stats: 0 total (0 active)
+Queueing time: mean = nan ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+Execution time:  mean = nan ns, total = 0.000 ns
+Event stats:
+
+-----------------
+Task Event stats:
+
+IO Service Stats:
+
+Global stats: 4 total (3 active)
+Queueing time: mean = 1.645 us, max = 6.580 us, min = 6.580 us, total = 6.580 us
+Execution time:  mean = 49.668 us, total = 198.671 us
+Event stats:
+	ray::rpc::TaskInfoGcsService.grpc_client.AddTaskEventData - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::TaskInfoGcsService.grpc_client.AddTaskEventData.OnReplyReceived - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	PeriodicalRunner.RunFnPeriodically - 1 total (0 active), Execution time: mean = 198.671 us, total = 198.671 us, Queueing time: mean = 6.580 us, max = 6.580 us, min = 6.580 us, total = 6.580 us
+	CoreWorker.deadline_timer.flush_task_events - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+Other Stats:
+	grpc_in_progress:0
+	current number of task status events in buffer: 0
+	current number of profile events in buffer: 0
+	current number of dropped task attempts tracked: 0
+	total task events sent: 0 MiB
+	total number of task attempts sent: 0
+	total number of task attempts dropped reported: 0
+	total number of sent failure: 0
+	num status task events dropped: 0
+	num profile task events dropped: 0
+
+
+[2026-11-15 17:43:28,425 I 1660272 1660272] event.cc:500: Ray Event initialized for EXPORT_TASK
+[2026-11-15 17:43:28,425 I 1660272 1660272] event.cc:331: Set ray event level to warning
+[2026-11-15 17:43:28,426 I 1660272 1660479] accessor.cc:784: Received notification for node, IsAlive = 1 node_id=6ea2954533978db0f5b586524ec2e9b0bbb2124ac64c977a83256129
+[2026-11-15 17:43:28,426 I 1660272 1660479] core_worker.cc:5148: Number of alive nodes:1
+[2026-11-15 17:43:28,696 I 1660272 1660272] actor_task_submitter.cc:73: Set actor max pending calls to -1 actor_id=3234cf8defb8bed7ecedcac301000000
+[2026-11-15 17:43:28,696 I 1660272 1660272] core_worker.cc:3405: Creating actor actor_id=3234cf8defb8bed7ecedcac301000000
+[2026-11-15 17:43:28,700 I 1660272 1660272] task_receiver.cc:160: Actor creation task finished, task_id: ffffffffffffffff3234cf8defb8bed7ecedcac301000000, actor_id: 3234cf8defb8bed7ecedcac301000000, actor_repr_name: 
+[2026-11-15 17:43:28,705 I 1660272 1660272] out_of_order_actor_scheduling_queue.cc:48: Setting actor as asyncio with max_concurrency=1000, and defined concurrency groups are:
+
+[2026-11-15 17:43:38,427 W 1660272 1660474] metric_exporter.cc:105: [1] Export metrics to agent failed: RpcError: RPC Error message: failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:34789: Failed to connect to remote host: Connection refused; RPC Error details:  rpc_code: 14. This won't affect Ray, but you can lose metrics from the cluster.
+[2026-11-15 17:44:22,454 I 1660272 1660479] core_worker.cc:4583: Force kill actor request has received. exiting immediately... The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 10.119.246.138 Owner worker exit type: INTENDED_USER_EXIT Worker exit detail: Owner's worker process has crashed.
+[2026-11-15 17:44:22,454 W 1660272 1660479] core_worker.cc:1263: Force exit the process.  Details: Worker exits because the actor is killed. The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 10.119.246.138 Owner worker exit type: INTENDED_USER_EXIT Worker exit detail: Owner's worker process has crashed.
+[2026-11-15 17:44:22,456 I 1660272 1660272] core_worker.cc:1172: Exit signal received, this process will exit after all outstanding tasks have finished, exit_type=SYSTEM_ERROR, detail=Worker exits unexpectedly by a signal. SystemExit is raised (sys.exit is called). Exit code: 1. The process receives a SIGTERM.
+[2026-11-15 17:44:22,456 I 1660272 1660272] core_worker.cc:1208: Wait for currently executing tasks in the underlying thread pools to finish.
+[2026-11-15 17:44:22,456 I 1660272 1660272] concurrency_group_manager.cc:99: Default executor is joining. If the 'Default executor is joined.' message is not printed after this, the worker is probably hanging because the actor task is running an infinite loop.
+[2026-11-15 17:44:22,456 I 1660272 1660272] concurrency_group_manager.cc:103: Default executor is joined.
+[2026-11-15 17:44:22,456 I 1660272 1660272] core_worker.cc:1250: Not draining reference counter since this is an actor worker.
+[2026-11-15 17:44:22,457 I 1660272 1660479] core_worker.cc:1143: Try killing all child processes of this worker as it exits. Child process pids: 
+[2026-11-15 17:44:22,458 I 1660272 1660479] core_worker.cc:1097: Sending disconnect message to the local raylet.
+[2026-11-15 17:44:22,458 I 1660272 1660479] raylet_client.cc:73: RayletClient::Disconnect, exit_type=INTENDED_SYSTEM_EXIT, exit_detail=Worker exits because the actor is killed. The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 10.119.246.138 Owner worker exit type: INTENDED_USER_EXIT Worker exit detail: Owner's worker process has crashed., has creation_task_exception_pb_bytes=0
+[2026-11-15 17:44:22,458 I 1660272 1660479] core_worker.cc:1103: Disconnected from the local raylet.

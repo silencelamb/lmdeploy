@@ -1,0 +1,6 @@
+{'input_ids': tensor([[90700,  8340,    25,   198]]), 'position_ids': tensor([[27, 28, 29, 30]]), 'inputs_embeds': None, 'state_ids': tensor([1]), 'mrope_position_ids': tensor([[27, 28, 29, 30],
+        [27, 28, 29, 30],
+        [27, 28, 29, 30]]), 'pixel_values': None, 'vis_cu_seqlens': None, 'vis_pos_emb': None, 'multimodal_mask': None, 'grid_thw': None, 'pos_embeds': None, 'return_input_embeds': False, 'ts_values': None, 'ts_lens': None, 'ts_sr': None}
+{'is_decoding': False, 'block_offsets': tensor([[1]], dtype=torch.int32), 'q_start_loc': tensor([0], dtype=torch.int32), 'q_seqlens': tensor([4], dtype=torch.int32), 'kv_seqlens': tensor([31], dtype=torch.int32), 'fill_seqlens': None, 'cu_seqlens_q': tensor([0, 4], dtype=torch.int32), 'cu_seqlens_k': None, 'quant_policy': <QuantPolicy.NONE: 0>, 'kv_start_indices': tensor([155, 156, 157, 158], dtype=torch.int32), 'block_size': 128, 'is_prefill_no_cache': False, 'max_q_seqlen': 4, 'max_kv_seq_len': 31, 'kv_flatten_size': 31, 'cu_seqlens_q_cpu': tensor([0, 4], dtype=torch.int32), 'kv_seqlens_cpu': tensor([31], dtype=torch.int32), 'quant_meta': {}, 'has_initial_state': None, 'is_multi_token_decoding': True, 'spec_conv_offsets': None, 'spec_state_offsets': None, 'cache_seqlens': tensor([27], dtype=torch.int32)}
+torch.Size([1, 4, 32])
+torch.Size([1, 4, 4096])

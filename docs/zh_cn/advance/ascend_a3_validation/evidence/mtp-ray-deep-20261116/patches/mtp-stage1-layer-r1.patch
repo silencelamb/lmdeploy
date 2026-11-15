@@ -1,0 +1,13 @@
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py
+index 0cf88087..587ff51f 100644
+--- a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py
+@@ -231,7 +231,7 @@ def fused_recurrent_gated_delta_rule_fwd(
+     BK, BV = triton.next_power_of_2(K), min(triton.next_power_of_2(V), 32)
+     NK, NV = triton.cdiv(K, BK), triton.cdiv(V, BV)
+     assert NK == 1, 'NK > 1 is not supported yet'
+-    num_stages = 3
++    num_stages = 1
+     num_warps = 1
+ 
+     o = q.new_empty(NK, *v.shape)

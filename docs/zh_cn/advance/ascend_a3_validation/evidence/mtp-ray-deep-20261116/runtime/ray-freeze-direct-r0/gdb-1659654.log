@@ -1,0 +1,827 @@
+[New LWP 1659669]
+[New LWP 1659670]
+[New LWP 1659671]
+[New LWP 1659672]
+[New LWP 1659673]
+[New LWP 1659674]
+[New LWP 1659675]
+[New LWP 1659676]
+[New LWP 1659677]
+[New LWP 1659678]
+[New LWP 1659679]
+[New LWP 1659680]
+[New LWP 1659681]
+[New LWP 1659682]
+[New LWP 1659683]
+[New LWP 1659684]
+[New LWP 1659685]
+[New LWP 1659686]
+[New LWP 1659687]
+[New LWP 1659688]
+[New LWP 1659689]
+[New LWP 1659690]
+[New LWP 1660181]
+[New LWP 1660182]
+[New LWP 1660265]
+[New LWP 1660266]
+[New LWP 1660267]
+[New LWP 1660268]
+[New LWP 1660269]
+[New LWP 1660270]
+[New LWP 1660590]
+[New LWP 1660591]
+[New LWP 1660592]
+[New LWP 1660593]
+[New LWP 1660594]
+[New LWP 1660595]
+[New LWP 1660596]
+[New LWP 1660597]
+[New LWP 1660598]
+[New LWP 1660599]
+[New LWP 1660600]
+[New LWP 1660601]
+[New LWP 1660602]
+[New LWP 1660603]
+[New LWP 1660604]
+[New LWP 1660605]
+[New LWP 1660606]
+[New LWP 1660607]
+[New LWP 1660608]
+[New LWP 1660609]
+[New LWP 1660610]
+[New LWP 1660611]
+[New LWP 1660612]
+[New LWP 1660802]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
+0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 55 (Thread 0xffe2a07cd880 (LWP 1660802) "grpc_global_tim"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d21d00 in timer_thread(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 54 (Thread 0xffe2a957d880 (LWP 1660612) "python"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d7d1f0 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cbb1e4 in cq_pluck(grpc_completion_queue*, void*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa65da828 in grpc::internal::BlockingUnaryCallImpl<google::protobuf::MessageLite, google::protobuf::MessageLite>::BlockingUnaryCallImpl(grpc::ChannelInterface*, grpc::internal::RpcMethod const&, grpc::ClientContext*, google::protobuf::MessageLite const&, google::protobuf::MessageLite*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa6701b64 in ray::rpc::InternalPubSubGcsService::Stub::GcsSubscriberPoll(grpc::ClientContext*, ray::rpc::GcsSubscriberPollRequest const&, ray::rpc::GcsSubscriberPollReply*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa66dc93c in ray::gcs::PythonGcsSubscriber::DoPoll(long, ray::rpc::PubMessage*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa66dd164 in ray::gcs::PythonGcsSubscriber::PollLogs(std::string*, long, ray::rpc::LogBatch*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 53 (Thread 0xffe2aa41d880 (LWP 1660611) "python"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d7d1f0 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cbb1e4 in cq_pluck(grpc_completion_queue*, void*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa65da828 in grpc::internal::BlockingUnaryCallImpl<google::protobuf::MessageLite, google::protobuf::MessageLite>::BlockingUnaryCallImpl(grpc::ChannelInterface*, grpc::internal::RpcMethod const&, grpc::ClientContext*, google::protobuf::MessageLite const&, google::protobuf::MessageLite*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa6701b64 in ray::rpc::InternalPubSubGcsService::Stub::GcsSubscriberPoll(grpc::ClientContext*, ray::rpc::GcsSubscriberPollRequest const&, ray::rpc::GcsSubscriberPollReply*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa66dc93c in ray::gcs::PythonGcsSubscriber::DoPoll(long, ray::rpc::PubMessage*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa66dd064 in ray::gcs::PythonGcsSubscriber::PollError(std::string*, long, ray::rpc::ErrorTableData*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 52 (Thread 0xffff797ed880 (LWP 1660610) "client.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa63ff37c in ray::rpc::ClientCallManager::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 51 (Thread 0xffff79ffd880 (LWP 1660609) "task_event_buff"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f208c0 in boost::asio::detail::epoll_reactor::run(long, boost::asio::detail::op_queue<boost::asio::detail::scheduler_operation>&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f20b70 in boost::asio::detail::scheduler::do_run_one(boost::asio::detail::conditionally_enabled_mutex::scoped_lock&, boost::asio::detail::scheduler_thread_info&, boost::system::error_code const&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f226d4 in boost::asio::detail::scheduler::run(boost::system::error_code&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f22e88 in boost::asio::io_context::run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa653d130 in ray::core::worker::TaskEventBufferImpl::Start(bool)::{lambda()#1}::operator()() const () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#8  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 50 (Thread 0xffff7cdfd880 (LWP 1660608) "client.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa63ff37c in ray::rpc::ClientCallManager::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 49 (Thread 0xffff7dbfd880 (LWP 1660607) "server.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa67dc8f4 in ray::rpc::GrpcServer::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 48 (Thread 0xffff825fd880 (LWP 1660606) "grpcpp_sync_ser"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cba538 in (anonymous namespace)::non_polling_poller_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa69265cc in grpc::Server::SyncRequestThreadManager::PollForWork(void**, bool*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa693eb44 in grpc::ThreadManager::MainWorkLoop() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa693ed78 in grpc::ThreadManager::WorkerThread::Run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 47 (Thread 0xffff8310d880 (LWP 1660605) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 46 (Thread 0xffff8391d880 (LWP 1660604) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 45 (Thread 0xffff8412d880 (LWP 1660603) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 44 (Thread 0xffff8493d880 (LWP 1660602) "nexting_thread"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6cfec3c in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#8  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 43 (Thread 0xffff8514d880 (LWP 1660601) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 42 (Thread 0xffff8595d880 (LWP 1660600) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 41 (Thread 0xffff8616d880 (LWP 1660599) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 40 (Thread 0xffff8697d880 (LWP 1660598) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 39 (Thread 0xffff8718d880 (LWP 1660597) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 38 (Thread 0xffff8799d880 (LWP 1660596) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 37 (Thread 0xffff881ad880 (LWP 1660595) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 36 (Thread 0xffff889bd880 (LWP 1660594) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 35 (Thread 0xffff891cd880 (LWP 1660593) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 34 (Thread 0xffff899dd880 (LWP 1660592) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 33 (Thread 0xffff8a1ed880 (LWP 1660591) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 32 (Thread 0xffff8a9fd880 (LWP 1660590) "nexting_thread"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692311c in grpc::(anonymous namespace)::CallbackAlternativeCQ::Ref()::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 31 (Thread 0xffff8b64d880 (LWP 1660270) "worker.io"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f208c0 in boost::asio::detail::epoll_reactor::run(long, boost::asio::detail::op_queue<boost::asio::detail::scheduler_operation>&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f20b70 in boost::asio::detail::scheduler::do_run_one(boost::asio::detail::conditionally_enabled_mutex::scoped_lock&, boost::asio::detail::scheduler_thread_info&, boost::system::error_code const&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f226d4 in boost::asio::detail::scheduler::run(boost::system::error_code&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f22e88 in boost::asio::io_context::run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa63f3a8c in ray::core::CoreWorker::RunIOService() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6789694 in thread_proxy () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#8  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 30 (Thread 0xffff8be5d880 (LWP 1660269) "client.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa63ff37c in ray::rpc::ClientCallManager::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 29 (Thread 0xffff8c66d880 (LWP 1660268) "python"):
+#0  0x0000ffffae654aac in clock_nanosleep () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffae659d0c in nanosleep () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000ffffa6f35f48 in AbslInternalSleepFor_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa69123d0 in opencensus::stats::StatsExporterImpl::RunWorkerLoop() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#6  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 28 (Thread 0xffff8ce7d880 (LWP 1660267) "client.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa63ff37c in ray::rpc::ClientCallManager::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 27 (Thread 0xffff8e17d880 (LWP 1660266) "python"):
+#0  0x0000ffffae654aac in clock_nanosleep () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffae659d0c in nanosleep () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000ffffa6f35f48 in AbslInternalSleepFor_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa690d8a8 in opencensus::stats::DeltaProducer::RunHarvesterLoop() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#6  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 26 (Thread 0xffff8f1fd880 (LWP 1660265) "python"):
+#0  0x0000ffffae61cba8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffae61f6c4 in pthread_cond_wait () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000ffffa6f20c30 in boost::asio::detail::scheduler::do_run_one(boost::asio::detail::conditionally_enabled_mutex::scoped_lock&, boost::asio::detail::scheduler_thread_info&, boost::system::error_code const&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f226d4 in boost::asio::detail::scheduler::run(boost::system::error_code&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f22e88 in boost::asio::io_context::run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa688205c in std::thread::_State_impl<std::thread::_Invoker<std::tuple<ray::IOServicePool::Run()::{lambda()#1}> > >::_M_run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#8  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 25 (Thread 0xffff8fffd880 (LWP 1660182) "client.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa63ff37c in ray::rpc::ClientCallManager::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 24 (Thread 0xffff90c7d880 (LWP 1660181) "global.accessor"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f208c0 in boost::asio::detail::epoll_reactor::run(long, boost::asio::detail::op_queue<boost::asio::detail::scheduler_operation>&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f20b70 in boost::asio::detail::scheduler::do_run_one(boost::asio::detail::conditionally_enabled_mutex::scoped_lock&, boost::asio::detail::scheduler_thread_info&, boost::system::error_code const&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f226d4 in boost::asio::detail::scheduler::run(boost::system::error_code&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f22e88 in boost::asio::io_context::run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa654fcd4 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<ray::gcs::GlobalStateAccessor::GlobalStateAccessor(ray::gcs::GcsClientOptions const&)::{lambda()#1}> > >::_M_run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#8  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 23 (Thread 0xffff933ee880 (LWP 1659690) "timer_manager"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d48e80 in grpc_event_engine::experimental::TimerManager::WaitUntil(grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d49554 in grpc_event_engine::experimental::TimerManager::MainLoop() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 22 (Thread 0xffff941fd880 (LWP 1659689) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 21 (Thread 0xffff94fde880 (LWP 1659688) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 20 (Thread 0xffff957ee880 (LWP 1659687) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 19 (Thread 0xffff965fd880 (LWP 1659686) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 18 (Thread 0xffff973fd880 (LWP 1659685) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 17 (Thread 0xffff981fd880 (LWP 1659684) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 16 (Thread 0xffff98ffd880 (LWP 1659683) "event_engine"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6d3cef0 in grpc_event_engine::experimental::Epoll1Poller::DoEpollWait(std::chrono::duration<long, std::ratio<1l, 1000000000l> >) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6d3d164 in grpc_event_engine::experimental::Epoll1Poller::Work(std::chrono::duration<long, std::ratio<1l, 1000000000l> >, absl::lts_20230802::FunctionRef<void ()>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6d2909c in grpc_event_engine::experimental::PosixEventEngine::PollerWorkInternal(std::shared_ptr<grpc_event_engine::experimental::PosixEnginePollerManager>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6d2aadc in void absl::lts_20230802::internal_any_invocable::LocalInvoker<false, void, grpc_event_engine::experimental::PosixEventEngine::PosixEventEngine()::{lambda()#1}&>(absl::lts_20230802::internal_any_invocable::TypeErasedState*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cb64 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 15 (Thread 0xffff99dfd880 (LWP 1659682) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 14 (Thread 0xffff9abfd880 (LWP 1659681) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 13 (Thread 0xffff9b9fd880 (LWP 1659680) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 12 (Thread 0xffff9c7fd880 (LWP 1659679) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 11 (Thread 0xffff9d3fd880 (LWP 1659678) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 10 (Thread 0xffff9dfcd880 (LWP 1659677) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 9 (Thread 0xffff9e9dd880 (LWP 1659676) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 8 (Thread 0xffff9f1ed880 (LWP 1659675) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 7 (Thread 0xffff9f9fd880 (LWP 1659674) "event_engine"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d4cac0 in grpc_event_engine::experimental::OriginalThreadPool::Queue::Step() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d4d5b8 in grpc_event_engine::experimental::OriginalThreadPool::ThreadFunc(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d4df0c in grpc_event_engine::experimental::OriginalThreadPool::StartThread(std::shared_ptr<grpc_event_engine::experimental::OriginalThreadPool::State>, grpc_event_engine::experimental::OriginalThreadPool::StartThreadReason)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6d7b944 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#10 0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 6 (Thread 0xffffa0bed880 (LWP 1659673) "client.poll0"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f3587c in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f354c4 in absl::lts_20230802::CondVar::WaitWithTimeout(absl::lts_20230802::Mutex*, absl::lts_20230802::Duration) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d7d1c4 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6cfe8c4 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffa6cf82f0 in pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#9  0x0000ffffa6cf7fb4 in grpc_pollset_work(grpc_pollset*, grpc_pollset_worker**, grpc_core::Timestamp) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#10 0x0000ffffa6cbb784 in cq_next(grpc_completion_queue*, gpr_timespec, void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#11 0x0000ffffa692328c in grpc::CompletionQueue::AsyncNextInternal(void**, bool*, gpr_timespec) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#12 0x0000ffffa63ff37c in ray::rpc::ClientCallManager::PollEventsFromCompletionQueue(int) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#13 0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+
+Thread 5 (Thread 0xffffa15fd880 (LWP 1659672) "grpc_global_tim"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d7d1f0 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d21d00 in timer_thread(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#9  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 4 (Thread 0xffffa25ed880 (LWP 1659671) "resolver-execut"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d7d1f0 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d6111c in grpc_core::Executor::ThreadMain(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#9  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 3 (Thread 0xffffa2dfd880 (LWP 1659670) "default-executo"):
+#0  0x0000ffffae685ba4 in syscall () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f358bc in absl::lts_20230802::synchronization_internal::FutexWaiter::WaitUntil(std::atomic<int>*, int, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f35948 in absl::lts_20230802::synchronization_internal::FutexWaiter::Wait(absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f3579c in AbslInternalPerThreadSemWait_lts_20230802 () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f353dc in absl::lts_20230802::CondVar::WaitCommon(absl::lts_20230802::Mutex*, absl::lts_20230802::synchronization_internal::KernelTimeout) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6d7d1f0 in gpr_cv_wait () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffa6d6111c in grpc_core::Executor::ThreadMain(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#7  0x0000ffffa6d7b8d0 in grpc_core::(anonymous namespace)::ThreadInternalsPosix::ThreadInternalsPosix(char const*, void (*)(void*), void*, bool*, grpc_core::Thread::Options const&)::{lambda(void*)#1}::_FUN(void*) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#8  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#9  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 2 (Thread 0xffffa3b7d880 (LWP 1659669) "gcs_client_io_s"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffa6f208c0 in boost::asio::detail::epoll_reactor::run(long, boost::asio::detail::op_queue<boost::asio::detail::scheduler_operation>&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#2  0x0000ffffa6f20b70 in boost::asio::detail::scheduler::do_run_one(boost::asio::detail::conditionally_enabled_mutex::scoped_lock&, boost::asio::detail::scheduler_thread_info&, boost::system::error_code const&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#3  0x0000ffffa6f226d4 in boost::asio::detail::scheduler::run(boost::system::error_code&) () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#4  0x0000ffffa6f22e88 in boost::asio::io_context::run() () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#5  0x0000ffffa6f6391c in execute_native_thread_routine () from /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_raylet.so
+#6  0x0000ffffae6203c8 in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+#7  0x0000ffffae689edc in ?? () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 1 (Thread 0xffffaef28020 (LWP 1659654) "python"):
+#0  0x0000ffffae68a07c in epoll_pwait () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000ffffabdf2660 in select_epoll_poll_impl (maxevents=<optimized out>, timeout_obj=<optimized out>, self=0xffff969a5930) at ./Modules/selectmodule.c:1620
+#2  select_epoll_poll (self=0xffff969a5930, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at ./Modules/clinic/selectmodule.c.h:962
+#3  0x0000ffffae866994 in _PyEval_EvalFrameDefault (tstate=0xffffaee07d80 <_PyRuntime+459008>, frame=0xffffaef5d598, throwflag=<optimized out>) at Python/bytecodes.c:3123
+#4  0x0000ffffae9c8ae8 in _PyEval_EvalFrame (throwflag=0, frame=0xffffaef5d020, tstate=0xffffaee07d80 <_PyRuntime+459008>) at ./Include/internal/pycore_ceval.h:89
+#5  _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0xffffad87bf80, func=0xffffabf609a0, tstate=0xffffaee07d80 <_PyRuntime+459008>) at Python/ceval.c:1685
+#6  PyEval_EvalCode (co=co@entry=0xffffac913120, globals=globals@entry=0xffffad87bf80, locals=locals@entry=0xffffad87bf80) at Python/ceval.c:580
+#7  0x0000ffffaea213dc in run_eval_code_obj (tstate=tstate@entry=0xffffaee07d80 <_PyRuntime+459008>, co=co@entry=0xffffac913120, globals=globals@entry=0xffffad87bf80, locals=locals@entry=0xffffad87bf80) at Python/pythonrun.c:1757
+#8  0x0000ffffaea214e8 in run_mod (mod=mod@entry=0xffffac30f1a0, filename=filename@entry=0xffffad8262b0, globals=globals@entry=0xffffad87bf80, locals=locals@entry=0xffffad87bf80, flags=flags@entry=0xfffff5b0ca40, arena=arena@entry=0xffffad799830) at Python/pythonrun.c:1778
+#9  0x0000ffffaea24300 in pyrun_file (flags=0xfffff5b0ca40, closeit=1, locals=0xffffad87bf80, globals=0xffffad87bf80, start=257, filename=0xffffad8262b0, fp=0xffffadf80200) at Python/pythonrun.c:1674
+#10 _PyRun_SimpleFileObject (fp=fp@entry=0xffffadf80200, filename=filename@entry=0xffffad8262b0, closeit=closeit@entry=1, flags=flags@entry=0xfffff5b0ca40) at Python/pythonrun.c:459
+#11 0x0000ffffaea24828 in _PyRun_AnyFileObject (fp=fp@entry=0xffffadf80200, filename=filename@entry=0xffffad8262b0, closeit=closeit@entry=1, flags=flags@entry=0xfffff5b0ca40) at Python/pythonrun.c:78
+#12 0x0000ffffaea4af7c in pymain_run_file_obj (skip_source_first_line=0, filename=0xffffad8262b0, program_name=0xffffac6db9f0) at Modules/main.c:361
+#13 pymain_run_file (config=0xffffaedaa960 <_PyRuntime+77024>) at Modules/main.c:380
+[Inferior 1 (process 1659654) detached]

@@ -1,0 +1,28 @@
+{
+  "commands": [
+    "g++ -O2 -std=c++17 scripts/pipe_control.cc -o tools/pipe_control_v2",
+    "taskset -c 18 tools/pipe_control_v2 results/pipe-cpu18-r2.json 1250 0 > logs/pipe-cpu18-r2.log 2>&1",
+    "taskset -c 42 tools/pipe_control results/pipe-cpu42-r0.json 2500 0 > logs/pipe-cpu42-r0.log 2>&1",
+    "python scripts/cpu18_monitor.py --seconds 45 --output results/cpu18-softirq-r1.jsonl",
+    "git push with GIT_CONFIG_GLOBAL=/dev/null and existing gh auth git-credential (session-local bypass of read mirror)"
+  ],
+  "external_affinity": {
+    "ray-affinity-node1-r0": "40-79",
+    "ray-exclude18-r0": "0-17,19-171,173-319",
+    "ray-exclude18-r1": "0-17,19-171,173-319",
+    "ray-exclude18-gc-r0": "0-17,19-171,173-319",
+    "http-agents-exclude18-r0": "0-17,19-171,173-319"
+  },
+  "notes": [
+    "run_deep.py captures inherited affinity for later runs; early taskset commands are recorded here.",
+    "Original pipe_control printed only wait/delivery slow counts. All timer results were rederived from raw sent_ns/join_ns. v2 also reports sleep explicitly.",
+    "Ray poll-r0 was attached to driver strace partway through; exclude from performance comparisons.",
+    "GDB freeze probes deliberately paused processes for roughly 5 seconds; use their pre-trigger captures only, never their maximum waits as natural pauses."
+  ],
+  "pipe_sources": {
+    "scripts/pipe_control.cc": "6bc54496fb12d482184ea012763de0e3e676b18004a88fe0e0055ecdba8ed663",
+    "artifacts/pipe_control-r0-source.cc": "2eaa7d094d589bdf69a2e886972966f44618c3a0cb8407bb971d5e115e296785",
+    "tools/pipe_control_v2": "ee444c3435683c1bd938a6050065493737ca263b8a40113240c109afba67f3f6",
+    "artifacts/pipe_control-r0-binary": "8b17cec13f960054493b7c824713a6d9de6b1071cf0d586e08bca1e93a1021aa"
+  }
+}

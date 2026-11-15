@@ -1,0 +1,23 @@
+[2026-11-15 17:36:21,395 I 1645388 1645388] core_worker_process.cc:192: Constructing CoreWorkerProcess. pid: 1645388
+[2026-11-15 17:36:21,410 I 1645388 1645388] io_service_pool.cc:37: IOServicePool is running with 1 io_service.
+[2026-11-15 17:36:21,413 I 1645388 1645388] grpc_server.cc:140: worker server started, listening on port 39273.
+[2026-11-15 17:36:21,414 I 1645388 1645388] core_worker.cc:544: Initializing worker at address: 10.119.246.138:39273 worker_id=eccb11e4722d7a5f7afa8f98a9d2fed5894259cfeaa85d482b95a36e node_id=c03881523ddf12e7fedb829c107fb2ce0cb8ab8969f15f4f4654be87
+[2026-11-15 17:36:21,417 I 1645388 1645388] task_event_buffer.cc:287: Reporting task events to GCS every 1000ms.
+[2026-11-15 17:36:21,417 I 1645388 1645388] core_worker.cc:980: Adjusted worker niceness to 15
+[2026-11-15 17:36:21,417 I 1645388 1645388] event.cc:500: Ray Event initialized for CORE_WORKER
+[2026-11-15 17:36:21,417 I 1645388 1645388] event.cc:500: Ray Event initialized for EXPORT_TASK
+[2026-11-15 17:36:21,417 I 1645388 1645388] event.cc:331: Set ray event level to warning
+[2026-11-15 17:36:21,418 I 1645388 1645630] accessor.cc:784: Received notification for node, IsAlive = 1 node_id=c03881523ddf12e7fedb829c107fb2ce0cb8ab8969f15f4f4654be87
+[2026-11-15 17:36:21,418 I 1645388 1645630] core_worker.cc:5148: Number of alive nodes:1
+[2026-11-15 17:36:21,577 I 1645388 1645388] actor_task_submitter.cc:73: Set actor max pending calls to -1 actor_id=774a9ccd69c84dd0e7a32ef801000000
+[2026-11-15 17:36:21,578 I 1645388 1645388] core_worker.cc:3405: Creating actor actor_id=774a9ccd69c84dd0e7a32ef801000000
+[2026-11-15 17:36:21,581 I 1645388 1645388] task_receiver.cc:160: Actor creation task finished, task_id: ffffffffffffffff774a9ccd69c84dd0e7a32ef801000000, actor_id: 774a9ccd69c84dd0e7a32ef801000000, actor_repr_name: 
+[2026-11-15 17:36:21,592 I 1645388 1645388] out_of_order_actor_scheduling_queue.cc:48: Setting actor as asyncio with max_concurrency=1000, and defined concurrency groups are:
+
+[2026-11-15 17:36:31,418 W 1645388 1645624] metric_exporter.cc:105: [1] Export metrics to agent failed: RpcError: RPC Error message: failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:62795: Failed to connect to remote host: Connection refused; RPC Error details:  rpc_code: 14. This won't affect Ray, but you can lose metrics from the cluster.
+[2026-11-15 17:37:53,552 I 1645388 1645630] core_worker.cc:4583: Force kill actor request has received. exiting immediately... The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 10.119.246.138 Owner worker exit type: INTENDED_USER_EXIT Worker exit detail: Owner's worker process has crashed.
+[2026-11-15 17:37:53,552 W 1645388 1645630] core_worker.cc:1263: Force exit the process.  Details: Worker exits because the actor is killed. The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 10.119.246.138 Owner worker exit type: INTENDED_USER_EXIT Worker exit detail: Owner's worker process has crashed.
+[2026-11-15 17:37:53,556 I 1645388 1645630] core_worker.cc:1143: Try killing all child processes of this worker as it exits. Child process pids: 
+[2026-11-15 17:37:53,556 I 1645388 1645630] core_worker.cc:1097: Sending disconnect message to the local raylet.
+[2026-11-15 17:37:53,556 I 1645388 1645630] raylet_client.cc:73: RayletClient::Disconnect, exit_type=INTENDED_SYSTEM_EXIT, exit_detail=Worker exits because the actor is killed. The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 10.119.246.138 Owner worker exit type: INTENDED_USER_EXIT Worker exit detail: Owner's worker process has crashed., has creation_task_exception_pb_bytes=0
+[2026-11-15 17:37:53,557 I 1645388 1645630] core_worker.cc:1103: Disconnected from the local raylet.

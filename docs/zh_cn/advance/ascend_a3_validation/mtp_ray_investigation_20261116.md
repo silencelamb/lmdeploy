@@ -1,9 +1,12 @@
-# MTP 贪婪验证与在线 Ray RPC 停顿定位
+# MTP target logits 与 Ray RPC 停顿定位
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
-本轮回答两个问题：MTP 输出不一致是否误用了随机拒绝采样，以及此前 pipeline 中的 Ray 等待是否也会影响在线请求。
-**MTP 本轮实际执行了贪婪验证，分歧前 target logits 已经不同；真实 HTTP 路径也捕获到一次约 484 ms 的同步停顿，主要时间发生在 worker 进入输入提交方法之前。两个问题的最终触发原因尚未解决。**
+**接续结论：MTP 已定位到 Ascend GDN 循环状态写回的自动多缓冲编译路径，并在独立研究分支完成修复验证；Ray 的约半秒停顿已追到本机 CPU 18 的周期性 softirq 占用，已验证进程 CPU 亲和性规避。具体内核回调仍未确认。**
+
+修复：[dfa3049f](https://github.com/silencelamb/lmdeploy/commit/dfa3049f1575305b7564d6f15c48022661bd902a)，回归夹具补强：[d2d933da](https://github.com/silencelamb/lmdeploy/commit/d2d933dad7c6eb55b26ad5b83667c2077e23ca6c)，分支 `research/ascend-mtp-gdn-state-20261116`；未改动原生迁移 PR。详细实验、限制和复现见本文末尾[接续调查](#接续调查固定状态重放与主机调度定位)。
+
+以下至“接续调查”之前保留首轮记录。当时确认了贪婪验证、target logits 分歧及真实 HTTP 的约 484 ms 停顿；其“尚未完成”条目描述首轮状态，最新完成状态以后续章节为准。
 
 ## 固定版本与范围
 
@@ -149,3 +152,147 @@ python scripts/analyze.py --ray-label http-agents-r1 --http-file http-agents-ray
 MTP 的优先入口是第一条请求、第 17 个输出 token、第 5 个 verifier block；Ray 的优先入口是在线 trace item 3220。
 后续应分别记录 worker 收到输入对象、反序列化开始/结束和 actor 方法调度的时间，并对照相同 Ray 版本下的 CPU-only、实际模型与 H200 环境。
 所有后续修复保持独立研究分支，不把尚未确认的算法或调度变更混入原生迁移 PR。
+
+## 接续调查：固定状态重放与主机调度定位
+
+接续实验时间：2026-11-15 17:31–18:11 UTC，即 2026-11-16 Asia/Shanghai。
+汇总：[机器可读结果](evidence/mtp-ray-deep-20261116/results/deep-investigation-summary-r2.json)；[证据索引](evidence/mtp-ray-deep-20261116/index.json)。
+
+### 版本、隔离与判据
+
+- 原始原生源码仍为 `5f1b1b3c12b1c198813f65275f778c7ad292fb02`；原生 PR checkout 保持干净。
+- 计算核修复为 `dfa3049f1575305b7564d6f15c48022661bd902a`，仅修改 Ascend recurrent GDN 编译选项并新增硬件回归；最终研究分支 HEAD `d2d933dad7c6eb55b26ad5b83667c2077e23ca6c` 补强回归输入，计算核不变。开发分支、同事目录和当前迁移 PR 均未改动。
+- 沿用交接的 native venv、模型与 Ray 2.48.0；未安装或导入 dlinfer。driver/worker 继续使用 import guard，环境审计确认包不可发现、未安装。详情：[环境](evidence/mtp-ray-deep-20261116/inventory/deep-environment-r2.json)。
+- MTP 在 driver 和每个 worker 明确固定 Python、NumPy、Torch、NPU seed 42；请求保持 `do_sample=False, top_k=1, temperature=1, random_seed=42`。
+- [实验前判据](evidence/mtp-ray-deep-20261116/ACCEPTANCE-deep-r1.md)：只比较相同输入历史；保存有效 state/cache、位置与层输出；不将同步拷贝探针当性能数据；Ray 保留全部 await、提交和释放顺序，>50 ms 仍作为慢样本。
+- 下表另列 >300 ms，是对已观测半秒停顿的分类，不取代 >50 ms 判据。新 label 保留全部失败，未覆盖项不算通过。
+
+### MTP：首次差异发生在 GDN 状态写回
+
+对原生源码做两次独立、全局固定种子的单请求运行，Sage-A1.5、TP2、MTP3、BF16、graph、prefix 开启，生成 24 token。为容纳诊断克隆，将 cache fraction 从 0.95 调为 0.7；两边相同。随后无层快照的 21 响应验证恢复 0.95。
+
+探针在设备上克隆层输出和缓存，graph capture 时把克隆也录入图，外层 forward 返回后才同步读回。保存两个 rank、40 层、前 8 次 target forward；attention KV 取活动请求首个 block，覆盖本例全部有效 token，GDN/卷积取活动 state ID 的全部槽。位置、state ID、cache length、KV block/index、输入 IDs 均保存。完整快照约 17 GiB，留在本机 `artifacts/mtp-deep-*`，哈希见[本机大文件清单](evidence/mtp-ray-deep-20261116/local-artifacts-manifest.json)。
+
+原生 `layer-graph-r1/r2` 的时间顺序是：
+
+1. 27-token prefill：两个 rank 的已记录层输出、卷积/GDN 状态及 KV **全部相同**。
+2. 第一个 4-token target block：输入 `[90700,8340,25,198]`，位置 `[27,28,29,30]`、history length 27、state ID 1、初始缓存及所有已记录层输出仍相同；**写回后的 FP32 recurrent state 首次不同**，30 个 GDN 层均出现差异。卷积状态和 attention KV 此时没有差异。
+3. 下一次 target forward：第 0 层在读取前述不同状态后开始产生输出差异，随后传播到后续层。
+4. 两次前 16 个输出 token 相同，第 17 个再次分别为 728 / 279，复现交接入口。到 `step006` 输入 IDs 已不同，分析停止因果比较；未使用不同历史之后的分数解释根因。
+
+数据：[原生逐层比较](evidence/mtp-ray-deep-20261116/results/mtp-compare-layer-r1-r2.json)。这里的第一处异常是 FP32 状态写回，不能归结为最终 BF16 logits 的普通舍入差。
+
+### 固定输入的小复现与修复
+
+将 GDN 拆成无模型、无 Ray、无 HCCL、无采样的单算子重放；每次调用前恢复完全相同的初始状态并同步完成后检查输出与所有写回槽。另从上述第 0 层快照提取真实 Q/K/V、投影 b/a、初始状态，并从固定 checkpoint 读取该 TP rank 的 A_log/dt_bias。修复前后这些输入、状态和参数的 SHA256 **逐项相同**。
+
+| 固定输入重放 | 次数 | 输出不同于首次 | 状态不同于首次 | 观测最大状态差 |
+| --- | ---: | ---: | ---: | ---: |
+| 原始，合成输入，eager | 100 | 0 | 10 | 0.124178 |
+| 原始，合成输入，graph | 100 | 0 | 99 | 0.770633 |
+| 修复，合成输入，eager | 200 | 0 | 0 | 0 |
+| 修复，合成输入，graph | 200 | 0 | 0 | 0 |
+| 原始，真实第 0 层输入，graph | 200 | 0 | 199 | 0.456257 |
+| 修复，同一真实输入，graph | 200 | 0 | 0 | 0 |
+
+“不同于首次”是重复性计数，不等于逐次与真值比较的错误次数。为防止稳定地产生错误状态，还实现了独立 CPU FP32 recurrence，逐 token 计算每个 circular slot。预先规定状态 `atol=1e-5, rtol=1e-4`，BF16 输出 `atol=1e-3, rtol=1e-2`。真实输入原始 graph 首个快照的状态 max-abs 为 **0.456257**，不通过；修复后为 **1.90735e-6**，通过。两者当前输出均通过 BF16 输出检查。这解释了为什么只看本次输出会漏掉后续历史状态损坏。[真实输入 oracle](evidence/mtp-ray-deep-20261116/results/gdn-real-oracle-r0.json)
+
+修复把 **circular-state 路径**的 `num_stages` 设为 1，其他路径保留 3。安装的 Triton Ascend compiler 明确把 `num_stages=1` 映射到 `--enable-auto-multi-buffer=False`；计算公式、dtype、接受/拒绝和回滚槽规则均未改变。[编译选项映射及源码哈希](evidence/mtp-ray-deep-20261116/inventory/triton-multibuffer-mapping-r1.json)
+
+现有证据把问题定位到该 recurrent kernel 的自动多缓冲编译路径中的状态写回；尚未在编译器低层 IR 中指认具体缺失的依赖边或缓冲复用指令，不能把这个内部机理假说写成已证实的指令级结论。
+
+验证结果：
+
+- 新增硬件回归覆盖 query tokens 1/2/4 × eager/graph，共 **6 passed**；每项 32 次恢复初始状态，检查每个状态槽的 CPU oracle 和重复性。初始全部设备随机输入的一次旧核组合 pytest 未检出异常，保留为漏检观察；改为独立小复现的固定 CPU/device RNG 夹具并提前锁定实现模块来源后，原始源码在 2-token eager 项失败（max-abs 0.093989），修复源码六项通过。[补强后旧核失败](evidence/mtp-ray-deep-20261116/logs/gdn-pinned-original-r1.log)、[修复通过](evidence/mtp-ray-deep-20261116/logs/gdn-pinned-fixed-r1.log)
+- 同一回归用明确断言源码路径的入口，在原始 `5f1b1b3c` 上失败，max-abs **0.588359**；研究源码通过。[失败日志](evidence/mtp-ray-deep-20261116/logs/gdn-hardware-original-direct-r0.log)、[修复日志](evidence/mtp-ray-deep-20261116/logs/gdn-hardware-fixed-direct-r0.log)
+- 修复后两次单请求逐层快照，两个 rank、8 个 target forward 的已记录输入、位置、hidden、卷积/GDN 状态及 KV **全部逐元素相同**。[比较](evidence/mtp-ray-deep-20261116/results/mtp-compare-stage1-layer-r0-r1.json)
+- 恢复原 0.95 cache fraction，Sage MTP3/TP2/graph/prefix、每条 64 token、交接的 21 响应序列独立跑两遍：**21/21 token IDs 完整相同，21/21 返回 top-5 raw logprobs 相同**。两遍各 112 次 verifier、447 条请求级验证，共 894 条，均为贪婪、CPU 接受规则一致、验证器 RNG 不变。这里只认证已保存的 top-5 分数，不声称检查了整轮所有词表 logits。
+- 单算子 graph 计时，去掉前 10 次后的设备中位数为 **0.05215 → 0.05273 ms**，约 +1.1%；这是固定小形状微基准，不是整模型吞吐验收，且原实现的写回本身不正确。Ruff、AST 和 `git diff --check` 通过。
+
+历史归属也已核对：旧 dlinfer `3b909634` 与原生 `5f1b1b3c` 的三个 recurrent GDN 函数 AST 完全相同，包含原来的 `num_stages=3`。这是继承的 kernel 路径问题的源码证据；本轮没有重跑旧 dlinfer 环境，不能把这里的原生→研究修复称为迁移前后重新验收。[来源核对](evidence/mtp-ray-deep-20261116/inventory/gdn-migration-provenance-r1.json)
+
+### Ray：半秒停顿由 CPU 18 的执行机会丢失触发
+
+CPU 探针继续保留 `submit → sleep 12ms → join → free` 顺序，补充输入/结果对象恢复、方法入口/出口、future callback、心跳、Ray C++ event stats、线程 `/proc/*/schedstat` 和运行状态。原始 `ray.init` 会为资源探测加载 ACL；之后显式传 `resources={'NPU':0}`，并保存进程 maps，确认 driver/worker 均无 Torch、torch_npu 或 ACL，仍复现。
+
+注意：探针中的 `result_transport` 字段包含 future 在固定 sleep 后注册之前的时间，不能直接当作纯网络时延；单 rank 的 `future_to_join` 还可能在等另一 rank。最终归因使用下面的独立调度和 C++ 证据。
+
+`ray-sched-all-r0` 的半秒事件有一致特征：关键线程处于 **R（可运行）**、采样 CPU 为 **18**，却积累数百毫秒 runqueue wait。涉及不同层次，因此外部可表现为投递慢或确认慢：
+
+| item | 被延迟的线程 | join 等待 | runqueue 增量 |
+| ---: | --- | ---: | ---: |
+| 479 | driver `worker.io` | 542.033 ms | 543.177 ms |
+| 1322 | driver gRPC `nexting_thread` | 522.367 ms | 532.658 ms |
+| 1826 | actor 执行线程 | 512.737 ms | 521.472 ms |
+| 1984 | actor RPC 线程 | 341.133 ms | 351.582 ms |
+| 2330 | actor Python 事件循环线程 | 534.651 ms | 551.290 ms |
+
+这些样本中，慢区间的 R 状态采样均落在 CPU 18；线程恢复后可能迁移到其他 CPU。采样窗口的边界会包含相邻事件，不能把所有计数增量机械分摊给一个 RPC。[关键样本](evidence/mtp-ray-deep-20261116/results/ray-cpu18-critical-samples-r1.json)、[完整调度窗口摘要](evidence/mtp-ray-deep-20261116/results/ray-sched-all-r0-sched-summary.json)
+
+将复现进一步缩成 C++：两个 pipe 子进程、8 KiB 输入、12 ms `nanosleep`、再读取确认；**无 Python、Ray、模型或设备调用**。固定同一个 CPU 18 后，仅定时唤醒就周期性延迟约半秒：
+
+| C++ 对照 | 迭代数 | 12 ms sleep 实际超过 50 ms | 最大实际 sleep | 停顿起点间隔中位数 |
+| --- | ---: | ---: | ---: | ---: |
+| CPU 18，r0 | 2500 | 15 | 565.844 ms | 2.5614 s |
+| CPU 18，r1 | 2500 | 14 | 573.717 ms | 2.5605 s |
+| CPU 18，r2 | 1250 | 8 | 571.409 ms | 2.5579 s |
+| CPU 42，同程序/迭代数 | 2500 | 0 | 21.413 ms | — |
+| 不绑定，子进程 nice=15 | 6000 | 0 | 14.461 ms | — |
+
+CPU 42 上的独立监控器同时读取 `/proc/stat` 和 `/proc/softirqs`。例如 CPU 18 的 559.312 ms 唤醒延迟窗口对应 **55 个 softirq CPU tick（本机 CLK_TCK=100，约 550 ms）**，TASKLET 计数增加 1；其他长窗口也出现约 52–57 个 softirq tick。[对应数据](evidence/mtp-ray-deep-20261116/results/cpu18-stall-correlation-r1.json)
+
+由此可以确认这类半秒停顿的直接原因是 **本机 CPU 18 的周期性 softirq 执行使可运行用户线程长时间得不到 CPU**，Ray 将其暴露在不同提交/回调队列上。Ray、Python、Torch 和模型都不是复现这一主机停顿的必要条件。进程不加载 ACL 不代表宿主机 Ascend 驱动被排除。
+
+以下是边界，尚不能越过：
+
+- TASKLET 时间相关性和 CPU 18 的 IRQ 亲和性已保存。该 CPU 同时承接 NVMe、SAS、`trans msg_chan_rx_msg_notify` 等 IRQ；仅凭名字和计数不能把长回调确定归属某个驱动。[IRQ 清单](evidence/mtp-ray-deep-20261116/inventory/irq-cpu18-r0.json)
+- 容器内 `/proc/interrupts` 为空，读取目标内核栈被拒绝，tracefs 不可用。尚未获取具体 softirq/tasklet 回调栈或修复宿主机驱动。下一步需要宿主机侧的 `softirq_entry/exit`、tasklet 函数和 IRQ 时序采集。
+- 没有 H200/x86 实测；不能归因为 ARM 指令集，也不能推断 H200 一定免疫。
+
+### 本机缓解验证与剩余小停顿
+
+仅给命令及其子进程设置 CPU 亲和性，避开 CPU 18；没有删除 await、修改同步顺序、修改 Ray 或全局 IRQ/内核设置。
+
+| CPU-only 运行 | join 数 | >50 ms | >300 ms | 最大 join |
+| --- | ---: | ---: | ---: | ---: |
+| 默认探针 r0 | 6000 | 16 | 14 | 574.971 ms |
+| 绑定 CPU 40–79 | 6000 | 0 | 0 | 46.783 ms |
+| 仅排除 CPU 18，r0 | 6000 | 2 | 0 | 138.592 ms |
+| 仅排除 CPU 18，r1 | 6000 | 3 | 0 | 120.755 ms |
+| 排除 CPU 18，增加 GC 标记 | 6000 | 2 | 0 | 152.603 ms |
+| 排除 CPU 18，仅诊断性关闭 driver GC | 6000 | 0 | 0 | 25.848 ms |
+
+剩余 GC 标记运行的两次 join 分别为 152.603 / 107.111 ms，与 driver 的 generation-2 GC **150.707 / 104.523 ms** 重合；诊断性关闭 GC 后 6000 次没有 >50 ms。该探针在 driver 内存积累大量逐步记录，这部分停顿属于探针的对象/GC 开销控制，**不把关闭 GC 作为 LMDeploy 生产修复**。[GC 时间线](evidence/mtp-ray-deep-20261116/results/ray-exclude18-gc-r0-correlation.json)
+
+单独改 gRPC poller、关闭 Ray event stats、把 worker nice 改 0、去掉 jemalloc、减少 RPC 线程池，都仍捕获 >300 ms；这些是排除或缩小假说的对照，不是相互公平的吞吐基准。strace/GDB 运行也不计性能验收；GDB 冻结导致的约 5 秒暂停有单独标记。
+
+沿用首轮真实 HTTP 配置，只排除 CPU 18，在未改动的原生 PR 源码运行 Agents-A1 非 MTP、TP2、C1/C4 各 6 轮 + 预热、每条 256 token：**30 条测量请求及 5 条预热均完成，3618 次 RPC join 无 >50 ms，稳定测量阶段无 >100 ms SSE 间隔**。这是本机有限窗口内有效的缓解证据，不是所有尾延迟或宿主机问题永久消失的证明。[HTTP 汇总](evidence/mtp-ray-deep-20261116/results/http-exclude18-r0-summary.json)
+
+### 复现入口、失败和未覆盖范围
+
+本机根目录仍为 `/root/workspace/a3-mtp-ray-investigation-20261116`。发布证据提供[可执行脚本包](evidence/mtp-ray-deep-20261116/scripts.tar.gz)，各脚本亦有可读副本；`logs/*.json` 记录实际 checkout、HEAD、工作树 patch SHA、命令、环境与退出码，`run_deep.py` 另外保存每次脚本快照及继承的 CPU mask。大文件清单只列本机未上传的 tensor/syscall 原始数据及校验值，不冒充这些二进制已在 GitHub 可下载。
+
+```bash
+# 所有输出使用新 label / 文件名。以下命令在本机已有目录和隔离 venv 下运行。
+cd /root/workspace/a3-mtp-ray-investigation-20261116
+python scripts/run_deep.py --label gdn-recheck-new --devices 0 \
+  --repo /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-research -- \
+  /root/workspace/a3-mtp-ray-investigation-20261116/scripts/gdn_state_repro_v2.py \
+  --graph --iterations 200 --output /root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-recheck-new.json
+
+# 最小主机复现；同时检查实际 sleep，而不只检查消息返回时间。
+g++ -O2 -std=c++17 scripts/pipe_control.cc -o /tmp/a3-pipe-control
+taskset -c 18 /tmp/a3-pipe-control /tmp/a3-pipe-cpu18-new.json 2500 0
+taskset -c 42 /tmp/a3-pipe-control /tmp/a3-pipe-cpu42-new.json 2500 0
+
+# 仅改变当前命令和子进程的亲和性。CPU 18 是这台主机的观测，不应照搬其他主机。
+python scripts/launch_affinity.py --exclude 18 -- python scripts/run_deep.py \
+  --label ray-recheck-new -- \
+  /root/workspace/a3-mtp-ray-investigation-20261116/scripts/ray_deep_probe_v2.py \
+  --no-accelerators --iterations 1500 \
+  --output /root/workspace/a3-mtp-ray-investigation-20261116/results/ray-recheck-new.json
+```
+
+失败/漏检均保留：首次 seed 入口漏显式导入 torch_npu；首次全量快照在 0.95 cache 预算下 OOM；首次真实输入微复现误用超出可见逻辑设备范围的 ID 8，改为逻辑 ID 2；首次 pytest 缺 `--run-ascend-hardware`；旧核一次组合 pytest 未复现，不将其改写成旧核正确，后续模块来源审计也不支持凭空归因为 checkout 选择错误，最终以固定夹具、显式锁定来源的前后回归为准；环境检查中普通 `find_spec` 被 import guard 拒绝，随后用与 guard 启动检查相同的 PathFinder 只检查包是否存在。诊断入口失败不混入迁移或模型回归。
+
+未验证：其他模型、长上下文/高并发 MTP、MTP1 的完整模型链路、eager/prefix 关闭的完整模型矩阵、CUDA/H200、其他 CANN/Triton 版本、修复后的整模型吞吐。内核回调/驱动层根因及永久修复仍需要宿主机取证；编译器内部具体依赖错误也仍需低层 IR 分析。本轮的通过范围是上面列出的硬件状态回归、固定状态重放、Sage 21 响应重复性和本机 HTTP CPU 亲和性缓解。

@@ -1,0 +1,227 @@
+[W1115 17:35:32.652885475 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+2026-11-15 17:35:36,076 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=262144, max_batch_size=16, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.95, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=True, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 17:35:36,076 - lmdeploy - INFO - async_engine.py:154 - speculative_config=SpeculativeConfig(method='qwen3_5_mtp', model='', num_speculative_tokens=3, dflash_block_size=None)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 17:35:40.474612986 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 17:35:41,160 - lmdeploy - INFO - __init__.py:146 - Build <ray> executor.
+2026-11-15 17:35:41,160 - lmdeploy - INFO - ray_executor.py:277 - Init ray cluster.
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-15 17:35:43,042	INFO worker.py:1927 -- Started a local Ray instance.
+2026-11-15 17:35:43,543 - lmdeploy - INFO - ray.py:107 - Ray initialized with address: 10.119.246.138:57021
+2026-11-15 17:35:43,743 - lmdeploy - INFO - ray_executor.py:308 - Init ray workers.
+2026-11-15 17:35:43,861 - lmdeploy - INFO - ray_executor.py:320 - Init distributed environment by device.
+[36m(pid=1643728)[0m [W1115 17:35:49.999403526 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(DeepTraceWorker pid=1643728)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(DeepTraceWorker pid=1643728)[0m     *************************************************************************************************************
+[36m(DeepTraceWorker pid=1643728)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(DeepTraceWorker pid=1643728)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(DeepTraceWorker pid=1643728)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(DeepTraceWorker pid=1643728)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(DeepTraceWorker pid=1643728)[0m     The device parameters have been replaced with npu in the function below:
+[36m(DeepTraceWorker pid=1643728)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(DeepTraceWorker pid=1643728)[0m     *************************************************************************************************************
+[36m(DeepTraceWorker pid=1643728)[0m     
+[36m(DeepTraceWorker pid=1643728)[0m   warnings.warn(msg, ImportWarning)
+[36m(DeepTraceWorker pid=1643728)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(DeepTraceWorker pid=1643728)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(DeepTraceWorker pid=1643729)[0m     
+2026-11-15 17:35:56,325 - lmdeploy - INFO - ray_executor.py:324 - Init distributed process group.
+2026-11-15 17:35:56,358 - lmdeploy - INFO - ray_executor.py:331 - Warming up distribute environment, this might take long time, please waiting...
+[36m(DeepTraceWorker pid=1643728)[0m 2026-11-15 17:35:56,326 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=48717
+[36m(DeepTraceWorker pid=1643728)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(DeepTraceWorker pid=1643728)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(DeepTraceWorker pid=1643728)[0m [rank0]:[W1115 17:35:56.908189931 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(pid=1643729)[0m [W1115 17:35:49.205258510 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+2026-11-15 17:35:58,844 - lmdeploy - INFO - base.py:574 - Building Model.
+[36m(DeepTraceWorker pid=1643728)[0m 2026-11-15 17:35:58,847 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1643728 for current process 1643728
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:   0%|          | 0/15 [00:00<?, ?it/s]
+[36m(DeepTraceWorker pid=1643729)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(DeepTraceWorker pid=1643729)[0m     *************************************************************************************************************[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(DeepTraceWorker pid=1643729)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(DeepTraceWorker pid=1643729)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(DeepTraceWorker pid=1643729)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(DeepTraceWorker pid=1643729)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(DeepTraceWorker pid=1643729)[0m     The device parameters have been replaced with npu in the function below:
+[36m(DeepTraceWorker pid=1643729)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(DeepTraceWorker pid=1643729)[0m   warnings.warn(msg, ImportWarning)
+[36m(DeepTraceWorker pid=1643729)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(DeepTraceWorker pid=1643729)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(DeepTraceWorker pid=1643729)[0m [rank1]:[W1115 17:35:56.909057636 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:   7%|▋         | 1/15 [00:00<00:12,  1.11it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  13%|█▎        | 2/15 [00:01<00:11,  1.11it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  20%|██        | 3/15 [00:02<00:10,  1.16it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  33%|███▎      | 5/15 [00:03<00:06,  1.51it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  40%|████      | 6/15 [00:04<00:06,  1.33it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  47%|████▋     | 7/15 [00:05<00:06,  1.28it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  53%|█████▎    | 8/15 [00:06<00:06,  1.16it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  67%|██████▋   | 10/15 [00:07<00:03,  1.40it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  73%|███████▎  | 11/15 [00:08<00:03,  1.25it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  80%|████████  | 12/15 [00:09<00:02,  1.22it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  87%|████████▋ | 13/15 [00:10<00:01,  1.25it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  93%|█████████▎| 14/15 [00:11<00:00,  1.21it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors: 100%|██████████| 15/15 [00:12<00:00,  1.18it/s]Loading weights from safetensors: 100%|██████████| 15/15 [00:12<00:00,  1.24it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:   0%|          | 0/15 [00:00<?, ?it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  13%|█▎        | 2/15 [00:00<00:00, 15.94it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  27%|██▋       | 4/15 [00:00<00:00, 13.94it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  40%|████      | 6/15 [00:00<00:00, 12.70it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  53%|█████▎    | 8/15 [00:00<00:00, 11.84it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  67%|██████▋   | 10/15 [00:00<00:00, 13.42it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  80%|████████  | 12/15 [00:00<00:00, 12.62it/s]
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors:  93%|█████████▎| 14/15 [00:01<00:00,  7.56it/s]
+[36m(DeepTraceWorker pid=1643729)[0m 2026-11-15 17:36:17,904 - lmdeploy - INFO - qwen3_5_mtp.py:17 - Using embed_tokens from target model.
+[36m(DeepTraceWorker pid=1643729)[0m 2026-11-15 17:35:56,326 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=48717
+[36m(DeepTraceWorker pid=1643729)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 2x across cluster][0m
+[36m(DeepTraceWorker pid=1643729)[0m 2026-11-15 17:35:58,847 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1643729 for current process 1643729
+2026-11-15 17:36:18,064 - lmdeploy - INFO - base.py:576 - Updating configs.
+[36m(DeepTraceWorker pid=1643728)[0m Loading weights from safetensors: 100%|██████████| 15/15 [00:01<00:00,  9.87it/s]
+2026-11-15 17:36:18,118 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-15 17:36:18,120 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=16, block_size=128, num_cpu_blocks=0, num_gpu_blocks=12608, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.95, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, enable_prefix_caching=True, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=34, compact_state_capacity=None, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=1, states_shapes=[((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-15 17:36:18,120 - lmdeploy - INFO - base.py:586 - Building Spec CacheEngine with config: 
+CacheConfig(max_batches=16, block_size=128, num_cpu_blocks=0, num_gpu_blocks=12608, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.95, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=None, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=1024, prefill_save_last_only=False, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[], num_reserved_gpu_blocks=0, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-15 17:36:19,890 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 1,613,696 tokens (12,607 usable blocks/rank, DCP=1).
+2026-11-15 17:36:19,891 - lmdeploy - INFO - base.py:591 - Warming up model.
+[36m(DeepTraceWorker pid=1643728)[0m 2026-11-15 17:36:19,893 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[36m(DeepTraceWorker pid=1643728)[0m /root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(DeepTraceWorker pid=1643728)[0m   torch.remainder(cache_seqlens, state_slots),
+[36m(DeepTraceWorker pid=1643728)[0m Warming up decoding:   0%|          | 0/5 [00:00<?, ?it/s]
+[36m(DeepTraceWorker pid=1643728)[0m E1115 17:36:27.954559 1643728 ../torch_npu/csrc/core/npu/NPUCachingAllocator.cpp:1332] [rank:0] NPU out of memory. Tried to allocate 66.00 MiB (NPU 0; 61.27 GiB total capacity; 59.47 GiB already allocated; 59.47 GiB current active; 55.18 MiB free; 59.52 GiB reserved in total by PyTorch).If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.
+[36m(DeepTraceWorker pid=1643728)[0m Warming up decoding:   0%|          | 0/5 [00:06<?, ?it/s]
+[36m(DeepTraceWorker pid=1643729)[0m /root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(DeepTraceWorker pid=1643729)[0m   torch.remainder(cache_seqlens, state_slots),
+[36m(DeepTraceWorker pid=1643728)[0m 2026-11-15 17:36:18,040 - lmdeploy - INFO - qwen3_5_mtp.py:17 - Using embed_tokens from target model.
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1643196 is still running
+  _warn("subprocess %s is still running" % self.pid,
+Traceback (most recent call last):
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/mtp_deep_trace.py", line 117, in <module>
+    return super().start()
+^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/pipeline_case.py", line 83, in main
+    with pipeline(a.model, backend_config=config, speculative_config=spec,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/api.py", line 74, in pipeline
+    return Pipeline(model_path,
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pipeline.py", line 81, in __init__
+    self.async_engine = pipeline_class(model_path,
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/core/async_engine.py", line 177, in __init__
+    self.engine = self._build_pytorch(model_path=model_path,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/serve/core/async_engine.py", line 244, in _build_pytorch
+    return Engine.from_pretrained(model_path,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/engine.py", line 292, in from_pretrained
+    return cls(
+           ^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/engine.py", line 192, in __init__
+    self.executor.init()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 337, in init
+    super().init()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/base.py", line 592, in init
+    self.warmup()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 438, in warmup
+    self.collective_rpc('warmup')
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 356, in collective_rpc
+    return ray.get([getattr(worker, method).remote(*args, **kwargs) for worker in self.workers], timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/worker.py", line 2858, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/worker.py", line 958, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::DeepTraceWorker.warmup()[39m (pid=1643728, ip=10.119.246.138, actor_id=f52223f9e935581447e6277201000000, repr=<mtp_deep_trace.DeepTraceWorker object at 0xffec5ac41c40>)
+  File "/usr/local/python3.12.13/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.12.13/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+           ^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/base_worker.py", line 153, in warmup
+    self.model_agent.warmup()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 582, in warmup
+    self._forward_impl(inputs)
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 1746, in _forward_impl
+    output = model_forward(
+             ^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py", line 280, in model_forward
+    output = model(**input_dict)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/mtp_deep_trace.py", line 95, in traced
+    graph = context.global_is_decoding() and runner.enable_graph(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/graph_runner.py", line 502, in __call__
+    runner.capture(**kwargs)
+  File "/usr/local/python3.12.13/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/graph_runner.py", line 335, in capture
+    warmup_output = self.model(**padded_kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/models/qwen3_5.py", line 1079, in forward
+    hidden_states, target_inputs_embeds, aux_hidden_states = self.model(
+                                                             ^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/models/qwen3_5.py", line 985, in forward
+    language_outputs = self.language_model(
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/models/qwen3_5.py", line 888, in forward
+    hidden_states, residual = decoder_layer(
+                              ^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1882, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1809, in inner
+    args_kwargs_result = hook(self, args, kwargs)  # type: ignore[misc]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/mtp_deep_trace.py", line 71, in before
+    meta = kwargs['gated_delta_meta']
+                                      
+torch.OutOfMemoryError: NPU out of memory. Tried to allocate 66.00 MiB (NPU 0; 61.27 GiB total capacity; 59.47 GiB already allocated; 59.47 GiB current active; 55.18 MiB free; 59.52 GiB reserved in total by PyTorch).If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.
+[ERROR] 2026-11-15-17:36:31 (PID:1642440, Device:0, RankID:-1) ERR99999 UNKNOWN applicaiton exception

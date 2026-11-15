@@ -1,0 +1,3617 @@
+{
+  "options": {
+    "output": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-real-base-graph-r1.json",
+    "iterations": 200,
+    "tokens": 4,
+    "graph": true,
+    "snapshot": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/mtp-deep-layer-graph-r1/rank0/step001.pt",
+    "rank": 0
+  },
+  "seed": 42,
+  "parameter_hashes": {
+    "A_log": "1cf0ec7c937e6559519156dfbb23ad586329038d90388843443ee140886783a0",
+    "dt_bias": "b032e373758842efbe6b3405c70a9e0a6cb5222a64000e533569a5aa1d5a93b2"
+  },
+  "input_hashes": {
+    "q": "043698663a902b8d827ca06a1ce098f029bd171a71e9a93ad8305dbf8a077eb5",
+    "k": "05b3a89b4dd56e467404d70ef42fc8de456aa90894d903b39af1558c816abded",
+    "v": "47f9883f364d7cd6746e7edf7832fda0fae7fce4c507331547c87e8b6b7708d0",
+    "g": "b3ffb403b6bf0322a1366137ff4a714c69b2e086c4fa74f381b7e658fc960747",
+    "beta": "62ec8fad139c8fe7d920b6c5314402aaa6d4a8bb3c9e4667a5eac024738d1f65",
+    "initial": "8bbf0cc682800781644ad6cae185bebedb50c354cc11cb0fe58308ee35c7c8f3"
+  },
+  "torch": "2.10.0+cpu",
+  "torch_npu": "2.10.0.post4",
+  "results": [
+    {
+      "iteration": 0,
+      "output_mismatch": 0,
+      "state_mismatch": 0,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.0,
+      "state_sha": "e34c29d7641e48e26359f03d11d3e8b44fa1381168f493a33e2e9e11fd5e0ce8"
+    },
+    {
+      "iteration": 1,
+      "output_mismatch": 0,
+      "state_mismatch": 23774,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "713bb473e28e62d5b8029ed267c3e696ca8407702f8b64376b08a5f030762306",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        618,
+        15316,
+        7840,
+        0
+      ]
+    },
+    {
+      "iteration": 2,
+      "output_mismatch": 0,
+      "state_mismatch": 66222,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "fce51ffadfa7ff96d251ff1badc6064e14f0a7575a7bfbd78f235bb66f08be09",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28346,
+        34848,
+        0
+      ]
+    },
+    {
+      "iteration": 3,
+      "output_mismatch": 0,
+      "state_mismatch": 78024,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "79f7739b2e1b5b24fa891b2a6ab12540272a5d78bd015b2cd64a8be2983c6848",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28756,
+        45984,
+        0
+      ]
+    },
+    {
+      "iteration": 4,
+      "output_mismatch": 0,
+      "state_mismatch": 80306,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d2ff5a793c9941af69b4c7cc803ecd2fe5ab8fca8755873fe4b6638db634e02d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3646,
+        29396,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 5,
+      "output_mismatch": 0,
+      "state_mismatch": 83443,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bc4d3e017b8e2bc2f506829bf461eafc3c9fca260b566cf915c82555a7f3924e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29140,
+        50891,
+        0
+      ]
+    },
+    {
+      "iteration": 6,
+      "output_mismatch": 0,
+      "state_mismatch": 78408,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bb4d1a250ee6b8acaad490bb49f88f3682a6ed3a2defd126ee1ab9759ed6ce0e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        28244,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 7,
+      "output_mismatch": 0,
+      "state_mismatch": 83272,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "531627f65c25a8ee8c0b957c62ed1960d5acc8fba4c02910a005c1617dbd9f96",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28884,
+        51360,
+        0
+      ]
+    },
+    {
+      "iteration": 8,
+      "output_mismatch": 0,
+      "state_mismatch": 80072,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e4e43f271517d1b6b01ca81531afe4f063d1cb7b379f4783ca9a667ea8e23a29",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29524,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 9,
+      "output_mismatch": 0,
+      "state_mismatch": 77352,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2cb0d68d450cc1bcad80d9caf88437e550a2c17b1b0af81f5535848610a752d5",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        45184,
+        0
+      ]
+    },
+    {
+      "iteration": 10,
+      "output_mismatch": 0,
+      "state_mismatch": 79176,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "9a685c2973dac5c03f1e27f0729d9bb6bac2ca796a407c8cde37bc84ad98cd78",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28756,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 11,
+      "output_mismatch": 0,
+      "state_mismatch": 80434,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "a31e34c3ac701e46f7cd9d6bbeb2a8ec428e0dcd0141c257a6905045fe99fc75",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3646,
+        29268,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 12,
+      "output_mismatch": 0,
+      "state_mismatch": 80456,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "fb954cfbed3a2a3e7aeff51af956593af7c6315715875a6cc54de68b9c9cb129",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29140,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 13,
+      "output_mismatch": 0,
+      "state_mismatch": 79272,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "055c5ad50e33c8e1d27b2dd7279365cd708be5d3145d731176f1aa274cca8512",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3380,
+        29012,
+        46880,
+        0
+      ]
+    },
+    {
+      "iteration": 14,
+      "output_mismatch": 0,
+      "state_mismatch": 83400,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "26c1ff050ec043703a3ba8186790dadb47b0497f3b0e8c1a6edae870647caaef",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28756,
+        51360,
+        0
+      ]
+    },
+    {
+      "iteration": 15,
+      "output_mismatch": 0,
+      "state_mismatch": 77384,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e13d67af1665877ea656286abf0992c1dfe494db309ef8c85328701743912d73",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        44960,
+        0
+      ]
+    },
+    {
+      "iteration": 16,
+      "output_mismatch": 0,
+      "state_mismatch": 78440,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "181fee7cf505bbbcd068cff67bd6041eec9eca316008debe2e2f9ed3494a726b",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        46784,
+        0
+      ]
+    },
+    {
+      "iteration": 17,
+      "output_mismatch": 0,
+      "state_mismatch": 80200,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "ea771cfa7ce8495fec4664b3e782ec6213d1be634f6f09ba80137755697f8c0a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        28756,
+        48032,
+        0
+      ]
+    },
+    {
+      "iteration": 18,
+      "output_mismatch": 0,
+      "state_mismatch": 75880,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "6d01c081651ac0494a4add3f9c5f2b504b36e57c203d96d6521e4a3bc808a81e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        43456,
+        0
+      ]
+    },
+    {
+      "iteration": 19,
+      "output_mismatch": 0,
+      "state_mismatch": 80616,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f92fde4520e1fff436f8fe732a744e065265b982640fef1336441f3d1497999f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28500,
+        49216,
+        0
+      ]
+    },
+    {
+      "iteration": 20,
+      "output_mismatch": 0,
+      "state_mismatch": 78920,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d9e6456cc27fc39d01f667395cf36ecbaad799bd3413fd244bbfe2fe6cfd0f5a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28372,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 21,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "645dd58ecb05c22fc39c759d22dbbefe0c1cc096f53a7beb10872f68df4f1cc5",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29140,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 22,
+      "output_mismatch": 0,
+      "state_mismatch": 82760,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2de4e218acb08bcda56c555fa2b08111011c33a1eb7da74f26aa6d21605dd99e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28884,
+        51232,
+        0
+      ]
+    },
+    {
+      "iteration": 23,
+      "output_mismatch": 0,
+      "state_mismatch": 77512,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "644345f8df359efff57764f36a6d6be3d152d42935eef47e508be8f66a98422a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29140,
+        45216,
+        0
+      ]
+    },
+    {
+      "iteration": 24,
+      "output_mismatch": 0,
+      "state_mismatch": 78898,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bd9163595c963fedb6c78ab768a4183067e0788deaaa6aac4b03ad1e4f729767",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28734,
+        46880,
+        0
+      ]
+    },
+    {
+      "iteration": 25,
+      "output_mismatch": 0,
+      "state_mismatch": 79944,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d9c435776c4bedd188129d9136c8e95aeaa83e4f5823f318f6de7a10ff6786cd",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28756,
+        48032,
+        0
+      ]
+    },
+    {
+      "iteration": 26,
+      "output_mismatch": 0,
+      "state_mismatch": 80200,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "3c942bd22764bf85de95387f685776f63058d26d303e5d7392c91eeb124255a3",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29012,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 27,
+      "output_mismatch": 0,
+      "state_mismatch": 79304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8d8a5e6ff74e0606d4b7c61d25c49bef0ada259019a68afb1505a078407289d1",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28884,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 28,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2ba46fae05800705cdf0f9be948a99f84e37e2fcf765ea8bcf457f8635ee46dd",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28500,
+        48416,
+        0
+      ]
+    },
+    {
+      "iteration": 29,
+      "output_mismatch": 0,
+      "state_mismatch": 79944,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "6a8293fd3dad1c7aadce961240b3367bab74b6c4d8b1f2d73a7de34446102a02",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29012,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 30,
+      "output_mismatch": 0,
+      "state_mismatch": 83571,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2b77e24b43d3f3ffebfb97ea2976c885034b4e1d6d4f2e247cdb427ecc7caac1",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29268,
+        50891,
+        0
+      ]
+    },
+    {
+      "iteration": 31,
+      "output_mismatch": 0,
+      "state_mismatch": 83912,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "3486583dc08b799dcce67e6359a329efb3c6f0f8355a2d0e5870c5fd91e0fd16",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29012,
+        51360,
+        0
+      ]
+    },
+    {
+      "iteration": 32,
+      "output_mismatch": 0,
+      "state_mismatch": 80456,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "83dd629fa84ea443677e785a7b3d4dcb64c42b93fb411ca436d16672e4f5e0b5",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3796,
+        29396,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 33,
+      "output_mismatch": 0,
+      "state_mismatch": 80968,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "dc53e5ab7317939369727d58336f2e3f180ab660aa088f42f596ccb1e022bd57",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3924,
+        29396,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 34,
+      "output_mismatch": 0,
+      "state_mismatch": 80072,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "cacc8a1961803a8470d831461c260682684ff0e273df5c0806caf9d0d30c54d3",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29268,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 35,
+      "output_mismatch": 0,
+      "state_mismatch": 80168,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "21eadc2ffccc673d44540330a20eb0091a7581622f1261b888647051ec8521ab",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29140,
+        47616,
+        0
+      ]
+    },
+    {
+      "iteration": 36,
+      "output_mismatch": 0,
+      "state_mismatch": 79282,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "50b3dfaf29eed92cc08c652731b020e27060952139a88046048789c9ac84fceb",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3390,
+        28756,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 37,
+      "output_mismatch": 0,
+      "state_mismatch": 74952,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "58aae3b9c1449563c18054be8b0877fa6b4103bb09b30fa7bb262164c36f5a6a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28628,
+        43680,
+        0
+      ]
+    },
+    {
+      "iteration": 38,
+      "output_mismatch": 0,
+      "state_mismatch": 79304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "277eb024a348a8025f2a82382cbbd53e5c3d4144c676b12c21bd6000b7368987",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28756,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 39,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f03f032903dd61f841f91ebc00d75e0ee9bc8baf1afd8aedc835e0937d958cde",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 40,
+      "output_mismatch": 0,
+      "state_mismatch": 75848,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "066528bd2b0968c1692344999dd73243a8f1bad0fb7c35e05b6b18c0e7276487",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28884,
+        43808,
+        0
+      ]
+    },
+    {
+      "iteration": 41,
+      "output_mismatch": 0,
+      "state_mismatch": 78301,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "48f364af2ed8f7a66280bc74ae74654c97e9c46cdb56482630c2d09c6ea2b094",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2921,
+        28116,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 42,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "ab5415cc53fa5166d6790d521322f515edbb8b681ef09c67ac832a4d201d40f0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28756,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 43,
+      "output_mismatch": 0,
+      "state_mismatch": 75464,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2cf6dddc1ae1e22c0b95ea1398c40f366fb84d134bd22ffcd37396a9d7d89204",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        43168,
+        0
+      ]
+    },
+    {
+      "iteration": 44,
+      "output_mismatch": 0,
+      "state_mismatch": 81896,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d8e7cfaecb8b50fe85e03d873ad90457c8f2b974877c0d8653e9f3472120b283",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28404,
+        50848,
+        0
+      ]
+    },
+    {
+      "iteration": 45,
+      "output_mismatch": 0,
+      "state_mismatch": 84826,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "64e1830d15b18e58f29dcc78c0a694b9792f14adf3da6919e8a096ee751f00de",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        52402,
+        0
+      ]
+    },
+    {
+      "iteration": 46,
+      "output_mismatch": 0,
+      "state_mismatch": 80606,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "102766c2cdfdad84f513080dc6ca20a75df9e38b8a20f01e6cd3ea75c2061a1d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        48438,
+        0
+      ]
+    },
+    {
+      "iteration": 47,
+      "output_mismatch": 0,
+      "state_mismatch": 81608,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "7b286e19b2e474186e8c42b19d04ed96de9dfbd47697ac819db1a60814179fef",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28884,
+        50080,
+        0
+      ]
+    },
+    {
+      "iteration": 48,
+      "output_mismatch": 0,
+      "state_mismatch": 83912,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bfa8ce83e94323854b681a7129002539e3f4c955435b6d386e4e2230729a60f0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29268,
+        51360,
+        0
+      ]
+    },
+    {
+      "iteration": 49,
+      "output_mismatch": 0,
+      "state_mismatch": 82456,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "fe083587d92421368066c84f01307573a12d03d92cce27c741727cc753b233e0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        4030,
+        29396,
+        49030,
+        0
+      ]
+    },
+    {
+      "iteration": 50,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "a4670353d706f5ea91a1f3fc17c84e783ca93d636bcd4a2b3afc4e0793b28a80",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28500,
+        48032,
+        0
+      ]
+    },
+    {
+      "iteration": 51,
+      "output_mismatch": 0,
+      "state_mismatch": 76904,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b86b87820c844613c41fcabe01e511054d09134e4ccd17f14180ac613a1bc82d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        44736,
+        0
+      ]
+    },
+    {
+      "iteration": 52,
+      "output_mismatch": 0,
+      "state_mismatch": 83454,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1d72959445896aae36d40bf4966d79949d1d589a40716317e683f0b11fa65718",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29524,
+        50262,
+        0
+      ]
+    },
+    {
+      "iteration": 53,
+      "output_mismatch": 0,
+      "state_mismatch": 83656,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "47e66255ac1762a13409c569471d73303485e3ee2040219a3b08f07815caba86",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        28884,
+        51360,
+        0
+      ]
+    },
+    {
+      "iteration": 54,
+      "output_mismatch": 0,
+      "state_mismatch": 78664,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "ef9f0144dd16f5427c4fee6388e99c97c31821b759504070e437a27136b37fcc",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 55,
+      "output_mismatch": 0,
+      "state_mismatch": 81929,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "4343f8b8e6aa8eff0215fab3b927e8fcf94b41e7679df97c9426115cfaa43e96",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29140,
+        49377,
+        0
+      ]
+    },
+    {
+      "iteration": 56,
+      "output_mismatch": 0,
+      "state_mismatch": 83272,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e397eb48d027759eec12af3afbde0afb549095d062da5fc31ff79a6c330cfdcc",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        29012,
+        51488,
+        0
+      ]
+    },
+    {
+      "iteration": 57,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "96b267696eed3b0d474b7cd023881f2f0cb46b3dee1d0b7f1a59011a8ace350e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29140,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 58,
+      "output_mismatch": 0,
+      "state_mismatch": 80328,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "531d0503f3692c334e0439a8304601a129a8db6a4b8359bc10cb053293a86057",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29652,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 59,
+      "output_mismatch": 0,
+      "state_mismatch": 79304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1c2903b0531190cb12061b4c61a5f7f5492e5caedbaddf55ae8d57c6dde31747",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29268,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 60,
+      "output_mismatch": 0,
+      "state_mismatch": 82536,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "18ead883ebd2b940f7d08822865a57d282fd86785cf160120592b3961f732380",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3924,
+        29268,
+        49344,
+        0
+      ]
+    },
+    {
+      "iteration": 61,
+      "output_mismatch": 0,
+      "state_mismatch": 80840,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "03ce4b1c9eea4b30b5415619c70999514b239ad2c3e6de0d097215965d82acf1",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        4052,
+        29012,
+        47776,
+        0
+      ]
+    },
+    {
+      "iteration": 62,
+      "output_mismatch": 0,
+      "state_mismatch": 77128,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1069c57c009cc2b31be392c5e2f23928b482d6a5e7f9e6764aa5717317cd6a7b",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        45472,
+        0
+      ]
+    },
+    {
+      "iteration": 63,
+      "output_mismatch": 0,
+      "state_mismatch": 81326,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2d5986d3043ab051f7090de223e1a9f005cbd31a0849a5125781643217749c2e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        48902,
+        0
+      ]
+    },
+    {
+      "iteration": 64,
+      "output_mismatch": 0,
+      "state_mismatch": 78920,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "94b79afde685c087e3e200d0bc02430e0e0b45a9c0b68c1251993873b3cab3f4",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28372,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 65,
+      "output_mismatch": 0,
+      "state_mismatch": 76008,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "cca731a04ab8403448b6aeb06313d9415872be02383ef8d143a810b405c485db",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        43584,
+        0
+      ]
+    },
+    {
+      "iteration": 66,
+      "output_mismatch": 0,
+      "state_mismatch": 79048,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "9884f56846157c30af54f824e2cb3b189f664d835ac68012c4c17f8abbf687bf",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29012,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 67,
+      "output_mismatch": 0,
+      "state_mismatch": 79272,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "fed74e669a8d2e64f250650f70658b0ad60000244e337d2ccd27764d1fb77ba6",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3124,
+        28756,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 68,
+      "output_mismatch": 0,
+      "state_mismatch": 79944,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "631c97e5067bdbbfca22522cb943d3f2796dd40a944d73879ce3081c31220b68",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3924,
+        29012,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 69,
+      "output_mismatch": 0,
+      "state_mismatch": 82536,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "970403f079b3da72e37f09a8e666b8851b86e81964cba25752b80bc58640a8bf",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        50112,
+        0
+      ]
+    },
+    {
+      "iteration": 70,
+      "output_mismatch": 0,
+      "state_mismatch": 83240,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "33adec6b74dc442ed606cd6a908956650e076bb30238a3377fb5a8909d30742c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2996,
+        28500,
+        51744,
+        0
+      ]
+    },
+    {
+      "iteration": 71,
+      "output_mismatch": 0,
+      "state_mismatch": 79644,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f4dc7a8101dfdc8ca7e78e9e8d7fe06738a42391bd3c004cb07964ac1f0e23a0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        28756,
+        47476,
+        0
+      ]
+    },
+    {
+      "iteration": 72,
+      "output_mismatch": 0,
+      "state_mismatch": 79421,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "43164018131f5f49917b14738252adde41d2a45b0ce0745e9326b151d3d66f73",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2889,
+        29140,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 73,
+      "output_mismatch": 0,
+      "state_mismatch": 82376,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "0897a3110945f26625f8c2c8507a04ad13e35b575a4644ca776d60bba0b1a86e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29012,
+        50336,
+        0
+      ]
+    },
+    {
+      "iteration": 74,
+      "output_mismatch": 0,
+      "state_mismatch": 83816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "3b67929457b8750fe750fa6b6b3c4438a9f2cd8edb371f757299e99b285f9ad1",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        4158,
+        29012,
+        50646,
+        0
+      ]
+    },
+    {
+      "iteration": 75,
+      "output_mismatch": 0,
+      "state_mismatch": 81608,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "edab803cb3cced605675b1d9509dc70cbe50e657463d09dd02f5b6bb6df12028",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28500,
+        50208,
+        0
+      ]
+    },
+    {
+      "iteration": 76,
+      "output_mismatch": 0,
+      "state_mismatch": 76712,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "fde220044892a732f372299ae50c34d6f4ec79249a0c98de5397bbc3b45fa644",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29524,
+        44160,
+        0
+      ]
+    },
+    {
+      "iteration": 77,
+      "output_mismatch": 0,
+      "state_mismatch": 82942,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f81203698c2557246f4a73ac913e7ae1934bec49de05d45090e75da3c18cb653",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        28756,
+        50518,
+        0
+      ]
+    },
+    {
+      "iteration": 78,
+      "output_mismatch": 0,
+      "state_mismatch": 81480,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "adc81440215dda8893530224dbbfaf7665fa9aac562c3ea11540c7bc02fb6f51",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28884,
+        49568,
+        0
+      ]
+    },
+    {
+      "iteration": 79,
+      "output_mismatch": 0,
+      "state_mismatch": 77000,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d6b5c933e36514767a0c7dddcfddd5e63a38d471a6cfdb11eb7a2f9035a3e6e0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29012,
+        44960,
+        0
+      ]
+    },
+    {
+      "iteration": 80,
+      "output_mismatch": 0,
+      "state_mismatch": 79358,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1d0f80e6b13bf0a5c7653e2366421f0b3a121dce551db090b33e9d8efbdab4c8",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3785,
+        29140,
+        46433,
+        0
+      ]
+    },
+    {
+      "iteration": 81,
+      "output_mismatch": 0,
+      "state_mismatch": 79176,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8a6d35d8a6dbca921b62a79daecff8a5fdd2709e17c160759943442c21446578",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 82,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8035fd9cd64e275dfe63a0dcd256378d4657c6c25d344e034dc2a3e70329d0ed",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29268,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 83,
+      "output_mismatch": 0,
+      "state_mismatch": 80968,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "a67139ead96a83fd776d4299910b37bb73d6896c7372ecd6e98bc665a2646c5f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29780,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 84,
+      "output_mismatch": 0,
+      "state_mismatch": 78792,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "83f8b6b8d8f2abf1f32334a90b87056c70cfb45911d8a326193f1154a68f065a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28756,
+        46880,
+        0
+      ]
+    },
+    {
+      "iteration": 85,
+      "output_mismatch": 0,
+      "state_mismatch": 78808,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "08e953eed83bae59356301334175fa2f6b5e756685f384252dbb35473fbbe499",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29140,
+        46512,
+        0
+      ]
+    },
+    {
+      "iteration": 86,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "06c5fccd57f655c114e50345dcef568cde61ff284be2d68e4d67fbc70c5161f8",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        28756,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 87,
+      "output_mismatch": 0,
+      "state_mismatch": 78748,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8073488a64e0b862b14f084bbf600421f2efa2841493513fe2051b6e7af59555",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2878,
+        28862,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 88,
+      "output_mismatch": 0,
+      "state_mismatch": 78024,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "4556bfcd9af99e529fd762dfcc7b11de5801dab05800c69467475b74253675ee",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3796,
+        29012,
+        45216,
+        0
+      ]
+    },
+    {
+      "iteration": 89,
+      "output_mismatch": 0,
+      "state_mismatch": 79912,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "3a4e40854723d465788d855257ea06a72230836365e1120ceea556db339f1018",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3508,
+        28756,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 90,
+      "output_mismatch": 0,
+      "state_mismatch": 78024,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e7bf71dd255045d0062dbe30efe46e0bc866bc78fc5532a6652c5861b8630ca9",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29268,
+        45088,
+        0
+      ]
+    },
+    {
+      "iteration": 91,
+      "output_mismatch": 0,
+      "state_mismatch": 78024,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e3435bcb323bc0c0252f53b5103847068cea09dea6a9946d9832a6fa804b826b",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        46112,
+        0
+      ]
+    },
+    {
+      "iteration": 92,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b0f97c2e7b3908bc6f64ba85d62216446785785ca87f8e6a3661585b9cbdd229",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28756,
+        47776,
+        0
+      ]
+    },
+    {
+      "iteration": 93,
+      "output_mismatch": 0,
+      "state_mismatch": 75336,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e5bd10da70fdeaba1b950f70de52f1f6f04d582237d0caf459511d5a00d5d226",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        28756,
+        43040,
+        0
+      ]
+    },
+    {
+      "iteration": 94,
+      "output_mismatch": 0,
+      "state_mismatch": 83880,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2dbc792b367b4e5923e545f02d660221e679c77c7f755b4ce79a10b3b1e2cea7",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3252,
+        29012,
+        51616,
+        0
+      ]
+    },
+    {
+      "iteration": 95,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e829995560667180a1119f8a103c85434887902e7158158858944e120c4d0fd2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28756,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 96,
+      "output_mismatch": 0,
+      "state_mismatch": 87956,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "6cabdde15b2d60496cbfa0fc785d369a6b8484388adc24c4c9ff91bb720a57a0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29268,
+        55020,
+        0
+      ]
+    },
+    {
+      "iteration": 97,
+      "output_mismatch": 0,
+      "state_mismatch": 81640,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f2cce4e12cd995d1b02aafe7fcb783cfd4dbf464c438088803ad70082a2f7efb",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        29268,
+        49728,
+        0
+      ]
+    },
+    {
+      "iteration": 98,
+      "output_mismatch": 0,
+      "state_mismatch": 76104,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "87f8bb18233cbe64e79fa39dfbf6b69e64fa33eb0feeb1734ee0900e84a1d44c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28884,
+        44576,
+        0
+      ]
+    },
+    {
+      "iteration": 99,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "10644b449907f1d580d68fd0790aac9c69a8c9f338f33eae9c458ee1aa5c0014",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        28756,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 100,
+      "output_mismatch": 0,
+      "state_mismatch": 83784,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8ae3a03d4bb2f7fc24a9bcb424bdc20d4a31df6d49aa033a35f81e14d970ea6d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29268,
+        51488,
+        0
+      ]
+    },
+    {
+      "iteration": 101,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "37fce2a8716c5e27852c9cd3d57969c852ac4d5c8f937cdb401f8f47ea67018b",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29140,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 102,
+      "output_mismatch": 0,
+      "state_mismatch": 80090,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f37bd6aa9a961ca04ff676800d000955a1a1e7b6117302d539433598bc1155ea",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29012,
+        48050,
+        0
+      ]
+    },
+    {
+      "iteration": 103,
+      "output_mismatch": 0,
+      "state_mismatch": 83378,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "aacfb45f390e07d9284f52c3f6467635b85f9c5997c9031407fa775062908331",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3518,
+        29012,
+        50848,
+        0
+      ]
+    },
+    {
+      "iteration": 104,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1af39b7fee55e1e490962e24886d13a95c60cd661a325e054ea3c4506824017a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 105,
+      "output_mismatch": 0,
+      "state_mismatch": 81918,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b21460619dc65c55cf4ff24e6aace7f86b9a808a5d5ab0cece1247f98a1b390c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28884,
+        50134,
+        0
+      ]
+    },
+    {
+      "iteration": 106,
+      "output_mismatch": 0,
+      "state_mismatch": 83656,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "a83ac510787eadfef1e40281497eb822b7579bf76161af40b7d59ac77819199e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        51232,
+        0
+      ]
+    },
+    {
+      "iteration": 107,
+      "output_mismatch": 0,
+      "state_mismatch": 83400,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "5b345bfee943fabd2ac4df0c9c272537e5343ca79bcae21c0aebd28aab2b9ae0",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29396,
+        51104,
+        0
+      ]
+    },
+    {
+      "iteration": 108,
+      "output_mismatch": 0,
+      "state_mismatch": 79304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "681a81fa4139a4ff6e934d566709d33ed1fce84feede041a2cfd7b56f0922cb5",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        29524,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 109,
+      "output_mismatch": 0,
+      "state_mismatch": 78408,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "411d91eba69ec1b3a52c48c51a84b02197fc69bb46a33cdc1519fae819c79f5c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        29012,
+        46624,
+        0
+      ]
+    },
+    {
+      "iteration": 110,
+      "output_mismatch": 0,
+      "state_mismatch": 80072,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "59ffafe946a2ad615ab4fcae59c73703ee6630659439c40f2e2f842c622f404c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29268,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 111,
+      "output_mismatch": 0,
+      "state_mismatch": 80200,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b2b4ad588bb0b7f5629945c4c267f2c30be596797cef97cd85b3728485854f4f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29012,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 112,
+      "output_mismatch": 0,
+      "state_mismatch": 77000,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b34b365fa99b020a0e812c7f5e963d19d0930ee85d426c7b529874286d930e85",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2516,
+        28756,
+        45728,
+        0
+      ]
+    },
+    {
+      "iteration": 113,
+      "output_mismatch": 0,
+      "state_mismatch": 79304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bad4158505e746bef5271e6428ff7a8179c7854e53336db2260813030e640149",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 114,
+      "output_mismatch": 0,
+      "state_mismatch": 78536,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e0d1a098991c38a07ffe71f6d06acd6378347a4cd13047bbc12ea2b2295387bd",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2516,
+        28628,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 115,
+      "output_mismatch": 0,
+      "state_mismatch": 78424,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e0dd3243629be7c30f54d8c381c60e1b536409c10ef88942cea1021e88ca829a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        46256,
+        0
+      ]
+    },
+    {
+      "iteration": 116,
+      "output_mismatch": 0,
+      "state_mismatch": 79528,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d7f31631a83998184bf88a1c4604b40f93579f51ef59cdeb26138ae5ef841333",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3252,
+        29268,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 117,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "e3f1a08b7560b8413b1409bae0a975b5ae2d1427ac258855af1dc54a66e30a5c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 118,
+      "output_mismatch": 0,
+      "state_mismatch": 79614,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "aab8c60ee9f198798a499ee46d526ea27a4e172829bc39235eb7d56da87419fd",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28884,
+        47446,
+        0
+      ]
+    },
+    {
+      "iteration": 119,
+      "output_mismatch": 0,
+      "state_mismatch": 81736,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "22e96acf4b213ee09b3ffad2c5e50967941b2a82533aff0c719d6c2428825722",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        29140,
+        49824,
+        0
+      ]
+    },
+    {
+      "iteration": 120,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "cc52ba0073d783a3527d25988c20ab8d7668bfac986ab4cfaa00db8a08e884d2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 121,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "59b39817182d3c3be595ae977bb386d95fbd829fdc17782a867978da26cf82c6",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 122,
+      "output_mismatch": 0,
+      "state_mismatch": 83528,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "26c3bdc9c6e8521d2fe6a2671447eafa703697000596cde606936d705a2b879c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        51616,
+        0
+      ]
+    },
+    {
+      "iteration": 123,
+      "output_mismatch": 0,
+      "state_mismatch": 79272,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "f225e2aa85b6e422f16ecef8bcb2fb2b2e995d72c2b9bcfd700a69c0c2e85d25",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        29012,
+        47488,
+        0
+      ]
+    },
+    {
+      "iteration": 124,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "990f8a9448c01348d17c427557a03eb6c8ebfa9537ccf0b05a0efed94317f61a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3924,
+        28500,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 125,
+      "output_mismatch": 0,
+      "state_mismatch": 81608,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "5f42f393ddb7f3a041b03e66eb5e5064c4af5824e2c631e637faf683f2c855fb",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28756,
+        50208,
+        0
+      ]
+    },
+    {
+      "iteration": 126,
+      "output_mismatch": 0,
+      "state_mismatch": 80072,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b693be7801bfc97f0c917b9742cc28d481c84a96589d9eeb54be363313463b15",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29268,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 127,
+      "output_mismatch": 0,
+      "state_mismatch": 79677,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "31092f506a64ab13963ab5ead06563c975ac58e3fe95fe4170e8c66cb8b301b5",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        47381,
+        0
+      ]
+    },
+    {
+      "iteration": 128,
+      "output_mismatch": 0,
+      "state_mismatch": 83784,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "372343217f49efc36f3a004c09412163c3334cd88bb500ae359c3915890d56e3",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28756,
+        51872,
+        0
+      ]
+    },
+    {
+      "iteration": 129,
+      "output_mismatch": 0,
+      "state_mismatch": 79048,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "4071e819d19e644b53c28f364bfb7497c5b3789bd5fae5acba96048ae6c839c2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        46880,
+        0
+      ]
+    },
+    {
+      "iteration": 130,
+      "output_mismatch": 0,
+      "state_mismatch": 83347,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "ba6f7d8659d3fe7d2ba0f4ac3f90c14850e166765d66ecbd739b1e15f90673ff",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3273,
+        29396,
+        50678,
+        0
+      ]
+    },
+    {
+      "iteration": 131,
+      "output_mismatch": 0,
+      "state_mismatch": 86632,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "878fa5c4d377ca5e5c8612e78ccacb50c97bd42d98e725a69a8ddffa8bdc7725",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3796,
+        29012,
+        53824,
+        0
+      ]
+    },
+    {
+      "iteration": 132,
+      "output_mismatch": 0,
+      "state_mismatch": 82152,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2e250a776e70966b122e1b1e8311275ccf0d5032ada47716d0d4e58292725a79",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29524,
+        49088,
+        0
+      ]
+    },
+    {
+      "iteration": 133,
+      "output_mismatch": 0,
+      "state_mismatch": 80456,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "b6f2c265411369354a3cf89795712975728c1b677fe46f9abd344da4f3479f83",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29524,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 134,
+      "output_mismatch": 0,
+      "state_mismatch": 79176,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2de0966b54593698ada5187c9da94178660dc3772a229bb70ed40644a90e9b54",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 135,
+      "output_mismatch": 0,
+      "state_mismatch": 80708,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "99387bed91a36c326e0bfc83b260c115c1c97d5b45fce5bbdba2efbd48342972",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        28756,
+        48284,
+        0
+      ]
+    },
+    {
+      "iteration": 136,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "9ed003f95ce3ead6c13c48a396abe5783364968df15a260b9ad84c34aa4a3159",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29012,
+        46880,
+        0
+      ]
+    },
+    {
+      "iteration": 137,
+      "output_mismatch": 0,
+      "state_mismatch": 77288,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d77e890a49096e1781201df37a3053cfa106bfbd13ae4718b7e985d8c765209d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        28884,
+        45632,
+        0
+      ]
+    },
+    {
+      "iteration": 138,
+      "output_mismatch": 0,
+      "state_mismatch": 79784,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "cec54a760c78176de636ef72d5c081f69f5afc35287c0519fdd6db6db7409b2f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29236,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 139,
+      "output_mismatch": 0,
+      "state_mismatch": 83272,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "12d36119a09ed24c957a90619a036ed5172f159605dd8f13bb0edc3a842c3f97",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        28628,
+        51232,
+        0
+      ]
+    },
+    {
+      "iteration": 140,
+      "output_mismatch": 0,
+      "state_mismatch": 77000,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "dde9bff46b3ac94b6eb36b5128380fa42f50049cb015029306eaf7e541ab9b78",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28756,
+        44960,
+        0
+      ]
+    },
+    {
+      "iteration": 141,
+      "output_mismatch": 0,
+      "state_mismatch": 78152,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8e403d8db42795c9c2aca8dd99dfe29db19f34abbdb3b36d329c3d961d24bea2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28756,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 142,
+      "output_mismatch": 0,
+      "state_mismatch": 79176,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "967725d968405ae11620d15053732b40d8c4b623a0f0e8e80aa19a2fd0dbf3db",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 143,
+      "output_mismatch": 0,
+      "state_mismatch": 79368,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "351a7b14147ec5f06537938bf7ca77a292143ad269138844684bc3f0e74ab756",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3700,
+        29268,
+        46400,
+        0
+      ]
+    },
+    {
+      "iteration": 144,
+      "output_mismatch": 0,
+      "state_mismatch": 78664,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2f0c1cde86ddf1a05dfe1df55c9964eae626fee127fdcd2526cff646e2ec276d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 145,
+      "output_mismatch": 0,
+      "state_mismatch": 82313,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "0ca88d690fe9f6a21df204448b33f88ce4700fc52c31cc90d7151cdcef7fda62",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28884,
+        50529,
+        0
+      ]
+    },
+    {
+      "iteration": 146,
+      "output_mismatch": 0,
+      "state_mismatch": 82942,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "15a64f610d171499a212c2a7868a15d4a73574bd82a9c304e18de7ecd09c33d1",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28756,
+        51030,
+        0
+      ]
+    },
+    {
+      "iteration": 147,
+      "output_mismatch": 0,
+      "state_mismatch": 83144,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "d05fdc5a44f2556d727395946c44e7dc10fdc6f06c5442a89393f260a5751f5f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29268,
+        50976,
+        0
+      ]
+    },
+    {
+      "iteration": 148,
+      "output_mismatch": 0,
+      "state_mismatch": 78952,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "a995e323bc6fc946fb1741c71ec0308dec4892430ff7a207106b6416ed3c1ec6",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3060,
+        28500,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 149,
+      "output_mismatch": 0,
+      "state_mismatch": 77384,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "ddb35edd43f1714defbed9afdc486d6cd4ac592e1c5ca8a6cc17f25525f7b024",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        28756,
+        45088,
+        0
+      ]
+    },
+    {
+      "iteration": 150,
+      "output_mismatch": 0,
+      "state_mismatch": 83528,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "c2089a599afac47bd843db326f8c1a41406ae1ed872888aff3832504c7dc1929",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28500,
+        51872,
+        0
+      ]
+    },
+    {
+      "iteration": 151,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "26554374673dcf8541b23b9e6bb39a3088be0542915e48ee14e5da49f26bcf2e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28884,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 152,
+      "output_mismatch": 0,
+      "state_mismatch": 79622,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "36065a8893170a8c80716a60b9f4fd3021744c24fb7269f0ff2c3aae5effe465",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        47710,
+        0
+      ]
+    },
+    {
+      "iteration": 153,
+      "output_mismatch": 0,
+      "state_mismatch": 83400,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "6df0599dac659e1dc0c830117e05ed743e89dce5597fbfc311a45eb36d3f3779",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        51232,
+        0
+      ]
+    },
+    {
+      "iteration": 154,
+      "output_mismatch": 0,
+      "state_mismatch": 78664,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1a741f203990613a5b0d9e3fc2ac1d613404a5e8c15931ee87ae9e4a6c307f16",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 155,
+      "output_mismatch": 0,
+      "state_mismatch": 82302,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "be05c5b433545e045604047f9e2399eef5fd5c6d17c63f1ea2bef822e67c9e91",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        28756,
+        50134,
+        0
+      ]
+    },
+    {
+      "iteration": 156,
+      "output_mismatch": 0,
+      "state_mismatch": 82248,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "5e70dfe0a7f2cc59a3da394ec00f0d064d7bc2bc64bc6b9add41dc3e682435a5",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        50592,
+        0
+      ]
+    },
+    {
+      "iteration": 157,
+      "output_mismatch": 0,
+      "state_mismatch": 79176,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "6d1840ccb33033bb5ad7ff6c2ebf858c309acd9d9d99ebf7762a27a573522662",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29268,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 158,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "63e0f566a4a869fe0494080d1d56068c0577fa71f499322e0f5175e519a8f19e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29268,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 159,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bde6b945fe2cfe58f240969f480f4572e7f19f8ff8f4538ef1f89d5c9ed60b9d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 160,
+      "output_mismatch": 0,
+      "state_mismatch": 79944,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "62401ce6c2e30d9e47ef92433cf047db1109d23a7fd4f3462e540964b3bf3cde",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29268,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 161,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "307ecbe9700877d3db2fe3dd61355d51300a7aa35d554e1ff45ae38a7fc84812",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 162,
+      "output_mismatch": 0,
+      "state_mismatch": 78824,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2b2eab02827c096e81f09f99b4422c401c2c341fa89564ae043e4e12451b7c5c",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2516,
+        28660,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 163,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1c4f10f0e8ebd795dc0eb5314722cad63a3fc5fbbc3878ce611282907a0b5dd1",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 164,
+      "output_mismatch": 0,
+      "state_mismatch": 80072,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "ef711396d034e476030725c78e362170228f95a3688864deac5eca6013d8c37d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28756,
+        48032,
+        0
+      ]
+    },
+    {
+      "iteration": 165,
+      "output_mismatch": 0,
+      "state_mismatch": 75976,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "45f8111975f80620f9487812c5f7dda38d8572c012823894b607a085cf44fd2d",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29524,
+        43168,
+        0
+      ]
+    },
+    {
+      "iteration": 166,
+      "output_mismatch": 0,
+      "state_mismatch": 77384,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1dd7a24738ca5e8db263ac5e0669fd924908b210c4067ab6d52e3909947b1c27",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        45088,
+        0
+      ]
+    },
+    {
+      "iteration": 167,
+      "output_mismatch": 0,
+      "state_mismatch": 80072,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "778232068785e87d09ca146b88c4b14502062411c8ce3145086ae8786cf28dfb",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        28756,
+        47648,
+        0
+      ]
+    },
+    {
+      "iteration": 168,
+      "output_mismatch": 0,
+      "state_mismatch": 77032,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "4390420b667d9234eef5148533d007fe0db93e8c89b3c97df72d53b106f9e3bc",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        44864,
+        0
+      ]
+    },
+    {
+      "iteration": 169,
+      "output_mismatch": 0,
+      "state_mismatch": 78664,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "419902b5440449df6a771eb3872c73d5b84c41b247eb62d43461a7adbb1d5728",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28756,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 170,
+      "output_mismatch": 0,
+      "state_mismatch": 79432,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "6779ae3a9f9e29e98fa1e9aa2008d13938d463f6b01a7af8c331e1affd950313",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        47776,
+        0
+      ]
+    },
+    {
+      "iteration": 171,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "da8201628db9b2d59fe57723ba07c8e05683004d34edf27efc840de1f865c277",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 172,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "38a205ada2a43577a059150bc8f108a5d50e660f799b0bdba3213ebee15dd3dd",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        29012,
+        47904,
+        0
+      ]
+    },
+    {
+      "iteration": 173,
+      "output_mismatch": 0,
+      "state_mismatch": 80616,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1a9675f4f4efcc08ee48650afb32e75563f381f5fafe55f19498d75671781c98",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2772,
+        28756,
+        49088,
+        0
+      ]
+    },
+    {
+      "iteration": 174,
+      "output_mismatch": 0,
+      "state_mismatch": 77064,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "4b3ee08dffea8d732ba39741a36bef43be095e461ddc965002768746b759c80f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28628,
+        45536,
+        0
+      ]
+    },
+    {
+      "iteration": 175,
+      "output_mismatch": 0,
+      "state_mismatch": 82760,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "98ab95cd3e7a47a8734ea4841ccf180de498cd9f54739f98bc130cd7c0dc92e2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28756,
+        51104,
+        0
+      ]
+    },
+    {
+      "iteration": 176,
+      "output_mismatch": 0,
+      "state_mismatch": 77128,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "14c99740307f7939f0f25724a887880003496ceee0142b6974024aae99179fab",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        44960,
+        0
+      ]
+    },
+    {
+      "iteration": 177,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "bc4696f88f0cc6e75f26f26a1ddc0fb0bb2145483f4820d6a2ff6eaa69c7691f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 178,
+      "output_mismatch": 0,
+      "state_mismatch": 83144,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "48f4b8787002ab1bffca56e131f31471bd289879ebdb576d3712496e87d98217",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        29012,
+        50848,
+        0
+      ]
+    },
+    {
+      "iteration": 179,
+      "output_mismatch": 0,
+      "state_mismatch": 79944,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "cc5b46d299871e9496963092866441cb78a884de8bc7375dba861b96b892b36e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        29268,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 180,
+      "output_mismatch": 0,
+      "state_mismatch": 87304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "7d71c967831a74931470d71d414dc1cf0b5c765bedf6db640c5c4c3142031c30",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29524,
+        54624,
+        0
+      ]
+    },
+    {
+      "iteration": 181,
+      "output_mismatch": 0,
+      "state_mismatch": 82632,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "cd828cc67d521a6323d8427d3604b7be363a35f120c2bd96f8f153e858cc3e99",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        29012,
+        50976,
+        0
+      ]
+    },
+    {
+      "iteration": 182,
+      "output_mismatch": 0,
+      "state_mismatch": 79816,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1c86a5660f61e2aa190ba209727d6d8322d1793bfd32ac5e1742cae7efd7e220",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29524,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 183,
+      "output_mismatch": 0,
+      "state_mismatch": 83528,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "4e7948fd35460d013f9304a772ba0e04dd21f8842d5dc52918b7fa0e0f79488a",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        29780,
+        50208,
+        0
+      ]
+    },
+    {
+      "iteration": 184,
+      "output_mismatch": 0,
+      "state_mismatch": 83400,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "64531cd4c384dbfc491bdc653b1a0544255bfb87b9da2d079729fb8a6953b943",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29268,
+        50720,
+        0
+      ]
+    },
+    {
+      "iteration": 185,
+      "output_mismatch": 0,
+      "state_mismatch": 79176,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2df3417879bd83d488d8799cad956d9737073c4b15367e97a7069e3261e4d00f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        46752,
+        0
+      ]
+    },
+    {
+      "iteration": 186,
+      "output_mismatch": 0,
+      "state_mismatch": 79944,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "c5fb999163a225c387eed8eb011de0bd6cfab365f71173bd5e739a62c0f3c87b",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 187,
+      "output_mismatch": 0,
+      "state_mismatch": 79304,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "8e147e3237ca64ff2141316e5619ee91be7bcbddca778323724f94562f3042a2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        28756,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 188,
+      "output_mismatch": 0,
+      "state_mismatch": 78920,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2eb4f499170736d7fd04fb427d72001d319d4ee6d5c9192161d3b12a644d159e",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        28500,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 189,
+      "output_mismatch": 0,
+      "state_mismatch": 79688,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "7b7ae0ab7d3c83baa28a18247eb9c73ab837b59636abc3c6b675f36b5a708f34",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3412,
+        29012,
+        47264,
+        0
+      ]
+    },
+    {
+      "iteration": 190,
+      "output_mismatch": 0,
+      "state_mismatch": 77384,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "73a0f37feff6e804e856e90628792c9ca68dbeefdf532b4989c9c411ac218059",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28628,
+        45728,
+        0
+      ]
+    },
+    {
+      "iteration": 191,
+      "output_mismatch": 0,
+      "state_mismatch": 78536,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "2f3b2fd8e927ad3ac473851dac938311401adbfe2abebdae69af52f6a3a57fb2",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2644,
+        28756,
+        47136,
+        0
+      ]
+    },
+    {
+      "iteration": 192,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "60aa1963b6248b362e84da402f97a43e8defda2c68ea4157ca9be22d8fe94800",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3668,
+        28884,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 193,
+      "output_mismatch": 0,
+      "state_mismatch": 77384,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "68e96cf1cc1da735214a44c5b6cbe867e67629e5ad0b45a4050a873ce1db9594",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3540,
+        28756,
+        45088,
+        0
+      ]
+    },
+    {
+      "iteration": 194,
+      "output_mismatch": 0,
+      "state_mismatch": 79048,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "c4c96aaf2fb0e881e00ccef32308e60a5bdb6e7c5541ffe3aba63a682ed5cdd6",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3028,
+        28500,
+        47520,
+        0
+      ]
+    },
+    {
+      "iteration": 195,
+      "output_mismatch": 0,
+      "state_mismatch": 77768,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "5209386b0a077bf40008ca3c405a2ccbb8b828eae718ec1a22693ad4d37cbccb",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        28244,
+        46624,
+        0
+      ]
+    },
+    {
+      "iteration": 196,
+      "output_mismatch": 0,
+      "state_mismatch": 79560,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "1172863e31892cf74c214630ea7ed4af6d5fff29c3afd029f3c45cf48dbe000f",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3156,
+        29012,
+        47392,
+        0
+      ]
+    },
+    {
+      "iteration": 197,
+      "output_mismatch": 0,
+      "state_mismatch": 78920,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "07d60b951a8a8bfd8d06ba07d1daf15151f59e0b00d05faa090b71fe6d3c9517",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        47008,
+        0
+      ]
+    },
+    {
+      "iteration": 198,
+      "output_mismatch": 0,
+      "state_mismatch": 77896,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "da32f1eeef99ff9ddf35dbf120451241199fcd184d08b380285d14d78d2a1b37",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        2900,
+        29012,
+        45984,
+        0
+      ]
+    },
+    {
+      "iteration": 199,
+      "output_mismatch": 0,
+      "state_mismatch": 78280,
+      "output_max_abs": 0.0,
+      "state_max_abs": 0.45625734329223633,
+      "state_sha": "39481edebb1be52d10447aa7f6c00db038fdca33be6a2b62092af5bdb4738bbf",
+      "mismatch_per_slot": [
+        0,
+        0,
+        0,
+        0,
+        3284,
+        28500,
+        46496,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "state_atol": 1e-05,
+  "state_rtol": 0.0001,
+  "output_atol": 0.001,
+  "output_rtol": 0.01,
+  "results": [
+    {
+      "file": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-fixed-eager-r0.pt",
+      "state_max_abs": 1.1920928955078125e-07,
+      "output_max_abs": 0.00011346489191055298,
+      "state_close": true,
+      "output_close": true
+    },
+    {
+      "file": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-fixed-graph-r0.pt",
+      "state_max_abs": 0.4870532751083374,
+      "output_max_abs": 0.00011346489191055298,
+      "state_close": false,
+      "output_close": true
+    },
+    {
+      "file": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-stage1-eager-r0.pt",
+      "state_max_abs": 1.1920928955078125e-07,
+      "output_max_abs": 0.00011346489191055298,
+      "state_close": true,
+      "output_close": true
+    },
+    {
+      "file": "/root/workspace/a3-mtp-ray-investigation-20261116/results/gdn-stage1-graph-r0.pt",
+      "state_max_abs": 1.1920928955078125e-07,
+      "output_max_abs": 0.00011346489191055298,
+      "state_close": true,
+      "output_close": true
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "file": "results/ray-noacc-nice0-r0.json",
+  "joins": 6000,
+  "slow_join_count": 5,
+  "maxima": {
+    "submit": 27.919049,
+    "to_input_restore": 540.023696,
+    "restore_to_handler": 8.095221,
+    "handler": 0.0822,
+    "exit_to_serialize": 22.439632,
+    "result_transport": 108.38742,
+    "restore_to_future": 2.843984,
+    "future_to_join": 528.880801
+  },
+  "slow": [
+    {
+      "item": 1298,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 96.879543,
+      "delivery_ms": 1.738089,
+      "submit": 0.961085,
+      "to_input_restore": 0.651553,
+      "restore_to_handler": 0.125451,
+      "handler": 0.00414,
+      "exit_to_serialize": 0.07859,
+      "result_transport": 108.009118,
+      "restore_to_future": 0.06709,
+      "future_to_join": 1.141816
+    },
+    {
+      "item": 1298,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 96.879543,
+      "delivery_ms": 2.11033,
+      "submit": 0.961085,
+      "to_input_restore": 1.022565,
+      "restore_to_handler": 0.12668,
+      "handler": 0.003721,
+      "exit_to_serialize": 0.08401,
+      "result_transport": 108.38742,
+      "restore_to_future": 0.03286,
+      "future_to_join": 0.420502
+    },
+    {
+      "item": 1371,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 522.11458,
+      "delivery_ms": 1.621568,
+      "submit": 0.858834,
+      "to_input_restore": 0.625523,
+      "restore_to_handler": 0.137211,
+      "handler": 0.0035,
+      "exit_to_serialize": 0.09009,
+      "result_transport": 11.590318,
+      "restore_to_future": 0.03894,
+      "future_to_join": 521.800299
+    },
+    {
+      "item": 1371,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 522.11458,
+      "delivery_ms": 533.326826,
+      "submit": 0.858834,
+      "to_input_restore": 532.240471,
+      "restore_to_handler": 0.227521,
+      "handler": 0.00971,
+      "exit_to_serialize": 0.142611,
+      "result_transport": 1.386837,
+      "restore_to_future": 0.07066,
+      "future_to_join": 0.208071
+    },
+    {
+      "item": 5202,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 529.536014,
+      "delivery_ms": 541.303063,
+      "submit": 1.068336,
+      "to_input_restore": 540.023696,
+      "restore_to_handler": 0.211031,
+      "handler": 0.00687,
+      "exit_to_serialize": 0.1198,
+      "result_transport": 1.253617,
+      "restore_to_future": 0.07056,
+      "future_to_join": 0.220421
+    },
+    {
+      "item": 5202,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 529.536014,
+      "delivery_ms": 2.390152,
+      "submit": 1.068336,
+      "to_input_restore": 1.184745,
+      "restore_to_handler": 0.137071,
+      "handler": 0.00395,
+      "exit_to_serialize": 0.078151,
+      "result_transport": 11.582957,
+      "restore_to_future": 0.03832,
+      "future_to_join": 528.880801
+    },
+    {
+      "item": 5532,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 518.253258,
+      "delivery_ms": 529.464013,
+      "submit": 0.900414,
+      "to_input_restore": 528.274558,
+      "restore_to_handler": 0.289041,
+      "handler": 0.01199,
+      "exit_to_serialize": 0.147471,
+      "result_transport": 1.229026,
+      "restore_to_future": 0.065901,
+      "future_to_join": 0.503462
+    },
+    {
+      "item": 5532,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 518.253258,
+      "delivery_ms": 529.790055,
+      "submit": 0.900414,
+      "to_input_restore": 528.67824,
+      "restore_to_handler": 0.211401,
+      "handler": 0.00781,
+      "exit_to_serialize": 0.120071,
+      "result_transport": 1.319026,
+      "restore_to_future": 0.03979,
+      "future_to_join": 0.145111
+    },
+    {
+      "item": 5801,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 81.341975,
+      "delivery_ms": 1.716458,
+      "submit": 0.813564,
+      "to_input_restore": 0.768994,
+      "restore_to_handler": 0.1339,
+      "handler": 0.00442,
+      "exit_to_serialize": 0.078531,
+      "result_transport": 91.994837,
+      "restore_to_future": 0.06269,
+      "future_to_join": 0.479213
+    },
+    {
+      "item": 5801,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 81.341975,
+      "delivery_ms": 1.733528,
+      "submit": 0.813564,
+      "to_input_restore": 0.770404,
+      "restore_to_handler": 0.14956,
+      "handler": 0.0034,
+      "exit_to_serialize": 0.092541,
+      "result_transport": 92.388579,
+      "restore_to_future": 0.03266,
+      "future_to_join": 0.085441
+    }
+  ],
+  "beats": {
+    "driver": [
+      {
+        "start_ns": 430171592980661,
+        "end_ns": 430171625589724,
+        "late_ms": 22.609063
+      },
+      {
+        "start_ns": 430173019456005,
+        "end_ns": 430173034678641,
+        "late_ms": 5.222636
+      },
+      {
+        "start_ns": 430184838759926,
+        "end_ns": 430184934156111,
+        "late_ms": 85.396185
+      },
+      {
+        "start_ns": 430192685789234,
+        "end_ns": 430192719544322,
+        "late_ms": 23.755088
+      },
+      {
+        "start_ns": 430192981426597,
+        "end_ns": 430192999775508,
+        "late_ms": 8.348911000000001
+      },
+      {
+        "start_ns": 430197188103046,
+        "end_ns": 430197213130261,
+        "late_ms": 15.027215000000002
+      },
+      {
+        "start_ns": 430209664112867,
+        "end_ns": 430209684630639,
+        "late_ms": 10.517772
+      },
+      {
+        "start_ns": 430216264801459,
+        "end_ns": 430216289155460,
+        "late_ms": 14.354001
+      },
+      {
+        "start_ns": 430221465442038,
+        "end_ns": 430221493601968,
+        "late_ms": 18.15993
+      },
+      {
+        "start_ns": 430226178283318,
+        "end_ns": 430226194346998,
+        "late_ms": 6.0636800000000015
+      },
+      {
+        "start_ns": 430228947034976,
+        "end_ns": 430228962336533,
+        "late_ms": 5.301557000000001
+      },
+      {
+        "start_ns": 430231142370409,
+        "end_ns": 430231157632555,
+        "late_ms": 5.2621459999999995
+      },
+      {
+        "start_ns": 430231466983574,
+        "end_ns": 430231489506606,
+        "late_ms": 12.523032
+      },
+      {
+        "start_ns": 430238832729971,
+        "end_ns": 430238848238788,
+        "late_ms": 5.5088170000000005
+      },
+      {
+        "start_ns": 430243292426144,
+        "end_ns": 430243307521219,
+        "late_ms": 5.095075
+      },
+      {
+        "start_ns": 430248958637888,
+        "end_ns": 430248978458516,
+        "late_ms": 9.820628
+      },
+      {
+        "start_ns": 430250285573228,
+        "end_ns": 430250370305699,
+        "late_ms": 74.732471
+      }
+    ],
+    "workers": [
+      [
+        {
+          "start_ns": 430166267215211,
+          "end_ns": 430166283205799,
+          "late_ms": 5.990588000000001
+        },
+        {
+          "start_ns": 430209592395760,
+          "end_ns": 430209608166578,
+          "late_ms": 5.770818
+        },
+        {
+          "start_ns": 430210227136061,
+          "end_ns": 430210259168920,
+          "late_ms": 22.032859000000002
+        },
+        {
+          "start_ns": 430216719264042,
+          "end_ns": 430216750312836,
+          "late_ms": 21.048794
+        },
+        {
+          "start_ns": 430233872131507,
+          "end_ns": 430233889736065,
+          "late_ms": 7.604558000000001
+        },
+        {
+          "start_ns": 430243485984577,
+          "end_ns": 430243506160317,
+          "late_ms": 10.175740000000001
+        },
+        {
+          "start_ns": 430247490240554,
+          "end_ns": 430247510261674,
+          "late_ms": 10.02112
+        }
+      ],
+      [
+        {
+          "start_ns": 430197756376546,
+          "end_ns": 430197771472651,
+          "late_ms": 5.096105
+        },
+        {
+          "start_ns": 430205621868796,
+          "end_ns": 430205640420499,
+          "late_ms": 8.551703
+        },
+        {
+          "start_ns": 430206860326224,
+          "end_ns": 430206890020192,
+          "late_ms": 19.693968
+        },
+        {
+          "start_ns": 430210226583178,
+          "end_ns": 430210245104230,
+          "late_ms": 8.521052000000001
+        },
+        {
+          "start_ns": 430210251122370,
+          "end_ns": 430210267123510,
+          "late_ms": 6.0011399999999995
+        },
+        {
+          "start_ns": 430237484787856,
+          "end_ns": 430237514135872,
+          "late_ms": 19.348016
+        },
+        {
+          "start_ns": 430243687991581,
+          "end_ns": 430243704617834,
+          "late_ms": 6.626252999999998
+        }
+      ]
+    ]
+  },
+  "no_torch_npu": true
+}

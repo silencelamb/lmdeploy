@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/mtp_deep_trace.py", line 114, in <module>
+    seed_all()
+  File "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/mtp_deep_trace.py", line 22, in seed_all
+    torch.npu.manual_seed_all(42)
+    ^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/__init__.py", line 2862, in __getattr__
+    raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
+AttributeError: module 'torch' has no attribute 'npu'

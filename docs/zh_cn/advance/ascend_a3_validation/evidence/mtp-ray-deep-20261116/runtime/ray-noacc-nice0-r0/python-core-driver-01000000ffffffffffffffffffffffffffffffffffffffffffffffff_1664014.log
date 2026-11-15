@@ -1,0 +1,255 @@
+[2026-11-15 17:44:21,549 I 1664014 1664014] core_worker_process.cc:192: Constructing CoreWorkerProcess. pid: 1664014
+[2026-11-15 17:44:21,555 I 1664014 1664014] io_service_pool.cc:37: IOServicePool is running with 1 io_service.
+[2026-11-15 17:44:22,137 I 1664014 1664014] grpc_server.cc:140: driver server started, listening on port 39765.
+[2026-11-15 17:44:22,139 I 1664014 1664014] core_worker.cc:544: Initializing worker at address: 10.119.246.138:39765 worker_id=01000000ffffffffffffffffffffffffffffffffffffffffffffffff node_id=e76b8d2fb9da1f094fbb034a45513762127c7244d7a986ebe18a9bac
+[2026-11-15 17:44:22,140 I 1664014 1664014] task_event_buffer.cc:287: Reporting task events to GCS every 1000ms.
+[2026-11-15 17:44:22,141 I 1664014 1664580] core_worker.cc:915: Event stats:
+
+
+Global stats: 8 total (5 active)
+Queueing time: mean = 14.357 us, max = 93.790 us, min = 21.070 us, total = 114.860 us
+Execution time:  mean = 99.474 us, total = 795.794 us
+Event stats:
+	PeriodicalRunner.RunFnPeriodically - 3 total (2 active, 1 running), Execution time: mean = 6.723 us, total = 20.170 us, Queueing time: mean = 31.263 us, max = 93.790 us, min = 93.790 us, total = 93.790 us
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberPoll - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberCommandBatch - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	Publisher.CheckDeadSubscribers - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::WorkerInfoGcsService.grpc_client.AddWorkerInfo.OnReplyReceived - 1 total (0 active), Execution time: mean = 72.000 us, total = 72.000 us, Queueing time: mean = 21.070 us, max = 21.070 us, min = 21.070 us, total = 21.070 us
+	ray::rpc::WorkerInfoGcsService.grpc_client.AddWorkerInfo - 1 total (0 active), Execution time: mean = 703.624 us, total = 703.624 us, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+
+-----------------
+Task execution event stats:
+
+Global stats: 0 total (0 active)
+Queueing time: mean = nan ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+Execution time:  mean = nan ns, total = 0.000 ns
+Event stats:
+
+-----------------
+Task Event stats:
+
+IO Service Stats:
+
+Global stats: 4 total (2 active)
+Queueing time: mean = 1.817 us, max = 7.270 us, min = 7.270 us, total = 7.270 us
+Execution time:  mean = 206.291 us, total = 825.164 us
+Event stats:
+	PeriodicalRunner.RunFnPeriodically - 1 total (0 active), Execution time: mean = 235.381 us, total = 235.381 us, Queueing time: mean = 7.270 us, max = 7.270 us, min = 7.270 us, total = 7.270 us
+	ray::rpc::TaskInfoGcsService.grpc_client.AddTaskEventData - 1 total (0 active), Execution time: mean = 589.783 us, total = 589.783 us, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorker.deadline_timer.flush_task_events - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::TaskInfoGcsService.grpc_client.AddTaskEventData.OnReplyReceived - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+Other Stats:
+	grpc_in_progress:0
+	current number of task status events in buffer: 1
+	current number of profile events in buffer: 0
+	current number of dropped task attempts tracked: 0
+	total task events sent: 0 MiB
+	total number of task attempts sent: 0
+	total number of task attempts dropped reported: 0
+	total number of sent failure: 0
+	num status task events dropped: 0
+	num profile task events dropped: 0
+
+
+[2026-11-15 17:44:22,142 I 1664014 1664580] accessor.cc:784: Received notification for node, IsAlive = 1 node_id=e76b8d2fb9da1f094fbb034a45513762127c7244d7a986ebe18a9bac
+[2026-11-15 17:44:22,142 I 1664014 1664580] core_worker.cc:5148: Number of alive nodes:1
+[2026-11-15 17:44:22,142 I 1664014 1664014] event.cc:500: Ray Event initialized for CORE_WORKER
+[2026-11-15 17:44:22,142 I 1664014 1664014] event.cc:500: Ray Event initialized for EXPORT_TASK
+[2026-11-15 17:44:22,142 I 1664014 1664014] event.cc:331: Set ray event level to warning
+[2026-11-15 17:44:22,302 I 1664014 1664014] actor_task_submitter.cc:73: Set actor max pending calls to -1 actor_id=f465e7a1c6fb9df3390cb6f001000000
+[2026-11-15 17:44:22,302 I 1664014 1664014] actor_task_submitter.cc:73: Set actor max pending calls to -1 actor_id=944f088c6ccc6740b135a01c01000000
+[2026-11-15 17:44:22,306 I 1664014 1664580] actor_manager.cc:218: received notification on actor, state: PENDING_CREATION, ip address: , port: 0, num_restarts: 0, death context type=CONTEXT_NOT_SET actor_id=f465e7a1c6fb9df3390cb6f001000000 worker_id=NIL_ID node_id=e76b8d2fb9da1f094fbb034a45513762127c7244d7a986ebe18a9bac
+[2026-11-15 17:44:22,306 I 1664014 1664580] actor_manager.cc:218: received notification on actor, state: PENDING_CREATION, ip address: , port: 0, num_restarts: 0, death context type=CONTEXT_NOT_SET actor_id=f465e7a1c6fb9df3390cb6f001000000 worker_id=NIL_ID node_id=NIL_ID
+[2026-11-15 17:44:22,306 I 1664014 1664580] actor_manager.cc:218: received notification on actor, state: PENDING_CREATION, ip address: , port: 0, num_restarts: 0, death context type=CONTEXT_NOT_SET actor_id=944f088c6ccc6740b135a01c01000000 worker_id=NIL_ID node_id=e76b8d2fb9da1f094fbb034a45513762127c7244d7a986ebe18a9bac
+[2026-11-15 17:44:22,316 I 1664014 1664580] actor_manager.cc:218: received notification on actor, state: ALIVE, ip address: 10.119.246.138, port: 38405, num_restarts: 0, death context type=CONTEXT_NOT_SET actor_id=f465e7a1c6fb9df3390cb6f001000000 worker_id=3e032a02dff565d332bcde835fcf63d80685078d81b651c3d9ee2614 node_id=e76b8d2fb9da1f094fbb034a45513762127c7244d7a986ebe18a9bac
+[2026-11-15 17:44:22,318 I 1664014 1664580] actor_manager.cc:218: received notification on actor, state: ALIVE, ip address: 10.119.246.138, port: 35987, num_restarts: 0, death context type=CONTEXT_NOT_SET actor_id=944f088c6ccc6740b135a01c01000000 worker_id=6c8ed9c8c8657758cdfe63d6f0305081408aba473ed3a121e9198c24 node_id=e76b8d2fb9da1f094fbb034a45513762127c7244d7a986ebe18a9bac
+[2026-11-15 17:44:31,562 W 1664014 1664575] metric_exporter.cc:105: [1] Export metrics to agent failed: RpcError: RPC Error message: failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:62444: Failed to connect to remote host: Connection refused; RPC Error details:  rpc_code: 14. This won't affect Ray, but you can lose metrics from the cluster.
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a3e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a3e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a4e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a5e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a5e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a6e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a6e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a7e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a7e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a8e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a8e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000a9e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000aae3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000aae3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000abe3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000abe3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ace3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ade3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ade3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000aee3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000aee3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000afe3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000afe3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b0e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b0e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b1e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b1e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b2e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b2e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b3e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b3e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b4e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b4e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b5e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b5e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b6e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b6e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b7e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b7e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b8e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b8e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b9e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000b9e3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000bae3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000bae3f505
+[2026-11-15 17:44:32,719 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000bbe3f505
+[2026-11-15 17:44:43,065 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff0100000062e6f505
+[2026-11-15 17:44:43,066 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff0100000062e6f505
+[2026-11-15 17:45:22,141 I 1664014 1664580] core_worker.cc:915: Event stats:
+
+
+Global stats: 78370 total (10 active)
+Queueing time: mean = 42.859 us, max = 96.179 ms, min = -22932.000 ns, total = 3.359 s
+Execution time:  mean = 588.544 us, total = 46.124 s
+Event stats:
+	CoreWorkerMemoryStore.Put.get_async_callbacks - 11336 total (0 active), Execution time: mean = 593.739 ns, total = 6.731 ms, Queueing time: mean = 28.730 us, max = 1.168 ms, min = 1.530 us, total = 325.683 ms
+	CoreWorkerMemoryStore.GetAsync.Callback - 11318 total (0 active), Execution time: mean = 393.627 us, total = 4.455 s, Queueing time: mean = 202.051 us, max = 96.179 ms, min = 1.120 us, total = 2.287 s
+	CoreWorkerService.grpc_client.PushTask - 8336 total (0 active), Execution time: mean = 2.094 ms, total = 17.459 s, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ActorTaskSubmitter::SubmitTask - 8336 total (0 active), Execution time: mean = 85.565 us, total = 713.266 ms, Queueing time: mean = 25.604 us, max = 2.485 ms, min = 1.530 us, total = 213.435 ms
+	CoreWorkerService.grpc_client.PushTask.OnReplyReceived - 8336 total (0 active), Execution time: mean = 35.969 us, total = 299.833 ms, Queueing time: mean = 13.195 us, max = 1.263 ms, min = 1.440 us, total = 109.992 ms
+	CoreWorkerService.grpc_server.PubsubCommandBatch - 6111 total (0 active), Execution time: mean = 150.687 us, total = 920.850 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorkerService.grpc_server.PubsubCommandBatch.HandleRequestImpl - 6111 total (0 active), Execution time: mean = 18.055 us, total = 110.336 ms, Queueing time: mean = 21.011 us, max = 3.720 ms, min = 1.260 us, total = 128.397 ms
+	CoreWorkerService.grpc_server.PubsubLongPolling - 4368 total (1 active), Execution time: mean = 4.651 ms, total = 20.315 s, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorkerService.grpc_server.PubsubLongPolling.HandleRequestImpl - 4368 total (0 active), Execution time: mean = 8.700 us, total = 38.003 ms, Queueing time: mean = 14.240 us, max = 2.577 ms, min = 1.340 us, total = 62.200 ms
+	CoreWorkerService.grpc_server.UpdateObjectLocationBatch - 2953 total (0 active), Execution time: mean = 154.730 us, total = 456.917 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorkerService.grpc_server.UpdateObjectLocationBatch.HandleRequestImpl - 2953 total (0 active), Execution time: mean = 13.347 us, total = 39.414 ms, Queueing time: mean = 29.066 us, max = 4.123 ms, min = 1.200 us, total = 85.831 ms
+	NodeManagerService.grpc_client.PinObjectIDs - 1500 total (0 active), Execution time: mean = 657.185 us, total = 985.777 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	NodeManagerService.grpc_client.PinObjectIDs.OnReplyReceived - 1500 total (0 active), Execution time: mean = 39.445 us, total = 59.168 ms, Queueing time: mean = 42.854 us, max = 3.739 ms, min = 1.550 us, total = 64.281 ms
+	CoreWorker.RecoverObjects - 600 total (1 active), Execution time: mean = 4.858 us, total = 2.915 ms, Queueing time: mean = 118.666 us, max = 38.881 ms, min = -22932.000 ns, total = 71.199 ms
+	NodeManagerService.grpc_client.ReportWorkerBacklog.OnReplyReceived - 60 total (0 active), Execution time: mean = 17.396 us, total = 1.044 ms, Queueing time: mean = 56.558 us, max = 894.034 us, min = 4.720 us, total = 3.393 ms
+	CoreWorker.InternalHeartbeat - 60 total (1 active), Execution time: mean = 80.768 us, total = 4.846 ms, Queueing time: mean = 41.600 us, max = 713.154 us, min = 4.600 us, total = 2.496 ms
+	NodeManagerService.grpc_client.ReportWorkerBacklog - 60 total (0 active), Execution time: mean = 643.883 us, total = 38.633 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorker.RecordMetrics - 12 total (1 active), Execution time: mean = 197.760 us, total = 2.373 ms, Queueing time: mean = 54.464 us, max = 557.637 us, min = 6.310 us, total = 653.569 us
+	CoreWorker.TryDelPendingObjectRefStreams - 6 total (1 active), Execution time: mean = 3.425 us, total = 20.550 us, Queueing time: mean = 109.793 us, max = 580.873 us, min = 11.521 us, total = 658.759 us
+	PeriodicalRunner.RunFnPeriodically - 6 total (0 active), Execution time: mean = 95.154 us, total = 570.923 us, Queueing time: mean = 237.927 us, max = 526.612 us, min = 13.400 us, total = 1.428 ms
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberPoll - 4 total (1 active), Execution time: mean = 44.362 ms, total = 177.448 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberCommandBatch - 3 total (0 active), Execution time: mean = 797.251 us, total = 2.392 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberPoll.OnReplyReceived - 3 total (0 active), Execution time: mean = 150.611 us, total = 451.832 us, Queueing time: mean = 12.097 us, max = 15.760 us, min = 9.040 us, total = 36.290 us
+	ray::rpc::InternalPubSubGcsService.grpc_client.GcsSubscriberCommandBatch.OnReplyReceived - 3 total (0 active), Execution time: mean = 98.250 us, total = 294.751 us, Queueing time: mean = 227.248 us, max = 525.622 us, min = 14.300 us, total = 681.743 us
+	Subscriber.HandlePublishedMessage_GCS_ACTOR_CHANNEL - 3 total (0 active), Execution time: mean = 247.995 us, total = 743.984 us, Queueing time: mean = 265.348 us, max = 530.893 us, min = 123.160 us, total = 796.043 us
+	ActorCreator.AsyncRegisterActor - 2 total (0 active), Execution time: mean = 232.151 us, total = 464.303 us, Queueing time: mean = 13.440 us, max = 14.290 us, min = 12.590 us, total = 26.880 us
+	ray::rpc::ActorInfoGcsService.grpc_client.RegisterActor.OnReplyReceived - 2 total (0 active), Execution time: mean = 89.680 us, total = 179.361 us, Queueing time: mean = 63.930 us, max = 111.630 us, min = 16.230 us, total = 127.860 us
+	ray::rpc::ActorInfoGcsService.grpc_client.CreateActor - 2 total (0 active), Execution time: mean = 12.474 ms, total = 24.948 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::ActorInfoGcsService.grpc_client.CreateActor.OnReplyReceived - 2 total (0 active), Execution time: mean = 36.655 us, total = 73.310 us, Queueing time: mean = 101.520 us, max = 106.040 us, min = 97.000 us, total = 203.040 us
+	ray::rpc::ActorInfoGcsService.grpc_client.GetActorInfo.OnReplyReceived - 2 total (0 active), Execution time: mean = 231.591 us, total = 463.182 us, Queueing time: mean = 208.816 us, max = 255.792 us, min = 161.841 us, total = 417.633 us
+	ray::rpc::ActorInfoGcsService.grpc_client.RegisterActor - 2 total (0 active), Execution time: mean = 2.029 ms, total = 4.058 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorkerService.grpc_server.WaitForActorRefDeleted - 2 total (2 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::ActorInfoGcsService.grpc_client.GetActorInfo - 2 total (0 active), Execution time: mean = 772.683 us, total = 1.545 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorkerService.grpc_server.WaitForActorRefDeleted.HandleRequestImpl - 2 total (0 active), Execution time: mean = 9.120 us, total = 18.241 us, Queueing time: mean = 12.911 us, max = 15.631 us, min = 10.190 us, total = 25.821 us
+	Publisher.CheckDeadSubscribers - 1 total (1 active), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::WorkerInfoGcsService.grpc_client.AddWorkerInfo - 1 total (0 active), Execution time: mean = 703.624 us, total = 703.624 us, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::WorkerInfoGcsService.grpc_client.AddWorkerInfo.OnReplyReceived - 1 total (0 active), Execution time: mean = 72.000 us, total = 72.000 us, Queueing time: mean = 21.070 us, max = 21.070 us, min = 21.070 us, total = 21.070 us
+	ray::rpc::NodeInfoGcsService.grpc_client.GetAllNodeInfo.OnReplyReceived - 1 total (0 active), Execution time: mean = 76.710 us, total = 76.710 us, Queueing time: mean = 40.281 us, max = 40.281 us, min = 40.281 us, total = 40.281 us
+	CoreWorker.PrintEventStats - 1 total (1 active, 1 running), Execution time: mean = 0.000 ns, total = 0.000 ns, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	ray::rpc::NodeInfoGcsService.grpc_client.GetAllNodeInfo - 1 total (0 active), Execution time: mean = 639.353 us, total = 639.353 us, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+
+-----------------
+Task execution event stats:
+
+Global stats: 0 total (0 active)
+Queueing time: mean = nan ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+Execution time:  mean = nan ns, total = 0.000 ns
+Event stats:
+
+-----------------
+Task Event stats:
+
+IO Service Stats:
+
+Global stats: 181 total (1 active)
+Queueing time: mean = 47.778 us, max = 3.505 ms, min = 7.270 us, total = 8.648 ms
+Execution time:  mean = 1.511 ms, total = 273.474 ms
+Event stats:
+	ray::rpc::TaskInfoGcsService.grpc_client.AddTaskEventData - 60 total (0 active), Execution time: mean = 1.811 ms, total = 108.644 ms, Queueing time: mean = 0.000 ns, max = -1.000 ns, min = 9223372036.855 s, total = 0.000 ns
+	CoreWorker.deadline_timer.flush_task_events - 60 total (1 active), Execution time: mean = 2.541 ms, total = 152.467 ms, Queueing time: mean = 40.422 us, max = 1.002 ms, min = 10.280 us, total = 2.425 ms
+	ray::rpc::TaskInfoGcsService.grpc_client.AddTaskEventData.OnReplyReceived - 60 total (0 active), Execution time: mean = 202.107 us, total = 12.126 ms, Queueing time: mean = 103.589 us, max = 3.505 ms, min = 8.020 us, total = 6.215 ms
+	PeriodicalRunner.RunFnPeriodically - 1 total (0 active), Execution time: mean = 235.381 us, total = 235.381 us, Queueing time: mean = 7.270 us, max = 7.270 us, min = 7.270 us, total = 7.270 us
+Other Stats:
+	grpc_in_progress:0
+	current number of task status events in buffer: 488
+	current number of profile events in buffer: 122
+	current number of dropped task attempts tracked: 0
+	total task events sent: 2.45832 MiB
+	total number of task attempts sent: 8296
+	total number of task attempts dropped reported: 0
+	total number of sent failure: 0
+	num status task events dropped: 0
+	num profile task events dropped: 0
+
+
+[2026-11-15 17:45:27,478 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff010000000de7f505
+[2026-11-15 17:45:27,478 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff010000000de7f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000eae8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000eae8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ebe8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ebe8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ece8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ece8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ede8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000ede8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000eee8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000eee8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000efe8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000efe8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f0e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f0e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f1e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f1e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f2e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f2e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f3e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f3e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f4e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f4e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f5e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f5e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f6e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f6e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f7e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f7e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f8e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f8e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f9e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000f9e8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fae8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fae8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fbe8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fbe8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fce8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fde8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fde8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fee8f505
+[2026-11-15 17:45:34,682 W 1664014 1664580] reference_count.cc:1619: Object locations requested for object, but ref already removed. This may be a bug in the distributed reference counting protocol. object_id=00ffffffffffffffffffffffffffffffffffffff01000000fee8f505
+[2026-11-15 17:45:50,203 I 1664014 1664014] core_worker.cc:1097: Sending disconnect message to the local raylet.
+[2026-11-15 17:45:50,203 I 1664014 1664014] raylet_client.cc:73: RayletClient::Disconnect, exit_type=INTENDED_USER_EXIT, exit_detail=Shutdown by ray.shutdown()., has creation_task_exception_pb_bytes=0
+[2026-11-15 17:45:50,208 I 1664014 1664014] core_worker.cc:1103: Disconnected from the local raylet.
+[2026-11-15 17:45:50,208 I 1664014 1664014] core_worker.cc:1019: Shutting down.
+[2026-11-15 17:45:50,210 I 1664014 1664014] task_event_buffer.cc:298: Shutting down TaskEventBuffer.
+[2026-11-15 17:45:50,210 I 1664014 1664916] task_event_buffer.cc:266: Task event buffer io service stopped.
+[2026-11-15 17:45:50,226 I 1664014 1664014] core_worker.cc:1037: Waiting for joining a core worker io thread. If it hangs here, there might be deadlock or a high load in the core worker io service.
+[2026-11-15 17:45:50,226 I 1664014 1664580] core_worker.cc:1290: Core worker main io service stopped.
+[2026-11-15 17:45:50,234 I 1664014 1664014] core_worker.cc:1049: Disconnecting a GCS client.
+[2026-11-15 17:45:50,234 I 1664014 1664014] core_worker.cc:1056: Core worker ready to be deallocated.
+[2026-11-15 17:45:50,234 I 1664014 1664014] core_worker.cc:1010: Core worker is destructed
+[2026-11-15 17:45:50,234 I 1664014 1664014] task_event_buffer.cc:298: Shutting down TaskEventBuffer.
+[2026-11-15 17:45:50,234 W 1664014 1665138] server_call.h:338: [1] Not sending reply because executor stopped.
+[2026-11-15 17:45:50,470 I 1664014 1664014] core_worker_process.cc:237: Destructing CoreWorkerProcessImpl. pid: 1664014
+[2026-11-15 17:45:50,471 I 1664014 1664014] io_service_pool.cc:49: IOServicePool is stopped.
+[2026-11-15 17:45:50,522 I 1664014 1664014] stats.h:136: Stats module has shutdown.

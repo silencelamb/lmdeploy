@@ -1,0 +1,87 @@
+{
+  "file": "results/ray-affinity-node1-r0.json",
+  "joins": 6000,
+  "slow_join_count": 0,
+  "maxima": {
+    "submit": 31.82289,
+    "to_input_restore": 8.66628,
+    "restore_to_handler": 5.250315,
+    "handler": 0.030971,
+    "exit_to_serialize": 1.256236,
+    "result_transport": 57.369881,
+    "restore_to_future": 0.889124,
+    "future_to_join": 19.480839
+  },
+  "slow": [
+    {
+      "item": 5832,
+      "mode": "put",
+      "rank": 0,
+      "wait_ms": 46.783129,
+      "delivery_ms": 1.523918,
+      "submit": 0.835274,
+      "to_input_restore": 0.566623,
+      "restore_to_handler": 0.122021,
+      "handler": 0.00344,
+      "exit_to_serialize": 0.07356,
+      "result_transport": 56.619118,
+      "restore_to_future": 0.0477,
+      "future_to_join": 1.539087
+    },
+    {
+      "item": 5832,
+      "mode": "put",
+      "rank": 1,
+      "wait_ms": 46.783129,
+      "delivery_ms": 1.706619,
+      "submit": 0.835274,
+      "to_input_restore": 0.712884,
+      "restore_to_handler": 0.158461,
+      "handler": 0.00444,
+      "exit_to_serialize": 0.08602,
+      "result_transport": 57.369881,
+      "restore_to_future": 0.03183,
+      "future_to_join": 0.608033
+    }
+  ],
+  "beats": {
+    "driver": [
+      {
+        "start_ns": 430569641220607,
+        "end_ns": 430569680818969,
+        "late_ms": 29.598362
+      },
+      {
+        "start_ns": 430585555140191,
+        "end_ns": 430585589199121,
+        "late_ms": 24.058929999999997
+      },
+      {
+        "start_ns": 430613095909439,
+        "end_ns": 430613134781598,
+        "late_ms": 28.872159000000003
+      },
+      {
+        "start_ns": 430631809086129,
+        "end_ns": 430631862208580,
+        "late_ms": 43.122451
+      }
+    ],
+    "workers": [
+      [
+        {
+          "start_ns": 430568078270742,
+          "end_ns": 430568118260315,
+          "late_ms": 29.989573
+        },
+        {
+          "start_ns": 430602582924714,
+          "end_ns": 430602601986862,
+          "late_ms": 9.062148
+        }
+      ],
+      []
+    ]
+  },
+  "no_torch_npu": true
+}
