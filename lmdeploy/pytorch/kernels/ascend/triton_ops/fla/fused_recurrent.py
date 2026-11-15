@@ -232,10 +232,11 @@ def fused_recurrent_gated_delta_rule_fwd(
     NK, NV = triton.cdiv(K, BK), triton.cdiv(V, BV)
     assert NK == 1, 'NK > 1 is not supported yet'
     # Triton Ascend maps num_stages=1 to disabled automatic multi-buffering.
-    # With CANN 9.1, multi-buffering this loop can corrupt FP32 circular-state
-    # writes while leaving the current output unchanged. Those saved states are
-    # subsequently read after speculative acceptance/rollback. Keep this path
-    # single-buffered so that every saved state matches the recurrence.
+    # In the tested AscendNPU-IR 042c923d02a2, sync IDs rotate in the token
+    # loop while the yielded state buffer rotates only in an outer loop.
+    # The next vector update can overwrite a pending MTE3 state store without
+    # changing the current output. Keep circular state single-buffered so the
+    # saved states used by speculative acceptance/rollback are protected.
     num_stages = 1 if cache_seqlens_rb is not None else 3
     num_warps = 1
 
