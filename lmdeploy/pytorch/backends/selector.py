@@ -14,7 +14,7 @@ def _get_backend() -> type[OpsBackend]:
     if device_type == 'cuda':
         from .cuda import CudaOpsBackend
         return CudaOpsBackend
-    if device_type in ('ascend', 'npu'):
+    if device_type == 'ascend':
         from .ascend import AscendOpsBackend
         return AscendOpsBackend
     if device_type == 'maca':

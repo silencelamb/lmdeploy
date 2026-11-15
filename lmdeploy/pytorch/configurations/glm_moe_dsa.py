@@ -19,7 +19,7 @@ class GlmMoeDsaModelConfigBuilder(DeepseekV32ModelConfigBuilder):
     def build(cls, hf_config, model_path: str | None = None, **kwargs):
         """build."""
         is_draft_model = kwargs.get('is_draft_model', False)
-        is_ascend = kwargs.get('device_type') in ('ascend', 'npu')
+        is_ascend = kwargs.get('device_type') == 'ascend'
         if is_ascend:
             from lmdeploy.pytorch.backends.ascend.model_config import load_modelslim_config
             load_modelslim_config(hf_config, model_path)

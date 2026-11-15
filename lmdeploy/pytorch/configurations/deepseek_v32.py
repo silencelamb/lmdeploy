@@ -38,7 +38,7 @@ class DeepseekV32ModelConfigBuilder(DeepseekV2ModelConfigBuilder):
         is_draft_model = kwargs.get('is_draft_model', False)
         config = DeepseekV2ModelConfigBuilder.build(hf_config, model_path=model_path, **kwargs)
 
-        if kwargs.get('device_type') not in ('ascend', 'npu'):
+        if kwargs.get('device_type') != 'ascend':
             assert hf_config.use_flash_mla, 'DeepSeek-V3.2 requires flash_mla to be available.'
         config.mla_kv_cache_dtype = 'bfloat16'
         config.mla_index_topk = hf_config.index_topk
