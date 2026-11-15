@@ -1,0 +1,78 @@
+[
+  {
+    "file": "lmdeploy/pytorch/backends/ascend/norm.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/ascend/op_backend.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/cuda/norm.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/cuda/op_backend.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/default/norm.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/default/op_backend.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/gated_delta_rule.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/backends/norm.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/models/glm5_next.py",
+    "final_ast_equal": false
+  },
+  {
+    "file": "lmdeploy/pytorch/models/qwen3_5.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/models/qwen3_next.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/nn/__init__.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/nn/gated_delta.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "lmdeploy/pytorch/nn/norm.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "tests/pytorch/ascend/hardware/test_rms_norm_gated.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "tests/pytorch/models/test_qwen3_5_norm.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "tests/pytorch/models/test_rms_norm_gated_models.py",
+    "final_ast_equal": true
+  },
+  {
+    "file": "tests/pytorch/nn/test_rms_norm_gated.py",
+    "final_ast_equal": true
+  }
+]

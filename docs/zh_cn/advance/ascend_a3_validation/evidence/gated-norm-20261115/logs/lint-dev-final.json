@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+    "run",
+    "--config",
+    "/root/workspace/a3-native-pr-20261115/artifacts/applicable-pre-commit.yaml",
+    "--files",
+    "lmdeploy/pytorch/backends/ascend/norm.py",
+    "lmdeploy/pytorch/backends/ascend/op_backend.py",
+    "lmdeploy/pytorch/backends/cuda/norm.py",
+    "lmdeploy/pytorch/backends/cuda/op_backend.py",
+    "lmdeploy/pytorch/backends/default/norm.py",
+    "lmdeploy/pytorch/backends/default/op_backend.py",
+    "lmdeploy/pytorch/backends/gated_delta_rule.py",
+    "lmdeploy/pytorch/backends/norm.py",
+    "lmdeploy/pytorch/kernels/ascend/triton_ops/README.md",
+    "lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py",
+    "lmdeploy/pytorch/models/glm5_next.py",
+    "lmdeploy/pytorch/models/qwen3_5.py",
+    "lmdeploy/pytorch/models/qwen3_next.py",
+    "lmdeploy/pytorch/nn/__init__.py",
+    "lmdeploy/pytorch/nn/gated_delta.py",
+    "lmdeploy/pytorch/nn/norm.py",
+    "tests/pytorch/ascend/hardware/test_rms_norm_gated.py",
+    "tests/pytorch/models/test_qwen3_5_norm.py",
+    "tests/pytorch/models/test_rms_norm_gated_models.py",
+    "tests/pytorch/nn/test_rms_norm_gated.py"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 1.4663616670295596
+}

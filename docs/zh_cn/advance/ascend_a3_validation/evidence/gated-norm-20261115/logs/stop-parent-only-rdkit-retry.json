@@ -1,0 +1,20 @@
+[
+  {
+    "pid": 1528632,
+    "ppid": 184870,
+    "pgid": 1528632,
+    "argv": "python /root/workspace/a3-gated-norm-20261115/scripts/run_s2.py"
+  },
+  {
+    "pid": 1532235,
+    "ppid": 1528632,
+    "pgid": 1528632,
+    "argv": "/usr/local/python3.12.13/bin/python /root/workspace/a3-gated-norm-20261115/scripts/run.py --label s2mobius-rdkit-before --repo /root/workspace/a3-gated-norm-20261115/lmdeploy-before --devices 0,1 --timeout 900 -- /root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py --model /afs-weights/Intern-S2-Mobius --tp 2 --scores --prefill 256 --session 8192 --batch 8 --cache-fraction 0.5 --preload-rdkit --output /root/workspace/a3-gated-norm-20261115/results/s2mobius-rdkit-before.json"
+  },
+  {
+    "pid": 1532242,
+    "ppid": 1532235,
+    "pgid": 1532242,
+    "argv": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python /root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py --model /afs-weights/Intern-S2-Mobius --tp 2 --scores --prefill 256 --session 8192 --batch 8 --cache-fraction 0.5 --preload-rdkit --output /root/workspace/a3-gated-norm-20261115/results/s2mobius-rdkit-before.json"
+  }
+]

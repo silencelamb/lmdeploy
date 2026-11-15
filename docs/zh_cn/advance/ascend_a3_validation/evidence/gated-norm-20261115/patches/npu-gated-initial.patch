@@ -1,0 +1,609 @@
+diff --git a/lmdeploy/pytorch/backends/ascend/norm.py b/lmdeploy/pytorch/backends/ascend/norm.py
+index 2bf5c6e8..4499a258 100644
+--- a/lmdeploy/pytorch/backends/ascend/norm.py
++++ b/lmdeploy/pytorch/backends/ascend/norm.py
+@@ -3,7 +3,7 @@ import torch
+ 
+ from lmdeploy.pytorch.kernels.ascend.rms_norm import rms_norm
+ 
+-from ..norm import RMSNormImpl
++from ..norm import RMSNormGatedImpl, RMSNormImpl
+ 
+ 
+ class AscendRMSNormImpl(RMSNormImpl):
+@@ -21,3 +21,35 @@ class AscendRMSNormImpl(RMSNormImpl):
+         else:
+             x, residual = rms_norm(x, weight, self.eps, residual=residual)
+             return x, residual
++
++
++class AscendRMSNormGatedImpl(RMSNormGatedImpl):
++    """Ascend gated RMS normalization without owning model parameters."""
++
++    def __init__(self, hidden_size: int, eps: float = 1e-6, activation: str = 'silu'):
++        self.hidden_size = hidden_size
++        self.eps = eps
++        self.activation = activation
++
++    def forward(self,
++                x: torch.Tensor,
++                weight: torch.Tensor | None,
++                z: torch.Tensor,
++                residual: torch.Tensor | None = None,
++                prenorm: bool = False,
++                residual_in_fp32: bool = False):
++        """Keep the existing fused kernel for the ordinary no-residual path."""
++        from lmdeploy.pytorch.kernels.ascend.triton_ops.rms_norm_gated import rmsnorm_fn
++
++        norm_input = x if residual is None else x.float() + residual.float()
++        output = rmsnorm_fn(norm_input,
++                            weight,
++                            None,
++                            z=z,
++                            eps=self.eps,
++                            norm_before_gate=True,
++                            activation=self.activation).to(x.dtype)
++        if not prenorm:
++            return output
++        residual_dtype = residual.dtype if residual is not None else (torch.float32 if residual_in_fp32 else x.dtype)
++        return output, norm_input.to(residual_dtype)
+diff --git a/lmdeploy/pytorch/backends/ascend/op_backend.py b/lmdeploy/pytorch/backends/ascend/op_backend.py
+index bc5ace9b..3f771686 100644
+--- a/lmdeploy/pytorch/backends/ascend/op_backend.py
++++ b/lmdeploy/pytorch/backends/ascend/op_backend.py
+@@ -171,13 +171,6 @@ class AscendOpsBackend(DefaultOpsBackend):
+ 
+     @classmethod
+     def build_op(cls, spec, *, enable_deterministic: bool = False):
+-        # Keep Ascend GDN operators behind the existing BuildSpec dispatch.
+-        from ..gated_delta_rule import RMSNormGatedBuildSpec
+-
+-        if isinstance(spec, RMSNormGatedBuildSpec):
+-            from lmdeploy.pytorch.kernels.ascend.triton_ops.rms_norm_gated import RMSNormGated
+-
+-            return RMSNormGated(spec.hidden_size, eps=spec.eps, norm_before_gate=True, device=spec.kwargs['device'])
+         from ..causal_conv1d import CausalConv1dBuildSpec
+         from ..gated_delta_rule import (
+             GatedDeltaMetaBuildSpec,
+@@ -212,7 +205,7 @@ class AscendOpsBackend(DefaultOpsBackend):
+             FusedMoEW8A8BuildSpec,
+             SoftmaxTopKBuildSpec,
+         )
+-        from ..norm import RMSNormBuildSpec
++        from ..norm import RMSNormBuildSpec, RMSNormGatedBuildSpec
+         from ..nsa import NSAIndexFP8BuildSpec
+         from ..qmodules import LinearW8A8BuildSpec, RMSNormW8A8BuildSpec
+         from ..rotary_embedding import RotaryEmbeddingBuildSpec
+@@ -231,6 +224,10 @@ class AscendOpsBackend(DefaultOpsBackend):
+             from .norm import AscendRMSNormImpl
+ 
+             return cast(ImplT, AscendRMSNormImpl(spec.hidden_size, spec.eps))
++        if isinstance(spec, RMSNormGatedBuildSpec):
++            from .norm import AscendRMSNormGatedImpl
++
++            return cast(ImplT, AscendRMSNormGatedImpl(spec.hidden_size, spec.eps, spec.activation))
+         if isinstance(spec, RMSNormW8A8BuildSpec):
+             from .qmodules import AscendRMSNormW8A8Impl
+ 
+diff --git a/lmdeploy/pytorch/backends/cuda/norm.py b/lmdeploy/pytorch/backends/cuda/norm.py
+index 7fbaa40b..1b86b02a 100644
+--- a/lmdeploy/pytorch/backends/cuda/norm.py
++++ b/lmdeploy/pytorch/backends/cuda/norm.py
+@@ -3,9 +3,14 @@ import torch
+ 
+ from lmdeploy.pytorch.kernels.cuda import rms_norm
+ 
++from ..default.norm import DefaultRMSNormGatedImpl
+ from ..norm import RMSNormImpl
+ 
+ 
++class CudaRMSNormGatedImpl(DefaultRMSNormGatedImpl):
++    """Use FLA's original CUDA calculation with externally owned weights."""
++
++
+ class TritonRMSNormImpl(RMSNormImpl):
+     """Triton RMS norm implementation."""
+ 
+diff --git a/lmdeploy/pytorch/backends/cuda/op_backend.py b/lmdeploy/pytorch/backends/cuda/op_backend.py
+index 3fafc139..67a5384a 100644
+--- a/lmdeploy/pytorch/backends/cuda/op_backend.py
++++ b/lmdeploy/pytorch/backends/cuda/op_backend.py
+@@ -55,7 +55,7 @@ class CudaOpsBackend(DefaultOpsBackend):
+         )
+         from ..moe_router import RouterGemmBuildSpec, RouterNoauxTCBuildSpec
+         from ..multinomial_sampling import MultinomialSamplingBuildSpec
+-        from ..norm import RMSNormBuildSpec
++        from ..norm import RMSNormBuildSpec, RMSNormGatedBuildSpec
+         from ..nsa import NSAIndexFP8BuildSpec
+         from ..qmodules import LinearW8A8BuildSpec, RMSNormW8A8BuildSpec
+         from ..rejection_sampling import RejectionSamplingBuildSpec
+@@ -72,6 +72,9 @@ class CudaOpsBackend(DefaultOpsBackend):
+         if isinstance(spec, RMSNormBuildSpec):
+             from .norm import TritonRMSNormImpl
+             return cast(ImplT, TritonRMSNormImpl(spec.hidden_size, spec.eps))
++        if isinstance(spec, RMSNormGatedBuildSpec):
++            from .norm import CudaRMSNormGatedImpl
++            return cast(ImplT, CudaRMSNormGatedImpl(spec.hidden_size, spec.eps, spec.activation))
+         if isinstance(spec, RMSNormW8A8BuildSpec):
+             from .qmodules import TritonRMSNormW8A8Impl
+             return cast(ImplT, TritonRMSNormW8A8Impl(spec.hidden_size, spec.eps, spec.quant_dtype))
+diff --git a/lmdeploy/pytorch/backends/default/gated_norm.py b/lmdeploy/pytorch/backends/default/gated_norm.py
+deleted file mode 100644
+index 72c852a1..00000000
+--- a/lmdeploy/pytorch/backends/default/gated_norm.py
++++ /dev/null
+@@ -1,17 +0,0 @@
+-# Copyright (c) OpenMMLab. All rights reserved.
+-from lmdeploy.utils import get_logger
+-
+-logger = get_logger('lmdeploy')
+-
+-def build_rmsnorm_gated(hidden_size: int, eps=1e-6, **kwargs):
+-    # TODO: used custom kernel
+-    from fla.modules import FusedRMSNormGated
+-    try:
+-        # avoid unwanted specialize
+-        from fla.modules.fused_norm_gate import layer_norm_gated_fwd_kernel
+-        keys = layer_norm_gated_fwd_kernel.fn.keys
+-        if 'NB' in keys:
+-            keys.remove('NB')
+-    except Exception:
+-        logger.debug('patch layer_norm_gated_fwd_kernel autotuning failed.')
+-    return FusedRMSNormGated(hidden_size, eps=eps, **kwargs)
+diff --git a/lmdeploy/pytorch/backends/default/norm.py b/lmdeploy/pytorch/backends/default/norm.py
+index 85f7ffcf..c2e26bb8 100644
+--- a/lmdeploy/pytorch/backends/default/norm.py
++++ b/lmdeploy/pytorch/backends/default/norm.py
+@@ -1,7 +1,9 @@
+ # Copyright (c) OpenMMLab. All rights reserved.
+ import torch
+ 
+-from ..norm import LayerNormImpl, RMSNormImpl
++from lmdeploy.utils import get_logger
++
++from ..norm import LayerNormImpl, RMSNormGatedImpl, RMSNormImpl
+ 
+ 
+ class DefaultRMSNormImpl(RMSNormImpl):
+@@ -49,3 +51,46 @@ class DefaultLayerNormImpl(LayerNormImpl):
+         if residual is None:
+             return x
+         return x, residual
++
++
++class DefaultRMSNormGatedImpl(RMSNormGatedImpl):
++    """FLA adapter shared with backends that previously used the FLA module.
++
++    Keep vendor imports lazy and retain the existing autotuning workaround.
++    The adapter owns no parameters; FLA receives the public layer's weight.
++    """
++
++    def __init__(self, hidden_size: int, eps: float = 1e-6, activation: str = 'silu'):
++        self.hidden_size = hidden_size
++        self.eps = eps
++        self.activation = activation
++        self._fla_forward = None
++
++    def forward(self,
++                x: torch.Tensor,
++                weight: torch.Tensor | None,
++                z: torch.Tensor,
++                residual: torch.Tensor | None = None,
++                prenorm: bool = False,
++                residual_in_fp32: bool = False):
++        """Call the same functional entry point as FusedRMSNormGated."""
++        if self._fla_forward is None:
++            from fla.modules.fused_norm_gate import rms_norm_gated
++            try:
++                # Preserve the old factory's avoidance of NB specialization.
++                from fla.modules.fused_norm_gate import layer_norm_gated_fwd_kernel
++                keys = layer_norm_gated_fwd_kernel.fn.keys
++                if 'NB' in keys:
++                    keys.remove('NB')
++            except Exception:
++                get_logger('lmdeploy').debug('patch layer_norm_gated_fwd_kernel autotuning failed.')
++            self._fla_forward = rms_norm_gated
++        return self._fla_forward(x,
++                                 z,
++                                 weight,
++                                 None,
++                                 self.activation,
++                                 residual=residual,
++                                 eps=self.eps,
++                                 prenorm=prenorm,
++                                 residual_in_fp32=residual_in_fp32)
+diff --git a/lmdeploy/pytorch/backends/default/op_backend.py b/lmdeploy/pytorch/backends/default/op_backend.py
+index 06b8af4e..fa1977cf 100644
+--- a/lmdeploy/pytorch/backends/default/op_backend.py
++++ b/lmdeploy/pytorch/backends/default/op_backend.py
+@@ -16,10 +16,6 @@ class DefaultOpsBackend(OpsBackend):
+     @classmethod
+     def build_op(cls, spec: BuildSpec[ImplT], *, enable_deterministic: bool = False) -> ImplT:
+         """Build a typed operator implementation."""
+-        from ..gated_delta_rule import RMSNormGatedBuildSpec
+-        if isinstance(spec, RMSNormGatedBuildSpec):
+-            from .gated_norm import build_rmsnorm_gated
+-            return cast(ImplT, build_rmsnorm_gated(spec.hidden_size, spec.eps, **spec.kwargs))
+         from ..activation import GeluAndMulBuildSpec, SiluAndMulBuildSpec
+         from ..apply_rotary_emb import ApplyRotaryEmbBuildSpec
+         from ..awq_modules import LinearW4A16BuildSpec
+@@ -28,7 +24,7 @@ class DefaultOpsBackend(OpsBackend):
+         from ..moe import SoftmaxTopKBuildSpec
+         from ..moe_router import RouterGemmBuildSpec, RouterNoauxTCBuildSpec
+         from ..multinomial_sampling import MultinomialSamplingBuildSpec
+-        from ..norm import LayerNormBuildSpec, RMSNormBuildSpec
++        from ..norm import LayerNormBuildSpec, RMSNormBuildSpec, RMSNormGatedBuildSpec
+         from ..rejection_sampling import RejectionSamplingBuildSpec
+         from ..rotary_embedding import RotaryEmbeddingBuildSpec
+         if isinstance(spec, SiluAndMulBuildSpec):
+@@ -46,6 +42,9 @@ class DefaultOpsBackend(OpsBackend):
+         if isinstance(spec, RMSNormBuildSpec):
+             from .norm import DefaultRMSNormImpl
+             return cast(ImplT, DefaultRMSNormImpl(spec.hidden_size, spec.eps))
++        if isinstance(spec, RMSNormGatedBuildSpec):
++            from .norm import DefaultRMSNormGatedImpl
++            return cast(ImplT, DefaultRMSNormGatedImpl(spec.hidden_size, spec.eps, spec.activation))
+         if isinstance(spec, LayerNormBuildSpec):
+             from .norm import DefaultLayerNormImpl
+             return cast(ImplT, DefaultLayerNormImpl(spec.normalized_shape, spec.eps))
+diff --git a/lmdeploy/pytorch/backends/gated_delta_rule.py b/lmdeploy/pytorch/backends/gated_delta_rule.py
+index 546c2959..ec324e83 100644
+--- a/lmdeploy/pytorch/backends/gated_delta_rule.py
++++ b/lmdeploy/pytorch/backends/gated_delta_rule.py
+@@ -288,8 +288,3 @@ class GatedDeltaRuleBuildSpec(BuildSpec[GatedDeltaRuleImpl]):
+     indexed_state: bool = False
+ 
+ 
+-@dataclass(frozen=True)
+-class RMSNormGatedBuildSpec(BuildSpec[torch.nn.Module]):
+-    hidden_size: int
+-    eps: float
+-    kwargs: dict
+diff --git a/lmdeploy/pytorch/backends/norm.py b/lmdeploy/pytorch/backends/norm.py
+index febdf348..22847fa3 100644
+--- a/lmdeploy/pytorch/backends/norm.py
++++ b/lmdeploy/pytorch/backends/norm.py
+@@ -39,3 +39,33 @@ class LayerNormBuildSpec(BuildSpec[LayerNormImpl]):
+ 
+     normalized_shape: int
+     eps: float = 1e-6
++
++
++class RMSNormGatedImpl(ABC):
++    """Gated RMS normalization using weights owned by the public layer."""
++
++    @abstractmethod
++    def forward(self,
++                x: torch.Tensor,
++                weight: torch.Tensor | None,
++                z: torch.Tensor,
++                residual: torch.Tensor | None = None,
++                prenorm: bool = False,
++                residual_in_fp32: bool = False):
++        """Normalize, apply the scale, then apply the gate activation."""
++        raise NotImplementedError
++
++
++@dataclass(frozen=True)
++class RMSNormGatedBuildSpec(BuildSpec[RMSNormGatedImpl]):
++    """Requirements for a gated RMS normalization implementation."""
++
++    hidden_size: int
++    eps: float = 1e-6
++    activation: str = 'silu'
++
++    def __post_init__(self):
++        if self.hidden_size <= 0:
++            raise ValueError('hidden_size must be positive.')
++        if self.activation not in ('silu', 'swish', 'sigmoid'):
++            raise ValueError(f'Unsupported gated RMSNorm activation: {self.activation}')
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py
+index b169368a..469429a5 100644
+--- a/lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py
+@@ -1,14 +1,13 @@
+ # SPDX-License-Identifier: Apache-2.0
+ # Copyright (c) 2024, Tri Dao.
+ #
+-# RMSNorm with gated SiLU activation (Triton kernel for Ascend NPU).
++# RMSNorm with gated SiLU or sigmoid activation (Triton kernel for Ascend NPU).
+ # Adapted from https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/ops/triton/fla/layernorm_guard.py
+ # Original source: https://github.com/fla-org/flash-linear-attention/blob/main/fla/modules/layernorm_gated.py
+ # mypy: ignore-errors
+ 
+ 
+ import torch
+-import torch.nn as nn
+ import triton
+ import triton.language as tl
+ 
+@@ -17,6 +16,7 @@ MAX_CORES = 65535
+ 
+ @triton.heuristics(
+     {
++        'HAS_WEIGHT': lambda args: args['W'] is not None,
+         'HAS_BIAS': lambda args: args['B'] is not None,
+         'HAS_Z': lambda args: args['Z'] is not None,
+     }
+@@ -36,9 +36,11 @@ def _rms_norm_fwd_kernel(
+     N,
+     eps,
+     BLOCK_N: tl.constexpr,
++    HAS_WEIGHT: tl.constexpr,
+     HAS_BIAS: tl.constexpr,
+     HAS_Z: tl.constexpr,
+     NORM_BEFORE_GATE: tl.constexpr,
++    ACTIVATION: tl.constexpr,
+     N_CORES: tl.constexpr,
+ ):
+     row = tl.program_id(0)
+@@ -56,7 +58,8 @@ def _rms_norm_fwd_kernel(
+         if HAS_Z:
+             Z_base = Z + (i * BLOCK_ROWS * stride_z_row) + row * stride_z_row + group * N
+         Rstd_base = Rstd + (i * BLOCK_ROWS) + group * M
+-        W_base = W + group * N
++        if HAS_WEIGHT:
++            W_base = W + group * N
+         if HAS_BIAS:
+             B_base = B + group * N
+ 
+@@ -64,7 +67,10 @@ def _rms_norm_fwd_kernel(
+         x = tl.load(X_base + cols, mask=cols < N, other=0.0).to(tl.float32)
+         if HAS_Z and not NORM_BEFORE_GATE:
+             z = tl.load(Z_base + cols, mask=cols < N).to(tl.float32)
+-            x *= z * tl.sigmoid(z)
++            if ACTIVATION == 'sigmoid':
++                x *= tl.sigmoid(z)
++            else:
++                x *= z * tl.sigmoid(z)
+ 
+         xbar = tl.where(cols < N, x, 0.0)
+         var = tl.sum(xbar * xbar, axis=0) / N
+@@ -72,17 +78,26 @@ def _rms_norm_fwd_kernel(
+         tl.store(Rstd_base + row, rstd)
+ 
+         mask = cols < N
+-        w = tl.load(W_base + cols, mask=mask).to(tl.float32)
++        if HAS_WEIGHT:
++            w = tl.load(W_base + cols, mask=mask).to(tl.float32)
++        else:
++            w = 1.0
+         if HAS_BIAS:
+             b = tl.load(B_base + cols, mask=mask).to(tl.float32)
+         y = x * rstd * w + b if HAS_BIAS else x * rstd * w
+         if HAS_Z and NORM_BEFORE_GATE:
+             z = tl.load(Z_base + cols, mask=mask).to(tl.float32)
+-            y *= z * tl.sigmoid(z)
++            if ACTIVATION == 'sigmoid':
++                y *= tl.sigmoid(z)
++            else:
++                y *= z * tl.sigmoid(z)
+         tl.store(Y_base + cols, y, mask=mask)
+ 
+ 
+-def rmsnorm_fn(x, weight, bias, z=None, eps=1e-6, group_size=None, norm_before_gate=True):
++def rmsnorm_fn(x, weight, bias, z=None, eps=1e-6, group_size=None, norm_before_gate=True, activation='silu'):
++    """Run the fused Ascend kernel with optional grouping and gating."""
++    if activation not in ('silu', 'swish', 'sigmoid'):
++        raise ValueError(f'Unsupported gated RMSNorm activation: {activation}')
+     x_shape_og = x.shape
+     x = x.reshape(-1, x.shape[-1])
+     if x.stride(-1) != 1:
+@@ -92,7 +107,8 @@ def rmsnorm_fn(x, weight, bias, z=None, eps=1e-6, group_size=None, norm_before_g
+         z = z.reshape(-1, z.shape[-1])
+         if z.stride(-1) != 1:
+             z = z.contiguous()
+-    weight = weight.contiguous()
++    if weight is not None:
++        weight = weight.contiguous()
+     if bias is not None:
+         bias = bias.contiguous()
+ 
+@@ -128,40 +144,8 @@ def rmsnorm_fn(x, weight, bias, z=None, eps=1e-6, group_size=None, norm_before_g
+             eps,
+             BLOCK_N=BLOCK_N,
+             NORM_BEFORE_GATE=norm_before_gate,
++            ACTIVATION=activation,
+             N_CORES=MAX_CORES,
+             num_warps=num_warps,
+         )
+     return out.reshape(x_shape_og)
+-
+-
+-class RMSNormGated(nn.Module):
+-    def __init__(
+-        self,
+-        hidden_size,
+-        eps: float = 1e-5,
+-        group_size: int | None = None,
+-        norm_before_gate: bool = False,
+-        device: torch.device | None = None,
+-        dtype: torch.dtype | None = None,
+-    ):
+-        super().__init__()
+-        self.eps = eps
+-        self.weight = nn.Parameter(torch.empty(hidden_size, device=device, dtype=torch.bfloat16))
+-        self.register_parameter('bias', None)
+-        self.group_size = group_size
+-        self.norm_before_gate = norm_before_gate
+-        self.reset_parameters()
+-
+-    def reset_parameters(self):
+-        torch.nn.init.ones_(self.weight)
+-
+-    def forward(self, x, z=None):
+-        return rmsnorm_fn(
+-            x,
+-            self.weight,
+-            self.bias,
+-            z=z,
+-            eps=self.eps,
+-            group_size=self.group_size,
+-            norm_before_gate=self.norm_before_gate,
+-        )
+diff --git a/lmdeploy/pytorch/models/glm5_next.py b/lmdeploy/pytorch/models/glm5_next.py
+index 2366a5eb..2f8b5aca 100644
+--- a/lmdeploy/pytorch/models/glm5_next.py
++++ b/lmdeploy/pytorch/models/glm5_next.py
+@@ -55,7 +55,8 @@ from lmdeploy.pytorch.nn import (
+     ParallelLMHead,
+     RMSNorm,
+ )
+-from lmdeploy.pytorch.nn.gated_delta import GatedDeltaMeta, GatedDeltaMetaBuilder, build_rmsnorm_gated
++from lmdeploy.pytorch.nn.norm import RMSNormGated
++from lmdeploy.pytorch.nn.gated_delta import GatedDeltaMeta, GatedDeltaMetaBuilder
+ from lmdeploy.pytorch.nn.kpool import (
+     kpool_expand_selected_groups,
+     kpool_pooled_block_offsets,
+@@ -702,7 +703,7 @@ class Glm5NextLinearAttention(nn.Module):
+         self.A_log.weight_loader = _load_vector_shard
+         self.dt_bias.weight_loader = _load_vector_shard
+ 
+-        self.o_norm = build_rmsnorm_gated(
++        self.o_norm = RMSNormGated(
+             self.head_dim,
+             eps=config.rms_norm_eps,
+             activation='sigmoid',
+diff --git a/lmdeploy/pytorch/models/qwen3_5.py b/lmdeploy/pytorch/models/qwen3_5.py
+index 341229ad..f2afc8a7 100644
+--- a/lmdeploy/pytorch/models/qwen3_5.py
++++ b/lmdeploy/pytorch/models/qwen3_5.py
+@@ -20,12 +20,12 @@ from lmdeploy.pytorch.nn import (
+     SiluAndMul,
+     build_rotary_embedding_from_config,
+ )
++from lmdeploy.pytorch.nn.norm import RMSNormGated
+ from lmdeploy.pytorch.nn.gated_delta import (
+     CausalConv1d,
+     GatedDelta,
+     GatedDeltaMeta,
+     GatedDeltaMetaBuilder,
+-    build_rmsnorm_gated,
+ )
+ from lmdeploy.pytorch.nn.linear import (
+     build_colwise_linear,
+@@ -455,7 +455,7 @@ class Qwen3_5GatedDeltaNet(nn.Module):
+         self.make_params(self.num_v_heads, device=device)
+         self.A_log_exp = None
+ 
+-        self.norm = build_rmsnorm_gated(self.head_v_dim,
++        self.norm = RMSNormGated(self.head_v_dim,
+                                         eps=self.layer_norm_epsilon,
+                                         activation=self.activation,
+                                         dtype=dtype,
+diff --git a/lmdeploy/pytorch/models/qwen3_next.py b/lmdeploy/pytorch/models/qwen3_next.py
+index e1a478ee..65983f5a 100644
+--- a/lmdeploy/pytorch/models/qwen3_next.py
++++ b/lmdeploy/pytorch/models/qwen3_next.py
+@@ -11,7 +11,8 @@ import lmdeploy.pytorch.distributed as dist
+ from lmdeploy.pytorch.distributed import get_dist_manager, get_tp_world_rank
+ from lmdeploy.pytorch.model_inputs import StepContext, StepContextManager
+ from lmdeploy.pytorch.nn import ApplyRotaryEmb, Attention, RMSNorm, SiluAndMul, build_rotary_embedding_from_config
+-from lmdeploy.pytorch.nn.gated_delta import CausalConv1d, GatedDelta, GatedDeltaMeta, build_rmsnorm_gated
++from lmdeploy.pytorch.nn.norm import RMSNormGated
++from lmdeploy.pytorch.nn.gated_delta import CausalConv1d, GatedDelta, GatedDeltaMeta
+ from lmdeploy.pytorch.nn.linear import (
+     build_colwise_linear,
+     build_merged_colwise_linear,
+@@ -83,7 +84,7 @@ class Qwen3NextGatedDeltaNet(nn.Module):
+         self.make_params(self.num_v_heads, device=device)
+         self.A_log_exp = None
+ 
+-        self.norm = build_rmsnorm_gated(self.head_v_dim,
++        self.norm = RMSNormGated(self.head_v_dim,
+                                         eps=self.layer_norm_epsilon,
+                                         activation=self.activation,
+                                         dtype=dtype,
+diff --git a/lmdeploy/pytorch/nn/__init__.py b/lmdeploy/pytorch/nn/__init__.py
+index 1feb2c55..683eaefd 100644
+--- a/lmdeploy/pytorch/nn/__init__.py
++++ b/lmdeploy/pytorch/nn/__init__.py
+@@ -7,7 +7,7 @@ from .embedding import ParallelEmbedding, ParallelLMHead  # noqa: F401
+ from .hc_prepost import HcPrePost  # noqa: F401
+ from .kda import Kda  # noqa: F401
+ from .kpool import KPoolIndexer  # noqa: F401
+-from .norm import LayerNorm, RMSNorm, rms_scale  # noqa: F401
++from .norm import LayerNorm, RMSNorm, RMSNormGated, rms_scale  # noqa: F401
+ from .rotary_embedding import (
+     ApplyRotaryEmb,  # noqa: F401
+     RopeType,  # noqa: F401
+diff --git a/lmdeploy/pytorch/nn/gated_delta.py b/lmdeploy/pytorch/nn/gated_delta.py
+index 25087835..fd5fbb93 100644
+--- a/lmdeploy/pytorch/nn/gated_delta.py
++++ b/lmdeploy/pytorch/nn/gated_delta.py
+@@ -22,11 +22,6 @@ from lmdeploy.utils import get_logger
+ logger = get_logger('lmdeploy')
+ 
+ 
+-def build_rmsnorm_gated(hidden_size: int, eps=1e-6, **kwargs):
+-    from lmdeploy.pytorch.backends.gated_delta_rule import RMSNormGatedBuildSpec
+-    return get_backend().build_op(RMSNormGatedBuildSpec(hidden_size, eps, kwargs))
+-
+-
+ class GatedDeltaMetaBuilder:
+     """Build shared gated-delta metadata through the selected backend."""
+ 
+diff --git a/lmdeploy/pytorch/nn/norm.py b/lmdeploy/pytorch/nn/norm.py
+index 362c2ef6..2b369a6f 100644
+--- a/lmdeploy/pytorch/nn/norm.py
++++ b/lmdeploy/pytorch/nn/norm.py
+@@ -7,7 +7,7 @@ from lmdeploy.pytorch.distributed import get_dist_group, get_tp_world_rank
+ from lmdeploy.pytorch.models.patch import get_build_model_context
+ 
+ from ..backends import get_backend
+-from ..backends.norm import LayerNormBuildSpec, RMSNormBuildSpec
++from ..backends.norm import LayerNormBuildSpec, RMSNormBuildSpec, RMSNormGatedBuildSpec
+ from ..backends.qmodules import RMSNormW8A8BuildSpec
+ from .utils import chunk_aligned, get_distribute_size
+ 
+@@ -27,6 +27,50 @@ def rms_scale(a: torch.Tensor, b: torch.Tensor, dim: int = -1, eps: float = 1e-6
+     return out.to(result_dtype)
+ 
+ 
++class RMSNormGated(nn.Module):
++    """RMS normalization followed by a SiLU or sigmoid gate.
++
++    Own the scale at ``weight`` so existing ``norm.weight`` and
++    ``o_norm.weight`` checkpoint names remain unchanged. Backend
++    implementations only perform computation and never register weights.
++    """
++
++    def __init__(self,
++                 hidden_size: int,
++                 eps: float = 1e-6,
++                 activation: str = 'silu',
++                 dtype: torch.dtype | None = None,
++                 device: torch.device | None = None,
++                 elementwise_affine: bool = True):
++        super().__init__()
++        spec = RMSNormGatedBuildSpec(hidden_size, eps, activation)
++        self.hidden_size = hidden_size
++        self.eps = eps
++        self.activation = activation
++        self.elementwise_affine = elementwise_affine
++        weight = torch.ones(hidden_size, dtype=dtype, device=device) if elementwise_affine else None
++        self.register_parameter('weight', nn.Parameter(weight, requires_grad=False) if weight is not None else None)
++        self.register_parameter('bias', None)
++        self.impl = get_backend().build_op(
++            spec,
++            enable_deterministic=get_build_model_context().enable_deterministic,
++        )
++
++    def reset_parameters(self):
++        """Initialize the direct multiplicative scale to one."""
++        if self.weight is not None:
++            nn.init.ones_(self.weight)
++
++    def forward(self,
++                x: torch.Tensor,
++                z: torch.Tensor,
++                residual: torch.Tensor | None = None,
++                prenorm: bool = False,
++                residual_in_fp32: bool = False):
++        """Apply normalization and gating with the selected backend."""
++        return self.impl.forward(x, self.weight, z, residual, prenorm, residual_in_fp32)
++
++
+ class RMSNorm(nn.Module):
+     """RMS Norm with add residual."""
+ 

@@ -1,0 +1,101 @@
+[
+  {
+    "path": "lmdeploy/pytorch/backends/ascend/norm.py",
+    "sha256": "1e7aba43deaadcf47ab16c0c587f5d571d8b2f00af3b912ccfa322de17346c0e",
+    "ast_sha256": "7e224e4bc0768f7d6c6cf790c9328fece8b69fcf08e7e488fb14aaa369e17d8f"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/ascend/op_backend.py",
+    "sha256": "ae12b34170d73d0b070fd2944a9403018f00266e035351d3c5a6976f447db8ba",
+    "ast_sha256": "83f22afa9eb0cbd8596ea220aea85664d6ca5f215abffafe9dc02449e2037e1c"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/cuda/norm.py",
+    "sha256": "be0762954e5bd6da9db78b4fd7955e641b52d63e191ba4d6e097e838e46d5370",
+    "ast_sha256": "70f22aa0132e6f745f16c18d44a615a0397dde88ed35ca86a3491c038b433a20"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/cuda/op_backend.py",
+    "sha256": "bfb1ea0ae4e3571c889aafa76c4bbeb3e9633832f207c1a3810eb850fc24815e",
+    "ast_sha256": "32f2b8643d24f9470518864ec6c73b830c39500e2bd84409fea4b81672bf15ac"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/default/norm.py",
+    "sha256": "717f255e786917843bd222c4219ff1a1b7e61efa7cc48e21b4e5435d68334a43",
+    "ast_sha256": "b2bea1dbd71ccdfd7148806fd86cabf4dfdf8957c60a78c705d17c1e2bf80bf8"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/default/op_backend.py",
+    "sha256": "96c3967b1bbb47e1124a79e4afa18e6687669f5c08f50d789aea97b225e96d6d",
+    "ast_sha256": "d2a63a7635d4cfbdc1db6dcaf2e24da7ea1cfe3824fdb4e814910c488f1849ea"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/gated_delta_rule.py",
+    "sha256": "fc533b7d348c605035ea8bcf5747fe73351f85425b0d19a2840cc50bd745140a",
+    "ast_sha256": "ede6888a340da9b5ac0ceca057ef41f365c930db67422cdc23f4e052cfef8239"
+  },
+  {
+    "path": "lmdeploy/pytorch/backends/norm.py",
+    "sha256": "72a994c6c304ac842895a3e83b110d15b0d2a1f6ea43988a9fb18d54fb323bec",
+    "ast_sha256": "72ac2363d10af4160f55bc1bd25e34a3a8b61fc20a7b88dbe4a8ae00a2e3bb72"
+  },
+  {
+    "path": "lmdeploy/pytorch/kernels/ascend/triton_ops/README.md",
+    "sha256": "07dcfbf14a57b270d1989e79007a24e53aff986f13e5b991fedcd81c56b93767"
+  },
+  {
+    "path": "lmdeploy/pytorch/kernels/ascend/triton_ops/rms_norm_gated.py",
+    "sha256": "8a6bc5f355bcb590c2be2fab760685c0e7a42e18c7b0570a4253aac6996c766b",
+    "ast_sha256": "8aadebd13a188664ff627b073aae2be25ff0c913b145356deb439fb4b0f8889a"
+  },
+  {
+    "path": "lmdeploy/pytorch/models/glm5_next.py",
+    "sha256": "bbcf4f17adc21b620f3af1fa7f36b46dcf3083d79280ab6a883d0499b3bc585f",
+    "ast_sha256": "471d8f9a6ebb5aa5ecd3a194b9c743e6889456a7eb189067f8dd0203d96cdb80"
+  },
+  {
+    "path": "lmdeploy/pytorch/models/qwen3_5.py",
+    "sha256": "3a2001e1ad494cdda756cd861593434da2f99bdc3104209fa9d02138b5b65d22",
+    "ast_sha256": "61c8ad5a4530e35637da7a631f30ff398f77b3b37183d037e06e9cd845af4547"
+  },
+  {
+    "path": "lmdeploy/pytorch/models/qwen3_next.py",
+    "sha256": "7024a3b06d5c5194b13638a7372ecfb62a0d58ca64a3a7e8b7116f06f12b70e5",
+    "ast_sha256": "1da06c9cb333d1dec2f93ae469414e3485a2dcc3962fac1aa18ce62056c7cc1b"
+  },
+  {
+    "path": "lmdeploy/pytorch/nn/__init__.py",
+    "sha256": "a1dca2ac3e4c4396ba36d46505f6800ea670a61db5fe3ed0a78fe710be7634f1",
+    "ast_sha256": "eb7d1348278d73e0c687b53c104ae1d43cf6be68a51bfcb5476fa552cc34065f"
+  },
+  {
+    "path": "lmdeploy/pytorch/nn/gated_delta.py",
+    "sha256": "3345c0763d1262b02e3f22c4e77eeeb140a9f302c8c6c1a619ef0a2d86b23b76",
+    "ast_sha256": "b186674305b83b0c417a665b96d23ed648e22c8a3dd998a7a774788a1a8e9a8d"
+  },
+  {
+    "path": "lmdeploy/pytorch/nn/norm.py",
+    "sha256": "42b3f636d3469fc0b175a3d3afc861295d26485f25e28d9b5a387d33b944dc80",
+    "ast_sha256": "23dbd3c8bcf6cf7a009dea99ab24421815dd4f9aa87709c4ff96b9bb343f1002"
+  },
+  {
+    "path": "tests/pytorch/ascend/hardware/test_rms_norm_gated.py",
+    "sha256": "1f6ed0f670eab73fd09d2de6f0f59b76e58c2484305d17ef7b18e0469b71d008",
+    "ast_sha256": "cd5fb5b4f129b6c916e4ce6f021e863b6a551c60a8401299bf12a3816222f37b"
+  },
+  {
+    "path": "tests/pytorch/models/test_qwen3_5_norm.py",
+    "sha256": "b0f70fbea382f9018d1a8b252c9dd4c40d83138be22a1322c0f9b212f9403e4c",
+    "ast_sha256": "734f27f5d0bb61df939b81d0a28b753c19e837647fe6c5fd3a90e08ee655e363"
+  },
+  {
+    "path": "tests/pytorch/models/test_rms_norm_gated_models.py",
+    "sha256": "88d1e9ab7f9c30890f254c8384623a398e0c3dfa589f6e74b698bb9816bc808c",
+    "ast_sha256": "e73bb44a0e022918dfd35a50c32f09544db0c0c71fd3bfa417be72f5271e8c81"
+  },
+  {
+    "path": "tests/pytorch/nn/test_rms_norm_gated.py",
+    "sha256": "7488060a52005d492950449dc83c115e09dc4ce5fa7b91fa682105e25734d2f1",
+    "ast_sha256": "745b0010ce66eee65fee7c6fe193ce8da80f370ab11a7540157b349c56a5ca45"
+  }
+]

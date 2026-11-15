@@ -1,0 +1,223 @@
+2026-11-15 14:46:13,861 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 14:46:13,861 - lmdeploy - INFO - async_engine.py:154 - speculative_config=None
+[W1115 14:46:17.675487247 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 14:46:23.953580496 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 14:46:23,789 - lmdeploy - INFO - __init__.py:146 - Build <ray> executor.
+2026-11-15 14:46:24,161 - lmdeploy - INFO - ray_executor.py:277 - Init ray cluster.
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-15 14:46:26,055	INFO worker.py:1927 -- Started a local Ray instance.
+2026-11-15 14:46:26,616 - lmdeploy - INFO - ray.py:107 - Ray initialized with address: 10.119.246.138:63780
+2026-11-15 14:46:26,829 - lmdeploy - INFO - ray_executor.py:308 - Init ray workers.
+2026-11-15 14:46:26,920 - lmdeploy - INFO - ray_executor.py:320 - Init distributed environment by device.
+[36m(RayWorkerWrapper pid=1549097)[0m [W1115 14:46:36.526195326 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(RayWorkerWrapper pid=1549097)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(RayWorkerWrapper pid=1549097)[0m     *************************************************************************************************************
+[36m(RayWorkerWrapper pid=1549097)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(RayWorkerWrapper pid=1549097)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(RayWorkerWrapper pid=1549097)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(RayWorkerWrapper pid=1549097)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(RayWorkerWrapper pid=1549097)[0m     The device parameters have been replaced with npu in the function below:
+[36m(RayWorkerWrapper pid=1549097)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(RayWorkerWrapper pid=1549097)[0m     *************************************************************************************************************
+[36m(RayWorkerWrapper pid=1549097)[0m     
+[36m(RayWorkerWrapper pid=1549097)[0m   warnings.warn(msg, ImportWarning)
+[36m(RayWorkerWrapper pid=1549097)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(RayWorkerWrapper pid=1549097)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(RayWorkerWrapper pid=1549098)[0m     
+2026-11-15 14:46:40,903 - lmdeploy - INFO - ray_executor.py:324 - Init distributed process group.
+2026-11-15 14:46:40,924 - lmdeploy - INFO - ray_executor.py:331 - Warming up distribute environment, this might take long time, please waiting...
+[36m(RayWorkerWrapper pid=1549097)[0m 2026-11-15 14:46:40,906 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=48391
+[36m(RayWorkerWrapper pid=1549097)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(RayWorkerWrapper pid=1549097)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(RayWorkerWrapper pid=1549097)[0m [rank0]:[W1115 14:46:40.474251210 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 14:46:43,325 - lmdeploy - INFO - base.py:574 - Building Model.
+[36m(RayWorkerWrapper pid=1549097)[0m 2026-11-15 14:46:43,326 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1549097 for current process 1549097
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:   0%|          | 0/14 [00:00<?, ?it/s]
+[36m(RayWorkerWrapper pid=1549098)[0m [W1115 14:46:37.588947624 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(RayWorkerWrapper pid=1549098)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(RayWorkerWrapper pid=1549098)[0m     *************************************************************************************************************[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(RayWorkerWrapper pid=1549098)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(RayWorkerWrapper pid=1549098)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(RayWorkerWrapper pid=1549098)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(RayWorkerWrapper pid=1549098)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(RayWorkerWrapper pid=1549098)[0m     The device parameters have been replaced with npu in the function below:
+[36m(RayWorkerWrapper pid=1549098)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(RayWorkerWrapper pid=1549098)[0m   warnings.warn(msg, ImportWarning)
+[36m(RayWorkerWrapper pid=1549098)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(RayWorkerWrapper pid=1549098)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(RayWorkerWrapper pid=1549098)[0m [rank1]:[W1115 14:46:40.474855043 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  14%|█▍        | 2/14 [00:01<00:06,  1.99it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  21%|██▏       | 3/14 [00:01<00:07,  1.48it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  29%|██▊       | 4/14 [00:02<00:07,  1.34it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  36%|███▌      | 5/14 [00:03<00:06,  1.37it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  43%|████▎     | 6/14 [00:04<00:06,  1.28it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  50%|█████     | 7/14 [00:05<00:06,  1.17it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  57%|█████▋    | 8/14 [00:06<00:05,  1.12it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  64%|██████▍   | 9/14 [00:07<00:04,  1.13it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  71%|███████▏  | 10/14 [00:08<00:03,  1.11it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  79%|███████▊  | 11/14 [00:08<00:02,  1.14it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  86%|████████▌ | 12/14 [00:09<00:01,  1.11it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors:  93%|█████████▎| 13/14 [00:10<00:00,  1.11it/s]
+2026-11-15 14:47:00,355 - lmdeploy - INFO - base.py:576 - Updating configs.
+2026-11-15 14:47:00,386 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-15 14:47:00,394 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=8, block_size=128, num_cpu_blocks=0, num_gpu_blocks=10656, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.5, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=10, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+[36m(RayWorkerWrapper pid=1549097)[0m Loading weights from safetensors: 100%|██████████| 14/14 [00:11<00:00,  1.13it/s]Loading weights from safetensors: 100%|██████████| 14/14 [00:11<00:00,  1.20it/s]
+2026-11-15 14:47:01,955 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 1,363,840 tokens (10,655 usable blocks/rank, DCP=1).
+2026-11-15 14:47:01,955 - lmdeploy - INFO - base.py:591 - Warming up model.
+[36m(RayWorkerWrapper pid=1549097)[0m 2026-11-15 14:47:01,957 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[36m(RayWorkerWrapper pid=1549098)[0m 2026-11-15 14:46:40,906 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=48391
+[36m(RayWorkerWrapper pid=1549098)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1549098)[0m 2026-11-15 14:46:43,327 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1549098 for current process 1549098
+[36m(RayWorkerWrapper pid=1549097)[0m [rank0]:[W1115 14:47:02.630996407 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+[36m(RayWorkerWrapper pid=1549097)[0m Warming up decoding:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Warming up decoding:  25%|██▌       | 1/4 [00:00<00:01,  2.70it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Warming up decoding:  50%|█████     | 2/4 [00:00<00:00,  3.19it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m Warming up decoding:  75%|███████▌  | 3/4 [00:00<00:00,  3.35it/s]
+[36m(RayWorkerWrapper pid=1549097)[0m 2026-11-15 14:47:04,441 - lmdeploy - INFO - agent.py:590 - Engine warmup completed in 2.48 seconds.
+[36m(RayWorkerWrapper pid=1549097)[0m Warming up decoding: 100%|██████████| 4/4 [00:01<00:00,  3.16it/s]Warming up decoding: 100%|██████████| 4/4 [00:01<00:00,  3.15it/s]
+2026-11-15 14:47:04,659 - lmdeploy - INFO - async_engine.py:188 - updated backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=10656, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 14:47:05,094 - lmdeploy - INFO - async_engine.py:259 - enable metrics, with dp: 1 dp_rank: 0
+2026-11-15 14:47:05,133 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-15 14:47:05,138 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-15 14:47:05,139 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-15 14:47:05,139 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-15 14:47:05,139 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-15 14:47:05,164 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:05,164 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 14:47:05,164 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(RayWorkerWrapper pid=1549097)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+2026-11-15 14:47:08,723 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:47:08,724 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 1 -1 3.627631204028148
+2026-11-15 14:47:08,728 - lmdeploy - INFO - async_engine.py:606 - session=1, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:08,728 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 14:47:08,728 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 14:47:12,033 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:47:12,033 - lmdeploy - INFO - async_engine.py:810 - session 1 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 1 0 3.3067759849946015
+2026-11-15 14:47:12,038 - lmdeploy - INFO - async_engine.py:606 - session=2, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:12,038 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 14:47:12,038 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 14:47:16,174 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:47:16,174 - lmdeploy - INFO - async_engine.py:810 - session 2 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 1 1 4.138179666013457
+2026-11-15 14:47:16,180 - lmdeploy - INFO - async_engine.py:606 - session=3, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:16,180 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 14:47:16,180 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 14:47:19,697 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:47:19,697 - lmdeploy - INFO - async_engine.py:810 - session 3 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 1 2 3.5179900680086575
+2026-11-15 14:47:19,703 - lmdeploy - INFO - async_engine.py:606 - session=4, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:19,704 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 14:47:19,704 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 14:47:23,007 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:47:23,007 - lmdeploy - INFO - async_engine.py:810 - session 4 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 1 3 3.3052693780045956
+2026-11-15 14:47:23,034 - lmdeploy - INFO - async_engine.py:606 - session=5, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:23,034 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 14:47:23,034 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 14:47:27,307 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:47:27,308 - lmdeploy - INFO - async_engine.py:810 - session 5 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 1 4 4.275484933052212
+2026-11-15 14:47:27,320 - lmdeploy - INFO - async_engine.py:606 - session=6, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:27,321 - lmdeploy - INFO - async_engine.py:606 - session=7, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:27,322 - lmdeploy - INFO - async_engine.py:606 - session=8, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:27,322 - lmdeploy - INFO - async_engine.py:606 - session=9, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:27,323 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:27,323 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:32,479 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:32,480 - lmdeploy - INFO - async_engine.py:810 - session 9 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:32,481 - lmdeploy - INFO - async_engine.py:810 - session 8 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:32,481 - lmdeploy - INFO - async_engine.py:810 - session 7 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:32,481 - lmdeploy - INFO - async_engine.py:810 - session 6 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 -1 5.16323507897323
+2026-11-15 14:47:32,522 - lmdeploy - INFO - async_engine.py:606 - session=10, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:32,523 - lmdeploy - INFO - async_engine.py:606 - session=11, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:32,524 - lmdeploy - INFO - async_engine.py:606 - session=12, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:32,525 - lmdeploy - INFO - async_engine.py:606 - session=13, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:32,525 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:32,525 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:38,086 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:38,086 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:38,087 - lmdeploy - INFO - async_engine.py:810 - session 12 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:38,087 - lmdeploy - INFO - async_engine.py:810 - session 11 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:38,087 - lmdeploy - INFO - async_engine.py:810 - session 10 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 0 5.583386252052151
+2026-11-15 14:47:38,114 - lmdeploy - INFO - async_engine.py:606 - session=14, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:38,115 - lmdeploy - INFO - async_engine.py:606 - session=15, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:38,115 - lmdeploy - INFO - async_engine.py:606 - session=16, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:38,116 - lmdeploy - INFO - async_engine.py:606 - session=17, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:38,116 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:38,116 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:42,889 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:42,891 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:42,891 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:42,891 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:42,892 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 1 4.7792778899893165
+2026-11-15 14:47:42,923 - lmdeploy - INFO - async_engine.py:606 - session=18, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:42,924 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:42,925 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:42,925 - lmdeploy - INFO - async_engine.py:606 - session=21, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:42,926 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:42,926 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:47,679 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:47,680 - lmdeploy - INFO - async_engine.py:810 - session 21 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:47,680 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:47,680 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:47,681 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 2 4.760705352993682
+2026-11-15 14:47:47,738 - lmdeploy - INFO - async_engine.py:606 - session=22, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:47,739 - lmdeploy - INFO - async_engine.py:606 - session=23, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:47,740 - lmdeploy - INFO - async_engine.py:606 - session=24, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:47,741 - lmdeploy - INFO - async_engine.py:606 - session=25, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:47,741 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:47,741 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:52,776 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:52,779 - lmdeploy - INFO - async_engine.py:810 - session 25 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:52,779 - lmdeploy - INFO - async_engine.py:810 - session 24 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:52,779 - lmdeploy - INFO - async_engine.py:810 - session 23 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:52,780 - lmdeploy - INFO - async_engine.py:810 - session 22 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 3 5.043371541018132
+2026-11-15 14:47:52,824 - lmdeploy - INFO - async_engine.py:606 - session=26, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,825 - lmdeploy - INFO - async_engine.py:606 - session=27, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,826 - lmdeploy - INFO - async_engine.py:606 - session=28, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,826 - lmdeploy - INFO - async_engine.py:606 - session=29, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,827 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:52,827 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:57,735 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 29 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 28 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 27 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 26 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 4 4.918561507947743
+2026-11-15 14:47:58,054 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-15 14:47:58,055 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-15 14:47:58,055 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-15 14:47:58,065 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(RayWorkerWrapper pid=1549097)[0m 2026-11-15 14:47:58,058 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(RayWorkerWrapper pid=1549098)[0m 2026-11-15 14:47:58,061 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(RayWorkerWrapper pid=1549098)[0m [rank1]:[W1115 14:47:02.590413111 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1548540 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-gated-norm-20261115/results/agents-long-before.json

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/root/workspace/a3-gated-norm-20261115/scripts/check_kda_support.py", line 7, in <module>
+    impl = AscendOpsBackend.build_op(KdaBuildSpec())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/ascend/op_backend.py", line 317, in build_op
+    return super().build_op(spec, enable_deterministic=enable_deterministic)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/backends/default/op_backend.py", line 96, in build_op
+    raise RuntimeError(f'Build spec {spec_name} is not supported by {cls.get_name()} backend.')
+RuntimeError: Build spec KdaBuildSpec is not supported by ascend backend.

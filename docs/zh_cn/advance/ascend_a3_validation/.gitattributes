@@ -9,3 +9,7 @@ evidence/review-20261115/logs/*.log -whitespace
 
 # Preserve native PR validation command output byte-for-byte.
 evidence/native-pr-20261115/logs/*.log -whitespace
+
+# Preserve gated-norm run output and working-tree snapshots byte-for-byte.
+evidence/gated-norm-20261115/logs/*.log -whitespace
+evidence/gated-norm-20261115/patches/*.patch -whitespace

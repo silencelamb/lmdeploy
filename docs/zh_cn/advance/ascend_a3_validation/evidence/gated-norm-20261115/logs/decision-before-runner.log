@@ -1,0 +1,83 @@
+{
+  "label": "decision-before",
+  "command": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+    "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py",
+    "--model",
+    "/afs-weights/Qwen3.5-0.8B-do01",
+    "--tp",
+    "1",
+    "--scores",
+    "--prefill",
+    "256",
+    "--session",
+    "8192",
+    "--batch",
+    "8",
+    "--cache-fraction",
+    "0.5",
+    "--output",
+    "/root/workspace/a3-gated-norm-20261115/results/decision-before.json",
+    "--task",
+    "intern-decision"
+  ],
+  "cwd": "/root/workspace/a3-gated-norm-20261115/lmdeploy-before",
+  "cpu": false,
+  "start_utc": "2026-11-15T14:06:54.976652+00:00",
+  "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-native-pr-20261115/guard:/root/workspace/a3-gated-norm-20261115/lmdeploy-before:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "VALIDATION_ENV": "review",
+    "VALIDATION_ROOT": "/root/workspace/a3-gated-norm-20261115",
+    "ASCEND_RT_VISIBLE_DEVICES": "0",
+    "OMP_NUM_THREADS": "1",
+    "OMP_PROC_BIND": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-gated-norm-20261115/artifacts/triton-cache"
+  },
+  "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "returncode": 1,
+  "elapsed_seconds": 21.249136105005164
+}
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/nn/norm.py", line 114, in forward
+    return self.impl.forward(x, self.weight, residual)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/backends/ascend/norm.py", line 22, in forward
+    x, residual = rms_norm(x, weight, self.eps, residual=residual)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/kernels/ascend/rms_norm.py", line 16, in rms_norm
+    return ext_ops.add_rms_norm(hidden_states, residual, weight, epsilon)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/kernels/ascend/ops.py", line 31, in add_rms_norm
+    return npu_ops.add_rms_norm(hidden_states, residual, weight, epsilon)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/kernels/ascend/npu_ops.py", line 140, in add_rms_norm
+    normed_hidden_states, _, added_hidden_states = torch.ops.npu.npu_add_rms_norm(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/_ops.py", line 1209, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: npu_add_rms_norm:../third_party/op-plugin/op_plugin/ops/opapi/StructKernelNpuOpApi.cpp:3721 NPU function error: call aclnnAddRmsNorm failed, error code is 161002
+[ERROR] 2026-11-15-14:07:12 (PID:1511731, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
+[PID: 1511731] 2026-11-15-14:07:12.293.698 AclNN_Parameter_Error(EZ1001): Expected both tensors to have same dtype, but found inputTensor.x1 DT_BFLOAT16 and inputTensor.gamma DT_FLOAT.
+

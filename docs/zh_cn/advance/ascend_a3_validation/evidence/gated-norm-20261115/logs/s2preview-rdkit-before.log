@@ -1,0 +1,336 @@
+2026-11-15 14:32:03,388 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 14:32:03,388 - lmdeploy - INFO - async_engine.py:154 - speculative_config=None
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[W1115 14:32:06.522825059 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] You are using a model of type `intern_s2_preview` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] You are using a model of type `intern_s2_preview` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 14:32:12.550994189 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+2026-11-15 14:32:12,475 - lmdeploy - INFO - __init__.py:146 - Build <ray> executor.
+2026-11-15 14:32:12,833 - lmdeploy - INFO - ray_executor.py:277 - Init ray cluster.
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-15 14:32:14,498	INFO worker.py:1927 -- Started a local Ray instance.
+2026-11-15 14:32:15,087 - lmdeploy - INFO - ray.py:107 - Ray initialized with address: 10.119.246.138:52395
+2026-11-15 14:32:15,336 - lmdeploy - INFO - ray_executor.py:308 - Init ray workers.
+2026-11-15 14:32:15,443 - lmdeploy - INFO - ray_executor.py:320 - Init distributed environment by device.
+[36m(RayWorkerWrapper pid=1529711)[0m [transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[36m(RayWorkerWrapper pid=1529711)[0m [transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[36m(RayWorkerWrapper pid=1529711)[0m [transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead
+[36m(RayWorkerWrapper pid=1529711)[0m [W1115 14:32:23.546957519 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(RayWorkerWrapper pid=1529711)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(RayWorkerWrapper pid=1529711)[0m     *************************************************************************************************************
+[36m(RayWorkerWrapper pid=1529711)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(RayWorkerWrapper pid=1529711)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(RayWorkerWrapper pid=1529711)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(RayWorkerWrapper pid=1529711)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(RayWorkerWrapper pid=1529711)[0m     The device parameters have been replaced with npu in the function below:
+[36m(RayWorkerWrapper pid=1529711)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(RayWorkerWrapper pid=1529711)[0m     *************************************************************************************************************
+[36m(RayWorkerWrapper pid=1529711)[0m     
+[36m(RayWorkerWrapper pid=1529711)[0m   warnings.warn(msg, ImportWarning)
+[36m(RayWorkerWrapper pid=1529711)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(RayWorkerWrapper pid=1529711)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(RayWorkerWrapper pid=1529710)[0m     
+[36m(RayWorkerWrapper pid=1529710)[0m [transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead[32m [repeated 3x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+2026-11-15 14:32:31,162 - lmdeploy - INFO - ray_executor.py:324 - Init distributed process group.
+2026-11-15 14:32:31,187 - lmdeploy - INFO - ray_executor.py:331 - Warming up distribute environment, this might take long time, please waiting...
+[36m(RayWorkerWrapper pid=1529710)[0m 2026-11-15 14:32:31,164 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=50457
+[36m(RayWorkerWrapper pid=1529710)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(RayWorkerWrapper pid=1529710)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(RayWorkerWrapper pid=1529710)[0m [rank0]:[W1115 14:32:31.739107486 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(RayWorkerWrapper pid=1529710)[0m [W1115 14:32:24.680256603 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+2026-11-15 14:32:33,745 - lmdeploy - INFO - base.py:574 - Building Model.
+[36m(RayWorkerWrapper pid=1529710)[0m 2026-11-15 14:32:33,748 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1529710 for current process 1529710
+[36m(RayWorkerWrapper pid=1529710)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(RayWorkerWrapper pid=1529710)[0m     *************************************************************************************************************[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529710)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(RayWorkerWrapper pid=1529710)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(RayWorkerWrapper pid=1529710)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(RayWorkerWrapper pid=1529710)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(RayWorkerWrapper pid=1529710)[0m     The device parameters have been replaced with npu in the function below:
+[36m(RayWorkerWrapper pid=1529710)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(RayWorkerWrapper pid=1529710)[0m   warnings.warn(msg, ImportWarning)
+[36m(RayWorkerWrapper pid=1529710)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(RayWorkerWrapper pid=1529710)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(RayWorkerWrapper pid=1529710)[0m !!!!!!! Segfault encountered !!!!!!!
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in std::__detail::_Scanner<char>::_M_scan_normal()
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in bool std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_expression_term<false, false>(std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_BracketState&, std::__detail::_BracketMatcher<std::__cxx11::regex_traits<char>, false, false>&)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in void std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_insert_bracket_matcher<false, false>(bool)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_bracket_expression()
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_alternative()
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_disjunction()
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in std::__cxx11::basic_regex<char, std::__cxx11::regex_traits<char> >::_M_compile(char const*, char const*, std::regex_constants::syntax_option_type)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in _dl_catch_exception
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in _dl_catch_exception
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in _dl_catch_exception
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in _dl_catch_error
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in dlopen
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Python/dynload_shlib.c", line 80, in _PyImport_FindSharedFuncptr
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Python/importdl.c", line 144, in _PyImport_LoadDynamicModuleWithSpec
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 3789, in _imp_create_dynamic_impl
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/clinic/import.c.h", line 506, in _imp_create_dynamic
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/methodobject.c", line 422, in cfunction_vectorcall_FASTCALL
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 850, in object_vacall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 911, in PyObject_CallMethodObjArgs
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 2793, in import_find_and_load
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 2876, in PyImport_ImportModuleLevelObject
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bltinmodule.c", line 276, in builtin___import___impl
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/clinic/bltinmodule.c.h", line 107, in builtin___import__
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/methodobject.c", line 438, in cfunction_vectorcall_FASTCALL_KEYWORDS
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 850, in object_vacall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 911, in PyObject_CallMethodObjArgs
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 2945, in PyImport_ImportModuleLevelObject
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/ceval.c", line 2510, in import_name
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 2144, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_ceval.h", line 89, in _PyEval_EvalFrame
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/ceval.c", line 1685, in _PyEval_Vector
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/ceval.c", line 580, in PyEval_EvalCode
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bltinmodule.c", line 1093, in builtin_exec_impl
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/clinic/bltinmodule.c.h", line 543, in builtin_exec
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/methodobject.c", line 438, in cfunction_vectorcall_FASTCALL_KEYWORDS
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 850, in object_vacall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 911, in PyObject_CallMethodObjArgs
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 2793, in import_find_and_load
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 2876, in PyImport_ImportModuleLevelObject
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bltinmodule.c", line 276, in builtin___import___impl
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/clinic/bltinmodule.c.h", line 107, in builtin___import__
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/methodobject.c", line 438, in cfunction_vectorcall_FASTCALL_KEYWORDS
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 850, in object_vacall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 911, in PyObject_CallMethodObjArgs
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/import.c", line 2945, in PyImport_ImportModuleLevelObject
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/ceval.c", line 2510, in import_name
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 2144, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_ceval.h", line 89, in _PyEval_EvalFrame
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/ceval.c", line 1685, in _PyEval_Vector
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/ceval.c", line 580, in PyEval_EvalCode
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bltinmodule.c", line 1093, in builtin_exec_impl
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/clinic/bltinmodule.c.h", line 543, in builtin_exec
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/methodobject.c", line 438, in cfunction_vectorcall_FASTCALL_KEYWORDS
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 144, in _PyObject_FastCallDictTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 508, in _PyObject_Call_Prepend
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/typeobject.c", line 9035, in slot_tp_init
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/typeobject.c", line 1679, in type_call
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 240, in _PyObject_MakeTpCall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 2715, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 144, in _PyObject_FastCallDictTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 508, in _PyObject_Call_Prepend
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/typeobject.c", line 9035, in slot_tp_init
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/typeobject.c", line 1679, in type_call
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 240, in _PyObject_MakeTpCall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 2715, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 144, in _PyObject_FastCallDictTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 508, in _PyObject_Call_Prepend
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/typeobject.c", line 9035, in slot_tp_init
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/typeobject.c", line 1679, in type_call
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 240, in _PyObject_MakeTpCall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 2715, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_ceval.h", line 89, in _PyEval_EvalFrame
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/genobject.c", line 230, in gen_send_ex2
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/genobject.c", line 603, in gen_iternext
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/genobject.c", line 1231, in coro_wrapper_iternext
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in __Pyx_Coroutine_Yield_From(__pyx_CoroutineObject*, _object*)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in __pyx_gb_3ray_7_raylet_10CoreWorker_36run_async_func_or_coro_in_event_loop_2generator10(__pyx_CoroutineObject*, _ts*, _object*)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in __Pyx_Coroutine_SendEx(__pyx_CoroutineObject*, _object*, int)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in __Pyx_Coroutine_Send(_object*, _object*)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/descrobject.c", line 482, in method_vectorcall_O
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/call.c", line 887, in PyObject_VectorcallMethod
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/cpython/abstract.h", line 103, in PyObject_CallMethodOneArg
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/abstract.c", line 2873, in PyIter_Send
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Modules/_asynciomodule.c", line 2869, in task_step_impl
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Modules/_asynciomodule.c", line 3188, in task_step
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 205020, in __Pyx_PyObject_Call
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 205117, in __Pyx_PyObject_FastCallDict
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 70905, in __pyx_f_6uvloop_4loop_6Handle__run
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 19387, in __pyx_f_6uvloop_4loop_4Loop__on_idle
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 70959, in __pyx_f_6uvloop_4loop_6Handle__run
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 92362, in __pyx_f_6uvloop_4loop_cb_idle_callback
+[36m(RayWorkerWrapper pid=1529710)[0m   File "src/unix/loop-watcher.c", line 68, in uv__run_idle
+[36m(RayWorkerWrapper pid=1529710)[0m   File "src/unix/core.c", line 451, in uv_run
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 19890, in __pyx_f_6uvloop_4loop_4Loop__Loop__run
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 20313, in __pyx_f_6uvloop_4loop_4Loop__run
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 33397, in __pyx_pf_6uvloop_4loop_4Loop_24run_forever
+[36m(RayWorkerWrapper pid=1529710)[0m   File "uvloop/loop.c", line 33192, in __pyx_pw_6uvloop_4loop_4Loop_25run_forever
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in __pyx_pw_3ray_7_raylet_10CoreWorker_49initialize_eventloops_for_actor_concurrency_group_lambda1(_object*, _object*)
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Objects/classobject.c", line 69, in method_vectorcall
+[36m(RayWorkerWrapper pid=1529710)[0m   File "./Modules/_threadmodule.c", line 1116, in thread_run
+[36m(RayWorkerWrapper pid=1529710)[0m   File "Python/thread_pthread.h", line 237, in pythread_wrapper
+[36m(RayWorkerWrapper pid=1529710)[0m   File "<unknown>", line 0, in 0xffffffffffffffff
+[36m(RayWorkerWrapper pid=1529710)[0m 
+[36m(RayWorkerWrapper pid=1529711)[0m [transformers] `layer_type_validation` is deprecated and will be removed in v5.20. Use `PreTrainedConfig.validate_layer_type` instead[32m [repeated 18x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m [rank1]:[W1115 14:32:31.737959870 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(RayWorkerWrapper pid=1529711)[0m 
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: ffffffffffffffffe302a2e60e1e2a6e732f83f801000000 Worker ID: c24dcabb8fba6fe14b7f09dac41f4d7e9c7c6121f300ee1cf273a2f6 Node ID: f06e66a8327a11aecef007b089446c279b0816f90f98dea96d9786ae Worker IP address: 10.119.246.138 Worker port: 42307 Worker PID: 1529710 Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[36m(RayWorkerWrapper pid=1529711)[0m 2026-11-15 14:32:31,164 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=50457
+[36m(RayWorkerWrapper pid=1529711)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m 2026-11-15 14:32:33,748 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1529711 for current process 1529711
+[36m(RayWorkerWrapper pid=1529711)[0m !!!!!!! Segfault encountered !!!!!!!
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in std::__detail::_Scanner<char>::_M_scan_normal()
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in bool std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_expression_term<false, false>(std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_BracketState&, std::__detail::_BracketMatcher<std::__cxx11::regex_traits<char>, false, false>&)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in void std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_insert_bracket_matcher<false, false>(bool)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_bracket_expression()
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_alternative()
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_disjunction()
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in std::__cxx11::basic_regex<char, std::__cxx11::regex_traits<char> >::_M_compile(char const*, char const*, std::regex_constants::syntax_option_type)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in _dl_catch_exception[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in _dl_catch_error
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in dlopen
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Python/dynload_shlib.c", line 80, in _PyImport_FindSharedFuncptr
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Python/importdl.c", line 144, in _PyImport_LoadDynamicModuleWithSpec
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/import.c", line 3789, in _imp_create_dynamic_impl
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/clinic/import.c.h", line 506, in _imp_create_dynamic
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/methodobject.c", line 422, in cfunction_vectorcall_FASTCALL
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/bytecodes.c", line 3263, in _PyEval_EvalFrameDefault[32m [repeated 11x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Include/internal/pycore_call.h", line 92, in _PyObject_VectorcallTstate[32m [repeated 6x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/call.c", line 850, in object_vacall[32m [repeated 4x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/call.c", line 911, in PyObject_CallMethodObjArgs[32m [repeated 4x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/import.c", line 2793, in import_find_and_load[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/import.c", line 2945, in PyImport_ImportModuleLevelObject[32m [repeated 4x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/bltinmodule.c", line 276, in builtin___import___impl[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/clinic/bltinmodule.c.h", line 107, in builtin___import__[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/methodobject.c", line 438, in cfunction_vectorcall_FASTCALL_KEYWORDS[32m [repeated 4x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/ceval.c", line 2510, in import_name[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Include/internal/pycore_ceval.h", line 89, in _PyEval_EvalFrame[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/ceval.c", line 1685, in _PyEval_Vector[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/ceval.c", line 580, in PyEval_EvalCode[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/bltinmodule.c", line 1093, in builtin_exec_impl[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/clinic/bltinmodule.c.h", line 543, in builtin_exec[32m [repeated 2x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/call.c", line 144, in _PyObject_FastCallDictTstate[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/call.c", line 508, in _PyObject_Call_Prepend[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/typeobject.c", line 9035, in slot_tp_init[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/typeobject.c", line 1679, in type_call[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/call.c", line 240, in _PyObject_MakeTpCall[32m [repeated 3x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/genobject.c", line 230, in gen_send_ex2
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/genobject.c", line 603, in gen_iternext
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/genobject.c", line 1231, in coro_wrapper_iternext
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in __Pyx_Coroutine_Yield_From(__pyx_CoroutineObject*, _object*)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in __pyx_gb_3ray_7_raylet_10CoreWorker_36run_async_func_or_coro_in_event_loop_2generator10(__pyx_CoroutineObject*, _ts*, _object*)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in __Pyx_Coroutine_SendEx(__pyx_CoroutineObject*, _object*, int)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in __Pyx_Coroutine_Send(_object*, _object*)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/descrobject.c", line 482, in method_vectorcall_O
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/call.c", line 887, in PyObject_VectorcallMethod
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Include/cpython/abstract.h", line 103, in PyObject_CallMethodOneArg
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/abstract.c", line 2873, in PyIter_Send
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Modules/_asynciomodule.c", line 2869, in task_step_impl
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Modules/_asynciomodule.c", line 3188, in task_step
+[36m(RayWorkerWrapper pid=1529711)[0m   File "uvloop/loop.c", line 205020, in __Pyx_PyObject_Call
+[36m(RayWorkerWrapper pid=1529711)[0m   File "uvloop/loop.c", line 205117, in __Pyx_PyObject_FastCallDict
+[36m(RayWorkerWrapper pid=1529711)[0m   File "uvloop/loop.c", line 33192, in __pyx_pw_6uvloop_4loop_4Loop_25run_forever[32m [repeated 8x across cluster][0m
+[36m(RayWorkerWrapper pid=1529711)[0m   File "src/unix/loop-watcher.c", line 68, in uv__run_idle
+[36m(RayWorkerWrapper pid=1529711)[0m   File "src/unix/core.c", line 451, in uv_run
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in __pyx_pw_3ray_7_raylet_10CoreWorker_49initialize_eventloops_for_actor_concurrency_group_lambda1(_object*, _object*)
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Objects/classobject.c", line 69, in method_vectorcall
+[36m(RayWorkerWrapper pid=1529711)[0m   File "./Modules/_threadmodule.c", line 1116, in thread_run
+[36m(RayWorkerWrapper pid=1529711)[0m   File "Python/thread_pthread.h", line 237, in pythread_wrapper
+[36m(RayWorkerWrapper pid=1529711)[0m   File "<unknown>", line 0, in 0xffffffffffffffff
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1529161 is still running
+  _warn("subprocess %s is still running" % self.pid,
+Traceback (most recent call last):
+  File "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py", line 173, in <module>
+    main()
+  File "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py", line 83, in main
+    with pipeline(a.model, backend_config=config, speculative_config=spec,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/api.py", line 74, in pipeline
+    return Pipeline(model_path,
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pipeline.py", line 81, in __init__
+    self.async_engine = pipeline_class(model_path,
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/serve/core/async_engine.py", line 177, in __init__
+    self.engine = self._build_pytorch(model_path=model_path,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/serve/core/async_engine.py", line 244, in _build_pytorch
+    return Engine.from_pretrained(model_path,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/engine.py", line 292, in from_pretrained
+    return cls(
+           ^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/engine.py", line 192, in __init__
+    self.executor.init()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/executor/ray_executor.py", line 337, in init
+    super().init()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/executor/base.py", line 575, in init
+    self.build_model()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/executor/ray_executor.py", line 372, in build_model
+    self.collective_rpc('build_model')
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/executor/ray_executor.py", line 356, in collective_rpc
+    return ray.get([getattr(worker, method).remote(*args, **kwargs) for worker in self.workers], timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/worker.py", line 2858, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/worker.py", line 960, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: RayWorkerWrapper
+	actor_id: e302a2e60e1e2a6e732f83f801000000
+	pid: 1529710
+	namespace: 821b457d-6b96-408c-b10b-196c8bdf14a2
+	ip: 10.119.246.138
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[ERROR] 2026-11-15-14:32:47 (PID:1528643, Device:0, RankID:-1) ERR99999 UNKNOWN applicaiton exception

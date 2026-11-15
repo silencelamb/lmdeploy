@@ -1,0 +1,81 @@
+{
+  "label": "dense-after",
+  "command": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+    "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py",
+    "--model",
+    "/afs-weights/Qwen3.5-0.8B-do01",
+    "--tp",
+    "1",
+    "--scores",
+    "--prefill",
+    "256",
+    "--session",
+    "8192",
+    "--batch",
+    "8",
+    "--cache-fraction",
+    "0.5",
+    "--output",
+    "/root/workspace/a3-gated-norm-20261115/results/dense-after.json"
+  ],
+  "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+  "cpu": false,
+  "start_utc": "2026-11-15T13:59:58.716838+00:00",
+  "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-native-pr-20261115/guard:/root/workspace/a3-native-pr-20261115/lmdeploy:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "VALIDATION_ENV": "review",
+    "VALIDATION_ROOT": "/root/workspace/a3-gated-norm-20261115",
+    "ASCEND_RT_VISIBLE_DEVICES": "0",
+    "OMP_NUM_THREADS": "1",
+    "OMP_PROC_BIND": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-gated-norm-20261115/artifacts/triton-cache"
+  },
+  "diff_sha256": "a66ff23c15b4db8896af37f2eb1b456f54a905658b63842aedaed275bbd849a4",
+  "returncode": 0,
+  "elapsed_seconds": 33.01662051904714
+}
+2026-11-15 14:00:22,039 - lmdeploy - INFO - async_engine.py:606 - session=17, input_tokens=31, max_new_tokens=64, prep=True
+2026-11-15 14:00:22,040 - lmdeploy - INFO - async_engine.py:606 - session=18, input_tokens=22, max_new_tokens=64, prep=True
+2026-11-15 14:00:22,040 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=26, max_new_tokens=64, prep=True
+2026-11-15 14:00:22,040 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=32, max_new_tokens=64, prep=True
+2026-11-15 14:00:22,041 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-15 14:00:22,041 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-15 14:00:22,569 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,570 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 32, output_tokens 64
+2026-11-15 14:00:22,570 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,570 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-15 14:00:22,570 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,571 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-15 14:00:22,571 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,571 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-15 14:00:22,572 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,573 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-15 14:00:22,573 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,573 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 31, output_tokens 64
+2026-11-15 14:00:22,573 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,573 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-15 14:00:22,574 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 14:00:22,574 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 26, output_tokens 64
+CASE batch-eight-repeat OK 0.5601770069915801
+2026-11-15 14:00:22,712 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-15 14:00:22,712 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-15 14:00:22,712 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+2026-11-15 14:00:22,712 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+SAVED /root/workspace/a3-gated-norm-20261115/results/dense-after.json

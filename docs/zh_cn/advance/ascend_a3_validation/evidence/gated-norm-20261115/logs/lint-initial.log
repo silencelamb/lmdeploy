@@ -1,0 +1,28 @@
+ruff check...............................................................Failed
+- hook id: ruff-check
+- exit code: 1
+- files were modified by this hook
+
+Found 4 errors (4 fixed, 0 remaining).
+
+trim trailing whitespace.................................................Passed
+check yaml...........................................(no files to check)Skipped
+fix end of files.........................................................Failed
+- hook id: end-of-file-fixer
+- exit code: 1
+- files were modified by this hook
+
+Fixing lmdeploy/pytorch/backends/gated_delta_rule.py
+
+fix requirements.txt.................................(no files to check)Skipped
+fix double quoted strings................................................Passed
+check for merge conflicts................................................Passed
+mixed line ending........................................................Passed
+mdformat.................................................................Failed
+- hook id: mdformat
+- files were modified by this hook
+docformatter.............................................................Failed
+- hook id: docformatter
+- exit code: 3
+- files were modified by this hook
+check copyright..........................................................Passed

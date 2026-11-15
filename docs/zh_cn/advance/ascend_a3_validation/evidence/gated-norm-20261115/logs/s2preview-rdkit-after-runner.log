@@ -1,0 +1,82 @@
+{
+  "label": "s2preview-rdkit-after",
+  "command": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+    "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py",
+    "--model",
+    "/afs-weights/Intern-S2-Preview",
+    "--tp",
+    "2",
+    "--scores",
+    "--prefill",
+    "256",
+    "--session",
+    "8192",
+    "--batch",
+    "8",
+    "--cache-fraction",
+    "0.5",
+    "--preload-rdkit",
+    "--output",
+    "/root/workspace/a3-gated-norm-20261115/results/s2preview-rdkit-after.json"
+  ],
+  "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+  "cpu": false,
+  "start_utc": "2026-11-15T14:32:50.630758+00:00",
+  "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-native-pr-20261115/guard:/root/workspace/a3-native-pr-20261115/lmdeploy:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "VALIDATION_ENV": "review",
+    "VALIDATION_ROOT": "/root/workspace/a3-gated-norm-20261115",
+    "ASCEND_RT_VISIBLE_DEVICES": "0,1",
+    "OMP_NUM_THREADS": "1",
+    "OMP_PROC_BIND": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-gated-norm-20261115/artifacts/triton-cache"
+  },
+  "diff_sha256": "0644a159f9fa580012a7deba0f31de239884c12c04f3c99ab65fa0238c3e6ae0",
+  "returncode": 1,
+  "elapsed_seconds": 48.03985556401312
+}
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 337, in init
+    super().init()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/base.py", line 575, in init
+    self.build_model()
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 372, in build_model
+    self.collective_rpc('build_model')
+  File "/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/executor/ray_executor.py", line 356, in collective_rpc
+    return ray.get([getattr(worker, method).remote(*args, **kwargs) for worker in self.workers], timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/worker.py", line 2858, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/worker.py", line 960, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: RayWorkerWrapper
+	actor_id: c34e58568bfee8ca4eef8bc001000000
+	pid: 1531597
+	namespace: 9dfd71eb-cb47-455c-9d4b-7cad88ff6f5e
+	ip: 10.119.246.138
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[ERROR] 2026-11-15-14:33:35 (PID:1530293, Device:0, RankID:-1) ERR99999 UNKNOWN applicaiton exception

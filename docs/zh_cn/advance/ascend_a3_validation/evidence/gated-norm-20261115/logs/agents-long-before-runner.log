@@ -1,0 +1,90 @@
+{
+  "label": "agents-long-before",
+  "command": [
+    "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin/python",
+    "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py",
+    "--model",
+    "/afs-weights/Agents-A1",
+    "--tp",
+    "2",
+    "--scores",
+    "--prefill",
+    "256",
+    "--session",
+    "8192",
+    "--batch",
+    "8",
+    "--cache-fraction",
+    "0.5",
+    "--suite",
+    "bench",
+    "--bench-concurrency",
+    "1",
+    "4",
+    "--repeats",
+    "5",
+    "--new-tokens",
+    "256",
+    "--output",
+    "/root/workspace/a3-gated-norm-20261115/results/agents-long-before.json"
+  ],
+  "cwd": "/root/workspace/a3-gated-norm-20261115/lmdeploy-before",
+  "cpu": false,
+  "start_utc": "2026-11-15T14:46:10.189195+00:00",
+  "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-gated-norm-20261115/guard:/root/workspace/a3-gated-norm-20261115/lmdeploy-before:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PATH": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "VIRTUAL_ENV": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "VALIDATION_ENV": "review",
+    "VALIDATION_ROOT": "/root/workspace/a3-gated-norm-20261115",
+    "ASCEND_RT_VISIBLE_DEVICES": "0,1",
+    "OMP_NUM_THREADS": "1",
+    "OMP_PROC_BIND": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONUNBUFFERED": "1",
+    "TASK_QUEUE_ENABLE": "1",
+    "HCCL_CONNECT_TIMEOUT": "180",
+    "HCCL_OP_EXPANSION_MODE": "AIV",
+    "HCCL_BUFFSIZE": "512",
+    "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+    "LMDEPLOY_TARGET_DEVICE": "ascend",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-gated-norm-20261115/artifacts/triton-cache"
+  },
+  "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "returncode": 0,
+  "elapsed_seconds": 118.4031102739973
+}
+2026-11-15 14:47:52,776 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:52,779 - lmdeploy - INFO - async_engine.py:810 - session 25 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:52,779 - lmdeploy - INFO - async_engine.py:810 - session 24 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:52,779 - lmdeploy - INFO - async_engine.py:810 - session 23 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:52,780 - lmdeploy - INFO - async_engine.py:810 - session 22 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 3 5.043371541018132
+2026-11-15 14:47:52,824 - lmdeploy - INFO - async_engine.py:606 - session=26, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,825 - lmdeploy - INFO - async_engine.py:606 - session=27, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,826 - lmdeploy - INFO - async_engine.py:606 - session=28, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,826 - lmdeploy - INFO - async_engine.py:606 - session=29, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 14:47:52,827 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 14:47:52,827 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 14:47:57,735 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 29 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 28 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 27 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 14:47:57,736 - lmdeploy - INFO - async_engine.py:810 - session 26 finished, reason "length", input_tokens 170, output_tokens 256
+BENCH 4 4 4.918561507947743
+2026-11-15 14:47:58,054 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-15 14:47:58,055 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-15 14:47:58,055 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-15 14:47:58,065 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(RayWorkerWrapper pid=1549097)[0m 2026-11-15 14:47:58,058 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(RayWorkerWrapper pid=1549098)[0m 2026-11-15 14:47:58,061 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(RayWorkerWrapper pid=1549098)[0m [rank1]:[W1115 14:47:02.590413111 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1548540 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-gated-norm-20261115/results/agents-long-before.json

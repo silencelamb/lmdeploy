@@ -1,0 +1,13 @@
+...............................ssss                                      [100%]
+=============================== warnings summary ===============================
+../../a3-gated-norm-20261115/envs/cpu/lib/python3.12/site-packages/torch/jit/_script.py:362: 14 warnings
+  /root/workspace/a3-gated-norm-20261115/envs/cpu/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+tests/pytorch/models/test_qwen3_5_norm.py::test_zero_centered_norm_loading[dtype0-intern_decision.InternDecisionForConditionalGeneration]
+  /root/workspace/a3-gated-norm-20261115/envs/cpu/lib/python3.12/site-packages/fla/utils/_device.py:100: UserWarning: Triton is not supported on current platform, roll back to CPU.
+    _cpu_device_warning()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /root/workspace/a3-gated-norm-20261115/results/cpu-model-loading-initial.xml -
+31 passed, 4 skipped, 15 warnings in 13.49s

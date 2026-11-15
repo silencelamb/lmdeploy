@@ -1,0 +1,119 @@
+2026-11-15 13:55:42,156 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=1, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 13:55:42,157 - lmdeploy - INFO - async_engine.py:154 - speculative_config=None
+[W1115 13:55:44.478145319 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 13:55:50.973471279 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 13:55:50,648 - lmdeploy - INFO - __init__.py:146 - Build <uni> executor.
+2026-11-15 13:55:52,479 - lmdeploy - INFO - base.py:574 - Building Model.
+Loading weights from safetensors:   0%|          | 0/1 [00:00<?, ?it/s]Loading weights from safetensors: 100%|██████████| 1/1 [00:00<00:00,  1.10it/s]Loading weights from safetensors: 100%|██████████| 1/1 [00:00<00:00,  1.10it/s]
+2026-11-15 13:55:53,832 - lmdeploy - INFO - base.py:576 - Updating configs.
+2026-11-15 13:55:53,980 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-15 13:55:53,984 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=8, block_size=128, num_cpu_blocks=0, num_gpu_blocks=20184, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.5, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=10, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-15 13:55:55,647 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 2,583,424 tokens (20,183 usable blocks/rank, DCP=1).
+2026-11-15 13:55:55,648 - lmdeploy - INFO - base.py:591 - Warming up model.
+2026-11-15 13:55:55,648 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[W1115 13:55:55.268851618 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+Warming up decoding:   0%|          | 0/4 [00:00<?, ?it/s]Warming up decoding:  25%|██▌       | 1/4 [00:08<00:25,  8.66s/it]Warming up decoding:  50%|█████     | 2/4 [00:11<00:10,  5.09s/it]Warming up decoding: 100%|██████████| 4/4 [00:14<00:00,  2.91s/it]Warming up decoding: 100%|██████████| 4/4 [00:14<00:00,  3.62s/it]
+2026-11-15 13:56:41,936 - lmdeploy - INFO - agent.py:590 - Engine warmup completed in 46.29 seconds.
+2026-11-15 13:56:41,943 - lmdeploy - INFO - async_engine.py:188 - updated backend_config=PytorchEngineConfig(dtype='bfloat16', tp=1, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=20184, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 13:56:42,344 - lmdeploy - INFO - async_engine.py:259 - enable metrics, with dp: 1 dp_rank: 0
+2026-11-15 13:56:42,388 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-15 13:56:42,388 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-15 13:56:42,388 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-15 13:56:42,388 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-15 13:56:42,389 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-15 13:56:42,390 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 13:56:42,390 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 13:56:45,552 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:45,553 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 29, output_tokens 64
+CASE single-before OK 3.1910452569718473
+2026-11-15 13:56:45,559 - lmdeploy - INFO - async_engine.py:606 - session=1, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,560 - lmdeploy - INFO - async_engine.py:606 - session=2, input_tokens=20, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,561 - lmdeploy - INFO - async_engine.py:606 - session=3, input_tokens=27, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,561 - lmdeploy - INFO - async_engine.py:606 - session=4, input_tokens=24, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,562 - lmdeploy - INFO - async_engine.py:606 - session=5, input_tokens=31, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,562 - lmdeploy - INFO - async_engine.py:606 - session=6, input_tokens=22, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,563 - lmdeploy - INFO - async_engine.py:606 - session=7, input_tokens=26, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,564 - lmdeploy - INFO - async_engine.py:606 - session=8, input_tokens=32, max_new_tokens=64, prep=True
+2026-11-15 13:56:45,564 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-15 13:56:45,564 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-15 13:56:48,814 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,816 - lmdeploy - INFO - async_engine.py:810 - session 8 finished, reason "length", input_tokens 32, output_tokens 64
+2026-11-15 13:56:48,817 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,817 - lmdeploy - INFO - async_engine.py:810 - session 3 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-15 13:56:48,817 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,817 - lmdeploy - INFO - async_engine.py:810 - session 2 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-15 13:56:48,818 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,818 - lmdeploy - INFO - async_engine.py:810 - session 1 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-15 13:56:48,819 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,819 - lmdeploy - INFO - async_engine.py:810 - session 4 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-15 13:56:48,819 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,820 - lmdeploy - INFO - async_engine.py:810 - session 5 finished, reason "length", input_tokens 31, output_tokens 64
+2026-11-15 13:56:48,820 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,820 - lmdeploy - INFO - async_engine.py:810 - session 6 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-15 13:56:48,820 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:48,821 - lmdeploy - INFO - async_engine.py:810 - session 7 finished, reason "length", input_tokens 26, output_tokens 64
+CASE batch-eight OK 3.2784113439847715
+2026-11-15 13:56:48,838 - lmdeploy - INFO - async_engine.py:606 - session=9, input_tokens=1106, max_new_tokens=64, prep=True
+2026-11-15 13:56:48,839 - lmdeploy - INFO - async_engine.py:606 - session=10, input_tokens=20, max_new_tokens=64, prep=True
+2026-11-15 13:56:48,840 - lmdeploy - INFO - async_engine.py:606 - session=11, input_tokens=14, max_new_tokens=64, prep=True
+2026-11-15 13:56:48,840 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 3
+2026-11-15 13:56:48,840 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 3
+2026-11-15 13:56:57,636 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:57,638 - lmdeploy - INFO - async_engine.py:810 - session 10 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-15 13:56:57,642 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:57,644 - lmdeploy - INFO - async_engine.py:810 - session 11 finished, reason "length", input_tokens 14, output_tokens 64
+2026-11-15 13:56:57,649 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:57,649 - lmdeploy - INFO - async_engine.py:810 - session 9 finished, reason "length", input_tokens 1106, output_tokens 64
+CASE mixed-long-short OK 8.826038412051275
+2026-11-15 13:56:57,662 - lmdeploy - INFO - async_engine.py:606 - session=12, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-15 13:56:57,662 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 13:56:57,662 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 13:56:58,192 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,193 - lmdeploy - INFO - async_engine.py:810 - session 12 finished, reason "length", input_tokens 29, output_tokens 64
+CASE single-after OK 0.5497506909887306
+2026-11-15 13:56:58,212 - lmdeploy - INFO - async_engine.py:606 - session=13, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,212 - lmdeploy - INFO - async_engine.py:606 - session=14, input_tokens=20, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,213 - lmdeploy - INFO - async_engine.py:606 - session=15, input_tokens=27, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,213 - lmdeploy - INFO - async_engine.py:606 - session=16, input_tokens=24, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,214 - lmdeploy - INFO - async_engine.py:606 - session=17, input_tokens=31, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,214 - lmdeploy - INFO - async_engine.py:606 - session=18, input_tokens=22, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,215 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=26, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,215 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=32, max_new_tokens=64, prep=True
+2026-11-15 13:56:58,215 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-15 13:56:58,215 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-15 13:56:58,802 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,803 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 32, output_tokens 64
+2026-11-15 13:56:58,804 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,804 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-15 13:56:58,805 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,805 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-15 13:56:58,806 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,806 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-15 13:56:58,806 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,806 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-15 13:56:58,806 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,807 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 31, output_tokens 64
+2026-11-15 13:56:58,807 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,807 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-15 13:56:58,807 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 13:56:58,807 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 26, output_tokens 64
+CASE batch-eight-repeat OK 0.6231701879878528
+2026-11-15 13:56:58,956 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-15 13:56:58,957 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-15 13:56:58,957 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+2026-11-15 13:56:58,957 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+SAVED /root/workspace/a3-gated-norm-20261115/results/dense-before.json

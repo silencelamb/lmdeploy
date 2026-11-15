@@ -1,0 +1,327 @@
+{
+  "baseline_commit": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+  "baseline_kernel_sha256": "ae5b67237939f33426e3cf064c914e45dd577c54f813722f4df64c2565fcb1bd",
+  "cases": [
+    {
+      "label": "kernel-torch.bfloat16-1x128",
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "ea04e1d7d4bd8b7924ad402a248deb817ca393b1cdd530a7a5287e0840be794b"
+    },
+    {
+      "label": "kernel-torch.bfloat16-17x128",
+      "shape": [
+        17,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "01c00769c09178850792670d7fb435e487f3b4a94919299d44da61a07d77deb1"
+    },
+    {
+      "label": "kernel-torch.bfloat16-4097x128",
+      "shape": [
+        4097,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "d23291032625e3e579ec0e12d5b5266c229ad751365b94fce104dec205ca02c8"
+    },
+    {
+      "label": "kernel-torch.bfloat16-1x192",
+      "shape": [
+        1,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "69ffc3b23073b85c4d7b486dd6bc30d2e3972cab4afc21048cb850edeb42acfb"
+    },
+    {
+      "label": "kernel-torch.bfloat16-17x192",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "9547df28431321c0e5fe9f7cb52a5a6202751f8c19aa100f2fe2c9a2e1c24518"
+    },
+    {
+      "label": "kernel-torch.bfloat16-4097x192",
+      "shape": [
+        4097,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "f3988bea9723c990be9866cf4ded952ab11f86619cdf5be1f0280d295a038217"
+    },
+    {
+      "label": "grouped-torch.bfloat16-gateFalse-normfirstFalse",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "c72b3f9429441b0b57f92fc07746013c4aacd5da9c0103a9b8e04ca007be367b"
+    },
+    {
+      "label": "grouped-torch.bfloat16-gateFalse-normfirstTrue",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "c72b3f9429441b0b57f92fc07746013c4aacd5da9c0103a9b8e04ca007be367b"
+    },
+    {
+      "label": "grouped-torch.bfloat16-gateTrue-normfirstFalse",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "125e6ac18adff7db03d0c0af6417d81acf8a041e93a3f035593d7df08cac318e"
+    },
+    {
+      "label": "grouped-torch.bfloat16-gateTrue-normfirstTrue",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "f6d1373d094536487b9984612f2aad318f9dd90433f8af366192a1d78e87ca4e"
+    },
+    {
+      "label": "kernel-torch.float16-1x128",
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "92c03338d436124ee5630e6a0c42cf70c655eb2286f80f271de6bf0d185c87f1"
+    },
+    {
+      "label": "kernel-torch.float16-17x128",
+      "shape": [
+        17,
+        128
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "ca70bf3f42ae247b2dfff541c72efe3fc44798bcb82da7b0c27e362e6e590ec3"
+    },
+    {
+      "label": "kernel-torch.float16-4097x128",
+      "shape": [
+        4097,
+        128
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "32f603d7d350815fd0b49418a661b24a1f44d9055fceb2dd9eb4877dfda122bb"
+    },
+    {
+      "label": "kernel-torch.float16-1x192",
+      "shape": [
+        1,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "045954719e849bfe603d15d6743cf606e4c39e8f3614e5bf41ef7f77b09a714c"
+    },
+    {
+      "label": "kernel-torch.float16-17x192",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "05674b0132fdfd501f62315f4728d79dff8e55264a132f96f9eff673d1b1aa82"
+    },
+    {
+      "label": "kernel-torch.float16-4097x192",
+      "shape": [
+        4097,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "49188ba4eae985a6864681df7df7447df7b9d99c1e7dab89bb3f64212085ee47"
+    },
+    {
+      "label": "grouped-torch.float16-gateFalse-normfirstFalse",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "3a46ddf339d779a11ce22259ed2eb7bff3efa3220120989681aa6adca9295e4f"
+    },
+    {
+      "label": "grouped-torch.float16-gateFalse-normfirstTrue",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "3a46ddf339d779a11ce22259ed2eb7bff3efa3220120989681aa6adca9295e4f"
+    },
+    {
+      "label": "grouped-torch.float16-gateTrue-normfirstFalse",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "7fb33bedd54424896e8ccc4281c2475a8a8e272d8c8f1d779d578e85ee86cc87"
+    },
+    {
+      "label": "grouped-torch.float16-gateTrue-normfirstTrue",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float16",
+      "equal": true,
+      "sha256": "84ca8662eb3ed07cbc4ef9ef97d667ef4a4c8ecefc877dfde6f98f667618c1fe"
+    },
+    {
+      "label": "kernel-torch.float32-1x128",
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "46d988ea1b87e80f34cf7302f804ab6e8f145af45af3e8a4573e1374d405487b"
+    },
+    {
+      "label": "kernel-torch.float32-17x128",
+      "shape": [
+        17,
+        128
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "0b97e8f0bd5a78399d37bf7818ae1f14216d5a03dd22a1b14d16650f1f7445ad"
+    },
+    {
+      "label": "kernel-torch.float32-4097x128",
+      "shape": [
+        4097,
+        128
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "527498f18b3c8b68112ad079c3b342d827a024a1bf79b346a8fba14ef1b5d486"
+    },
+    {
+      "label": "kernel-torch.float32-1x192",
+      "shape": [
+        1,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "e84aa88ffb994963594794a59d6008e19187250dc858e2ebc6d50039dfd7ce4c"
+    },
+    {
+      "label": "kernel-torch.float32-17x192",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "45541e6a8557d0d319bf9450535dc990c2d5cc1fddcd831504750d26cf6e2615"
+    },
+    {
+      "label": "kernel-torch.float32-4097x192",
+      "shape": [
+        4097,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "bf269e0e0206552f6ab34f272e20c8f3d7ed94075c541f6cac559e579467bf67"
+    },
+    {
+      "label": "grouped-torch.float32-gateFalse-normfirstFalse",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "e04814c1789c73d7cab351d70a20c25f5e973ca271b406bdecf460042874bfb8"
+    },
+    {
+      "label": "grouped-torch.float32-gateFalse-normfirstTrue",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "e04814c1789c73d7cab351d70a20c25f5e973ca271b406bdecf460042874bfb8"
+    },
+    {
+      "label": "grouped-torch.float32-gateTrue-normfirstFalse",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "68a6da9463687f320cfad03578b6d5879b2bf6556fcd9cb486e814c31ed55af9"
+    },
+    {
+      "label": "grouped-torch.float32-gateTrue-normfirstTrue",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.float32",
+      "equal": true,
+      "sha256": "a4c13fd767734350179cc3896c00e27b06bbf2d587861d838860afb445289637"
+    },
+    {
+      "label": "public-module-128",
+      "shape": [
+        17,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "f71fa09d20da9512cff046daf9c88181334bbbedcae4b89f9fd24d5320590376"
+    },
+    {
+      "label": "public-module-192",
+      "shape": [
+        17,
+        192
+      ],
+      "dtype": "torch.bfloat16",
+      "equal": true,
+      "sha256": "c13601b50bcc0947140ec007d0987fb133857c51b7eb026196f36af236b1ef9e"
+    }
+  ],
+  "all_equal": true
+}

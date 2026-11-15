@@ -1,0 +1,136 @@
+2026-11-15 14:06:58,942 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=1, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides={'_lmdeploy_task': 'intern-decision'}, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 14:06:58,942 - lmdeploy - INFO - async_engine.py:154 - speculative_config=None
+[W1115 14:07:01.232306833 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 14:07:07.806862741 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 14:07:07,466 - lmdeploy - WARNING - config.py:687 - Overriding HF config with {'_lmdeploy_task': 'intern-decision'}
+2026-11-15 14:07:07,467 - lmdeploy - INFO - __init__.py:146 - Build <uni> executor.
+2026-11-15 14:07:09,247 - lmdeploy - INFO - base.py:574 - Building Model.
+Loading weights from safetensors:   0%|          | 0/1 [00:00<?, ?it/s]Loading weights from safetensors: 100%|██████████| 1/1 [00:00<00:00,  4.59it/s]Loading weights from safetensors: 100%|██████████| 1/1 [00:00<00:00,  4.58it/s]
+2026-11-15 14:07:09,916 - lmdeploy - INFO - base.py:576 - Updating configs.
+2026-11-15 14:07:10,047 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-15 14:07:10,051 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=8, block_size=128, num_cpu_blocks=0, num_gpu_blocks=20184, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.5, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=10, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((4, 6144), torch.bfloat16), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-15 14:07:11,667 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 2,583,424 tokens (20,183 usable blocks/rank, DCP=1).
+2026-11-15 14:07:11,667 - lmdeploy - INFO - base.py:591 - Warming up model.
+2026-11-15 14:07:11,667 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[W1115 14:07:11.291050640 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+Traceback (most recent call last):
+  File "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py", line 168, in <module>
+    main()
+  File "/root/workspace/a3-gated-norm-20261115/scripts/pipeline_case.py", line 78, in main
+    with pipeline(a.model, backend_config=config, speculative_config=spec,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/api.py", line 74, in pipeline
+    return Pipeline(model_path,
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pipeline.py", line 81, in __init__
+    self.async_engine = pipeline_class(model_path,
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/serve/core/async_engine.py", line 177, in __init__
+    self.engine = self._build_pytorch(model_path=model_path,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/serve/core/async_engine.py", line 244, in _build_pytorch
+    return Engine.from_pretrained(model_path,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/engine.py", line 292, in from_pretrained
+    return cls(
+           ^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/engine.py", line 192, in __init__
+    self.executor.init()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/executor/base.py", line 592, in init
+    self.warmup()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/executor/uni_executor.py", line 99, in warmup
+    self.model_agent.warmup()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/model_agent/agent.py", line 563, in warmup
+    self._warmup_prefill()
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/model_agent/agent.py", line 538, in _warmup_prefill
+    self._forward_impl(inputs)
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/model_agent/agent.py", line 1746, in _forward_impl
+    output = model_forward(
+             ^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/engine/model_agent/agent.py", line 280, in model_forward
+    output = model(**input_dict)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/backends/ascend/graph_runner.py", line 482, in __call__
+    ret = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/models/qwen3_5.py", line 1079, in forward
+    hidden_states, target_inputs_embeds, aux_hidden_states = self.model(
+                                                             ^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/models/qwen3_5.py", line 985, in forward
+    language_outputs = self.language_model(
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/models/qwen3_5.py", line 888, in forward
+    hidden_states, residual = decoder_layer(
+                              ^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/models/qwen3_5.py", line 804, in forward
+    hidden_states, residual = self.post_attention_layernorm(hidden_states, residual)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/nn/norm.py", line 114, in forward
+    return self.impl.forward(x, self.weight, residual)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/backends/ascend/norm.py", line 22, in forward
+    x, residual = rms_norm(x, weight, self.eps, residual=residual)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/kernels/ascend/rms_norm.py", line 16, in rms_norm
+    return ext_ops.add_rms_norm(hidden_states, residual, weight, epsilon)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/kernels/ascend/ops.py", line 31, in add_rms_norm
+    return npu_ops.add_rms_norm(hidden_states, residual, weight, epsilon)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-gated-norm-20261115/lmdeploy-before/lmdeploy/pytorch/kernels/ascend/npu_ops.py", line 140, in add_rms_norm
+    normed_hidden_states, _, added_hidden_states = torch.ops.npu.npu_add_rms_norm(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch/_ops.py", line 1209, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: npu_add_rms_norm:../third_party/op-plugin/op_plugin/ops/opapi/StructKernelNpuOpApi.cpp:3721 NPU function error: call aclnnAddRmsNorm failed, error code is 161002
+[ERROR] 2026-11-15-14:07:12 (PID:1511731, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
+[PID: 1511731] 2026-11-15-14:07:12.293.698 AclNN_Parameter_Error(EZ1001): Expected both tensors to have same dtype, but found inputTensor.x1 DT_BFLOAT16 and inputTensor.gamma DT_FLOAT.
+
