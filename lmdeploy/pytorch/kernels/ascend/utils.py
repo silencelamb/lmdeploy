@@ -1,3 +1,4 @@
+# Copyright (c) OpenMMLab. All rights reserved.
 from functools import lru_cache
 
 import torch

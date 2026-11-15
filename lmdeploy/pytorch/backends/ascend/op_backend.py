@@ -22,7 +22,7 @@ from lmdeploy.utils import get_logger
 from ..base import ImplT
 from ..default import DefaultOpsBackend
 
-logger = get_logger("lmdeploy")
+logger = get_logger('lmdeploy')
 
 
 def _get_cpu_attention_metadata(cu_seqlens_q: torch.Tensor, kv_seqlens: torch.Tensor):
@@ -33,7 +33,7 @@ def _get_cpu_attention_metadata(cu_seqlens_q: torch.Tensor, kv_seqlens: torch.Te
 
 def _is_sparse_attention(model_config: ModelConfig) -> bool:
     """Whether all model attention layers use the NSA/DSA sparse path."""
-    return getattr(model_config, "mla_index_topk", None) is not None
+    return getattr(model_config, 'mla_index_topk', None) is not None
 
 
 def _get_device_kv_start_indices(
@@ -53,14 +53,14 @@ def _get_device_kv_start_indices(
     )
     query_offsets = torch.arange(num_tokens, device=q_seqlens.device, dtype=torch.int32) - cu_seqlens_q[request_ids]
     logical_positions = kv_seqlens[request_ids] - q_seqlens[request_ids] + query_offsets
-    logical_blocks = torch.div(logical_positions, block_size, rounding_mode="floor").long()
+    logical_blocks = torch.div(logical_positions, block_size, rounding_mode='floor').long()
     physical_blocks = block_offsets[request_ids, logical_blocks]
     return physical_blocks * block_size + logical_positions.remainder(block_size)
 
 
 class SocVersion:
-    Ascend310P: str = "Ascend310P"
-    Ascend910: str = "Ascend910"
+    Ascend310P: str = 'Ascend310P'
+    Ascend910: str = 'Ascend910'
 
     @classmethod
     @lru_cache(maxsize=1)
@@ -68,7 +68,7 @@ class SocVersion:
         try:
             return torch.npu.get_device_name()
         except ImportError:
-            logger.warning("Failed to import torch_npu. Please make sure torch_npu is installed correctly.")
+            logger.warning('Failed to import torch_npu. Please make sure torch_npu is installed correctly.')
         except Exception as e:
             logger.warning(
                 f"Error during Ascend get device name: {str(e)}. Please check your Ascend environment configuration."
@@ -115,7 +115,7 @@ class AscendKVQuantMeta:
     def set_value(cls, device: str, dtype: torch.dtype, record_file: str, total_layers: int):
         with open(record_file) as file:
             data = file.read()
-        scale_offset_pairs = re.findall(r"scale:\s*([\d\.\-]+)\s*offset:\s*(-?\d+)", data)
+        scale_offset_pairs = re.findall(r'scale:\s*([\d\.\-]+)\s*offset:\s*(-?\d+)', data)
         scale_offset_pairs = [(float(scale), float(offset)) for scale, offset in scale_offset_pairs]
         k_scales, v_scales, kv_scales = [], [], []
         k_zeros, v_zeros, kv_zeros = [], [], []
@@ -144,12 +144,12 @@ class AscendKVQuantMeta:
 
         cls.quant_meta.update(
             {
-                "k_scales": itertools.cycle(k_scales),
-                "k_zeros": itertools.cycle(k_zeros),
-                "v_scales": itertools.cycle(v_scales),
-                "v_zeros": itertools.cycle(v_zeros),
-                "kv_scales": itertools.cycle(kv_scales),
-                "kv_zeros": itertools.cycle(kv_zeros),
+                'k_scales': itertools.cycle(k_scales),
+                'k_zeros': itertools.cycle(k_zeros),
+                'v_scales': itertools.cycle(v_scales),
+                'v_zeros': itertools.cycle(v_zeros),
+                'kv_scales': itertools.cycle(kv_scales),
+                'kv_zeros': itertools.cycle(kv_zeros),
             }
         )
         cls.has_set_value = True
@@ -167,17 +167,10 @@ class AscendOpsBackend(DefaultOpsBackend):
     @staticmethod
     def get_name() -> str:
         """Backend name."""
-        return "ascend"
+        return 'ascend'
 
     @classmethod
     def build_op(cls, spec, *, enable_deterministic: bool = False):
-        # Keep Ascend GDN operators behind the existing BuildSpec dispatch.
-        from ..gated_delta_rule import RMSNormGatedBuildSpec
-
-        if isinstance(spec, RMSNormGatedBuildSpec):
-            from lmdeploy.pytorch.kernels.ascend.triton_ops.rms_norm_gated import RMSNormGated
-
-            return RMSNormGated(spec.hidden_size, eps=spec.eps, norm_before_gate=True, device=spec.kwargs["device"])
         from ..causal_conv1d import CausalConv1dBuildSpec
         from ..gated_delta_rule import (
             GatedDeltaMetaBuildSpec,
@@ -212,7 +205,7 @@ class AscendOpsBackend(DefaultOpsBackend):
             FusedMoEW8A8BuildSpec,
             SoftmaxTopKBuildSpec,
         )
-        from ..norm import RMSNormBuildSpec
+        from ..norm import RMSNormBuildSpec, RMSNormGatedBuildSpec
         from ..nsa import NSAIndexFP8BuildSpec
         from ..qmodules import LinearW8A8BuildSpec, RMSNormW8A8BuildSpec
         from ..rotary_embedding import RotaryEmbeddingBuildSpec
@@ -223,7 +216,7 @@ class AscendOpsBackend(DefaultOpsBackend):
             return cast(ImplT, AscendSiluAndMulImpl())
         if isinstance(spec, ApplyRotaryEmbBuildSpec):
             if spec.enable_fp32_compute:
-                raise NotImplementedError("Ascend ApplyRotaryEmb does not support enable_fp32_compute=True.")
+                raise NotImplementedError('Ascend ApplyRotaryEmb does not support enable_fp32_compute=True.')
             from .apply_rotary_emb import AscendApplyRotaryEmbImpl
 
             return cast(ImplT, AscendApplyRotaryEmbImpl())
@@ -231,6 +224,10 @@ class AscendOpsBackend(DefaultOpsBackend):
             from .norm import AscendRMSNormImpl
 
             return cast(ImplT, AscendRMSNormImpl(spec.hidden_size, spec.eps))
+        if isinstance(spec, RMSNormGatedBuildSpec):
+            from .norm import AscendRMSNormGatedImpl
+
+            return cast(ImplT, AscendRMSNormGatedImpl(spec.hidden_size, spec.eps, spec.activation))
         if isinstance(spec, RMSNormW8A8BuildSpec):
             from .qmodules import AscendRMSNormW8A8Impl
 
@@ -560,7 +557,7 @@ class AscendOpsBackend(DefaultOpsBackend):
             if group is None:
                 return None
             local_rank = torch.distributed.get_rank(group=group)
-            backend = group._get_backend(torch.device("npu"))
+            backend = group._get_backend(torch.device('npu'))
             group_name = backend.get_hccl_comm_name(local_rank)
             return group_name
 
@@ -588,13 +585,13 @@ class AscendOpsBackend(DefaultOpsBackend):
         kv_flatten_size = step_context.sum_kv_seqlen
 
         if not cls.enable_graph and step_context.kv_quant_policy == 8:
-            record_file = os.getenv("ASCEND_QUANT_RECORD_FILE")
-            assert record_file, "please specify valid ASCEND_QUANT_RECORD_FILE"
+            record_file = os.getenv('ASCEND_QUANT_RECORD_FILE')
+            assert record_file, 'please specify valid ASCEND_QUANT_RECORD_FILE'
             path = Path(record_file)
-            is_path = path.is_absolute() or path.is_relative_to("/")
+            is_path = path.is_absolute() or path.is_relative_to('/')
             exists = path.exists()
             if not (is_path and exists):
-                raise ValueError("please specify valid ASCEND_QUANT_RECORD_FILE")
+                raise ValueError('please specify valid ASCEND_QUANT_RECORD_FILE')
             if not AscendKVQuantMeta.has_set_value:
                 total_layers = len(step_context.kv_caches)
                 AscendKVQuantMeta.set_value(
@@ -730,7 +727,7 @@ class AscendOpsBackend(DefaultOpsBackend):
 
     @staticmethod
     def ccl_backend():
-        return "hccl"
+        return 'hccl'
 
     @staticmethod
     def device_count():
@@ -741,7 +738,7 @@ class AscendOpsBackend(DefaultOpsBackend):
     def support_ray():
         """Support ray."""
         if not _envs.ascend_set_rt_visable_devices_by_ray:
-            os.environ["RAY_EXPERIMENTAL_NOSET_ASCEND_RT_VISIBLE_DEVICES"] = "1"
+            os.environ['RAY_EXPERIMENTAL_NOSET_ASCEND_RT_VISIBLE_DEVICES'] = '1'
         return True
 
     @classmethod
@@ -750,7 +747,7 @@ class AscendOpsBackend(DefaultOpsBackend):
         from lmdeploy.pytorch import envs
 
         cuda_communicator_enabled = envs.enable_flashinfer_allreduce or envs.enable_symm_mem_allreduce
-        assert not cuda_communicator_enabled, "CUDA communicators are not supported by Ascend."
+        assert not cuda_communicator_enabled, 'CUDA communicators are not supported by Ascend.'
         return super().build_communicator(
             cpu_group=cpu_group,
             device_group=device_group,

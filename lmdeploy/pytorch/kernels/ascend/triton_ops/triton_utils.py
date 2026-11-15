@@ -1,3 +1,4 @@
+# Copyright (c) OpenMMLab. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
 # NPU device property helpers for Triton kernels.
