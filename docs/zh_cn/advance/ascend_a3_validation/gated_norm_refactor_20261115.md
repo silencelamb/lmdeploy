@@ -2,6 +2,10 @@
 
 日期：2026-11-15，Asia/Shanghai。原始运行日志保留 UTC。
 
+2026-11-16 补充：[性能定位与 A100 CI 结果](gated_norm_performance_20261116.md)。本文原始测量与失败记录保留；
+新增交替对照没有稳定复现原来的 C4 −5.15%，实际 norm kernel 二进制相同，长停顿在主机提交等待处复现。
+A100 CI 已执行并通过新增 norm 文件的 83 项（含 56 项真实 CUDA/graph），完整 GPU 模型对照仍未完成。
+
 本次是在原生迁移 PR [#5134](https://github.com/InternLM/lmdeploy/pull/5134) 上补齐算子组织方式。
 比较对象是冻结的重构前原生 PR `342db85ecff3c0dc864a4bf8613c589c270f4141` 与本次重构，
 最终 PR 提交为 `5f1b1b3c12b1c198813f65275f778c7ad292fb02`，开发分支同步提交为

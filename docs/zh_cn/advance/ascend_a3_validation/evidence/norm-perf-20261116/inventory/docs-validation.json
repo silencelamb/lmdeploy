@@ -1,0 +1,67 @@
+[
+  {
+    "command": [
+      "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+      "run",
+      "mdformat",
+      "--files",
+      "docs/zh_cn/advance/ascend_a3_validation/README.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_refactor_20261115.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_performance_20261116.md",
+      "docs/zh_cn/advance/ascend_a3_validation/.gitattributes"
+    ],
+    "returncode": 0
+  },
+  {
+    "command": [
+      "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+      "run",
+      "trailing-whitespace",
+      "--files",
+      "docs/zh_cn/advance/ascend_a3_validation/README.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_refactor_20261115.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_performance_20261116.md",
+      "docs/zh_cn/advance/ascend_a3_validation/.gitattributes"
+    ],
+    "returncode": 0
+  },
+  {
+    "command": [
+      "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+      "run",
+      "end-of-file-fixer",
+      "--files",
+      "docs/zh_cn/advance/ascend_a3_validation/README.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_refactor_20261115.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_performance_20261116.md",
+      "docs/zh_cn/advance/ascend_a3_validation/.gitattributes"
+    ],
+    "returncode": 0
+  },
+  {
+    "command": [
+      "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+      "run",
+      "check-merge-conflict",
+      "--files",
+      "docs/zh_cn/advance/ascend_a3_validation/README.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_refactor_20261115.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_performance_20261116.md",
+      "docs/zh_cn/advance/ascend_a3_validation/.gitattributes"
+    ],
+    "returncode": 0
+  },
+  {
+    "command": [
+      "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+      "run",
+      "mixed-line-ending",
+      "--files",
+      "docs/zh_cn/advance/ascend_a3_validation/README.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_refactor_20261115.md",
+      "docs/zh_cn/advance/ascend_a3_validation/gated_norm_performance_20261116.md",
+      "docs/zh_cn/advance/ascend_a3_validation/.gitattributes"
+    ],
+    "returncode": 0
+  }
+]

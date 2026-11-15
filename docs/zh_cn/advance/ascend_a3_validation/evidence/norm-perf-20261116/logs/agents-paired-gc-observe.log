@@ -1,0 +1,547 @@
+2026-11-15 16:24:47,748 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 16:24:47,748 - lmdeploy - INFO - async_engine.py:154 - speculative_config=None
+[W1115 16:24:50.931739251 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1115 16:24:57.578027319 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 16:24:57,242 - lmdeploy - INFO - __init__.py:146 - Build <ray> executor.
+2026-11-15 16:24:57,242 - lmdeploy - INFO - ray_executor.py:277 - Init ray cluster.
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-15 16:24:59,250	INFO worker.py:1927 -- Started a local Ray instance.
+2026-11-15 16:24:59,757 - lmdeploy - INFO - ray.py:107 - Ray initialized with address: 10.119.246.138:59469
+2026-11-15 16:24:59,956 - lmdeploy - INFO - ray_executor.py:308 - Init ray workers.
+2026-11-15 16:25:00,057 - lmdeploy - INFO - ray_executor.py:320 - Init distributed environment by device.
+[36m(PerfWorkerGC pid=1587824)[0m [W1115 16:25:08.143985811 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(PerfWorkerGC pid=1587824)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(PerfWorkerGC pid=1587824)[0m     *************************************************************************************************************
+[36m(PerfWorkerGC pid=1587824)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(PerfWorkerGC pid=1587824)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(PerfWorkerGC pid=1587824)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(PerfWorkerGC pid=1587824)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(PerfWorkerGC pid=1587824)[0m     The device parameters have been replaced with npu in the function below:
+[36m(PerfWorkerGC pid=1587824)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(PerfWorkerGC pid=1587824)[0m     *************************************************************************************************************
+[36m(PerfWorkerGC pid=1587824)[0m     
+[36m(PerfWorkerGC pid=1587824)[0m   warnings.warn(msg, ImportWarning)
+[36m(PerfWorkerGC pid=1587824)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(PerfWorkerGC pid=1587824)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(PerfWorkerGC pid=1587825)[0m     
+2026-11-15 16:25:12,899 - lmdeploy - INFO - ray_executor.py:324 - Init distributed process group.
+2026-11-15 16:25:12,919 - lmdeploy - INFO - ray_executor.py:331 - Warming up distribute environment, this might take long time, please waiting...
+[36m(PerfWorkerGC pid=1587824)[0m 2026-11-15 16:25:12,900 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=53441
+[36m(PerfWorkerGC pid=1587824)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(PerfWorkerGC pid=1587824)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(PerfWorkerGC pid=1587824)[0m [rank0]:[W1115 16:25:12.469045795 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-15 16:25:15,506 - lmdeploy - INFO - base.py:574 - Building Model.
+[36m(PerfWorkerGC pid=1587824)[0m 2026-11-15 16:25:15,508 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1587824 for current process 1587824
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:   0%|          | 0/14 [00:00<?, ?it/s]
+[36m(PerfWorkerGC pid=1587825)[0m [W1115 16:25:08.138682076 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(PerfWorkerGC pid=1587825)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(PerfWorkerGC pid=1587825)[0m     *************************************************************************************************************[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(PerfWorkerGC pid=1587825)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(PerfWorkerGC pid=1587825)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(PerfWorkerGC pid=1587825)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(PerfWorkerGC pid=1587825)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(PerfWorkerGC pid=1587825)[0m     The device parameters have been replaced with npu in the function below:
+[36m(PerfWorkerGC pid=1587825)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(PerfWorkerGC pid=1587825)[0m   warnings.warn(msg, ImportWarning)
+[36m(PerfWorkerGC pid=1587825)[0m /root/workspace/a3-mooncake-pr5030-20261113/envs/native/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(PerfWorkerGC pid=1587825)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(PerfWorkerGC pid=1587825)[0m [rank1]:[W1115 16:25:12.468791293 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:   7%|▋         | 1/14 [00:00<00:12,  1.00it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  14%|█▍        | 2/14 [00:01<00:11,  1.09it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  21%|██▏       | 3/14 [00:02<00:10,  1.10it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  29%|██▊       | 4/14 [00:03<00:09,  1.09it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  36%|███▌      | 5/14 [00:04<00:08,  1.07it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  43%|████▎     | 6/14 [00:05<00:07,  1.07it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  50%|█████     | 7/14 [00:06<00:06,  1.09it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  64%|██████▍   | 9/14 [00:07<00:03,  1.48it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  71%|███████▏  | 10/14 [00:07<00:02,  1.47it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  79%|███████▊  | 11/14 [00:08<00:02,  1.38it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  86%|████████▌ | 12/14 [00:09<00:01,  1.28it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors:  93%|█████████▎| 13/14 [00:10<00:00,  1.23it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Loading weights from safetensors: 100%|██████████| 14/14 [00:11<00:00,  1.17it/s]Loading weights from safetensors: 100%|██████████| 14/14 [00:11<00:00,  1.20it/s]
+2026-11-15 16:25:32,510 - lmdeploy - INFO - base.py:576 - Updating configs.
+2026-11-15 16:25:32,548 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-15 16:25:32,580 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=8, block_size=128, num_cpu_blocks=0, num_gpu_blocks=10656, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.5, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=10, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((4, 4096), torch.bfloat16), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32), ((16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-15 16:25:33,999 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 1,363,840 tokens (10,655 usable blocks/rank, DCP=1).
+2026-11-15 16:25:33,999 - lmdeploy - INFO - base.py:591 - Warming up model.
+[36m(PerfWorkerGC pid=1587824)[0m 2026-11-15 16:25:34,003 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[36m(PerfWorkerGC pid=1587825)[0m 2026-11-15 16:25:12,900 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=53441
+[36m(PerfWorkerGC pid=1587825)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 2x across cluster][0m
+[36m(PerfWorkerGC pid=1587825)[0m 2026-11-15 16:25:15,508 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1587825 for current process 1587825
+[36m(PerfWorkerGC pid=1587824)[0m [rank0]:[W1115 16:25:34.652344935 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+[36m(PerfWorkerGC pid=1587824)[0m Warming up decoding:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Warming up decoding:  25%|██▌       | 1/4 [00:00<00:00,  3.03it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Warming up decoding:  50%|█████     | 2/4 [00:00<00:00,  3.49it/s]
+[36m(PerfWorkerGC pid=1587824)[0m Warming up decoding:  75%|███████▌  | 3/4 [00:00<00:00,  3.69it/s]
+[36m(PerfWorkerGC pid=1587824)[0m 2026-11-15 16:25:36,247 - lmdeploy - INFO - agent.py:590 - Engine warmup completed in 2.24 seconds.
+[36m(PerfWorkerGC pid=1587824)[0m Warming up decoding: 100%|██████████| 4/4 [00:01<00:00,  3.62it/s]Warming up decoding: 100%|██████████| 4/4 [00:01<00:00,  3.56it/s]
+2026-11-15 16:25:36,534 - lmdeploy - INFO - async_engine.py:188 - updated backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=8192, max_batch_size=8, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.5, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=10656, adapters=None, max_prefill_token_num=256, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=False, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-15 16:25:36,999 - lmdeploy - INFO - async_engine.py:259 - enable metrics, with dp: 1 dp_rank: 0
+2026-11-15 16:25:37,070 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-15 16:25:37,079 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-15 16:25:37,079 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-15 16:25:37,079 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-15 16:25:37,079 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-15 16:25:37,102 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:37,102 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:25:37,102 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(PerfWorkerGC pid=1587824)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-native-pr-20261115/lmdeploy/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+2026-11-15 16:25:40,674 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:25:40,681 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR capture_warmup 1 -2 old 3.62366
+2026-11-15 16:25:40,699 - lmdeploy - INFO - async_engine.py:606 - session=1, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:40,699 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:25:40,699 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:25:43,992 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:25:43,993 - lmdeploy - INFO - async_engine.py:810 - session 1 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR capture_warmup 1 -2 new 3.29495
+2026-11-15 16:25:44,013 - lmdeploy - INFO - async_engine.py:606 - session=2, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:44,014 - lmdeploy - INFO - async_engine.py:606 - session=3, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:44,015 - lmdeploy - INFO - async_engine.py:606 - session=4, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:44,016 - lmdeploy - INFO - async_engine.py:606 - session=5, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:44,016 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:25:44,016 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:25:48,868 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:25:48,868 - lmdeploy - INFO - async_engine.py:810 - session 5 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:25:48,869 - lmdeploy - INFO - async_engine.py:810 - session 4 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:25:48,869 - lmdeploy - INFO - async_engine.py:810 - session 3 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:25:48,869 - lmdeploy - INFO - async_engine.py:810 - session 2 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR capture_warmup 4 -2 old 4.85844
+2026-11-15 16:25:48,892 - lmdeploy - INFO - async_engine.py:606 - session=6, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:48,893 - lmdeploy - INFO - async_engine.py:606 - session=7, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:48,894 - lmdeploy - INFO - async_engine.py:606 - session=8, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:48,895 - lmdeploy - INFO - async_engine.py:606 - session=9, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:48,895 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:25:48,895 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:25:55,063 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:25:55,064 - lmdeploy - INFO - async_engine.py:810 - session 9 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:25:55,064 - lmdeploy - INFO - async_engine.py:810 - session 8 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:25:55,064 - lmdeploy - INFO - async_engine.py:810 - session 7 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:25:55,064 - lmdeploy - INFO - async_engine.py:810 - session 6 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR capture_warmup 4 -2 new 6.17392
+2026-11-15 16:25:55,121 - lmdeploy - INFO - async_engine.py:606 - session=10, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:55,121 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:25:55,121 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:25:58,487 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:25:58,488 - lmdeploy - INFO - async_engine.py:810 - session 10 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR warmup 1 -1 new 3.36924
+2026-11-15 16:25:58,541 - lmdeploy - INFO - async_engine.py:606 - session=11, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:25:58,542 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:25:58,542 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:01,993 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:01,994 - lmdeploy - INFO - async_engine.py:810 - session 11 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR warmup 1 -1 old 3.45399
+2026-11-15 16:26:02,051 - lmdeploy - INFO - async_engine.py:606 - session=12, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:02,052 - lmdeploy - INFO - async_engine.py:606 - session=13, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:02,053 - lmdeploy - INFO - async_engine.py:606 - session=14, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:02,053 - lmdeploy - INFO - async_engine.py:606 - session=15, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:02,053 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:26:02,054 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:26:06,860 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:26:06,862 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:26:06,862 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:26:06,863 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:26:06,863 - lmdeploy - INFO - async_engine.py:810 - session 12 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR warmup 4 -1 new 4.81296
+2026-11-15 16:26:06,929 - lmdeploy - INFO - async_engine.py:606 - session=16, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:06,930 - lmdeploy - INFO - async_engine.py:606 - session=17, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:06,930 - lmdeploy - INFO - async_engine.py:606 - session=18, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:06,931 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:06,931 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:26:06,931 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:26:11,631 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:26:11,641 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:26:11,648 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:26:11,652 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:26:11,655 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR warmup 4 -1 old 4.731
+2026-11-15 16:26:11,689 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:11,689 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:11,689 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:15,880 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:15,881 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 0 old 4.1939
+2026-11-15 16:26:15,925 - lmdeploy - INFO - async_engine.py:606 - session=21, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:15,925 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:15,925 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:19,819 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:19,820 - lmdeploy - INFO - async_engine.py:810 - session 21 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 0 new 3.89669
+2026-11-15 16:26:19,866 - lmdeploy - INFO - async_engine.py:606 - session=22, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:19,867 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:19,867 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:23,235 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:23,236 - lmdeploy - INFO - async_engine.py:810 - session 22 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 1 new 3.37074
+2026-11-15 16:26:23,306 - lmdeploy - INFO - async_engine.py:606 - session=23, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:23,307 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:23,307 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:26,693 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:26,694 - lmdeploy - INFO - async_engine.py:810 - session 23 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 1 old 3.38995
+2026-11-15 16:26:26,748 - lmdeploy - INFO - async_engine.py:606 - session=24, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:26,748 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:26,748 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:31,170 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:31,170 - lmdeploy - INFO - async_engine.py:810 - session 24 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 2 old 4.42663
+2026-11-15 16:26:31,244 - lmdeploy - INFO - async_engine.py:606 - session=25, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:31,244 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:31,245 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:35,208 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:35,208 - lmdeploy - INFO - async_engine.py:810 - session 25 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 2 new 3.96519
+2026-11-15 16:26:35,268 - lmdeploy - INFO - async_engine.py:606 - session=26, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:35,268 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:35,268 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:39,035 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:39,035 - lmdeploy - INFO - async_engine.py:810 - session 26 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 3 new 3.76888
+2026-11-15 16:26:39,090 - lmdeploy - INFO - async_engine.py:606 - session=27, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:39,090 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:39,090 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:42,429 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:42,430 - lmdeploy - INFO - async_engine.py:810 - session 27 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 3 old 3.34121
+2026-11-15 16:26:42,486 - lmdeploy - INFO - async_engine.py:606 - session=28, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:42,486 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:42,486 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:46,951 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:46,952 - lmdeploy - INFO - async_engine.py:810 - session 28 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 4 old 4.46994
+2026-11-15 16:26:47,027 - lmdeploy - INFO - async_engine.py:606 - session=29, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:47,027 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:47,027 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:50,627 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:50,627 - lmdeploy - INFO - async_engine.py:810 - session 29 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 4 new 3.60277
+2026-11-15 16:26:50,679 - lmdeploy - INFO - async_engine.py:606 - session=30, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:50,679 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:50,679 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:55,237 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:55,240 - lmdeploy - INFO - async_engine.py:810 - session 30 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 5 new 4.56264
+2026-11-15 16:26:55,325 - lmdeploy - INFO - async_engine.py:606 - session=31, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:55,325 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:55,326 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:26:58,701 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:26:58,707 - lmdeploy - INFO - async_engine.py:810 - session 31 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 5 old 3.38315
+2026-11-15 16:26:58,760 - lmdeploy - INFO - async_engine.py:606 - session=32, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:26:58,760 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:26:58,760 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:27:02,151 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:27:02,153 - lmdeploy - INFO - async_engine.py:810 - session 32 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 6 old 3.39525
+2026-11-15 16:27:02,223 - lmdeploy - INFO - async_engine.py:606 - session=33, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:02,223 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:27:02,223 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:27:05,629 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:27:05,630 - lmdeploy - INFO - async_engine.py:810 - session 33 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 6 new 3.40848
+2026-11-15 16:27:05,713 - lmdeploy - INFO - async_engine.py:606 - session=34, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:05,713 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:27:05,713 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:27:09,109 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:27:09,109 - lmdeploy - INFO - async_engine.py:810 - session 34 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 7 new 3.39843
+2026-11-15 16:27:09,185 - lmdeploy - INFO - async_engine.py:606 - session=35, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:09,185 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:27:09,185 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:27:13,087 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:27:13,088 - lmdeploy - INFO - async_engine.py:810 - session 35 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 1 7 old 3.90481
+2026-11-15 16:27:13,200 - lmdeploy - INFO - async_engine.py:606 - session=36, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:13,201 - lmdeploy - INFO - async_engine.py:606 - session=37, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:13,202 - lmdeploy - INFO - async_engine.py:606 - session=38, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:13,202 - lmdeploy - INFO - async_engine.py:606 - session=39, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:13,203 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:13,203 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:18,430 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:18,431 - lmdeploy - INFO - async_engine.py:810 - session 39 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:18,431 - lmdeploy - INFO - async_engine.py:810 - session 38 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:18,431 - lmdeploy - INFO - async_engine.py:810 - session 37 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:18,431 - lmdeploy - INFO - async_engine.py:810 - session 36 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 0 old 5.23353
+2026-11-15 16:27:18,521 - lmdeploy - INFO - async_engine.py:606 - session=40, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:18,522 - lmdeploy - INFO - async_engine.py:606 - session=41, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:18,523 - lmdeploy - INFO - async_engine.py:606 - session=42, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:18,524 - lmdeploy - INFO - async_engine.py:606 - session=43, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:18,524 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:18,524 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:23,087 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:23,089 - lmdeploy - INFO - async_engine.py:810 - session 43 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:23,090 - lmdeploy - INFO - async_engine.py:810 - session 42 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:23,090 - lmdeploy - INFO - async_engine.py:810 - session 41 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:23,090 - lmdeploy - INFO - async_engine.py:810 - session 40 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 0 new 4.57019
+2026-11-15 16:27:23,176 - lmdeploy - INFO - async_engine.py:606 - session=44, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:23,177 - lmdeploy - INFO - async_engine.py:606 - session=45, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:23,178 - lmdeploy - INFO - async_engine.py:606 - session=46, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:23,178 - lmdeploy - INFO - async_engine.py:606 - session=47, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:23,178 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:23,178 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:27,653 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:27,654 - lmdeploy - INFO - async_engine.py:810 - session 47 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:27,654 - lmdeploy - INFO - async_engine.py:810 - session 46 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:27,654 - lmdeploy - INFO - async_engine.py:810 - session 45 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:27,654 - lmdeploy - INFO - async_engine.py:810 - session 44 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 1 new 4.47947
+2026-11-15 16:27:27,733 - lmdeploy - INFO - async_engine.py:606 - session=48, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:27,734 - lmdeploy - INFO - async_engine.py:606 - session=49, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:27,734 - lmdeploy - INFO - async_engine.py:606 - session=50, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:27,735 - lmdeploy - INFO - async_engine.py:606 - session=51, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:27,736 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:27,736 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:32,908 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:32,909 - lmdeploy - INFO - async_engine.py:810 - session 51 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:32,909 - lmdeploy - INFO - async_engine.py:810 - session 50 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:32,909 - lmdeploy - INFO - async_engine.py:810 - session 49 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:32,909 - lmdeploy - INFO - async_engine.py:810 - session 48 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 1 old 5.17771
+2026-11-15 16:27:33,022 - lmdeploy - INFO - async_engine.py:606 - session=52, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:33,023 - lmdeploy - INFO - async_engine.py:606 - session=53, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:33,024 - lmdeploy - INFO - async_engine.py:606 - session=54, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:33,024 - lmdeploy - INFO - async_engine.py:606 - session=55, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:33,024 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:33,024 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:37,572 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:37,573 - lmdeploy - INFO - async_engine.py:810 - session 55 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:37,574 - lmdeploy - INFO - async_engine.py:810 - session 54 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:37,574 - lmdeploy - INFO - async_engine.py:810 - session 53 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:37,574 - lmdeploy - INFO - async_engine.py:810 - session 52 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 2 old 4.55352
+2026-11-15 16:27:37,674 - lmdeploy - INFO - async_engine.py:606 - session=56, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:37,674 - lmdeploy - INFO - async_engine.py:606 - session=57, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:37,675 - lmdeploy - INFO - async_engine.py:606 - session=58, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:37,676 - lmdeploy - INFO - async_engine.py:606 - session=59, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:37,676 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:37,676 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:42,925 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:42,925 - lmdeploy - INFO - async_engine.py:810 - session 59 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:42,925 - lmdeploy - INFO - async_engine.py:810 - session 58 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:42,925 - lmdeploy - INFO - async_engine.py:810 - session 57 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:42,926 - lmdeploy - INFO - async_engine.py:810 - session 56 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 2 new 5.25355
+2026-11-15 16:27:43,014 - lmdeploy - INFO - async_engine.py:606 - session=60, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:43,015 - lmdeploy - INFO - async_engine.py:606 - session=61, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:43,015 - lmdeploy - INFO - async_engine.py:606 - session=62, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:43,016 - lmdeploy - INFO - async_engine.py:606 - session=63, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:43,016 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:43,016 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:47,555 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:47,555 - lmdeploy - INFO - async_engine.py:810 - session 63 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:47,556 - lmdeploy - INFO - async_engine.py:810 - session 62 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:47,556 - lmdeploy - INFO - async_engine.py:810 - session 61 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:47,556 - lmdeploy - INFO - async_engine.py:810 - session 60 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 3 new 4.54348
+2026-11-15 16:27:47,675 - lmdeploy - INFO - async_engine.py:606 - session=64, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:47,676 - lmdeploy - INFO - async_engine.py:606 - session=65, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:47,677 - lmdeploy - INFO - async_engine.py:606 - session=66, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:47,677 - lmdeploy - INFO - async_engine.py:606 - session=67, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:47,678 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:47,678 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:53,377 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:53,377 - lmdeploy - INFO - async_engine.py:810 - session 67 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:53,378 - lmdeploy - INFO - async_engine.py:810 - session 66 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:53,378 - lmdeploy - INFO - async_engine.py:810 - session 65 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:53,378 - lmdeploy - INFO - async_engine.py:810 - session 64 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 3 old 5.70401
+2026-11-15 16:27:53,491 - lmdeploy - INFO - async_engine.py:606 - session=68, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:53,492 - lmdeploy - INFO - async_engine.py:606 - session=69, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:53,492 - lmdeploy - INFO - async_engine.py:606 - session=70, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:53,493 - lmdeploy - INFO - async_engine.py:606 - session=71, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:53,493 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:53,493 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:27:58,646 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:27:58,646 - lmdeploy - INFO - async_engine.py:810 - session 71 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:58,647 - lmdeploy - INFO - async_engine.py:810 - session 70 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:58,647 - lmdeploy - INFO - async_engine.py:810 - session 69 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:27:58,647 - lmdeploy - INFO - async_engine.py:810 - session 68 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 4 old 5.15831
+2026-11-15 16:27:58,750 - lmdeploy - INFO - async_engine.py:606 - session=72, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:58,751 - lmdeploy - INFO - async_engine.py:606 - session=73, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:58,752 - lmdeploy - INFO - async_engine.py:606 - session=74, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:58,752 - lmdeploy - INFO - async_engine.py:606 - session=75, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:27:58,752 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:27:58,752 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:03,963 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:03,963 - lmdeploy - INFO - async_engine.py:810 - session 75 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:03,964 - lmdeploy - INFO - async_engine.py:810 - session 74 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:03,964 - lmdeploy - INFO - async_engine.py:810 - session 73 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:03,964 - lmdeploy - INFO - async_engine.py:810 - session 72 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 4 new 5.21514
+2026-11-15 16:28:04,075 - lmdeploy - INFO - async_engine.py:606 - session=76, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:04,076 - lmdeploy - INFO - async_engine.py:606 - session=77, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:04,077 - lmdeploy - INFO - async_engine.py:606 - session=78, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:04,077 - lmdeploy - INFO - async_engine.py:606 - session=79, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:04,078 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:04,078 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:08,663 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:08,663 - lmdeploy - INFO - async_engine.py:810 - session 79 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:08,664 - lmdeploy - INFO - async_engine.py:810 - session 78 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:08,664 - lmdeploy - INFO - async_engine.py:810 - session 77 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:08,664 - lmdeploy - INFO - async_engine.py:810 - session 76 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 5 new 4.58986
+2026-11-15 16:28:08,796 - lmdeploy - INFO - async_engine.py:606 - session=80, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:08,797 - lmdeploy - INFO - async_engine.py:606 - session=81, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:08,798 - lmdeploy - INFO - async_engine.py:606 - session=82, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:08,799 - lmdeploy - INFO - async_engine.py:606 - session=83, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:08,799 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:08,799 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:13,793 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:13,795 - lmdeploy - INFO - async_engine.py:810 - session 83 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:13,795 - lmdeploy - INFO - async_engine.py:810 - session 82 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:13,795 - lmdeploy - INFO - async_engine.py:810 - session 81 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:13,795 - lmdeploy - INFO - async_engine.py:810 - session 80 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 5 old 5.00075
+2026-11-15 16:28:13,946 - lmdeploy - INFO - async_engine.py:606 - session=84, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:13,947 - lmdeploy - INFO - async_engine.py:606 - session=85, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:13,947 - lmdeploy - INFO - async_engine.py:606 - session=86, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:13,948 - lmdeploy - INFO - async_engine.py:606 - session=87, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:13,948 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:13,948 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:18,545 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:18,546 - lmdeploy - INFO - async_engine.py:810 - session 87 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:18,546 - lmdeploy - INFO - async_engine.py:810 - session 86 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:18,546 - lmdeploy - INFO - async_engine.py:810 - session 85 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:18,547 - lmdeploy - INFO - async_engine.py:810 - session 84 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 6 old 4.60443
+2026-11-15 16:28:18,680 - lmdeploy - INFO - async_engine.py:606 - session=88, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:18,681 - lmdeploy - INFO - async_engine.py:606 - session=89, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:18,681 - lmdeploy - INFO - async_engine.py:606 - session=90, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:18,682 - lmdeploy - INFO - async_engine.py:606 - session=91, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:18,682 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:18,682 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:23,298 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:23,299 - lmdeploy - INFO - async_engine.py:810 - session 91 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:23,299 - lmdeploy - INFO - async_engine.py:810 - session 90 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:23,300 - lmdeploy - INFO - async_engine.py:810 - session 89 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:23,302 - lmdeploy - INFO - async_engine.py:810 - session 88 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 6 new 4.62449
+2026-11-15 16:28:23,459 - lmdeploy - INFO - async_engine.py:606 - session=92, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:23,460 - lmdeploy - INFO - async_engine.py:606 - session=93, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:23,461 - lmdeploy - INFO - async_engine.py:606 - session=94, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:23,462 - lmdeploy - INFO - async_engine.py:606 - session=95, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:23,462 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:23,462 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:28,010 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:28,011 - lmdeploy - INFO - async_engine.py:810 - session 95 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:28,011 - lmdeploy - INFO - async_engine.py:810 - session 94 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:28,011 - lmdeploy - INFO - async_engine.py:810 - session 93 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:28,011 - lmdeploy - INFO - async_engine.py:810 - session 92 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 7 new 4.55431
+2026-11-15 16:28:28,150 - lmdeploy - INFO - async_engine.py:606 - session=96, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:28,151 - lmdeploy - INFO - async_engine.py:606 - session=97, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:28,152 - lmdeploy - INFO - async_engine.py:606 - session=98, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:28,152 - lmdeploy - INFO - async_engine.py:606 - session=99, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:28,153 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:28,153 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:32,720 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:32,721 - lmdeploy - INFO - async_engine.py:810 - session 99 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:32,721 - lmdeploy - INFO - async_engine.py:810 - session 98 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:32,721 - lmdeploy - INFO - async_engine.py:810 - session 97 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:32,722 - lmdeploy - INFO - async_engine.py:810 - session 96 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR measure 4 7 old 4.57291
+2026-11-15 16:28:32,868 - lmdeploy - INFO - async_engine.py:606 - session=100, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:32,868 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:28:32,868 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:28:36,766 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:28:36,766 - lmdeploy - INFO - async_engine.py:810 - session 100 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 1 0 old 3.89923
+2026-11-15 16:28:36,914 - lmdeploy - INFO - async_engine.py:606 - session=101, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:36,914 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:28:36,915 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:28:40,261 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:28:40,262 - lmdeploy - INFO - async_engine.py:810 - session 101 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 1 0 new 3.35046
+2026-11-15 16:28:40,437 - lmdeploy - INFO - async_engine.py:606 - session=102, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:40,437 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:28:40,438 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:28:43,757 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:28:43,757 - lmdeploy - INFO - async_engine.py:810 - session 102 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 1 1 new 3.3217
+2026-11-15 16:28:43,937 - lmdeploy - INFO - async_engine.py:606 - session=103, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:43,937 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-15 16:28:43,937 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-15 16:28:47,307 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-15 16:28:47,308 - lmdeploy - INFO - async_engine.py:810 - session 103 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 1 1 old 3.3724
+2026-11-15 16:28:47,502 - lmdeploy - INFO - async_engine.py:606 - session=104, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:47,503 - lmdeploy - INFO - async_engine.py:606 - session=105, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:47,504 - lmdeploy - INFO - async_engine.py:606 - session=106, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:47,504 - lmdeploy - INFO - async_engine.py:606 - session=107, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:47,505 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:47,505 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:52,711 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:52,711 - lmdeploy - INFO - async_engine.py:810 - session 107 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:52,711 - lmdeploy - INFO - async_engine.py:810 - session 106 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:52,712 - lmdeploy - INFO - async_engine.py:810 - session 105 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:52,712 - lmdeploy - INFO - async_engine.py:810 - session 104 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 4 0 old 5.21129
+2026-11-15 16:28:52,914 - lmdeploy - INFO - async_engine.py:606 - session=108, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:52,915 - lmdeploy - INFO - async_engine.py:606 - session=109, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:52,916 - lmdeploy - INFO - async_engine.py:606 - session=110, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:52,916 - lmdeploy - INFO - async_engine.py:606 - session=111, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:52,916 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:52,917 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:28:58,148 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:28:58,149 - lmdeploy - INFO - async_engine.py:810 - session 111 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:58,150 - lmdeploy - INFO - async_engine.py:810 - session 110 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:58,150 - lmdeploy - INFO - async_engine.py:810 - session 109 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:28:58,150 - lmdeploy - INFO - async_engine.py:810 - session 108 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 4 0 new 5.23843
+2026-11-15 16:28:58,379 - lmdeploy - INFO - async_engine.py:606 - session=112, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:58,380 - lmdeploy - INFO - async_engine.py:606 - session=113, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:58,381 - lmdeploy - INFO - async_engine.py:606 - session=114, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:58,382 - lmdeploy - INFO - async_engine.py:606 - session=115, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:28:58,382 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:28:58,382 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:29:03,027 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:29:03,028 - lmdeploy - INFO - async_engine.py:810 - session 115 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:29:03,028 - lmdeploy - INFO - async_engine.py:810 - session 114 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:29:03,028 - lmdeploy - INFO - async_engine.py:810 - session 113 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:29:03,028 - lmdeploy - INFO - async_engine.py:810 - session 112 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 4 1 new 4.65044
+2026-11-15 16:29:03,282 - lmdeploy - INFO - async_engine.py:606 - session=116, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:29:03,283 - lmdeploy - INFO - async_engine.py:606 - session=117, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:29:03,284 - lmdeploy - INFO - async_engine.py:606 - session=118, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:29:03,285 - lmdeploy - INFO - async_engine.py:606 - session=119, input_tokens=170, max_new_tokens=256, prep=True
+2026-11-15 16:29:03,285 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 4
+2026-11-15 16:29:03,285 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 4
+2026-11-15 16:29:08,814 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 4
+2026-11-15 16:29:08,815 - lmdeploy - INFO - async_engine.py:810 - session 119 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:29:08,815 - lmdeploy - INFO - async_engine.py:810 - session 118 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:29:08,815 - lmdeploy - INFO - async_engine.py:810 - session 117 finished, reason "length", input_tokens 170, output_tokens 256
+2026-11-15 16:29:08,815 - lmdeploy - INFO - async_engine.py:810 - session 116 finished, reason "length", input_tokens 170, output_tokens 256
+PAIR diagnostic 4 1 old 5.53478
+2026-11-15 16:29:14,728 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-15 16:29:14,729 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-15 16:29:14,730 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-15 16:29:14,737 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(PerfWorkerGC pid=1587824)[0m 2026-11-15 16:29:14,736 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(PerfWorkerGC pid=1587825)[0m 2026-11-15 16:29:14,733 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(PerfWorkerGC pid=1587825)[0m [rank1]:[W1115 16:25:34.652340105 TensorFactories.cpp:423] Warning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (function operator())
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1587294 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-norm-perf-20261116/results/agents-paired-gc-observe.json

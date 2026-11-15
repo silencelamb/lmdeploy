@@ -1,0 +1,237 @@
+{
+  "matches": [
+    {
+      "run": "agents-stage-profile",
+      "batch": 4,
+      "rep": 0,
+      "stage": {
+        "name": "driver.submit_inputs",
+        "began": 425989.861451316,
+        "ended": 425990.423594312,
+        "wall_ms": 562.1429960010573,
+        "thread_cpu_ms": 3.4449599999994973,
+        "runqueue_ms": 0.0,
+        "switches": 16,
+        "tid": 1594138
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 149,
+          "began": 425989.861952268,
+          "ended": 425990.444260703,
+          "duration_ms": 582.3084349976853
+        }
+      ],
+      "source_sha256": "5522b3c91ea8b365a0f6c6c249fcd5cf036dd06554c1f42bbf2da49bbb677b5d"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 1,
+      "rep": 1,
+      "stage": {
+        "name": "driver.previous_forward_rpc",
+        "began": 426173.134374156,
+        "ended": 426173.667498629,
+        "wall_ms": 533.1244730041362,
+        "thread_cpu_ms": 0.9317899999996548,
+        "runqueue_ms": 0.0,
+        "switches": 5,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 165,
+          "began": 426173.134857078,
+          "ended": 426173.685755112,
+          "duration_ms": 550.8980339509435
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 1,
+      "rep": 1,
+      "stage": {
+        "name": "driver.submit_inputs",
+        "began": 426173.134343596,
+        "ended": 426173.670490225,
+        "wall_ms": 536.1466290196404,
+        "thread_cpu_ms": 3.849289999999783,
+        "runqueue_ms": 0.0,
+        "switches": 7,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 165,
+          "began": 426173.134857078,
+          "ended": 426173.685755112,
+          "duration_ms": 550.8980339509435
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 1,
+      "rep": 2,
+      "stage": {
+        "name": "driver.previous_forward_rpc",
+        "began": 426178.293897493,
+        "ended": 426178.789618637,
+        "wall_ms": 495.7211440196261,
+        "thread_cpu_ms": 0.7485100000002021,
+        "runqueue_ms": 0.0,
+        "switches": 5,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 184,
+          "began": 426178.294321675,
+          "ended": 426178.808381302,
+          "duration_ms": 514.0596269629896
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 1,
+      "rep": 2,
+      "stage": {
+        "name": "driver.submit_inputs",
+        "began": 426178.293869352,
+        "ended": 426178.792445231,
+        "wall_ms": 498.57587896985933,
+        "thread_cpu_ms": 3.1986499999998586,
+        "runqueue_ms": 0.0,
+        "switches": 10,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 184,
+          "began": 426178.294321675,
+          "ended": 426178.808381302,
+          "duration_ms": 514.0596269629896
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 4,
+      "rep": 3,
+      "stage": {
+        "name": "driver.previous_forward_rpc",
+        "began": 426212.483113401,
+        "ended": 426212.823372131,
+        "wall_ms": 340.2587299933657,
+        "thread_cpu_ms": 0.7380300000008333,
+        "runqueue_ms": 0.0,
+        "switches": 8,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 23,
+          "began": 426212.483680334,
+          "ended": 426212.830215005,
+          "duration_ms": 346.5346709708683
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 4,
+      "rep": 3,
+      "stage": {
+        "name": "driver.submit_inputs",
+        "began": 426212.483083451,
+        "ended": 426212.825099339,
+        "wall_ms": 342.0158880180679,
+        "thread_cpu_ms": 2.3337199999993175,
+        "runqueue_ms": 0.0,
+        "switches": 10,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 23,
+          "began": 426212.483680334,
+          "ended": 426212.830215005,
+          "duration_ms": 346.5346709708683
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 4,
+      "rep": 5,
+      "stage": {
+        "name": "driver.previous_forward_rpc",
+        "began": 426222.62696733,
+        "ended": 426222.84869532,
+        "wall_ms": 221.72799002146348,
+        "thread_cpu_ms": 1.0901400000005168,
+        "runqueue_ms": 0.0,
+        "switches": 8,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 6,
+          "began": 426222.627768094,
+          "ended": 426222.872707521,
+          "duration_ms": 244.93942700792104
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    },
+    {
+      "run": "agents-await-profile",
+      "batch": 4,
+      "rep": 5,
+      "stage": {
+        "name": "driver.submit_inputs",
+        "began": 426222.62693016,
+        "ended": 426222.851529734,
+        "wall_ms": 224.5995739940554,
+        "thread_cpu_ms": 3.8711100000003995,
+        "runqueue_ms": 0.0,
+        "switches": 13,
+        "tid": 1597270
+      },
+      "overlapping_stream_gaps": [
+        {
+          "after_tokens": 6,
+          "began": 426222.627768094,
+          "ended": 426222.872707521,
+          "duration_ms": 244.93942700792104
+        }
+      ],
+      "source_sha256": "043add6777a8bb23afe6f91e3dc7420caf33bae527d5ce7bb1dafafcebdbc0c6"
+    }
+  ],
+  "source_audit": {
+    "lmdeploy/pytorch/engine/executor/ray_executor.py": {
+      "blobs": {
+        "342db85ecff3c0dc864a4bf8613c589c270f4141": "3a70fc14ee33810810d669dd3c43997e8c4f86bd",
+        "5f1b1b3c12b1c198813f65275f778c7ad292fb02": "3a70fc14ee33810810d669dd3c43997e8c4f86bd"
+      },
+      "identical": true
+    },
+    "lmdeploy/pytorch/backends/ascend/graph_runner.py": {
+      "blobs": {
+        "342db85ecff3c0dc864a4bf8613c589c270f4141": "278fde5957543acf836b4db181d52dc683d188dc",
+        "5f1b1b3c12b1c198813f65275f778c7ad292fb02": "278fde5957543acf836b4db181d52dc683d188dc"
+      },
+      "identical": true
+    }
+  },
+  "interpretation": "Measured stalls localize to awaiting previous worker submission RPCs, not proof of the Ray-internal trigger or every historical stall."
+}

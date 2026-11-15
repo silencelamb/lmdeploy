@@ -1,0 +1,60 @@
+{
+  "recorded_utc": "2026-11-15T16:41:17.459088+00:00",
+  "sources": {
+    "pr": {
+      "head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "status": ""
+    },
+    "dev": {
+      "head": "7d984d0abce61849237d436ac4243fc964e93e7b",
+      "status": ""
+    },
+    "frozen": {
+      "head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "status": ""
+    }
+  },
+  "cpu_stat": "usage_usec 48942576622\nuser_usec 26697732692\nsystem_usec 22244843929\nnr_periods 2075056\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+  "pyspy": {
+    "version": "0.4.1",
+    "path": "/root/workspace/a3-norm-perf-20261116/tools/bin/py-spy",
+    "native_stack_capture_supported": false,
+    "install_did_not_modify_native_environment": true
+  },
+  "python_stack_sampling": {
+    "driver_pid": 1586928,
+    "worker0_pid": 1587824,
+    "duration_seconds": 18,
+    "rate_hz": 100,
+    "nonblocking": true,
+    "idle": true,
+    "format": "speedscope",
+    "samples": {
+      "driver": 6803,
+      "worker0": 7890
+    },
+    "errors": {
+      "driver": 115,
+      "worker0": 221
+    },
+    "scope": "Only diagnostic phase after all paired performance measurements completed."
+  },
+  "script_hashes": {
+    "scripts/run.py": "9f66843e4f77a614947a24375d7d77e10a1f03b7f6d641c6e0ec3d9485b1b5df",
+    "scripts/pipeline_case.py": "ab4f270c71b5b0c1c99466099d43e37b3b2733d84e889ca0287956a77293898d",
+    "scripts/perf_worker.py": "623bef2e9ba23491043e4d300e400f8bca61513d5bc25c6d90164523433ca92c",
+    "scripts/paired_norm.py": "886b737dc505aaf2c24779461a22ec3170da7c497f4910baba1903372e695d07",
+    "scripts/perf_worker_gc.py": "ae649bfc599bd3a84f2c762b23d55984acab1e208fd9b81dbb4d0b11ff33ce85",
+    "scripts/paired_norm_gc.py": "c1157f85916bb82aabffa5b922a0e5ced31eb0c90c14d772ee0f65dcfca8c69b",
+    "scripts/gc_observer.py": "6679d4814e04a545fc3477c2fc2c892c9158e23f573b6b25ba185f0e4fcb3351",
+    "scripts/analyze_pairs.py": "7bf17039b6cf0ffb16a99a8a28a8a619ef9cbff2f2a3f07276da7232a7d16711",
+    "scripts/audit_kernel_binary.py": "f7752f8baa71cd293be9f7ed5bcea5fb31c648185273f5d1bfd6b5050dd6489e",
+    "scripts/audit_historical_gaps.py": "02d6ff56d14b8121c0424822fbe10ae973d3b2fc037e0534206e7d9929259d3b",
+    "scripts/stage_probe.py": "f2dcb3195c5acd590ed66b74220ec9d1b337a227fe9cee8149587109b85d342d",
+    "scripts/profile_pipeline.py": "546331b25cbd28bfa2b92ea950bb8f8e29ab743f786605c2f2e560d27a60d198",
+    "scripts/stage_probe_await.py": "d2691393619d40e4c88f53cd6e11365c1d04beb5decb0c0f50300ae4363b9308",
+    "scripts/profile_pipeline_await.py": "0d2c2df4856b7c1071f24527e9cb74be24fbc116ef77aad8181a8256932a916c",
+    "scripts/analyze_stages.py": "93a7824469784425cace9f17c934475446673957aacc5599dde6cd33bd049d2f",
+    "guard/sitecustomize.py": "30440e7d015751f814276d9b3c23ffe5ee983e014d71506faccbdbe539b659c0"
+  }
+}

@@ -1,0 +1,14 @@
+2026-11-15T15:01:42.2890739Z GPU 0,1: NVIDIA A100-SXM4-80GB
+2026-11-15T15:10:39.3993886Z tests/pytorch/models/test_rms_norm_gated_models.py ........              [ 47%]
+2026-11-15T15:13:27.2568011Z tests/pytorch/nn/test_rms_norm_gated.py ................................ [ 49%]
+2026-11-15T15:36:58.2156295Z >           if self.cache_config.device_type == 'ascend':
+2026-11-15T15:36:58.2157105Z E           AttributeError: 'BaseModelAgent' object has no attribute 'cache_config'. Did you mean: 'set_cache_config'?
+2026-11-15T15:36:58.2175646Z >           if self.cache_config.device_type == 'ascend':
+2026-11-15T15:36:58.2176452Z E           AttributeError: 'BaseModelAgent' object has no attribute 'cache_config'. Did you mean: 'set_cache_config'?
+2026-11-15T15:36:58.2218804Z             if self.cache_config.device_type == 'ascend':
+2026-11-15T15:36:58.2222221Z >           if self.cache_config.device_type == 'ascend':
+2026-11-15T15:36:58.2223021Z E           AttributeError: 'BaseModelAgent' object has no attribute 'cache_config'. Did you mean: 'set_cache_config'?
+2026-11-15T15:36:59.6035027Z === 3 failed, 6424 passed, 400 skipped, 1284 warnings in 2115.19s (0:35:15) ====
+2026-11-15T15:13:27.2568011Z tests/pytorch/nn/test_rms_norm_gated.py ................................ [ 49%]
+2026-11-15T15:14:00.6028558Z ...................................................                      [ 50%]
+2026-11-15T15:14:19.4980362Z tests/pytorch/nn/test_rotary_embedding.py ........                       [ 50%]
