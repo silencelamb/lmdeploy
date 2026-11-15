@@ -1,0 +1,80 @@
+{
+  "verified_at_utc": "2026-11-15 09:42:15 UTC",
+  "url": "https://github.com/InternLM/lmdeploy/pull/5134",
+  "number": 5134,
+  "title": "[Feature] Migrate Ascend A3 into the native PyTorch backend",
+  "state": "open",
+  "draft": false,
+  "head_repository": "silencelamb/lmdeploy",
+  "head_branch": "pr/ascend-a3-native",
+  "head_sha": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+  "base_branch": "main",
+  "base_sha": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "mergeable": true,
+  "created_at": "2026-11-15T09:41:25Z",
+  "commits": 1,
+  "changed_files": 110,
+  "additions": 11586,
+  "deletions": 62,
+  "report_repository": "silencelamb/lmdeploy",
+  "report_branch": "docs/ascend-a3-validation-20261114",
+  "report_commit_when_created": "3ddd56bd7b462d56b72cf511dc811d083d84304e",
+  "report_urls_verified": [
+    "https://github.com/silencelamb/lmdeploy/blob/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation/README.md",
+    "https://github.com/silencelamb/lmdeploy/blob/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation/native_pr_20261115.md",
+    "https://github.com/silencelamb/lmdeploy/blob/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation/migration_validation.md"
+  ],
+  "initial_workflow_snapshot": {
+    "workflow_runs": [
+      {
+        "id": 43700452874,
+        "name": "test-docker",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_number": 367,
+        "jobs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452874/jobs",
+        "logs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452874/logs",
+        "workflow_id": 177195818
+      },
+      {
+        "id": 43700452877,
+        "name": "lint",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_number": 13984,
+        "jobs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452877/jobs",
+        "logs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452877/logs",
+        "workflow_id": 61878630
+      },
+      {
+        "id": 43700452876,
+        "name": "unit-test",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_number": 2740,
+        "jobs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452876/jobs",
+        "logs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452876/logs",
+        "workflow_id": 239742531
+      },
+      {
+        "id": 43700452872,
+        "name": "pr_ete_test",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_number": 8446,
+        "jobs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452872/jobs",
+        "logs_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43700452872/logs",
+        "workflow_id": 87730122
+      }
+    ]
+  },
+  "initial_commit_status_snapshot": {
+    "statuses": [
+      {
+        "context": "docs/readthedocs.org:lmdeploy-zh-cn",
+        "state": "pending",
+        "target_url": "https://app.readthedocs.org/projects/lmdeploy-zh-cn/builds/35903814/"
+      }
+    ]
+  }
+}

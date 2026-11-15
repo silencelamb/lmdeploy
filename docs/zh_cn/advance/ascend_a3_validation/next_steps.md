@@ -4,7 +4,7 @@
 
 同事的其他 Ascend 功能按 [接入清单](colleague_prs.md) 分别适配到当前原生后端；rebase 用于同步基线，功能迁移另做明确提交。
 
-2026-11-15 更新：已按此边界整理独立 `pr/ascend-a3-native` 分支，完整对比文档仅保留在本报告分支。[本轮检查与范围](native_pr_20261115.md)。
+2026-11-15 更新：已从独立 `pr/ascend-a3-native` 分支提交 [原生迁移 PR #5134](https://github.com/InternLM/lmdeploy/pull/5134)，完整对比文档仅保留在本报告分支。[本轮检查与范围](native_pr_20261115.md)。
 
 ## 迁移 PR 与同事 Mooncake PR
 
@@ -14,7 +14,7 @@
 
 | 目标 | 推荐分支/提交方式 |
 | --- | --- |
-| 上游审查 Ascend 去 dlinfer 迁移 | 从 `dev/ascend-a3-native` 提 PR，描述已测范围与非阻塞观察 |
+| 上游审查 Ascend 去 dlinfer 迁移 | 已从 `pr/ascend-a3-native` 提交 #5134，描述已测范围与非阻塞观察；开发历史保留在 `dev/ascend-a3-native` |
 | 保持 Mooncake 可用供开发验证 | fork 的 `codex/ascend-a3-native-mooncake` 独立保留 |
 | 上游交付 Mooncake 集成功能 | 等 #5030 合入后，基于最终上游实现 rebase/重新集成，只提交剩余必要适配并复测 |
 | 合入前确有协同评审需求 | 可建立显式依赖 #5030 的 stacked draft；注明来源、基线和依赖，避免把同事改动 squash 成自己的迁移工作 |
@@ -22,7 +22,8 @@
 
 dlinfer 的 patch 删除与 LMDeploy 原生实现配套：可以关联两个 PR 进行审查，合入/发布清理版时须保证对应 LMDeploy 原生路径已可用，避免旧 LMDeploy 用户先失去 Ascend patch。两个库不要求同步版本号，但应明确最低配套版本与迁移顺序。
 
-提交前查看 `upstream/main...dev/ascend-a3-native` 的实际 diff；上游更新时先处理冲突，再跑受影响的验收项。此次没有创建或更新任何上游 PR，也没有把当前上游 HEAD 冒充实测基线。
+本次在上游 `442097e8` 上将原生迁移整理为单个提交 `342db85e`，检查最终 diff 后提交 #5134。
+后续上游更新时先处理冲突，再跑受影响的验收项。历史完整模型测试仍固定在 `6421cefe`，没有把新的 PR HEAD 冒充实测基线。
 
 ## Monokernel 的分支选择
 

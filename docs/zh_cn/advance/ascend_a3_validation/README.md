@@ -4,6 +4,8 @@
 
 本目录仅在用户 fork 的 `docs/ascend-a3-validation-20261114` 分支维护。上游迁移 PR 使用独立的 `pr/ascend-a3-native`，开发分支保留为 `dev/ascend-a3-native`。不要把整个文档分支合入 PR。
 
+原生迁移已提交：[InternLM/lmdeploy #5134](https://github.com/InternLM/lmdeploy/pull/5134)。范围与本轮检查见 [PR 整理记录](native_pr_20261115.md)，完整对比报告通过链接提供，未加入 PR。
+
 2026-11-14 两个 fork 的迁移主分支已由 `codex/ascend-a3-native` 正式改名为 `dev/ascend-a3-native`；提交历史保留，当前说明和链接已更新。原始证据中的旧分支名是当时的记录，不作回写。Mooncake 集成分支和报告分支沿用原名。
 
 ## 当前结论
