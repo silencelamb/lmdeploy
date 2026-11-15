@@ -231,7 +231,12 @@ def fused_recurrent_gated_delta_rule_fwd(
     BK, BV = triton.next_power_of_2(K), min(triton.next_power_of_2(V), 32)
     NK, NV = triton.cdiv(K, BK), triton.cdiv(V, BV)
     assert NK == 1, 'NK > 1 is not supported yet'
-    num_stages = 3
+    # Triton Ascend maps num_stages=1 to disabled automatic multi-buffering.
+    # With CANN 9.1, multi-buffering this loop can corrupt FP32 circular-state
+    # writes while leaving the current output unchanged. Those saved states are
+    # subsequently read after speculative acceptance/rollback. Keep this path
+    # single-buffered so that every saved state matches the recurrence.
+    num_stages = 1 if cache_seqlens_rb is not None else 3
     num_warps = 1
 
     o = q.new_empty(NK, *v.shape)
