@@ -6,3 +6,6 @@ evidence/*/results/*.csv whitespace=cr-at-eol
 
 # Preserve this review's raw command output.
 evidence/review-20261115/logs/*.log -whitespace
+
+# Preserve native PR validation command output byte-for-byte.
+evidence/native-pr-20261115/logs/*.log -whitespace

@@ -1,0 +1,20 @@
+{
+  "label": "upstream-import-audit",
+  "command": [
+    "/root/workspace/a3-review-20261115/envs/cpu-no-torch-npu/bin/python",
+    "-c",
+    "import lmdeploy, lmdeploy.pytorch.configurations.qwen3_5 as q; print(lmdeploy.__file__); print(q.__file__)"
+  ],
+  "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy-upstream",
+  "no_vendor": true,
+  "start_utc": "2026-11-15T09:35:25.715784+00:00",
+  "source_head": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-native-pr-20261115/guard:/root/workspace/a3-native-pr-20261115/lmdeploy-upstream:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PYTHONNOUSERSITE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "ASCEND_REVIEW_NO_VENDOR": "1"
+  },
+  "returncode": 0,
+  "elapsed_seconds": 4.020559763011988
+}

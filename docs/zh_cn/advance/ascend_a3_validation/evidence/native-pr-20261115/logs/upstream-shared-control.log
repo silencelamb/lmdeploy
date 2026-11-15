@@ -1,0 +1,541 @@
+........................F............F.F...F.F.F.F.F.F.F................ [ 75%]
+........................                                                 [100%]
+=================================== FAILURES ===================================
+_____________________ test_kimi_k2_standalone_eagle_config _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_kimi_k2_standalone_eagle_0')
+
+    def test_kimi_k2_standalone_eagle_config(tmp_path):
+        hf_config = KimiK2Config(
+            architectures=['Eagle3DeepseekV2ForCausalLM'],
+            vocab_size=163840,
+            num_hidden_layers=1,
+            num_attention_heads=64,
+            num_key_value_heads=64,
+            max_position_embeddings=262144,
+            rope_parameters={
+                'rope_type': 'yarn',
+                'factor': 64.0,
+                'original_max_position_embeddings': 4096,
+                'beta_fast': 1.0,
+                'beta_slow': 1.0,
+                'mscale': 1.0,
+                'mscale_all_dim': 1.0,
+                'rope_theta': 50000.0,
+            },
+            dtype='bfloat16',
+        )
+        hf_config.save_pretrained(tmp_path)
+    
+        loaded_config = config_from_pretrained(tmp_path)
+        assert isinstance(loaded_config, KimiK2Config)
+        assert loaded_config.model_type == 'kimi_k2'
+        assert loaded_config.rope_parameters['rope_type'] == 'yarn'
+    
+>       model_config = ModelConfig.from_pretrained(
+            tmp_path,
+            is_draft_model=True,
+            spec_method='eagle3',
+        )
+
+tests/pytorch/config/test_model_config.py:157: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lmdeploy/pytorch/config.py:675: in from_pretrained
+    model_config = cls.from_hf_config(
+lmdeploy/pytorch/config.py:721: in from_hf_config
+    model_config = AutoModelConfigBuilder.build(
+lmdeploy/pytorch/configurations/builder.py:47: in build
+    cfg = valid_builder.build(hf_config, model_path, **kwargs)
+lmdeploy/pytorch/configurations/kimi_k2.py:55: in build
+    cfg = super().build(
+lmdeploy/pytorch/configurations/deepseek_v2.py:27: in build
+    hf_config.use_flash_mla = flash_mla_available()
+lmdeploy/pytorch/configurations/utils.py:16: in flash_mla_available
+    device_properties = torch.cuda.get_device_properties(0)
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:632: in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+______ test_indexed_contract_does_not_migrate_other_consumers[cuda-qwen] _______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df5310>
+family = 'qwen', device = 'cuda'
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm', 'intern_s2_preview'])
+    @pytest.mark.parametrize('device', ['cuda', 'ascend'])
+    def test_indexed_contract_does_not_migrate_other_consumers(monkeypatch, family, device):
+        model, _ = (_glm(monkeypatch, 5, device=device) if family == 'glm' else
+>                   _qwen(5, device=device, family='qwen3_5' if family == 'qwen' else family))
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:244: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+_ test_indexed_contract_does_not_migrate_other_consumers[cuda-intern_s2_preview] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df7950>
+family = 'intern_s2_preview', device = 'cuda'
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm', 'intern_s2_preview'])
+    @pytest.mark.parametrize('device', ['cuda', 'ascend'])
+    def test_indexed_contract_does_not_migrate_other_consumers(monkeypatch, family, device):
+        model, _ = (_glm(monkeypatch, 5, device=device) if family == 'glm' else
+>                   _qwen(5, device=device, family='qwen3_5' if family == 'qwen' else family))
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:244: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+___ test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-0-qwen] ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df5160>
+family = 'qwen', k = 0, tp = 1
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+>       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+___ test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-3-qwen] ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df65d0>
+family = 'qwen', k = 3, tp = 1
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+>       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+___ test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-5-qwen] ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df7920>
+family = 'qwen', k = 5, tp = 1
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+>       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+___ test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-0-qwen] ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df7950>
+family = 'qwen', k = 0, tp = 2
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+>       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+___ test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-3-qwen] ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff743d4320>
+family = 'qwen', k = 3, tp = 2
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+>       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+___ test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-5-qwen] ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff743cef60>
+family = 'qwen', k = 5, tp = 2
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+>       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+_________ test_draft_has_no_compact_resources_or_backend_lookup[qwen] __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff60df5f70>
+family = 'qwen'
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    def test_draft_has_no_compact_resources_or_backend_lookup(monkeypatch, family):
+>       model, _ = _qwen(3, draft=True) if family == 'qwen' else _glm(monkeypatch, 3, draft=True)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+>               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError
+=============================== warnings summary ===============================
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/starlette/testclient.py:45
+  /root/workspace/a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_lmdeploy/serve/openai/completions/test_cached_tokens_usage.py: 8 warnings
+tests/test_lmdeploy/serve/openai/completions/test_reasoning_tokens.py: 21 warnings
+  /root/workspace/a3-native-pr-20261115/lmdeploy-upstream/lmdeploy/serve/openai/endpoints/common.py:17: DeprecationWarning: max_tokens is deprecated in favor of the max_completion_tokens field
+    max_new_tokens = getattr(request, 'max_tokens', None)
+
+tests/test_lmdeploy/serve/openai/chat_completions/test_unicode.py: 19 warnings
+  /root/workspace/a3-native-pr-20261115/lmdeploy-upstream/lmdeploy/serve/core/chat_runner.py:298: DeprecationWarning: max_tokens is deprecated in favor of the max_completion_tokens field
+    max_new_tokens = request.max_tokens
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /root/workspace/a3-native-pr-20261115/results/upstream-shared-control.xml -
+=========================== short test summary info ============================
+FAILED tests/pytorch/config/test_model_config.py::test_kimi_k2_standalone_eagle_config
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_indexed_contract_does_not_migrate_other_consumers[cuda-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_indexed_contract_does_not_migrate_other_consumers[cuda-intern_s2_preview]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-0-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-3-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-5-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-0-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-3-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-5-qwen]
+FAILED tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_draft_has_no_compact_resources_or_backend_lookup[qwen]
+10 failed, 86 passed, 49 warnings in 4.44s

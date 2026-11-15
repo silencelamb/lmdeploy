@@ -2,7 +2,7 @@
 
 更新：2026-11-15，Asia/Shanghai。原始运行时间保留 UTC，便于与日志对应。
 
-本目录仅在用户 fork 的 `docs/ascend-a3-validation-20261114` 分支维护。上游迁移 PR 使用 `dev/ascend-a3-native`，不要把整个文档分支合入 PR。
+本目录仅在用户 fork 的 `docs/ascend-a3-validation-20261114` 分支维护。上游迁移 PR 使用独立的 `pr/ascend-a3-native`，开发分支保留为 `dev/ascend-a3-native`。不要把整个文档分支合入 PR。
 
 2026-11-14 两个 fork 的迁移主分支已由 `codex/ascend-a3-native` 正式改名为 `dev/ascend-a3-native`；提交历史保留，当前说明和链接已更新。原始证据中的旧分支名是当时的记录，不作回写。Mooncake 集成分支和报告分支沿用原名。
 
@@ -29,7 +29,8 @@
 
 | 仓库 / 分支 | 发布源码 HEAD | 用途 |
 | --- | --- | --- |
-| [LMDeploy `dev/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native) | [`c3947a93`](https://github.com/silencelamb/lmdeploy/commit/c3947a93c786876e17bb64dfb6f61ee9f1e7b221) | 原迁移、已测导入修复、测试隔离与平台名称收敛；不含 PR #5030 |
+| [LMDeploy `pr/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/pr/ascend-a3-native) | [`342db85e`](https://github.com/silencelamb/lmdeploy/commit/342db85ecff3c0dc864a4bf8613c589c270f4141) | 基于最新上游整理的纯迁移 PR；不含完整对比文档 |
+| [LMDeploy `dev/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native) | [`4424ef15`](https://github.com/silencelamb/lmdeploy/commit/4424ef15ca93708ac0001fc86e64aec47dfae793) | 原迁移、已测修复、测试隔离、平台名称与编译策略说明；不含 PR #5030 |
 | [dlinfer `dev/ascend-a3-native`](https://github.com/silencelamb/dlinfer/tree/dev/ascend-a3-native) | [`25b81c69`](https://github.com/silencelamb/dlinfer/commit/25b81c69cde38e61afc52c50ea92b1d625793db8) | patch 清理 + A3 独立功能说明 |
 | [LMDeploy `codex/ascend-a3-native-mooncake`](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-native-mooncake) | [`2c85cdc8`](https://github.com/silencelamb/lmdeploy/commit/2c85cdc888e313c4c32a15e7f7b2a81cf4d95d2b) | 原生迁移 + 同事 PR #5030 的独立集成验证 |
 | [LMDeploy `codex/ascend-a3-pr5030-baseline-20261113`](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-pr5030-baseline-20261113) | [`b334d7aa`](https://github.com/silencelamb/lmdeploy/commit/b334d7aaf8afd8fc5f77fcf34e3c5f028a2b7c9d) | 旧基线加同一 Mooncake 适配，便于公平复现 |
@@ -49,6 +50,8 @@
 | 同事 Mooncake PR head | `1a09270b0835bb871be4eb4df70f9d04c8ccaec2` |
 
 ## 报告与复现
+
+- [原生迁移 PR 整理与本轮验证](native_pr_20261115.md)。说明 PR 范围、源码来源、118/10/1 扩展结果与上游 CUDA 环境失败对照。
 
 - [2026-11-15：测试来源、CI 隔离与公共接口审查](code_review_20261115.md)。包含 `ascend` 命名修正、无 torch_npu 的 CPU 验证及硬件 opt-in 检查。
 

@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="10" skipped="1" tests="129" time="10.797" timestamp="2026-11-15T09:31:38.711780+00:00" hostname="dev-56007a17-0"><testcase classname="" name="tests.pytorch.ascend.test_kernel_import_order" time="0.000"><skipped message="collection skipped">('/root/workspace/a3-native-pr-20261115/lmdeploy/tests/pytorch/ascend/test_kernel_import_order.py', 9, 'Skipped: Real Ascend kernel imports require the vendor runtime')</skipped></testcase><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_lifecycle" name="test_capture_size_generation_is_pure" time="0.001" /><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_lifecycle" name="test_reset_preserves_configured_capture_sizes" time="0.001" /><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_nsa" name="test_graph_buffers_use_canonical_sequence_metadata[1]" time="0.013" /><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_nsa" name="test_graph_buffers_use_canonical_sequence_metadata[3]" time="0.000" /><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_nsa" name="test_non_dsa_graph_uses_same_metadata_contract" time="0.002" /><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_nsa" name="test_fill_glm_dsa_graph_buffers_pads_and_rebinds_metadata" time="0.001" /><testcase classname="tests.pytorch.ascend.test_ascend_cudagraph_nsa" name="test_sparse_graph_replay_skips_cpu_metadata_update" time="0.000" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_native_selection_and_cuda_import_are_isolated" time="4.563" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_no_dlinfer_import_in_native_packages" time="0.106" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_front_door_initializes_native_runtime" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_engine_platform_name_is_ascend" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_shared_vision_compile_policy_is_local_to_cuda" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_qwen35_state_layout_and_draft[0]" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_qwen35_state_layout_and_draft[1]" time="0.000" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_qwen35_state_layout_and_draft[3]" time="0.000" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_modelslim_metadata_dispatch[FLOAT-None]" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_modelslim_metadata_dispatch[W8A8_DYNAMIC-smooth_quant]" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_modelslim_metadata_dispatch[W8A8-modelslim_w8a8_static]" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_modelslim_rejects_inconsistent_fused_projections" time="0.000" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_modelslim_auxiliary_name_mapping" time="0.000" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_paged_slot_mapping_variable_query_lengths" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_mtp_graph_subclass_buffers_survive_native_dispatch" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_awq_zero_layout_and_shard_loading[cuda]" time="1.285" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_awq_zero_layout_and_shard_loading[ascend]" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_rejection_greedy_and_mixed_torch_path" time="0.002" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_ascend_cache_uses_contiguous_layout" time="0.000" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_native_cache_allocator_handles_small_mixed_dtype_pools" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_glm_config_uses_native_sparse_cache_without_flashmla" time="0.001" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_modelslim_attention_scales_follow_rope_permutation" time="0.032" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_glm_indexer_component_selection_does_not_mutate_env[cuda]" time="0.014" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_glm_indexer_component_selection_does_not_mutate_env[ascend]" time="0.012" /><testcase classname="tests.pytorch.ascend.test_native_integration" name="test_native_operator_builds_without_external_registry" time="0.023" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_enabled_for_synthesized_qwen35_moe" time="0.002" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_requires_env" time="0.001" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_only_for_qwen35_moe" time="0.001" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_does_not_apply_to_dense_qwen35" time="0.001" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_applies_to_intern_s2_preview" time="0.001" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_does_not_override_prequantized_config" time="0.001" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_quantization_config_fp8_moe_only_module_kinds" time="0.000" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_for_glm5_next[True-False-fp8-moe_only]" time="0.007" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_for_glm5_next[False-False-fp8-None]" time="0.003" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_for_glm5_next[True-True-fp8-None]" time="0.003" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_for_glm5_next[True-False-None-None]" time="0.003" /><testcase classname="tests.pytorch.config.test_fp8_quant_scope" name="test_fp8_moe_only_scope_survives_mtp_draft_config" time="0.002" /><testcase classname="tests.pytorch.config.test_hf_overrides.TestHFOverrides" name="test_hf_overrides" time="0.283" /><testcase classname="tests.pytorch.config.test_hf_overrides" name="test_fp32_lm_head_hf_override_survives_mtp_draft_config" time="0.001" /><testcase classname="tests.pytorch.config.test_hf_overrides" name="test_config_builder_qwen35_mtp_reuses_main_dist_config" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_get_num_qkv_head_by_tp_from_dist_config" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_get_num_qkv_head_by_tp_with_none_dist_config" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_from_hf_config_keeps_dist_config_for_head_split" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_model_config_records_kv_head_replication[32-32-1]" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_model_config_records_kv_head_replication[2-8-4]" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_model_config_records_kv_head_replication[1-8-8]" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_get_num_qkv_head_by_tp_with_dist_config_tp" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_get_num_qkv_head_by_tp_replicated_kv_heads" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_get_num_qkv_head_by_tp_requires_divisible_heads" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_kimi_k2_standalone_eagle_config" time="0.009"><failure message="AssertionError: Torch not compiled with CUDA enabled">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_kimi_k2_standalone_eagle_0')
+
+    def test_kimi_k2_standalone_eagle_config(tmp_path):
+        hf_config = KimiK2Config(
+            architectures=['Eagle3DeepseekV2ForCausalLM'],
+            vocab_size=163840,
+            num_hidden_layers=1,
+            num_attention_heads=64,
+            num_key_value_heads=64,
+            max_position_embeddings=262144,
+            rope_parameters={
+                'rope_type': 'yarn',
+                'factor': 64.0,
+                'original_max_position_embeddings': 4096,
+                'beta_fast': 1.0,
+                'beta_slow': 1.0,
+                'mscale': 1.0,
+                'mscale_all_dim': 1.0,
+                'rope_theta': 50000.0,
+            },
+            dtype='bfloat16',
+        )
+        hf_config.save_pretrained(tmp_path)
+    
+        loaded_config = config_from_pretrained(tmp_path)
+        assert isinstance(loaded_config, KimiK2Config)
+        assert loaded_config.model_type == 'kimi_k2'
+        assert loaded_config.rope_parameters['rope_type'] == 'yarn'
+    
+&gt;       model_config = ModelConfig.from_pretrained(
+            tmp_path,
+            is_draft_model=True,
+            spec_method='eagle3',
+        )
+
+tests/pytorch/config/test_model_config.py:157: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lmdeploy/pytorch/config.py:675: in from_pretrained
+    model_config = cls.from_hf_config(
+lmdeploy/pytorch/config.py:721: in from_hf_config
+    model_config = AutoModelConfigBuilder.build(
+lmdeploy/pytorch/configurations/builder.py:47: in build
+    cfg = valid_builder.build(hf_config, model_path, **kwargs)
+lmdeploy/pytorch/configurations/kimi_k2.py:55: in build
+    cfg = super().build(
+lmdeploy/pytorch/configurations/deepseek_v2.py:27: in build
+    hf_config.use_flash_mla = (kwargs.get('device_type') != 'ascend' and flash_mla_available())
+lmdeploy/pytorch/configurations/utils.py:16: in flash_mla_available
+    device_properties = torch.cuda.get_device_properties(0)
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:632: in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.config.test_model_config" name="test_kimi_compressed_tensors_metadata_uses_existing_quant_config" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_update_cache_config_forces_block_and_kernel_size[64-64]" time="0.001" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_update_cache_config_forces_block_and_kernel_size[192-64]" time="0.001" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_update_cache_config_forces_block_and_kernel_size[256-128]" time="0.001" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_update_cache_config_forces_block_and_kernel_size[257-128]" time="0.001" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_update_cache_config_forces_block_and_kernel_size[512-512]" time="0.004" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_model_config_uses_native_layer_types" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_model_config_rejects_layer_type_count_mismatch" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_deepseek_v4_model_config_rejects_unsupported_native_compress_rate" time="0.000" /><testcase classname="tests.pytorch.config.test_model_config" name="test_glm5_next_tail_checkpoint_policy_requires_closed_pool_boundary[0]" time="0.005" /><testcase classname="tests.pytorch.config.test_model_config" name="test_glm5_next_tail_checkpoint_policy_requires_closed_pool_boundary[3]" time="0.005" /><testcase classname="tests.pytorch.config.test_model_config" name="test_glm5_next_tail_checkpoint_policy_requires_closed_pool_boundary[5]" time="0.005" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_indexed_contract_does_not_migrate_other_consumers[cuda-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ee61730&gt;
+family = 'qwen', device = 'cuda'
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm', 'intern_s2_preview'])
+    @pytest.mark.parametrize('device', ['cuda', 'ascend'])
+    def test_indexed_contract_does_not_migrate_other_consumers(monkeypatch, family, device):
+        model, _ = (_glm(monkeypatch, 5, device=device) if family == 'glm' else
+&gt;                   _qwen(5, device=device, family='qwen3_5' if family == 'qwen' else family))
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:244: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_indexed_contract_does_not_migrate_other_consumers[cuda-glm]" time="0.002" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_indexed_contract_does_not_migrate_other_consumers[cuda-intern_s2_preview]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ee61ee0&gt;
+family = 'intern_s2_preview', device = 'cuda'
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm', 'intern_s2_preview'])
+    @pytest.mark.parametrize('device', ['cuda', 'ascend'])
+    def test_indexed_contract_does_not_migrate_other_consumers(monkeypatch, family, device):
+        model, _ = (_glm(monkeypatch, 5, device=device) if family == 'glm' else
+&gt;                   _qwen(5, device=device, family='qwen3_5' if family == 'qwen' else family))
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:244: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_indexed_contract_does_not_migrate_other_consumers[ascend-qwen]" time="0.000" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_indexed_contract_does_not_migrate_other_consumers[ascend-glm]" time="0.002" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_indexed_contract_does_not_migrate_other_consumers[ascend-intern_s2_preview]" time="0.000" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-0-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ee62ea0&gt;
+family = 'qwen', k = 0, tp = 1
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+&gt;       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-0-glm]" time="0.004" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-3-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ee62330&gt;
+family = 'qwen', k = 3, tp = 1
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+&gt;       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-3-glm]" time="0.003" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-5-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ed4e330&gt;
+family = 'qwen', k = 5, tp = 1
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+&gt;       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[1-5-glm]" time="0.003" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-0-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ee63680&gt;
+family = 'qwen', k = 0, tp = 2
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+&gt;       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-0-glm]" time="0.003" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-3-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ed4cb60&gt;
+family = 'qwen', k = 3, tp = 2
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+&gt;       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-3-glm]" time="0.003" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-5-qwen]" time="0.001"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ed4f020&gt;
+family = 'qwen', k = 5, tp = 2
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    @pytest.mark.parametrize('k', [0, 3, 5])
+    @pytest.mark.parametrize('tp', [1, 2])
+    def test_model_compact_shapes_use_canonical_and_auxiliary_geometry(monkeypatch, family, k, tp):
+&gt;       model, _ = _qwen(k, tp=tp) if family == 'qwen' else _glm(monkeypatch, k, tp=tp)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_model_compact_shapes_use_canonical_and_auxiliary_geometry[2-5-glm]" time="0.003" /><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_draft_has_no_compact_resources_or_backend_lookup[qwen]" time="0.000"><failure message="AssertionError: Torch not compiled with CUDA enabled">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffff4ee62ba0&gt;
+family = 'qwen'
+
+    @pytest.mark.parametrize('family', ['qwen', 'glm'])
+    def test_draft_has_no_compact_resources_or_backend_lookup(monkeypatch, family):
+&gt;       model, _ = _qwen(3, draft=True) if family == 'qwen' else _glm(monkeypatch, 3, draft=True)
+
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py:23: in _qwen
+    cfg = Qwen3_5ModelConfigBuilder.build(hf, num_spec_tokens=k, spec_method='qwen3_5_mtp' if k or draft else None,
+lmdeploy/pytorch/configurations/qwen3_5.py:76: in build
+    if is_bf16_supported(device_type):
+lmdeploy/utils.py:439: in is_bf16_supported
+    device = torch.cuda.current_device()
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:1094: in current_device
+    _lazy_init()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _lazy_init():
+        global _initialized, _queued_calls
+        if is_initialized() or hasattr(_tls, "is_initializing"):
+            return
+        with _initialization_lock:
+            # We be double-checked locking, boys!  This is OK because
+            # the above test was GIL protected anyway.  The inner test
+            # is for when a thread blocked on some other thread which was
+            # doing the initialization; when they get the lock, they will
+            # find there is nothing left to do.
+            if is_initialized():
+                return
+            # It is important to prevent other threads from entering _lazy_init
+            # immediately, while we are still guaranteed to have the GIL, because some
+            # of the C calls we make below will release the GIL
+            if _is_in_bad_fork():
+                raise RuntimeError(
+                    "Cannot re-initialize CUDA in forked subprocess. To use CUDA with "
+                    "multiprocessing, you must use the 'spawn' start method"
+                )
+            if not hasattr(torch._C, "_cuda_getDeviceCount"):
+&gt;               raise AssertionError("Torch not compiled with CUDA enabled")
+E               AssertionError: Torch not compiled with CUDA enabled
+
+../../a3-review-20261115/envs/cpu-no-torch-npu/lib/python3.12/site-packages/torch/cuda/__init__.py:417: AssertionError</failure></testcase><testcase classname="tests.pytorch.engine.test_cache_engine.test_compact_model_binding" name="test_draft_has_no_compact_resources_or_backend_lookup[glm]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_cached_tokens_usage" name="test_cache_hit_reported_in_usage" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_cached_tokens_usage" name="test_cache_hit_reported_in_usage_stream" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_cached_tokens_usage" name="test_cache_miss_reports_zero_rather_than_null" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_cached_tokens_usage" name="test_batch_prompts_accumulate_cached_tokens" time="0.003" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_cached_tokens_usage" name="test_stream_chunks_carry_per_prompt_choice_index" time="0.001" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_cached_tokens_usage" name="test_stream_text_is_utf8_literal_not_escaped" time="0.001" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_reasoning_tokens_are_seeded_from_prompt_state[False-open_reasoning_prefix-prompt_input_ids0-generated_ids0-2]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_reasoning_tokens_are_seeded_from_prompt_state[False-closed_reasoning_prefix-prompt_input_ids1-generated_ids1-0]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_reasoning_tokens_are_seeded_from_prompt_state[False-plain_text_prompt-prompt_input_ids2-generated_ids2-1]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_reasoning_tokens_are_seeded_from_prompt_state[True-open_reasoning_prefix-prompt_input_ids0-generated_ids0-2]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_reasoning_tokens_are_seeded_from_prompt_state[True-closed_reasoning_prefix-prompt_input_ids1-generated_ids1-0]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_reasoning_tokens_are_seeded_from_prompt_state[True-plain_text_prompt-prompt_input_ids2-generated_ids2-1]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_mixed_prompt_batch_sums_prompt_seeded_counters" time="0.003" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[False-&lt;think&gt;-none_fallback]" time="0.001" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[False-&lt;think&gt;-unk_fallback]" time="0.001" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[False-&lt;/think&gt;-none_fallback]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[False-&lt;/think&gt;-unk_fallback]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[True-&lt;think&gt;-none_fallback]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[True-&lt;think&gt;-unk_fallback]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[True-&lt;/think&gt;-none_fallback]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_unresolvable_tags_leave_reasoning_usage_unreported[True-&lt;/think&gt;-unk_fallback]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_history_reasoning_tags_do_not_seed_counting[False]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_history_reasoning_tags_do_not_seed_counting[True]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_tags_after_last_boundary_seed_counting[False]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_tags_after_last_boundary_seed_counting[True]" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.completions.test_reasoning_tokens" name="test_streaming_without_usage_skips_reasoning_accounting" time="0.002" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[content-False-1]" time="0.008" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[content-False-2]" time="0.007" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[content-True-1]" time="0.005" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[content-True-2]" time="0.006" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[reasoning_content-False-1]" time="0.005" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[reasoning_content-False-2]" time="0.006" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[reasoning_content-True-1]" time="0.005" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[reasoning_content-True-2]" time="0.006" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[tool_calls-False-1]" time="0.005" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[tool_calls-False-2]" time="0.006" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[tool_calls-True-1]" time="0.005" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_output[tool_calls-True-2]" time="0.006" /><testcase classname="tests.test_lmdeploy.serve.openai.chat_completions.test_unicode" name="test_unicode_stream_error" time="0.006" /></testsuite></testsuites>

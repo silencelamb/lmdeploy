@@ -1,0 +1,31 @@
+{
+  "label": "upstream-shared-control",
+  "command": [
+    "/root/workspace/a3-review-20261115/envs/cpu-no-torch-npu/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/pytorch/config",
+    "tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_indexed_contract_does_not_migrate_other_consumers",
+    "tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_model_compact_shapes_use_canonical_and_auxiliary_geometry",
+    "tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py::test_draft_has_no_compact_resources_or_backend_lookup",
+    "tests/test_lmdeploy/serve/openai/completions/test_cached_tokens_usage.py",
+    "tests/test_lmdeploy/serve/openai/completions/test_reasoning_tokens.py",
+    "tests/test_lmdeploy/serve/openai/chat_completions/test_unicode.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=/root/workspace/a3-native-pr-20261115/results/upstream-shared-control.xml"
+  ],
+  "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy-upstream",
+  "no_vendor": true,
+  "start_utc": "2026-11-15T09:33:47.664139+00:00",
+  "source_head": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "environment": {
+    "PYTHONPATH": "/root/workspace/a3-native-pr-20261115/guard:/root/workspace/a3-native-pr-20261115/lmdeploy-upstream:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "PYTHONNOUSERSITE": "1",
+    "TORCH_DEVICE_BACKEND_AUTOLOAD": "0",
+    "ASCEND_REVIEW_NO_VENDOR": "1"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 9.830052878998686
+}

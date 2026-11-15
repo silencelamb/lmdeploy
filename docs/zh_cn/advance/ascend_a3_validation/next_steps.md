@@ -4,6 +4,8 @@
 
 同事的其他 Ascend 功能按 [接入清单](colleague_prs.md) 分别适配到当前原生后端；rebase 用于同步基线，功能迁移另做明确提交。
 
+2026-11-15 更新：已按此边界整理独立 `pr/ascend-a3-native` 分支，完整对比文档仅保留在本报告分支。[本轮检查与范围](native_pr_20261115.md)。
+
 ## 迁移 PR 与同事 Mooncake PR
 
 **建议先提交不含 Mooncake 的迁移 PR，无须等 #5030。** 原生 Ascend 迁移的 `OpsBackend`、`BuildSpec`、`GraphRunner`、算子和模型适配不依赖 Store 的设备传输层。当前 `dev/ascend-a3-native` 正好保留这个边界。
