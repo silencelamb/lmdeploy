@@ -94,6 +94,8 @@ Sage/Agents/Flash初期可各自重复，但跨源码首token分数不同。Sage
 
 S2的out_proj是第0层GDN/线性注意力子层经过gated norm后的输出投影，不是最终词表lm_head。在TP8下，各rank先做自己的局部投影，再合成完整hidden维度的结果；本次观察点位于整个模块之后，因而覆盖本地GEMM/量化路径与TP归约。当前没有分开记录归约前的局部输出，不能进一步断言是某个GEMM或NCCL内核造成差异。
 
+补充证据边界复核：原首差分析来自rank0。现复核两源码×8rank的16组orderA/orderB记录，14组能够按相同首个decode步骤对齐；这些记录中out_proj对应请求的输入相同，移位行的模块输出不同。基线rank3、PR rank4的orderB记录history_lengths为168（目标首decode应为167），且缺少该轮prefill记录，已排除。这两组不能用其他rank代替，也不能据此宣称完成全8卡同一步的归约归因；上游其他rank影响与本地GEMM/归约仍须进一步拆分。[全rank复核及排除原因](evidence/cuda-h200-20261116/outproj-all-rank-input-audit.json)。此补充只限定诊断证据的范围，不改变未插桩主矩阵的原始比较结果。
+
 Flash/S2的真实HTTP C4在基线自身也不重复，故不能把这些时序用于合格的迁移性能通过。完整输入、首个数值差异与此前一致的生成历史，以及64份实际TP rank首prefill tensor均保存。
 
 - Flash实际批量4与3的共同请求，首差在第0层fg_a_proj稠密投影；相同批量4的对照，逐层输出和target logits相同。

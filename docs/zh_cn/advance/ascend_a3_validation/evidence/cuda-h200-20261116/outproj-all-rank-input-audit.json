@@ -1,0 +1,481 @@
+{
+  "scope": "Read-only post-hoc all-rank audit of original decode-order tensors; compares orderA/orderB by identical logical prompt.",
+  "module": "model.language_model.layers.0.linear_attn.out_proj",
+  "local_projection_before_reduce_not_captured": true,
+  "rows": [
+    {
+      "role": "base",
+      "rank": 0,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 1,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 2,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 3,
+      "aligned": false,
+      "reason": "orderB is an extra decode step rather than first decode; excluded",
+      "history_lengths": [
+        [
+          167,
+          167,
+          167,
+          167
+        ],
+        [
+          168,
+          168,
+          168,
+          168
+        ]
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 4,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 5,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 6,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "base",
+      "rank": 7,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 0,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 1,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 2,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 3,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 4,
+      "aligned": false,
+      "reason": "orderB is an extra decode step rather than first decode; excluded",
+      "history_lengths": [
+        [
+          167,
+          167,
+          167,
+          167
+        ],
+        [
+          168,
+          168,
+          168,
+          168
+        ]
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 5,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 6,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    },
+    {
+      "role": "pr-f64",
+      "rank": 7,
+      "aligned": true,
+      "checks": [
+        {
+          "left_row": 1,
+          "right_row": 3,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 2,
+          "right_row": 2,
+          "input_equal": true,
+          "output_equal": true
+        },
+        {
+          "left_row": 0,
+          "right_row": 1,
+          "input_equal": true,
+          "output_equal": false
+        },
+        {
+          "left_row": 3,
+          "right_row": 0,
+          "input_equal": true,
+          "output_equal": false
+        }
+      ]
+    }
+  ]
+}
