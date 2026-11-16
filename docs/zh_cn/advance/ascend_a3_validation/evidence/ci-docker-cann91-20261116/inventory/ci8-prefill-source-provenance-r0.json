@@ -1,0 +1,76 @@
+{
+  "upstream_commit": "8e70a44afa537fcbcdc6d59e6d2196a38f1e7b6f",
+  "snapshot": "a3-validation-20261112/sources/triton-ascend-kernels-snapshot",
+  "existing_compatibility_edits": [
+    "cumsum stores in destination dtype",
+    "solve_tril uses triton.language.extra.cann.extension slice helpers"
+  ],
+  "files": [
+    {
+      "source": "attention/fla/__init__.py",
+      "destination": "__init__.py",
+      "source_sha256": "99a4ba3ce1b45f6c6f8d845e27440c75283d55b190821f805719ccaec834a2d6",
+      "destination_sha256": "99a4ba3ce1b45f6c6f8d845e27440c75283d55b190821f805719ccaec834a2d6"
+    },
+    {
+      "source": "attention/fla/chunk.py",
+      "destination": "chunk.py",
+      "source_sha256": "b1b7c8017bff4e7d3d431b280b6cf6583de1b0c920c8f67d278fec1015d35ea6",
+      "destination_sha256": "b1b7c8017bff4e7d3d431b280b6cf6583de1b0c920c8f67d278fec1015d35ea6"
+    },
+    {
+      "source": "attention/fla/chunk_delta_h.py",
+      "destination": "chunk_delta_h.py",
+      "source_sha256": "f04a3550ca46717e64e9619a7c5d9194c13eb4f3aa84f47664d82f66448a4ae0",
+      "destination_sha256": "f04a3550ca46717e64e9619a7c5d9194c13eb4f3aa84f47664d82f66448a4ae0"
+    },
+    {
+      "source": "attention/fla/chunk_o.py",
+      "destination": "chunk_o.py",
+      "source_sha256": "1a8acca0106d52b51b4c2e7b104738cc6bd3169a4c1724f15323c8bc02627bc1",
+      "destination_sha256": "1a8acca0106d52b51b4c2e7b104738cc6bd3169a4c1724f15323c8bc02627bc1"
+    },
+    {
+      "source": "attention/fla/chunk_scaled_dot_kkt.py",
+      "destination": "chunk_scaled_dot_kkt.py",
+      "source_sha256": "deee3303efb0c1a5b749de36f28b82fa7a3d5226208675474289625c6cb2b510",
+      "destination_sha256": "deee3303efb0c1a5b749de36f28b82fa7a3d5226208675474289625c6cb2b510"
+    },
+    {
+      "source": "attention/fla/cumsum.py",
+      "destination": "cumsum.py",
+      "source_sha256": "14bb192a09b8cb0404fd920c47833f1f0d555889d1e80c15c0093b070ae5d28b",
+      "destination_sha256": "14bb192a09b8cb0404fd920c47833f1f0d555889d1e80c15c0093b070ae5d28b"
+    },
+    {
+      "source": "attention/fla/solve_tril.py",
+      "destination": "solve_tril.py",
+      "source_sha256": "c76e78198766020f4e69ee6c6c392f627fac3dfc93454f2d82615bff1e441196",
+      "destination_sha256": "c76e78198766020f4e69ee6c6c392f627fac3dfc93454f2d82615bff1e441196"
+    },
+    {
+      "source": "attention/fla/utils.py",
+      "destination": "utils.py",
+      "source_sha256": "c34b510c8c3f59d6fd77bd4e3bd41b4c7385997e0c3d88b009964caf95ee5d5e",
+      "destination_sha256": "c34b510c8c3f59d6fd77bd4e3bd41b4c7385997e0c3d88b009964caf95ee5d5e"
+    },
+    {
+      "source": "attention/fla/wy_fast.py",
+      "destination": "wy_fast.py",
+      "source_sha256": "48654bbdd2f2e86f4c5abf60f94a3ecfe600dea592e28e9a957d7b109b7de416",
+      "destination_sha256": "48654bbdd2f2e86f4c5abf60f94a3ecfe600dea592e28e9a957d7b109b7de416"
+    },
+    {
+      "source": "norm/l2norm.py",
+      "destination": "l2norm.py",
+      "source_sha256": "4b5dacb52dcbdf83db8c6a4d72a42e7a03dc7c22fd2967e130bbcf12b423db6b",
+      "destination_sha256": "afb431f71ebbbcd6f61198a02f6c602c4babb0a24896926fe5551f40f9d8a7d2"
+    },
+    {
+      "source": "utils.py",
+      "destination": "device.py",
+      "source_sha256": "deb2b24474675d9ab104e50ddd2ca7009a589e3e5baf16356f01dd20dd8c4d32",
+      "destination_sha256": "bf1a08005be73660733dfa3b4e75c099d84c8336b99383e213a4dab1eb0ea58e"
+    }
+  ]
+}

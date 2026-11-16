@@ -1,0 +1,18 @@
+[W1116 04:15:34.914589333 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:355: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:355: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+[W1116 04:15:42.993265099 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+L2NORM 1 torch.bfloat16 exact True
+L2NORM 65 torch.bfloat16 exact True
+L2NORM 257 torch.bfloat16 exact True
+L2NORM 1 torch.float32 exact True
+L2NORM 65 torch.float32 exact True
+L2NORM 257 torch.float32 exact True
+PREFILL [27] False [True, True]
+PREFILL [27] True [True, True]
+PREFILL [129] False [True, True]
+PREFILL [129] True [True, True]
+PREFILL [17, 79] False [True, True]
+PREFILL [17, 79] True [True, True]

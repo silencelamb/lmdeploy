@@ -1,0 +1,2169 @@
+diff --git a/MANIFEST.in b/MANIFEST.in
+index b1928522..11157943 100644
+--- a/MANIFEST.in
++++ b/MANIFEST.in
+@@ -3,5 +3,6 @@ include lmdeploy/bin/*
+ 
+ recursive-include requirements *.txt
+ recursive-include lmdeploy/pytorch/kernels/ascend *.md
++recursive-include lmdeploy/pytorch/kernels/ascend LICENSE
+ recursive-include tests/pytorch/ascend *.py
+ recursive-include tools/ascend *.py
+diff --git a/docker/Dockerfile_ascend_a3 b/docker/Dockerfile_ascend_a3
+index afc8872b..49f5bb05 100644
+--- a/docker/Dockerfile_ascend_a3
++++ b/docker/Dockerfile_ascend_a3
+@@ -1,26 +1,35 @@
+-# DOCKER_BUILDKIT=1 docker build --build-arg ASCEND_DEVICE=ascend_a3 \
++# DOCKER_BUILDKIT=1 docker build --build-arg ASCEND_DEVICE_TYPE=ascend_a3 \
+ #     --network=host -t lmdeploy:a3 -f docker/Dockerfile_ascend_a3 .
+ ARG ASCEND_DEVICE_TYPE=ascend_a3
+-ARG ASCEND_HUB=swr.cn-south-1.myhuaweicloud.com/ascendhub
++ARG ASCEND_HUB=quay.io/ascend
+ 
+-FROM ${ASCEND_HUB}/cann:8.5.0-a3-openeuler24.03-py3.11 AS ascend_a3_base
++FROM ${ASCEND_HUB}/cann:9.1.0-a3-openeuler24.03-py3.12 AS ascend_a3_base
+ 
+ FROM ${ASCEND_DEVICE_TYPE}_base AS builder
+ ENV DEBIAN_FRONTEND=noninteractive
+ RUN dnf update -y && \
+     dnf install -y jemalloc jemalloc-devel && \
+-    dnf clean all && rm -rf /var/cache/dnf
++    dnf clean all && rm -rf /var/cache/dnf && \
++    python3.12 -m venv /opt/lmdeploy-env
+ 
+ ENV HCCL_CONNECT_TIMEOUT=7200 \
+     PYTORCH_NPU_ALLOC_CONF="expandable_segments:True" \
+     HCCL_OP_EXPANSION_MODE="AIV" \
+-    LD_PRELOAD=/usr/lib64/libjemalloc.so.2:$LD_PRELOAD
++    TORCH_DEVICE_BACKEND_AUTOLOAD=0 \
++    LMDEPLOY_TARGET_DEVICE=ascend \
++    VIRTUAL_ENV=/opt/lmdeploy-env \
++    PATH=/opt/lmdeploy-env/bin:${PATH} \
++    LD_PRELOAD=/usr/lib64/libjemalloc.so.2
+ 
+ COPY . /opt/lmdeploy
+ WORKDIR /opt/lmdeploy
+-RUN --mount=type=cache,target=/root/.cache \
+-    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+-    pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn && \
+-    pip install --no-cache-dir torch==2.9.0 torch-npu==2.9.0 torchvision==0.24.0 && \
+-    pip install -r requirements/ascend_kernels.txt && \
+-    LMDEPLOY_TARGET_DEVICE=ascend pip install .
++RUN --mount=type=cache,target=/root/.cache/pip \
++    python -m pip install --index-url https://download.pytorch.org/whl/cpu \
++        --extra-index-url https://pypi.org/simple \
++        -c requirements/ascend_a3_constraints.txt \
++        torch torchvision torch-npu && \
++    python -m pip install --index-url https://pypi.org/simple \
++        --extra-index-url https://mirrors.huaweicloud.com/ascend/repos/pypi \
++        --extra-index-url https://download.pytorch.org/whl/cpu \
++        -c requirements/ascend_a3_constraints.txt \
++        -r requirements/ascend_kernels.txt .
+diff --git a/docs/en/get_started/ascend/get_started.md b/docs/en/get_started/ascend/get_started.md
+index 30c5db00..17e367c6 100644
+--- a/docs/en/get_started/ascend/get_started.md
++++ b/docs/en/get_started/ascend/get_started.md
+@@ -11,21 +11,28 @@ Here is the [supported model list](../../supported_models/supported_models.md#py
+ The current A3 PyTorch backend is implemented inside LMDeploy and does not
+ require dlinfer. Use a separate Python environment without dlinfer installed.
+ Load the CANN and NNAL/ATB environment scripts for your installation first.
+-The following source-install recipe uses the PyTorch versions in
++The following CANN 9.1.0 / Python 3.12 source-install profile matches
+ [`Dockerfile_ascend_a3`](../../../../docker/Dockerfile_ascend_a3):
+ 
+ ```bash
+-python3.11 -m venv .venv-ascend
++python3.12 -m venv .venv-ascend
+ source .venv-ascend/bin/activate
+-python -m pip install torch==2.9.0 torch-npu==2.9.0 torchvision==0.24.0
+-python -m pip install -r requirements/ascend_kernels.txt
+-LMDEPLOY_TARGET_DEVICE=ascend python -m pip install .
++export TORCH_DEVICE_BACKEND_AUTOLOAD=0
++python -m pip install --index-url https://download.pytorch.org/whl/cpu \
++    --extra-index-url https://pypi.org/simple \
++    -c requirements/ascend_a3_constraints.txt torch torchvision torch-npu
++LMDEPLOY_TARGET_DEVICE=ascend python -m pip install \
++    --extra-index-url https://mirrors.huaweicloud.com/ascend/repos/pypi \
++    --extra-index-url https://download.pytorch.org/whl/cpu \
++    -c requirements/ascend_a3_constraints.txt -r requirements/ascend_kernels.txt .
+ python tools/ascend/check_runtime.py --require-kernels
+ ```
+ 
+-Run these commands from the repository root. CANN, torch_npu, Triton Ascend,
+-and the external `triton-ascend-kernels` library remain required; pin the latter
+-to a revision compatible with your environment. Keep `device_type="ascend"`
++Run these commands from the repository root. CANN, torch_npu and Triton-Ascend
++remain required. The GDN prefill/L2Norm kernels are bundled with source provenance
++and their MIT license; no external kernel repository checkout is needed. The
++image uses an isolated application venv with Torch 2.10.0+cpu, torch_npu
++2.10.0.post4, torchvision 0.25.0+cpu and Triton-Ascend 3.2.2.post2. Keep `device_type="ascend"`
+ or `--device ascend` in inference commands. Graph mode uses `torch.npu.NPUGraph`;
+ use `eager_mode=True` or `--eager-mode` to disable it.
+ 
+@@ -54,15 +61,14 @@ python -m pip install --no-deps -r requirements/ascend_triton_npuir2.txt \
+     --extra-index-url https://mirrors.huaweicloud.com/ascend/repos/pypi
+ ```
+ 
+-Apply this in an independent environment with its own package files. It updates
+-Triton and its compiler bundle while retaining the existing runtime dependencies;
+-it is not a second requirements file to combine with the older Triton pin in
+-`requirements/ascend_kernels.txt` in one installation. The validated update used
+-Python 3.12.13, Torch 2.10.0+cpu, torch_npu 2.10.0.post4 and CANN 9.1.0. This is a
+-targeted compiler-update result, not certification of a fresh dependency solve
+-or the existing CANN 8.5 Docker recipe with the new compiler. The
+-[official recommended pairing](https://ascendnpu-ir.gitcode.com/en/introduction/quick_start/version_compatibility.html)
+-is NPUIR 2.0.0 with CANN 9.2.0; that complete runtime/driver update was not tested.
++Apply this in an independent environment with its own package files. New
++installations already select this compiler through `requirements/ascend_kernels.txt`.
++The component-update checks used Python 3.12.13, Torch 2.10.0+cpu,
++torch_npu 2.10.0.post4 and CANN 9.1.0. The Dockerfile now uses the official
++`9.1.0-a3-openeuler24.03-py3.12` image and the matching pinned dependency profile.
++The [official preferred NPUIR pairing](https://ascendnpu-ir.gitcode.com/en/introduction/quick_start/version_compatibility.html)
++is NPUIR 2.0.0 with CANN 9.2.0; here the tested compiler update is used with the
++existing CANN 9.1.0 runtime. This does not upgrade the host driver or firmware.
+ 
+ Triton prefers its bundled compiler over PATH. Check the executable actually
+ selected after the update, rather than only `triton.__version__`:
+diff --git a/docs/zh_cn/get_started/ascend/get_started.md b/docs/zh_cn/get_started/ascend/get_started.md
+index 680eb4a4..56cb625a 100644
+--- a/docs/zh_cn/get_started/ascend/get_started.md
++++ b/docs/zh_cn/get_started/ascend/get_started.md
+@@ -7,20 +7,27 @@
+ ## A3 原生后端安装
+ 
+ 当前 A3 PyTorch 后端由 LMDeploy 内部实现，无需 dlinfer。请使用未安装 dlinfer 的独立
+-Python 环境，并先加载当前安装的 CANN 和 NNAL/ATB 环境脚本。以下源码安装示例沿用
+-[`Dockerfile_ascend_a3`](../../../../docker/Dockerfile_ascend_a3) 的 PyTorch 版本：
++Python 环境，并先加载 CANN 9.1.0 和匹配的 NNAL/ATB 环境脚本。以下 Python 3.12
++源码安装配置与 [`Dockerfile_ascend_a3`](../../../../docker/Dockerfile_ascend_a3) 保持一致：
+ 
+ ```bash
+-python3.11 -m venv .venv-ascend
++python3.12 -m venv .venv-ascend
+ source .venv-ascend/bin/activate
+-python -m pip install torch==2.9.0 torch-npu==2.9.0 torchvision==0.24.0
+-python -m pip install -r requirements/ascend_kernels.txt
+-LMDEPLOY_TARGET_DEVICE=ascend python -m pip install .
++export TORCH_DEVICE_BACKEND_AUTOLOAD=0
++python -m pip install --index-url https://download.pytorch.org/whl/cpu \
++    --extra-index-url https://pypi.org/simple \
++    -c requirements/ascend_a3_constraints.txt torch torchvision torch-npu
++LMDEPLOY_TARGET_DEVICE=ascend python -m pip install \
++    --extra-index-url https://mirrors.huaweicloud.com/ascend/repos/pypi \
++    --extra-index-url https://download.pytorch.org/whl/cpu \
++    -c requirements/ascend_a3_constraints.txt -r requirements/ascend_kernels.txt .
+ python tools/ascend/check_runtime.py --require-kernels
+ ```
+ 
+-在仓库根目录执行这些命令。CANN、torch_npu、Triton Ascend 和外部
+-`triton-ascend-kernels` 仍是运行依赖；请将后者固定在与环境兼容的 revision。
++在仓库根目录执行这些命令。CANN、torch_npu 和 Triton-Ascend 仍是运行依赖；
++GDN prefill/L2Norm 已连同来源记录和 MIT 许可纳入原生 kernel，无需克隆外部 kernel
++仓库。镜像在独立应用 venv 中固定 Torch 2.10.0+cpu、torch_npu 2.10.0.post4、
++torchvision 0.25.0+cpu 和 Triton-Ascend 3.2.2.post2。
+ 推理入口继续使用 `device_type="ascend"` 或 `--device ascend`。图模式通过
+ `torch.npu.NPUGraph` 执行，可使用 `eager_mode=True` 或 `--eager-mode` 关闭。
+ 
+@@ -45,13 +52,13 @@ python -m pip install --no-deps -r requirements/ascend_triton_npuir2.txt \
+     --extra-index-url https://mirrors.huaweicloud.com/ascend/repos/pypi
+ ```
+ 
+-请在拥有独立包文件的隔离环境执行。此配置只更新 Triton 及其编译器组件，保留已有
+-运行依赖；不要与 `requirements/ascend_kernels.txt` 中的旧 Triton 版本约束在同一次
+-安装中混用。实测升级环境为 Python 3.12.13、Torch 2.10.0+cpu、torch_npu
+-2.10.0.post4、CANN 9.1.0。这是定向编译器更新的验证，不等于全新依赖解析安装，
+-也不等于现有 CANN 8.5 Docker 配方与新编译器的组合已经通过。
+-[官方推荐组合](https://ascendnpu-ir.gitcode.com/en/introduction/quick_start/version_compatibility.html)
+-为 NPUIR 2.0.0 与 CANN 9.2.0；该完整运行时/驱动升级尚未实测。
++请在拥有独立包文件的隔离环境执行。全新安装通过 `requirements/ascend_kernels.txt`
++已经选择这一编译器。组件升级实测环境为 Python 3.12.13、Torch 2.10.0+cpu、
++torch_npu 2.10.0.post4、CANN 9.1.0。Dockerfile 现在使用官方
++`9.1.0-a3-openeuler24.03-py3.12` 基础镜像和匹配的固定依赖配置。
++[官方优先推荐的 NPUIR 配套](https://ascendnpu-ir.gitcode.com/en/introduction/quick_start/version_compatibility.html)
++为 NPUIR 2.0.0 与 CANN 9.2.0；这里使用的是经过验证的编译器组件更新，CANN 运行时
++继续保持 9.1.0，也不会升级宿主机驱动或固件。
+ 
+ Triton 优先选择自己捆绑的编译器。升级后应检查实际执行路径和构建号，仅查看
+ `triton.__version__` 不足以确认：
+diff --git a/lmdeploy/pytorch/engine/model_agent/agent.py b/lmdeploy/pytorch/engine/model_agent/agent.py
+index 75f92bbe..7f8821e1 100644
+--- a/lmdeploy/pytorch/engine/model_agent/agent.py
++++ b/lmdeploy/pytorch/engine/model_agent/agent.py
+@@ -716,14 +716,15 @@ class BaseModelAgent:
+                                     extra_inputs: ExtraInputs, sampling_inputs: SamplingInputs):
+         """Sampling logits."""
+         if self.spec_agent.is_enabled():
+-            if self.cache_config.device_type == 'ascend':
+-                extra_inputs.target_logits = extra_inputs.target_logits.to(torch.float32)
++            target_logits = getattr(extra_inputs, 'target_logits', None)
++            if target_logits is not None and target_logits.device.type == 'npu':
++                extra_inputs.target_logits = target_logits.to(torch.float32)
+             extra_inputs = await self.spec_agent.async_sampling_logits(inputs, extra_inputs, sampling_inputs)
+             return extra_inputs.next_token_ids, extra_inputs.logprobs, extra_inputs.output_token_ids, extra_inputs
+         # record function does not support async function
+         # so we can not decorate it on async_sampling_logits
+         with record_function('sampling_logits'):
+-            if self.cache_config.device_type == 'ascend':
++            if logits.device.type == 'npu':
+                 logits = logits.to(torch.float32)
+             logits_processor = FusedLogitsProcessor(
+                 sampling_inputs,
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md b/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md
+index 60d9e1c9..db3f6a2f 100644
+--- a/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md
+@@ -75,7 +75,7 @@ Implements the core linear attention operation for prefill phase using chunked p
+ - Processes sequences in chunks for parallelism
+ 
+ **Wrapper Role**:
+-`fla/chunk.py` is a thin wrapper that handles input validation, dtype conversion (to bfloat16), optional Q/K L2 normalization (`use_qk_l2norm_in_kernel`) via `triton_ascend_kernels.norm.l2norm.l2norm_fwd`, and delegates to `triton_ascend_kernels.attention.fla.chunk_gated_delta_rule_fwd`.
++`fla/chunk.py` is a thin wrapper that handles input validation, dtype conversion (to bfloat16), optional Q/K L2 normalization (`use_qk_l2norm_in_kernel`) via the bundled `fla.prefill.l2norm.l2norm_fwd`, and delegates to `fla.prefill.chunk.chunk_gated_delta_rule_fwd`.
+ 
+ ______________________________________________________________________
+ 
+@@ -85,7 +85,7 @@ ______________________________________________________________________
+ 
+ **Source**:
+ 
+-- Adapted from: https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/ops/triton/fla/sigmoid_gating.py
++- Migration source: https://github.com/DeepLink-org/dlinfer/blob/3b9096341a41e9d067104a39d914e47ca2d7ec50/dlinfer/vendor/ascend/triton_ops/fla/sigmoid_gating.py
+ - Original: https://github.com/fla-org/flash-linear-attention (MIT)
+ - Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
+ 
+@@ -122,7 +122,7 @@ ______________________________________________________________________
+ **Source**:
+ 
+ - Adapted from: https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/ops/triton/fla/layernorm_guard.py
+-- Original: https://github.com/fla-org/flash-linear-attention/blob/main/fla/modules/layernorm_gated.py
++- Original: https://github.com/fla-org/flash-linear-attention/blob/9c8e42e762fce087c27b673af4922795d9edb85e/fla/modules/fused_norm_gate.py
+ 
+ **Purpose**:
+ Implements RMSNorm (Root Mean Square Normalization) with optional SiLU (`silu`/`swish`) or sigmoid gating.
+@@ -175,7 +175,7 @@ Input tokens
+     ↓
+ [Causal Conv1D] ← causal_conv1d_fn
+     ↓
+-[Linear Attention] ← chunk_gated_delta_rule (triton_ascend_kernels)
++[Linear Attention] ← chunk_gated_delta_rule (bundled GDN prefill)
+     ↓
+ [Gated RMSNorm] ← RMSNormGated → rmsnorm_fn
+     ↓
+@@ -200,54 +200,37 @@ ______________________________________________________________________
+ 
+ ## External Dependencies
+ 
+-| Package                 | Usage                                                          |
+-| ----------------------- | -------------------------------------------------------------- |
+-| `triton`                | Kernel DSL and JIT compilation                                 |
+-| `triton_ascend_kernels` | Official Ascend-optimized kernels (prefill attention, L2 norm) |
+-| `torch`                 | Tensor operations, NPU device management                       |
+-| `torch_npu`             | Ascend NPU backend for PyTorch                                 |
++| Package     | Usage                                    |
++| ----------- | ---------------------------------------- |
++| `triton`    | Kernel DSL and JIT compilation           |
++| `torch`     | Tensor operations, NPU device management |
++| `torch_npu` | Ascend NPU backend for PyTorch           |
+ 
+ ______________________________________________________________________
+ 
+ ## Installation
+ 
+-### Installing `triton-ascend-kernels`
++### Installing the native Ascend kernels
+ 
+-The core attention kernels (`chunk_gated_delta_rule_fwd`, `l2norm_fwd`) are provided by the official `triton-ascend-kernels` package.
++The GDN prefill and L2Norm implementations are included under
++[`fla/prefill`](fla/prefill/README.md), with their fixed source revision and MIT
++license. No build-time GitCode checkout or external `triton-ascend-kernels`
++installation is required.
+ 
+-**LMDeploy runtime requirements**:
+-
+-Use `requirements/runtime_ascend.txt` and `requirements/ascend_kernels.txt`
+-from the repository root. The native backend requires matching torch/torch_npu
+-major.minor versions, torch >= 2.8.0, torch_npu >= 2.8.0.post1, and
+-`torch.npu.NPUGraph.update` (`backends/ascend/version.py:23`). The old 2.6
+-installation recipe is not supported by this checkout. Record the actual
+-`triton-ascend-kernels` Git commit in the A3 validation environment; the imported
+-chunk/L2Norm kernels are an external dependency, not code supplied by dlinfer.
+-
+-See the [Ascend installation guide](../../../../../docs/en/get_started/ascend/get_started.md#native-a3-installation).
+-
+-**Install from source**:
+-
+-```bash
+-git clone https://gitcode.com/Ascend/triton-ascend-kernels.git
+-cd triton-ascend-kernels
+-pip install -e .
+-```
+-
+-**Verify installation**:
++Use `requirements/runtime_ascend.txt`, `requirements/ascend_kernels.txt`, and the
++CANN 9.1 A3 constraints from the repository root. The native backend requires
++matching Torch/TorchNPU major.minor versions and `torch.npu.NPUGraph.update`.
++See the [Ascend installation guide](../../../../../docs/en/get_started/ascend/get_started.md#native-a3-installation)
++for the complete CPU-PyTorch/TorchNPU/Triton version combination.
+ 
+ ```python
+-from triton_ascend_kernels.attention.fla import chunk_gated_delta_rule_fwd
+-from triton_ascend_kernels.norm.l2norm import l2norm_fwd
+-
+-print("triton-ascend-kernels installed successfully!")
++from lmdeploy.pytorch.kernels.ascend.triton_ops.fla.prefill import chunk_gated_delta_rule_fwd
++from lmdeploy.pytorch.kernels.ascend.triton_ops.fla.prefill.l2norm import l2norm_fwd
+ ```
+ 
+-For more details, see: https://gitcode.com/Ascend/triton-ascend-kernels
+-
+ ______________________________________________________________________
+ 
+ ## License
+ 
+-All kernels are Apache-2.0 licensed. Original sources are attributed in individual file headers.
++Kernels retain the licenses and source attribution in their file headers. The
++bundled GDN prefill/L2Norm slice is covered by its [MIT license](fla/prefill/LICENSE).
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py
+index ad08b2fd..a0255411 100644
+--- a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py
+@@ -7,8 +7,9 @@
+ # mypy: ignore-errors
+ 
+ import torch
+-from triton_ascend_kernels.attention.fla import chunk_gated_delta_rule_fwd
+-from triton_ascend_kernels.norm.l2norm import l2norm_fwd
++
++from .prefill import chunk_gated_delta_rule_fwd
++from .prefill.l2norm import l2norm_fwd
+ 
+ 
+ def chunk_gated_delta_rule(
+@@ -26,7 +27,7 @@ def chunk_gated_delta_rule(
+ ):
+     r"""
+     Inference-only chunk gated delta rule (no autograd wrapper).
+-    Kernel: triton_ascend_kernels.attention.fla.chunk_gated_delta_rule_fwd
++    Kernel: lmdeploy.pytorch.kernels.ascend.triton_ops.fla.prefill.chunk_gated_delta_rule_fwd
+ 
+     Args:
+         q: queries  `[B, T, H, K]`.
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/LICENSE b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/LICENSE
+new file mode 100644
+index 00000000..11476768
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/LICENSE
+@@ -0,0 +1,7 @@
++Copyright © 2025 Huawei Technologies Co., Ltd.
++
++Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/README.md b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/README.md
+new file mode 100644
+index 00000000..afb16208
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/README.md
+@@ -0,0 +1,22 @@
++# Ascend GDN prefill kernels
++
++These MIT-licensed kernels are imported from
++[Ascend/triton-ascend-kernels](https://gitcode.com/Ascend/triton-ascend-kernels),
++commit `8e70a44afa537fcbcdc6d59e6d2196a38f1e7b6f`, using the frozen A3 validation
++snapshot. Copyright notices and the complete [MIT license](LICENSE) are retained.
++
++The imported slice contains `attention/fla/*.py`, `norm/l2norm.py`, and the device
++query helpers from `utils.py` (here named `device.py`). Only module locations and
++repository formatting change. The snapshot already contained two compatibility
++edits used by the pre-migration and native validation environments:
++
++- `cumsum.py` stores in the destination tensor's dtype.
++- `solve_tril.py` imports slice helpers from `triton.language.extra.cann.extension`.
++
++The recurrence, tiling, launch options, and arithmetic remain those of that
++validated snapshot. This removes the build-time checkout of a floating GitCode
++branch and its conflicting legacy Torch/Triton dependency pins. Triton-Ascend
++and the CANN/TorchNPU runtime remain external dependencies.
++
++Provenance hashes, comparison tests and the CI failure analysis are recorded in
++the [A3 validation reports](https://github.com/silencelamb/lmdeploy/tree/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation).
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/__init__.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/__init__.py
+new file mode 100644
+index 00000000..78e17c18
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/__init__.py
+@@ -0,0 +1,18 @@
++# Copyright (c) OpenMMLab. All rights reserved.
++from .chunk import chunk_gated_delta_rule_fwd
++from .chunk_delta_h import chunk_gated_delta_rule_fwd_h
++from .chunk_o import chunk_fwd_o
++from .chunk_scaled_dot_kkt import chunk_scaled_dot_kkt_fwd
++from .cumsum import chunk_local_cumsum
++from .solve_tril import solve_tril
++from .wy_fast import recompute_w_u_fwd
++
++__all__ = [
++    'chunk_gated_delta_rule_fwd_h',
++    'chunk_fwd_o',
++    'chunk_scaled_dot_kkt_fwd',
++    'chunk_gated_delta_rule_fwd',
++    'chunk_local_cumsum',
++    'solve_tril',
++    'recompute_w_u_fwd',
++]
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk.py
+new file mode 100644
+index 00000000..82cf4bef
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk.py
+@@ -0,0 +1,68 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++
++from .chunk_delta_h import chunk_gated_delta_rule_fwd_h
++from .chunk_o import chunk_fwd_o
++from .chunk_scaled_dot_kkt import chunk_scaled_dot_kkt_fwd
++from .cumsum import chunk_local_cumsum
++from .solve_tril import solve_tril
++from .wy_fast import recompute_w_u_fwd
++
++
++def chunk_gated_delta_rule_fwd(
++    q: torch.Tensor,
++    k: torch.Tensor,
++    v: torch.Tensor,
++    g: torch.Tensor,
++    beta: torch.Tensor,
++    scale: float,
++    initial_state: torch.Tensor,
++    output_final_state: bool,
++    cu_seqlens: torch.LongTensor | None = None,
++):
++    g = chunk_local_cumsum(g, chunk_size=64, cu_seqlens=cu_seqlens)
++    A = chunk_scaled_dot_kkt_fwd(
++        k=k, beta=beta, g_cumsum=g, cu_seqlens=cu_seqlens, output_dtype=torch.float32
++    )
++    A = solve_tril(A=A, cu_seqlens=cu_seqlens, output_dtype=k.dtype)
++    w, u = recompute_w_u_fwd(
++        k=k,
++        v=v,
++        beta=beta,
++        g_cumsum=g,
++        A=A,
++        cu_seqlens=cu_seqlens,
++    )
++    h, v_new, final_state = chunk_gated_delta_rule_fwd_h(
++        k=k,
++        w=w,
++        u=u,
++        g=g,
++        initial_state=initial_state,
++        output_final_state=output_final_state,
++        cu_seqlens=cu_seqlens,
++    )
++    o = chunk_fwd_o(
++        q=q,
++        k=k,
++        v=v_new,
++        h=h,
++        g=g,
++        scale=scale,
++        cu_seqlens=cu_seqlens,
++    )
++    return o, final_state
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_delta_h.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_delta_h.py
+new file mode 100644
+index 00000000..23bc32f7
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_delta_h.py
+@@ -0,0 +1,278 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++import triton
++import triton.language as tl
++
++from .utils import prepare_chunk_indices, prepare_chunk_offsets, safe_exp
++
++
++@triton.heuristics(
++    {
++        'USE_G': lambda args: args['g'] is not None,
++        'USE_INITIAL_STATE': lambda args: args['h0'] is not None,
++        'STORE_FINAL_STATE': lambda args: args['ht'] is not None,
++        'SAVE_NEW_VALUE': lambda args: args['v_new'] is not None,
++        'IS_VARLEN': lambda args: args['cu_seqlens'] is not None,
++    }
++)
++@triton.jit(do_not_specialize=['T'])
++def chunk_gated_delta_rule_fwd_kernel_h_blockdim64(
++    k,
++    v,
++    w,
++    v_new,
++    g,
++    h,
++    h0,
++    ht,
++    cu_seqlens,
++    chunk_offsets,
++    T,
++    H: tl.constexpr,
++    Hg: tl.constexpr,
++    K: tl.constexpr,
++    V: tl.constexpr,
++    BT: tl.constexpr,
++    USE_G: tl.constexpr,
++    USE_INITIAL_STATE: tl.constexpr,
++    STORE_FINAL_STATE: tl.constexpr,
++    SAVE_NEW_VALUE: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++):
++    i_nh = tl.program_id(1)
++    i_n, i_h = i_nh // H, i_nh % H
++    T_max = 1 * T
++    if IS_VARLEN:
++        bos, eos = (
++            tl.load(cu_seqlens + i_n).to(tl.int32),
++            tl.load(cu_seqlens + i_n + 1).to(tl.int32),
++        )
++        T = eos - bos
++        NT = tl.cdiv(T, BT)
++        boh = tl.load(chunk_offsets + i_n).to(tl.int32)
++    else:
++        bos, eos = i_n * T, i_n * T + T
++        NT = tl.cdiv(T, BT)
++        boh = i_n * NT
++
++    stride_v = H * V
++    stride_k = Hg * K
++    stride_w = H * K
++
++    b_h1_bv1 = tl.zeros([128, 64], dtype=tl.float32)
++    b_h1_bv2 = tl.zeros([128, 64], dtype=tl.float32)
++
++    v_start1 = 0
++    v_start2 = 64
++
++    offs_k = tl.arange(0, 128)[:, None]
++    offs_v1 = v_start1 + tl.arange(0, 64)[None, :]
++    offs_v2 = v_start2 + tl.arange(0, 64)[None, :]
++    mask_kv1 = (offs_k < K) & (offs_v1 < V)
++    mask_kv2 = (offs_k < K) & (offs_v2 < V)
++
++    # load initial state
++    if USE_INITIAL_STATE:
++        h0_ptr = h0 + i_nh * K * V
++        ptr_h0_bv1 = h0_ptr + offs_k * V + offs_v1 * 1
++        b_h1_bv1 += tl.load(ptr_h0_bv1, mask=mask_kv1, other=0.0).to(tl.float32)
++
++        ptr_h0_bv2 = h0_ptr + offs_k * V + offs_v2 * 1
++        b_h1_bv2 += tl.load(ptr_h0_bv2, mask=mask_kv2, other=0.0).to(tl.float32)
++
++    # main recurrence
++    for i_t in range(NT):
++        h_base = h + (boh + i_t) * H * K * V + i_h * K * V
++
++        p_h1_bv1 = tl.make_block_ptr(
++            h_base, (K, V), (V, 1), (0, v_start1), (128, 64), (1, 0)
++        )
++        tl.store(
++            p_h1_bv1, b_h1_bv1.to(p_h1_bv1.dtype.element_ty), boundary_check=(0, 1)
++        )
++
++        p_h1_bv2 = tl.make_block_ptr(
++            h_base, (K, V), (V, 1), (0, v_start2), (128, 64), (1, 0)
++        )
++        tl.store(
++            p_h1_bv2, b_h1_bv2.to(p_h1_bv2.dtype.element_ty), boundary_check=(0, 1)
++        )
++
++        offs_t_wv = (i_t * BT + tl.arange(0, BT))[:, None]
++        offs_k_wv = tl.arange(0, 128)[None, :]
++        mask_w = (offs_t_wv < T) & (offs_k_wv < K)
++
++        w_base = w + bos * H * K + i_h * K
++        ptr_w = w_base + offs_t_wv * stride_w + offs_k_wv * 1
++        b_w = tl.load(ptr_w, mask=mask_w, other=0.0)
++
++        k_base = k + bos * Hg * K + (i_h // (H // Hg)) * K
++        p_k = tl.make_block_ptr(
++            k_base, (K, T), (1, stride_k), (0, i_t * BT), (128, BT), (0, 1)
++        )
++        b_k = tl.load(p_k, boundary_check=(0, 1))
++
++        v_new_base = v_new + bos * H * V + i_h * V
++
++        last_idx = min((i_t + 1) * BT, T) - 1
++        b_g_last = tl.load(g + bos + i_h * T_max + last_idx)
++
++        offs_t = i_t * BT + tl.arange(0, BT)
++        mask_t = offs_t < T
++        g_ptr = g + bos + i_h * T_max
++        b_g = tl.load(g_ptr + offs_t, mask=mask_t, other=0.0)
++
++        b_g = safe_exp(b_g_last - b_g)
++        b_g_last = tl.exp(b_g_last)
++
++        offs_t_v = (i_t * BT + tl.arange(0, BT))[:, None]
++        mask_v1 = (offs_t_v < T) & (offs_v1 < V)
++
++        v_base = v + bos * H * V + i_h * V
++        ptr_v1 = v_base + offs_t_v * stride_v + offs_v1 * 1
++        b_v1 = tl.load(ptr_v1, mask=mask_v1, other=0.0)
++        b_v_new1 = b_v1.to(tl.float32)
++        b_v_new1 -= tl.dot(b_w, b_h1_bv1.to(b_w.dtype))
++
++        if SAVE_NEW_VALUE:
++            p_v_new1 = tl.make_block_ptr(
++                v_new_base,
++                (T, V),
++                (stride_v, 1),
++                (i_t * BT, v_start1),
++                (BT, 64),
++                (1, 0),
++            )
++            tl.store(
++                p_v_new1, b_v_new1.to(p_v_new1.dtype.element_ty), boundary_check=(0, 1)
++            )
++
++        if USE_G:
++            b_v_new1 = b_v_new1 * b_g[:, None]
++            b_h1_bv1 = b_h1_bv1 * b_g_last
++
++        b_v_new1 = b_v_new1.to(k.dtype.element_ty)
++        b_h1_bv1 += tl.dot(b_k, b_v_new1)
++
++        mask_v2 = (offs_t_v < T) & (offs_v2 < V)
++        ptr_v2 = v_base + offs_t_v * stride_v + offs_v2 * 1
++        b_v2 = tl.load(ptr_v2, mask=mask_v2, other=0.0)
++        b_v_new2 = b_v2.to(tl.float32)
++        b_v_new2 -= tl.dot(b_w, b_h1_bv2.to(b_w.dtype))
++
++        if SAVE_NEW_VALUE:
++            p_v_new2 = tl.make_block_ptr(
++                v_new_base,
++                (T, V),
++                (stride_v, 1),
++                (i_t * BT, v_start2),
++                (BT, 64),
++                (1, 0),
++            )
++            tl.store(
++                p_v_new2, b_v_new2.to(p_v_new2.dtype.element_ty), boundary_check=(0, 1)
++            )
++
++        if USE_G:
++            b_v_new2 = b_v_new2 * b_g[:, None]
++            b_h1_bv2 = b_h1_bv2 * b_g_last
++
++        b_v_new2 = b_v_new2.to(k.dtype.element_ty)
++        b_h1_bv2 += tl.dot(b_k, b_v_new2)
++
++    # epilogue
++    if STORE_FINAL_STATE:
++        ht_ptr = ht + i_nh * K * V
++
++        p_ht1_bv1 = tl.make_block_ptr(
++            ht_ptr, (K, V), (V, 1), (0, v_start1), (128, 64), (1, 0)
++        )
++        tl.store(
++            p_ht1_bv1, b_h1_bv1.to(p_ht1_bv1.dtype.element_ty), boundary_check=(0, 1)
++        )
++
++        p_ht1_bv2 = tl.make_block_ptr(
++            ht_ptr, (K, V), (V, 1), (0, v_start2), (128, 64), (1, 0)
++        )
++        tl.store(
++            p_ht1_bv2, b_h1_bv2.to(p_ht1_bv2.dtype.element_ty), boundary_check=(0, 1)
++        )
++
++
++def chunk_gated_delta_rule_fwd_h(
++    k: torch.Tensor,
++    w: torch.Tensor,
++    u: torch.Tensor,
++    g: torch.Tensor | None = None,
++    initial_state: torch.Tensor | None = None,
++    output_final_state: bool = False,
++    chunk_size: int = 64,  # SY: remove this argument and force chunk size 64?
++    save_new_value: bool = True,
++    cu_seqlens: torch.LongTensor | None = None,
++) -> tuple[torch.Tensor, torch.Tensor]:
++    B, T, Hg, K, V = *k.shape, u.shape[-1]
++    H = u.shape[-2]
++    BT = chunk_size
++
++    chunk_indices = (
++        prepare_chunk_indices(cu_seqlens, chunk_size)
++        if cu_seqlens is not None
++        else None
++    )
++    # N: the actual number of sequences in the batch with either equal or variable lengths
++    if cu_seqlens is None:
++        N, NT, chunk_offsets = B, triton.cdiv(T, BT), None
++    else:
++        N, NT, chunk_offsets = (
++            len(cu_seqlens) - 1,
++            len(chunk_indices),
++            prepare_chunk_offsets(cu_seqlens, BT),
++        )
++    assert K <= 256, 'current kernel does not support head dimension larger than 256.'
++
++    h = k.new_empty(B, NT, H, K, V)
++    final_state = (
++        k.new_empty(N, H, K, V, dtype=torch.float32) if output_final_state else None
++    )
++
++    v_new = torch.empty_like(u) if save_new_value else None
++    g = g.transpose(1, 2).contiguous()
++
++    def grid(meta):
++        return (1, N * H)
++
++    chunk_gated_delta_rule_fwd_kernel_h_blockdim64[grid](
++        k=k,
++        v=u,
++        w=w,
++        v_new=v_new,
++        g=g,
++        h=h,
++        h0=initial_state,
++        ht=final_state,
++        cu_seqlens=cu_seqlens,
++        chunk_offsets=chunk_offsets,
++        T=T,
++        H=H,
++        Hg=Hg,
++        K=K,
++        V=V,
++        BT=BT,
++        num_warps=4,
++        num_stages=2,
++    )
++    return h, v_new, final_state
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_o.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_o.py
+new file mode 100644
+index 00000000..5be71ef2
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_o.py
+@@ -0,0 +1,179 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++import triton
++import triton.language as tl
++
++from .utils import prepare_chunk_offsets, safe_exp
++
++
++@triton.heuristics(
++    {
++        'USE_G': lambda args: args['g'] is not None,
++        'IS_VARLEN': lambda args: args['cu_seqlens'] is not None,
++    }
++)
++@triton.jit(do_not_specialize=['T'])
++def chunk_fwd_kernel_o(
++    q,
++    k,
++    v,
++    h,
++    g,
++    o,
++    cu_seqlens,
++    chunk_offsets,
++    scale,
++    T,
++    H: tl.constexpr,
++    Hg: tl.constexpr,
++    K: tl.constexpr,
++    V: tl.constexpr,
++    BT: tl.constexpr,
++    BK: tl.constexpr,
++    BV: tl.constexpr,
++    USE_G: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++):
++    i_v, i_nh = tl.program_id(0), tl.program_id(1)
++    i_n, i_h = i_nh // H, i_nh % H
++    T_max = T
++
++    if IS_VARLEN:
++        bos, eos = tl.load(cu_seqlens + i_n).to(tl.int32), tl.load(
++            cu_seqlens + i_n + 1
++        ).to(tl.int32)
++        T = eos - bos
++        NT = tl.cdiv(T, BT)
++        boh = tl.load(chunk_offsets + i_n).to(tl.int64)
++    else:
++        bos, eos = i_n * T, i_n * T + T
++        NT = tl.cdiv(T, BT)
++        boh = i_n * NT
++
++    # offset calculation
++    q += (bos * Hg + i_h // (H // Hg)) * K
++    k += (bos * Hg + i_h // (H // Hg)) * K
++    v += (bos * H + i_h) * V
++    o += (bos * H + i_h) * V
++
++    for i_t in range(NT):
++        i_tg = boh + i_t
++        h_base = h + (i_tg * H + i_h).to(tl.int64) * K * V
++        b_o = tl.zeros([BT, BV], dtype=tl.float32)
++        b_A = tl.zeros([BT, BT], dtype=tl.float32)
++
++        for i_k in range(tl.cdiv(K, BK)):
++            p_q = tl.make_block_ptr(
++                q, (T, K), (Hg * K, 1), (i_t * BT, i_k * BK), (BT, BK), (1, 0)
++            )
++            p_k = tl.make_block_ptr(
++                k, (K, T), (1, Hg * K), (i_k * BK, i_t * BT), (BK, BT), (0, 1)
++            )
++            p_h = tl.make_block_ptr(
++                h_base, (K, V), (V, 1), (i_k * BK, i_v * BV), (BK, BV), (1, 0)
++            )
++            # [BT, BK]
++            b_q = tl.load(p_q, boundary_check=(0, 1))
++            # [BK, BT]
++            b_k = tl.load(p_k, boundary_check=(0, 1))
++            # [BK, BV]
++            b_h = tl.load(p_h, boundary_check=(0, 1))
++
++            # [BT, BK] @ [BK, BV] -> [BT, BV]
++            b_o += tl.dot(b_q, b_h)
++            # [BT, BK] @ [BK, BT] -> [BT, BT]
++            b_A += tl.dot(b_q, b_k)
++
++        if USE_G:
++            offs_t = i_t * BT + tl.arange(0, BT)
++            mask_t = offs_t < T
++            g_ptr = g + bos + i_h * T_max
++            b_g = tl.load(g_ptr + offs_t, mask=mask_t, other=0.0)
++
++            b_o = b_o * tl.exp(b_g)[:, None]
++            b_A = b_A * safe_exp(b_g[:, None] - b_g[None, :])
++
++        o_i = tl.arange(0, BT).to(tl.float32)
++        m_A = o_i[:, None] >= o_i[None, :]
++        b_A = tl.where(m_A, b_A, 0)
++
++        p_v = tl.make_block_ptr(
++            v, (T, V), (H * V, 1), (i_t * BT, i_v * BV), (BT, BV), (1, 0)
++        )
++        p_o = tl.make_block_ptr(
++            o, (T, V), (H * V, 1), (i_t * BT, i_v * BV), (BT, BV), (1, 0)
++        )
++
++        b_v = tl.load(p_v, boundary_check=(0, 1))
++        # to fix mma -> mma layout conversion
++        # already solved by triton v3.2 or higher
++        b_o = b_o * scale + tl.dot(b_A.to(b_v.dtype), b_v) * scale
++        tl.store(p_o, b_o.to(p_o.dtype.element_ty), boundary_check=(0, 1))
++
++
++def chunk_fwd_o(
++    q: torch.Tensor,
++    k: torch.Tensor,
++    v: torch.Tensor,
++    h: torch.Tensor,
++    g: torch.Tensor | None = None,
++    scale: float | None = None,
++    cu_seqlens: torch.LongTensor | None = None,
++    chunk_size: int = 64,
++) -> torch.Tensor:
++    B, T, Hg, K, V = *q.shape, v.shape[-1]
++    H = v.shape[-2]
++    BT = chunk_size
++
++    if scale is None:
++        scale = k.shape[-1] ** -0.5
++
++    o = torch.empty_like(v)
++    if cu_seqlens is None:
++        N, chunk_offsets = B, None
++    else:
++        N, chunk_offsets = (
++            len(cu_seqlens) - 1,
++            prepare_chunk_offsets(cu_seqlens, BT),
++        )
++
++    def grid(meta):
++        return (triton.cdiv(V, meta['BV']), N * H)
++
++    g = g.transpose(1, 2).contiguous()
++    chunk_fwd_kernel_o[grid](
++        q=q,
++        k=k,
++        v=v,
++        h=h,
++        g=g,
++        o=o,
++        cu_seqlens=cu_seqlens,
++        chunk_offsets=chunk_offsets,
++        scale=scale,
++        T=T,
++        H=H,
++        Hg=Hg,
++        K=K,
++        V=V,
++        BT=BT,
++        BK=128,
++        BV=128,
++        num_warps=4,
++        num_stages=2,
++    )
++    return o
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_scaled_dot_kkt.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_scaled_dot_kkt.py
+new file mode 100644
+index 00000000..cdeb03ff
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_scaled_dot_kkt.py
+@@ -0,0 +1,168 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++import triton
++import triton.language as tl
++
++from .utils import prepare_chunk_indices, safe_exp
++
++
++@triton.heuristics(
++    {
++        'IS_VARLEN': lambda args: args['cu_seqlens'] is not None,
++        'USE_G': lambda args: args['g_cumsum'] is not None,
++    }
++)
++@triton.jit(do_not_specialize=['T'])
++def chunk_scaled_dot_kkt_fwd_kernel(
++    k,
++    beta,  # [H, B, T]
++    g_cumsum,  # [H, B, T]
++    A,
++    cu_seqlens,
++    chunk_indices,
++    T,
++    B,
++    H: tl.constexpr,
++    Hg: tl.constexpr,
++    K: tl.constexpr,
++    BT: tl.constexpr,
++    BK: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++    USE_G: tl.constexpr,
++):
++    bt_stride = B * T
++    i_t_i, _ = tl.program_id(0), tl.program_id(1)
++
++    for i_bh in range(B * H):
++        i_b, i_h = i_bh // H, i_bh % H
++        if IS_VARLEN:
++            i_n, i_t = tl.load(chunk_indices + i_t_i * 2).to(tl.int32), tl.load(
++                chunk_indices + i_t_i * 2 + 1
++            ).to(tl.int32)
++            bos, eos = tl.load(cu_seqlens + i_n).to(tl.int32), tl.load(
++                cu_seqlens + i_n + 1
++            ).to(tl.int32)
++            T = eos - bos
++        else:
++            bos, eos = i_b * T, i_b * T + T
++            i_t = i_t_i
++        o_t = tl.arange(0, BT)
++        o_t_fp32 = o_t.to(tl.float32)
++
++        p_beta = tl.make_block_ptr(
++            beta + i_h * bt_stride + bos, (T,), (1,), (i_t * BT,), (BT,), (0,)
++        )
++        b_beta = tl.load(p_beta, boundary_check=(0,))
++
++        b_A = tl.zeros([BT, BT], dtype=tl.float32)
++        for i_k in range(tl.cdiv(K, BK)):
++            p_k = tl.make_block_ptr(
++                k + (bos * Hg + i_h // (H // Hg)) * K,
++                (T, K),
++                (Hg * K, 1),
++                (i_t * BT, i_k * BK),
++                (BT, BK),
++                (1, 0),
++            )
++            b_k = tl.load(p_k, boundary_check=(0, 1))
++            b_A += tl.dot(b_k, tl.trans(b_k))
++
++        if USE_G:
++            p_g = tl.make_block_ptr(
++                g_cumsum + i_h * bt_stride + bos, (T,), (1,), (i_t * BT,), (BT,), (0,)
++            )
++            b_g = tl.load(p_g, boundary_check=(0,))
++            b_g_diff = b_g[:, None] - b_g[None, :]
++            b_A *= safe_exp(b_g_diff)
++
++        b_A *= b_beta[:, None]
++        b_A = tl.where(o_t_fp32[:, None] > o_t_fp32[None, :], b_A, 0)
++        p_A = tl.make_block_ptr(
++            A + (bos * H + i_h) * BT,
++            (T, BT),
++            (BT * H, 1),
++            (i_t * BT, 0),
++            (BT, BT),
++            (1, 0),
++        )
++        tl.store(p_A, b_A.to(p_A.dtype.element_ty), boundary_check=(0, 1))
++
++
++def chunk_scaled_dot_kkt_fwd(
++    k: torch.Tensor,
++    beta: torch.Tensor,
++    g_cumsum: torch.Tensor | None = None,
++    cu_seqlens: torch.LongTensor | None = None,
++    chunk_size: int = 64,
++    output_dtype: torch.dtype = torch.float32,
++) -> torch.Tensor:
++    r"""Compute beta * K * K^T.
++
++    Args:
++        k (torch.Tensor):
++            The key tensor of shape `[B, T, H, K]`.
++        beta (torch.Tensor):
++            The beta tensor of shape `[B, T, H]`.
++        g_cumsum (torch.Tensor):
++            The cumulative sum of the gate tensor of shape `[B, T, H]`.
++            Default: None
++        cu_seqlens (torch.LongTensor):
++            The cumulative sequence lengths of the input tensor.
++            Default: None
++        chunk_size (int):
++            The chunk size. Default: 64.
++        output_dtype (torch.dtype):
++            The dtype of the output tensor. Default: `torch.float32`
++
++    Returns:
++        beta * K * K^T of shape `[B, T, H, BT]` where `BT` is the chunk size.
++    """
++    B, T, Hg, K = k.shape
++
++    H = beta.shape[-1]
++    BT = chunk_size
++    if cu_seqlens is not None:
++        cu_seqlens = cu_seqlens.cpu()
++        chunk_indices = (
++            prepare_chunk_indices(cu_seqlens, BT) if cu_seqlens is not None else None
++        )
++        chunk_indices = chunk_indices.npu()
++        cu_seqlens = cu_seqlens.npu()
++    else:
++        chunk_indices = None
++    NT = triton.cdiv(T, BT) if cu_seqlens is None else len(chunk_indices)
++    A = torch.empty(B, T, H, BT, device=k.device, dtype=output_dtype)
++
++    chunk_scaled_dot_kkt_fwd_kernel[(NT, 1)](
++        k=k,
++        beta=torch.permute(beta, (2, 0, 1)).contiguous(),
++        g_cumsum=torch.permute(g_cumsum, (2, 0, 1)).contiguous(),
++        A=A,
++        cu_seqlens=cu_seqlens,
++        chunk_indices=chunk_indices,
++        T=T,
++        B=B,
++        H=H,
++        Hg=Hg,
++        K=K,
++        BT=BT,
++        BK=128,
++        num_warps=8,
++        num_stages=3,
++        multibuffer=True,
++    )
++    return A
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/cumsum.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/cumsum.py
+new file mode 100644
+index 00000000..4408bbda
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/cumsum.py
+@@ -0,0 +1,168 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++import triton
++import triton.language as tl
++
++from .utils import prepare_chunk_indices
++
++
++@triton.heuristics(
++    {
++        'HAS_SCALE': lambda args: args['scale'] is not None,
++        'IS_VARLEN': lambda args: args['cu_seqlens'] is not None,
++    }
++)
++@triton.jit(do_not_specialize=['T'])
++def chunk_local_cumsum_scalar_kernel(
++    s,
++    o,
++    scale,
++    cu_seqlens,
++    chunk_indices,
++    T,
++    B: tl.constexpr,
++    H: tl.constexpr,
++    BLOCK_T: tl.constexpr,
++    REVERSE: tl.constexpr,
++    HAS_SCALE: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++    HEAD_FIRST: tl.constexpr,
++    CHUNK_SIZE: tl.constexpr = 64,
++):
++    i_block, i_b = tl.program_id(0), tl.program_id(1)
++    N_CHUNKS: tl.constexpr = BLOCK_T // CHUNK_SIZE
++
++    if IS_VARLEN:
++        i_s, i_block = tl.load(chunk_indices + i_block * 2).to(tl.int32), tl.load(
++            chunk_indices + i_block * 2 + 1
++        ).to(tl.int32)
++        bos, eos = tl.load(cu_seqlens + i_s).to(tl.int32), tl.load(
++            cu_seqlens + i_s + 1
++        ).to(tl.int32)
++        T = eos - bos
++    else:
++        bos, eos = i_b * T, i_b * T + T
++
++    if HEAD_FIRST:
++        ptr_s = tl.make_block_ptr(
++            s + bos * H, (H, T), (T, 1), (0, i_block * BLOCK_T), (H, BLOCK_T), (1, 0)
++        )
++        ptr_o = tl.make_block_ptr(
++            o + bos * H, (H, T), (T, 1), (0, i_block * BLOCK_T), (H, BLOCK_T), (1, 0)
++        )
++        b_s = tl.load(ptr_s, boundary_check=(0,)).to(tl.float32)
++        b_s = tl.reshape(b_s, (H, N_CHUNKS, CHUNK_SIZE))
++        b_s = tl.trans(b_s, (2, 0, 1))
++        b_o = tl.cumsum(b_s, axis=0, reverse=REVERSE)
++        if HAS_SCALE:
++            b_o *= scale
++        b_o = tl.trans(b_o, (2, 0, 1))
++        b_o = tl.reshape(b_o, (H, BLOCK_T))
++    else:
++        ptr_s = tl.make_block_ptr(
++            s + bos * H, (T, H), (H, 1), (i_block * BLOCK_T, 0), (BLOCK_T, H), (1, 0)
++        )
++        ptr_o = tl.make_block_ptr(
++            o + bos * H, (T, H), (H, 1), (i_block * BLOCK_T, 0), (BLOCK_T, H), (1, 0)
++        )
++        b_s = tl.load(ptr_s, boundary_check=(0,)).to(tl.float32)
++        b_s = tl.reshape(b_s, (N_CHUNKS, CHUNK_SIZE, H))
++        b_s = tl.trans(b_s, (1, 0, 2))
++        b_o = tl.cumsum(b_s, axis=0, reverse=REVERSE)
++        if HAS_SCALE:
++            b_o *= scale
++        b_o = tl.trans(b_o, (1, 0, 2))
++        b_o = tl.reshape(b_o, (BLOCK_T, H))
++
++    tl.store(ptr_o, b_o.to(o.dtype.element_ty), boundary_check=(0,))
++    return
++
++
++def chunk_local_cumsum_scalar(
++    g,
++    chunk_size,
++    reverse: bool = False,
++    scale: float = None,
++    cu_seqlens: torch.Tensor | None = None,
++    head_first: bool = False,
++    output_dtype: torch.dtype | None = torch.float,
++):
++    if head_first:
++        B, H, T = g.shape
++    else:
++        B, T, H = g.shape
++    assert chunk_size == 2 ** (
++        chunk_size.bit_length() - 1
++    ), 'chunk_size must be a power of 2'
++    OPTIM_BLOCK_SIZE = triton.next_power_of_2((2**18) // (H * chunk_size))
++    block_indices = (
++        prepare_chunk_indices(cu_seqlens, chunk_size=OPTIM_BLOCK_SIZE)
++        if cu_seqlens is not None
++        else None
++    )
++    num_blocks = (
++        len(block_indices)
++        if cu_seqlens is not None
++        else triton.cdiv(T, OPTIM_BLOCK_SIZE)
++    )
++    g_org, g = g, torch.empty_like(g, dtype=output_dtype or g.dtype)
++    grid = (num_blocks, B)
++    chunk_local_cumsum_scalar_kernel[grid](
++        s=g_org,
++        o=g,
++        scale=scale,
++        cu_seqlens=cu_seqlens,
++        chunk_indices=block_indices,
++        T=T,
++        B=B,
++        H=H,
++        BLOCK_T=OPTIM_BLOCK_SIZE,
++        CHUNK_SIZE=chunk_size,
++        HEAD_FIRST=head_first,
++        REVERSE=reverse,
++        num_warps=8,
++        num_stages=3,
++    )
++    return g
++
++
++def chunk_local_cumsum(
++    g: torch.Tensor,
++    chunk_size: int,
++    reverse: bool = False,
++    scale: float = None,
++    cu_seqlens: torch.Tensor | None = None,
++    head_first: bool = False,
++    output_dtype: torch.dtype | None = torch.float,
++    **kwargs,
++) -> torch.Tensor:
++    if cu_seqlens is not None:
++        assert (
++            g.shape[0] == 1
++        ), 'Only batch size 1 is supported when cu_seqlens are provided'
++    if len(g.shape) == 3:
++        return chunk_local_cumsum_scalar(
++            g=g,
++            chunk_size=chunk_size,
++            reverse=reverse,
++            scale=scale,
++            cu_seqlens=cu_seqlens,
++            head_first=head_first,
++            output_dtype=output_dtype,
++        )
++    else:
++        raise ValueError(f"Unsupported input shape {g.shape}")
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/device.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/device.py
+new file mode 100644
+index 00000000..635e477b
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/device.py
+@@ -0,0 +1,35 @@
++# Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
++#
++# Permission is hereby granted, free of charge, to any person obtaining a copy
++# of this software and associated documentation files (the "Software"), to deal
++# in the Software without restriction, including without limitation the rights
++# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++# copies of the Software, and to permit persons to whom the Software is
++# furnished to do so, subject to the following conditions:
++#
++# The above copyright notice and this permission notice shall be included in
++# all copies or substantial portions of the Software.
++#
++# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
++# THE SOFTWARE.
++
++
++import torch
++import triton.runtime.driver as driver
++
++
++# get aicore number
++def get_npu_aicore_num():
++    device = torch.npu.current_device()
++    return driver.active.utils.get_device_properties(device)['num_aicore']
++
++
++# get vectorcore number
++def get_npu_vectorcore_num():
++    device = torch.npu.current_device()
++    return driver.active.utils.get_device_properties(device)['num_vectorcore']
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/l2norm.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/l2norm.py
+new file mode 100644
+index 00000000..2af49f75
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/l2norm.py
+@@ -0,0 +1,96 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Copyright contributors to the vLLM project
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++import torch
++import triton
++import triton.language as tl
++
++from .device import get_npu_vectorcore_num
++
++
++@triton.jit
++def l2norm_fwd_kernel(
++    X,
++    Y,
++    eps,
++    M,
++    N: tl.constexpr,
++    rows_per_prog: tl.constexpr,
++    MBLOCK: tl.constexpr,
++    NBLOCK: tl.constexpr,
++):
++    prog_id = tl.program_id(0)
++
++    row_start = prog_id * rows_per_prog
++    col_off = tl.arange(0, NBLOCK)
++    col_mask = col_off < N
++    for row_blk_id in range(0, rows_per_prog, MBLOCK):
++        row_blk_id = tl.multiple_of(row_blk_id, MBLOCK)
++        row_idx = row_start + row_blk_id + tl.arange(0, MBLOCK)
++        row_off = row_idx * N
++        row_mask = row_idx < M
++
++        tot_off = row_off[:, None] + col_off[None, :]
++        tot_mask = row_mask[:, None] & col_mask[None, :]
++
++        xs = tl.load(X + tot_off, mask=tot_mask).to(tl.float32)
++
++        square = xs * xs
++        square_sum = tl.sum(square, 1)[:, None]
++        rsqrt = tl.rsqrt(square_sum + eps)
++
++        tl.store(Y + tot_off, xs * rsqrt, mask=tot_mask)
++
++
++def l2norm_fwd(
++    x: torch.Tensor, eps: float = 1e-6, output_dtype: torch.dtype | None = None
++):
++    x_shape_og = x.shape
++    x = x.reshape(-1, x.shape[-1])
++    # allocate output
++    if output_dtype is None:
++        y = torch.empty_like(x)
++    else:
++        y = torch.empty_like(x, dtype=output_dtype)
++    assert y.stride(-1) == 1
++    T, D = x.shape[0], x.shape[-1]
++    # Less than 64KB per feature: enqueue fused kernel
++    MAX_FUSED_SIZE = 65536 // x.element_size()
++    BD = min(MAX_FUSED_SIZE, triton.next_power_of_2(D))
++    if D > BD:
++        raise RuntimeError("This layer doesn't support feature dim >= 64KB.")
++
++    element_size = 4  # Always cast tensor elements to f32
++
++    def get_dyn_size(D):
++        size_of_x = D * element_size
++        size_of_square = D * element_size
++        size_of_rsqrt = D * element_size
++        size_of_y = D * element_size
++        return size_of_x + size_of_square + size_of_rsqrt + size_of_y
++
++    ub_size = 196608
++    core_num = get_npu_vectorcore_num()
++
++    if T <= core_num:
++        num_progs = T
++        rows_per_prog = 1
++        MBLOCK = 1
++    else:
++        num_progs = core_num
++        rows_per_prog = triton.cdiv(T, core_num)
++        MBLOCK = min(ub_size // get_dyn_size(BD), rows_per_prog)
++
++    grid = (num_progs,)
++    l2norm_fwd_kernel[grid](
++        X=x,
++        Y=y,
++        eps=eps,
++        M=T,
++        N=D,
++        rows_per_prog=rows_per_prog,
++        MBLOCK=MBLOCK,
++        NBLOCK=BD,
++    )
++
++    return y.view(x_shape_og)
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/solve_tril.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/solve_tril.py
+new file mode 100644
+index 00000000..561836fe
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/solve_tril.py
+@@ -0,0 +1,453 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++import triton
++import triton.language as tl
++import triton.language.extra.cann.extension as tle
++
++from .utils import prepare_chunk_indices
++
++
++@triton.heuristics({'IS_VARLEN': lambda args: args['cu_seqlens'] is not None})
++@triton.jit(do_not_specialize=['T'])
++def solve_tril_16x16_kernel(
++    A,
++    Ad,
++    cu_seqlens,
++    chunk_indices,
++    T,
++    H: tl.constexpr,
++    BT: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++    LARGE_BLOCK_T: tl.constexpr,
++):
++    i_t, i_bh = tl.program_id(0), tl.program_id(1)
++    i_b, i_h = i_bh // H, i_bh % H
++    if IS_VARLEN:
++        i_n, i_t = (
++            tl.load(chunk_indices + i_t * 2).to(tl.int32),
++            tl.load(chunk_indices + i_t * 2 + 1).to(tl.int32),
++        )
++        bos, eos = (
++            tl.load(cu_seqlens + i_n).to(tl.int32),
++            tl.load(cu_seqlens + i_n + 1).to(tl.int32),
++        )
++        T = eos - bos
++    else:
++        bos, eos = i_b * T, i_b * T + T
++
++    A = A + (bos * H + i_h) * BT
++    Ad = Ad + (bos * H + i_h) * 16
++
++    base_t = i_t * LARGE_BLOCK_T
++
++    NTASKS: tl.constexpr = 2
++    N_BLOCKS: tl.constexpr = LARGE_BLOCK_T // 16 // NTASKS
++
++    for taskid in range(0, NTASKS):
++        base_t += taskid * (LARGE_BLOCK_T // NTASKS)
++
++        # use make_block_ptr to reduce vector computation
++        b_A = tl.zeros((N_BLOCKS, 16, 16), dtype=tl.float32)
++        for blkid in range(0, N_BLOCKS):
++            row_start_o = base_t + blkid * 16
++            col_start_o = row_start_o % BT
++
++            # 1 Create in-block offset
++            offs_rows_in_block = tl.arange(0, 16)
++            offs_cols_in_block = tl.arange(0, 16)
++
++            # 2 Calculate the pointer of each element
++            ptr_A_subrec16 = (
++                A
++                + row_start_o * H * BT
++                + col_start_o
++                + offs_rows_in_block[:, None] * H * BT
++                + offs_cols_in_block[None, :]
++            )
++
++            # 3 Create a mask to prevent out-of-bounds access
++            global_rows = row_start_o + offs_rows_in_block[:, None]
++            global_cols = col_start_o + offs_cols_in_block[None, :]
++            load_mask = (global_rows < T) & (global_cols < BT)
++
++            # 4 Use mask to safely load data
++            b_A_subrec16 = tl.load(ptr_A_subrec16, mask=load_mask, other=0.0).to(
++                tl.float32
++            )
++            b_A = tle.insert_slice(
++                ful=b_A,
++                sub=b_A_subrec16[None, :, :],  # (1, 16, 16)
++                offsets=[blkid, 0, 0],
++                sizes=[1, 16, 16],
++                strides=[1, 1, 1],
++            )
++
++        local_ori_A = tl.trans(b_A, (1, 0, 2))
++        local_ori_A = tl.reshape(local_ori_A, (16, 16 * N_BLOCKS))
++
++        # Convert mask into matrix multiplication to avoid for loops ub oom
++        tmp = tl.arange(0, 16).to(tl.float32)
++        rows = tmp[:, None]
++        cols = tmp[None, :]
++        is_lower = (rows > cols).to(b_A.dtype)
++        b_A = -b_A * is_lower
++
++        # for loop to update N_BLOCKS row vector
++        for i in range(1, 16):
++            nblks_vec16 = -tle.extract_slice(
++                local_ori_A, (i, 0), (1, 16 * N_BLOCKS), (16 * N_BLOCKS, 1)
++            )
++            b_a = tl.reshape(nblks_vec16, (N_BLOCKS, 16))
++
++            dot_tmp = tl.trans(b_a[:, :, None] * b_A, (1, 0, 2))
++            dot_product = tl.sum(dot_tmp, 0)
++            b_a = b_a + dot_product
++
++            b_a_new_expanded = b_a[:, None, :]
++            b_A = tle.insert_slice(
++                ful=b_A,
++                sub=b_a_new_expanded,
++                offsets=[0, i, 0],
++                sizes=[N_BLOCKS, 1, 16],
++                strides=[1, 1, 1],
++            )
++
++        on_diagonal = rows == cols
++        b_A = tl.where(on_diagonal, b_A + 1.0, b_A)
++
++        b_A = tl.reshape(b_A, (N_BLOCKS * 16, 16))
++        p_Ai = tl.make_block_ptr(
++            Ad, (T, 16), (H * 16, 1), (base_t, 0), (N_BLOCKS * 16, 16), (1, 0)
++        )
++
++        # 1 Create in-block offset
++        offs_rows_to_store = tl.arange(0, N_BLOCKS * 16)
++        offs_cols_to_store = tl.arange(0, 16)
++
++        # 2 Calculate the pointer of each element
++        p_Ai = (
++            Ad
++            + base_t * H * 16
++            + 0
++            + offs_rows_to_store[:, None] * H * 16
++            + offs_cols_to_store[None, :]
++        )
++        # 3 Create a mask to prevent out-of-bounds access, only check rows
++        global_store_rows = base_t + offs_rows_to_store[:, None]
++        store_mask = global_store_rows < T
++        # 4 use mask to save data safely
++        tl.store(
++            p_Ai,
++            b_A.to(p_Ai.dtype.element_ty, fp_downcast_rounding='rtne'),
++            mask=store_mask,
++        )
++
++
++@triton.heuristics({'IS_VARLEN': lambda args: args['cu_seqlens'] is not None})
++@triton.jit(do_not_specialize=['T'])
++def merge_16x16_to_32x32_inverse_kernel(
++    A,
++    Ad,
++    Ai,
++    cu_seqlens,
++    chunk_indices,
++    T,
++    H: tl.constexpr,
++    BT: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++):
++    i_t, i_bh = tl.program_id(0), tl.program_id(1)
++    i_b, i_h = i_bh // H, i_bh % H
++    if IS_VARLEN:
++        i_n, i_t = (
++            tl.load(chunk_indices + i_t * 2).to(tl.int32),
++            tl.load(chunk_indices + i_t * 2 + 1).to(tl.int32),
++        )
++        bos, eos = (
++            tl.load(cu_seqlens + i_n).to(tl.int32),
++            tl.load(cu_seqlens + i_n + 1).to(tl.int32),
++        )
++        T = eos - bos
++    else:
++        bos, eos = i_b * T, i_b * T + T
++
++    A += (bos * H + i_h) * 32
++    Ad += (bos * H + i_h) * 16
++    Ai += (bos * H + i_h) * 32
++
++    p_A_21 = tl.make_block_ptr(
++        A, (T, 32), (H * 32, 1), (i_t * 32 + 16, 0), (16, 16), (1, 0)
++    )
++    p_Ad_11 = tl.make_block_ptr(
++        Ad, (T, 16), (H * 16, 1), (i_t * 32, 0), (16, 16), (1, 0)
++    )
++    p_Ad_22 = tl.make_block_ptr(
++        Ad, (T, 16), (H * 16, 1), (i_t * 32 + 16, 0), (16, 16), (1, 0)
++    )
++    p_Ai_11 = tl.make_block_ptr(
++        Ai, (T, 32), (H * 32, 1), (i_t * 32, 0), (16, 16), (1, 0)
++    )
++    p_Ai_22 = tl.make_block_ptr(
++        Ai, (T, 32), (H * 32, 1), (i_t * 32 + 16, 16), (16, 16), (1, 0)
++    )
++    p_Ai_21 = tl.make_block_ptr(
++        Ai, (T, 32), (H * 32, 1), (i_t * 32 + 16, 0), (16, 16), (1, 0)
++    )
++
++    A_21 = tl.load(p_A_21, boundary_check=(0, 1)).to(tl.float32)
++    Ai_11 = tl.load(p_Ad_11, boundary_check=(0, 1)).to(tl.float32)
++    Ai_22 = tl.load(p_Ad_22, boundary_check=(0, 1)).to(tl.float32)
++    Ai_21 = -tl.dot(
++        tl.dot(Ai_22, A_21, input_precision='ieee'),
++        Ai_11,
++        input_precision='ieee',
++    )
++    tl.store(
++        p_Ai_11,
++        Ai_11.to(p_Ai_11.dtype.element_ty, fp_downcast_rounding='rtne'),
++        boundary_check=(0, 1),
++    )
++    tl.store(
++        p_Ai_22,
++        Ai_22.to(p_Ai_22.dtype.element_ty, fp_downcast_rounding='rtne'),
++        boundary_check=(0, 1),
++    )
++    tl.store(
++        p_Ai_21,
++        Ai_21.to(p_Ai_21.dtype.element_ty, fp_downcast_rounding='rtne'),
++        boundary_check=(0, 1),
++    )
++
++
++@triton.heuristics({'IS_VARLEN': lambda args: args['cu_seqlens'] is not None})
++@triton.jit(do_not_specialize=['T'])
++def merge_16x16_to_64x64_inverse_kernel(
++    A,
++    Ad,
++    Ai,
++    cu_seqlens,
++    chunk_indices,
++    T,
++    H: tl.constexpr,
++    BT: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++):
++    i_t, i_bh = tl.program_id(0), tl.program_id(1)
++    i_b, i_h = i_bh // H, i_bh % H
++    if IS_VARLEN:
++        i_n, i_t_val = (
++            tl.load(chunk_indices + i_t * 2).to(tl.int32),
++            tl.load(chunk_indices + i_t * 2 + 1).to(tl.int32),
++        )
++        bos, eos = (
++            tl.load(cu_seqlens + i_n).to(tl.int32),
++            tl.load(cu_seqlens + i_n + 1).to(tl.int32),
++        )
++        T = eos - bos
++        i_t = i_t_val
++    else:
++        bos, eos = i_b * T, i_b * T + T
++
++    # Base pointers (already offset by batch and head)
++    A += (bos * H + i_h) * 64
++    Ad += (bos * H + i_h) * 16
++    Ai += (bos * H + i_h) * 64
++
++    # load Ai_22 (Ad block at row i_t * 64 + 16, col 0, 16 * 16)
++    offs_m = i_t * 64 + 16 + tl.arange(0, 16)
++    offs_n = tl.arange(0, 16)
++    mask_Ad = (offs_m[:, None] < T) & (offs_n[None, :] < 16)
++    ptr_Ad = Ad + offs_m[:, None] * (H * 16) + offs_n[None, :]
++    Ai_22 = tl.load(ptr_Ad, mask=mask_Ad, other=0.0).to(tl.float32)
++
++    # load A_21 (A block at row i_t * 64 + 16, col 0, 16 * 16)
++    mask_A = (offs_m[:, None] < T) & (offs_n[None, :] < 64)
++    ptr_A = A + offs_m[:, None] * (H * 64) + offs_n[None, :]
++    A_21 = tl.load(ptr_A, mask=mask_A, other=0.0).to(tl.float32)
++    tmp = tl.dot(Ai_22, A_21, input_precision='ieee')
++
++    # load Ai_11 (Ad block at row i_t * 64, col 0, 16 * 16)
++    offs_m = i_t * 64 + tl.arange(0, 16)
++    offs_n = tl.arange(0, 16)
++    mask_Ad = (offs_m[:, None] < T) & (offs_n[None, :] < 16)
++    ptr_Ad = Ad + offs_m[:, None] * (H * 16) + offs_n[None, :]
++    Ai_11 = tl.load(ptr_Ad, mask=mask_Ad, other=0.0).to(tl.float32)
++
++    Ai_21 = -tl.dot(tmp, Ai_11, input_precision='ieee')
++
++    # load Ai_44 (Ad block at row i_t * 64 + 48, col 0, 16 * 16)
++    offs_m = i_t * 64 + 48 + tl.arange(0, 16)
++    offs_n = tl.arange(0, 16)
++    mask_Ad = (offs_m[:, None] < T) & (offs_n[None, :] < 16)
++    ptr_Ad = Ad + offs_m[:, None] * (H * 16) + offs_n[None, :]
++    Ai_44 = tl.load(ptr_Ad, mask=mask_Ad, other=0.0).to(tl.float32)
++
++    # load A_43 (Ad block at row i_t * 64 + 48, col 32, 16 * 16)
++    offs_n = 32 + tl.arange(0, 16)
++    mask_A = (offs_m[:, None] < T) & (offs_n[None, :] < 64)
++    ptr_A = A + offs_m[:, None] * (H * 64) + offs_n[None, :]
++    A_43 = tl.load(ptr_A, mask=mask_A, other=0.0).to(tl.float32)
++    tmp = tl.dot(Ai_44, A_43, input_precision='ieee')
++
++    # load Ai_33 (Ad block at row i_t * 64 + 32, col 0, 16 * 16)
++    offs_m = i_t * 64 + 32 + tl.arange(0, 16)
++    offs_n = tl.arange(0, 16)
++    mask_Ad = (offs_m[:, None] < T) & (offs_n[None, :] < 16)
++    ptr_Ad = Ad + offs_m[:, None] * (H * 16) + offs_n[None, :]
++    Ai_33 = tl.load(ptr_Ad, mask=mask_Ad, other=0.0).to(tl.float32)
++
++    Ai_43 = -tl.dot(tmp, Ai_33, input_precision='ieee')
++
++    # build Ai_22_32 (32 * 32)
++    Ai_22_32 = tl.zeros((32, 32), tl.float32)
++    Ai_22_32 = tle.insert_slice(Ai_22_32, Ai_33, (0, 0), (16, 16), (1, 1))
++    Ai_22_32 = tle.insert_slice(Ai_22_32, Ai_44, (16, 16), (16, 16), (1, 1))
++    Ai_22_32 = tle.insert_slice(Ai_22_32, Ai_43, (16, 0), (16, 16), (1, 1))
++
++    # load A_21_32 (A block at row i_t * 64 + 32, col 0, 32 * 32)
++    offs_m = i_t * 64 + 32 + tl.arange(0, 32)
++    offs_n = tl.arange(0, 32)
++    mask_A = (offs_m[:, None] < T) & (offs_n[None, :] < 64)
++    ptr_A = A + offs_m[:, None] * (H * 64) + offs_n[None, :]
++    A_21_32 = tl.load(ptr_A, mask=mask_A, other=0.0).to(tl.float32)
++    tmp = tl.dot(Ai_22_32, A_21_32, input_precision='ieee')
++
++    # build Ai_11_32 (32 * 32)
++    Ai_11_32 = tl.zeros((32, 32), tl.float32)
++    Ai_11_32 = tle.insert_slice(Ai_11_32, Ai_11, (0, 0), (16, 16), (1, 1))
++    Ai_11_32 = tle.insert_slice(Ai_11_32, Ai_22, (16, 16), (16, 16), (1, 1))
++    Ai_11_32 = tle.insert_slice(Ai_11_32, Ai_21, (16, 0), (16, 16), (1, 1))
++
++    Ai_21_32 = -tl.dot(tmp, Ai_11_32, input_precision='ieee')
++
++    # store Ai_11_32 to (i_t * 64, 0)
++    offs_m = i_t * 64 + tl.arange(0, 32)
++    offs_n = tl.arange(0, 32)
++    mask_store = (offs_m[:, None] < T) & (offs_n[None, :] < 64)
++    ptr_Ai = Ai + offs_m[:, None] * (H * 64) + offs_n[None, :]
++    tl.store(
++        ptr_Ai,
++        Ai_11_32.to(ptr_Ai.dtype.element_ty, fp_downcast_rounding='rtne'),
++        mask=mask_store,
++    )
++
++    # store Ai_22_32 to (i_t * 64 + 32, 32)
++    offs_m = i_t * 64 + 32 + tl.arange(0, 32)
++    offs_n = 32 + tl.arange(0, 32)
++    mask_store = (offs_m[:, None] < T) & (offs_n[None, :] < 64)
++    ptr_Ai = Ai + offs_m[:, None] * (H * 64) + offs_n[None, :]
++    tl.store(
++        ptr_Ai,
++        Ai_22_32.to(ptr_Ai.dtype.element_ty, fp_downcast_rounding='rtne'),
++        mask=mask_store,
++    )
++
++    # store Ai_21_32 to (i_t * 64 + 32, 32)
++    offs_n = tl.arange(0, 32)
++    mask_store = (offs_m[:, None] < T) & (offs_n[None, :] < 64)
++    ptr_Ai = Ai + offs_m[:, None] * (H * 64) + offs_n[None, :]
++    tl.store(
++        ptr_Ai,
++        Ai_21_32.to(ptr_Ai.dtype.element_ty, fp_downcast_rounding='rtne'),
++        mask=mask_store,
++    )
++
++    # zero out the upper-right 32 * 32 block (rows 0 ~ 31, cols 32 ~ 63)
++    offs_m = i_t * 64 + tl.arange(0, 32)
++    offs_n = 32 + tl.arange(0, 32)
++    mask_store = (offs_m[:, None] < T) & (offs_n[None, :] < BT)
++    ptr_Ai = Ai + offs_m[:, None] * (H * BT) + offs_n[None, :]
++    zero_block = tl.zeros((32, 32), dtype=ptr_Ai.dtype.element_ty)
++    tl.store(ptr_Ai, zero_block, mask=mask_store)
++
++
++def solve_tril(
++    A: torch.Tensor,
++    cu_seqlens: torch.Tensor | None = None,
++    output_dtype: torch.dtype = torch.float,
++) -> torch.Tensor:
++    """Compute the inverse of the matrix I + A A should be strictly lower
++    triangular, i.e., A.triu() == 0.
++
++    Args:
++        A (torch.Tensor):
++            [B, T, H, BT], where BT should only be 16, 32, or 64.
++        cu_seqlens (torch.Tensor):
++            The cumulative sequence lengths of the input tensor. Default: `None`.
++        output_dtype (torch.dtype):
++            The dtype of the output tensor. Default: `torch.float`.
++            If `None`, the output dtype will be the same as the input dtype.
++
++    Returns:
++        (I + A)^-1 with the same shape as A
++    """
++    assert A.shape[-1] in [16, 32, 64]
++
++    B, T, H, BT = A.shape
++    Ad = torch.empty(
++        B, T, H, 16, device=A.device, dtype=torch.float if BT != 16 else output_dtype
++    )
++
++    LARGE_BLOCK_T = 608 * 2
++
++    chunk_indices = (
++        prepare_chunk_indices(cu_seqlens, LARGE_BLOCK_T)
++        if cu_seqlens is not None
++        else None
++    )
++    NT = len(chunk_indices) if cu_seqlens is not None else triton.cdiv(T, LARGE_BLOCK_T)
++
++    solve_tril_16x16_kernel[NT, B * H](
++        A=A,
++        Ad=Ad,
++        cu_seqlens=cu_seqlens,
++        chunk_indices=chunk_indices,
++        T=T,
++        H=H,
++        BT=BT,
++        LARGE_BLOCK_T=LARGE_BLOCK_T,
++        num_warps=1,
++        num_stages=4,
++    )
++
++    if BT == 16:
++        return Ad
++
++    Ai = torch.empty(B, T, H, BT, device=A.device, dtype=output_dtype)
++    merge_fn = (
++        merge_16x16_to_32x32_inverse_kernel
++        if BT == 32
++        else merge_16x16_to_64x64_inverse_kernel
++    )
++    chunk_indices = (
++        prepare_chunk_indices(cu_seqlens, BT) if cu_seqlens is not None else None
++    )
++    NT = len(chunk_indices) if cu_seqlens is not None else triton.cdiv(T, BT)
++
++    merge_fn[NT, B * H](
++        A=A,
++        Ad=Ad,
++        Ai=Ai,
++        cu_seqlens=cu_seqlens,
++        chunk_indices=chunk_indices,
++        T=T,
++        H=H,
++        BT=BT,
++        num_warps=4,
++        num_stages=3,
++    )
++    return Ai
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/utils.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/utils.py
+new file mode 100644
+index 00000000..a6203981
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/utils.py
+@@ -0,0 +1,46 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++import torch
++import triton
++import triton.language as tl
++
++
++def prepare_lens(cu_seqlens: torch.LongTensor) -> torch.LongTensor:
++    return cu_seqlens[1:] - cu_seqlens[:-1]
++
++
++def prepare_chunk_indices(
++    cu_seqlens: torch.LongTensor, chunk_size: int
++) -> torch.LongTensor:
++    indices = torch.cat(
++        [
++            torch.arange(n)
++            for n in triton.cdiv(prepare_lens(cu_seqlens), chunk_size).tolist()
++        ]
++    )
++    return torch.stack([indices.eq(0).cumsum(0) - 1, indices], 1).to(cu_seqlens)
++
++
++def prepare_chunk_offsets(
++    cu_seqlens: torch.LongTensor, chunk_size: int
++) -> torch.LongTensor:
++    return torch.cat(
++        [cu_seqlens.new_tensor([0]), triton.cdiv(prepare_lens(cu_seqlens), chunk_size)]
++    ).cumsum(-1)
++
++
++@triton.jit
++def safe_exp(x):
++    return tl.exp(tl.where(x <= 0, x, float('-inf')))
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/wy_fast.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/wy_fast.py
+new file mode 100644
+index 00000000..119d6580
+--- /dev/null
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/wy_fast.py
+@@ -0,0 +1,153 @@
++# Copyright © 2025 Huawei Technologies Co., Ltd.
++# Based on vLLM: https://github.com/vllm-project/vllm
++# Based on flash-linear-attention: https://github.com/fla-org/flash-linear-attention
++#
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++# SPDX-FileCopyrightText: Songlin Yang, Yu Zhang
++#
++# This file contains code copied from the flash-linear-attention project.
++# The original source code was licensed under the MIT license and included
++# the following copyright notice:
++# Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
++# ruff: noqa: E501
++
++
++import torch
++import triton
++import triton.language as tl
++
++from .utils import prepare_chunk_indices
++
++
++@triton.heuristics({'IS_VARLEN': lambda args: args['cu_seqlens'] is not None})
++@triton.jit(do_not_specialize=['T'])
++def recompute_w_u_fwd_kernel(
++    k,
++    v,
++    beta,
++    w,
++    u,
++    A,
++    g,
++    cu_seqlens,
++    chunk_indices,
++    T,
++    H: tl.constexpr,
++    Hg: tl.constexpr,
++    K: tl.constexpr,
++    V: tl.constexpr,
++    BT: tl.constexpr,
++    BK: tl.constexpr,
++    BV: tl.constexpr,
++    IS_VARLEN: tl.constexpr,
++):
++    T_max = T
++    i_t_o = tl.program_id(0)
++
++    for i_bh in range(H):
++        i_b, i_h = i_bh // H, i_bh % H
++        if IS_VARLEN:
++            i_n, i_t = tl.load(chunk_indices + i_t_o * 2).to(tl.int32), tl.load(
++                chunk_indices + i_t_o * 2 + 1
++            ).to(tl.int32)
++            bos, eos = tl.load(cu_seqlens + i_n).to(tl.int32), tl.load(
++                cu_seqlens + i_n + 1
++            ).to(tl.int32)
++            T = eos - bos
++        else:
++            bos, eos = i_b * T, i_b * T + T
++
++        offs_t = tl.arange(0, BT)
++        global_offs_t = i_t * BT + offs_t
++        mask_t = global_offs_t < T
++
++        offs_t_2d = global_offs_t[:, None]
++        offs_bt = tl.arange(0, BT)[None, :]
++        ptr_A = A + (bos * H + i_h) * BT + offs_t_2d * (H * BT) + offs_bt * 1
++        mask_A = mask_t[:, None]
++        b_A = tl.load(ptr_A, mask=mask_A, other=0.0).to(tl.float32)
++
++        ptr_g = g + bos + i_h * T_max + global_offs_t
++        b_g = tl.exp(tl.load(ptr_g, mask=mask_t, other=0.0)).to(tl.float32)
++
++        ptr_beta = beta + bos + i_h * T_max + global_offs_t
++        b_beta = tl.load(ptr_beta, mask=mask_t, other=0.0).to(tl.float32)
++
++        for i_v in range(tl.cdiv(V, BV)):
++            offs_v = i_v * BV + tl.arange(0, BV)[None, :]
++            mask_v = (mask_t[:, None]) & (offs_v < V)
++
++            ptr_v = v + (bos * H + i_h) * V + offs_t_2d * (H * V) + offs_v * 1
++            b_v = tl.load(ptr_v, mask=mask_v, other=0.0).to(tl.float32)
++
++            b_vb = b_v * b_beta[:, None]
++            b_u = tl.dot(b_A, b_vb, allow_tf32=False)
++
++            ptr_u = u + (bos * H + i_h) * V + offs_t_2d * (H * V) + offs_v * 1
++            tl.store(ptr_u, b_u.to(ptr_u.dtype.element_ty), mask=mask_v)
++
++        for i_k in range(tl.cdiv(K, BK)):
++            offs_k = i_k * BK + tl.arange(0, BK)[None, :]
++            mask_k = (mask_t[:, None]) & (offs_k < K)
++            ptr_k = (
++                k
++                + (bos * Hg + i_h // (H // Hg)) * K
++                + offs_t_2d * (Hg * K)
++                + offs_k * 1
++            )
++            b_k = tl.load(ptr_k, mask=mask_k, other=0.0).to(tl.float32)
++
++            b_kb = b_k * b_beta[:, None] * b_g[:, None]
++            b_w = tl.dot(b_A, b_kb)
++
++            ptr_w = w + (bos * H + i_h) * K + offs_t_2d * (H * K) + offs_k * 1
++            tl.store(ptr_w, b_w.to(ptr_w.dtype.element_ty), mask=mask_k)
++
++
++def recompute_w_u_fwd(
++    k: torch.Tensor,
++    v: torch.Tensor,
++    beta: torch.Tensor,
++    g_cumsum: torch.Tensor,
++    A: torch.Tensor,
++    cu_seqlens: torch.LongTensor | None = None,
++) -> tuple[torch.Tensor, torch.Tensor]:
++    B, T, Hg, K, V = *k.shape, v.shape[-1]
++    H = v.shape[-2]
++    BT = A.shape[-1]
++
++    chunk_indices = (
++        prepare_chunk_indices(cu_seqlens, BT) if cu_seqlens is not None else None
++    )
++    NT = triton.cdiv(T, BT) if cu_seqlens is None else len(chunk_indices)
++
++    BK = 64
++    BV = 64
++
++    u = torch.empty_like(v)
++    w = k.new_empty(B, T, H, K)
++    beta = beta.transpose(1, 2).contiguous()
++    g_cumsum = g_cumsum.transpose(1, 2).contiguous()
++    recompute_w_u_fwd_kernel[(NT, B)](
++        k=k,
++        v=v,
++        beta=beta,
++        w=w,
++        u=u,
++        A=A,
++        g=g_cumsum,
++        cu_seqlens=cu_seqlens,
++        chunk_indices=chunk_indices,
++        T=T,
++        H=H,
++        Hg=Hg,
++        K=K,
++        V=V,
++        BT=BT,
++        BK=BK,
++        BV=BV,
++        num_warps=4,
++        num_stages=3,
++    )
++    return w, u
+diff --git a/requirements/ascend_a3_constraints.txt b/requirements/ascend_a3_constraints.txt
+new file mode 100644
+index 00000000..99c6778d
+--- /dev/null
++++ b/requirements/ascend_a3_constraints.txt
+@@ -0,0 +1,9 @@
++# Reproducible CANN 9.1.0 / Python 3.12 A3 image profile.
++# CPU PyTorch wheels avoid pulling an unused CUDA runtime into the NPU image.
++numpy==1.26.4
++ray==2.48.0
++torch==2.10.0+cpu
++torch-npu==2.10.0.post4
++torchvision==0.25.0+cpu
++transformers==5.14.1
++triton-ascend==3.2.2.post2
+diff --git a/requirements/ascend_kernels.txt b/requirements/ascend_kernels.txt
+index ca95a678..ebd76189 100644
+--- a/requirements/ascend_kernels.txt
++++ b/requirements/ascend_kernels.txt
+@@ -1,3 +1,2 @@
+-# Optional GDN and Triton rejection kernels, matching the source fork's runtime.
+-triton-ascend==3.2.0
+-triton-ascend-kernels @ git+https://gitcode.com/Ascend/triton-ascend-kernels.git@master
++# Compiler for native Ascend kernels. GDN prefill/L2Norm sources are bundled.
++-r ascend_triton_npuir2.txt
+diff --git a/requirements/ascend_triton_npuir2.txt b/requirements/ascend_triton_npuir2.txt
+index 1212aabf..d3440c3c 100644
+--- a/requirements/ascend_triton_npuir2.txt
++++ b/requirements/ascend_triton_npuir2.txt
+@@ -1,3 +1,3 @@
+-# Optional Triton/compiler update for an existing compatible native A3 runtime.
+-# Install with --no-deps; see the Ascend guide for the tested stack and scope.
++# Triton/compiler version used by the CANN 9.1 native A3 installation.
++# This wheel includes AscendNPU-IR 2.0.0 (efb71415).
+ triton-ascend==3.2.2.post2
+diff --git a/requirements/runtime_ascend.txt b/requirements/runtime_ascend.txt
+index 504a8cfe..0972d5db 100644
+--- a/requirements/runtime_ascend.txt
++++ b/requirements/runtime_ascend.txt
+@@ -15,7 +15,7 @@ prometheus_client
+ psutil
+ pyyaml
+ scipy
+-torch>=2.8.0,<2.10.0
+-torch-npu>=2.8.0.post1,<2.10.0
+-torchvision>=0.23.0,<0.25.0
++torch>=2.8.0,<2.11.0
++torch-npu>=2.8.0.post1,<2.11.0
++torchvision>=0.23.0,<0.26.0
+ tornado

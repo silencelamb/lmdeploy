@@ -1,0 +1,31 @@
+请在这台 NVIDIA GPU 机器上，对 LMDeploy PR #5134 做迁移前/后的 CUDA 回归验证：
+https://github.com/InternLM/lmdeploy/pull/5134
+
+准备此prompt时PR最新提交为111dbf6b4dc1c1aa9fb2fd0753313e0314858c96；执行时仍需核对并固定实际HEAD。
+
+目标是验证 Ascend 原生迁移及共享 RMSNormGated/模型接口没有破坏 CUDA；不能只启动 PR 生成一段文本就判定通过。
+
+1. 先读取本机适用的 AGENTS.md 和 PR 最新正文。通过 GitHub API 获取 PR 的 head/base SHA，fetch 完整提交，记录二者与 git merge-base。将 PR head 和对应未修改的共同基线放入两个独立工作树；目前记录的共同基线是 442097e83799c2e85df9d6bbce35c7c79ea05dfe，必须核实，不能直接把移动中的 main 当作基线。整个对照固定 SHA；如果期间 PR 更新，记录差异并对新 HEAD 补跑受影响项目。
+
+2. 清点 GPU 型号/数量/显存、CPU架构、驱动、CUDA、Python、PyTorch、CUDA Triton、FLA版本以及现有 checkpoint。两个环境使用相同且双方兼容的 CUDA 依赖、同一批 GPU 和相同 checkpoint文件。禁止安装/导入 dlinfer、torch_npu、triton-ascend，不要使用 Ascend requirements 或 A3 启动脚本。确认每个进程实际导入的 lmdeploy 路径属于所选工作树，避免 editable install 串环境。保留用户现有目录与环境。
+
+3. 先跑相关 CPU/接口单测及真实 CUDA/graph 单测，重点包括 tests/pytorch/engine/test_model_agent.py、RMSNormGated及其所有模型调用者。共同测试在两边对照；PR新增接口测试使用旧实现/独立数学参考作为oracle，不能把基线缺少新增接口当作数值回归。CI此前3个 cache_config异常来自PR新增采样分支，修复状态以当前HEAD为准；不要沿用旧报告中未完成的归因。
+
+4. 必须逐项列出六个完整模型的覆盖状态：GLM-5.3-Flash、InternDecision、Sage-A1.5、Agents-A1、Intern-S2、GLM-5.3。按 checkpoint和GPU资源选择相同TP；缺权重或显存不足写“未验证”，不要擅自量化或替换成小模型后计为该模型通过。新旧必须使用相同 dtype、TP、prompt序列、输入长度、输出长度、sampling和cache配置。
+
+5. 先测非MTP，再测受支持模型的MTP。至少覆盖 eager/graph、prefix开关、单请求/批请求/长短混批、相同prompt新请求重放，以及有代表性的长上下文。先用greedy（do_sample=False/top_k=1）并固定Python/NumPy/Torch/CUDA种子。双方各做至少两次全新进程自重复。目标是100%生成token一致、完整top-k token集合及对应分数按二进制一致（同dtype，零容差）。不能把几条文本相同代替精度检查。
+
+6. 若首次出现差异，保存首个分歧点，冻结此前相同的token历史、draft IDs、位置元数据、KV/GDN/卷积状态，再比较target logits和逐层hidden states。不要比较已经不同生成历史下的后续分数，也不要直接以“BF16误差”结案。基线自身不重复、双方同样失败和仅PR失败分别记录。不要通过改变算法、同步顺序或放宽验收阈值制造通过。
+
+7. 正确性通过后做同工作负载性能对照：同checkpoint、相同输入/输出token数、相同并发与cache命中条件，预热后AB/BA交错至少5对，保存每轮值及吞吐/TPS、TTFT、TPOT、峰值显存。先约定回退判据（建议持续超过5%且超出运行噪声需定位）；区分算子、target主干、pipeline和真实HTTP端到端指标。不要把A3的CPU18亲和性规避照搬到GPU机器。
+
+8. Ray是独立未完成项：若条件允许，在GPU主机另建无Torch/NPU的CPU环境，用相同Python3.12/Ray2.48.0/NumPy2.2.6运行报告中的纯Ray最小复现，作为x86/H200对照。保存投递、确认、event-loop、调度与softirq信息；不能凭一次未复现认定ARM根因。该对照不得混入GPU模型性能计时。
+
+9. 发现PR引入的问题，在fork独立研究分支修复并做针对性回归，再按授权更新PR；基线已有问题单独记录，不混入此次迁移修复。不要自动合并PR。简述判据后直接执行，不必逐步等确认；真正缺少的机器/模型信息尽早询问，并继续不依赖它的工作。
+
+10. 持续保存环境、命令、源码与checkpoint哈希、原始日志、逐条token/score、性能原始数据、失败和修复记录。最终给出“通过/回归/基线问题/未验证”矩阵及可复现依据，报告维护在用户fork的 docs/ascend-a3-validation-20261114 文档分支，完整报告不混入实现PR。
+
+参考：
+https://github.com/silencelamb/lmdeploy/tree/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation
+https://github.com/silencelamb/lmdeploy/blob/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation/gated_norm_refactor_20261115.md
+https://github.com/silencelamb/lmdeploy/blob/docs/ascend-a3-validation-20261114/docs/zh_cn/advance/ascend_a3_validation/mtp_ray_investigation_20261116.md

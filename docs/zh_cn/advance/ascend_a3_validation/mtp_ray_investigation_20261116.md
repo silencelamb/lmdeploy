@@ -2,6 +2,8 @@
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
+**最新CI/Docker交付：PR现为 `111dbf6b`，Dockerfile明确使用CANN9.1.0/Python3.12及匹配依赖。3个sampling单测失败已通过基线对照确认由PR引入，并以`143fa1e6`修复；两条失效来源链接和GitCode浮动依赖也已处理。新提交CI正在执行，尚未宣称全部通过。详见文末“CI修复与CANN9.1 Docker配套”；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接复制到GPU环境。CANN9.2升级已按用户决定停止。**
+
 **最新结论：经用户授权，circular GDN 单缓冲修复、硬件回归和可选编译器升级配置已纳入迁移 PR #5134，提交 `85a05812`。正式 PR 源码在旧/新编译器下各6项状态回归通过，各两轮完整 Sage MTP 的21条响应及top5分数均逐位一致。此前官方 AscendNPU-IR2.0.0 的stage3验证也通过；当前PR仅在circular路径默认stage1，其余保留stage3。原运行环境和CANN未改。CPU18具体softirq/tasklet回调仍受宿主机权限限制，亲和性规避不是永久修复。**
 
 **上游状态补充（2026-11-16）：既有修复 `05f2adcf` 已进入 v2.0.0；原随包编译器 `042c923d` 来自另一条 feature/0725 构建线，不包含它。本轮直接验证官方发布二进制，没有重复向上游提交相同补丁。详见文末“AscendNPU-IR 2.0.0 隔离升级验证”。**
@@ -567,3 +569,65 @@ sudo python3 tools/ascend_a3/diagnostics/analyze_tasklet.py "$TASKLET_OUT"
 本轮没有重跑完整迁移验收、Docker构建、GPU模型矩阵或HTTP性能。前述算子及target主干性能仍归属于各自原始源码和编译器版本，不改写成85a05812上的新性能测量。PR正文保留性能形状依赖、完整CANN9.2/驱动组合未测等限制，并链接完整报告。
 
 CPU18当前只有明确的宿主机干扰与权限限制证据，具体回调和永久修复未完成。PR不包含CPU亲和性规避、Ray await删除或同步顺序更改；宿主机采集工具继续保存在独立研究分支。上游编译器修复已经发布，因此没有重复提交相同源码PR。
+
+## CI修复与CANN9.1 Docker配套
+
+本轮按用户要求保持CANN9.1.0，更新Dockerfile/依赖，继续处理PR #5134的CI失败，并准备GPU验证交接。此前准备的CANN9.2包、隔离目录和失败记录留档；没有安装9.2运行时、替换驱动或改变原9.1环境。
+
+[机器可读汇总](evidence/ci-docker-cann91-20261116/results/ci8-summary-r0.json)、[完整证据索引](evidence/ci-docker-cann91-20261116/index.json)、[验收计划](evidence/ci-docker-cann91-20261116/ACCEPTANCE-ci8.md)。远端CI状态以后续记录为准，原始失败日志保留。
+
+已推送两个提交：
+
+- [143fa1e6](https://github.com/silencelamb/lmdeploy/commit/143fa1e647b4029687c5fc10bdc54d16620d4d13)：依据实际NPU张量决定logits的FP32转换，移除sampling路径对`cache_config`的不必要依赖；MTP的可选target logits保持原委托语义。
+- [111dbf6b](https://github.com/silencelamb/lmdeploy/commit/111dbf6b4dc1c1aa9fb2fd0753313e0314858c96)：CANN9.1 Docker/依赖配套、已验证prefill/L2Norm源码迁入、许可与来源记录、失效链接修复。
+
+### 失败归因
+
+| 失败 | 证据与归因 | 本轮处理 |
+| --- | --- | --- |
+| 3个model-agent sampling用例报缺少`cache_config` | 相同CPU环境：未修改基线`442097e8`为3/3通过，PR`85a05812`为3/3失败；A100新旧两轮CI也均是这3项 | **明确为本PR引入**，已修改生产代码，而不是给测试补一个无关缓存配置掩盖问题 |
+| Ascend kernel README两条来源链接404 | 新增文档中的vLLM sigmoid路径和FLA layernorm路径失效 | 改为已核实的固定dlinfer迁移源与FLA0.5.2 commit链接，未放宽link checker |
+| A3 Docker克隆GitCode失败418 | 新安装入口依赖浮动master；该外部包元数据还锁定旧Torch/Triton，与9.1实测栈冲突 | 迁入实际调用且已验证的11文件prefill/L2Norm实现，保留许可、来源和已有兼容修改，删除构建时Git依赖 |
+| Jetson导入Torch报缺`libcudss.so.0` | CI中未固定版本的`cudss`解析到`libcudss1-cuda-12`1.0.0.35；Torch需要SONAME0。Jetson Dockerfile、CUDA/common requirements和Docker workflow与基线字节相同 | **继承的镜像依赖漂移单独记录**，未混入Ascend修复；未另做完整Jetson基线镜像重建 |
+
+最后一项的判断依据是未改变的构建配方、实际安装的cuDSS1包和Torch加载器错误，而不是模型数值对照。后续Jetson修复应配套兼容的cuDSS/Torch版本，不能简单将`.so.1`链接成`.so.0`冒充ABI兼容。当前完整GPU模型验收也不能用Jetson镜像构建替代。
+
+### Dockerfile与依赖现在使用什么
+
+实际A3运行环境一直是CANN9.1.0；此前仓库Dockerfile的8.5.0是另一份旧构建配方。现在Dockerfile明确使用官方 `quay.io/ascend/cann:9.1.0-a3-openeuler24.03-py3.12`，并创建独立应用venv。
+
+| 组件 | 固定版本 |
+| --- | --- |
+| CANN | 9.1.0 |
+| Python | 3.12，官方基础镜像为3.12.13 |
+| PyTorch / torchvision | 2.10.0+cpu / 0.25.0+cpu |
+| TorchNPU | 2.10.0.post4 |
+| Triton-Ascend / 随包NPUIR | 3.2.2.post2 / 2.0.0 |
+| Ray / transformers | 2.48.0 / 5.14.1 |
+| NumPy / Pandas / PyArrow | 1.26.4 / 2.2.3 / 25.0.0 |
+| datasets / python-dateutil | 5.1.0 / 2.9.0.post0 |
+
+这些约束位于`requirements/ascend_a3_constraints.txt`；只扩展native Ascend的Torch版本上界，CUDA requirements保持不变。CPU Torch wheel与Ascend编译器wheel分别从官方索引下载，再通过本地wheel目录完成一次整体依赖解析；不将所有普通依赖都发送到额外厂商索引查询。镜像构建新增`pip check`和核心包导入检查，原生应用不安装/导入dlinfer或外部`triton-ascend-kernels`。
+
+NumPy/PyArrow组合的失败也完整保留：继承环境的PyArrow26在模块初始化时明确拒绝NumPy<2，而Triton-Ascend要求NumPy1.26。最初尝试的Arrow22不能满足datasets5.1要求的Arrow>=24，最终使用仍支持NumPy1的Arrow25；Pandas2.2的pytz等传递依赖也一并解析。最终约束的完整求解和导入检查通过，匹配后的依赖组合已跑过Sage完整MTP。它不等于把旧环境的`pip check`历史错误改写成通过。
+
+迁入的prefill/L2Norm代码来自已固定的`8e70a44a`验证快照，包含原先已用于新旧环境的cumsum目标dtype和CANN slice API兼容改动。所有11文件的执行AST与该快照一致；保留`tl.constexpr`语义，排除导入位置、注解书写和docstring格式差异。原版权、MIT许可及其他文件已有许可证标识均保留，未重新实现或优化计算公式。
+
+### 本机回归与当前CI状态
+
+- CPU：完整model-agent文件175通过/7跳过；与Ascend合同测试合并为207通过/8跳过。
+- NPU：6个L2Norm用例、6个prefill输出与最终状态对照全部逐位一致；6个circular状态回归通过，并阻断外部kernel包导入以确认使用本仓库实现。
+- 模型：Sage两轮MTP、Agents非MTP改动前后，每轮21响应的所有token及top5分数逐位一致；最终NumPy1.26/Pandas2.2/Arrow25组合上的额外Sage一轮也全部一致。
+- 测试工作树的完整diff SHA256与已提交`85a05812..111dbf6b`的diff完全相同，因此最终提交与匹配依赖模型测试的源码一致。
+- 适用pre-commit、模块init、文档检查通过；docstring覆盖率70.3%，pylint9.23/10。wheel/sdist包含全部11个prefill文件和许可。
+- **新HEAD的GitHub CI已触发，仍在执行。** 本机通过项不能写成远端全部通过；此前`85a05812`的A100结果为3失败、6424通过、400跳过，3项均已明确归因并修复。
+
+本轮没有新增HTTP吞吐结论。前述性能数据仍按各自实际源码/依赖版本引用，不因Docker配方更新而外推为全栈性能认证。
+
+### Ray还需要什么证据，GPU如何接续
+
+Ray的长尾若影响服务SLO，继续追查有价值。现有证据已经把重点收敛到CPU18的宿主机softirq/tasklet干扰，但具体回调、来源IRQ/模块及触发条件仍未取得。下一步应在有宿主机权限的位置执行已有发现/计时/内核栈采集工具，并在GPU/x86主机做同版本纯Ray CPU对照。当前容器内重复相同测试的信息增量较小；不能把“某次x86未复现”当作ARM根因证明。
+
+这些工作与本PR的MTP正确性修复分开。CPU亲和性是临时诊断措施，没有作为永久修复交付；Ray await与同步顺序保持不变。
+
+GPU可以从PR #5134开始，但必须同时固定共同上游基线，使用相同CUDA环境/权重/配置进行双工作树对照。直接只跑PR能启动或生成文本不足以验收迁移。[可复制的GPU验证prompt](gpu_validation_prompt_20261116.txt)覆盖六模型矩阵、基线自重复、固定历史精度、性能及可选的纯Ray x86对照。

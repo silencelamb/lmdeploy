@@ -1,0 +1,65 @@
+Collecting interrogate
+  Downloading interrogate-1.7.0-py3-none-any.whl.metadata (37 kB)
+Collecting pylint
+  Downloading pylint-4.1.4-py3-none-any.whl.metadata (12 kB)
+Collecting attrs (from interrogate)
+  Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Collecting click>=7.1 (from interrogate)
+  Using cached click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting colorama (from interrogate)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting py (from interrogate)
+  Downloading py-1.11.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Collecting tabulate (from interrogate)
+  Downloading tabulate-0.10.0-py3-none-any.whl.metadata (40 kB)
+Collecting astroid<=4.4,>=4.3.4 (from pylint)
+  Downloading astroid-4.3.4-py3-none-any.whl.metadata (4.4 kB)
+Collecting dill>=0.3.6 (from pylint)
+  Downloading dill-0.4.1-py3-none-any.whl.metadata (10 kB)
+Collecting isort!=5.13,<10,>=5 (from pylint)
+  Downloading isort-9.0.2-py3-none-any.whl.metadata (11 kB)
+Collecting mccabe<0.8,>=0.6 (from pylint)
+  Downloading mccabe-0.7.0-py2.py3-none-any.whl.metadata (5.0 kB)
+Requirement already satisfied: platformdirs>=2.2 in ./a3-pr-prep-20261115/lint-env/lib/python3.12/site-packages (from pylint) (4.14.5)
+Collecting tomlkit>=0.10.1 (from pylint)
+  Downloading tomlkit-0.15.2-py3-none-any.whl.metadata (3.4 kB)
+Collecting mypy-extensions>=1.1.0 (from isort!=5.13,<10,>=5->pylint)
+  Downloading mypy_extensions-1.2.0-py3-none-any.whl.metadata (1.1 kB)
+Downloading interrogate-1.7.0-py3-none-any.whl (46 kB)
+Downloading pylint-4.1.4-py3-none-any.whl (591 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 591.7/591.7 kB 94.2 kB/s eta 0:00:00
+Downloading astroid-4.3.4-py3-none-any.whl (288 kB)
+Downloading click-8.5.1-py3-none-any.whl (126 kB)
+Downloading dill-0.4.1-py3-none-any.whl (120 kB)
+Downloading isort-9.0.2-py3-none-any.whl (105 kB)
+Downloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+Downloading tomlkit-0.15.2-py3-none-any.whl (52 kB)
+Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading py-1.11.0-py2.py3-none-any.whl (98 kB)
+Downloading tabulate-0.10.0-py3-none-any.whl (39 kB)
+Downloading mypy_extensions-1.2.0-py3-none-any.whl (5.1 kB)
+Installing collected packages: tomlkit, tabulate, py, mypy-extensions, mccabe, dill, colorama, click, attrs, astroid, isort, interrogate, pylint
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+asc-op-compile-base 0.1.0 requires decorator, which is not installed.
+asc-op-compile-base 0.1.0 requires numpy, which is not installed.
+asc-op-compile-base 0.1.0 requires psutil, which is not installed.
+asc-opc-tool 0.1.0 requires decorator, which is not installed.
+asc-opc-tool 0.1.0 requires numpy, which is not installed.
+asc-opc-tool 0.1.0 requires psutil, which is not installed.
+opc-tool 0.1.0 requires decorator, which is not installed.
+opc-tool 0.1.0 requires numpy, which is not installed.
+opc-tool 0.1.0 requires psutil, which is not installed.
+superkernel 0.1.0 requires decorator>=5.1.0, which is not installed.
+superkernel 0.1.0 requires numpy>=1.21.6, which is not installed.
+superkernel 0.1.0 requires psutil>=5.9, which is not installed.
+superkernel 0.1.0 requires scipy>=1.7.3, which is not installed.
+superkernel 0.1.0 requires sympy>=1.10.1, which is not installed.
+te 0.4.0 requires decorator, which is not installed.
+te 0.4.0 requires numpy, which is not installed.
+te 0.4.0 requires psutil, which is not installed.
+te 0.4.0 requires scipy, which is not installed.
+Successfully installed astroid-4.3.4 attrs-26.1.0 click-8.5.1 colorama-0.4.6 dill-0.4.1 interrogate-1.7.0 isort-9.0.2 mccabe-0.7.0 mypy-extensions-1.2.0 py-1.11.0 pylint-4.1.4 tabulate-0.10.0 tomlkit-0.15.2
+
+[notice] A new release of pip is available: 25.0.1 -> 26.3
+[notice] To update, run: python -m pip install --upgrade pip

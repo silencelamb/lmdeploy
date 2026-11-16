@@ -1,0 +1,71 @@
+diff --git a/MANIFEST.in b/MANIFEST.in
+index b1928522..11157943 100644
+--- a/MANIFEST.in
++++ b/MANIFEST.in
+@@ -3,5 +3,6 @@ include lmdeploy/bin/*
+ 
+ recursive-include requirements *.txt
+ recursive-include lmdeploy/pytorch/kernels/ascend *.md
++recursive-include lmdeploy/pytorch/kernels/ascend LICENSE
+ recursive-include tests/pytorch/ascend *.py
+ recursive-include tools/ascend *.py
+diff --git a/lmdeploy/pytorch/engine/model_agent/agent.py b/lmdeploy/pytorch/engine/model_agent/agent.py
+index 75f92bbe..7f8821e1 100644
+--- a/lmdeploy/pytorch/engine/model_agent/agent.py
++++ b/lmdeploy/pytorch/engine/model_agent/agent.py
+@@ -716,14 +716,15 @@ class BaseModelAgent:
+                                     extra_inputs: ExtraInputs, sampling_inputs: SamplingInputs):
+         """Sampling logits."""
+         if self.spec_agent.is_enabled():
+-            if self.cache_config.device_type == 'ascend':
+-                extra_inputs.target_logits = extra_inputs.target_logits.to(torch.float32)
++            target_logits = getattr(extra_inputs, 'target_logits', None)
++            if target_logits is not None and target_logits.device.type == 'npu':
++                extra_inputs.target_logits = target_logits.to(torch.float32)
+             extra_inputs = await self.spec_agent.async_sampling_logits(inputs, extra_inputs, sampling_inputs)
+             return extra_inputs.next_token_ids, extra_inputs.logprobs, extra_inputs.output_token_ids, extra_inputs
+         # record function does not support async function
+         # so we can not decorate it on async_sampling_logits
+         with record_function('sampling_logits'):
+-            if self.cache_config.device_type == 'ascend':
++            if logits.device.type == 'npu':
+                 logits = logits.to(torch.float32)
+             logits_processor = FusedLogitsProcessor(
+                 sampling_inputs,
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md b/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md
+index 60d9e1c9..47e3d5ab 100644
+--- a/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/README.md
+@@ -85,7 +85,7 @@ ______________________________________________________________________
+ 
+ **Source**:
+ 
+-- Adapted from: https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/ops/triton/fla/sigmoid_gating.py
++- Migration source: https://github.com/DeepLink-org/dlinfer/blob/3b9096341a41e9d067104a39d914e47ca2d7ec50/dlinfer/vendor/ascend/triton_ops/fla/sigmoid_gating.py
+ - Original: https://github.com/fla-org/flash-linear-attention (MIT)
+ - Copyright (c) 2023-2025, Songlin Yang, Yu Zhang
+ 
+@@ -122,7 +122,7 @@ ______________________________________________________________________
+ **Source**:
+ 
+ - Adapted from: https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/ops/triton/fla/layernorm_guard.py
+-- Original: https://github.com/fla-org/flash-linear-attention/blob/main/fla/modules/layernorm_gated.py
++- Original: https://github.com/fla-org/flash-linear-attention/blob/9c8e42e762fce087c27b673af4922795d9edb85e/fla/modules/fused_norm_gate.py
+ 
+ **Purpose**:
+ Implements RMSNorm (Root Mean Square Normalization) with optional SiLU (`silu`/`swish`) or sigmoid gating.
+diff --git a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py
+index ad08b2fd..af3064dd 100644
+--- a/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py
++++ b/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py
+@@ -7,8 +7,8 @@
+ # mypy: ignore-errors
+ 
+ import torch
+-from triton_ascend_kernels.attention.fla import chunk_gated_delta_rule_fwd
+-from triton_ascend_kernels.norm.l2norm import l2norm_fwd
++from .prefill import chunk_gated_delta_rule_fwd
++from .prefill.l2norm import l2norm_fwd
+ 
+ 
+ def chunk_gated_delta_rule(

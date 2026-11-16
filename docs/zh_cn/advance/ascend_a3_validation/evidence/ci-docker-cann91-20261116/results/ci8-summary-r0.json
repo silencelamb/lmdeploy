@@ -1,0 +1,78 @@
+{
+  "time_utc": "2026-11-16T04:58:21.740039+00:00",
+  "head": "111dbf6b4dc1c1aa9fb2fd0753313e0314858c96",
+  "baseline": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "introduced": [
+    {
+      "issue": "Three sampling cache_config AttributeErrors",
+      "base": "3passed",
+      "before": "3failed",
+      "fixed": "175passed/7skipped in complete model-agent file;207passed/8skipped with Ascend contracts",
+      "commit": "143fa1e647b4029687c5fc10bdc54d16620d4d13"
+    },
+    {
+      "issue": "Two dead Ascend README source links",
+      "fix": "Verified pinned dlinfer/FLA source URLs"
+    },
+    {
+      "issue": "A3 Docker GitCode clone418 and incompatible legacy external pins",
+      "fix": "Bundled validated11-file prefill/L2Norm slice, source/license kept, no floating Git checkout"
+    }
+  ],
+  "inherited": [
+    {
+      "issue": "Jetson libcudss.so.0 absent",
+      "root_cause": "Unchanged unversioned cudss apt dependency now installs libcudss1-cuda-12 1.0.0.35 while Torch requires SONAME0",
+      "identical_files": [
+        "docker/Dockerfile.jetson",
+        "requirements/runtime_cuda.txt",
+        "requirements/common.txt",
+        ".github/workflows/test_docker.yml"
+      ],
+      "limit": "No separate full Jetson baseline image rebuild; identical recipes and pre-backend import failure establish inherited dependency path.",
+      "shipped_fix": false
+    }
+  ],
+  "docker": {
+    "cann": "9.1.0",
+    "python": "3.12",
+    "torch": "2.10.0+cpu",
+    "torch_npu": "2.10.0.post4",
+    "torchvision": "0.25.0+cpu",
+    "triton_ascend": "3.2.2.post2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "pyarrow": "25.0.0",
+    "datasets": "5.1.0",
+    "ray": "2.48.0",
+    "transformers": "5.14.1",
+    "fresh_dependencies_resolved": true,
+    "ci_build": "running"
+  },
+  "local_checks": {
+    "prefill_ast_equal": 11,
+    "l2norm_bitwise": 6,
+    "prefill_output_and_state_bitwise": 6,
+    "circular_hardware_passed": 6,
+    "cpu_passed": 207,
+    "cpu_skipped": 8,
+    "docstring_coverage_pct": 70.3,
+    "pylint_score": 9.23,
+    "precommit": "passed",
+    "wheel_sdist_license": "present",
+    "model_comparison": "results/ci8-model-comparison-r0.json",
+    "profile_model": "results/ci8-profile-model-comparison-r0.json",
+    "final_tree_matches_tested_patch": true
+  },
+  "preparation_failures": [
+    "NumPy1.26 overlay with inheritedArrow26 fails Ray import; final profile pinsArrow25.",
+    "Arrow22 cannot satisfy datasets5.1>=Arrow24; final solver r5 passes withArrow25.",
+    "No-deps pandas overlay missedpytz; final complete overlay resolves transitive deps."
+  ],
+  "limits": [
+    "No CANN9.2 upgrade",
+    "No permanent CPU18 fix",
+    "Remote new-head CI is still running",
+    "Full six-model NVIDIA validation remains pending"
+  ]
+}

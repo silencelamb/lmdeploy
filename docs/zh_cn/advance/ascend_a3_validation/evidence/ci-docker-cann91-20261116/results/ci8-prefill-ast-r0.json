@@ -1,0 +1,79 @@
+[
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/__init__.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/__init__.py",
+    "executable_ast_equal": true,
+    "source_sha256": "99a4ba3ce1b45f6c6f8d845e27440c75283d55b190821f805719ccaec834a2d6",
+    "destination_sha256": "4b91321cbc5cc1905c6784f2f29f86cd8407ea47a1bdf712d783985d33c44dd0"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/chunk.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk.py",
+    "executable_ast_equal": true,
+    "source_sha256": "b1b7c8017bff4e7d3d431b280b6cf6583de1b0c920c8f67d278fec1015d35ea6",
+    "destination_sha256": "194d77c53b6f4c86c35ee2f2d192755632e333735820f9621da024d48864879d"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/chunk_delta_h.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_delta_h.py",
+    "executable_ast_equal": true,
+    "source_sha256": "f04a3550ca46717e64e9619a7c5d9194c13eb4f3aa84f47664d82f66448a4ae0",
+    "destination_sha256": "d1365787f255e5f3fecd34f37006d757f5b169f96e1003981426ee38cb58d1b9"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/chunk_o.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_o.py",
+    "executable_ast_equal": true,
+    "source_sha256": "1a8acca0106d52b51b4c2e7b104738cc6bd3169a4c1724f15323c8bc02627bc1",
+    "destination_sha256": "84573359b53d8df07044027fc82218342493498064ca2e26ee5f12afda8e677a"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/chunk_scaled_dot_kkt.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_scaled_dot_kkt.py",
+    "executable_ast_equal": true,
+    "source_sha256": "deee3303efb0c1a5b749de36f28b82fa7a3d5226208675474289625c6cb2b510",
+    "destination_sha256": "c4d58131abd905d1c4489e2955cea939c0e0ee6a09a7f1deef69df65cf2b5753"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/cumsum.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/cumsum.py",
+    "executable_ast_equal": true,
+    "source_sha256": "14bb192a09b8cb0404fd920c47833f1f0d555889d1e80c15c0093b070ae5d28b",
+    "destination_sha256": "0102f6ac23891ffc71d3d03a5d90d70edea17f5057eae7314c032a3ee2762d90"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/solve_tril.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/solve_tril.py",
+    "executable_ast_equal": true,
+    "source_sha256": "c76e78198766020f4e69ee6c6c392f627fac3dfc93454f2d82615bff1e441196",
+    "destination_sha256": "03c18407eadc13817cdfa067541093e5a58434431ccc764a475cc360486c83d0"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/utils.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/utils.py",
+    "executable_ast_equal": true,
+    "source_sha256": "c34b510c8c3f59d6fd77bd4e3bd41b4c7385997e0c3d88b009964caf95ee5d5e",
+    "destination_sha256": "8a2495d7599422a39e4e4106abbdf5206cb0ca1b6a052f67461eb15a945c78f7"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/attention/fla/wy_fast.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/wy_fast.py",
+    "executable_ast_equal": true,
+    "source_sha256": "48654bbdd2f2e86f4c5abf60f94a3ecfe600dea592e28e9a957d7b109b7de416",
+    "destination_sha256": "a9f92a764bc6bf7d945e969e4bea5bbaa86ba8e393ebb087df498eacc04a4443"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/norm/l2norm.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/l2norm.py",
+    "executable_ast_equal": true,
+    "source_sha256": "4b5dacb52dcbdf83db8c6a4d72a42e7a03dc7c22fd2967e130bbcf12b423db6b",
+    "destination_sha256": "afb431f71ebbbcd6f61198a02f6c602c4babb0a24896926fe5551f40f9d8a7d2"
+  },
+  {
+    "source": "/root/workspace/a3-validation-20261112/sources/triton-ascend-kernels-snapshot/src/triton_ascend_kernels/utils.py",
+    "destination": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/device.py",
+    "executable_ast_equal": true,
+    "source_sha256": "deb2b24474675d9ab104e50ddd2ca7009a589e3e5baf16356f01dd20dd8c4d32",
+    "destination_sha256": "486e6553b4087cd314b92cd806d6579b30d33c091d4089e8994ec3c7f72d7be8"
+  }
+]

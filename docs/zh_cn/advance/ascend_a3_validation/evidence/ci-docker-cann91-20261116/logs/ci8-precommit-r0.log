@@ -1,0 +1,42 @@
+ruff check...............................................................Failed
+- hook id: ruff-check
+- exit code: 1
+- files were modified by this hook
+
+Found 26 errors (26 fixed, 0 remaining).
+
+trim trailing whitespace.................................................Passed
+check yaml...........................................(no files to check)Skipped
+fix end of files.........................................................Passed
+fix requirements.txt.....................................................Passed
+fix double quoted strings................................................Failed
+- hook id: double-quote-string-fixer
+- exit code: 1
+- files were modified by this hook
+
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_scaled_dot_kkt.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/__init__.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_delta_h.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/solve_tril.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/utils.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/device.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/chunk_o.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/wy_fast.py
+Fixing strings in lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/cumsum.py
+
+check for merge conflicts................................................Passed
+mixed line ending........................................................Passed
+mdformat.................................................................Failed
+- hook id: mdformat
+- files were modified by this hook
+docformatter.............................................................Failed
+- hook id: docformatter
+- exit code: 3
+- files were modified by this hook
+check copyright..........................................................Failed
+- hook id: check-copyright
+- exit code: 1
+- files were modified by this hook
+
+Fixed /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/kernels/ascend/triton_ops/fla/prefill/__init__.py
+

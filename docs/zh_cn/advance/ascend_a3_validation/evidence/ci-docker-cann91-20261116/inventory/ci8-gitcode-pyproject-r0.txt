@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=80", "setuptools-scm[simple]>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triton-ascend-kernels"
+dynamic = ["version"]
+description = "High performance triton kernel implementations for Ascend platforms"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.8"
+authors = [
+  {name = "Ascend"},
+]
+keywords = ["triton", "ascend", "kernels", "npu"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "triton-ascend==3.2.0",
+  "torch==2.7.1", # to be deleted
+  "torch_npu==2.7.1post2", # to be deleted
+  "pybind11", # to be deleted
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-xdist>=3.0.0",
+    "pandas",
+    "einops",
+    "pre-commit>=4.0.0",
+    "black==22.10.0",
+    "build>=1.2.1",
+    "transformers",
+]
+
+[project.urls]
+Homepage = "https://gitcode.com/Ascend/triton-ascend-kernels"
+# Documentation = ""
+Repository = "https://gitcode.com/Ascend/triton-ascend-kernels"
+Issues = "https://gitcode.com/Ascend/triton-ascend-kernels/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+# pytest configuration
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests", "benchmark"]
+pythonpath = ["src"]
+python_files = ["test_*.py", "benchmark_*.py"]
+addopts = ["-sv"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::pytest.PytestUnknownMarkWarning",
+]

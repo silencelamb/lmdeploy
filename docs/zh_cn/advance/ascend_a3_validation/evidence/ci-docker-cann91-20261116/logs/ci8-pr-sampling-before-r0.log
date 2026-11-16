@@ -1,0 +1,174 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_________ test_dp_dummy_skips_input_compaction_without_sampling_inputs _________
+
+    def test_dp_dummy_skips_input_compaction_without_sampling_inputs():
+        inputs = _input_logprob_model_inputs([0], None)
+        inputs.is_dummy = True
+        generated = SimpleNamespace(next_token_ids=torch.tensor([0]),
+                                    output_token_ids=torch.tensor([[0]]),
+                                    logprobs=None)
+    
+        async def spec_sampling(_inputs, _extra, _sampling):
+            return generated
+    
+        async def spec_forward(_inputs, extra, _sampling):
+            return extra
+    
+        agent = BaseModelAgent.__new__(BaseModelAgent)
+        agent.rank = 0
+        agent.spec_agent = SimpleNamespace(is_enabled=lambda: True,
+                                           async_sampling_logits=spec_sampling,
+                                           async_model_forward=spec_forward)
+    
+>       result = asyncio.run(
+            agent._step_postprocess_with_output(last_logits=torch.zeros((1, 8)),
+                                                logits=torch.zeros((1, 8)),
+                                                inputs=inputs,
+                                                sampling_inputs=None,
+                                                stopping_criteria=None,
+                                                model_metas=None,
+                                                need_broadcast_next=False))
+
+tests/pytorch/engine/test_model_agent.py:329: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+/usr/local/python3.12.13/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+lmdeploy/pytorch/engine/model_agent/agent.py:928: in _step_postprocess_with_output
+    (next_token_ids, logprobs, output_token_ids, extra_inputs) = await self.async_sampling_logits(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <lmdeploy.pytorch.engine.model_agent.agent.BaseModelAgent object at 0xffff94bff3e0>
+logits = tensor([[0., 0., 0., 0., 0., 0., 0., 0.]])
+inputs = ModelInputs(input_ids=tensor([[0]]), seq_length=tensor([1]), history_lengths=tensor([0]), block_offsets=tensor([[0]]),..., is_chunk_multimodal=False, mrope_pos_ids=None, ssm_state_meta=None, ssm_prefill_meta=None, ssm_source_state_ids=None)
+extra_inputs = None, sampling_inputs = None
+
+    async def async_sampling_logits(self, logits: torch.Tensor, inputs: ModelInputs,
+                                    extra_inputs: ExtraInputs, sampling_inputs: SamplingInputs):
+        """Sampling logits."""
+        if self.spec_agent.is_enabled():
+>           if self.cache_config.device_type == 'ascend':
+E           AttributeError: 'BaseModelAgent' object has no attribute 'cache_config'. Did you mean: 'set_cache_config'?
+
+lmdeploy/pytorch/engine/model_agent/agent.py:719: AttributeError
+_______________ test_mtp_sampling_still_delegates_generated_rows _______________
+
+    def test_mtp_sampling_still_delegates_generated_rows():
+        generated = SimpleNamespace(next_token_ids=torch.tensor([5]),
+                                    output_token_ids=torch.tensor([[5, 6]]),
+                                    logprobs='spec-generated')
+    
+        async def spec_sampling(_inputs, _extra, _sampling):
+            return generated
+    
+        agent = BaseModelAgent.__new__(BaseModelAgent)
+        agent.spec_agent = SimpleNamespace(is_enabled=lambda: True,
+                                           async_sampling_logits=spec_sampling)
+>       result = asyncio.run(
+            agent.async_sampling_logits(torch.zeros((1, 8)),
+                                        _input_logprob_model_inputs([0, 1, 2], [0, 1]),
+                                        SimpleNamespace(), SamplingInputs(max_num_logprobs=0)))
+
+tests/pytorch/engine/test_model_agent.py:352: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+/usr/local/python3.12.13/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <lmdeploy.pytorch.engine.model_agent.agent.BaseModelAgent object at 0xffff71fc6b10>
+logits = tensor([[0., 0., 0., 0., 0., 0., 0., 0.]])
+inputs = ModelInputs(input_ids=tensor([[0, 1, 2]]), seq_length=tensor([3]), history_lengths=tensor([0]), block_offsets=tensor([..., is_chunk_multimodal=False, mrope_pos_ids=None, ssm_state_meta=None, ssm_prefill_meta=None, ssm_source_state_ids=None)
+extra_inputs = namespace()
+sampling_inputs = SamplingInputs(temperature=None, bad_words=None, bad_mask=None, stop_words=None, stop_mask=None, repetition_penalty=No...None, generated_ids_cpu=None, repetition_ngram_size=None, repetition_ngram_threshold=None, max_repetition_ngram_size=0)
+
+    async def async_sampling_logits(self, logits: torch.Tensor, inputs: ModelInputs,
+                                    extra_inputs: ExtraInputs, sampling_inputs: SamplingInputs):
+        """Sampling logits."""
+        if self.spec_agent.is_enabled():
+>           if self.cache_config.device_type == 'ascend':
+E           AttributeError: 'BaseModelAgent' object has no attribute 'cache_config'. Did you mean: 'set_cache_config'?
+
+lmdeploy/pytorch/engine/model_agent/agent.py:719: AttributeError
+______ test_ordinary_non_final_chunk_keeps_upstream_generated_logprob_row ______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff71fc6600>
+
+    def test_ordinary_non_final_chunk_keeps_upstream_generated_logprob_row(monkeypatch):
+        import lmdeploy.pytorch.engine.model_agent.agent as agent_module
+    
+        class _Processor:
+    
+            def __init__(self, *args, **kwargs):
+                pass
+    
+            async def __call__(self, logits):
+                return logits, logits
+    
+            def sampling(self, logits):
+                return torch.tensor([3])
+    
+            async def accept_guided_tokens(self, token_ids):
+                pass
+    
+            def compute_logprobs(self, raw_logprobs, token_ids):
+                indices = token_ids[:, None]
+                return raw_logprobs.gather(-1, indices), indices.to(torch.int32)
+    
+        monkeypatch.setattr(agent_module, 'FusedLogitsProcessor', _Processor)
+        inputs = _input_logprob_model_inputs([0, 1, 2], [0, 1])
+        inputs.is_chunk = True
+        inputs.is_last_chunk = False
+        agent = BaseModelAgent.__new__(BaseModelAgent)
+        agent.misc_config = SimpleNamespace(logprobs_mode='raw_logits')
+        agent.guided_decoding_manager = None
+        agent.spec_agent = SimpleNamespace(is_enabled=lambda: False)
+        agent.agent_strategy = SimpleNamespace(post_sampling=lambda _i, _l, ids, extra: (ids, extra))
+    
+>       result = asyncio.run(
+            agent.async_sampling_logits(torch.zeros((1, 8)), inputs, SimpleNamespace(),
+                                        SamplingInputs(max_num_logprobs=0)))
+
+tests/pytorch/engine/test_model_agent.py:393: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+/usr/local/python3.12.13/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+/usr/local/python3.12.13/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <lmdeploy.pytorch.engine.model_agent.agent.BaseModelAgent object at 0xffff71fc6630>
+logits = tensor([[0., 0., 0., 0., 0., 0., 0., 0.]])
+inputs = ModelInputs(input_ids=tensor([[0, 1, 2]]), seq_length=tensor([3]), history_lengths=tensor([0]), block_offsets=tensor([..., is_chunk_multimodal=False, mrope_pos_ids=None, ssm_state_meta=None, ssm_prefill_meta=None, ssm_source_state_ids=None)
+extra_inputs = namespace()
+sampling_inputs = SamplingInputs(temperature=None, bad_words=None, bad_mask=None, stop_words=None, stop_mask=None, repetition_penalty=No...None, generated_ids_cpu=None, repetition_ngram_size=None, repetition_ngram_threshold=None, max_repetition_ngram_size=0)
+
+    async def async_sampling_logits(self, logits: torch.Tensor, inputs: ModelInputs,
+                                    extra_inputs: ExtraInputs, sampling_inputs: SamplingInputs):
+        """Sampling logits."""
+        if self.spec_agent.is_enabled():
+            if self.cache_config.device_type == 'ascend':
+                extra_inputs.target_logits = extra_inputs.target_logits.to(torch.float32)
+            extra_inputs = await self.spec_agent.async_sampling_logits(inputs, extra_inputs, sampling_inputs)
+            return extra_inputs.next_token_ids, extra_inputs.logprobs, extra_inputs.output_token_ids, extra_inputs
+        # record function does not support async function
+        # so we can not decorate it on async_sampling_logits
+        with record_function('sampling_logits'):
+>           if self.cache_config.device_type == 'ascend':
+E           AttributeError: 'BaseModelAgent' object has no attribute 'cache_config'. Did you mean: 'set_cache_config'?
+
+lmdeploy/pytorch/engine/model_agent/agent.py:726: AttributeError
+=========================== short test summary info ============================
+FAILED tests/pytorch/engine/test_model_agent.py::test_dp_dummy_skips_input_compaction_without_sampling_inputs
+FAILED tests/pytorch/engine/test_model_agent.py::test_mtp_sampling_still_delegates_generated_rows
+FAILED tests/pytorch/engine/test_model_agent.py::test_ordinary_non_final_chunk_keeps_upstream_generated_logprob_row
+3 failed, 179 deselected in 4.89s
