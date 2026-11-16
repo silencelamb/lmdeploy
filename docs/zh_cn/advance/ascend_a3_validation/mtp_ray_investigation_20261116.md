@@ -12,6 +12,8 @@
 
 最新源码、因果对照和性能数据见本文末尾[编译器错误点与宿主机取证](#编译器错误点与宿主机取证2026-11-16-第三轮)。前两轮结论保留为历史记录，其中尚未完成条目应以最新章节为准。
 
+Ray接续更新：新增[后续调查计划与完成判据](#ray-后续调查计划)，集中列出已知事实、尚缺证据、宿主机采集入口及因果验证步骤。H200侧已发布两轮纯Ray CPU对照的有限窗口未复现结果，详见[独立GPU报告](cuda_regression_20261116.md#ray-独立-cpu-对照)；本文早期“H200未验证”保留为当时状态，不能覆盖该新记录，也不能据此将根因归为ARM。
+
 最新依赖升级结果见[AscendNPU-IR 2.0.0 隔离升级验证](#ascendnpu-ir-200-隔离升级验证)，此前“尚未升级/验证编译器”的表述属于历史阶段。
 
 正式交付和本轮PR源码回归见文末[修复纳入迁移PR](#修复纳入迁移pr)，此前“不修改迁移PR”的约束已由用户本轮明确指令变更。
@@ -594,6 +596,8 @@ CPU18当前只有明确的宿主机干扰与权限限制证据，具体回调和
 
 最后一项的判断依据是未改变的构建配方、实际安装的cuDSS1包和Torch加载器错误，而不是模型数值对照。后续Jetson修复应配套兼容的cuDSS/Torch版本，不能简单将`.so.1`链接成`.so.0`冒充ABI兼容。当前完整GPU模型验收也不能用Jetson镜像构建替代。
 
+Jetson任务被触发的原因是现有[Docker workflow](https://github.com/InternLM/lmdeploy/blob/442097e83799c2e85df9d6bbce35c7c79ea05dfe/.github/workflows/test_docker.yml)：PR路径过滤为`docker/**`或`.github/workflows/*docker.yml`，满足条件后CUDA、Ascend和Jetson三个job均执行，没有按具体Dockerfile再过滤。修改`docker/Dockerfile_ascend_a3`因此同时触发Jetson检查。该任务在GitHub的`ubuntu-22.04-arm` runner构建`docker/Dockerfile.jetson`，然后执行`lmdeploy check_env`，不覆盖Jetson实机模型推理。本轮镜像构建成功，失败发生在`check_env`导入Torch时；workflow和Jetson配方均与共同基线一致。
+
 ### Dockerfile与依赖现在使用什么
 
 实际A3运行环境一直是CANN9.1.0；此前仓库Dockerfile的8.5.0是另一份旧构建配方。现在Dockerfile明确使用官方 `quay.io/ascend/cann:9.1.0-a3-openeuler24.03-py3.12`，并创建独立应用venv。
@@ -633,6 +637,27 @@ Ray的长尾若影响服务SLO，继续追查有价值。现有证据已经把�
 这些工作与本PR的MTP正确性修复分开。CPU亲和性是临时诊断措施，没有作为永久修复交付；Ray await与同步顺序保持不变。
 
 GPU可以从PR #5134开始，但必须同时固定共同上游基线，使用相同CUDA环境/权重/配置进行双工作树对照。直接只跑PR能启动或生成文本不足以验收迁移。[可复制的GPU验证prompt](gpu_validation_prompt_20261116.txt)覆盖六模型矩阵、基线自重复、固定历史精度、性能及可选的纯Ray x86对照。
+
+### Ray 后续调查计划
+
+**状态：仍未完成具体回调归因和永久修复；继续调查有明确的信息增量。** 当前主要缺口是宿主机执行证据。已有材料足以优先追查CPU18，但不足以指定某个驱动、宣称所有尾延迟同源，或把问题归于ARM指令集。
+
+| 类别 | 当前证据与边界 |
+| --- | --- |
+| 已确认的半秒停顿 | 真实HTTP捕获约484ms间隔；纯Ray和无Python/Ray的C++控制均能复现。CPU18上的可运行线程积累数百毫秒runqueue等待，同期约52–57个softirq CPU tick及TASKLET活动；C++复现的周期约2.56秒。详见[关键调度样本](evidence/mtp-ray-deep-20261116/results/ray-cpu18-critical-samples-r1.json)及[softirq对应数据](evidence/mtp-ray-deep-20261116/results/cpu18-stall-correlation-r1.json)。 |
+| 尚未确认的底层触发点 | 具体callback符号、来源IRQ/模块、回调内部长循环或等待、约2.56秒周期的来源。IRQ名字及计数相关性不足以认定某个驱动；用户进程不加载ACL也不能排除宿主机驱动。 |
+| 其他尾延迟 | 已捕获的两次107/153ms残余等待与诊断探针自身generation-2 GC重合。该控制不能将其他所有慢请求归为GC，也不能据此在生产关闭GC。后续必须逐事件归因。 |
+| 新增H200/x86对照 | [H200报告](cuda_regression_20261116.md#ray-独立-cpu-对照)记录无Torch/NPU环境的Python3.12.14、Ray2.48.0、NumPy2.2.6，两轮各6000次均无>50ms join。A3为Python3.12.13；该报告和GPU机原始材料需共同核对，不能称软硬件完全相同。本节引用其已发布结果，没有在A3重新执行或独立重算GPU原始数据。有限窗口未复现不能证明ARM根因或永久修复。 |
+| 当前阻塞 | 容器缺少必要的内核跟踪权限，tracefs不可用、内核地址被屏蔽；[权限记录](evidence/mtp-ray-ir-host-20261116/inventory/host2-permission-limits-r0.json)已保存。需要在有权限的宿主机执行采集。 |
+
+按以下顺序推进，各次使用新label并保留原始trace、版本和失败记录：
+
+1. **定位长回调。** 在宿主机运行已交付的[采集工具](https://github.com/silencelamb/lmdeploy/tree/f9ab50d877c384bfb04ae43afa6af0c388fc451b/tools/ascend_a3/diagnostics)，并行运行原纯C++或纯Ray复现。先通过BTF和tasklet调度探针发现实际callback，再关联callback入口/返回、softirq入口/退出、IRQ及可选perf内核栈。输出必须给出符号/模块、持续时间、对应停顿、丢事件和探针miss；不能仅用计数替代回调耗时。完整命令和工具限制见本文“CPU 18：当前限制与可执行的宿主机采集”。
+2. **确认触发条件与责任层。** 获得长回调栈后，追到实际触发源，再设计单变量、可恢复的对照：修复前能够稳定复现，对照变化能够改变该回调耗时和用户线程等待，恢复条件后复现返回。保留驱动/内核/固件版本及周期来源；不按NVMe、SAS或消息IRQ名称先入为主归因。
+3. **补齐跨主机证据。** 对齐A3与H200的复现脚本SHA、Python补丁版本、Ray/NumPy版本、输入、迭代数、观测时长和探针开销；比较每个慢事件的投递、对象就绪、方法入口、结果回调、event-loop和runqueue时间线。H200已有两轮结果是起点，不能把阴性对照直接解释为架构差异。
+4. **在实际责任层修复并回归。** 独立研究分支保存最小复现和修复；用相同默认亲和性复测C++、纯Ray及真实HTTP C1/C4，至少三轮全新进程，并记录每轮慢事件、TTFT/TPOT/吞吐。若仍有异常，重新区分host调度、GC、对象就绪和Ray内部队列，避免将不同来源合并为同一根因。
+
+完成判据是取得“具体回调与触发源 → 可重复因果对照 → 实际责任层修复 → 同配置回归”的证据链，且剩余异常逐项解释。单次无长尾、避开CPU18、关闭GC、删除await或改变同步顺序都不足以完成本项。现有PR仅披露该独立未完成事项，没有交付这些规避措施；继续追查不影响已经独立验证的MTP编译器修复结论。
 
 ### 应用venv与SDK工具的检查边界
 
