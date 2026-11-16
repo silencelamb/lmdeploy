@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/root/workspace/a3-mtp-ray-investigation-20261116/tools/ci8-python-tools/bin/uv",
+    "pip",
+    "install",
+    "--python",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/bin/python",
+    "--index-url",
+    "https://pypi.org/simple",
+    "--find-links",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ci8-wheelhouse",
+    "-r",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/results/ci8-resolved-requirements-r5.txt",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ci8-wheelhouse/lmdeploy-0.18.0-py3-none-any.whl",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ci8-wheelhouse/torch-2.10.0+cpu-cp312-cp312-manylinux_2_28_aarch64.whl",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ci8-wheelhouse/torchvision-0.25.0+cpu-cp312-cp312-manylinux_2_28_aarch64.whl",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ci8-wheelhouse/triton_ascend-3.2.2.post2-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+  ],
+  "venv": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean",
+  "wheelhouse_files": 110,
+  "returncode": 0,
+  "vendor_overlay_command": [
+    "/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--no-deps",
+    "--no-index",
+    "--force-reinstall",
+    "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/ci8-wheelhouse/triton_ascend-3.2.2.post2-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+  ],
+  "vendor_overlay_returncode": 0,
+  "pip_check_returncode": 0
+}

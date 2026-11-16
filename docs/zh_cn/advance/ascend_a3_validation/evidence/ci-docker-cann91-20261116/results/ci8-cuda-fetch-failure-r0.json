@@ -1,0 +1,26 @@
+{
+  "job": 133098613039,
+  "kind": "inherited external access failure",
+  "endpoint": "https://api.github.com/repos/caikun-pjlab/router/releases/latest",
+  "status": 403,
+  "secondary_error": "JSONDecodeError on empty curl output",
+  "unchanged_files": [
+    {
+      "path": "docker/prepare_3rdparty_wheel.sh",
+      "unchanged_from_base": true,
+      "sha256": "f48130f772f9a34c0a25db9ac8fd90a8ec58da955bc246110d89c5beb98828bb"
+    },
+    {
+      "path": "docker/Dockerfile",
+      "unchanged_from_base": true,
+      "sha256": "89cfca1d3150de9fbef81c61b865c71d24a9582ef17fd41c8b224fc7a18e0ef5"
+    },
+    {
+      "path": "requirements/runtime_cuda.txt",
+      "unchanged_from_base": true,
+      "sha256": "369279da4d66b536c9b6abc7afdc1c9a807fa9548b346f000bb800551885c77d"
+    }
+  ],
+  "limit": "CI log lacks response body/rate-limit headers; do not assert quota/auth cause or a successful baseline rebuild.",
+  "mixed_into_migration_fix": false
+}

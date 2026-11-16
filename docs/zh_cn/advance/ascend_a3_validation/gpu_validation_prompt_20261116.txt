@@ -1,7 +1,7 @@
 请在这台 NVIDIA GPU 机器上，对 LMDeploy PR #5134 做迁移前/后的 CUDA 回归验证：
 https://github.com/InternLM/lmdeploy/pull/5134
 
-准备此prompt时PR最新提交为111dbf6b4dc1c1aa9fb2fd0753313e0314858c96；执行时仍需核对并固定实际HEAD。
+准备此prompt时PR最新提交为f64ab5061153b5c5b63721cf2d8d6f1b41b95104；执行时仍需核对并固定实际HEAD。
 
 目标是验证 Ascend 原生迁移及共享 RMSNormGated/模型接口没有破坏 CUDA；不能只启动 PR 生成一段文本就判定通过。
 

@@ -1,0 +1,329 @@
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/utils/_error_code.py:103: SyntaxWarning: invalid escape sequence '\['
+  self.npu_exception = "\[ERROR\] [0-9\-\:]* \(PID:\d*, Device:\-?\d*, RankID:\-?\d*\) ERR\d{5}"
+[W1116 05:10:30.369936596 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/profiler/analysis/prof_view/prof_db_parse/_basic_db_parser.py:46: SyntaxWarning: invalid escape sequence '\d'
+  db_patten = '^msprof_\d+\.db$'
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/optim/npu_fused_rmsprop.py:16: SyntaxWarning: invalid escape sequence '\s'
+  learning rate is thus :math:`\alpha/(\sqrt{v} + \epsilon)` where :math:`\alpha`
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:132: SyntaxWarning: invalid escape sequence '\e'
+  公式1: fast_gelu(x)=$$\frac{x}{1+e^{-1.702\begin{vmatrix}x\end{vmatrix}}}e^{0.851x(x-\begin{vmatrix}x\end{vmatrix})
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:1587: SyntaxWarning: invalid escape sequence '\_'
+  softmax_layout: string类型，可选参数，用于控制TND场景下softmax的输出（softmax_max和softmax_sum）的数据排布方式。当前仅在input\_layout=“TND”时进行配置，仅支持传入“TND”。默认情况下，softmax的输出排布为NTD排布；传入TND时，softmax的输出排布为TND排布。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:1892: SyntaxWarning: invalid escape sequence '\_'
+  softmax_layout: string类型，可选参数，用于控制TND场景下softmax的输出（softmax_max和softmax_sum）的数据排布方式。当前仅在input\_layout=“TND”时进行配置，仅支持传入“TND”。默认情况下，softmax的输出排布为NTD排布；传入TND时，softmax的输出排布为TND排布。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:3538: SyntaxWarning: invalid escape sequence '\e'
+  $$rotate = diag(rotate1, rotate2, rotate3) = \begin{pmatrix}rotate1&0&0\\0&rotate2&0\\0&0&rotate3\\\end{pmatrix}$$
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4156: SyntaxWarning: invalid escape sequence '\m'
+  算子功能：MhcSinkhornBackward是MhcSinkhorn的反向算子。mHC（Manifold-Constrained Hyper-Connections）架构中的MhcSinkhorn算子对输入矩阵做sinkhorn变换得到双随机矩阵$\mathbf{H}_{\text{res}}$，输出的双随机矩阵的所有元素≥0、每一行之和为1且每一列之和为1 (具有范数保持、组合封闭性和凸组合几何解释三大特性)。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4360: SyntaxWarning: invalid escape sequence '\('
+  outputs = swiglu\(x, dim = -1) = swish(A) * B = A * sigmoid(A) * B
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4474: SyntaxWarning: invalid escape sequence '\o'
+  x_{l+1} = (H_{l}^{res})^{T} \times x_l + h_{l}^{out} \otimes H_{t}^{post}
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:6691: SyntaxWarning: invalid escape sequence '\s'
+  令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:6771: SyntaxWarning: invalid escape sequence '\s'
+  令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:7660: SyntaxWarning: invalid escape sequence '\s'
+  scale_value: float类型, 代表缩放系数, 用来约束梯度, 其默认值为1.0, 典型值为$\frac{1}{\sqrt{D}}$; 数据类型为float32.
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:8156: SyntaxWarning: invalid escape sequence '\_'
+  sparse模式支持sparse\_mode=4且传入mask；当sparse\_mode=4时，要求preTokens >= -actual\_seq\_qlen、nextTokens >= -actual\_seq\_kvlen、preTokens + nextTokens >= 0；
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:8691: SyntaxWarning: invalid escape sequence '\_'
+  sparse模式支持sparse\_mode=4且传入mask；当sparse\_mode=4时，要求preTokens >= -actual\_seq\_qlen、nextTokens >= -actual\_seq\_kvlen、preTokens + nextTokens >= 0；
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:10563: SyntaxWarning: invalid escape sequence '\s'
+  out(i,j)=skip1_{i,j}+skip2Optional_{i,j}+\sum_{k=0}^{K}(scales_{i,k}*(expandPermutedRows_{expandedSrcToDstRow_{i+k*num_rows},j}+bias_{expertid,j}))
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:11598: SyntaxWarning: invalid escape sequence '\>'
+  >-   H：表示嵌入向量的长度，取值\>0。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12042: SyntaxWarning: invalid escape sequence '\s'
+  令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12111: SyntaxWarning: invalid escape sequence '\['
+  gamma: Device侧的Tensor类型，表示数据缩放因子；shape支持1-8维度，数据格式支持ND。shape需要满足gamma_shape = input_shape\[n:\], n < input_shape.dims()。数据类型支持FLOAT32、FLOAT16、BFLOAT16，与input数据类型保持一致。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12211: SyntaxWarning: invalid escape sequence '\['
+  gamma：Device侧的Tensor类型，数据缩放因子。shape支持1-8维，数据格式支持ND，数据类型支持FLOAT16、BFLOAT16。shape需要满足gamma_shape = x_shape\[n:\], n < x_shape.dims()。数据类型、数据格式需要与入参x1保持一致。不支持空tensor。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:13392: SyntaxWarning: invalid escape sequence '\~'
+  - B（batchsize）：取值范围为1\~65536。
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:14077: SyntaxWarning: invalid escape sequence '\_'
+  v=8*ks\_max
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:14987: SyntaxWarning: invalid escape sequence '\q'
+  (1)\qquad f_t &=\sigma(W_f[h_{t-1}, x_t] + b_f) \\
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:15121: SyntaxWarning: invalid escape sequence '\m'
+  | 输入拼接 | $\mathbf{z}_t = \begin{bmatrix} \mathbf{h}_{t-1} \\ \mathbf{x}_t \end{bmatrix}$ |
+2026-11-16 05:10:40,448 - lmdeploy - INFO - async_engine.py:153 - input backend=pytorch, backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=262144, max_batch_size=16, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.95, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=0, adapters=None, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=True, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-16 05:10:40,448 - lmdeploy - INFO - async_engine.py:154 - speculative_config=SpeculativeConfig(method='qwen3_5_mtp', model='', num_speculative_tokens=3, dflash_block_size=None)
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+    The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+    The backend in torch.distributed.init_process_group set to hccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+    The device parameters have been replaced with npu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+  warnings.warn(msg, RuntimeWarning)
+[W1116 05:10:48.280388490 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+2026-11-16 05:10:48,976 - lmdeploy - INFO - __init__.py:146 - Build <ray> executor.
+2026-11-16 05:10:48,976 - lmdeploy - INFO - ray_executor.py:277 - Init ray cluster.
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/ray/_private/node.py:1209: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  process_info = ray._private.services.start_gcs_server(
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/ray/_private/node.py:1170: ResourceWarning: unclosed file <_io.TextIOWrapper name='/dev/null' mode='w' encoding='UTF-8'>
+  self._webui_url, process_info = ray._private.services.start_api_server(
+2026-11-16 05:10:52,361	INFO worker.py:1927 -- Started a local Ray instance.
+2026-11-16 05:10:53,335 - lmdeploy - INFO - ray.py:107 - Ray initialized with address: 10.119.246.138:54385
+2026-11-16 05:10:54,177 - lmdeploy - INFO - ray_executor.py:308 - Init ray workers.
+2026-11-16 05:10:54,302 - lmdeploy - INFO - ray_executor.py:320 - Init distributed environment by device.
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/utils/_error_code.py:103: SyntaxWarning: invalid escape sequence '\['
+[36m(pid=1995121)[0m   self.npu_exception = "\[ERROR\] [0-9\-\:]* \(PID:\d*, Device:\-?\d*, RankID:\-?\d*\) ERR\d{5}"
+[36m(pid=1995121)[0m [W1116 05:11:02.311101458 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/profiler/analysis/prof_view/prof_db_parse/_basic_db_parser.py:46: SyntaxWarning: invalid escape sequence '\d'
+[36m(pid=1995121)[0m   db_patten = '^msprof_\d+\.db$'
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/utils/_error_code.py:103: SyntaxWarning: invalid escape sequence '\['
+[36m(pid=1995123)[0m   self.npu_exception = "\[ERROR\] [0-9\-\:]* \(PID:\d*, Device:\-?\d*, RankID:\-?\d*\) ERR\d{5}"
+[36m(pid=1995123)[0m [W1116 05:11:02.311101598 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/optim/npu_fused_rmsprop.py:16: SyntaxWarning: invalid escape sequence '\s'
+[36m(pid=1995121)[0m   learning rate is thus :math:`\alpha/(\sqrt{v} + \epsilon)` where :math:`\alpha`
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:132: SyntaxWarning: invalid escape sequence '\e'
+[36m(pid=1995121)[0m   公式1: fast_gelu(x)=$$\frac{x}{1+e^{-1.702\begin{vmatrix}x\end{vmatrix}}}e^{0.851x(x-\begin{vmatrix}x\end{vmatrix})
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:1587: SyntaxWarning: invalid escape sequence '\_'
+[36m(pid=1995121)[0m   softmax_layout: string类型，可选参数，用于控制TND场景下softmax的输出（softmax_max和softmax_sum）的数据排布方式。当前仅在input\_layout=“TND”时进行配置，仅支持传入“TND”。默认情况下，softmax的输出排布为NTD排布；传入TND时，softmax的输出排布为TND排布。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:1892: SyntaxWarning: invalid escape sequence '\_'
+[36m(pid=1995121)[0m   softmax_layout: string类型，可选参数，用于控制TND场景下softmax的输出（softmax_max和softmax_sum）的数据排布方式。当前仅在input\_layout=“TND”时进行配置，仅支持传入“TND”。默认情况下，softmax的输出排布为NTD排布；传入TND时，softmax的输出排布为TND排布。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:3538: SyntaxWarning: invalid escape sequence '\e'
+[36m(pid=1995121)[0m   $$rotate = diag(rotate1, rotate2, rotate3) = \begin{pmatrix}rotate1&0&0\\0&rotate2&0\\0&0&rotate3\\\end{pmatrix}$$
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4156: SyntaxWarning: invalid escape sequence '\m'
+[36m(pid=1995121)[0m   算子功能：MhcSinkhornBackward是MhcSinkhorn的反向算子。mHC（Manifold-Constrained Hyper-Connections）架构中的MhcSinkhorn算子对输入矩阵做sinkhorn变换得到双随机矩阵$\mathbf{H}_{\text{res}}$，输出的双随机矩阵的所有元素≥0、每一行之和为1且每一列之和为1 (具有范数保持、组合封闭性和凸组合几何解释三大特性)。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4360: SyntaxWarning: invalid escape sequence '\('
+[36m(pid=1995121)[0m   outputs = swiglu\(x, dim = -1) = swish(A) * B = A * sigmoid(A) * B
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4474: SyntaxWarning: invalid escape sequence '\o'
+[36m(pid=1995121)[0m   x_{l+1} = (H_{l}^{res})^{T} \times x_l + h_{l}^{out} \otimes H_{t}^{post}
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:6691: SyntaxWarning: invalid escape sequence '\s'
+[36m(pid=1995121)[0m   令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:6771: SyntaxWarning: invalid escape sequence '\s'
+[36m(pid=1995121)[0m   令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:7660: SyntaxWarning: invalid escape sequence '\s'
+[36m(pid=1995121)[0m   scale_value: float类型, 代表缩放系数, 用来约束梯度, 其默认值为1.0, 典型值为$\frac{1}{\sqrt{D}}$; 数据类型为float32.
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:8156: SyntaxWarning: invalid escape sequence '\_'
+[36m(pid=1995121)[0m   sparse模式支持sparse\_mode=4且传入mask；当sparse\_mode=4时，要求preTokens >= -actual\_seq\_qlen、nextTokens >= -actual\_seq\_kvlen、preTokens + nextTokens >= 0；
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:8691: SyntaxWarning: invalid escape sequence '\_'
+[36m(pid=1995121)[0m   sparse模式支持sparse\_mode=4且传入mask；当sparse\_mode=4时，要求preTokens >= -actual\_seq\_qlen、nextTokens >= -actual\_seq\_kvlen、preTokens + nextTokens >= 0；
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:10563: SyntaxWarning: invalid escape sequence '\s'
+[36m(pid=1995121)[0m   out(i,j)=skip1_{i,j}+skip2Optional_{i,j}+\sum_{k=0}^{K}(scales_{i,k}*(expandPermutedRows_{expandedSrcToDstRow_{i+k*num_rows},j}+bias_{expertid,j}))
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:11598: SyntaxWarning: invalid escape sequence '\>'
+[36m(pid=1995121)[0m   >-   H：表示嵌入向量的长度，取值\>0。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12042: SyntaxWarning: invalid escape sequence '\s'
+[36m(pid=1995121)[0m   令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12111: SyntaxWarning: invalid escape sequence '\['
+[36m(pid=1995121)[0m   gamma: Device侧的Tensor类型，表示数据缩放因子；shape支持1-8维度，数据格式支持ND。shape需要满足gamma_shape = input_shape\[n:\], n < input_shape.dims()。数据类型支持FLOAT32、FLOAT16、BFLOAT16，与input数据类型保持一致。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12211: SyntaxWarning: invalid escape sequence '\['
+[36m(pid=1995121)[0m   gamma：Device侧的Tensor类型，数据缩放因子。shape支持1-8维，数据格式支持ND，数据类型支持FLOAT16、BFLOAT16。shape需要满足gamma_shape = x_shape\[n:\], n < x_shape.dims()。数据类型、数据格式需要与入参x1保持一致。不支持空tensor。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:13392: SyntaxWarning: invalid escape sequence '\~'
+[36m(pid=1995121)[0m   - B（batchsize）：取值范围为1\~65536。
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:14077: SyntaxWarning: invalid escape sequence '\_'
+[36m(pid=1995121)[0m   v=8*ks\_max
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:14987: SyntaxWarning: invalid escape sequence '\q'
+[36m(pid=1995121)[0m   (1)\qquad f_t &=\sigma(W_f[h_{t-1}, x_t] + b_f) \\
+[36m(pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:15121: SyntaxWarning: invalid escape sequence '\m'
+[36m(pid=1995121)[0m   | 输入拼接 | $\mathbf{z}_t = \begin{bmatrix} \mathbf{h}_{t-1} \\ \mathbf{x}_t \end{bmatrix}$ |
+[36m(pid=1995123)[0m   公式1: fast_gelu(x)=$$\frac{x}{1+e^{-1.702\begin{vmatrix}x\end{vmatrix}}}e^{0.851x(x-\begin{vmatrix}x\end{vmatrix})
+[36m(pid=1995123)[0m   out(i,j)=skip1_{i,j}+skip2Optional_{i,j}+\sum_{k=0}^{K}(scales_{i,k}*(expandPermutedRows_{expandedSrcToDstRow_{i+k*num_rows},j}+bias_{expertid,j}))
+[36m(pid=1995123)[0m   v=8*ks\_max
+[36m(DeepTraceWorker pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(DeepTraceWorker pid=1995121)[0m     *************************************************************************************************************
+[36m(DeepTraceWorker pid=1995121)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(DeepTraceWorker pid=1995121)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(DeepTraceWorker pid=1995121)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(DeepTraceWorker pid=1995121)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(DeepTraceWorker pid=1995121)[0m     The device parameters have been replaced with npu in the function below:
+[36m(DeepTraceWorker pid=1995121)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(DeepTraceWorker pid=1995121)[0m     *************************************************************************************************************
+[36m(DeepTraceWorker pid=1995121)[0m     
+[36m(DeepTraceWorker pid=1995121)[0m   warnings.warn(msg, ImportWarning)
+[36m(DeepTraceWorker pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(DeepTraceWorker pid=1995121)[0m   warnings.warn(msg, RuntimeWarning)
+[36m(DeepTraceWorker pid=1995123)[0m     
+2026-11-16 05:11:16,962 - lmdeploy - INFO - ray_executor.py:324 - Init distributed process group.
+[36m(DeepTraceWorker pid=1995121)[0m 2026-11-16 05:11:16,965 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=58199
+2026-11-16 05:11:17,686 - lmdeploy - INFO - ray_executor.py:331 - Warming up distribute environment, this might take long time, please waiting...
+[36m(DeepTraceWorker pid=1995121)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(DeepTraceWorker pid=1995121)[0m [Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[36m(DeepTraceWorker pid=1995121)[0m [rank0]:[W1116 05:11:17.236365372 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/profiler/analysis/prof_view/prof_db_parse/_basic_db_parser.py:46: SyntaxWarning: invalid escape sequence '\d'
+[36m(pid=1995123)[0m   db_patten = '^msprof_\d+\.db$'
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12042: SyntaxWarning: invalid escape sequence '\s'[32m [repeated 6x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=1995123)[0m   learning rate is thus :math:`\alpha/(\sqrt{v} + \epsilon)` where :math:`\alpha`
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:3538: SyntaxWarning: invalid escape sequence '\e'[32m [repeated 2x across cluster][0m
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:14077: SyntaxWarning: invalid escape sequence '\_'[32m [repeated 5x across cluster][0m
+[36m(pid=1995123)[0m   softmax_layout: string类型，可选参数，用于控制TND场景下softmax的输出（softmax_max和softmax_sum）的数据排布方式。当前仅在input\_layout=“TND”时进行配置，仅支持传入“TND”。默认情况下，softmax的输出排布为NTD排布；传入TND时，softmax的输出排布为TND排布。[32m [repeated 2x across cluster][0m
+[36m(pid=1995123)[0m   $$rotate = diag(rotate1, rotate2, rotate3) = \begin{pmatrix}rotate1&0&0\\0&rotate2&0\\0&0&rotate3\\\end{pmatrix}$$
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:15121: SyntaxWarning: invalid escape sequence '\m'[32m [repeated 2x across cluster][0m
+[36m(pid=1995123)[0m   算子功能：MhcSinkhornBackward是MhcSinkhorn的反向算子。mHC（Manifold-Constrained Hyper-Connections）架构中的MhcSinkhorn算子对输入矩阵做sinkhorn变换得到双随机矩阵$\mathbf{H}_{\text{res}}$，输出的双随机矩阵的所有元素≥0、每一行之和为1且每一列之和为1 (具有范数保持、组合封闭性和凸组合几何解释三大特性)。
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4360: SyntaxWarning: invalid escape sequence '\('
+[36m(pid=1995123)[0m   outputs = swiglu\(x, dim = -1) = swish(A) * B = A * sigmoid(A) * B
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:4474: SyntaxWarning: invalid escape sequence '\o'
+[36m(pid=1995123)[0m   x_{l+1} = (H_{l}^{res})^{T} \times x_l + h_{l}^{out} \otimes H_{t}^{post}
+[36m(pid=1995123)[0m   令 $B$ 表示batch size，$L_i$ 表示第i个序列的长度，$T=\sum_i^B L_i$ 表示累积序列长度。$N_k$ 表示key的头数，$N_v$ 表示value的头数，$D_k$ 表示key向量的维度，$D_v$ 表示value向量的维度。[32m [repeated 3x across cluster][0m
+[36m(pid=1995123)[0m   scale_value: float类型, 代表缩放系数, 用来约束梯度, 其默认值为1.0, 典型值为$\frac{1}{\sqrt{D}}$; 数据类型为float32.
+[36m(pid=1995123)[0m   sparse模式支持sparse\_mode=4且传入mask；当sparse\_mode=4时，要求preTokens >= -actual\_seq\_qlen、nextTokens >= -actual\_seq\_kvlen、preTokens + nextTokens >= 0；[32m [repeated 2x across cluster][0m
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:11598: SyntaxWarning: invalid escape sequence '\>'
+[36m(pid=1995123)[0m   >-   H：表示嵌入向量的长度，取值\>0。
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:12211: SyntaxWarning: invalid escape sequence '\['[32m [repeated 2x across cluster][0m
+[36m(pid=1995123)[0m   gamma: Device侧的Tensor类型，表示数据缩放因子；shape支持1-8维度，数据格式支持ND。shape需要满足gamma_shape = input_shape\[n:\], n < input_shape.dims()。数据类型支持FLOAT32、FLOAT16、BFLOAT16，与input数据类型保持一致。
+[36m(pid=1995123)[0m   gamma：Device侧的Tensor类型，数据缩放因子。shape支持1-8维，数据格式支持ND，数据类型支持FLOAT16、BFLOAT16。shape需要满足gamma_shape = x_shape\[n:\], n < x_shape.dims()。数据类型、数据格式需要与入参x1保持一致。不支持空tensor。
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:13392: SyntaxWarning: invalid escape sequence '\~'
+[36m(pid=1995123)[0m   - B（batchsize）：取值范围为1\~65536。
+[36m(pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/_op_plugin_docs.py:14987: SyntaxWarning: invalid escape sequence '\q'
+[36m(pid=1995123)[0m   (1)\qquad f_t &=\sigma(W_f[h_{t-1}, x_t] + b_f) \\
+[36m(pid=1995123)[0m   | 输入拼接 | $\mathbf{z}_t = \begin{bmatrix} \mathbf{h}_{t-1} \\ \mathbf{x}_t \end{bmatrix}$ |
+[36m(DeepTraceWorker pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:390: ImportWarning: 
+[36m(DeepTraceWorker pid=1995123)[0m     *************************************************************************************************************[32m [repeated 2x across cluster][0m
+[36m(DeepTraceWorker pid=1995123)[0m     The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.npu and torch.nn.Module.npu now..
+[36m(DeepTraceWorker pid=1995123)[0m     The torch.cuda.DoubleTensor is replaced with torch.npu.FloatTensor cause the double type is not supported now..
+[36m(DeepTraceWorker pid=1995123)[0m     The backend in torch.distributed.init_process_group set to hccl now..
+[36m(DeepTraceWorker pid=1995123)[0m     The torch.cuda.* and torch.cuda.amp.* are replaced with torch.npu.* and torch.npu.amp.* now..
+[36m(DeepTraceWorker pid=1995123)[0m     The device parameters have been replaced with npu in the function below:
+[36m(DeepTraceWorker pid=1995123)[0m     torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.load, torch.set_default_device, torch.get_device_module, torch.sparse_compressed_tensor, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.Tensor.pin_memory, torch.nn.Module.to, torch.nn.Module.to_empty
+[36m(DeepTraceWorker pid=1995123)[0m   warnings.warn(msg, ImportWarning)
+[36m(DeepTraceWorker pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/lib/python3.12/site-packages/torch_npu/contrib/transfer_to_npu.py:311: RuntimeWarning: torch.jit.script and torch.jit.script_method will be disabled by transfer_to_npu, which currently does not support them, if you need to enable them, please do not use transfer_to_npu.
+[36m(DeepTraceWorker pid=1995123)[0m   warnings.warn(msg, RuntimeWarning)
+2026-11-16 05:11:20,304 - lmdeploy - INFO - base.py:574 - Building Model.
+[36m(DeepTraceWorker pid=1995121)[0m 2026-11-16 05:11:20,306 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1995121 for current process 1995121
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:   0%|          | 0/15 [00:00<?, ?it/s]
+[36m(DeepTraceWorker pid=1995123)[0m [rank1]:[W1116 05:11:17.235900680 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:   7%|▋         | 1/15 [00:00<00:13,  1.02it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  13%|█▎        | 2/15 [00:01<00:12,  1.06it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  20%|██        | 3/15 [00:02<00:10,  1.11it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  33%|███▎      | 5/15 [00:03<00:06,  1.52it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  40%|████      | 6/15 [00:04<00:06,  1.29it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  47%|████▋     | 7/15 [00:05<00:06,  1.20it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  53%|█████▎    | 8/15 [00:06<00:06,  1.09it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  67%|██████▋   | 10/15 [00:07<00:03,  1.34it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  73%|███████▎  | 11/15 [00:08<00:03,  1.23it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  80%|████████  | 12/15 [00:10<00:02,  1.13it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  87%|████████▋ | 13/15 [00:10<00:01,  1.17it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  93%|█████████▎| 14/15 [00:11<00:00,  1.11it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors: 100%|██████████| 15/15 [00:12<00:00,  1.06it/s]Loading weights from safetensors: 100%|██████████| 15/15 [00:12<00:00,  1.16it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:   0%|          | 0/15 [00:00<?, ?it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  13%|█▎        | 2/15 [00:00<00:00, 15.87it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  27%|██▋       | 4/15 [00:00<00:00, 13.35it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  40%|████      | 6/15 [00:00<00:00, 11.87it/s]
+[36m(DeepTraceWorker pid=1995123)[0m 2026-11-16 05:11:39,287 - lmdeploy - INFO - qwen3_5_mtp.py:17 - Using embed_tokens from target model.
+[36m(DeepTraceWorker pid=1995123)[0m 2026-11-16 05:11:16,966 - lmdeploy - INFO - dist_utils.py:29 - MASTER_ADDR=10.119.246.138, MASTER_PORT=58199
+[36m(DeepTraceWorker pid=1995123)[0m [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1[32m [repeated 2x across cluster][0m
+[36m(DeepTraceWorker pid=1995123)[0m 2026-11-16 05:11:20,306 - lmdeploy - INFO - utils.py:183 - Set HF_MODULES_CACHE to /root/.cache/huggingface/modules_pid_1995123 for current process 1995123
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  53%|█████▎    | 8/15 [00:00<00:00, 11.80it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  67%|██████▋   | 10/15 [00:00<00:00, 13.76it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  80%|████████  | 12/15 [00:00<00:00, 13.26it/s]
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors:  93%|█████████▎| 14/15 [00:01<00:00,  7.98it/s]
+2026-11-16 05:11:40,238 - lmdeploy - INFO - base.py:576 - Updating configs.
+2026-11-16 05:11:40,298 - lmdeploy - INFO - base.py:578 - Building GraphRunner and warmup ops, please waiting.
+2026-11-16 05:11:40,307 - lmdeploy - INFO - base.py:583 - Building CacheEngine with config: 
+CacheConfig(max_batches=16, block_size=128, num_cpu_blocks=0, num_gpu_blocks=12610, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.95, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, enable_prefix_caching=True, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=34, compact_state_capacity=None, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=1, states_shapes=[((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((7, 4096), torch.bfloat16), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32), ((4, 16, 128, 128), torch.float32)], num_reserved_gpu_blocks=1, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+2026-11-16 05:11:40,307 - lmdeploy - INFO - base.py:586 - Building Spec CacheEngine with config: 
+CacheConfig(max_batches=16, block_size=128, num_cpu_blocks=0, num_gpu_blocks=12610, kernel_block_size=128, dcp=1, window_size=-1, cache_max_entry_count=0.95, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, enable_prefix_caching=False, quant_policy=<QuantPolicy.NONE: 0>, device_type='ascend', num_state_caches=None, compact_state_capacity=None, prefix_cache_state_budget=0, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=1024, prefill_save_last_only=False, mooncake_state_save_slots=8, prefix_cache_block_aligned=False, prefix_cache_token_lookahead=0, states_shapes=[], num_reserved_gpu_blocks=0, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None).
+[36m(DeepTraceWorker pid=1995121)[0m Loading weights from safetensors: 100%|██████████| 15/15 [00:01<00:00, 10.27it/s]
+2026-11-16 05:11:42,068 - lmdeploy - INFO - base.py:569 - GPU KV cache capacity: 1,613,952 tokens (12,609 usable blocks/rank, DCP=1).
+2026-11-16 05:11:42,068 - lmdeploy - INFO - base.py:591 - Warming up model.
+[36m(DeepTraceWorker pid=1995121)[0m 2026-11-16 05:11:42,069 - lmdeploy - INFO - agent.py:551 - Starting engine warmup. This may take a while...
+[36m(DeepTraceWorker pid=1995121)[0m /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(DeepTraceWorker pid=1995121)[0m   torch.remainder(cache_seqlens, state_slots),
+[36m(DeepTraceWorker pid=1995121)[0m Warming up decoding:   0%|          | 0/5 [00:00<?, ?it/s]
+[36m(DeepTraceWorker pid=1995123)[0m /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(DeepTraceWorker pid=1995123)[0m   torch.remainder(cache_seqlens, state_slots),
+[36m(DeepTraceWorker pid=1995121)[0m Warming up decoding:  20%|██        | 1/5 [00:03<00:13,  3.48s/it]
+[36m(DeepTraceWorker pid=1995121)[0m Warming up decoding:  40%|████      | 2/5 [00:06<00:09,  3.09s/it]
+[36m(DeepTraceWorker pid=1995121)[0m Warming up decoding:  60%|██████    | 3/5 [00:06<00:03,  1.86s/it]
+[36m(DeepTraceWorker pid=1995121)[0m Warming up decoding:  80%|████████  | 4/5 [00:07<00:01,  1.25s/it]
+[36m(DeepTraceWorker pid=1995121)[0m Warming up decoding: 100%|██████████| 5/5 [00:10<00:00,  1.93s/it]Warming up decoding: 100%|██████████| 5/5 [00:10<00:00,  2.03s/it]
+[36m(DeepTraceWorker pid=1995121)[0m 2026-11-16 05:12:18,412 - lmdeploy - INFO - agent.py:590 - Engine warmup completed in 36.34 seconds.
+[36m(DeepTraceWorker pid=1995121)[0m 2026-11-16 05:11:40,236 - lmdeploy - INFO - qwen3_5_mtp.py:17 - Using embed_tokens from target model.
+2026-11-16 05:12:18,725 - lmdeploy - INFO - async_engine.py:188 - updated backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=262144, max_batch_size=16, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.95, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=12610, adapters=None, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=True, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode='raw_logprobs', enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-16 05:12:19,259 - lmdeploy - INFO - async_engine.py:259 - enable metrics, with dp: 1 dp_rank: 0
+2026-11-16 05:12:19,309 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-16 05:12:19,314 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-16 05:12:19,314 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-16 05:12:19,314 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-16 05:12:19,314 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-16 05:12:19,317 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=27, max_new_tokens=64, prep=True
+2026-11-16 05:12:19,317 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-16 05:12:19,317 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(DeepTraceWorker pid=1995121)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci8/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+2026-11-16 05:12:22,804 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:22,805 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 27, output_tokens 64
+CASE single-before OK 3.5444988030358218
+2026-11-16 05:12:22,808 - lmdeploy - INFO - async_engine.py:606 - session=1, input_tokens=27, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,809 - lmdeploy - INFO - async_engine.py:606 - session=2, input_tokens=18, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,809 - lmdeploy - INFO - async_engine.py:606 - session=3, input_tokens=25, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,810 - lmdeploy - INFO - async_engine.py:606 - session=4, input_tokens=22, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,811 - lmdeploy - INFO - async_engine.py:606 - session=5, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,811 - lmdeploy - INFO - async_engine.py:606 - session=6, input_tokens=20, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,812 - lmdeploy - INFO - async_engine.py:606 - session=7, input_tokens=24, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,812 - lmdeploy - INFO - async_engine.py:606 - session=8, input_tokens=30, max_new_tokens=64, prep=True
+2026-11-16 05:12:22,813 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-16 05:12:22,813 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-16 05:12:26,795 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:26,796 - lmdeploy - INFO - async_engine.py:810 - session 5 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-16 05:12:26,892 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 5
+2026-11-16 05:12:26,894 - lmdeploy - INFO - async_engine.py:810 - session 7 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-16 05:12:26,895 - lmdeploy - INFO - async_engine.py:810 - session 6 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-16 05:12:26,895 - lmdeploy - INFO - async_engine.py:810 - session 3 finished, reason "length", input_tokens 25, output_tokens 64
+2026-11-16 05:12:26,895 - lmdeploy - INFO - async_engine.py:810 - session 2 finished, reason "length", input_tokens 18, output_tokens 64
+2026-11-16 05:12:26,895 - lmdeploy - INFO - async_engine.py:810 - session 1 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-16 05:12:26,935 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:26,935 - lmdeploy - INFO - async_engine.py:810 - session 4 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-16 05:12:26,967 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:26,968 - lmdeploy - INFO - async_engine.py:810 - session 8 finished, reason "length", input_tokens 30, output_tokens 64
+CASE batch-eight OK 4.176571602001786
+2026-11-16 05:12:26,986 - lmdeploy - INFO - async_engine.py:606 - session=9, input_tokens=1104, max_new_tokens=64, prep=True
+2026-11-16 05:12:26,987 - lmdeploy - INFO - async_engine.py:606 - session=10, input_tokens=18, max_new_tokens=64, prep=True
+2026-11-16 05:12:26,987 - lmdeploy - INFO - async_engine.py:606 - session=11, input_tokens=12, max_new_tokens=64, prep=True
+2026-11-16 05:12:26,987 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 3
+2026-11-16 05:12:26,987 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 3
+2026-11-16 05:12:36,898 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:36,899 - lmdeploy - INFO - async_engine.py:810 - session 9 finished, reason "length", input_tokens 1104, output_tokens 64
+2026-11-16 05:12:36,935 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:36,936 - lmdeploy - INFO - async_engine.py:810 - session 10 finished, reason "length", input_tokens 18, output_tokens 64
+2026-11-16 05:12:36,993 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:36,994 - lmdeploy - INFO - async_engine.py:810 - session 11 finished, reason "length", input_tokens 12, output_tokens 64
+CASE mixed-long-short OK 10.037726580980234
+2026-11-16 05:12:37,022 - lmdeploy - INFO - async_engine.py:606 - session=12, input_tokens=27, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,023 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-16 05:12:37,023 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+2026-11-16 05:12:37,855 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:37,855 - lmdeploy - INFO - async_engine.py:810 - session 12 finished, reason "length", input_tokens 27, output_tokens 64
+CASE single-after OK 0.8543032640009187
+2026-11-16 05:12:37,877 - lmdeploy - INFO - async_engine.py:606 - session=13, input_tokens=27, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,877 - lmdeploy - INFO - async_engine.py:606 - session=14, input_tokens=18, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,878 - lmdeploy - INFO - async_engine.py:606 - session=15, input_tokens=25, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,878 - lmdeploy - INFO - async_engine.py:606 - session=16, input_tokens=22, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,878 - lmdeploy - INFO - async_engine.py:606 - session=17, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,879 - lmdeploy - INFO - async_engine.py:606 - session=18, input_tokens=20, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,879 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=24, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,880 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=30, max_new_tokens=64, prep=True
+2026-11-16 05:12:37,880 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-16 05:12:37,880 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-16 05:12:39,167 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:39,168 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-16 05:12:39,254 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 5
+2026-11-16 05:12:39,255 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-16 05:12:39,256 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-16 05:12:39,256 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 25, output_tokens 64
+2026-11-16 05:12:39,256 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 18, output_tokens 64
+2026-11-16 05:12:39,256 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-16 05:12:39,302 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:39,303 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-16 05:12:39,332 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 05:12:39,333 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 30, output_tokens 64
+CASE batch-eight-repeat OK 1.4814458179753274
+2026-11-16 05:12:39,450 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 05:12:39,450 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 05:12:39,451 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 05:12:39,455 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(DeepTraceWorker pid=1995121)[0m 2026-11-16 05:12:39,454 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(DeepTraceWorker pid=1995123)[0m 2026-11-16 05:12:39,454 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1994520 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/ci8-clean-mtp-r0.json

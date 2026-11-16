@@ -2,7 +2,9 @@
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
-**最新CI/Docker交付：PR现为 `111dbf6b`，Dockerfile明确使用CANN9.1.0/Python3.12及匹配依赖。3个sampling单测失败已通过基线对照确认由PR引入，并以`143fa1e6`修复；两条失效来源链接和GitCode浮动依赖也已处理。新提交CI正在执行，尚未宣称全部通过。详见文末“CI修复与CANN9.1 Docker配套”；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接复制到GPU环境。CANN9.2升级已按用户决定停止。**
+**最新CI/Docker交付：PR现为 `f64ab506`（运行时代码为`111dbf6b`），Dockerfile明确使用CANN9.1.0/Python3.12及匹配依赖。3个sampling单测失败已通过基线对照确认由PR引入，并以`143fa1e6`修复；两条失效来源链接和GitCode浮动依赖也已处理。新提交CI正在执行，尚未宣称全部通过。详见文末“CI修复与CANN9.1 Docker配套”；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接复制到GPU环境。CANN9.2升级已按用户决定停止。**
+
+**后续检查范围修正：最新HEAD为`f64ab506`，仅调整Docker与文档中的应用依赖检查边界，运行时代码与`111dbf6b`一致。CANN通过PYTHONPATH带入的可选profiler工具依赖仍单独记录；应用venv的隔离检查和负向对照通过。全新独立venv的6项NPU状态测试及Sage21响应的token/top5逐位对照也通过。新HEAD的远端CI仍在运行。**
 
 **最新结论：经用户授权，circular GDN 单缓冲修复、硬件回归和可选编译器升级配置已纳入迁移 PR #5134，提交 `85a05812`。正式 PR 源码在旧/新编译器下各6项状态回归通过，各两轮完整 Sage MTP 的21条响应及top5分数均逐位一致。此前官方 AscendNPU-IR2.0.0 的stage3验证也通过；当前PR仅在circular路径默认stage1，其余保留stage3。原运行环境和CANN未改。CPU18具体softirq/tasklet回调仍受宿主机权限限制，亲和性规避不是永久修复。**
 
@@ -631,3 +633,13 @@ Ray的长尾若影响服务SLO，继续追查有价值。现有证据已经把�
 这些工作与本PR的MTP正确性修复分开。CPU亲和性是临时诊断措施，没有作为永久修复交付；Ray await与同步顺序保持不变。
 
 GPU可以从PR #5134开始，但必须同时固定共同上游基线，使用相同CUDA环境/权重/配置进行双工作树对照。直接只跑PR能启动或生成文本不足以验收迁移。[可复制的GPU验证prompt](gpu_validation_prompt_20261116.txt)覆盖六模型矩阵、基线自重复、固定历史精度、性能及可选的纯Ray x86对照。
+
+### 应用venv与SDK工具的检查边界
+
+`111dbf6b`的新A3镜像CI已经完成全部应用包安装，但随后普通`pip check`扫描了CANN通过PYTHONPATH暴露的可选SDK工具元数据，从而失败。涉及`affinity-sched`的argparse、`mindstudio-kpp`的plotly，以及`ms-service-profiler`的loguru/matplotlib/msguard/openpyxl/OTLP依赖。这些工具依赖在原9.1环境也有缺失；它们不属于本次应用venv的依赖闭包。
+
+[f64ab506](https://github.com/silencelamb/lmdeploy/commit/f64ab5061153b5c5b63721cf2d8d6f1b41b95104)让包安装和检查使用`python -I`，仅隔离包管理时的Python搜索路径；运行时导入仍使用完整CANN环境。镜像从`/tmp`执行导入检查，以验证实际安装的包而非源码工作目录。该提交只改Dockerfile和两份安装文档，没有修改运行时代码。
+
+这不是把SDK工具缺失改写为通过：两种检查输出都保留。新增负向对照在独立应用venv放入一个要求不存在依赖的临时元数据包，`python -I -m pip check`正确失败；移除该临时包后检查通过。全新独立venv也实际完成安装，6项GDN状态回归通过，Sage完整21响应与所有top5分数逐位匹配参考。
+
+另一个独立失败出现在未修改的CUDA镜像第三方wheel准备脚本：cu128/Python3.11 job请求router仓库的GitHub release API返回403，随后空响应触发JSONDecodeError。对应CUDA Dockerfile、准备脚本及CUDA requirements与基线字节相同。日志未保留403响应体/配额头，不能武断认定API限流或权限原因；作为继承的外部访问失败单列，不混入Ascend实现修复。

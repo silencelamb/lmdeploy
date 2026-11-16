@@ -1,0 +1,14 @@
+{
+  "head": "f64ab5061153b5c5b63721cf2d8d6f1b41b95104",
+  "runtime_code_unchanged_from": "111dbf6b4dc1c1aa9fb2fd0753313e0314858c96",
+  "changed": [
+    "docker/Dockerfile_ascend_a3",
+    "docs/en/get_started/ascend/get_started.md",
+    "docs/zh_cn/get_started/ascend/get_started.md"
+  ],
+  "app_pipcheck": "passed",
+  "negative_control": "missing application dependency correctly fails",
+  "sdk_tool_check": "separate inherited optional-tool missing dependencies retained",
+  "clean_model": "results/ci8-clean-model-comparison-r0.json",
+  "clean_hardware": "logs/ci8-clean-state-r0.log"
+}

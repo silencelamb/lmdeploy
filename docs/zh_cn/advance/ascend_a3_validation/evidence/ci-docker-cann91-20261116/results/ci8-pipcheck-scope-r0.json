@@ -1,0 +1,26 @@
+[
+  {
+    "phase": "negative_control",
+    "command": [
+      "/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/bin/python",
+      "-I",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 1,
+    "output": "ci8-scope-probe 0.0.0 requires ci8-intentionally-absent-dependency-20261116, which is not installed.\n"
+  },
+  {
+    "phase": "restored_application",
+    "command": [
+      "/root/workspace/a3-mtp-ray-investigation-20261116/envs/ci8-clean/bin/python",
+      "-I",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0,
+    "output": "No broken requirements found.\n"
+  }
+]
