@@ -1,0 +1,271 @@
+{
+  "time_utc": "2026-11-16T15:22:40.445890+00:00",
+  "jobs": [
+    {
+      "id": 133371057262,
+      "run_id": 43887913961,
+      "workflow_name": "unit-test",
+      "head_branch": "pr/ascend-a3-native",
+      "run_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43887913961",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOJv0ecc8AAAAfDYjUbg",
+      "head_sha": "2ccf38a43f0fdc7415ce4ce9f177852bdacc9966",
+      "url": "https://api.github.com/repos/InternLM/lmdeploy/actions/jobs/133371057262",
+      "html_url": "https://github.com/InternLM/lmdeploy/actions/runs/43887913961/job/133371057262",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-16T14:39:01Z",
+      "started_at": "2026-11-16T14:39:03Z",
+      "completed_at": "2026-11-16T15:20:21Z",
+      "name": "unit_test",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T14:39:07Z",
+          "completed_at": "2026-11-16T14:39:09Z"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T14:39:09Z",
+          "completed_at": "2026-11-16T14:39:12Z"
+        },
+        {
+          "name": "Clone repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T14:39:12Z",
+          "completed_at": "2026-11-16T14:39:15Z"
+        },
+        {
+          "name": "Install lmdeploy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T14:39:15Z",
+          "completed_at": "2026-11-16T14:45:08Z"
+        },
+        {
+          "name": "Check env",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-16T14:45:08Z",
+          "completed_at": "2026-11-16T14:45:17Z"
+        },
+        {
+          "name": "Test lmdeploy python UT",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T14:45:17Z",
+          "completed_at": "2026-11-16T15:20:09Z"
+        },
+        {
+          "name": "Clear workfile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-16T15:20:09Z",
+          "completed_at": "2026-11-16T15:20:10Z"
+        },
+        {
+          "name": "Post Clone repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-16T15:20:10Z",
+          "completed_at": "2026-11-16T15:20:10Z"
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-16T15:20:10Z",
+          "completed_at": "2026-11-16T15:20:12Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-16T15:20:12Z",
+          "completed_at": "2026-11-16T15:20:13Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/InternLM/lmdeploy/check-runs/133371057262",
+      "labels": [
+        "self-hosted",
+        "linux-a100-s2"
+      ],
+      "runner_id": 84,
+      "runner_name": "s121-ut-r2",
+      "runner_group_id": 1,
+      "runner_group_name": "Default"
+    },
+    {
+      "id": 133370945520,
+      "run_id": 43887914323,
+      "workflow_name": "pr_ete_test",
+      "head_branch": "pr/ascend-a3-native",
+      "run_url": "https://api.github.com/repos/InternLM/lmdeploy/actions/runs/43887914323",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOJv0ecc8AAAAfDYcf8A",
+      "head_sha": "2ccf38a43f0fdc7415ce4ce9f177852bdacc9966",
+      "url": "https://api.github.com/repos/InternLM/lmdeploy/actions/jobs/133370945520",
+      "html_url": "https://github.com/InternLM/lmdeploy/actions/runs/43887914323/job/133370945520",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-11-16T14:38:49Z",
+      "started_at": "2026-11-16T15:18:02Z",
+      "completed_at": null,
+      "name": "pr_functions_test",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T15:18:05Z",
+          "completed_at": "2026-11-16T15:18:07Z"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T15:18:07Z",
+          "completed_at": "2026-11-16T15:18:10Z"
+        },
+        {
+          "name": "Clone repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T15:18:10Z",
+          "completed_at": "2026-11-16T15:18:15Z"
+        },
+        {
+          "name": "Install lmdeploy",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 4,
+          "started_at": "2026-11-16T15:18:15Z",
+          "completed_at": null
+        },
+        {
+          "name": "Check env",
+          "status": "pending",
+          "conclusion": null,
+          "number": 5,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test lmdeploy - func",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - pytorch Qwen3.5-35B-A3B",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - turbomind Qwen3-32B",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - turbomind InternVL3-38B",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - turbomind Qwen3-30B-A3B",
+          "status": "pending",
+          "conclusion": null,
+          "number": 10,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - pytorch Qwen3-30B-A3B",
+          "status": "pending",
+          "conclusion": null,
+          "number": 11,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - pytorch Qwen3-VL-30B-A3B-Instruct",
+          "status": "pending",
+          "conclusion": null,
+          "number": 12,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Test restful server - pytorch InternVL3_5-30B-A3B",
+          "status": "pending",
+          "conclusion": null,
+          "number": 13,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Clear workfile",
+          "status": "pending",
+          "conclusion": null,
+          "number": 14,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Clone repository",
+          "status": "pending",
+          "conclusion": null,
+          "number": 27,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Stop containers",
+          "status": "pending",
+          "conclusion": null,
+          "number": 28,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/InternLM/lmdeploy/check-runs/133370945520",
+      "labels": [
+        "self-hosted",
+        "linux-a100-pr"
+      ],
+      "runner_id": 90,
+      "runner_name": "s121-pr-r2",
+      "runner_group_id": 1,
+      "runner_group_name": "Default"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # MTP target logits 与 Ray RPC 停顿定位
 
-CI接续：完整A100单测已通过（6427通过、400跳过），ETE也通过；CUDA runner失联与连带取消项见[最新CI结果](#ci首轮完成结果与runner失联复跑)。
+CI恢复接续：当前PR为`2ccf38a4`。Jetson库版本与搜索路径问题已修复并通过真实镜像检查；当前完整单测7452通过/400跳过。其余检查继续跟进，详见[独立CI恢复报告](ci_docker_recovery_20261116.md)。下文各轮CI结果保留为当时状态。
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 

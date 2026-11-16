@@ -1,0 +1,82 @@
+{
+  "time_utc": "2026-11-16T15:48:05.172358+00:00",
+  "base": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "new_ci_upstream_parent": "95d2d6280ed4946fd498d6026f338c7bd41bfb63",
+  "status": "ahead",
+  "ahead_by": 3,
+  "files": [
+    {
+      "filename": "lmdeploy/serve/anthropic/adapter.py",
+      "status": "modified",
+      "changes": 82,
+      "sha": "8ea148cfce6877b046db5d932ab041a3412cd7a2"
+    },
+    {
+      "filename": "lmdeploy/serve/anthropic/endpoints/messages.py",
+      "status": "modified",
+      "changes": 4,
+      "sha": "c4bad09557dbebf5649694342c92921ff17d83c8"
+    },
+    {
+      "filename": "lmdeploy/serve/anthropic/endpoints/messages_count_tokens.py",
+      "status": "modified",
+      "changes": 16,
+      "sha": "8e588fa99b9745b74bfa1fd1f526985dd16d67c1"
+    },
+    {
+      "filename": "lmdeploy/serve/anthropic/protocol.py",
+      "status": "modified",
+      "changes": 1,
+      "sha": "6bb9e008993678bd35c99ec23758f572a4edc585"
+    },
+    {
+      "filename": "lmdeploy/serve/parsers/tool_parser/xml_tool_parser.py",
+      "status": "modified",
+      "changes": 648,
+      "sha": "08205b5b140a61c98b59d07015c7e6a4c155a4f0"
+    },
+    {
+      "filename": "lmdeploy/serve/processors/multimodal.py",
+      "status": "modified",
+      "changes": 24,
+      "sha": "0834d700b18e9480a917e2d508fc141537ac45c2"
+    },
+    {
+      "filename": "tests/test_lmdeploy/serve/anthropic/test_endpoints.py",
+      "status": "modified",
+      "changes": 111,
+      "sha": "5d647bf7b0baf04fe41e928e438cf9e6f570437d"
+    },
+    {
+      "filename": "tests/test_lmdeploy/serve/parsers/test_qwen3coder_schema_arg_coercion.py",
+      "status": "added",
+      "changes": 689,
+      "sha": "7f3035618c68da397cf566709ef87b369f58ed2f"
+    },
+    {
+      "filename": "tests/test_lmdeploy/serve/parsers/test_xml_schema_candidate_selection.py",
+      "status": "added",
+      "changes": 154,
+      "sha": "a328aa627678932a1670cf03ae9573fe2b1c8b2a"
+    },
+    {
+      "filename": "tests/test_lmdeploy/serve/parsers/test_xml_schema_combinators.py",
+      "status": "added",
+      "changes": 162,
+      "sha": "aac321701f5202437c8b5358a20c84f5f1317676"
+    },
+    {
+      "filename": "tests/test_lmdeploy/test_glm5_chat_template.py",
+      "status": "modified",
+      "changes": 116,
+      "sha": "feb5608b622bcb382dae9d3df0e7ebe8d1d2ba3b"
+    }
+  ],
+  "unit_count_delta": {
+    "old_passed": 6427,
+    "new_passed": 7452,
+    "difference": 1025,
+    "skipped_unchanged": 400,
+    "source": "Upstream changes included by GitHub merge ref; not CI-repair test additions"
+  }
+}

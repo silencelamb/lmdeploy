@@ -1,0 +1,16 @@
+{
+  "command": [
+    "git",
+    "-c",
+    "credential.helper=!gh auth git-credential",
+    "push",
+    "--atomic",
+    "https://github.com/silencelamb/lmdeploy.git",
+    "pr/ascend-a3-native",
+    "research/ci-jetson-runtime-20261116"
+  ],
+  "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+  "head": "b547ca0b89444dc6cb1db33b881e1d06aea60a4b",
+  "returncode": 0,
+  "time_utc": "2026-11-16T14:08:04.788660+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+    "run",
+    "--config",
+    "/root/workspace/a3-native-pr-20261115/artifacts/applicable-pre-commit.yaml",
+    "--files",
+    "docker/Dockerfile.jetson",
+    ".github/workflows/test_docker.yml"
+  ],
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-ci11",
+  "head": "b547ca0b89444dc6cb1db33b881e1d06aea60a4b",
+  "returncode": 0,
+  "time_utc": "2026-11-16T14:32:29.038103+00:00",
+  "diff_sha256": "0a645e8a875bc2ab648df18e49143df45ebecc4152261748a56ebd45b1ed90ca"
+}
