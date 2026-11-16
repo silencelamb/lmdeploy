@@ -1,162 +1,179 @@
-# PR #5134：H200 CUDA 迁移回归验证
+# PR #5134：固定版本的 H200 CUDA 迁移回归验证
 
-> 执行中。以下主矩阵优先于后面的历史阶段记录；性能尚未完成，不是整项通过声明。
+执行窗口：2026-11-16 至 2026-11-17，Asia/Shanghai。结果包含**条件通过、基线问题和未验证项**。在有效、相同条件的未插桩迁移对照中，没有发现已证实的 PR 独有 CUDA 数值回归；不能将本报告读作任意缓存、动态合批或全部部署配置的逐位一致保证。
 
-## 当前主矩阵（21:55）
+## 固定版本与判定范围
 
-固定共同基线 `442097e83799c2e85df9d6bbce35c7c79ea05dfe`，当前PR `f64ab5061153b5c5b63721cf2d8d6f1b41b95104`。所有数值通过均限定于保存的相同CUDA依赖、GPU与Triton调优缓存。
+- 共同基线：**442097e83799c2e85df9d6bbce35c7c79ea05dfe**。GitHub API base 与完整非 shallow 历史的 merge-base 均核实为此 SHA，从未用移动中的 main 替代。
+- 本轮固定 PR：**f64ab5061153b5c5b63721cf2d8d6f1b41b95104**。起始观察到111dbf6b4dc1c1aa9fb2fd0753313e0314858c96；f64仅修改Ascend安装/镜像检查，运行代码、测试和CUDA依赖文件相同。另建工作树，并在f64完成主模型矩阵和关键单测。
+- 后续观察到b547ca0b89444dc6cb1db33b881e1d06aea60a4b，完整抓取后记录了Jetson cuDSS和CI fail-fast两处变更；运行代码仍相同。用户随后要求固定版本，本轮保持442097/f64，不把数据改标为b547，也不再追随新HEAD。
+- 两个测试工作树始终独立、detached、无实现修改。没有向实现PR提交报告、算法改动或CPU亲和性规避，没有合并PR。
 
-| 完整模型 | 主验收硬件 | 非MTP | MTP3 | 当前限制 |
+所有主数值通过都限定于**相同CUDA依赖、同一checkpoint文件、同一组物理GPU，以及保存的匹配Triton持久化调优缓存**。初始独立调优缓存下的差异没有被删除；其因果对照见下文。
+
+## 六个完整模型的主矩阵
+
+每个生成模型的非MTP与MTP3分别运行eager/graph × prefix off/on四种配置，每配置双方各两次全新进程；检查双方自重复和两组跨源码配对。生成模型每轮23响应、1408生成token、7040完整top-5数值；Decision评分任务每轮46响应、57960候选分数。表中的“通过”指相同事件、相同实际缓存条件的迁移前后对照。
+
+| 完整checkpoint | 硬件/TP | 非MTP | MTP3 | 基线问题或范围限制 |
 | --- | --- | --- | --- | --- |
-| GLM-5.3-Flash | 单机8×H200，TP8 | 固定70000 cache blocks独占重跑：4配置、双侧2次全新进程通过 | 4配置、双侧2次全新进程通过；实际cache容量一致 | 初轮TP8非MTP资源重叠记录已作废，不计主通过 |
-| Intern-Decision-4B | 单H200，TP1 | 用户路径、固定16000 blocks独占重跑：4配置每轮46响应/57960候选分数全部逐bit一致 | 任务不支持 | 评分不生成token；仍需完成真实prefill graph重放审计 |
-| Sage-A1.5 | 单H200，TP1 | 4配置、双侧2次新进程通过 | 同左 | 非MTP pipeline/HTTP及MTP3 pipeline各5对完成，未触发持续回退判据 |
-| Agents-A1 | 单H200，TP1 | 4配置、双侧2次新进程通过 | 同左 | 非MTP/MTP3 pipeline未触发回退；HTTP C4 TTFT触发，定位中 |
-| Intern-S2-Preview-397B-FP8（用户确认版本） | 单机8×H200，TP8 | 4配置、双侧2次新进程通过 | 同左 | 实际cache容量一致；非MTP pipeline五对完成；HTTP C4基线自身token不重复 |
-| GLM-5.3 | 单机8×H200，TP8，block64 | 21个短/批/混批响应一致；32K长上下文基线/PR均不自重复 | 同类长上下文自重复失败 | 基线默认sparse top-k无序输出问题；不计全模型零容差通过，不做性能通过结论 |
+| GLM-5.3-Flash，官方FP8 | 单机8×H200，TP8 | 通过：4配置、双侧双重复 | 通过：4配置、双侧双重复 | HTTP C4动态合批不自重复；prefix长请求miss→hit的分数变化两边都有 |
+| Intern-Decision-4B，用户目录 | 单H200，TP1 | 通过：4配置、双侧双重复；真实piecewise graph确认 | 任务不支持 | score-only，不能用生成TPS/TTFT/TPOT衡量；部分prefix长评分miss→hit分数变化两边都有 |
+| Sage-A1.5，完整BF16 | 单H200，TP1 | 通过：4配置、双侧双重复 | 通过：4配置、双侧双重复 | prefix长请求miss→hit分数变化两边都有 |
+| Agents-A1，完整BF16 | 单H200，TP1 | 通过：4配置、双侧双重复 | 通过：4配置、双侧双重复 | prefix长请求miss→hit分数变化两边都有；原HTTP C4 TTFT触发定位 |
+| Intern-S2-Preview-397B-FP8，用户明确批准的版本 | 单机8×H200，TP8 | 通过：4配置、双侧双重复 | 通过：4配置、双侧双重复 | HTTP C4对实际批量形状/请求排列敏感；不能替代未找到的非Preview FP8版本 |
+| GLM-5.3，官方FP8 | 单机8×H200，TP8 | 基线问题：32K长上下文双方均不自重复 | 同类基线问题 | 之前21个短/批/混批响应一致；长上下文不满足零容差，不进入性能通过统计 |
 
-生成模型每种配置每轮23响应、1408 token、7040完整top-5数值；四配置为eager/graph×prefix off/on。新主矩阵机器可读结果保存在本机 `results/primary-matrix.json`，最终归档会更新。原TP4 Flash/S2仅作为补充，不能替代用户要求的TP8。
+主矩阵来自176个完整运行，共44种配置；36种满足全部数值比较，GLM的8种保留失败。所有44种均重新核对物理GPU、实际KV容量、输入长度及cache命中条件一致。[可读主清单](evidence/cuda-h200-20261116/primary-summary.json)对应归档中的完整primary-matrix.json。
 
-主矩阵重新从176个完整运行的结果及命令/原始日志生成；44个配置的物理GPU、实际cache容量、输入长度和cache命中条件均核对一致。36个配置逐bit通过；GLM的8个配置保留基线和PR均不自重复的结论。Decision的graph配置分数已对照通过，但非空CUDA kernel图的真实重放仍单独审计，不能只用配置标志声称覆盖。
+原Flash/S2 TP4只作为历史补充。一次控制器重启留下子队列，造成初轮Flash TP8非MTP与初轮Decision的显存重叠和实际KV容量变化：这些轮次已**撤销主验收资格**，原始文件和明确排除清单resource-invalidations.json保留。随后使用继承到子进程的GPU互斥锁、启动前空闲显存检查和固定容量完整重跑：Flash非MTP70000 blocks，Decision16000 blocks。没有修改模型算法、同步顺序或数值阈值。
 
-### 已完成性能样本（仍有补充测量和定位未结束）
+## 环境、checkpoint与输入
 
-每格5对AB/BA，输出256 token，graph/prefix off。可比条目要求双方输入/输出长度、生成token IDs和cache命中条件一致；不满足者不作迁移性能通过结论。表内为每侧中位数，括号为**逐对百分比差的中位数**；两者计算方法不同。TTFT/TPOT单位为ms。完整逐轮值、置信区间、采样显存和token记录见本机`results/performance-raw.json`、`performance-summary.json`，最终分卷会更新。HTTP是实际loopback请求；pipeline不含HTTP/router。
+- 8×NVIDIA H200，每卡143771MiB；UUID/拓扑已记录。驱动570.133.20，CUDA Toolkit12.8.93，x86_64双路Xeon Platinum8558，192 logical CPUs、约2TiB内存；本会话无额外CPU/内存cgroup硬上限。
+- Python3.12.14、Torch2.10.0+cu128、CUDA Triton3.6.0、FLA/fla-core0.5.2、NumPy2.2.6、Transformers5.16.0；模型环境Ray2.58.0。完整146包依赖和40971个依赖文件的SHA256保留，公共依赖检查通过。
+- 复制既有CUDA依赖到独立目录，保留用户原环境；两个venv共享同一依赖快照，去除复制件中的旧editable路由，显式设置工作树PYTHONPATH。父进程、MP/Ray子进程使用导入守卫和路径审计。没有安装或导入dlinfer、torch_npu、triton-ascend，没有使用Ascend requirements/A3脚本。
+- 固定BF16激活；FP8模型使用已有官方FP8文件，没有现场量化或替换小模型。固定Python/NumPy/Torch/CUDA seed42，greedy、do_sample=False/top_k=1；max_batch8、session65536、prefill2048、DP1/EP1，GLM-5.3按FlashMLA要求block64，其余按记录的实际配置。首次错误block128被两边同样拒绝，失败另存。
+- 每轮包括单请求、8请求批次、长短混批、同prompt新请求重放、长上下文和重放。生成模型长输入实际32603 token；Decision最长29264。prefix命中实测，生成长请求可命中32512 token，Decision可命中29184。
 
-| 模型 | MTP | 范围/C | TPS base→PR（配对Δ） | TTFT base→PR（配对Δ） | TPOT base→PR（配对Δ） | 结论 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Agents | 0 | http/C1 | 152.90→153.03 (+0.00%) | 66.88→65.76 (-1.82%) | 6.30→6.30 (+0.02%) | 可比；未触发持续回退 |
-| Agents | 0 | http/C4 | 532.78→435.36 (-17.63%) | 124.81→580.86 (+324.32%) | 7.04→6.93 (-1.36%) | 触发回退判据，定位中 |
-| Agents | 0 | pipeline/C1 | 153.08→153.12 (+0.03%) | 65.44→66.08 (+0.95%) | 6.30→6.30 (-0.02%) | 可比；未触发持续回退 |
-| Agents | 0 | pipeline/C4 | 557.73→557.32 (-0.09%) | 69.48→70.56 (+0.99%) | 6.93→6.93 (+0.02%) | 可比；未触发持续回退 |
-| Agents | 3 | pipeline/C1 | 107.40→107.19 (-0.11%) | 75.20→75.62 (+0.30%) | 9.05→9.07 (+0.11%) | 可比；未触发持续回退 |
-| Agents | 3 | pipeline/C4 | 358.66→357.87 (-0.24%) | 78.56→80.13 (+2.04%) | 10.89→10.90 (+0.13%) | 可比；未触发持续回退 |
-| GLM-5.3-Flash TP8 | 0 | http/C1 | 81.80→82.28 (+0.12%) | 181.08→181.40 (-0.55%) | 11.55→11.51 (+0.18%) | 可比；未触发持续回退 |
-| GLM-5.3-Flash TP8 | 0 | http/C4 | 282.95→300.32 (+1.64%) | 356.18→243.27 (-19.16%) | 12.91→12.45 (-1.87%) | 生成token不一致，性能不计通过 |
-| GLM-5.3-Flash TP8 | 0 | pipeline/C1 | 77.63→78.43 (+1.12%) | 187.10→189.85 (-3.35%) | 12.14→12.05 (-0.98%) | 可比；未触发持续回退 |
-| GLM-5.3-Flash TP8 | 0 | pipeline/C4 | 307.48→306.47 (+2.41%) | 201.35→193.34 (-3.23%) | 12.21→12.34 (-1.70%) | 可比；未触发持续回退 |
-| GLM-5.3-Flash TP8 | 3 | pipeline/C1 | 162.14→157.25 (+0.66%) | 198.10→191.58 (-4.12%) | 5.43→5.62 (-0.17%) | 可比；未触发持续回退 |
-| GLM-5.3-Flash TP8 | 3 | pipeline/C4 | 605.47→568.75 (-3.11%) | 204.91→216.28 (+2.12%) | 5.32→5.48 (+2.76%) | 可比；未触发持续回退 |
-| Intern-S2 Preview397B TP8 | 0 | http/C1 | 70.80→70.52 (-0.34%) | 186.77→200.71 (+6.33%) | 13.44→13.44 (+0.01%) | 可比；未触发持续回退 |
-| Intern-S2 Preview397B TP8 | 0 | http/C4 | 253.37→254.00 (+0.13%) | 369.08→357.58 (-0.60%) | 14.37→14.39 (+0.13%) | 生成token不一致，性能不计通过 |
-| Intern-S2 Preview397B TP8 | 0 | pipeline/C1 | 70.51→70.59 (+0.17%) | 194.10→192.02 (-3.75%) | 13.47→13.47 (+0.04%) | 可比；未触发持续回退 |
-| Intern-S2 Preview397B TP8 | 0 | pipeline/C4 | 264.94→265.30 (+0.26%) | 203.75→198.00 (-4.46%) | 14.35→14.35 (-0.01%) | 可比；未触发持续回退 |
-| Sage | 0 | http/C1 | 153.10→152.93 (+0.01%) | 66.89→65.91 (-1.33%) | 6.29→6.30 (+0.02%) | 可比；未触发持续回退 |
-| Sage | 0 | http/C4 | 541.19→546.75 (+1.03%) | 129.10→121.53 (-6.27%) | 6.98→6.85 (-1.73%) | 可比；未触发持续回退 |
-| Sage | 0 | pipeline/C1 | 153.00→153.07 (+0.05%) | 66.00→65.64 (-0.49%) | 6.30→6.30 (-0.06%) | 可比；未触发持续回退 |
-| Sage | 0 | pipeline/C4 | 575.16→575.19 (+0.00%) | 68.82→69.89 (+0.90%) | 6.71→6.71 (-0.02%) | 可比；未触发持续回退 |
-| Sage | 3 | pipeline/C1 | 280.53→280.49 (-0.08%) | 74.54→75.24 (+0.53%) | 3.28→3.29 (-0.02%) | 可比；未触发持续回退 |
-| Sage | 3 | pipeline/C4 | 964.66→966.67 (+0.13%) | 80.48→78.75 (-2.20%) | 3.71→3.71 (+0.02%) | 可比；未触发持续回退 |
+| checkpoint | 固定内容来源 | 完整权重规模 |
+| --- | --- | --- |
+| GLM-5.3-Flash | 3f1971b7b5f7a528c9c4ef6212c8785298a8c24a | 62分片，328326771576 bytes |
+| Sage-A1.5 | ee49fa7353820fff9e59b7e89c51a729e8359a61 | 15分片，71903645408 bytes |
+| Agents-A1 | 604894d081728ba6616387a2711215b79a95cb03 | 14分片，70216369184 bytes |
+| Intern-S2-Preview-397B-FP8 | b9b98067e5a0cea541b9e4a2739c0aa7a5ddb667 | 96分片，408283814880 bytes |
+| GLM-5.3 | e0b07fd2751b42d5efa199cc02c2b271deadc516 | 141分片，755617140416 bytes |
+| Intern-Decision-4B | 用户zskj-hub目录；19个运行文件与官方38c9dafbbef52dd04bae943c0c6ac918419adfd5相同 | 4分片，9078626736 bytes |
 
-Agents HTTP C4原始五轮TTFT均值：base `[0.1248,0.1092,0.1089,0.1378,0.1373]` 秒，PR `[0.5856,0.1335,0.5809,0.1427,0.5828]` 秒。随后独立诊断在**基线**复现约0.581秒，PR预热也出现约0.593秒；第一轮诊断记录到的Triton模块加载只占4–8ms，**不能据此把半秒延迟归因于加载**。进一步记录Autotuner.run/benchmark等阶段，原始五对样本及触发结论保留。
+Decision实际路径是/mnt/shared-storage-user/gpfs2-shared-public/huggingface/zskj-hub/models--internlm--Intern-Decision-4B。README和.gitattributes与下载版本不同，因此没有把整个用户目录冒称为那个git revision。所有使用文件均实际读取并记录SHA256，配对使用同一物理文件。
 
-Flash/S2 HTTP C4均有基线自身的新进程token差异，首个分歧和此前一致的历史见`results/http-first-divergences.json`；没有沿不同历史比较后续分数。已安排独立记录实际C4首个prefill的全部TP rank位置、KV/GDN/卷积状态、逐层hidden、target logits与HTTP序列化前的完整top-k ID/score bits。其时间不计入性能样本。固定批次pipeline结论独立保留。
+## 数值检查与单测
 
-Decision图节点审计首轮遇到辅助代码的构造参数问题：仅修改Python `__new__`未将`keep_graph=True`传入底层`__init__`，因此诊断在捕获结束时中止。已保存失败并修正辅助代码，待实际GPU补跑；这不是未修改模型路径的失败。Decision评分性能随后继续。
+比较生成token ID、完整top-5 ID集合和每个返回值的二进制编码，不用文本相同替代数值检查。API浮点数保存FP32与Python FP64的hex编码；计算dtype保持原路径。例如S2非MTP原生BF16 log-softmax能逐bit复现保存分数，强制FP32的负控不匹配，未以改变精度制造一致。发现首个差异后保留此前一致历史，不沿已不同的生成历史比较后续分数。
 
-## 历史阶段与原始证据（保留失败和更正）
-
-执行中，2026-11-16（Asia/Shanghai）。本文件记录实际完成的证据；未完成项不计通过。
-
-## 固定版本与环境
-
-- 起始 PR HEAD：`111dbf6b4dc1c1aa9fb2fd0753313e0314858c96`。
-- API base 与完整非 shallow 历史核实的 merge-base 均为 `442097e83799c2e85df9d6bbce35c7c79ea05dfe`。
-- 期间 HEAD 更新为 `f64ab5061153b5c5b63721cf2d8d6f1b41b95104`；仅 Ascend Dockerfile/两份安装文档变化，CUDA 实现、测试、CUDA/common requirements 与起始 HEAD 完全相同。另建工作树，补跑当前 HEAD 单测及受控模型对照。
-- x86_64，双路 Intel Xeon Platinum 8558，192 logical CPUs，8× NVIDIA H200 143771 MiB。驱动 570.133.20，系统 CUDA 12.8，Python 3.12.14，Torch 2.10.0+cu128，CUDA Triton 3.6.0，FLA/fla-core 0.5.2，NumPy 2.2.6。
-- 保留用户原环境。将既有 CUDA 包复制到独立目录，移除复制件中的旧 editable 路由，两套 venv 使用同一依赖快照；显式工作树 PYTHONPATH、父进程/worker 导入审计。无 dlinfer/torch_npu/triton-ascend 安装或导入。最终 `uv pip check` 通过。
-- 本机证据根：`/home/daixu/data/pr5134-cuda-20261116`，工作区入口：`/home/daixu/GLM5.3-flash/pr5134-cuda-20261116`。
-
-## 已完成单测与数值定位
-
-| 项目 | 起始共同基线 | PR 111dbf6b | 结论 |
+| 检查 | 基线 | 固定PR | 结论 |
 | --- | --- | --- | --- |
-| model-agent、相关模型加载/config 共同测试 | 298 passed, 1 skipped | 298 passed, 1 skipped | 通过；旧报告的 cache_config 三异常当前已修复 |
-| 新增 norm/调用者/Ascend CPU 合同 | 新 API 不存在，使用旧 FLA/工厂作 oracle | 122 passed, 1 skipped, 1 deselected | norm 文件 83/83，含 56 个真实 CUDA/graph；一项会导入模拟 torch_npu 的合同按本任务禁令排除 |
-| 相关 CUDA kernel 套件 | 123 passed, 24 skipped, 1 failed | 123 passed, 24 skipped, 同一失败 | 共有失败：GDN transposed state indices 的同一数值断言；不归为迁移回归 |
-| 实际 94 层 gated norm scale（Flash 34、Sage 30、Agents 30） | 冻结旧工厂 oracle | 282 eager、564 graph replay 逐字节相等 | 算子级通过，不代替整模型 |
+| 共同model-agent/加载/config | 298通过、1跳过 | 298通过、1跳过 | 原跳过来自只暴露一张GPU；随后双GPU output-wait文件两侧各7/7，补齐该项 |
+| 新增RMSNormGated及调用者/CPU合同 | 使用旧FLA/工厂或独立参考，不因缺新API判失败 | 122通过、1跳过、1按禁令排除 | norm83/83含56真实CUDA/graph；调用者8/8；会导入模拟torch_npu的合同排除 |
+| f64关键文件复核 | 共同测试已有对照 | 273通过 | model_agent182、norm83、调用者8；此前3个cache_config异常在固定HEAD不再失败 |
+| 相关CUDA kernel原套件 | 123通过、24跳过、1失败 | 相同 | 同一GDN断言失败保留；24项缺参考包 |
+| 独立卷积参考补跑 | 32/32 | 32/32 | 含原先24个跳过项；单测专用env加入官方causal-conv1d1.7.0，模型环境未变 |
+| Decision协议/编码合同 | 281通过、9跳过 | 相同 | 权重路径确认后，真实checkpoint预处理文件两边各9/9 |
+| 真实94层norm权重 | 冻结旧工厂 | 282 eager、564 graph重放逐字节相同 | Flash34层、Sage30层、Agents30层；不替代完整模型 |
 
-共同 CUDA 失败为 `test_fused_gated_delta_rule_transposed_state_indices[4-False-state_dtype0]`，两边同在输出索引 `(121,0,7,58)`，1048576 个元素中一个超出原断言容差，max-abs `0.00390625`。未修改断言、算法或源码。
+共同GDN失败为test_fused_gated_delta_rule_transposed_state_indices[4-False-state_dtype0]：两边同在(121,0,7,58)，1048576个元素中1个超过原1e-3断言，max-abs0.00390625。未改断言或算法；这是本环境在未修改基线也有的失败，未进一步认定是内核还是参考实现的问题。
 
-### 完整模型首个分歧：固定输入后发现调优缓存混杂
+卷积参考只装在envs/unit-oracle。官方1.7.0源码固定cd81f0413cad2fc1e6f17e785ac39f59aae690cd，使用本机CUDA12.8和gcc/g++11构建；该解释器实际sys.path的147包依赖检查通过。模型envs/base、envs/pr及共享CUDA依赖保持原状。
 
-Sage/Agents 初始四种 eager/graph × prefix off/on 配置均有两次全新进程自重复对照。
-双方各自可逐 bit 自重复，但跨版本首请求第 0 个输出位置的 top-5 分数不等；原结果保留且不计通过。
+Decision按真实score-only任务、temperature1.99241824、HF任务覆盖配置执行，既比较62符号及额外GT候选分数，也比较/systemone与/v1/decisions响应。图审计两边各236次捕获，其中140个含CUDA kernel，真实请求各1224次非空图重放；57960分数及全部响应字段与正常graph/prefix运行相同。[图证据](evidence/cuda-h200-20261116/decision-graph-proof.json)。该审计只保留图定义并读取节点，不改变图中计算，诊断运行不计性能。
 
-对 Sage 首次实际 target forward 保存输入 IDs、位置/attention metadata、卷积/GDN bank、活动 KV block、逐层输入/输出及完整 target logits。
-诊断运行复现各自未插桩的完整 64-token 序列和分数。首次 hidden 差异在第 0 层 gated norm：`864×128` BF16 的一个元素相差 `3.0517578125e-05`；该算子的输入、gate、scale 均 byte-identical。
+## 差异定位：保留失败而非放宽验收
 
-旧/新源码分别交叉使用两套**原始** Triton 调优缓存，在同一冻结输入上四组重放，结果完全随缓存走：
+### 1. 初始独立Triton缓存
 
-| 源码 | 原基线缓存 | 原 PR 缓存 |
+Sage/Agents/Flash初期可各自重复，但跨源码首token分数不同。Sage冻结了真实输入、位置、KV/GDN/卷积状态、逐层hidden与完整target logits；第0层gated norm的输入/gate/scale相同，输出有1个BF16元素不同。两套自动调优缓存分别选BT16/warps16和BT16/warps8。
+
+| 源码/冻结输入 | 原基线缓存 | 原PR缓存 |
 | --- | --- | --- |
-| 未修改基线工厂 | 与原基线输出逐 bit 相等 | 与原 PR 输出逐 bit 相等 |
-| PR 公共 norm | 与原基线输出逐 bit 相等 | 与原 PR 输出逐 bit 相等 |
+| 原基线工厂 | 复现原基线输出 | 复现原PR输出 |
+| PR标准norm | 复现原基线输出 | 复现原PR输出 |
 
-两套缓存自动选择 `BT=16,num_warps=16` 和 `BT=16,num_warps=8`。新增单测与旧模型在不同先前 workload 下为相同缓存 key 选了不同核配置。
-这不是“BF16 误差可忽略”的结案，也未证明 PR 改坏计算；它证明独立 autotuning 缓存下原目标没有达到逐 bit 一致。
-已归档原缓存 timing JSON/编译产物和冻结 tensor。额外 `matched-f64` profile 使用原基线缓存的完整副本供双方读取；不手选 winner，不改 kernel、同步或验收阈值。该额外 profile 的结果将单列，不能覆盖原始差异或宣称跨独立编译环境的重复性。
+基线整模型换用原PR缓存，也精确复现原PR全部1408 token/7040分数。差异跟随缓存而非源码。额外匹配profile使用原基线缓存的完整副本供双方使用，没有手选winner、改kernel或放宽阈值。原失败和原始缓存、IR/cubin均保留；主表的条件通过不能覆盖独立autotuning环境下的失败。
 
-## 六个完整模型覆盖（仍在执行）
+### 2. GLM-5.3长上下文
 
-| 模型 | 固定 checkpoint/资源 | 当前状态 |
-| --- | --- | --- |
-| GLM-5.3-Flash | 官方 FP8 `3f1971b7…`，62 分片，TP4 | 执行中；早期 Ray socket 路径过长已修正于验证启动器，原失败保留 |
-| InternDecision | 用户指定 Intern-Decision-4B `38c9dafb…`，BF16 TP1 | hub 无完整本地权重；官方固定 revision 下载中。决策评分任务不支持 MTP |
-| Sage-A1.5 | `ee49fa73…`，15 分片，BF16 TP1 | 初始 profile 分数不一致已定位到缓存；matched profile 执行中 |
-| Agents-A1 | `604894d0…`，14 分片，BF16 TP1 | 同上 |
-| Intern-S2 | 用户随后授权的 Intern-S2-Preview-397B-FP8 `b9b98067…`，96分片，TP4 | 完整文件已验证，整模型对照执行中；版本明确绑定 Preview |
-| GLM-5.3 | 官方 FP8 `e0b07fd2…`，141 分片，计划 TP8 | 待执行 |
+所有8个TP rank冻结了第二个长prefill chunk。输入/位置、第0层Q/K/V、有效index scores和所选索引集合相同，索引顺序不同，attention输出开始不同，随后hidden与target logits不同。未修改的默认selector在同一冻结输入上32次产生32种顺序，集合始终相同；分别固定两次实际产生的顺序，attention各重复3次稳定并精确复现对应输出。基线/PR均如此。默认原子输出偏移导致顺序变化；没有启用deterministic模式、排序后送入attention或改变计算来制造通过。
 
-已对四个现有完整 checkpoint 的全部 271 个文件实际读取并计算 SHA256，总计约 1.226 TB；读取前后 size/mtime 稳定，232 个 safetensors 的实测 SHA256 与 HF blob 名一致。
+### 3. HTTP动态合批和排列
 
-所有生成对照固定 BF16 激活、greedy/top_k=1、Python/NumPy/Torch/CUDA seed42、batch8、session65536、prefill2048、cache fraction0.5。每轮含单请求、8请求批次、长短混批、同 prompt 新请求重放、约32K实际输入长上下文及重放；每轮23响应/1408生成token/7040 top-5数值。源 dtype 保持不变，返回数值额外保存 FP32/FP64 hex；在首个历史或分数差异处停止精度比较。
+Flash/S2的真实HTTP C4在基线自身也不重复，故不能把这些时序用于合格的迁移性能通过。完整输入、首个数值差异与此前一致的生成历史，以及64份实际TP rank首prefill tensor均保存。
+
+- Flash实际批量4与3的共同请求，首差在第0层fg_a_proj稠密投影；相同批量4的对照，逐层输出和target logits相同。
+- S2实际批量1与4的首差在第0层MoE gate。用真实冻结输入/权重，在基线和PR源码各重放三次：两种形状的实际输出全部精确复现；Flash对应投影同样通过，共24次重放。不是以“BF16误差”忽略差异。
+- S2另有首次decode才出现的变化。控制同一进程的两个批内排列，并保存真实CUDA graph逐层观察buffer、target logits及KV/GDN/卷积状态：相同历史、位置与逻辑状态下，两边均从第0层linear_attn.out_proj输出开始不同；未移动的那一行保持相等。此边界包含本地投影和TP归约，尚未拆分二者的贡献，不声称定位到了某条cuBLAS/NCCL指令。相同排列下跨源码的全部逐层输出和target logits相同；观察器原生dtype重算的前两个top-k分数与原未插桩HTTP记录相同。
+
+decode图观察器增加了复制节点，只用于定位；原始性能与正常精度样本不含这些节点。PR观察进程完成8个响应、16个rank tensor后退出卡住，记录并仅清理本任务进程树；没有据此声称正常PR退出回归或正常退出通过。正常主矩阵和性能进程均另有完成记录。该插桩退出异常的归因仍未验证。
+
+### 4. 首次cache miss与后续prefix hit
+
+单请求和批请求的新请求重放均有记录。额外逐项审计发现：Sage/Agents/Flash的prefix长请求miss→hit，以及Decision的部分长评分miss→hit，分数会变化，两源码表现一致；S2本轮这些重放相同。GLM长重放亦失败。首次miss和后续hit的计算/cache条件不同，本报告没有把跨命中状态等价当成已证明事实；其完整数值等价性仍属基线限制。迁移对照的每个对应事件仍使用相同命中条件并逐bit比较。[重放审计](evidence/cuda-h200-20261116/intra-process-replay-audit.json)。
+
+## 性能方法与结果
+
+运行前固定判据：至少5对AB/BA；不利配对中位变化超过5%、至少4/5轮超过5%、配对bootstrap95%区间排除0时进入定位。每轮全新进程、预热后测量，同checkpoint/输入输出token数/并发/缓存命中条件；生成测量C1/C4、256输出token、graph、prefix off。记录逐轮TPS、TTFT、TPOT、完整token、200ms NVML显存/时钟采样，禁止把不可比轮次平均为通过。
+
+原Agents HTTP C4 TTFT触发判据，配对中位变化+324.32%。独立诊断在两边复现约0.59s：两次未持久化的fused_moe在线调优合计约491ms，磁盘/模块加载只有4–8ms。源码未变，key为N/K/tune_hint；167/334/501行属于hint1，668行属于hint2。HTTP预热可能分批，漏掉hint2。
+
+随后单列完整调优预热profile：先发送精确668输入token的普通raw completion，正常算法自行调优hint2，再保留原C1/C4预热/测量；不指定winner、不改算法/同步/亲和性。Sage/Agents各新增5对，token均可比，没有再触发持续回退。Agents C4 TTFT配对中位仍为+7.76%，区间跨0，合批噪声仍明显；不据此宣称严格≤5%等效或加速。原触发数据未被删除。
+
+下表均为每侧中位数；括号是逐对百分比变化的中位数，与“两个中位数之比”不同。TTFT/TPOT单位ms。HTTP为真实loopback请求；pipeline不含HTTP/router。MTP3测量范围是pipeline。全逐轮数值/区间见[性能摘要](evidence/cuda-h200-20261116/performance-summary.json)与归档performance-raw.json。
+
+| 模型 | MTP | 范围/并发/预热 | TPS base→PR（配对Δ） | TTFT base→PR（配对Δ） | TPOT base→PR（配对Δ） | 结论 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Agents | 0 | http/C1/原始 | 152.90→153.03 (+0.00%) | 66.88→65.76 (-1.82%) | 6.30→6.30 (+0.02%) | 未触发持续回退 |
+| Agents | 0 | http/C1/完整预热 | 152.96→153.06 (+0.09%) | 67.09→65.90 (-2.34%) | 6.30→6.30 (+0.00%) | 未触发持续回退 |
+| Agents | 0 | http/C4/原始 | 532.78→435.36 (-17.63%) | 124.81→580.86 (+324.32%) | 7.04→6.93 (-1.36%) | 原触发；已定位在线调优 |
+| Agents | 0 | http/C4/完整预热 | 532.32→535.51 (+0.89%) | 110.54→109.71 (+7.76%) | 7.09→7.02 (-1.50%) | 未触发持续回退 |
+| Agents | 0 | pipeline/C1/原始 | 153.08→153.12 (+0.03%) | 65.44→66.08 (+0.95%) | 6.30→6.30 (-0.02%) | 未触发持续回退 |
+| Agents | 0 | pipeline/C4/原始 | 557.73→557.32 (-0.09%) | 69.48→70.56 (+0.99%) | 6.93→6.93 (+0.02%) | 未触发持续回退 |
+| Agents | 3 | pipeline/C1/原始 | 107.40→107.19 (-0.11%) | 75.20→75.62 (+0.30%) | 9.05→9.07 (+0.11%) | 未触发持续回退 |
+| Agents | 3 | pipeline/C4/原始 | 358.66→357.87 (-0.24%) | 78.56→80.13 (+2.04%) | 10.89→10.90 (+0.13%) | 未触发持续回退 |
+| Flash TP8 | 0 | http/C1/原始 | 81.80→82.28 (+0.12%) | 181.08→181.40 (-0.55%) | 11.55→11.51 (+0.18%) | 未触发持续回退 |
+| Flash TP8 | 0 | http/C4/原始 | — | — | — | token不重复，未验证性能 |
+| Flash TP8 | 0 | pipeline/C1/原始 | 77.63→78.43 (+1.12%) | 187.10→189.85 (-3.35%) | 12.14→12.05 (-0.98%) | 未触发持续回退 |
+| Flash TP8 | 0 | pipeline/C4/原始 | 307.48→306.47 (+2.41%) | 201.35→193.34 (-3.23%) | 12.21→12.34 (-1.70%) | 未触发持续回退 |
+| Flash TP8 | 3 | pipeline/C1/原始 | 162.14→157.25 (+0.66%) | 198.10→191.58 (-4.12%) | 5.43→5.62 (-0.17%) | 未触发持续回退 |
+| Flash TP8 | 3 | pipeline/C4/原始 | 605.47→568.75 (-3.11%) | 204.91→216.28 (+2.12%) | 5.32→5.48 (+2.76%) | 未触发持续回退 |
+| S2 Preview397B TP8 | 0 | http/C1/原始 | 70.80→70.52 (-0.34%) | 186.77→200.71 (+6.33%) | 13.44→13.44 (+0.01%) | 未触发持续回退 |
+| S2 Preview397B TP8 | 0 | http/C4/原始 | — | — | — | token不重复，未验证性能 |
+| S2 Preview397B TP8 | 0 | pipeline/C1/原始 | 70.51→70.59 (+0.17%) | 194.10→192.02 (-3.75%) | 13.47→13.47 (+0.04%) | 未触发持续回退 |
+| S2 Preview397B TP8 | 0 | pipeline/C4/原始 | 264.94→265.30 (+0.26%) | 203.75→198.00 (-4.46%) | 14.35→14.35 (-0.01%) | 未触发持续回退 |
+| S2 Preview397B TP8 | 3 | pipeline/C1/原始 | 149.15→149.65 (+0.54%) | 207.96→202.50 (-3.94%) | 5.92→5.92 (-0.03%) | 未触发持续回退 |
+| S2 Preview397B TP8 | 3 | pipeline/C4/原始 | 563.09→562.10 (-0.08%) | 216.07→218.20 (+0.76%) | 6.20→6.19 (-0.04%) | 未触发持续回退 |
+| Sage | 0 | http/C1/原始 | 153.10→152.93 (+0.01%) | 66.89→65.91 (-1.33%) | 6.29→6.30 (+0.02%) | 未触发持续回退 |
+| Sage | 0 | http/C1/完整预热 | 153.28→153.17 (-0.03%) | 66.68→66.35 (-0.61%) | 6.29→6.29 (+0.04%) | 未触发持续回退 |
+| Sage | 0 | http/C4/原始 | 541.19→546.75 (+1.03%) | 129.10→121.53 (-6.27%) | 6.98→6.85 (-1.73%) | 未触发持续回退 |
+| Sage | 0 | http/C4/完整预热 | 544.53→544.44 (+0.06%) | 127.53→125.43 (-0.11%) | 6.86→6.86 (-0.45%) | 未触发持续回退 |
+| Sage | 0 | pipeline/C1/原始 | 153.00→153.07 (+0.05%) | 66.00→65.64 (-0.49%) | 6.30→6.30 (-0.06%) | 未触发持续回退 |
+| Sage | 0 | pipeline/C4/原始 | 575.16→575.19 (+0.00%) | 68.82→69.89 (+0.90%) | 6.71→6.71 (-0.02%) | 未触发持续回退 |
+| Sage | 3 | pipeline/C1/原始 | 280.53→280.49 (-0.08%) | 74.54→75.24 (+0.53%) | 3.28→3.29 (-0.02%) | 未触发持续回退 |
+| Sage | 3 | pipeline/C4/原始 | 964.66→966.67 (+0.13%) | 80.48→78.75 (-2.20%) | 3.71→3.71 (+0.02%) | 未触发持续回退 |
+
+Decision不生成token，使用RPS、prefill-token TPS及完整评分响应延迟；生成TPS、TTFT、TPOT不适用。[评分性能原始比较](evidence/cuda-h200-20261116/decision-performance-summary.json)。
+
+| 范围/并发 | RPS base→PR | RPS配对Δ | batch latency base→PR(ms) | 结论 |
+| --- | --- | --- | --- | --- |
+| http/C1 | 37.08→36.47 | -1.64% | 26.97→27.42 | 五对可比；未触发持续回退 |
+| http/C4 | 71.60→71.09 | +3.04% | 55.87→56.27 | 五对可比；未触发持续回退 |
+| pipeline/C1 | 42.21→42.31 | +0.24% | 23.69→23.64 | 五对可比；未触发持续回退 |
+| pipeline/C4 | 125.12→124.96 | -0.11% | 31.97→32.01 | 五对可比；未触发持续回退 |
+
+非MTP pipeline的采样峰值（MiB/GPU，取所测GPU及轮次最大）两侧相同：Sage106225、Agents106225、Flash91149、S298909。采样间隔200ms，不能冒称连续时间精确峰值；短评分窗口可能无NVML样本，此时不填0。另保存明确作用域的PyTorch allocated/reserved高水位。[显存原始审计](evidence/cuda-h200-20261116/performance-memory-audit.json)。
+
+算子性能单列：SiLU/sigmoid × rows1/128/864/4096 × eager/graph，每格5对、共160样本，中位配对变化约−1.46%至+0.22%，未见持续>5%。eager含Python/launch，graph为100次调用图重放平均。**target主干没有独立性能测量**；其hidden/logit采集是正确性诊断，不能用pipeline或HTTP指标代替。
 
 ## Ray 独立 CPU 对照
 
-独立无 Torch/NPU venv：Python3.12.14 / Ray2.48.0 / NumPy2.2.6。原报告 `ray_deep_probe_v2.py` 原样运行，两次全新进程各6000次，保持 submit→sleep12ms→join→free，无 CPU18 亲和性规避。
-两轮 put 的最大 join 分别45.123/40.834ms，direct分别1.444/2.078ms；无 >50ms join。保存 driver/worker maps、投递/确认/反序列化/event-loop heartbeat、Ray C++ event logs、线程 schedstat/状态/CPU 及 `/proc/stat`、softirq时间线。
-这只是有限 x86/H200 主机窗口的未复现，**不能认定 ARM 根因或宣布 Ray 问题解决**。首次临时路径过长导致的启动失败单独保留；成功的 CPU 对照与 GPU 模型性能计时完全分开。
+无Torch/NPU的独立Python3.12.14 / Ray2.48.0 / NumPy2.2.6环境，参考报告ray_deep_probe_v2.py逐字节一致，SHA256为870843b45f906a203ef8639c15d041bed878ea3489e1895889de737b8c8583b5。保留submit→sleep12ms→join→free顺序、默认亲和性；没有照搬CPU18规避。
 
-## 性能、修复与证据
+两次全新进程各6000次（put/direct各3000），put最大join45.123/40.834ms，direct1.444/2.078ms，无>50ms join。保存投递、确认、反序列化、event-loop、进程maps、线程schedstat及softirq时间线，未与GPU模型性能计时混跑。[数值摘要](evidence/cuda-h200-20261116/ray-summary-audit.json)。A3参考Python是3.12.13；有限x86窗口未复现不能认定ARM根因或宣布Ray问题解决。后面的GPU插桩退出异常是另一个未归因现象，不与此CPU对照混为一谈。
 
-判据在运行前写入 `ACCEPTANCE.md`：数值零容差通过后，至少5对预热后AB/BA，持续 >5% 且超出配对噪声需定位；区分算子/target/pipeline/HTTP。当前尚无合格完整性能结论。未向实现 PR 添加报告或调优规避，未自动合并 PR。
+## 复现与证据
 
-后续将追加最终矩阵、逐轮性能与发布证据索引。
+本机根目录：/home/daixu/data/pr5134-cuda-20261116（真实路径/nvme1/home/daixu/pr5134-cuda-20261116），工作区入口/home/daixu/GLM5.3-flash/pr5134-cuda-20261116。
 
-已发布阶段证据：[文件/SHA256清单](evidence/cuda-h200-20261116/manifest.json)，
-[分卷1](evidence/cuda-h200-20261116/evidence.tar.gz.part001)、
-[分卷2](evidence/cuda-h200-20261116/evidence.tar.gz.part002)、
-[分卷3](evidence/cuda-h200-20261116/evidence.tar.gz.part003)。下载后按编号拼接再解压。
-归档内每个文件均按归档实际字节重新核对 SHA256；超过阈值的完整逐层 tensor 留在本机，清单明确标为 `published=false` 并给出本机路径与哈希，未声称它们已上传。
+- worktrees/base、worktrees/pr-f64固定源码；envs/base、envs/pr使用共享cuda-deps；所有验证命令、环境、helper版本SHA与对应源码快照在logs/*.command.json和evidence/script-snapshots。
+- checkpoint-inventory及三组checkpoint SHA清单、dependencies/dependency-files-sha256、source-sha256、GPU UUID/拓扑、有效cache容量和每进程导入记录均保留。
+- 主数值profile：Sage/Agents为matched-f64；Flash非MTP为matched-f64-tp8-isolated、MTP3为matched-f64-tp8；S2为matched-f64-tp8；Decision为matched-f64-decision-isolated。使用primary-summary/primary-matrix选择合格文件，不把资源作废轮次或TP4补充混进统计。
+- scripts/model_case.py、decision_pipeline.py、model_queue.py、compare.py、perf_queue.py及各诊断/审计脚本保留完整参数；重跑使用新的label/output，启动器不会覆盖既有结果。相同条件包括实际cache blocks与保存的Triton缓存，不能只复制cache fraction。
+- 原始逐token/候选score bits、性能每轮值、失败日志、CPU/图/数学oracle、CUDA冻结tensor、编译/调优产物均保留。匹配Triton缓存完整快照含12354文件、463866373 bytes；没有手工改调优winner。
 
-### 14:20 阶段更新
+发布的[分卷/文件SHA清单](evidence/cuda-h200-20261116/manifest.json)列出所有压缩分卷和逐文件hash。按manifest顺序拼接evidence.tar.gz.partNNN，再解压。大型tensor保留本机，manifest明确标published=false、绝对路径、字节数及SHA256；没有声称数百GB tensor已上传。完整报告只在fork文档分支。
 
-- Sage-A1.5 / Agents-A1：`matched-f64` 的非 MTP 与 MTP3，均完成 eager/graph × prefix off/on 四配置；每配置各两次全新进程，双侧自重复和两组跨源码对照全部逐 bit 一致。每模型共 8 配置，每配置每轮 1408 token / 7040 分数。prefix 长请求重放实测命中 32512 个 token。
-- 所有已完成配对实际分配的 KV block 数（不仅配置的 fraction）亦一致，见实际 cache 审计。
-- 未修改的基线整模型使用原 PR 的缓存，可复现原 PR 全部 1408 token / 7040 分数；原始跨缓存差异的源码无关归因已有完整模型交叉控制，不仅是小算子推断。
-- 用户补充授权用 **Intern-S2-Preview-397B-FP8** 作为 Intern-S2 覆盖。固定 `b9b98067e5a0cea541b9e4a2739c0aa7a5ddb667`，96 分片约408 GB，完整文件 SHA256 已保存；TP4 使用 GPU0–3，正在执行完整模型矩阵。该结果绑定 Preview 版本。
-- Decision CPU/协议合同另在共同基线与当前 HEAD 各执行：281 passed、9 skipped；不作为完整权重验证。
-- 算子性能：SiLU/sigmoid × rows1/128/864/4096 × eager/graph，每格5对AB/BA，共160原始样本。各格中位配对差值约−1.46%至+0.22%，无持续>5%；eager包含Python/launch，graph为100次调用图的重放平均。这不替代整模型性能。
+最终归档为8个分卷、202615739 bytes；拼接SHA256为cac444d390240f9bac61de9d5ddd19a87c1986eadb7a402095ba73cf6720607a。26722个已发布文件按归档实际字节全部复核，119个大型本机文件约555.75GiB另有SHA；无不稳定JSON被跳过。[归档验证](evidence/cuda-h200-20261116/verification.json)、[结束时checkpoint复核](evidence/cuda-h200-20261116/checkpoint-final-audit.json)可直接审阅。末次核对时GPU恢复为GPU0约116MiB、其余约4MiB的初始空闲状态。
 
-## 用户补充的主验收拓扑
+## 尚未验证的范围
 
-用户要求几百B模型统一单机8卡。本轮后续主验收使用 GLM-5.3-Flash / Intern-S2-Preview-397B-FP8 / GLM-5.3 的 **TP8，GPU0–7**。前述Flash/S2 TP4结果及HTTP试运行只保留为补充证据，不能代替TP8主矩阵或正式性能。TP8重跑使用独立结果名 `matched-f64-tp8`，不覆盖TP4数据。Sage/Agents及Decision的TP1保持不变。
+未认证未获权重的Intern-S2非Preview FP8版本、用户示例DP4/EP8/router生产链路、跨机、真实外网HTTP、视觉模型GPU前向、生产高并发/长时间soak、MTP HTTP性能、target主干独立性能或标准能力榜单。Decision的图为现有piecewise图，部分操作按原设计eager执行。HTTP C4的动态合批/排列不能取得本轮要求的普遍逐位重复性；prefix miss→hit完整数值等价性未被证明。GDN共享单测失败、out_proj内本地计算与TP归约的精细归因，以及仅插桩退出卡住的原因保持开放。
 
-GLM-5.3首次通用block128配置被两版本同一FlashMLA校验拒绝，未进入推理；已保存到`failures/glm-block128`并统一按要求设为64。有效TP8配置的短/批/混批21响应全部一致，但32K长上下文首token分数在**基线与PR各自两次新进程**中也不重复。该项目前是基线重复性问题，不能计通过。已启动所有TP rank的固定chunk KV/位置/indexer/逐层hidden/target-logits采集，保持默认算法，不以确定性模式覆盖原始失败。
-
-## 19:15 资格审计与更正
-
-调度器重启后有一个未随父控制器退出的子队列继续运行。后续审计发现，**初轮Flash TP8非MTP及初轮Decision的实际KV容量不一致**。其数值相等结果保留，但撤销正式合格对照结论；不能用它们满足用户的相同cache条件。原始文件与精确受影响清单保留在`resource-invalidations.json`，没有覆盖或删除。Sage/Agents TP1、此前TP4补充、GLM TP8基线问题诊断、Flash TP8 MTP3、S2 TP8矩阵未受该重叠影响；后两者的每组实际cache block数已核对一致。
-
-启动器现对每个物理GPU使用互斥锁（由子进程继承），同名运行禁止覆盖，并在启动前核对显存空闲。正在独占重跑：Decision单卡TP1、固定16000个block、用户指定目录；Flash非MTP单机TP8、固定70000个block。新结果分别使用`matched-f64-decision-isolated`和`matched-f64-tp8-isolated`标签，并记录实际生效配置。此修正仅控制实验资源与cache容量，未改变模型算法、同步次序或零容差判据。
-
-### GLM长上下文已获得冻结输入的因果证据
-
-所有8个rank的第二个长prefill chunk均已保存。两边input IDs、position IDs、layer0 Q/K/V、有效index score、选中索引集合一致，但索引顺序不同；layer0 attention输出开始不同，后续逐层hidden及target logits不同。
-
-用真实冻结scores、KV和query重放未修改的默认算子：32次selector产生32种索引顺序，集合均相同。分别固定两次原始运行实际产生的顺序，attention各重复3次均逐bit稳定，并分别精确复现原始attention输出。基线和PR源码均复现同一规律，**没有开启deterministic模式、排序后再送入attention、修改kernel或放宽阈值**。原基线的`sparse_index_topk.py`使用原子输出偏移，源码已注明顺序会影响BF16 sparse attention的softmax分块。该问题归属于基线默认算法的长上下文重复性，未混入迁移PR修复，GLM长上下文不计通过。
-
-### Decision固定本机权重
-
-用户指定路径为`/mnt/shared-storage-user/gpfs2-shared-public/huggingface/zskj-hub/models--internlm--Intern-Decision-4B`。21个文件已实测SHA256；模型运行所需的19个文件与已下载官方`38c9dafb…`内容一致，仅README和.gitattributes不同。重跑和后续性能直接使用用户目录。先前首轮数值一致但资源控制不合格的记录仅作历史证据；图配置出现空图警告，已安排独立的真实请求图重放/DOT核查，不仅凭配置名称声称graph覆盖。
+这些限制不被改写成迁移通过，也没有为其放宽阈值、启用不同算法或混入基线修复。

@@ -1,0 +1,464 @@
+[
+  {
+    "command": "unit-common-base-r4",
+    "tests": 299,
+    "passed": 298,
+    "failures": [],
+    "skipped": [
+      {
+        "classname": "tests.pytorch.engine.test_model_agent_output_wait",
+        "name": "test_output_event_wait_uses_the_recording_cuda_device[1]",
+        "time": "0.001"
+      }
+    ]
+  },
+  {
+    "command": "unit-common-pr",
+    "tests": 299,
+    "passed": 298,
+    "failures": [],
+    "skipped": [
+      {
+        "classname": "tests.pytorch.engine.test_model_agent_output_wait",
+        "name": "test_output_event_wait_uses_the_recording_cuda_device[1]",
+        "time": "0.001"
+      }
+    ]
+  },
+  {
+    "command": "unit-new-pr-r2",
+    "tests": 123,
+    "passed": 122,
+    "failures": [],
+    "skipped": [
+      {
+        "classname": "",
+        "name": "tests.pytorch.ascend.test_kernel_import_order",
+        "time": "0.000"
+      }
+    ]
+  },
+  {
+    "command": "current-head-unit",
+    "tests": 273,
+    "passed": 273,
+    "failures": [],
+    "skipped": []
+  },
+  {
+    "command": "cuda-common-base",
+    "tests": 148,
+    "passed": 123,
+    "failures": [
+      {
+        "classname": "tests.pytorch.kernel.test_gated_delta_rule.TestRecurrentGatedDeltaRule",
+        "name": "test_fused_gated_delta_rule_transposed_state_indices[4-False-state_dtype0]",
+        "time": "4.110"
+      }
+    ],
+    "skipped": [
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFn",
+        "name": "test_causal_conv1d_fn[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFn",
+        "name": "test_causal_conv1d_fn[silu]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_single_seq[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_single_seq[silu]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_multi_seq[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_multi_seq[silu]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_zero_init_matches_no_init[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_zero_init_matches_no_init[silu]",
+        "time": "0.000"
+      }
+    ]
+  },
+  {
+    "command": "cuda-common-pr",
+    "tests": 148,
+    "passed": 123,
+    "failures": [
+      {
+        "classname": "tests.pytorch.kernel.test_gated_delta_rule.TestRecurrentGatedDeltaRule",
+        "name": "test_fused_gated_delta_rule_transposed_state_indices[4-False-state_dtype0]",
+        "time": "0.058"
+      }
+    ],
+    "skipped": [
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-True-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[1-False-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-True-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-None-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-None-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-silu-True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dUpdate",
+        "name": "test_causal_conv1d_update[4-False-silu-False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFn",
+        "name": "test_causal_conv1d_fn[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFn",
+        "name": "test_causal_conv1d_fn[silu]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_single_seq[None]",
+        "time": "0.001"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_single_seq[silu]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_multi_seq[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_multi_seq[silu]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_zero_init_matches_no_init[None]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.pytorch.kernel.test_causal_conv1d.TestCausalConv1dFnInitStates",
+        "name": "test_zero_init_matches_no_init[silu]",
+        "time": "0.000"
+      }
+    ]
+  },
+  {
+    "command": "decision-contracts-base",
+    "tests": 290,
+    "passed": 281,
+    "failures": [],
+    "skipped": [
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_context_is_read_only",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_wire_usage_counts_skeleton_with_checkpoint_tokenizer[False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_wire_usage_counts_skeleton_with_checkpoint_tokenizer[True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_images_match_native_preprocessing[1]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_images_match_native_preprocessing[2]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_systemone_assets_keep_positions_and_visual_budget[1]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_systemone_assets_keep_positions_and_visual_budget[6]",
+        "time": "0.001"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_instruction_images_match_explicit_multimodal_prompt[False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_instruction_images_match_explicit_multimodal_prompt[True]",
+        "time": "0.000"
+      }
+    ]
+  },
+  {
+    "command": "decision-contracts-pr-f64",
+    "tests": 290,
+    "passed": 281,
+    "failures": [],
+    "skipped": [
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_context_is_read_only",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_wire_usage_counts_skeleton_with_checkpoint_tokenizer[False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_wire_usage_counts_skeleton_with_checkpoint_tokenizer[True]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_images_match_native_preprocessing[1]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_images_match_native_preprocessing[2]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_systemone_assets_keep_positions_and_visual_budget[1]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_systemone_assets_keep_positions_and_visual_budget[6]",
+        "time": "0.001"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_instruction_images_match_explicit_multimodal_prompt[False]",
+        "time": "0.000"
+      },
+      {
+        "classname": "tests.test_lmdeploy.test_decision_preprocessing",
+        "name": "test_openai_instruction_images_match_explicit_multimodal_prompt[True]",
+        "time": "0.000"
+      }
+    ]
+  },
+  {
+    "command": "causal-conv-oracle-base",
+    "tests": 32,
+    "passed": 32,
+    "failures": [],
+    "skipped": []
+  },
+  {
+    "command": "causal-conv-oracle-pr-f64",
+    "tests": 32,
+    "passed": 32,
+    "failures": [],
+    "skipped": []
+  },
+  {
+    "command": "decision-real-preprocessing-base",
+    "tests": 9,
+    "passed": 9,
+    "failures": [],
+    "skipped": []
+  },
+  {
+    "command": "decision-real-preprocessing-pr-f64",
+    "tests": 9,
+    "passed": 9,
+    "failures": [],
+    "skipped": []
+  },
+  {
+    "command": "output-wait-two-gpus-base",
+    "tests": 7,
+    "passed": 7,
+    "failures": [],
+    "skipped": []
+  },
+  {
+    "command": "output-wait-two-gpus-pr-f64",
+    "tests": 7,
+    "passed": 7,
+    "failures": [],
+    "skipped": []
+  }
+]

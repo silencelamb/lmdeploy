@@ -1,0 +1,52 @@
+[
+  {
+    "run": "short-r0",
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "ray": "2.48.0",
+    "numpy": "2.2.6",
+    "architecture": "x86_64",
+    "total_records": 6000,
+    "accelerator_imports": false,
+    "modes": {
+      "put": {
+        "count": 3000,
+        "median_ms": 0.5037545000000001,
+        "p99_ms": 1.091992,
+        "max_ms": 45.122727,
+        "over50ms": 0
+      },
+      "direct": {
+        "count": 3000,
+        "median_ms": 0.41514799999999996,
+        "p99_ms": 0.817845,
+        "max_ms": 1.444464,
+        "over50ms": 0
+      }
+    }
+  },
+  {
+    "run": "short-r1",
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "ray": "2.48.0",
+    "numpy": "2.2.6",
+    "architecture": "x86_64",
+    "total_records": 6000,
+    "accelerator_imports": false,
+    "modes": {
+      "put": {
+        "count": 3000,
+        "median_ms": 0.4988265,
+        "p99_ms": 1.122259,
+        "max_ms": 40.833611,
+        "over50ms": 0
+      },
+      "direct": {
+        "count": 3000,
+        "median_ms": 0.44027499999999997,
+        "p99_ms": 0.819864,
+        "max_ms": 2.07809,
+        "over50ms": 0
+      }
+    }
+  }
+]

@@ -1,0 +1,198 @@
+[
+  {
+    "role": "base",
+    "case": "orderA",
+    "computation": "native",
+    "native_dtype": "torch.bfloat16",
+    "checks": [
+      {
+        "step": 0,
+        "request": 0,
+        "equal": true
+      },
+      {
+        "step": 0,
+        "request": 1,
+        "equal": true
+      },
+      {
+        "step": 0,
+        "request": 2,
+        "equal": true
+      },
+      {
+        "step": 0,
+        "request": 3,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 0,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 1,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 2,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 3,
+        "equal": true
+      }
+    ],
+    "all_equal": true
+  },
+  {
+    "role": "base",
+    "case": "orderA",
+    "computation": "fp32_control",
+    "native_dtype": "torch.bfloat16",
+    "checks": [
+      {
+        "step": 0,
+        "request": 0,
+        "equal": false
+      },
+      {
+        "step": 0,
+        "request": 1,
+        "equal": false
+      },
+      {
+        "step": 0,
+        "request": 2,
+        "equal": false
+      },
+      {
+        "step": 0,
+        "request": 3,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 0,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 1,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 2,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 3,
+        "equal": false
+      }
+    ],
+    "all_equal": false
+  },
+  {
+    "role": "pr-f64",
+    "case": "orderB",
+    "computation": "native",
+    "native_dtype": "torch.bfloat16",
+    "checks": [
+      {
+        "step": 0,
+        "request": 0,
+        "equal": true
+      },
+      {
+        "step": 0,
+        "request": 1,
+        "equal": true
+      },
+      {
+        "step": 0,
+        "request": 2,
+        "equal": true
+      },
+      {
+        "step": 0,
+        "request": 3,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 0,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 1,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 2,
+        "equal": true
+      },
+      {
+        "step": 1,
+        "request": 3,
+        "equal": true
+      }
+    ],
+    "all_equal": true
+  },
+  {
+    "role": "pr-f64",
+    "case": "orderB",
+    "computation": "fp32_control",
+    "native_dtype": "torch.bfloat16",
+    "checks": [
+      {
+        "step": 0,
+        "request": 0,
+        "equal": false
+      },
+      {
+        "step": 0,
+        "request": 1,
+        "equal": false
+      },
+      {
+        "step": 0,
+        "request": 2,
+        "equal": false
+      },
+      {
+        "step": 0,
+        "request": 3,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 0,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 1,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 2,
+        "equal": false
+      },
+      {
+        "step": 1,
+        "request": 3,
+        "equal": false
+      }
+    ],
+    "all_equal": false
+  }
+]

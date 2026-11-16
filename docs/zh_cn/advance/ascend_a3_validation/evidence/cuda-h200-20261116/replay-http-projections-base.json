@@ -1,0 +1,88 @@
+[
+  {
+    "model": "flash",
+    "pair": 0,
+    "source_tensor": "results/diagnostic-freeze-r1-pilot-perf-flash-http-pair0-pr-f64-frozen/rank0-first.pt",
+    "operator": "model.layers.0.self_attn.fg_a_proj",
+    "input_shape": [
+      1,
+      680,
+      4096
+    ],
+    "weight_shape": [
+      256,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "repeats_equal": true,
+    "matches_captured": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "model": "flash",
+    "pair": 1,
+    "source_tensor": "results/diagnostic-freeze-r1-pilot-perf-flash-http-pair1-pr-f64-frozen/rank0-first.pt",
+    "operator": "model.layers.0.self_attn.fg_a_proj",
+    "input_shape": [
+      1,
+      510,
+      4096
+    ],
+    "weight_shape": [
+      256,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "repeats_equal": true,
+    "matches_captured": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "model": "s2",
+    "pair": 0,
+    "source_tensor": "results/diagnostic-freeze-r1-pilot-perf-s2-http-pair0-pr-f64-frozen/rank0-first.pt",
+    "operator": "model.language_model.layers.0.mlp.gate",
+    "input_shape": [
+      167,
+      4096
+    ],
+    "weight_shape": [
+      512,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "repeats_equal": true,
+    "matches_captured": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "model": "s2",
+    "pair": 1,
+    "source_tensor": "results/diagnostic-freeze-r1-pilot-perf-s2-http-pair1-pr-f64-frozen/rank0-first.pt",
+    "operator": "model.language_model.layers.0.mlp.gate",
+    "input_shape": [
+      668,
+      4096
+    ],
+    "weight_shape": [
+      512,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "repeats_equal": true,
+    "matches_captured": [
+      true,
+      true,
+      true
+    ]
+  }
+]
