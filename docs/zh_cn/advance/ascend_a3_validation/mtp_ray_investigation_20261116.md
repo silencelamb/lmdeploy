@@ -705,4 +705,3 @@ CUDA3.13失败的最后日志停在2026-11-16 05:49:24 UTC的TurboMind SM70内�
 本轮核对了CUDA/Jetson Dockerfile、CUDA/common requirements、workflow、build脚本、第三方wheel脚本、setup.py、CMakeLists，以及整个`src`和`cmake` Git tree：均与共同基线`442097e8`的对象SHA相同。可以确定失联发生在未修改的CUDA编译路径；尚无同配置基线镜像重建或runner系统日志，不能据此声称底层根因已完全定位。当前没有新增证据指向Ascend实现回归，不为消除红灯而删除CI、改变同步或混入未验证的构建规避。
 
 已通过GitHub接口单独重跑CUDA3.13，新的[job133270396913](https://github.com/InternLM/lmdeploy/actions/runs/43809426675/job/133270396913)属于attempt2，记录时仍在构建。单项重跑不会补齐另外5个取消项；它们仍需后续恢复验证。Jetson问题按用户要求作为基线依赖问题单列。当前结论是“本PR原有3项单测回归已通过完整CI验证；Docker仍有既有失败及未完成项”，不是所有CI已绿。
-
