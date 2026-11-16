@@ -1,6 +1,6 @@
 # MTP target logits 与 Ray RPC 停顿定位
 
-CI恢复接续：当前PR为`2ccf38a4`。Jetson库版本与搜索路径问题已修复并通过真实镜像检查；当前完整单测7452通过/400跳过。其余检查继续跟进，详见[独立CI恢复报告](ci_docker_recovery_20261116.md)。下文各轮CI结果保留为当时状态。
+CI恢复接续：当前PR `2ccf38a4` 的**14/14项CI门禁全部通过**，包含13项Actions及Read the Docs。Jetson版本/库路径修复、8个CUDA组合、完整unit/ETE及文档重建的证据见[独立CI恢复报告](ci_docker_recovery_20261116.md)。下文各轮状态保留为当时记录，旧ETE部分结果摘要的纠正见该报告。
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
@@ -693,7 +693,7 @@ GPU可以从PR #5134开始，但必须同时固定共同上游基线，使用相
 | 检查 | 首轮结果 | 归因与范围 |
 | --- | --- | --- |
 | A100完整unit-test | **6427通过、400跳过、0失败** | [job133107587906](https://github.com/InternLM/lmdeploy/actions/runs/43809426667/job/133107587906)。原3个sampling异常全部消失，新增3项通过；1284条warning如实保留。 |
-| ETE / pr_functions_test | **通过** | [job133107614443](https://github.com/InternLM/lmdeploy/actions/runs/43809426597/job/133107614443)。日志分段为20/13/10/33项通过，两个分段各含1次自动rerun；不代表六模型完整GPU矩阵通过。 |
+| ETE / pr_functions_test | **通过** | [job133107614443](https://github.com/InternLM/lmdeploy/actions/runs/43809426597/job/133107614443)。旧摘要仅摘取带逗号或重跑标记的部分结果行，不能作为完整阶段计数；原始日志保留，当前完整解析见CI恢复报告；不代表六模型完整GPU矩阵通过。 |
 | lint、A3 Docker | **通过** | 原通过结果保持；A3构建包含依赖/导入检查及Dive。 |
 | CUDA cu130/Python3.12、cu128/Python3.10 | **通过** | 镜像构建与环境检查完成。 |
 | CUDA cu128/Python3.13 | **失败：GitHub hosted runner失联** | GitHub annotation明确为runner与server失去通信；未留下编译器错误或OOM证据，详见下文。 |

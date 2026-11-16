@@ -1,0 +1,111 @@
+{
+  "time_utc": "2026-11-16T16:52:01.314342+00:00",
+  "job_id": 133371113106,
+  "bytes": 4974616,
+  "etag": "\"0x8DF43F78F557A49\"",
+  "sha256": "2e598dcf880a6f1c257c086bbd1898d695c48ad4b2922df463785c0e86bebc81",
+  "probe_errors": [],
+  "ranges": [
+    {
+      "start": 0,
+      "end": 262143,
+      "retry_errors": []
+    },
+    {
+      "start": 262144,
+      "end": 524287,
+      "retry_errors": []
+    },
+    {
+      "start": 524288,
+      "end": 786431,
+      "retry_errors": []
+    },
+    {
+      "start": 786432,
+      "end": 1048575,
+      "retry_errors": []
+    },
+    {
+      "start": 1048576,
+      "end": 1310719,
+      "retry_errors": []
+    },
+    {
+      "start": 1310720,
+      "end": 1572863,
+      "retry_errors": []
+    },
+    {
+      "start": 1572864,
+      "end": 1835007,
+      "retry_errors": []
+    },
+    {
+      "start": 1835008,
+      "end": 2097151,
+      "retry_errors": []
+    },
+    {
+      "start": 2097152,
+      "end": 2359295,
+      "retry_errors": []
+    },
+    {
+      "start": 2359296,
+      "end": 2621439,
+      "retry_errors": []
+    },
+    {
+      "start": 2621440,
+      "end": 2883583,
+      "retry_errors": []
+    },
+    {
+      "start": 2883584,
+      "end": 3145727,
+      "retry_errors": [
+        {
+          "attempt": 0,
+          "error": "RuntimeError('Get \"https://productionresultssa1.blob.core.windows.net/actions-results/5ecdfd80-9e98-88e8-819a-3948460cf2f6/workflow-job-run-bbee161f-78e1-5543-b3d4-745c7300bc6b/logs/job/job-logs.txt?rsct=text%2Fplain&se=2026-11-16T17%3A01%3A37Z&sig=gtAW%2BgXDocDxuQGNAE2RJo%2F%2BA3eQR7oD%2BO5rLg9AjQk%3D&ske=2026-11-16T19%3A58%3A24Z&skoid=ca7593d4-ee42-46cd-af88-8b886a2f84eb&sks=b&skt=2026-11-16T15%3A58%3A24Z&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skv=2025-11-05&sp=r&spr=https&sr=b&st=2026-11-16T16%3A51%3A32Z&sv=2025-11-05\": EOF\\n')"
+        }
+      ]
+    },
+    {
+      "start": 3145728,
+      "end": 3407871,
+      "retry_errors": []
+    },
+    {
+      "start": 3407872,
+      "end": 3670015,
+      "retry_errors": []
+    },
+    {
+      "start": 3670016,
+      "end": 3932159,
+      "retry_errors": []
+    },
+    {
+      "start": 3932160,
+      "end": 4194303,
+      "retry_errors": []
+    },
+    {
+      "start": 4194304,
+      "end": 4456447,
+      "retry_errors": []
+    },
+    {
+      "start": 4456448,
+      "end": 4718591,
+      "retry_errors": []
+    },
+    {
+      "start": 4718592,
+      "end": 4974615,
+      "retry_errors": []
+    }
+  ],
+  "script": "/root/workspace/a3-mtp-ray-investigation-20261116/scripts/ci_fetch_job_log.py"
+}

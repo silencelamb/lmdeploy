@@ -47,26 +47,29 @@ Jetson是独立的继承依赖问题。旧Docker配方安装未固定版本的`c
 
 ## 远端CI结果
 
-截至2026-11-16 23:55 Asia/Shanghai的当前HEAD结果如下。仍在执行的检查未计为通过，持续跟进目标保持进行中。
+截至2026-11-17 00:59 Asia/Shanghai，当前PR HEAD **`2ccf38a43f0fdc7415ce4ce9f177852bdacc9966`的14/14项门禁全部成功**：13项GitHub Actions和1项Read the Docs commit status。
+已同时核对PR当前HEAD、check-runs、commit statuses、`gh pr checks`及Read the Docs实际构建，不用旧HEAD或取消结果代替通过。
 
-| 检查 | 当前状态 | 原始任务 |
+| 检查 | 最终状态 | 原始任务 |
 | --- | --- | --- |
 | test_docker_image (cu130, 3.13) | 通过 | [job133371113408](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113408) |
 | test_docker_image (cu128, 3.10) | 通过 | [job133371113390](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113390) |
-| test_docker_image (cu130, 3.12) | 执行中 | [job133371113275](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113275) |
-| test_docker_image (cu128, 3.13) | 执行中 | [job133371113268](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113268) |
-| test_docker_image (cu130, 3.11) | 执行中 | [job133371113137](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113137) |
+| test_docker_image (cu130, 3.12) | 通过 | [job133371113275](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113275) |
+| test_docker_image (cu128, 3.13) | 通过 | [job133371113268](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113268) |
+| test_docker_image (cu130, 3.11) | 通过 | [job133371113137](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113137) |
 | test_docker_image (cu130, 3.10) | 通过 | [job133371113106](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113106) |
 | test_docker_image (cu128, 3.12) | 通过 | [job133371113034](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371113034) |
-| test_docker_image (cu128, 3.11) | 执行中 | [job133371112983](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371112983) |
+| test_docker_image (cu128, 3.11) | 通过 | [job133371112983](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371112983) |
 | test_jetson_docker_image | 通过 | [job133371112793](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371112793) |
 | test_ascend_docker_image | 通过 | [job133371112386](https://github.com/InternLM/lmdeploy/actions/runs/43887914029/job/133371112386) |
 | unit_test | 通过 | [job133371057262](https://github.com/InternLM/lmdeploy/actions/runs/43887913961/job/133371057262) |
-| pr_functions_test | 执行中 | [job133370945520](https://github.com/InternLM/lmdeploy/actions/runs/43887914323/job/133370945520) |
+| pr_functions_test | 通过 | [job133370945520](https://github.com/InternLM/lmdeploy/actions/runs/43887914323/job/133370945520) |
 | lint | 通过 | [job133370934220](https://github.com/InternLM/lmdeploy/actions/runs/43887914110/job/133370934220) |
-矩阵为cu128/cu130与Python3.10/3.11/3.12/3.13的八种组合，另有Jetson、A3、lint、
-完整unit及ETE，共十三项检查。被新提交替换的旧轮取消记录与最终轮结果分开保存。
+| docs/readthedocs.org:lmdeploy-zh-cn | 通过 | [build35933214](https://app.readthedocs.org/projects/lmdeploy-zh-cn/builds/35933214/) |
 
+八个CUDA/Python组合全部完成；Jetson和A3均完成原有构建及检查，没有删除测试或放宽断言。
+完整unit为7452通过/400跳过；ETE有17段pytest结果，合计351次通过、1次自动rerun。
+这些是不同模型/后端阶段的执行次数，不能当作351个互不重复的测试函数。
 
 ### 当前单测计数与合并预览
 
@@ -83,6 +86,25 @@ Torch2.10.0+cu128和TorchVision0.25.0+cu128保持一致。
 
 Jetson当前已经实际通过Build Docker image、`lmdeploy check_env`和Dive三步。
 这确认了版本选择与加载路径修复；实机GPU推理仍未在本轮覆盖。
+
+## Read the Docs的额外门禁与恢复
+
+最终完整性审计发现，中文Read the Docs使用旧式commit status，而不在13项Actions的check-runs列表中。
+初版13项清单不完整，已补入第14项；“13项Actions全绿”不能代表所有CI通过。
+
+原构建35929337在checkout阶段失败：克隆和拉取`pull/5134/head`成功，但执行
+`git checkout --force 2ccf38a43f0fdc7415ce4ce9f177852bdacc9966`报`unable to read tree`，尚未运行Sphinx。
+随后实际远端PR引用已指向该提交。通过仓库既有、授权的中文RTD webhook重投递同一次
+PR synchronize事件，保持代码SHA不变，也没有手工改写CI状态。
+
+新构建35933214在同一提交上完成checkout、依赖安装和Sphinx HTML构建，所有记录命令exit code均为0，
+Read the Docs实际success和GitHub对应status均变为成功。该对照符合瞬时引用可见性/同步时序问题；
+原日志没有记录当时拉取引用的实际SHA，不能进一步断言服务内部的具体同步原因。
+
+此前ci10的ETE摘要只摘取了带逗号/重跑标记的部分结果行（20/13/10/33），不是完整阶段计数。
+原始日志和历史JSON保留；本节以完整解析后的17段、351次通过、1次rerun说明当前运行。
+
+本轮通过的是上述CI门禁。400个skip没有计为硬件通过，Jetson实机推理和新增端到端性能测量仍不在覆盖范围。
 
 ## 来源
 

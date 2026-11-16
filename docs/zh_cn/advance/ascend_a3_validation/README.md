@@ -6,7 +6,7 @@
 
 原生迁移已提交：[InternLM/lmdeploy #5134](https://github.com/InternLM/lmdeploy/pull/5134)。范围与本轮检查见 [PR 整理记录](native_pr_20261115.md)，完整对比报告通过链接提供，未加入 PR。
 
-最新CI恢复：PR HEAD为`2ccf38a4`。Jetson的cuDSS版本和库搜索路径问题已修复，当前Jetson、A3、lint及完整单测已通过；单测7452通过/400跳过，包含合并预览中的上游新增测试。CUDA矩阵和ETE仍在执行，未计为通过。[CI修复与当前结果](ci_docker_recovery_20261116.md)保存独立归因与证据。CANN继续保持9.1.0。
+最新CI恢复：PR HEAD为`2ccf38a4`，**14/14项门禁全部通过**（13项Actions及Read the Docs）。Jetson的cuDSS版本和库搜索路径问题已修复；8个CUDA组合、A3、lint、完整单测和ETE均完成。单测7452通过/400跳过，ETE按阶段合计351次通过。[CI修复与完整证据](ci_docker_recovery_20261116.md)保留失败迭代、RTD重建和验证范围。CANN继续保持9.1.0。
 
 本次补充：[RMSNormGated 标准接口重构、历史来源与完整调用者验证](gated_norm_refactor_20261115.md)。公共层现在管理权重，后端只计算；明确补齐 sigmoid/dtype，保留旧 SiLU 数值路径。
 
