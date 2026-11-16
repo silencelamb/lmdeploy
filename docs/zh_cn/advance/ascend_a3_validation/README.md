@@ -6,7 +6,7 @@
 
 原生迁移已提交：[InternLM/lmdeploy #5134](https://github.com/InternLM/lmdeploy/pull/5134)。范围与本轮检查见 [PR 整理记录](native_pr_20261115.md)，完整对比报告通过链接提供，未加入 PR。
 
-最新交付：`111dbf6b`将Docker与依赖固定到CANN9.1.0，并修复3个由PR引入的sampling单测异常、两条失效来源链接及GitCode构建依赖问题。[CI归因与Docker配套](mtp_ray_investigation_20261116.md#ci修复与cann91-docker配套)记录基线对照、回归和仍在运行的CI；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接交给GPU环境执行。CANN9.2升级已停止。
+最新交付：PR HEAD为`f64ab506`，Docker与依赖固定到CANN9.1.0，3个由PR引入的sampling单测异常、两条失效来源链接及GitCode构建依赖问题已修复。最新A3 Docker和lint CI通过；完整A100单测仍在执行，Jetson继承的cuDSS ABI问题单列。[CI归因与Docker配套](mtp_ray_investigation_20261116.md#ci修复与cann91-docker配套)记录基线对照与回归；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接交给GPU环境执行。CANN9.2升级已停止。
 
 本次补充：[RMSNormGated 标准接口重构、历史来源与完整调用者验证](gated_norm_refactor_20261115.md)。公共层现在管理权重，后端只计算；明确补齐 sigmoid/dtype，保留旧 SiLU 数值路径。
 
@@ -40,7 +40,7 @@
 
 | 仓库 / 分支                                                                                                                                  | 发布源码 HEAD                                                                                         | 用途                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [LMDeploy `pr/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/pr/ascend-a3-native)                                           | [`111dbf6b`](https://github.com/silencelamb/lmdeploy/commit/111dbf6b4dc1c1aa9fb2fd0753313e0314858c96) | 迁移、GDN/CI修复与CANN9.1依赖配套 PR；不含完整对比文档                     |
+| [LMDeploy `pr/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/pr/ascend-a3-native)                                           | [`f64ab506`](https://github.com/silencelamb/lmdeploy/commit/f64ab5061153b5c5b63721cf2d8d6f1b41b95104) | 迁移、GDN/CI修复与CANN9.1依赖配套 PR；不含完整对比文档                     |
 | [LMDeploy `dev/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native)                                         | [`7d984d0a`](https://github.com/silencelamb/lmdeploy/commit/7d984d0abce61849237d436ac4243fc964e93e7b) | 原迁移、已测修复、测试隔离、平台名称与编译策略说明；不含 PR #5030 |
 | [dlinfer `dev/ascend-a3-native`](https://github.com/silencelamb/dlinfer/tree/dev/ascend-a3-native)                                           | [`25b81c69`](https://github.com/silencelamb/dlinfer/commit/25b81c69cde38e61afc52c50ea92b1d625793db8)  | patch 清理 + A3 独立功能说明                                      |
 | [LMDeploy `codex/ascend-a3-native-mooncake`](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-native-mooncake)                   | [`2c85cdc8`](https://github.com/silencelamb/lmdeploy/commit/2c85cdc888e313c4c32a15e7f7b2a81cf4d95d2b) | 原生迁移 + 同事 PR #5030 的独立集成验证                           |

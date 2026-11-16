@@ -1,0 +1,1214 @@
+﻿2026-11-16T04:51:31.7017151Z Current runner version: '2.338.2'
+2026-11-16T04:51:31.7033114Z Runner name: 's121-ut-r1'
+2026-11-16T04:51:31.7034699Z Runner group name: 'Default'
+2026-11-16T04:51:31.7036604Z Machine name: 'host-10-140-54-121'
+2026-11-16T04:51:31.7044202Z ##[group]GITHUB_TOKEN Permissions
+2026-11-16T04:51:31.7050361Z Contents: read
+2026-11-16T04:51:31.7051487Z Metadata: read
+2026-11-16T04:51:31.7052562Z Packages: read
+2026-11-16T04:51:31.7053630Z ##[endgroup]
+2026-11-16T04:51:31.7059042Z Secret source: None
+2026-11-16T04:51:31.7061182Z Cache mode: write
+2026-11-16T04:51:31.7065501Z Runner is running behind proxy server '***proxy.pjlab.org.cn:23128' for all HTTP requests.
+2026-11-16T04:51:31.7069633Z Runner is running behind proxy server '***proxy.pjlab.org.cn:23128' for all HTTPS requests.
+2026-11-16T04:51:31.7071765Z Prepare workflow directory
+2026-11-16T04:51:31.8387621Z Prepare all required actions
+2026-11-16T04:51:31.8501318Z Getting action download info
+2026-11-16T04:51:32.7688234Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+2026-11-16T04:51:33.7529140Z Complete job name: unit_test
+2026-11-16T04:51:34.0292145Z ##[group]Checking docker version
+2026-11-16T04:51:34.0316681Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+2026-11-16T04:51:34.0683531Z '1.51'
+2026-11-16T04:51:34.0712443Z Docker daemon API version: '1.51'
+2026-11-16T04:51:34.0715051Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+2026-11-16T04:51:34.1024476Z '1.51'
+2026-11-16T04:51:34.1068281Z Docker client API version: '1.51'
+2026-11-16T04:51:34.1078874Z ##[endgroup]
+2026-11-16T04:51:34.1085595Z ##[group]Clean up resources from previous jobs
+2026-11-16T04:51:34.1096368Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=32eb53"
+2026-11-16T04:51:34.1396789Z ##[command]/usr/bin/docker network prune --force --filter "label=32eb53"
+2026-11-16T04:51:34.1615508Z ##[endgroup]
+2026-11-16T04:51:34.1617067Z ##[group]Create local container network
+2026-11-16T04:51:34.1640334Z ##[command]/usr/bin/docker network create --label 32eb53 github_network_c7a0143d0ef64cdd92358be4952ebda8
+2026-11-16T04:51:34.2237273Z 46dc433c46ec154f5948708101370fcabe24dd4c3951122a2e5d04683ced6229
+2026-11-16T04:51:34.2278931Z ##[endgroup]
+2026-11-16T04:51:34.2456707Z ##[group]Starting job container
+2026-11-16T04:51:34.2510324Z ##[command]/usr/bin/docker pull openmmlab/lmdeploy:dev-cu12.8
+2026-11-16T04:51:36.1415459Z dev-cu12.8: Pulling from openmmlab/lmdeploy
+2026-11-16T04:51:36.1431097Z Digest: sha256:32d0a808c93d7f41339b5f05fe8b216050c6439494a035fe6913a47edbb9730a
+2026-11-16T04:51:36.1434620Z Status: Image is up to date for openmmlab/lmdeploy:dev-cu12.8
+2026-11-16T04:51:36.1444954Z docker.io/openmmlab/lmdeploy:dev-cu12.8
+2026-11-16T04:51:36.1653195Z ##[command]/usr/bin/docker create --name ea77d9eafa6348ecab0072b72304b7f4_openmmlablmdeploydevcu128_a22630 --label 32eb53 --workdir /__w/lmdeploy/lmdeploy --network github_network_c7a0143d0ef64cdd92358be4952ebda8 --gpus=all --ipc=host --user root -e PIP_CACHE_DIR=/root/.cache/pip -e CUDA_VISIBLE_DEVICES=2,3 -e HF_HOME=/root/.cache/huggingface --pull never -e "HTTP_PROXY=***proxy.pjlab.org.cn:23128" -e "http_proxy=***proxy.pjlab.org.cn:23128" -e "HTTPS_PROXY=***proxy.pjlab.org.cn:23128" -e "https_proxy=***proxy.pjlab.org.cn:23128" -e "NO_PROXY=localhost,127.0.0.1" -e "no_proxy=localhost,127.0.0.1" -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/nvme/share_data/github-actions/pip-cache":"/root/.cache/pip" -v "/nvme/share_data/github-actions/hf_home":"/root/.cache/huggingface" -v "/nvme/share_data/github-actions/packages":"/root/packages" -v "/usr/share/zoneinfo/Asia/Shanghai":"/etc/localtime":ro -v "/nvme/share_data/github-actions/runners/s121-ut-r1/_work":"/__w" -v "/nvme/share_data/github-actions/runners/s121-ut-r1/externals":"/__e":ro -v "/nvme/share_data/github-actions/runners/s121-ut-r1/_work/_temp":"/__w/_temp" -v "/nvme/share_data/github-actions/runners/s121-ut-r1/_work/_actions":"/__w/_actions" -v "/nvme/share_data/github-actions/runners/s121-ut-r1/_work/_tool":"/__w/_tool" -v "/nvme/share_data/github-actions/runners/s121-ut-r1/_work/_temp/_github_home":"/github/home" -v "/nvme/share_data/github-actions/runners/s121-ut-r1/_work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" openmmlab/lmdeploy:dev-cu12.8 "-f" "/dev/null"
+2026-11-16T04:51:36.6564546Z ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339
+2026-11-16T04:51:36.6628289Z ##[command]/usr/bin/docker start ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339
+2026-11-16T04:51:37.2302274Z ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339
+2026-11-16T04:51:37.2350915Z ##[command]/usr/bin/docker ps --all --filter id=ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+2026-11-16T04:51:37.2548757Z ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339 Up Less than a second
+2026-11-16T04:51:37.2591690Z ##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339
+2026-11-16T04:51:37.2847773Z PIP_CACHE_DIR=/root/.cache/pip
+2026-11-16T04:51:37.2852323Z HF_HOME=/root/.cache/huggingface
+2026-11-16T04:51:37.2854228Z https_proxy=***proxy.pjlab.org.cn:23128
+2026-11-16T04:51:37.2854864Z no_proxy=localhost,127.0.0.1
+2026-11-16T04:51:37.2855357Z GITHUB_ACTIONS=true
+2026-11-16T04:51:37.2855764Z CI=true
+2026-11-16T04:51:37.2856163Z CUDA_VISIBLE_DEVICES=2,3
+2026-11-16T04:51:37.2857261Z HTTP_PROXY=***proxy.pjlab.org.cn:23128
+2026-11-16T04:51:37.2858537Z http_proxy=***proxy.pjlab.org.cn:23128
+2026-11-16T04:51:37.2859859Z HTTPS_PROXY=***proxy.pjlab.org.cn:23128
+2026-11-16T04:51:37.2860476Z NO_PROXY=localhost,127.0.0.1
+2026-11-16T04:51:37.2860999Z HOME=/github/home
+2026-11-16T04:51:37.2861780Z PATH=/opt/py3/bin:/root/.local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+2026-11-16T04:51:37.2862835Z NVARCH=x86_64
+2026-11-16T04:51:37.2877322Z NVIDIA_REQUIRE_CUDA=cuda>=12.8 brand=unknown,driver>=470,driver<471 brand=grid,driver>=470,driver<471 brand=tesla,driver>=470,driver<471 brand=nvidia,driver>=470,driver<471 brand=quadro,driver>=470,driver<471 brand=quadrortx,driver>=470,driver<471 brand=nvidiartx,driver>=470,driver<471 brand=vapps,driver>=470,driver<471 brand=vpc,driver>=470,driver<471 brand=vcs,driver>=470,driver<471 brand=vws,driver>=470,driver<471 brand=cloudgaming,driver>=470,driver<471 brand=unknown,driver>=535,driver<536 brand=grid,driver>=535,driver<536 brand=tesla,driver>=535,driver<536 brand=nvidia,driver>=535,driver<536 brand=quadro,driver>=535,driver<536 brand=quadrortx,driver>=535,driver<536 brand=nvidiartx,driver>=535,driver<536 brand=vapps,driver>=535,driver<536 brand=vpc,driver>=535,driver<536 brand=vcs,driver>=535,driver<536 brand=vws,driver>=535,driver<536 brand=cloudgaming,driver>=535,driver<536 brand=unknown,driver>=550,driver<551 brand=grid,driver>=550,driver<551 brand=tesla,driver>=550,driver<551 brand=nvidia,driver>=550,driver<551 brand=quadro,driver>=550,driver<551 brand=quadrortx,driver>=550,driver<551 brand=nvidiartx,driver>=550,driver<551 brand=vapps,driver>=550,driver<551 brand=vpc,driver>=550,driver<551 brand=vcs,driver>=550,driver<551 brand=vws,driver>=550,driver<551 brand=cloudgaming,driver>=550,driver<551 brand=unknown,driver>=560,driver<561 brand=grid,driver>=560,driver<561 brand=tesla,driver>=560,driver<561 brand=nvidia,driver>=560,driver<561 brand=quadro,driver>=560,driver<561 brand=quadrortx,driver>=560,driver<561 brand=nvidiartx,driver>=560,driver<561 brand=vapps,driver>=560,driver<561 brand=vpc,driver>=560,driver<561 brand=vcs,driver>=560,driver<561 brand=vws,driver>=560,driver<561 brand=cloudgaming,driver>=560,driver<561 brand=unknown,driver>=565,driver<566 brand=grid,driver>=565,driver<566 brand=tesla,driver>=565,driver<566 brand=nvidia,driver>=565,driver<566 brand=quadro,driver>=565,driver<566 brand=quadrortx,driver>=565,driver<566 brand=nvidiartx,driver>=565,driver<566 brand=vapps,driver>=565,driver<566 brand=vpc,driver>=565,driver<566 brand=vcs,driver>=565,driver<566 brand=vws,driver>=565,driver<566 brand=cloudgaming,driver>=565,driver<566
+2026-11-16T04:51:37.2897842Z NV_CUDA_CUDART_VERSION=12.8.90-1
+2026-11-16T04:51:37.2898468Z CUDA_VERSION=12.8.1
+2026-11-16T04:51:37.2898983Z LD_LIBRARY_PATH=/usr/local/cuda/lib64
+2026-11-16T04:51:37.2899750Z NVIDIA_VISIBLE_DEVICES=all
+2026-11-16T04:51:37.2900286Z NVIDIA_DRIVER_CAPABILITIES=compute,utility
+2026-11-16T04:51:37.2900842Z NV_CUDA_LIB_VERSION=12.8.1-1
+2026-11-16T04:51:37.2901328Z NV_NVTX_VERSION=12.8.90-1
+2026-11-16T04:51:37.2901863Z NV_LIBNPP_VERSION=12.3.3.100-1
+2026-11-16T04:51:37.2902427Z NV_LIBNPP_PACKAGE=libnpp-12-8=12.3.3.100-1
+2026-11-16T04:51:37.2903038Z NV_LIBCUSPARSE_VERSION=12.5.8.93-1
+2026-11-16T04:51:37.2903660Z NV_LIBCUBLAS_PACKAGE_NAME=libcublas-12-8
+2026-11-16T04:51:37.2904269Z NV_LIBCUBLAS_VERSION=12.8.4.1-1
+2026-11-16T04:51:37.2904860Z NV_LIBCUBLAS_PACKAGE=libcublas-12-8=12.8.4.1-1
+2026-11-16T04:51:37.2905516Z NV_LIBNCCL_PACKAGE_NAME=libnccl2
+2026-11-16T04:51:37.2906133Z NV_LIBNCCL_PACKAGE_VERSION=2.25.1-1
+2026-11-16T04:51:37.2907240Z NCCL_VERSION=2.25.1-1
+2026-11-16T04:51:37.2907785Z NV_LIBNCCL_PACKAGE=libnccl2=2.25.1-1+cuda12.8
+2026-11-16T04:51:37.2908413Z NVIDIA_PRODUCT_NAME=CUDA
+2026-11-16T04:51:37.2908866Z NV_CUDA_CUDART_DEV_VERSION=12.8.90-1
+2026-11-16T04:51:37.2909425Z NV_NVML_DEV_VERSION=12.8.90-1
+2026-11-16T04:51:37.2910024Z NV_LIBCUSPARSE_DEV_VERSION=12.5.8.93-1
+2026-11-16T04:51:37.2910576Z NV_LIBNPP_DEV_VERSION=12.3.3.100-1
+2026-11-16T04:51:37.2911133Z NV_LIBNPP_DEV_PACKAGE=libnpp-dev-12-8=12.3.3.100-1
+2026-11-16T04:51:37.2911773Z NV_LIBCUBLAS_DEV_VERSION=12.8.4.1-1
+2026-11-16T04:51:37.2912403Z NV_LIBCUBLAS_DEV_PACKAGE_NAME=libcublas-dev-12-8
+2026-11-16T04:51:37.2913140Z NV_LIBCUBLAS_DEV_PACKAGE=libcublas-dev-12-8=12.8.4.1-1
+2026-11-16T04:51:37.2913867Z NV_CUDA_NSIGHT_COMPUTE_VERSION=12.8.1-1
+2026-11-16T04:51:37.2914664Z NV_CUDA_NSIGHT_COMPUTE_DEV_PACKAGE=cuda-nsight-compute-12-8=12.8.1-1
+2026-11-16T04:51:37.2915484Z NV_NVPROF_VERSION=12.8.90-1
+2026-11-16T04:51:37.2915983Z NV_NVPROF_DEV_PACKAGE=cuda-nvprof-12-8=12.8.90-1
+2026-11-16T04:51:37.2916612Z NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+2026-11-16T04:51:37.2917226Z NV_LIBNCCL_DEV_PACKAGE_VERSION=2.25.1-1
+2026-11-16T04:51:37.2917916Z NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.25.1-1+cuda12.8
+2026-11-16T04:51:37.2918613Z LIBRARY_PATH=/usr/local/cuda/lib64/stubs
+2026-11-16T04:51:37.2919181Z DEBIAN_FRONTEND=noninteractive
+2026-11-16T04:51:37.2919919Z TZ=Etc/UTC
+2026-11-16T04:51:37.2920442Z TRITON_PTXAS_PATH=/usr/local/cuda/bin/ptxas
+2026-11-16T04:51:37.2921008Z CUDA_VERSION_SHORT=cu128
+2026-11-16T04:51:37.2938295Z ##[endgroup]
+2026-11-16T04:51:37.2957228Z ##[group]Waiting for all services to be ready
+2026-11-16T04:51:37.2960682Z ##[endgroup]
+2026-11-16T04:51:37.3652752Z ##[group]Run actions/checkout@v5
+2026-11-16T04:51:37.3655072Z with:
+2026-11-16T04:51:37.3655438Z   repository: InternLM/lmdeploy
+2026-11-16T04:51:37.3658701Z   token: ***
+2026-11-16T04:51:37.3659045Z   ssh-strict: true
+2026-11-16T04:51:37.3659353Z   ssh-user: git
+2026-11-16T04:51:37.3659758Z   persist-credentials: true
+2026-11-16T04:51:37.3660089Z   clean: true
+2026-11-16T04:51:37.3660418Z   sparse-checkout-cone-mode: true
+2026-11-16T04:51:37.3660778Z   fetch-depth: 1
+2026-11-16T04:51:37.3661067Z   fetch-tags: false
+2026-11-16T04:51:37.3661365Z   show-progress: true
+2026-11-16T04:51:37.3661668Z   lfs: false
+2026-11-16T04:51:37.3661944Z   submodules: false
+2026-11-16T04:51:37.3662254Z   set-safe-directory: true
+2026-11-16T04:51:37.3662601Z   allow-unsafe-pr-checkout: false
+2026-11-16T04:51:37.3663530Z ##[endgroup]
+2026-11-16T04:51:37.3745658Z ##[command]/usr/bin/docker exec  ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339 sh -c "cat /etc/*release | grep ^ID"
+2026-11-16T04:51:37.6609460Z Syncing repository: InternLM/lmdeploy
+2026-11-16T04:51:37.6612623Z ##[group]Getting Git version info
+2026-11-16T04:51:37.6613379Z Working directory is '/__w/lmdeploy/lmdeploy'
+2026-11-16T04:51:37.6615219Z [command]/usr/bin/git version
+2026-11-16T04:51:37.6615724Z git version 2.34.1
+2026-11-16T04:51:37.6617399Z ##[endgroup]
+2026-11-16T04:51:37.6625211Z Temporarily overriding HOME='/__w/_temp/2700bfe6-04b9-420a-9bc5-b850536069f7' before making global git config changes
+2026-11-16T04:51:37.6626683Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-16T04:51:37.6627805Z [command]/usr/bin/git config --global --add safe.directory /__w/lmdeploy/lmdeploy
+2026-11-16T04:51:37.6637628Z Deleting the contents of '/__w/lmdeploy/lmdeploy'
+2026-11-16T04:51:37.6643783Z ##[group]Initializing the repository
+2026-11-16T04:51:37.6653748Z [command]/usr/bin/git init /__w/lmdeploy/lmdeploy
+2026-11-16T04:51:37.6722876Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-16T04:51:37.6724171Z hint: is subject to change. To configure the initial branch name to use in all
+2026-11-16T04:51:37.6725414Z hint: of your new repositories, which will suppress this warning, call:
+2026-11-16T04:51:37.6726130Z hint: 
+2026-11-16T04:51:37.6726662Z hint: 	git config --global init.defaultBranch <name>
+2026-11-16T04:51:37.6727209Z hint: 
+2026-11-16T04:51:37.6727765Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-16T04:51:37.6728627Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-16T04:51:37.6729302Z hint: 
+2026-11-16T04:51:37.6729771Z hint: 	git branch -m <name>
+2026-11-16T04:51:37.6730486Z Initialized empty Git repository in /__w/lmdeploy/lmdeploy/.git/
+2026-11-16T04:51:37.6754361Z [command]/usr/bin/git remote add origin https://github.com/InternLM/lmdeploy
+2026-11-16T04:51:37.6794171Z ##[endgroup]
+2026-11-16T04:51:37.6795093Z ##[group]Disabling automatic garbage collection
+2026-11-16T04:51:37.6797938Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-16T04:51:37.6852475Z ##[endgroup]
+2026-11-16T04:51:37.6853277Z ##[group]Setting up auth
+2026-11-16T04:51:37.6876917Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T04:51:37.6954281Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T04:51:37.7354894Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T04:51:37.7417539Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T04:51:37.7773233Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T04:51:37.7840891Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T04:51:37.8243359Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-16T04:51:37.8329102Z ##[endgroup]
+2026-11-16T04:51:37.8330047Z ##[group]Fetching the repository
+2026-11-16T04:51:37.8344697Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f453454342dc3547bf45a2755197bcab82303974:refs/remotes/pull/5134/merge
+2026-11-16T04:51:41.0706703Z From https://github.com/InternLM/lmdeploy
+2026-11-16T04:51:41.0707755Z  * [new ref]         f453454342dc3547bf45a2755197bcab82303974 -> pull/5134/merge
+2026-11-16T04:51:41.0738571Z ##[endgroup]
+2026-11-16T04:51:41.0739150Z ##[group]Determining the checkout info
+2026-11-16T04:51:41.0744181Z ##[endgroup]
+2026-11-16T04:51:41.0759846Z [command]/usr/bin/git sparse-checkout disable
+2026-11-16T04:51:41.0828943Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-16T04:51:41.0878453Z ##[group]Checking out the ref
+2026-11-16T04:51:41.0892106Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/5134/merge
+2026-11-16T04:51:41.3059327Z Note: switching to 'refs/remotes/pull/5134/merge'.
+2026-11-16T04:51:41.3060530Z 
+2026-11-16T04:51:41.3061298Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-16T04:51:41.3063083Z changes and commit them, and you can discard any commits you make in this
+2026-11-16T04:51:41.3064823Z state without impacting any branches by switching back to a branch.
+2026-11-16T04:51:41.3065840Z 
+2026-11-16T04:51:41.3066602Z If you want to create a new branch to retain commits you create, you may
+2026-11-16T04:51:41.3068219Z do so (now or later) by using -c with the switch command. Example:
+2026-11-16T04:51:41.3069162Z 
+2026-11-16T04:51:41.3069694Z   git switch -c <new-branch-name>
+2026-11-16T04:51:41.3070359Z 
+2026-11-16T04:51:41.3070829Z Or undo this operation with:
+2026-11-16T04:51:41.3071421Z 
+2026-11-16T04:51:41.3071772Z   git switch -
+2026-11-16T04:51:41.3072305Z 
+2026-11-16T04:51:41.3073095Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-16T04:51:41.3074240Z 
+2026-11-16T04:51:41.3075474Z HEAD is now at f453454 Merge 111dbf6b4dc1c1aa9fb2fd0753313e0314858c96 into 442097e83799c2e85df9d6bbce35c7c79ea05dfe
+2026-11-16T04:51:41.3079282Z ##[endgroup]
+2026-11-16T04:51:41.3136603Z [command]/usr/bin/git log -1 --format=%H
+2026-11-16T04:51:41.3171612Z f453454342dc3547bf45a2755197bcab82303974
+2026-11-16T04:51:41.3583740Z ##[group]Run python3 -m pip install -r requirements/test.txt
+2026-11-16T04:51:41.3585107Z [36;1mpython3 -m pip install -r requirements/test.txt[0m
+2026-11-16T04:51:41.3585987Z [36;1mpython3 -m pip install -e .[0m
+2026-11-16T04:51:41.3592982Z shell: sh -e {0}
+2026-11-16T04:51:41.3593463Z ##[endgroup]
+2026-11-16T04:51:41.9749183Z Collecting allure-pytest (from -r requirements/test.txt (line 1))
+2026-11-16T04:51:41.9763947Z   Using cached allure_pytest-2.16.2-py3-none-any.whl.metadata (3.0 kB)
+2026-11-16T04:51:42.0283131Z Collecting anthropic>=1.0.0 (from -r requirements/test.txt (line 2))
+2026-11-16T04:51:42.0297298Z   Using cached anthropic-2.8.0-py3-none-any.whl.metadata (3.6 kB)
+2026-11-16T04:51:42.3922015Z Collecting coverage (from -r requirements/test.txt (line 3))
+2026-11-16T04:51:42.3936756Z   Using cached coverage-7.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.3 kB)
+2026-11-16T04:51:42.3958073Z Requirement already satisfied: jsonschema in /opt/py3/lib/python3.12/site-packages (from -r requirements/test.txt (line 4)) (4.26.0)
+2026-11-16T04:51:42.5142100Z Collecting matplotlib (from -r requirements/test.txt (line 5))
+2026-11-16T04:51:42.5156865Z   Using cached matplotlib-3.11.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+2026-11-16T04:51:42.5644989Z Collecting nvidia-ml-py (from -r requirements/test.txt (line 6))
+2026-11-16T04:51:42.5660474Z   Using cached nvidia_ml_py-13.615.71-py3-none-any.whl.metadata (9.7 kB)
+2026-11-16T04:51:42.6293192Z Collecting opencv-python-headless (from -r requirements/test.txt (line 7))
+2026-11-16T04:51:42.6306483Z   Using cached opencv_python_headless-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl.metadata (19 kB)
+2026-11-16T04:51:42.6920376Z Collecting pytest (from -r requirements/test.txt (line 8))
+2026-11-16T04:51:42.6933636Z   Using cached pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+2026-11-16T04:51:42.7272606Z Collecting pytest-assume (from -r requirements/test.txt (line 9))
+2026-11-16T04:51:42.7286025Z   Using cached pytest_assume-2.4.3-py3-none-any.whl.metadata (694 bytes)
+2026-11-16T04:51:42.7657404Z Collecting pytest-cov (from -r requirements/test.txt (line 10))
+2026-11-16T04:51:42.7672555Z   Using cached pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+2026-11-16T04:51:42.8030243Z Collecting pytest-order (from -r requirements/test.txt (line 11))
+2026-11-16T04:51:42.8041249Z   Using cached pytest_order-1.5.0-py3-none-any.whl.metadata (8.0 kB)
+2026-11-16T04:51:42.8452172Z Collecting pytest-rerunfailures (from -r requirements/test.txt (line 12))
+2026-11-16T04:51:42.8465174Z   Using cached pytest_rerunfailures-16.7-py3-none-any.whl.metadata (33 kB)
+2026-11-16T04:51:42.9177537Z Collecting pytest-sugar (from -r requirements/test.txt (line 13))
+2026-11-16T04:51:42.9192330Z   Using cached pytest_sugar-1.1.1-py3-none-any.whl.metadata (5.2 kB)
+2026-11-16T04:51:42.9563135Z Collecting pytest-xdist (from -r requirements/test.txt (line 14))
+2026-11-16T04:51:42.9575741Z   Using cached pytest_xdist-3.8.0-py3-none-any.whl.metadata (3.0 kB)
+2026-11-16T04:51:42.9599133Z Requirement already satisfied: pyyaml in /opt/py3/lib/python3.12/site-packages (from -r requirements/test.txt (line 15)) (6.0.3)
+2026-11-16T04:51:42.9921433Z Collecting qwen_vl_utils (from -r requirements/test.txt (line 16))
+2026-11-16T04:51:42.9934921Z   Using cached qwen_vl_utils-0.0.14-py3-none-any.whl.metadata (9.0 kB)
+2026-11-16T04:51:42.9956296Z Requirement already satisfied: timm!=1.0.23 in /opt/py3/lib/python3.12/site-packages (from -r requirements/test.txt (line 17)) (1.0.25)
+2026-11-16T04:51:43.0395234Z Collecting allure-python-commons==2.16.2 (from allure-pytest->-r requirements/test.txt (line 1))
+2026-11-16T04:51:43.0411332Z   Using cached allure_python_commons-2.16.2-py3-none-any.whl.metadata (5.7 kB)
+2026-11-16T04:51:43.0438719Z Requirement already satisfied: attrs>=16.0.0 in /opt/py3/lib/python3.12/site-packages (from allure-python-commons==2.16.2->allure-pytest->-r requirements/test.txt (line 1)) (25.4.0)
+2026-11-16T04:51:43.0763065Z Collecting pluggy>=0.4.0 (from allure-python-commons==2.16.2->allure-pytest->-r requirements/test.txt (line 1))
+2026-11-16T04:51:43.0774328Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-11-16T04:51:43.0800019Z Requirement already satisfied: anyio<5,>=4.1.0 in /opt/py3/lib/python3.12/site-packages (from anthropic>=1.0.0->-r requirements/test.txt (line 2)) (4.12.1)
+2026-11-16T04:51:43.1113495Z Collecting docstring-parser<1,>=0.15 (from anthropic>=1.0.0->-r requirements/test.txt (line 2))
+2026-11-16T04:51:43.1128592Z   Using cached docstring_parser-0.18.0-py3-none-any.whl.metadata (3.5 kB)
+2026-11-16T04:51:43.1473972Z Collecting httpx2<3,>=2.0.0 (from anthropic>=1.0.0->-r requirements/test.txt (line 2))
+2026-11-16T04:51:43.1488136Z   Using cached httpx2-2.16.0-py3-none-any.whl.metadata (10 kB)
+2026-11-16T04:51:43.1525819Z Requirement already satisfied: jiter<1,>=0.4.0 in /opt/py3/lib/python3.12/site-packages (from anthropic>=1.0.0->-r requirements/test.txt (line 2)) (0.13.0)
+2026-11-16T04:51:43.1905051Z Collecting opentelemetry-api<2,>=1.1.0 (from anthropic>=1.0.0->-r requirements/test.txt (line 2))
+2026-11-16T04:51:43.1922171Z   Using cached opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-16T04:51:43.1941969Z Requirement already satisfied: pydantic<3,>=1.10.0 in /opt/py3/lib/python3.12/site-packages (from anthropic>=1.0.0->-r requirements/test.txt (line 2)) (2.12.5)
+2026-11-16T04:51:43.1944604Z Requirement already satisfied: sniffio<2,>=1 in /opt/py3/lib/python3.12/site-packages (from anthropic>=1.0.0->-r requirements/test.txt (line 2)) (1.3.1)
+2026-11-16T04:51:43.1948652Z Requirement already satisfied: typing-extensions<5,>=4.14 in /opt/py3/lib/python3.12/site-packages (from anthropic>=1.0.0->-r requirements/test.txt (line 2)) (4.15.0)
+2026-11-16T04:51:43.1960355Z Requirement already satisfied: idna>=2.8 in /opt/py3/lib/python3.12/site-packages (from anyio<5,>=4.1.0->anthropic>=1.0.0->-r requirements/test.txt (line 2)) (3.4)
+2026-11-16T04:51:43.2283618Z Collecting httpcore2==2.16.0 (from httpx2<3,>=2.0.0->anthropic>=1.0.0->-r requirements/test.txt (line 2))
+2026-11-16T04:51:43.2296407Z   Using cached httpcore2-2.16.0-py3-none-any.whl.metadata (27 kB)
+2026-11-16T04:51:43.2646168Z Collecting idna>=2.8 (from anyio<5,>=4.1.0->anthropic>=1.0.0->-r requirements/test.txt (line 2))
+2026-11-16T04:51:43.2693136Z   Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-16T04:51:43.3040841Z Collecting truststore>=0.10 (from httpx2<3,>=2.0.0->anthropic>=1.0.0->-r requirements/test.txt (line 2))
+2026-11-16T04:51:43.3055217Z   Using cached truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+2026-11-16T04:51:43.3082955Z Requirement already satisfied: h11>=0.16 in /opt/py3/lib/python3.12/site-packages (from httpcore2==2.16.0->httpx2<3,>=2.0.0->anthropic>=1.0.0->-r requirements/test.txt (line 2)) (0.16.0)
+2026-11-16T04:51:43.3110821Z Requirement already satisfied: annotated-types>=0.6.0 in /opt/py3/lib/python3.12/site-packages (from pydantic<3,>=1.10.0->anthropic>=1.0.0->-r requirements/test.txt (line 2)) (0.7.0)
+2026-11-16T04:51:43.3112735Z Requirement already satisfied: pydantic-core==2.41.5 in /opt/py3/lib/python3.12/site-packages (from pydantic<3,>=1.10.0->anthropic>=1.0.0->-r requirements/test.txt (line 2)) (2.41.5)
+2026-11-16T04:51:43.3118013Z Requirement already satisfied: typing-inspection>=0.4.2 in /opt/py3/lib/python3.12/site-packages (from pydantic<3,>=1.10.0->anthropic>=1.0.0->-r requirements/test.txt (line 2)) (0.4.2)
+2026-11-16T04:51:43.3155275Z Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /opt/py3/lib/python3.12/site-packages (from jsonschema->-r requirements/test.txt (line 4)) (2025.9.1)
+2026-11-16T04:51:43.3157495Z Requirement already satisfied: referencing>=0.28.4 in /opt/py3/lib/python3.12/site-packages (from jsonschema->-r requirements/test.txt (line 4)) (0.37.0)
+2026-11-16T04:51:43.3161448Z Requirement already satisfied: rpds-py>=0.25.0 in /opt/py3/lib/python3.12/site-packages (from jsonschema->-r requirements/test.txt (line 4)) (0.30.0)
+2026-11-16T04:51:43.3849593Z Collecting contourpy>=1.0.1 (from matplotlib->-r requirements/test.txt (line 5))
+2026-11-16T04:51:43.3864120Z   Using cached contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-11-16T04:51:43.4197333Z Collecting cycler>=0.10 (from matplotlib->-r requirements/test.txt (line 5))
+2026-11-16T04:51:43.4215303Z   Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-11-16T04:51:43.5606407Z Collecting fonttools>=4.28.2 (from matplotlib->-r requirements/test.txt (line 5))
+2026-11-16T04:51:43.5621472Z   Using cached fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+2026-11-16T04:51:43.6404284Z Collecting kiwisolver>=1.3.1 (from matplotlib->-r requirements/test.txt (line 5))
+2026-11-16T04:51:43.6417345Z   Using cached kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+2026-11-16T04:51:43.6442798Z Requirement already satisfied: numpy>=1.25 in /opt/py3/lib/python3.12/site-packages (from matplotlib->-r requirements/test.txt (line 5)) (2.3.5)
+2026-11-16T04:51:43.6445467Z Requirement already satisfied: packaging>=20.0 in /opt/py3/lib/python3.12/site-packages (from matplotlib->-r requirements/test.txt (line 5)) (24.1)
+2026-11-16T04:51:43.6450197Z Requirement already satisfied: pillow>=9 in /opt/py3/lib/python3.12/site-packages (from matplotlib->-r requirements/test.txt (line 5)) (12.0.0)
+2026-11-16T04:51:43.6877105Z Collecting pyparsing>=3 (from matplotlib->-r requirements/test.txt (line 5))
+2026-11-16T04:51:43.6894734Z   Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-11-16T04:51:43.6922807Z Requirement already satisfied: python-dateutil>=2.7 in /opt/py3/lib/python3.12/site-packages (from matplotlib->-r requirements/test.txt (line 5)) (2.9.0.post0)
+2026-11-16T04:51:43.7252183Z Collecting iniconfig>=2 (from pytest->-r requirements/test.txt (line 8))
+2026-11-16T04:51:43.7270786Z   Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-11-16T04:51:43.7300115Z Requirement already satisfied: pygments>=2.15 in /opt/py3/lib/python3.12/site-packages (from pytest->-r requirements/test.txt (line 8)) (2.19.2)
+2026-11-16T04:51:43.7364476Z Requirement already satisfied: six in /opt/py3/lib/python3.12/site-packages (from pytest-assume->-r requirements/test.txt (line 9)) (1.17.0)
+2026-11-16T04:51:43.7543246Z Requirement already satisfied: termcolor>=2.1.0 in /opt/py3/lib/python3.12/site-packages (from pytest-sugar->-r requirements/test.txt (line 13)) (3.3.0)
+2026-11-16T04:51:43.7868290Z Collecting execnet>=2.1 (from pytest-xdist->-r requirements/test.txt (line 14))
+2026-11-16T04:51:43.7902962Z   Using cached execnet-2.1.2-py3-none-any.whl.metadata (2.9 kB)
+2026-11-16T04:51:43.8770207Z Collecting av (from qwen_vl_utils->-r requirements/test.txt (line 16))
+2026-11-16T04:51:43.8791227Z   Using cached av-19.0.2-cp312-abi3-manylinux_2_28_x86_64.whl.metadata (5.0 kB)
+2026-11-16T04:51:43.8824648Z Requirement already satisfied: requests in /opt/py3/lib/python3.12/site-packages (from qwen_vl_utils->-r requirements/test.txt (line 16)) (2.28.1)
+2026-11-16T04:51:43.8850864Z Requirement already satisfied: torch in /opt/py3/lib/python3.12/site-packages (from timm!=1.0.23->-r requirements/test.txt (line 17)) (2.10.0+cu128)
+2026-11-16T04:51:43.8854903Z Requirement already satisfied: torchvision in /opt/py3/lib/python3.12/site-packages (from timm!=1.0.23->-r requirements/test.txt (line 17)) (0.25.0+cu128)
+2026-11-16T04:51:43.8859780Z Requirement already satisfied: huggingface_hub in /opt/py3/lib/python3.12/site-packages (from timm!=1.0.23->-r requirements/test.txt (line 17)) (1.7.1)
+2026-11-16T04:51:43.8863853Z Requirement already satisfied: safetensors in /opt/py3/lib/python3.12/site-packages (from timm!=1.0.23->-r requirements/test.txt (line 17)) (0.7.0)
+2026-11-16T04:51:43.9273473Z Requirement already satisfied: filelock>=3.10.0 in /opt/py3/lib/python3.12/site-packages (from huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (3.20.0)
+2026-11-16T04:51:43.9277605Z Requirement already satisfied: fsspec>=2023.5.0 in /opt/py3/lib/python3.12/site-packages (from huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (2024.3.1)
+2026-11-16T04:51:43.9290836Z Requirement already satisfied: hf-xet<2.0.0,>=1.4.2 in /opt/py3/lib/python3.12/site-packages (from huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.4.2)
+2026-11-16T04:51:43.9295227Z Requirement already satisfied: httpx<1,>=0.23.0 in /opt/py3/lib/python3.12/site-packages (from huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (0.28.1)
+2026-11-16T04:51:43.9302581Z Requirement already satisfied: tqdm>=4.42.1 in /opt/py3/lib/python3.12/site-packages (from huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (4.66.5)
+2026-11-16T04:51:43.9306392Z Requirement already satisfied: typer in /opt/py3/lib/python3.12/site-packages (from huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (0.24.1)
+2026-11-16T04:51:43.9417784Z Requirement already satisfied: certifi in /opt/py3/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (2022.12.7)
+2026-11-16T04:51:43.9423570Z Requirement already satisfied: httpcore==1.* in /opt/py3/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.0.9)
+2026-11-16T04:51:43.9605872Z Requirement already satisfied: charset-normalizer<3,>=2 in /opt/py3/lib/python3.12/site-packages (from requests->qwen_vl_utils->-r requirements/test.txt (line 16)) (2.1.1)
+2026-11-16T04:51:43.9626852Z Requirement already satisfied: urllib3<1.27,>=1.21.1 in /opt/py3/lib/python3.12/site-packages (from requests->qwen_vl_utils->-r requirements/test.txt (line 16)) (1.26.13)
+2026-11-16T04:51:43.9787140Z Requirement already satisfied: setuptools in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (82.0.1)
+2026-11-16T04:51:43.9790588Z Requirement already satisfied: sympy>=1.13.3 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.14.0)
+2026-11-16T04:51:43.9794022Z Requirement already satisfied: networkx>=2.5.1 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (3.6.1)
+2026-11-16T04:51:43.9796815Z Requirement already satisfied: jinja2 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (3.1.6)
+2026-11-16T04:51:43.9803382Z Requirement already satisfied: cuda-bindings==12.9.4 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.9.4)
+2026-11-16T04:51:43.9808061Z Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.8.93 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.8.93)
+2026-11-16T04:51:43.9812941Z Requirement already satisfied: nvidia-cuda-runtime-cu12==12.8.90 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.8.90)
+2026-11-16T04:51:43.9816868Z Requirement already satisfied: nvidia-cuda-cupti-cu12==12.8.90 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.8.90)
+2026-11-16T04:51:43.9821419Z Requirement already satisfied: nvidia-cudnn-cu12==9.10.2.21 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (9.10.2.21)
+2026-11-16T04:51:43.9826629Z Requirement already satisfied: nvidia-cublas-cu12==12.8.4.1 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.8.4.1)
+2026-11-16T04:51:43.9831781Z Requirement already satisfied: nvidia-cufft-cu12==11.3.3.83 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (11.3.3.83)
+2026-11-16T04:51:43.9836725Z Requirement already satisfied: nvidia-curand-cu12==10.3.9.90 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (10.3.9.90)
+2026-11-16T04:51:43.9841029Z Requirement already satisfied: nvidia-cusolver-cu12==11.7.3.90 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (11.7.3.90)
+2026-11-16T04:51:43.9845338Z Requirement already satisfied: nvidia-cusparse-cu12==12.5.8.93 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.5.8.93)
+2026-11-16T04:51:43.9849936Z Requirement already satisfied: nvidia-cusparselt-cu12==0.7.1 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (0.7.1)
+2026-11-16T04:51:44.0177482Z Collecting nvidia-nccl-cu12==2.27.5 (from torch->timm!=1.0.23->-r requirements/test.txt (line 17))
+2026-11-16T04:51:44.0209983Z   Using cached nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+2026-11-16T04:51:44.0286294Z Requirement already satisfied: nvidia-nvshmem-cu12==3.4.5 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (3.4.5)
+2026-11-16T04:51:44.0307473Z Requirement already satisfied: nvidia-nvtx-cu12==12.8.90 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.8.90)
+2026-11-16T04:51:44.0321005Z Requirement already satisfied: nvidia-nvjitlink-cu12==12.8.93 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (12.8.93)
+2026-11-16T04:51:44.0325082Z Requirement already satisfied: nvidia-cufile-cu12==1.13.1.3 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.13.1.3)
+2026-11-16T04:51:44.0329504Z Requirement already satisfied: triton==3.6.0 in /opt/py3/lib/python3.12/site-packages (from torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (3.6.0)
+2026-11-16T04:51:44.0354200Z Requirement already satisfied: cuda-pathfinder~=1.1 in /opt/py3/lib/python3.12/site-packages (from cuda-bindings==12.9.4->torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.2.2)
+2026-11-16T04:51:44.0618268Z Requirement already satisfied: mpmath<1.4,>=1.1.0 in /opt/py3/lib/python3.12/site-packages (from sympy>=1.13.3->torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.3.0)
+2026-11-16T04:51:44.0656599Z Requirement already satisfied: MarkupSafe>=2.0 in /opt/py3/lib/python3.12/site-packages (from jinja2->torch->timm!=1.0.23->-r requirements/test.txt (line 17)) (3.0.2)
+2026-11-16T04:51:44.0750209Z Requirement already satisfied: click>=8.2.1 in /opt/py3/lib/python3.12/site-packages (from typer->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (8.2.1)
+2026-11-16T04:51:44.0755187Z Requirement already satisfied: shellingham>=1.3.0 in /opt/py3/lib/python3.12/site-packages (from typer->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (1.5.4)
+2026-11-16T04:51:44.0759754Z Requirement already satisfied: rich>=12.3.0 in /opt/py3/lib/python3.12/site-packages (from typer->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (14.3.3)
+2026-11-16T04:51:44.0763642Z Requirement already satisfied: annotated-doc>=0.0.2 in /opt/py3/lib/python3.12/site-packages (from typer->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (0.0.4)
+2026-11-16T04:51:44.0811498Z Requirement already satisfied: markdown-it-py>=2.2.0 in /opt/py3/lib/python3.12/site-packages (from rich>=12.3.0->typer->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (4.0.0)
+2026-11-16T04:51:44.0832497Z Requirement already satisfied: mdurl~=0.1 in /opt/py3/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=12.3.0->typer->huggingface_hub->timm!=1.0.23->-r requirements/test.txt (line 17)) (0.1.2)
+2026-11-16T04:51:44.0908053Z Using cached allure_pytest-2.16.2-py3-none-any.whl (12 kB)
+2026-11-16T04:51:44.0918595Z Using cached allure_python_commons-2.16.2-py3-none-any.whl (16 kB)
+2026-11-16T04:51:44.0929206Z Using cached anthropic-2.8.0-py3-none-any.whl (2.5 MB)
+2026-11-16T04:51:44.0949343Z Using cached docstring_parser-0.18.0-py3-none-any.whl (22 kB)
+2026-11-16T04:51:44.0958852Z Using cached httpx2-2.16.0-py3-none-any.whl (97 kB)
+2026-11-16T04:51:44.0968682Z Using cached httpcore2-2.16.0-py3-none-any.whl (85 kB)
+2026-11-16T04:51:44.0978699Z Using cached opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+2026-11-16T04:51:44.0988882Z Using cached coverage-7.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (264 kB)
+2026-11-16T04:51:44.1000531Z Using cached matplotlib-3.11.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)
+2026-11-16T04:51:44.1047747Z Using cached nvidia_ml_py-13.615.71-py3-none-any.whl (58 kB)
+2026-11-16T04:51:44.1059456Z Using cached opencv_python_headless-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl (61.2 MB)
+2026-11-16T04:51:44.1269665Z Using cached pytest-9.2.0-py3-none-any.whl (411 kB)
+2026-11-16T04:51:44.1282503Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-11-16T04:51:44.1295791Z Using cached pytest_assume-2.4.3-py3-none-any.whl (6.0 kB)
+2026-11-16T04:51:44.1305897Z Using cached pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+2026-11-16T04:51:44.1315988Z Using cached pytest_order-1.5.0-py3-none-any.whl (16 kB)
+2026-11-16T04:51:44.1325352Z Using cached pytest_rerunfailures-16.7-py3-none-any.whl (23 kB)
+2026-11-16T04:51:44.1335026Z Using cached pytest_sugar-1.1.1-py3-none-any.whl (11 kB)
+2026-11-16T04:51:44.1343763Z Using cached pytest_xdist-3.8.0-py3-none-any.whl (46 kB)
+2026-11-16T04:51:44.1353094Z Using cached qwen_vl_utils-0.0.14-py3-none-any.whl (8.1 kB)
+2026-11-16T04:51:44.1363279Z Using cached contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (383 kB)
+2026-11-16T04:51:44.1373361Z Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-11-16T04:51:44.1382554Z Using cached execnet-2.1.2-py3-none-any.whl (40 kB)
+2026-11-16T04:51:44.1392387Z Using cached fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+2026-11-16T04:51:44.1423968Z Using cached idna-3.20-py3-none-any.whl (69 kB)
+2026-11-16T04:51:44.1436925Z Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-11-16T04:51:44.1446616Z Using cached kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+2026-11-16T04:51:44.1462356Z Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-11-16T04:51:44.1471824Z Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
+2026-11-16T04:51:44.1480898Z Using cached av-19.0.2-cp312-abi3-manylinux_2_28_x86_64.whl (35.0 MB)
+2026-11-16T04:51:44.1620018Z Using cached nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (322.3 MB)
+2026-11-16T04:51:44.9911927Z Installing collected packages: nvidia-ml-py, truststore, pyparsing, pluggy, opentelemetry-api, opencv-python-headless, nvidia-nccl-cu12, kiwisolver, iniconfig, idna, fonttools, execnet, docstring-parser, cycler, coverage, contourpy, av, pytest, matplotlib, httpcore2, allure-python-commons, qwen_vl_utils, pytest-xdist, pytest-sugar, pytest-rerunfailures, pytest-order, pytest-cov, pytest-assume, httpx2, allure-pytest, anthropic
+2026-11-16T04:51:46.0099130Z   Attempting uninstall: nvidia-nccl-cu12
+2026-11-16T04:51:46.0122391Z     Found existing installation: nvidia-nccl-cu12 2.29.7
+2026-11-16T04:51:46.0168678Z     Uninstalling nvidia-nccl-cu12-2.29.7:
+2026-11-16T04:51:46.1451084Z       Successfully uninstalled nvidia-nccl-cu12-2.29.7
+2026-11-16T04:51:49.0993651Z   Attempting uninstall: idna
+2026-11-16T04:51:49.1030918Z     Found existing installation: idna 3.4
+2026-11-16T04:51:49.1048892Z     Uninstalling idna-3.4:
+2026-11-16T04:51:49.1091147Z       Successfully uninstalled idna-3.4
+2026-11-16T04:51:55.1935131Z 
+2026-11-16T04:51:55.2043035Z Successfully installed allure-pytest-2.16.2 allure-python-commons-2.16.2 anthropic-2.8.0 av-19.0.2 contourpy-1.4.0 coverage-7.17.3 cycler-0.12.1 docstring-parser-0.18.0 execnet-2.1.2 fonttools-4.68.0 httpcore2-2.16.0 httpx2-2.16.0 idna-3.20 iniconfig-2.3.1 kiwisolver-1.5.1 matplotlib-3.11.2 nvidia-ml-py-13.615.71 nvidia-nccl-cu12-2.27.5 opencv-python-headless-5.0.0.93 opentelemetry-api-1.45.2 pluggy-1.7.0 pyparsing-3.3.3 pytest-9.2.0 pytest-assume-2.4.3 pytest-cov-7.1.0 pytest-order-1.5.0 pytest-rerunfailures-16.7 pytest-sugar-1.1.1 pytest-xdist-3.8.0 qwen_vl_utils-0.0.14 truststore-0.10.5
+2026-11-16T04:51:55.8951906Z Obtaining file:///__w/lmdeploy/lmdeploy
+2026-11-16T04:51:55.8970737Z   Installing build dependencies: started
+2026-11-16T04:51:58.5973706Z   Installing build dependencies: finished with status 'done'
+2026-11-16T04:51:58.5982744Z   Checking if build backend supports build_editable: started
+2026-11-16T04:51:58.8700262Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-11-16T04:51:58.8715595Z   Getting requirements to build editable: started
+2026-11-16T04:51:59.0486848Z   Getting requirements to build editable: finished with status 'done'
+2026-11-16T04:51:59.0521778Z   Installing backend dependencies: started
+2026-11-16T04:52:03.1732462Z   Installing backend dependencies: finished with status 'done'
+2026-11-16T04:52:03.1769348Z   Preparing editable metadata (pyproject.toml): started
+2026-11-16T04:52:03.6226119Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-11-16T04:52:03.6326196Z Requirement already satisfied: cloudpickle in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (3.1.2)
+2026-11-16T04:52:03.6329209Z Requirement already satisfied: einops in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.8.2)
+2026-11-16T04:52:03.6340010Z Requirement already satisfied: fastapi in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.135.1)
+2026-11-16T04:52:03.6343004Z Requirement already satisfied: fire in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.7.1)
+2026-11-16T04:52:03.6344989Z Requirement already satisfied: mmengine-lite in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.10.7)
+2026-11-16T04:52:03.6347145Z Requirement already satisfied: numpy in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (2.3.5)
+2026-11-16T04:52:03.8090966Z Collecting openai>=2.45.0 (from lmdeploy==0.18.0)
+2026-11-16T04:52:03.8107487Z   Using cached openai-3.51.0-py3-none-any.whl.metadata (45 kB)
+2026-11-16T04:52:03.8161787Z Requirement already satisfied: openai_harmony in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.0.8)
+2026-11-16T04:52:03.8164243Z Requirement already satisfied: partial_json_parser in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.2.1.1.post7)
+2026-11-16T04:52:03.8166530Z Requirement already satisfied: pillow in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (12.0.0)
+2026-11-16T04:52:03.8169280Z Requirement already satisfied: protobuf in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (7.34.0)
+2026-11-16T04:52:03.8171525Z Requirement already satisfied: pybase64 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (1.4.3)
+2026-11-16T04:52:03.8174327Z Requirement already satisfied: pydantic>2.0.0 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (2.12.5)
+2026-11-16T04:52:03.8176571Z Requirement already satisfied: pyzmq in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (27.1.0)
+2026-11-16T04:52:03.8178919Z Requirement already satisfied: ray in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (2.52.1)
+2026-11-16T04:52:03.9035774Z Collecting rdkit (from lmdeploy==0.18.0)
+2026-11-16T04:52:03.9052979Z   Using cached rdkit-2026.9.2-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-11-16T04:52:03.9074172Z Requirement already satisfied: safetensors in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.7.0)
+2026-11-16T04:52:03.9077045Z Requirement already satisfied: sentencepiece in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.2.1)
+2026-11-16T04:52:03.9080073Z Requirement already satisfied: shortuuid in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (1.0.13)
+2026-11-16T04:52:03.9082299Z Requirement already satisfied: tiktoken in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.12.0)
+2026-11-16T04:52:03.9684377Z Collecting transformers!=5.0.*,!=5.1.*,!=5.2.*,!=5.3.*,!=5.4.*,!=5.5.0,!=5.7.*,!=5.8.*,!=5.9.*,>=4.56.0 (from lmdeploy==0.18.0)
+2026-11-16T04:52:03.9701529Z   Using cached transformers-5.23.0-py3-none-any.whl.metadata (31 kB)
+2026-11-16T04:52:04.0043586Z Requirement already satisfied: uvicorn in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.42.0)
+2026-11-16T04:52:04.0661990Z Collecting xgrammar>=0.2.8 (from lmdeploy==0.18.0)
+2026-11-16T04:52:04.0677049Z   Using cached xgrammar-0.2.9-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+2026-11-16T04:52:04.0706426Z Requirement already satisfied: accelerate>=0.29.3 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (1.13.0)
+2026-11-16T04:52:04.0709012Z Requirement already satisfied: aiohttp in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (3.13.3)
+2026-11-16T04:52:04.1427460Z Collecting apache-tvm-ffi==0.1.11 (from lmdeploy==0.18.0)
+2026-11-16T04:52:04.1446479Z   Using cached apache_tvm_ffi-0.1.11-cp312-abi3-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+2026-11-16T04:52:04.1821066Z Collecting flash-linear-attention==0.5.2 (from lmdeploy==0.18.0)
+2026-11-16T04:52:04.1836824Z   Using cached flash_linear_attention-0.5.2-py3-none-any.whl.metadata (45 kB)
+2026-11-16T04:52:04.1890167Z Requirement already satisfied: opencv-python-headless in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (5.0.0.93)
+2026-11-16T04:52:04.1893683Z Requirement already satisfied: peft<=0.14.0 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.14.0)
+2026-11-16T04:52:04.1896288Z Requirement already satisfied: prometheus_client in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.24.1)
+2026-11-16T04:52:04.2250312Z Collecting tilelang==0.1.11 (from lmdeploy==0.18.0)
+2026-11-16T04:52:04.2266974Z   Using cached tilelang-0.1.11-cp38-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (15 kB)
+2026-11-16T04:52:04.2307147Z Requirement already satisfied: torch<=2.12.1,>=2.0.0 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (2.10.0+cu128)
+2026-11-16T04:52:04.2310357Z Requirement already satisfied: torchvision<=0.27.1,>=0.15.0 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (0.25.0+cu128)
+2026-11-16T04:52:04.2313658Z Requirement already satisfied: triton<=3.7.1,>=3.4.0 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (3.6.0)
+2026-11-16T04:52:04.2317190Z Requirement already satisfied: nvidia-nccl-cu12 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (2.27.5)
+2026-11-16T04:52:04.2320251Z Requirement already satisfied: nvidia-cuda-runtime-cu12 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (12.8.90)
+2026-11-16T04:52:04.2323213Z Requirement already satisfied: nvidia-cublas-cu12 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (12.8.4.1)
+2026-11-16T04:52:04.2326062Z Requirement already satisfied: nvidia-curand-cu12 in /opt/py3/lib/python3.12/site-packages (from lmdeploy==0.18.0) (10.3.9.90)
+2026-11-16T04:52:04.2334151Z Requirement already satisfied: typing-extensions>=4.5 in /opt/py3/lib/python3.12/site-packages (from apache-tvm-ffi==0.1.11->lmdeploy==0.18.0) (4.15.0)
+2026-11-16T04:52:04.2639001Z Collecting fla-core==0.5.2 (from flash-linear-attention==0.5.2->lmdeploy==0.18.0)
+2026-11-16T04:52:04.2654157Z   Using cached fla_core-0.5.2-py3-none-any.whl.metadata (45 kB)
+2026-11-16T04:52:04.2860685Z Requirement already satisfied: torch-c-dlpack-ext in /opt/py3/lib/python3.12/site-packages (from tilelang==0.1.11->lmdeploy==0.18.0) (0.1.5)
+2026-11-16T04:52:04.2863352Z Requirement already satisfied: ml-dtypes in /opt/py3/lib/python3.12/site-packages (from tilelang==0.1.11->lmdeploy==0.18.0) (0.5.4)
+2026-11-16T04:52:04.2867441Z Requirement already satisfied: psutil in /opt/py3/lib/python3.12/site-packages (from tilelang==0.1.11->lmdeploy==0.18.0) (7.2.2)
+2026-11-16T04:52:04.2870978Z Requirement already satisfied: tqdm>=4.62.3 in /opt/py3/lib/python3.12/site-packages (from tilelang==0.1.11->lmdeploy==0.18.0) (4.66.5)
+2026-11-16T04:52:04.2874567Z Requirement already satisfied: z3-solver<4.15.5,>=4.13.0 in /opt/py3/lib/python3.12/site-packages (from tilelang==0.1.11->lmdeploy==0.18.0) (4.15.4.0)
+2026-11-16T04:52:04.2889919Z Requirement already satisfied: packaging>=20.0 in /opt/py3/lib/python3.12/site-packages (from peft<=0.14.0->lmdeploy==0.18.0) (24.1)
+2026-11-16T04:52:04.2893382Z Requirement already satisfied: pyyaml in /opt/py3/lib/python3.12/site-packages (from peft<=0.14.0->lmdeploy==0.18.0) (6.0.3)
+2026-11-16T04:52:04.2900083Z Requirement already satisfied: huggingface-hub>=0.25.0 in /opt/py3/lib/python3.12/site-packages (from peft<=0.14.0->lmdeploy==0.18.0) (1.7.1)
+2026-11-16T04:52:04.2921374Z Requirement already satisfied: filelock in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (3.20.0)
+2026-11-16T04:52:04.2926184Z Requirement already satisfied: setuptools in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (82.0.1)
+2026-11-16T04:52:04.2931861Z Requirement already satisfied: sympy>=1.13.3 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (1.14.0)
+2026-11-16T04:52:04.2935530Z Requirement already satisfied: networkx>=2.5.1 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (3.6.1)
+2026-11-16T04:52:04.2939012Z Requirement already satisfied: jinja2 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (3.1.6)
+2026-11-16T04:52:04.2942616Z Requirement already satisfied: fsspec>=0.8.5 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (2024.3.1)
+2026-11-16T04:52:04.2946230Z Requirement already satisfied: cuda-bindings==12.9.4 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (12.9.4)
+2026-11-16T04:52:04.2950205Z Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.8.93 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (12.8.93)
+2026-11-16T04:52:04.2954838Z Requirement already satisfied: nvidia-cuda-cupti-cu12==12.8.90 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (12.8.90)
+2026-11-16T04:52:04.2958973Z Requirement already satisfied: nvidia-cudnn-cu12==9.10.2.21 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (9.10.2.21)
+2026-11-16T04:52:04.2964941Z Requirement already satisfied: nvidia-cufft-cu12==11.3.3.83 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (11.3.3.83)
+2026-11-16T04:52:04.2970673Z Requirement already satisfied: nvidia-cusolver-cu12==11.7.3.90 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (11.7.3.90)
+2026-11-16T04:52:04.2974839Z Requirement already satisfied: nvidia-cusparse-cu12==12.5.8.93 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (12.5.8.93)
+2026-11-16T04:52:04.2979399Z Requirement already satisfied: nvidia-cusparselt-cu12==0.7.1 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (0.7.1)
+2026-11-16T04:52:04.2985271Z Requirement already satisfied: nvidia-nvshmem-cu12==3.4.5 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (3.4.5)
+2026-11-16T04:52:04.2989215Z Requirement already satisfied: nvidia-nvtx-cu12==12.8.90 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (12.8.90)
+2026-11-16T04:52:04.2995244Z Requirement already satisfied: nvidia-nvjitlink-cu12==12.8.93 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (12.8.93)
+2026-11-16T04:52:04.3000061Z Requirement already satisfied: nvidia-cufile-cu12==1.13.1.3 in /opt/py3/lib/python3.12/site-packages (from torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (1.13.1.3)
+2026-11-16T04:52:04.3027745Z Requirement already satisfied: cuda-pathfinder~=1.1 in /opt/py3/lib/python3.12/site-packages (from cuda-bindings==12.9.4->torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (1.2.2)
+2026-11-16T04:52:04.3255584Z Requirement already satisfied: hf-xet<2.0.0,>=1.4.2 in /opt/py3/lib/python3.12/site-packages (from huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (1.4.2)
+2026-11-16T04:52:04.3259145Z Requirement already satisfied: httpx<1,>=0.23.0 in /opt/py3/lib/python3.12/site-packages (from huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (0.28.1)
+2026-11-16T04:52:04.3264419Z Requirement already satisfied: typer in /opt/py3/lib/python3.12/site-packages (from huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (0.24.1)
+2026-11-16T04:52:04.3321809Z Requirement already satisfied: anyio in /opt/py3/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (4.12.1)
+2026-11-16T04:52:04.3325555Z Requirement already satisfied: certifi in /opt/py3/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (2022.12.7)
+2026-11-16T04:52:04.3329292Z Requirement already satisfied: httpcore==1.* in /opt/py3/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (1.0.9)
+2026-11-16T04:52:04.3333051Z Requirement already satisfied: idna in /opt/py3/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (3.20)
+2026-11-16T04:52:04.3351842Z Requirement already satisfied: h11>=0.16 in /opt/py3/lib/python3.12/site-packages (from httpcore==1.*->httpx<1,>=0.23.0->huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (0.16.0)
+2026-11-16T04:52:04.3442495Z Requirement already satisfied: httpx2<3,>=2.12.0 in /opt/py3/lib/python3.12/site-packages (from openai>=2.45.0->lmdeploy==0.18.0) (2.16.0)
+2026-11-16T04:52:04.4376024Z Collecting jiter<1,>=0.16.0 (from openai>=2.45.0->lmdeploy==0.18.0)
+2026-11-16T04:52:04.4392575Z   Using cached jiter-0.19.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+2026-11-16T04:52:04.4416116Z Requirement already satisfied: sniffio in /opt/py3/lib/python3.12/site-packages (from openai>=2.45.0->lmdeploy==0.18.0) (1.3.1)
+2026-11-16T04:52:04.4454504Z Requirement already satisfied: httpcore2==2.16.0 in /opt/py3/lib/python3.12/site-packages (from httpx2<3,>=2.12.0->openai>=2.45.0->lmdeploy==0.18.0) (2.16.0)
+2026-11-16T04:52:04.4460260Z Requirement already satisfied: truststore>=0.10 in /opt/py3/lib/python3.12/site-packages (from httpx2<3,>=2.12.0->openai>=2.45.0->lmdeploy==0.18.0) (0.10.5)
+2026-11-16T04:52:04.4511293Z Requirement already satisfied: annotated-types>=0.6.0 in /opt/py3/lib/python3.12/site-packages (from pydantic>2.0.0->lmdeploy==0.18.0) (0.7.0)
+2026-11-16T04:52:04.4514632Z Requirement already satisfied: pydantic-core==2.41.5 in /opt/py3/lib/python3.12/site-packages (from pydantic>2.0.0->lmdeploy==0.18.0) (2.41.5)
+2026-11-16T04:52:04.4518635Z Requirement already satisfied: typing-inspection>=0.4.2 in /opt/py3/lib/python3.12/site-packages (from pydantic>2.0.0->lmdeploy==0.18.0) (0.4.2)
+2026-11-16T04:52:04.4656998Z Requirement already satisfied: mpmath<1.4,>=1.1.0 in /opt/py3/lib/python3.12/site-packages (from sympy>=1.13.3->torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (1.3.0)
+2026-11-16T04:52:04.5218629Z Collecting huggingface-hub>=0.25.0 (from peft<=0.14.0->lmdeploy==0.18.0)
+2026-11-16T04:52:04.5239330Z   Using cached huggingface_hub-2.4.0-py3-none-any.whl.metadata (16 kB)
+2026-11-16T04:52:04.5321419Z Requirement already satisfied: regex>=2025.10.22 in /opt/py3/lib/python3.12/site-packages (from transformers!=5.0.*,!=5.1.*,!=5.2.*,!=5.3.*,!=5.4.*,!=5.5.0,!=5.7.*,!=5.8.*,!=5.9.*,>=4.56.0->lmdeploy==0.18.0) (2026.2.28)
+2026-11-16T04:52:04.6930823Z Collecting tokenizers<0.24.0,>=0.23.1 (from transformers!=5.0.*,!=5.1.*,!=5.2.*,!=5.3.*,!=5.4.*,!=5.5.0,!=5.7.*,!=5.8.*,!=5.9.*,>=4.56.0->lmdeploy==0.18.0)
+2026-11-16T04:52:04.6945732Z   Using cached tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.8 kB)
+2026-11-16T04:52:04.8073883Z Collecting safetensors (from lmdeploy==0.18.0)
+2026-11-16T04:52:04.8116079Z   Using cached safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+2026-11-16T04:52:04.8539492Z Collecting click<9.0.0,>=8.4.2 (from huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0)
+2026-11-16T04:52:04.8554106Z   Using cached click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-16T04:52:04.9180383Z Collecting hf-xet<2.0.0,>=1.6.0 (from huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0)
+2026-11-16T04:52:04.9196772Z   Using cached hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+2026-11-16T04:52:04.9531265Z Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (2.6.1)
+2026-11-16T04:52:04.9534877Z Requirement already satisfied: aiosignal>=1.4.0 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (1.4.0)
+2026-11-16T04:52:04.9538150Z Requirement already satisfied: attrs>=17.3.0 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (25.4.0)
+2026-11-16T04:52:04.9606923Z Requirement already satisfied: frozenlist>=1.1.1 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (1.8.0)
+2026-11-16T04:52:04.9608427Z Requirement already satisfied: multidict<7.0,>=4.5 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (6.7.1)
+2026-11-16T04:52:04.9609759Z Requirement already satisfied: propcache>=0.2.0 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (0.4.1)
+2026-11-16T04:52:04.9612260Z Requirement already satisfied: yarl<2.0,>=1.17.0 in /opt/py3/lib/python3.12/site-packages (from aiohttp->lmdeploy==0.18.0) (1.23.0)
+2026-11-16T04:52:04.9723489Z Requirement already satisfied: starlette>=0.46.0 in /opt/py3/lib/python3.12/site-packages (from fastapi->lmdeploy==0.18.0) (0.52.1)
+2026-11-16T04:52:04.9731375Z Requirement already satisfied: annotated-doc>=0.0.2 in /opt/py3/lib/python3.12/site-packages (from fastapi->lmdeploy==0.18.0) (0.0.4)
+2026-11-16T04:52:04.9797313Z Requirement already satisfied: termcolor in /opt/py3/lib/python3.12/site-packages (from fire->lmdeploy==0.18.0) (3.3.0)
+2026-11-16T04:52:04.9818222Z Requirement already satisfied: MarkupSafe>=2.0 in /opt/py3/lib/python3.12/site-packages (from jinja2->torch<=2.12.1,>=2.0.0->lmdeploy==0.18.0) (3.0.2)
+2026-11-16T04:52:04.9882624Z Requirement already satisfied: addict in /opt/py3/lib/python3.12/site-packages (from mmengine-lite->lmdeploy==0.18.0) (2.4.0)
+2026-11-16T04:52:04.9886262Z Requirement already satisfied: rich in /opt/py3/lib/python3.12/site-packages (from mmengine-lite->lmdeploy==0.18.0) (14.3.3)
+2026-11-16T04:52:04.9889785Z Requirement already satisfied: yapf in /opt/py3/lib/python3.12/site-packages (from mmengine-lite->lmdeploy==0.18.0) (0.43.0)
+2026-11-16T04:52:05.0089386Z Requirement already satisfied: jsonschema in /opt/py3/lib/python3.12/site-packages (from ray->lmdeploy==0.18.0) (4.26.0)
+2026-11-16T04:52:05.0092448Z Requirement already satisfied: msgpack<2.0.0,>=1.0.0 in /opt/py3/lib/python3.12/site-packages (from ray->lmdeploy==0.18.0) (1.1.2)
+2026-11-16T04:52:05.0097564Z Requirement already satisfied: requests in /opt/py3/lib/python3.12/site-packages (from ray->lmdeploy==0.18.0) (2.28.1)
+2026-11-16T04:52:05.0248354Z Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /opt/py3/lib/python3.12/site-packages (from jsonschema->ray->lmdeploy==0.18.0) (2025.9.1)
+2026-11-16T04:52:05.0251567Z Requirement already satisfied: referencing>=0.28.4 in /opt/py3/lib/python3.12/site-packages (from jsonschema->ray->lmdeploy==0.18.0) (0.37.0)
+2026-11-16T04:52:05.0254469Z Requirement already satisfied: rpds-py>=0.25.0 in /opt/py3/lib/python3.12/site-packages (from jsonschema->ray->lmdeploy==0.18.0) (0.30.0)
+2026-11-16T04:52:05.0352598Z Requirement already satisfied: charset-normalizer<3,>=2 in /opt/py3/lib/python3.12/site-packages (from requests->ray->lmdeploy==0.18.0) (2.1.1)
+2026-11-16T04:52:05.0357710Z Requirement already satisfied: urllib3<1.27,>=1.21.1 in /opt/py3/lib/python3.12/site-packages (from requests->ray->lmdeploy==0.18.0) (1.26.13)
+2026-11-16T04:52:05.0432286Z Requirement already satisfied: markdown-it-py>=2.2.0 in /opt/py3/lib/python3.12/site-packages (from rich->mmengine-lite->lmdeploy==0.18.0) (4.0.0)
+2026-11-16T04:52:05.0435948Z Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/py3/lib/python3.12/site-packages (from rich->mmengine-lite->lmdeploy==0.18.0) (2.19.2)
+2026-11-16T04:52:05.0474208Z Requirement already satisfied: mdurl~=0.1 in /opt/py3/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich->mmengine-lite->lmdeploy==0.18.0) (0.1.2)
+2026-11-16T04:52:05.0693021Z Requirement already satisfied: shellingham>=1.3.0 in /opt/py3/lib/python3.12/site-packages (from typer->huggingface-hub>=0.25.0->peft<=0.14.0->lmdeploy==0.18.0) (1.5.4)
+2026-11-16T04:52:05.0766746Z Requirement already satisfied: platformdirs>=3.5.1 in /opt/py3/lib/python3.12/site-packages (from yapf->mmengine-lite->lmdeploy==0.18.0) (4.9.4)
+2026-11-16T04:52:05.0833453Z Using cached apache_tvm_ffi-0.1.11-cp312-abi3-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (2.7 MB)
+2026-11-16T04:52:05.0853279Z Using cached flash_linear_attention-0.5.2-py3-none-any.whl (399 kB)
+2026-11-16T04:52:05.0864316Z Using cached fla_core-0.5.2-py3-none-any.whl (819 kB)
+2026-11-16T04:52:05.0877418Z Using cached tilelang-0.1.11-cp38-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (50.1 MB)
+2026-11-16T04:52:05.1049734Z Using cached openai-3.51.0-py3-none-any.whl (2.4 MB)
+2026-11-16T04:52:05.1069091Z Using cached jiter-0.19.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (338 kB)
+2026-11-16T04:52:05.1079697Z Using cached transformers-5.23.0-py3-none-any.whl (13.3 MB)
+2026-11-16T04:52:05.1138989Z Using cached huggingface_hub-2.4.0-py3-none-any.whl (857 kB)
+2026-11-16T04:52:05.1151443Z Using cached click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-16T04:52:05.1161653Z Using cached hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+2026-11-16T04:52:05.1185767Z Using cached tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+2026-11-16T04:52:05.1208189Z Using cached safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+2026-11-16T04:52:05.1219021Z Using cached xgrammar-0.2.9-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (1.3 MB)
+2026-11-16T04:52:05.1233074Z Using cached rdkit-2026.9.2-cp312-cp312-manylinux_2_28_x86_64.whl (29.6 MB)
+2026-11-16T04:52:05.3076726Z Building wheels for collected packages: lmdeploy
+2026-11-16T04:52:05.3107379Z   Building editable for lmdeploy (pyproject.toml): started
+2026-11-16T04:53:08.8854903Z   Building editable for lmdeploy (pyproject.toml): still running...
+2026-11-16T04:54:08.9693106Z   Building editable for lmdeploy (pyproject.toml): still running...
+2026-11-16T04:55:11.5295568Z   Building editable for lmdeploy (pyproject.toml): still running...
+2026-11-16T04:56:23.9758429Z   Building editable for lmdeploy (pyproject.toml): still running...
+2026-11-16T04:57:34.2807563Z   Building editable for lmdeploy (pyproject.toml): still running...
+2026-11-16T04:58:38.2032375Z   Building editable for lmdeploy (pyproject.toml): still running...
+2026-11-16T04:58:45.2441084Z   Building editable for lmdeploy (pyproject.toml): finished with status 'done'
+2026-11-16T04:58:45.2461673Z   Created wheel for lmdeploy: filename=lmdeploy-0.18.0-0.editable-cp312-cp312-linux_x86_64.whl size=13561 sha256=a38800632edc88ef07d4375407e7dc37ffe8120c0adca3c41b8e54fe8640ae20
+2026-11-16T04:58:45.2467535Z   Stored in directory: /tmp/pip-ephem-wheel-cache-vlqjco3c/wheels/be/15/71/663ef11129e8ca4782b72541ba3fa1239b46bbcfb1f7fe3a53
+2026-11-16T04:58:45.2491486Z Successfully built lmdeploy
+2026-11-16T04:58:45.4717140Z Installing collected packages: safetensors, rdkit, jiter, hf-xet, fla-core, click, apache-tvm-ffi, openai, huggingface-hub, tokenizers, transformers, tilelang, xgrammar, flash-linear-attention, lmdeploy
+2026-11-16T04:58:45.4720423Z   Attempting uninstall: safetensors
+2026-11-16T04:58:45.4755349Z     Found existing installation: safetensors 0.7.0
+2026-11-16T04:58:45.4776328Z     Uninstalling safetensors-0.7.0:
+2026-11-16T04:58:45.4913109Z       Successfully uninstalled safetensors-0.7.0
+2026-11-16T04:58:46.5229285Z   Attempting uninstall: jiter
+2026-11-16T04:58:46.5263977Z     Found existing installation: jiter 0.13.0
+2026-11-16T04:58:46.5278827Z     Uninstalling jiter-0.13.0:
+2026-11-16T04:58:46.5368634Z       Successfully uninstalled jiter-0.13.0
+2026-11-16T04:58:46.5463920Z   Attempting uninstall: hf-xet
+2026-11-16T04:58:46.5498119Z     Found existing installation: hf-xet 1.4.2
+2026-11-16T04:58:46.5511903Z     Uninstalling hf-xet-1.4.2:
+2026-11-16T04:58:46.5642588Z       Successfully uninstalled hf-xet-1.4.2
+2026-11-16T04:58:46.6228914Z   Attempting uninstall: fla-core
+2026-11-16T04:58:46.6280456Z     Found existing installation: fla-core 0.4.2
+2026-11-16T04:58:46.6414358Z     Uninstalling fla-core-0.4.2:
+2026-11-16T04:58:46.8083939Z       Successfully uninstalled fla-core-0.4.2
+2026-11-16T04:58:47.6099498Z   Attempting uninstall: click
+2026-11-16T04:58:47.6144115Z     Found existing installation: click 8.2.1
+2026-11-16T04:58:47.6163414Z     Uninstalling click-8.2.1:
+2026-11-16T04:58:47.6256932Z       Successfully uninstalled click-8.2.1
+2026-11-16T04:58:47.6911434Z   Attempting uninstall: apache-tvm-ffi
+2026-11-16T04:58:47.6945870Z     Found existing installation: apache-tvm-ffi 0.1.9
+2026-11-16T04:58:47.7028623Z     Uninstalling apache-tvm-ffi-0.1.9:
+2026-11-16T04:58:47.8274900Z       Successfully uninstalled apache-tvm-ffi-0.1.9
+2026-11-16T04:58:48.0075394Z   Attempting uninstall: openai
+2026-11-16T04:58:48.0123631Z     Found existing installation: openai 2.28.0
+2026-11-16T04:58:48.0588373Z     Uninstalling openai-2.28.0:
+2026-11-16T04:58:48.4278659Z       Successfully uninstalled openai-2.28.0
+2026-11-16T04:58:50.2175706Z   Attempting uninstall: huggingface-hub
+2026-11-16T04:58:50.2231528Z     Found existing installation: huggingface_hub 1.7.1
+2026-11-16T04:58:50.2320776Z     Uninstalling huggingface_hub-1.7.1:
+2026-11-16T04:58:50.3366991Z       Successfully uninstalled huggingface_hub-1.7.1
+2026-11-16T04:58:50.8043088Z   Attempting uninstall: tokenizers
+2026-11-16T04:58:50.8143734Z     Found existing installation: tokenizers 0.22.2
+2026-11-16T04:58:50.8170493Z     Uninstalling tokenizers-0.22.2:
+2026-11-16T04:58:50.8307341Z       Successfully uninstalled tokenizers-0.22.2
+2026-11-16T04:58:50.9029288Z   Attempting uninstall: transformers
+2026-11-16T04:58:50.9130288Z     Found existing installation: transformers 5.3.0
+2026-11-16T04:58:51.0310391Z     Uninstalling transformers-5.3.0:
+2026-11-16T04:58:51.7895860Z       Successfully uninstalled transformers-5.3.0
+2026-11-16T04:58:59.0066399Z   Attempting uninstall: tilelang
+2026-11-16T04:58:59.0122128Z     Found existing installation: tilelang 0.1.8
+2026-11-16T04:58:59.2118137Z     Uninstalling tilelang-0.1.8:
+2026-11-16T04:59:01.2966542Z       Successfully uninstalled tilelang-0.1.8
+2026-11-16T04:59:04.4036346Z   Attempting uninstall: xgrammar
+2026-11-16T04:59:04.4087450Z     Found existing installation: xgrammar 0.1.32
+2026-11-16T04:59:04.4115675Z     Uninstalling xgrammar-0.1.32:
+2026-11-16T04:59:04.4496705Z       Successfully uninstalled xgrammar-0.1.32
+2026-11-16T04:59:04.5571827Z   Attempting uninstall: flash-linear-attention
+2026-11-16T04:59:04.5625991Z     Found existing installation: flash-linear-attention 0.4.2
+2026-11-16T04:59:04.5708317Z     Uninstalling flash-linear-attention-0.4.2:
+2026-11-16T04:59:04.6574493Z       Successfully uninstalled flash-linear-attention-0.4.2
+2026-11-16T04:59:04.9534817Z   Attempting uninstall: lmdeploy
+2026-11-16T04:59:04.9586995Z     Found existing installation: lmdeploy 0.12.1
+2026-11-16T04:59:04.9605920Z     Uninstalling lmdeploy-0.12.1:
+2026-11-16T04:59:05.1714142Z       Successfully uninstalled lmdeploy-0.12.1
+2026-11-16T04:59:05.1774177Z 
+2026-11-16T04:59:05.1862142Z Successfully installed apache-tvm-ffi-0.1.11 click-8.5.1 fla-core-0.5.2 flash-linear-attention-0.5.2 hf-xet-1.8.0 huggingface-hub-2.4.0 jiter-0.19.0 lmdeploy-0.18.0 openai-3.51.0 rdkit-2026.9.2 safetensors-0.8.0 tilelang-0.1.11 tokenizers-0.23.3 transformers-5.23.0 xgrammar-0.2.9
+2026-11-16T04:59:05.5071350Z ##[group]Run python3 -m pip list
+2026-11-16T04:59:05.5071709Z [36;1mpython3 -m pip list[0m
+2026-11-16T04:59:05.5071986Z [36;1mlmdeploy check_env[0m
+2026-11-16T04:59:05.5072330Z shell: sh -e {0}
+2026-11-16T04:59:05.5072562Z ##[endgroup]
+2026-11-16T04:59:05.8780074Z Package                       Version                                          Editable project location
+2026-11-16T04:59:05.8783793Z ----------------------------- ------------------------------------------------ -------------------------
+2026-11-16T04:59:05.8785099Z accelerate                    1.13.0
+2026-11-16T04:59:05.8785869Z addict                        2.4.0
+2026-11-16T04:59:05.8786635Z aiohappyeyeballs              2.6.1
+2026-11-16T04:59:05.8787340Z aiohttp                       3.13.3
+2026-11-16T04:59:05.8788044Z aiosignal                     1.4.0
+2026-11-16T04:59:05.8788746Z allure-pytest                 2.16.2
+2026-11-16T04:59:05.8789468Z allure-python-commons         2.16.2
+2026-11-16T04:59:05.8790375Z annotated-doc                 0.0.4
+2026-11-16T04:59:05.8791081Z annotated-types               0.7.0
+2026-11-16T04:59:05.8791772Z anthropic                     2.8.0
+2026-11-16T04:59:05.8792469Z anyio                         4.12.1
+2026-11-16T04:59:05.8793159Z apache-tvm-ffi                0.1.11
+2026-11-16T04:59:05.8793887Z attrs                         25.4.0
+2026-11-16T04:59:05.8794541Z av                            19.0.2
+2026-11-16T04:59:05.8795234Z certifi                       2022.12.7
+2026-11-16T04:59:05.8795965Z charset-normalizer            2.1.1
+2026-11-16T04:59:05.8796647Z click                         8.5.1
+2026-11-16T04:59:05.8797308Z cloudpickle                   3.1.2
+2026-11-16T04:59:05.8797991Z cmake                         3.25.0
+2026-11-16T04:59:05.8798691Z cmake-build-extension         0.6.1
+2026-11-16T04:59:05.8799382Z contourpy                     1.4.0
+2026-11-16T04:59:05.8800126Z coverage                      7.17.3
+2026-11-16T04:59:05.8800810Z cuda-bindings                 12.9.4
+2026-11-16T04:59:05.8801515Z cuda-pathfinder               1.2.2
+2026-11-16T04:59:05.8802206Z cycler                        0.12.1
+2026-11-16T04:59:05.8802876Z datasets                      2.19.1
+2026-11-16T04:59:05.8803592Z deep_ep                       1.2.1+9af0e0d
+2026-11-16T04:59:05.8804865Z deep_gemm                     2.1.1+c9f8b34
+2026-11-16T04:59:05.8805583Z dill                          0.3.8
+2026-11-16T04:59:05.8806249Z distro                        1.9.0
+2026-11-16T04:59:05.8806916Z dlblas                        0.0.7
+2026-11-16T04:59:05.8807605Z dlslime                       0.0.2.post1
+2026-11-16T04:59:05.8808371Z docstring_parser              0.18.0
+2026-11-16T04:59:05.8809067Z einops                        0.8.2
+2026-11-16T04:59:05.8810015Z execnet                       2.1.2
+2026-11-16T04:59:05.8810708Z fastapi                       0.135.1
+2026-11-16T04:59:05.8811417Z filelock                      3.20.0
+2026-11-16T04:59:05.8812088Z fire                          0.7.1
+2026-11-16T04:59:05.8812755Z fla-core                      0.5.2
+2026-11-16T04:59:05.8813695Z flash-attn-3                  3.0.0+20260316.cu128torch2100cxx11abitrue.71bf77
+2026-11-16T04:59:05.8814716Z flash-linear-attention        0.5.2
+2026-11-16T04:59:05.8815336Z flash_mla                     1.0.0+1408756
+2026-11-16T04:59:05.8815634Z fonttools                     4.68.0
+2026-11-16T04:59:05.8815903Z frozenlist                    1.8.0
+2026-11-16T04:59:05.8816185Z fsspec                        2024.3.1
+2026-11-16T04:59:05.8816462Z gitdb                         4.0.12
+2026-11-16T04:59:05.8816727Z GitPython                     3.1.46
+2026-11-16T04:59:05.8816983Z h11                           0.16.0
+2026-11-16T04:59:05.8817249Z hf-xet                        1.8.0
+2026-11-16T04:59:05.8817511Z httpcore                      1.0.9
+2026-11-16T04:59:05.8817777Z httpcore2                     2.16.0
+2026-11-16T04:59:05.8818039Z httpx                         0.28.1
+2026-11-16T04:59:05.8818300Z httpx2                        2.16.0
+2026-11-16T04:59:05.8818770Z huggingface_hub               2.4.0
+2026-11-16T04:59:05.8819051Z idna                          3.20
+2026-11-16T04:59:05.8819348Z iniconfig                     2.3.1
+2026-11-16T04:59:05.8819648Z Jinja2                        3.1.6
+2026-11-16T04:59:05.8819912Z jiter                         0.19.0
+2026-11-16T04:59:05.8820176Z jsonschema                    4.26.0
+2026-11-16T04:59:05.8820458Z jsonschema-specifications     2025.9.1
+2026-11-16T04:59:05.8820747Z kiwisolver                    1.5.1
+2026-11-16T04:59:05.8821124Z lmdeploy                      0.18.0                                           /__w/lmdeploy/lmdeploy
+2026-11-16T04:59:05.8821523Z markdown-it-py                4.0.0
+2026-11-16T04:59:05.8822218Z MarkupSafe                    3.0.2
+2026-11-16T04:59:05.8823637Z matplotlib                    3.11.2
+2026-11-16T04:59:05.8824857Z mdurl                         0.1.2
+2026-11-16T04:59:05.8825914Z ml_dtypes                     0.5.4
+2026-11-16T04:59:05.8827042Z mmengine-lite                 0.10.7
+2026-11-16T04:59:05.8828119Z mpmath                        1.3.0
+2026-11-16T04:59:05.8829119Z msgpack                       1.1.2
+2026-11-16T04:59:05.8830301Z multidict                     6.7.1
+2026-11-16T04:59:05.8831375Z multiprocess                  0.70.16
+2026-11-16T04:59:05.8832457Z networkx                      3.6.1
+2026-11-16T04:59:05.8833468Z ninja                         1.13.0
+2026-11-16T04:59:05.8834486Z numpy                         2.3.5
+2026-11-16T04:59:05.8835562Z nvidia-cublas-cu12            12.8.4.1
+2026-11-16T04:59:05.8836713Z nvidia-cuda-cupti-cu12        12.8.90
+2026-11-16T04:59:05.8837840Z nvidia-cuda-nvrtc-cu12        12.8.93
+2026-11-16T04:59:05.8839075Z nvidia-cuda-runtime-cu12      12.8.90
+2026-11-16T04:59:05.8840273Z nvidia-cudnn-cu12             9.10.2.21
+2026-11-16T04:59:05.8841388Z nvidia-cufft-cu12             11.3.3.83
+2026-11-16T04:59:05.8842484Z nvidia-cufile-cu12            1.13.1.3
+2026-11-16T04:59:05.8843596Z nvidia-curand-cu12            10.3.9.90
+2026-11-16T04:59:05.8844727Z nvidia-cusolver-cu12          11.7.3.90
+2026-11-16T04:59:05.8845829Z nvidia-cusparse-cu12          12.5.8.93
+2026-11-16T04:59:05.8846930Z nvidia-cusparselt-cu12        0.7.1
+2026-11-16T04:59:05.8848013Z nvidia-ml-py                  13.615.71
+2026-11-16T04:59:05.8849934Z nvidia-nccl-cu12              2.27.5
+2026-11-16T04:59:05.8851029Z nvidia-nvjitlink-cu12         12.8.93
+2026-11-16T04:59:05.8852138Z nvidia-nvshmem-cu12           3.4.5
+2026-11-16T04:59:05.8853335Z nvidia-nvtx-cu12              12.8.90
+2026-11-16T04:59:05.8854398Z openai                        3.51.0
+2026-11-16T04:59:05.8855340Z openai-harmony                0.0.8
+2026-11-16T04:59:05.8855642Z opencv-python-headless        5.0.0.93
+2026-11-16T04:59:05.8855938Z opentelemetry-api             1.45.2
+2026-11-16T04:59:05.8856227Z packaging                     24.1
+2026-11-16T04:59:05.8856504Z pandas                        3.0.1
+2026-11-16T04:59:05.8856789Z partial-json-parser           0.2.1.1.post7
+2026-11-16T04:59:05.8857101Z pathspec                      1.0.4
+2026-11-16T04:59:05.8857362Z peft                          0.14.0
+2026-11-16T04:59:05.8857628Z pillow                        12.0.0
+2026-11-16T04:59:05.8857898Z pip                           26.0.1
+2026-11-16T04:59:05.8858163Z platformdirs                  4.9.4
+2026-11-16T04:59:05.8858434Z pluggy                        1.7.0
+2026-11-16T04:59:05.8858695Z prometheus_client             0.24.1
+2026-11-16T04:59:05.8858965Z propcache                     0.4.1
+2026-11-16T04:59:05.8859231Z protobuf                      7.34.0
+2026-11-16T04:59:05.8859497Z psutil                        7.2.2
+2026-11-16T04:59:05.8859863Z pyarrow                       23.0.1
+2026-11-16T04:59:05.8860136Z pyarrow-hotfix                0.7
+2026-11-16T04:59:05.8860408Z pybase64                      1.4.3
+2026-11-16T04:59:05.8860679Z pybind11                      2.13.1
+2026-11-16T04:59:05.8860945Z pydantic                      2.12.5
+2026-11-16T04:59:05.8861215Z pydantic_core                 2.41.5
+2026-11-16T04:59:05.8861679Z Pygments                      2.19.2
+2026-11-16T04:59:05.8861961Z pyparsing                     3.3.3
+2026-11-16T04:59:05.8862228Z pytest                        9.2.0
+2026-11-16T04:59:05.8862500Z pytest-assume                 2.4.3
+2026-11-16T04:59:05.8862786Z pytest-cov                    7.1.0
+2026-11-16T04:59:05.8863056Z pytest-order                  1.5.0
+2026-11-16T04:59:05.8863348Z pytest-rerunfailures          16.7
+2026-11-16T04:59:05.8863634Z pytest-sugar                  1.1.1
+2026-11-16T04:59:05.8863910Z pytest-xdist                  3.8.0
+2026-11-16T04:59:05.8864412Z python-dateutil               2.9.0.post0
+2026-11-16T04:59:05.8864963Z PyYAML                        6.0.3
+2026-11-16T04:59:05.8865772Z pyzmq                         27.1.0
+2026-11-16T04:59:05.8866503Z qwen-vl-utils                 0.0.14
+2026-11-16T04:59:05.8867044Z ray                           2.52.1
+2026-11-16T04:59:05.8867786Z rdkit                         2026.9.2
+2026-11-16T04:59:05.8868419Z referencing                   0.37.0
+2026-11-16T04:59:05.8869161Z regex                         2026.2.28
+2026-11-16T04:59:05.8869844Z requests                      2.28.1
+2026-11-16T04:59:05.8870651Z rich                          14.3.3
+2026-11-16T04:59:05.8871423Z rpds-py                       0.30.0
+2026-11-16T04:59:05.8871992Z safetensors                   0.8.0
+2026-11-16T04:59:05.8872756Z scikit_build_core             0.12.2
+2026-11-16T04:59:05.8873399Z sentencepiece                 0.2.1
+2026-11-16T04:59:05.8874164Z setuptools                    82.0.1
+2026-11-16T04:59:05.8874790Z setuptools-scm                9.2.2
+2026-11-16T04:59:05.8875584Z shellingham                   1.5.4
+2026-11-16T04:59:05.8876164Z shortuuid                     1.0.13
+2026-11-16T04:59:05.8876890Z six                           1.17.0
+2026-11-16T04:59:05.8877612Z smmap                         5.0.3
+2026-11-16T04:59:05.8878192Z sniffio                       1.3.1
+2026-11-16T04:59:05.8878974Z starlette                     0.52.1
+2026-11-16T04:59:05.8879636Z sympy                         1.14.0
+2026-11-16T04:59:05.8880312Z termcolor                     3.3.0
+2026-11-16T04:59:05.8881026Z tiktoken                      0.12.0
+2026-11-16T04:59:05.8881740Z tilelang                      0.1.11
+2026-11-16T04:59:05.8882307Z timm                          1.0.25
+2026-11-16T04:59:05.8883066Z tokenizers                    0.23.3
+2026-11-16T04:59:05.8883697Z torch                         2.10.0+cu128
+2026-11-16T04:59:05.8884469Z torch_c_dlpack_ext            0.1.5
+2026-11-16T04:59:05.8885096Z torchvision                   0.25.0+cu128
+2026-11-16T04:59:05.8885909Z tqdm                          4.66.5
+2026-11-16T04:59:05.8886462Z transformers                  5.23.0
+2026-11-16T04:59:05.8887698Z transformers-stream-generator 0.0.5
+2026-11-16T04:59:05.8888513Z triton                        3.6.0
+2026-11-16T04:59:05.8889237Z truststore                    0.10.5
+2026-11-16T04:59:05.8889991Z typer                         0.24.1
+2026-11-16T04:59:05.8890723Z typing_extensions             4.15.0
+2026-11-16T04:59:05.8891460Z typing-inspection             0.4.2
+2026-11-16T04:59:05.8892176Z urllib3                       1.26.13
+2026-11-16T04:59:05.8892863Z uvicorn                       0.42.0
+2026-11-16T04:59:05.8893543Z wheel                         0.46.3
+2026-11-16T04:59:05.8894235Z xgrammar                      0.2.9
+2026-11-16T04:59:05.8894903Z xxhash                        3.6.0
+2026-11-16T04:59:05.8895571Z yapf                          0.43.0
+2026-11-16T04:59:05.8896229Z yarl                          1.23.0
+2026-11-16T04:59:05.8896909Z z3-solver                     4.15.4.0
+2026-11-16T04:59:13.3567498Z sys.platform: linux
+2026-11-16T04:59:13.3568760Z Python: 3.12.13 (main, Mar 10 2026, 18:17:25) [Clang 21.1.4 ]
+2026-11-16T04:59:13.3570260Z CUDA available: True
+2026-11-16T04:59:13.3571125Z MUSA available: False
+2026-11-16T04:59:13.3571984Z numpy_random_seed: 2147483648
+2026-11-16T04:59:13.3572924Z GPU 0,1: NVIDIA A100-SXM4-80GB
+2026-11-16T04:59:13.3574565Z CUDA_HOME: /usr/local/cuda
+2026-11-16T04:59:13.3575611Z NVCC: Cuda compilation tools, release 12.8, V12.8.93
+2026-11-16T04:59:13.3576802Z GCC: cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+2026-11-16T04:59:13.3577843Z PyTorch: 2.10.0+cu128
+2026-11-16T04:59:13.3578763Z PyTorch compiling details: PyTorch built with:
+2026-11-16T04:59:13.3579937Z   - GCC 13.3
+2026-11-16T04:59:13.3580680Z   - C++ Version: 201703
+2026-11-16T04:59:13.3582394Z   - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications
+2026-11-16T04:59:13.3584745Z   - Intel(R) MKL-DNN v3.7.1 (Git Hash 8d263e693366ef8db40acc569cc7d8edf644556d)
+2026-11-16T04:59:13.3586153Z   - OpenMP 201511 (a.k.a. OpenMP 4.5)
+2026-11-16T04:59:13.3587239Z   - LAPACK is enabled (usually provided by MKL)
+2026-11-16T04:59:13.3588280Z   - NNPACK is enabled
+2026-11-16T04:59:13.3589129Z   - CPU capability usage: AVX512
+2026-11-16T04:59:13.3590092Z   - CUDA Runtime 12.8
+2026-11-16T04:59:13.3593449Z   - NVCC architecture flags: -gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120
+2026-11-16T04:59:13.3597016Z   - CuDNN 91.0.2  (built against CUDA 12.9)
+2026-11-16T04:59:13.3597996Z   - Magma 2.6.1
+2026-11-16T04:59:13.3607844Z   - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=449b1768410104d3ed79d3bcfe4ba1d65c7f22c0, CUDA_VERSION=12.8, CUDNN_VERSION=9.10.2, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_FBGEMM_GENAI -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.10.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, 
+2026-11-16T04:59:13.3612382Z 
+2026-11-16T04:59:13.3612492Z TorchVision: 0.25.0+cu128
+2026-11-16T04:59:13.3612747Z LMDeploy: 0.18.0+f453454
+2026-11-16T04:59:13.3612997Z transformers: 5.23.0
+2026-11-16T04:59:13.3613233Z fastapi: 0.135.1
+2026-11-16T04:59:13.3613461Z pydantic: 2.12.5
+2026-11-16T04:59:13.3613697Z triton: 3.6.0
+2026-11-16T04:59:13.3613916Z NVIDIA Topology: 
+2026-11-16T04:59:13.3614716Z 	[4mGPU0	GPU1	GPU2	GPU3	GPU4	GPU5	GPU6	GPU7	NIC0	NIC1	NIC2	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+2026-11-16T04:59:13.3615264Z GPU0	 X 	NV12	NV12	NV12	NV12	NV12	NV12	NV12	PXB	NODE	NODE	0-31,64-95	0		N/A
+2026-11-16T04:59:13.3615726Z GPU1	NV12	 X 	NV12	NV12	NV12	NV12	NV12	NV12	PXB	NODE	NODE	0-31,64-95	0		N/A
+2026-11-16T04:59:13.3616176Z GPU2	NV12	NV12	 X 	NV12	NV12	NV12	NV12	NV12	NODE	PXB	NODE	0-31,64-95	0		N/A
+2026-11-16T04:59:13.3616634Z GPU3	NV12	NV12	NV12	 X 	NV12	NV12	NV12	NV12	NODE	PXB	NODE	0-31,64-95	0		N/A
+2026-11-16T04:59:13.3617081Z GPU4	NV12	NV12	NV12	NV12	 X 	NV12	NV12	NV12	SYS	SYS	SYS	32-63,96-127	1		N/A
+2026-11-16T04:59:13.3617521Z GPU5	NV12	NV12	NV12	NV12	NV12	 X 	NV12	NV12	SYS	SYS	SYS	32-63,96-127	1		N/A
+2026-11-16T04:59:13.3617953Z GPU6	NV12	NV12	NV12	NV12	NV12	NV12	 X 	NV12	SYS	SYS	SYS	32-63,96-127	1		N/A
+2026-11-16T04:59:13.3618386Z GPU7	NV12	NV12	NV12	NV12	NV12	NV12	NV12	 X 	SYS	SYS	SYS	32-63,96-127	1		N/A
+2026-11-16T04:59:13.3618934Z NIC0	PXB	PXB	NODE	NODE	SYS	SYS	SYS	SYS	 X 	NODE	NODE				
+2026-11-16T04:59:13.3619321Z NIC1	NODE	NODE	PXB	PXB	SYS	SYS	SYS	SYS	NODE	 X 	NODE				
+2026-11-16T04:59:13.3619749Z NIC2	NODE	NODE	NODE	NODE	SYS	SYS	SYS	SYS	NODE	NODE	 X 				
+2026-11-16T04:59:13.3620004Z 
+2026-11-16T04:59:13.3620111Z Legend:
+2026-11-16T04:59:13.3620234Z 
+2026-11-16T04:59:13.3620336Z   X    = Self
+2026-11-16T04:59:13.3620767Z   SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+2026-11-16T04:59:13.3621451Z   NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+2026-11-16T04:59:13.3622082Z   PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+2026-11-16T04:59:13.3622681Z   PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+2026-11-16T04:59:13.3623186Z   PIX  = Connection traversing at most a single PCIe bridge
+2026-11-16T04:59:13.3623570Z   NV#  = Connection traversing a bonded set of # NVLinks
+2026-11-16T04:59:13.3623801Z 
+2026-11-16T04:59:13.3623889Z NIC Legend:
+2026-11-16T04:59:13.3624015Z 
+2026-11-16T04:59:13.3624103Z   NIC0: mlx5_2
+2026-11-16T04:59:13.3624313Z   NIC1: mlx5_3
+2026-11-16T04:59:13.3624531Z   NIC2: mlx5_bond_0
+2026-11-16T04:59:13.3624662Z 
+2026-11-16T04:59:13.3624671Z 
+2026-11-16T04:59:14.0308443Z ##[group]Run coverage run --branch --source lmdeploy -m pytest -rsE tests
+2026-11-16T04:59:14.0309960Z [36;1mcoverage run --branch --source lmdeploy -m pytest -rsE tests[0m
+2026-11-16T04:59:14.0310886Z [36;1mcoverage xml[0m
+2026-11-16T04:59:14.0311345Z [36;1mcoverage report -m[0m
+2026-11-16T04:59:14.0311920Z shell: sh -e {0}
+2026-11-16T04:59:14.0312296Z ##[endgroup]
+2026-11-16T04:59:47.2983676Z ============================= test session starts ==============================
+2026-11-16T04:59:47.2984189Z platform linux -- Python 3.12.13, pytest-9.2.0, pluggy-1.7.0
+2026-11-16T04:59:47.2984567Z rootdir: /__w/lmdeploy/lmdeploy
+2026-11-16T04:59:47.2984864Z configfile: pyproject.toml
+2026-11-16T04:59:47.2985403Z plugins: xdist-3.8.0, sugar-1.1.1, rerunfailures-16.7, order-1.5.0, cov-7.1.0, assume-2.4.3, allure-pytest-2.16.2, anyio-4.12.1
+2026-11-16T04:59:47.2985957Z collected 6826 items / 1 skipped
+2026-11-16T04:59:47.2986132Z 
+2026-11-16T04:59:47.3062897Z tests/pytorch/ascend/test_ascend_cudagraph_lifecycle.py ..               [  0%]
+2026-11-16T04:59:47.3457578Z tests/pytorch/ascend/test_ascend_cudagraph_nsa.py .....                  [  0%]
+2026-11-16T04:59:50.0798222Z tests/pytorch/ascend/test_native_integration.py ........................ [  0%]
+2026-11-16T04:59:50.1160332Z .                                                                        [  0%]
+2026-11-16T04:59:50.1889191Z tests/pytorch/config/test_fp8_quant_scope.py ............                [  0%]
+2026-11-16T04:59:50.2191555Z tests/pytorch/config/test_hf_overrides.py ...                            [  0%]
+2026-11-16T04:59:50.3266983Z tests/pytorch/config/test_model_config.py ......................         [  1%]
+2026-11-16T04:59:50.3366817Z tests/pytorch/disagg/test_mooncake_async_migration.py ..                 [  1%]
+2026-11-16T04:59:50.3525615Z tests/pytorch/engine/test_abort_stopped_seqs.py .....                    [  1%]
+2026-11-16T04:59:50.3631962Z tests/pytorch/engine/test_cache_engine/test_collector.py ...             [  1%]
+2026-11-16T04:59:50.3774727Z tests/pytorch/engine/test_cache_engine/test_compact_model_binding.py ... [  1%]
+2026-11-16T04:59:52.1124761Z ........................                                                 [  1%]
+2026-11-16T04:59:52.1285837Z tests/pytorch/engine/test_cache_engine/test_compact_state_units.py ..... [  1%]
+2026-11-16T04:59:52.2233072Z .......................                                                  [  1%]
+2026-11-16T04:59:52.2658515Z tests/pytorch/engine/test_cache_engine/test_copy.py ...........          [  2%]
+2026-11-16T04:59:52.3408918Z tests/pytorch/engine/test_cache_engine/test_engine.py .................. [  2%]
+2026-11-16T04:59:52.3623054Z ..                                                                       [  2%]
+2026-11-16T04:59:52.3893465Z tests/pytorch/engine/test_cache_engine/test_layout.py ........           [  2%]
+2026-11-16T04:59:52.4066268Z tests/pytorch/engine/test_cache_engine/test_plan.py ....                 [  2%]
+2026-11-16T04:59:52.4424213Z tests/pytorch/engine/test_cache_engine/test_schema.py ..........         [  2%]
+2026-11-16T04:59:52.5674196Z tests/pytorch/engine/test_cache_engine/test_state_engine.py ............ [  2%]
+2026-11-16T04:59:52.6327714Z .................                                                        [  3%]
+2026-11-16T04:59:52.6490580Z tests/pytorch/engine/test_cache_engine/test_view.py ....                 [  3%]
+2026-11-16T04:59:52.6694487Z tests/pytorch/engine/test_cache_engine_connector_caches.py ......        [  3%]
+2026-11-16T04:59:52.6761008Z tests/pytorch/engine/test_cache_inputs.py ..                             [  3%]
+2026-11-16T04:59:52.7471847Z tests/pytorch/engine/test_compact_allocation_selection.py .............. [  3%]
+2026-11-16T04:59:53.0365269Z ........................................................................ [  4%]
+2026-11-16T04:59:53.3416948Z ........................................................................ [  5%]
+2026-11-16T04:59:53.5928388Z .............................................................            [  6%]
+2026-11-16T04:59:55.3666125Z tests/pytorch/engine/test_compact_completion.py ........................ [  6%]
+2026-11-16T04:59:55.6619099Z ...................                                                      [  7%]
+2026-11-16T04:59:55.7317553Z tests/pytorch/engine/test_compact_exclusive_serving.py ................. [  7%]
+2026-11-16T04:59:55.7414665Z ..                                                                       [  7%]
+2026-11-16T04:59:57.2091353Z tests/pytorch/engine/test_compact_forward.py ........................... [  7%]
+2026-11-16T04:59:57.3671239Z ....................                                                     [  8%]
+2026-11-16T04:59:57.5381015Z tests/pytorch/engine/test_compact_inputs_maker.py ...................... [  8%]
+2026-11-16T04:59:58.5970871Z ........................................................................ [  9%]
+2026-11-16T05:00:00.9486481Z ........................................................................ [ 10%]
+2026-11-16T05:00:00.9880133Z ........                                                                 [ 10%]
+2026-11-16T05:00:01.1080321Z tests/pytorch/engine/test_compact_mtp_resume.py ........................ [ 11%]
+2026-11-16T05:00:01.1096081Z                                                                          [ 11%]
+2026-11-16T05:00:01.1892112Z tests/pytorch/engine/test_compact_shutdown.py .............              [ 11%]
+2026-11-16T05:00:01.2267949Z tests/pytorch/engine/test_cudagraph_capture_batch_sizes.py ............  [ 11%]
+2026-11-16T05:00:01.3871761Z tests/pytorch/engine/test_decode_checkpoints.py ........................ [ 11%]
+2026-11-16T05:00:01.6594361Z ...............................................................          [ 12%]
+2026-11-16T05:00:01.6659776Z tests/pytorch/engine/test_engine_checker.py ..                           [ 12%]
+2026-11-16T05:00:01.9112500Z tests/pytorch/engine/test_engine_sleep.py .............................. [ 13%]
+2026-11-16T05:00:01.9733768Z ........                                                                 [ 13%]
+2026-11-16T05:00:02.0962596Z tests/pytorch/engine/test_executor_base.py ............................. [ 13%]
+2026-11-16T05:00:02.3081816Z ..........................................................               [ 14%]
+2026-11-16T05:00:02.3704765Z tests/pytorch/engine/test_guided_eos.py ..........                       [ 14%]
+2026-11-16T05:00:02.4790975Z tests/pytorch/engine/test_inputs_maker.py .............................. [ 15%]
+2026-11-16T05:00:02.6753600Z ........................................................                 [ 15%]
+2026-11-16T05:00:02.7370574Z tests/pytorch/engine/test_kv_connector_wiring.py .................       [ 16%]
+2026-11-16T05:00:02.7765795Z tests/pytorch/engine/test_logits_process.py .........                    [ 16%]
+2026-11-16T05:00:02.9559047Z tests/pytorch/engine/test_model_agent.py ............................... [ 16%]
+2026-11-16T05:00:03.2352534Z ........................................................................ [ 17%]
+2026-11-16T05:00:03.5286190Z ........................................................................ [ 18%]
+2026-11-16T05:00:03.5577753Z .......                                                                  [ 19%]
+2026-11-16T05:00:03.6325098Z tests/pytorch/engine/test_model_agent_kv_connector.py .................. [ 19%]
+2026-11-16T05:00:03.6478675Z ....                                                                     [ 19%]
+2026-11-16T05:00:03.7502886Z tests/pytorch/engine/test_model_agent_output_wait.py .......             [ 19%]
+2026-11-16T05:00:03.8083117Z tests/pytorch/engine/test_noncompact_lifecycle_scope.py ................ [ 19%]
+2026-11-16T05:00:03.8288832Z .....                                                                    [ 19%]
+2026-11-16T05:00:03.8610843Z tests/pytorch/engine/test_prefill_logprobs.py .........                  [ 19%]
+2026-11-16T05:00:03.8937638Z tests/pytorch/engine/test_ray_executor_kv_connector.py .........         [ 19%]
+2026-11-16T05:00:03.9158907Z tests/pytorch/engine/test_ray_mp_engine.py ......                        [ 20%]
+2026-11-16T05:00:03.9368526Z tests/pytorch/engine/test_request.py .....                               [ 20%]
+2026-11-16T05:00:03.9788846Z tests/pytorch/engine/test_zmq_engine_kv_connector.py .........           [ 20%]
+2026-11-16T05:00:10.7484593Z tests/pytorch/engine/test_zmq_rpc.py .........                           [ 20%]
+2026-11-16T05:00:10.8200626Z tests/pytorch/kernel/test_activation.py ......                           [ 20%]
+2026-11-16T05:00:10.9851069Z tests/pytorch/kernel/test_apply_rotary.py ...............                [ 20%]
+2026-11-16T05:00:11.0597228Z tests/pytorch/kernel/test_bitonic_topk.py .                              [ 20%]
+2026-11-16T05:00:11.1015879Z tests/pytorch/kernel/test_blocked_fp8_gemm_gluon.py ssssssssssssssssssss [ 21%]
+2026-11-16T05:00:11.1408192Z ssssssssssssssssss                                                       [ 21%]
+2026-11-16T05:00:11.3076948Z tests/pytorch/kernel/test_causal_conv1d.py ........sssssssssssssssssssss [ 21%]
+2026-11-16T05:00:11.3155258Z sss                                                                      [ 21%]
+2026-11-16T05:00:12.0730025Z tests/pytorch/kernel/test_compact_backend.py ........................... [ 22%]
+2026-11-16T05:00:12.2254424Z ............                                                             [ 22%]
+2026-11-16T05:00:12.3509238Z tests/pytorch/kernel/test_compact_conv_fp32_weight.py .........          [ 22%]
+2026-11-16T05:00:12.4356106Z tests/pytorch/kernel/test_compact_cursor.py ............                 [ 22%]
+2026-11-16T05:00:12.7304448Z tests/pytorch/kernel/test_compact_exclusive_decode.py .................. [ 22%]
+2026-11-16T05:00:12.9846538Z ...........................                                              [ 23%]
+2026-11-16T05:00:13.2337015Z tests/pytorch/kernel/test_compact_exclusive_prefill.py ................. [ 23%]
+2026-11-16T05:00:13.8539339Z ........................................................................ [ 24%]
+2026-11-16T05:00:13.9648218Z .........                                                                [ 24%]
+2026-11-16T05:00:14.6847523Z tests/pytorch/kernel/test_compact_kda_decode_views.py ................   [ 24%]
+2026-11-16T05:00:14.7407948Z tests/pytorch/kernel/test_compact_kda_prefill_tiling.py ssssssssssssssss [ 25%]
+2026-11-16T05:00:14.8272108Z ssssssssssssssssssss....                                                 [ 25%]
+2026-11-16T05:00:15.0676462Z tests/pytorch/kernel/test_compact_state_ids.py ......................... [ 25%]
+2026-11-16T05:00:15.4999017Z ..............                                                           [ 26%]
+2026-11-16T05:00:16.1673566Z tests/pytorch/kernel/test_compressed_tensors_w4a16.py .................. [ 26%]
+2026-11-16T05:00:16.1882147Z ...                                                                      [ 26%]
+2026-11-16T05:00:16.2923941Z tests/pytorch/kernel/test_copy_cache.py ...........                      [ 26%]
+2026-11-16T05:00:16.2996507Z tests/pytorch/kernel/test_ds_index.py sss                                [ 26%]
+2026-11-16T05:00:16.3212354Z tests/pytorch/kernel/test_dsa_indexer_preprocess.py ssssssssss           [ 26%]
+2026-11-16T05:00:21.8872895Z tests/pytorch/kernel/test_dsv4_hc_pre_fused.py ........................s [ 27%]
+2026-11-16T05:00:21.9343523Z sssssssssss                                                              [ 27%]
+2026-11-16T05:00:24.2048965Z tests/pytorch/kernel/test_dsv4_hc_prepost.py .....                       [ 27%]
+2026-11-16T05:00:24.2160258Z tests/pytorch/kernel/test_fa3_attention.py ...                           [ 27%]
+2026-11-16T05:00:28.8800257Z tests/pytorch/kernel/test_fill_kv_cache.py ................ssssss...ssss [ 27%]
+2026-11-16T05:00:28.8856863Z ss                                                                       [ 27%]
+2026-11-16T05:00:42.0790124Z tests/pytorch/kernel/test_flash_attention.py ................            [ 28%]
+2026-11-16T05:00:45.5548885Z tests/pytorch/kernel/test_flatten_kv_cache.py .........ssss....sss.      [ 28%]
+2026-11-16T05:00:45.5964184Z tests/pytorch/kernel/test_fuse_moe_blocked_fp8.py ....ssssss             [ 28%]
+2026-11-16T05:00:45.6012243Z tests/pytorch/kernel/test_fuse_moe_v4_fp4.py ss                          [ 28%]
+2026-11-16T05:00:46.8105430Z tests/pytorch/kernel/test_fused_lora.py ..                               [ 28%]
+2026-11-16T05:00:46.9269346Z tests/pytorch/kernel/test_fused_moe.py ................................. [ 29%]
+2026-11-16T05:01:00.5871126Z .........................................................sssssssssss     [ 30%]
+2026-11-16T05:01:00.6336334Z tests/pytorch/kernel/test_fused_moe_static_fp8.py ssssssssssssssssssssss [ 30%]
+2026-11-16T05:01:00.6437703Z ssss                                                                     [ 30%]
+2026-11-16T05:01:02.0548004Z tests/pytorch/kernel/test_fused_single_group_router.py ................. [ 30%]
+2026-11-16T05:01:02.1191581Z ............                                                             [ 30%]
+2026-11-16T05:01:02.6927501Z tests/pytorch/kernel/test_gated_delta_precision.py ...                   [ 30%]
+2026-11-16T05:01:14.4341494Z tests/pytorch/kernel/test_gated_delta_preprocess.py .................... [ 31%]
+2026-11-16T05:01:17.2040043Z ....................................................                     [ 32%]
+2026-11-16T05:01:17.7271795Z tests/pytorch/kernel/test_gated_delta_rule.py .........................  [ 32%]
+2026-11-16T05:01:17.7388011Z tests/pytorch/kernel/test_gemm_fp8.py sssss                              [ 32%]
+2026-11-16T05:01:18.0763626Z tests/pytorch/kernel/test_glm53_prefill_switch.py ...................... [ 32%]
+2026-11-16T05:01:18.0779372Z                                                                          [ 32%]
+2026-11-16T05:01:18.1170899Z tests/pytorch/kernel/test_grouped_fp8_gemm_gluon.py ssssssssssssssssss   [ 33%]
+2026-11-16T05:03:50.1936868Z tests/pytorch/kernel/test_indexed_prefill.py ........................... [ 33%]
+2026-11-16T05:05:01.9956462Z ...............                                                          [ 33%]
+2026-11-16T05:05:02.3676033Z tests/pytorch/kernel/test_indexed_state.py ............................. [ 34%]
+2026-11-16T05:05:03.2790690Z .....................                                                    [ 34%]
+2026-11-16T05:05:07.0786854Z tests/pytorch/kernel/test_indexed_state_oracle.py ...................... [ 34%]
+2026-11-16T05:05:26.2832840Z .............................                                            [ 35%]
+2026-11-16T05:06:50.8304628Z tests/pytorch/kernel/test_kda.py ....                                    [ 35%]
+2026-11-16T05:06:53.6651920Z tests/pytorch/kernel/test_kpool.py ....                                  [ 35%]
+2026-11-16T05:06:58.0058937Z tests/pytorch/kernel/test_kpool_dynamic_shapes.py ...................... [ 35%]
+2026-11-16T05:07:04.9090287Z ...................................ssssssssssssssssssssssss............. [ 36%]
+2026-11-16T05:07:05.9488330Z ...........                                                              [ 36%]
+2026-11-16T05:07:21.7852191Z tests/pytorch/kernel/test_kpool_precision.py .................s.s.s.s... [ 37%]
+2026-11-16T05:07:26.6978026Z ..                                                                       [ 37%]
+2026-11-16T05:07:36.3940355Z tests/pytorch/kernel/test_mla_attention.py ...............s............s [ 37%]
+2026-11-16T05:07:37.4673580Z ssss....s                                                                [ 37%]
+2026-11-16T05:07:40.5756847Z tests/pytorch/kernel/test_moe_route.py ....                              [ 37%]
+2026-11-16T05:07:41.3621440Z tests/pytorch/kernel/test_moe_route_mask.py ...........                  [ 38%]
+2026-11-16T05:07:43.0249317Z tests/pytorch/kernel/test_multinomial_sampling.py ......                 [ 38%]
+2026-11-16T05:07:43.1172404Z tests/pytorch/kernel/test_nope_mla_fp8.py ..............ssssssssssssssss [ 38%]
+2026-11-16T05:07:43.1379337Z sssssssss                                                                [ 38%]
+2026-11-16T05:07:52.2853591Z tests/pytorch/kernel/test_paged_attention.py .........................ss [ 39%]
+2026-11-16T05:08:01.5846059Z ss................                                                       [ 39%]
+2026-11-16T05:08:03.8947406Z tests/pytorch/kernel/test_rms_norm.py ............                       [ 39%]
+2026-11-16T05:08:03.9265457Z tests/pytorch/kernel/test_router_gemm.py ..                              [ 39%]
+2026-11-16T05:08:03.9470589Z tests/pytorch/kernel/test_sparse_index_topk.py sssssssss                 [ 39%]
+2026-11-16T05:08:03.9605595Z tests/pytorch/kernel/test_sparse_index_topk_deterministic.py ssssss      [ 39%]
+2026-11-16T05:08:04.0177441Z tests/pytorch/kernel/test_sparse_mla_forward_contract.py ............    [ 39%]
+2026-11-16T05:08:04.1017018Z tests/pytorch/kernel/test_ssm_forward_dispatch.py ...................... [ 40%]
+2026-11-16T05:08:04.1755283Z ....................                                                     [ 40%]
+2026-11-16T05:08:04.2431472Z tests/pytorch/kernel/test_static_fp8_linear.py .ssssssssssssssssssssssss [ 40%]
+2026-11-16T05:08:04.2701751Z ssssssssssss                                                             [ 41%]
+2026-11-16T05:08:04.3189615Z tests/pytorch/kernel/test_turboquant.py ........                         [ 41%]
+2026-11-16T05:08:09.1048970Z tests/pytorch/kernel/test_v4_compressor.py ...................ssssssss   [ 41%]
+2026-11-16T05:08:09.1383505Z tests/pytorch/kernel/test_v4_flatten_kv.py sssssssssssssss               [ 41%]
+2026-11-16T05:08:09.1627035Z tests/pytorch/kernel/test_v4_fp4_grouped_gemm.py sssssssssss             [ 41%]
+2026-11-16T05:08:10.8409804Z tests/pytorch/kernel/test_v4_sparse_indices.py ......                    [ 42%]
+2026-11-16T05:08:10.9003734Z tests/pytorch/kv_connector/test_compact_store_identity.py .............. [ 42%]
+2026-11-16T05:08:10.9102662Z ..                                                                       [ 42%]
+2026-11-16T05:08:11.0300773Z tests/pytorch/kv_connector/test_compact_store_load.py .................. [ 42%]
+2026-11-16T05:08:11.0351592Z .                                                                        [ 42%]
+2026-11-16T05:08:11.1294307Z tests/pytorch/kv_connector/test_compact_store_wire.py .................. [ 42%]
+2026-11-16T05:08:11.5353606Z ......................                                                   [ 43%]
+2026-11-16T05:08:11.5957394Z tests/pytorch/kv_connector/test_mooncake_store_connector.py ...........  [ 43%]
+2026-11-16T05:08:12.6228678Z tests/pytorch/kv_connector/test_mooncake_store_lookup.py ............... [ 43%]
+2026-11-16T05:08:14.0877828Z ........                                                                 [ 43%]
+2026-11-16T05:08:14.1652841Z tests/pytorch/kv_connector/test_mooncake_store_scheduler.py ............ [ 43%]
+2026-11-16T05:08:14.5369923Z ........................................................................ [ 44%]
+2026-11-16T05:08:14.6982009Z ..............................                                           [ 45%]
+2026-11-16T05:08:14.7858094Z tests/pytorch/kv_connector/test_mooncake_store_worker.py ............... [ 45%]
+2026-11-16T05:08:15.7868655Z ........................................................................ [ 46%]
+2026-11-16T05:08:15.9497637Z ...............                                                          [ 46%]
+2026-11-16T05:08:15.9805300Z tests/pytorch/memdecode/test_agent.py .........                          [ 46%]
+2026-11-16T05:08:16.1304775Z tests/pytorch/memdecode/test_fusion.py ................                  [ 47%]
+2026-11-16T05:08:17.2398161Z tests/pytorch/models/test_qwen3_5_norm.py .............................. [ 47%]
+2026-11-16T05:08:18.4388026Z .....                                                                    [ 47%]
+2026-11-16T05:08:18.4821177Z tests/pytorch/models/test_rms_norm_gated_models.py ........              [ 47%]
+2026-11-16T05:08:19.6228228Z tests/pytorch/models/test_routed_experts.py ................             [ 48%]
+2026-11-16T05:10:52.4004181Z tests/pytorch/nn/test_embedding.py .......................               [ 48%]
+2026-11-16T05:10:52.5766533Z tests/pytorch/nn/test_moe_deepep.py .................................... [ 48%]
+2026-11-16T05:10:52.6183057Z ..........                                                               [ 49%]
+2026-11-16T05:10:52.6737235Z tests/pytorch/nn/test_nsa.py ....ss.......                               [ 49%]
+2026-11-16T05:11:06.7008593Z tests/pytorch/nn/test_rms_norm_gated.py ................................ [ 49%]
+2026-11-16T05:12:09.2284116Z ...................................................                      [ 50%]
+2026-11-16T05:12:30.9807175Z tests/pytorch/nn/test_rotary_embedding.py ........                       [ 50%]
+2026-11-16T05:12:31.0357995Z tests/pytorch/paging/test_block_manager.py ...........                   [ 50%]
+2026-11-16T05:12:31.1092686Z tests/pytorch/paging/test_block_trie/test_checkpoint.py ................ [ 50%]
+2026-11-16T05:12:31.1667563Z ...........                                                              [ 51%]
+2026-11-16T05:12:31.1982480Z tests/pytorch/paging/test_block_trie/test_checkpoint_lifecycle.py ...... [ 51%]
+2026-11-16T05:12:31.3240532Z .........................                                                [ 51%]
+2026-11-16T05:12:31.3687690Z tests/pytorch/paging/test_block_trie/test_clear.py ........              [ 51%]
+2026-11-16T05:12:31.4136290Z tests/pytorch/paging/test_block_trie/test_compact_checkpoint.py ........ [ 51%]
+2026-11-16T05:12:31.7112342Z ............................                                             [ 52%]
+2026-11-16T05:12:31.7214475Z tests/pytorch/paging/test_block_trie/test_kv_lifecycle.py ..             [ 52%]
+2026-11-16T05:12:31.7401360Z tests/pytorch/paging/test_block_trie/test_node.py .....                  [ 52%]
+2026-11-16T05:12:31.8512633Z tests/pytorch/paging/test_block_trie/test_trie.py ...................... [ 52%]
+2026-11-16T05:12:31.9097006Z ...........                                                              [ 52%]
+2026-11-16T05:12:31.9752754Z tests/pytorch/paging/test_compact_phase_allocation.py .................  [ 53%]
+2026-11-16T05:12:32.0874331Z tests/pytorch/paging/test_compact_scheduler.py ......................... [ 53%]
+2026-11-16T05:12:32.0962660Z ..                                                                       [ 53%]
+2026-11-16T05:12:32.4098898Z tests/pytorch/paging/test_compact_state.py ............................. [ 53%]
+2026-11-16T05:12:32.5187154Z ...........................                                              [ 54%]
+2026-11-16T05:12:32.8724620Z tests/pytorch/paging/test_compact_state_cuda.py ...                      [ 54%]
+2026-11-16T05:12:33.0762018Z tests/pytorch/paging/test_hybrid_kv_load.py ............................ [ 54%]
+2026-11-16T05:12:33.4545913Z ...............................................                          [ 55%]
+2026-11-16T05:12:33.5971176Z tests/pytorch/paging/test_prefill_scheduler.py ......................... [ 55%]
+2026-11-16T05:12:33.9036109Z ............................................................             [ 56%]
+2026-11-16T05:12:34.0414926Z tests/pytorch/paging/test_scheduler.py .............................     [ 57%]
+2026-11-16T05:12:34.1444404Z tests/pytorch/paging/test_scheduler_kv_transfer.py ..................... [ 57%]
+2026-11-16T05:12:34.1911748Z ...........                                                              [ 57%]
+2026-11-16T05:12:34.2591777Z tests/pytorch/paging/test_scheduler_ssm.py ..............                [ 57%]
+2026-11-16T05:12:34.2842487Z tests/pytorch/paging/test_state_manager.py .......                       [ 57%]
+2026-11-16T05:12:34.3098257Z tests/pytorch/spec_decode/test_cudagraph_strategy.py .......             [ 57%]
+2026-11-16T05:12:34.4004440Z tests/pytorch/spec_decode/test_dflash_utils.py ......................... [ 58%]
+2026-11-16T05:12:34.5203950Z ..........................                                               [ 58%]
+2026-11-16T05:12:34.5467848Z tests/pytorch/spec_decode/test_glm_moe_dsa_mtp.py .......                [ 58%]
+2026-11-16T05:12:47.5865342Z tests/pytorch/spec_decode/test_guided_spec_decode.py ................... [ 59%]
+2026-11-16T05:12:47.6667465Z ...                                                                      [ 59%]
+2026-11-16T05:13:01.8421955Z tests/pytorch/spec_decode/test_guided_spec_integration.py .............. [ 59%]
+2026-11-16T05:13:02.2626933Z ...........                                                              [ 59%]
+2026-11-16T05:13:08.5672981Z tests/pytorch/spec_decode/test_reject_sample.py ...........              [ 59%]
+2026-11-16T05:13:08.8841445Z tests/pytorch/spec_decode/test_spec_agent.py ........................... [ 60%]
+2026-11-16T05:13:10.7518530Z ...................                                                      [ 60%]
+2026-11-16T05:13:11.0986620Z tests/pytorch/spec_decode/test_strategies.py ........................... [ 60%]
+2026-11-16T05:13:11.2365411Z ..............                                                           [ 60%]
+2026-11-16T05:13:16.8631126Z tests/pytorch/test_compact_model_inputs.py ............................. [ 61%]
+2026-11-16T05:13:17.0036781Z .......                                                                  [ 61%]
+2026-11-16T05:13:22.9280317Z tests/pytorch/test_compact_phase_metadata.py ..............              [ 61%]
+2026-11-16T05:13:23.0119818Z tests/pytorch/test_cuda_communicator.py .......                          [ 61%]
+2026-11-16T05:13:24.0738227Z tests/pytorch/test_deepep_dummy_routes.py .............................. [ 62%]
+2026-11-16T05:13:24.1546232Z ......                                                                   [ 62%]
+2026-11-16T05:13:24.1853493Z tests/pytorch/test_internvl_lora.py ...                                  [ 62%]
+2026-11-16T05:13:24.2413418Z tests/pytorch/test_model_inputs.py ......                                [ 62%]
+2026-11-16T05:13:24.2955315Z tests/test_lmdeploy/pytorch/engine/test_engine_instance_cleanup.py ..... [ 62%]
+2026-11-16T05:13:24.3819387Z ........                                                                 [ 62%]
+2026-11-16T05:13:24.4572086Z tests/test_lmdeploy/serve/anthropic/test_adapter_conversion.py ......... [ 62%]
+2026-11-16T05:13:24.5041197Z .....                                                                    [ 62%]
+2026-11-16T05:13:25.3614917Z tests/test_lmdeploy/serve/anthropic/test_endpoints.py .................. [ 63%]
+2026-11-16T05:13:27.9363561Z ........................................................................ [ 64%]
+2026-11-16T05:13:28.7878605Z ........................................                                 [ 64%]
+2026-11-16T05:13:28.8961686Z tests/test_lmdeploy/serve/core/test_async_engine_preprocess.py ......... [ 64%]
+2026-11-16T05:13:28.9119447Z .                                                                        [ 64%]
+2026-11-16T05:13:29.1334401Z tests/test_lmdeploy/serve/core/test_chat_runner.py ..................... [ 65%]
+2026-11-16T05:13:29.1476914Z .                                                                        [ 65%]
+2026-11-16T05:13:29.3767325Z tests/test_lmdeploy/serve/core/test_stop_sequence.py ................    [ 65%]
+2026-11-16T05:13:29.3838405Z tests/test_lmdeploy/serve/openai/chat_completions/test_allowed_tool_choice.py . [ 65%]
+2026-11-16T05:13:29.4155802Z ..                                                                       [ 65%]
+2026-11-16T05:13:29.4234801Z tests/test_lmdeploy/serve/openai/chat_completions/test_arguments_validation.py . [ 65%]
+2026-11-16T05:13:29.4770072Z .....                                                                    [ 65%]
+2026-11-16T05:13:29.7660281Z tests/test_lmdeploy/serve/openai/chat_completions/test_chat_tool_images.py . [ 65%]
+2026-11-16T05:13:29.8379932Z .                                                                        [ 65%]
+2026-11-16T05:13:29.8439412Z tests/test_lmdeploy/serve/openai/chat_completions/test_delta_tool_call_id.py . [ 65%]
+2026-11-16T05:13:29.8579576Z .                                                                        [ 65%]
+2026-11-16T05:13:29.8637948Z tests/test_lmdeploy/serve/openai/chat_completions/test_n_completions.py . [ 65%]
+2026-11-16T05:13:30.3091184Z ...................                                                      [ 65%]
+2026-11-16T05:13:30.3228961Z tests/test_lmdeploy/serve/openai/chat_completions/test_nested_controls.py . [ 65%]
+2026-11-16T05:13:30.5211296Z ...........                                                              [ 66%]
+2026-11-16T05:13:30.6415862Z tests/test_lmdeploy/serve/openai/chat_completions/test_output_channels.py . [ 66%]
+2026-11-16T05:13:31.6995377Z .........                                                                [ 66%]
+2026-11-16T05:13:31.7048993Z tests/test_lmdeploy/serve/openai/chat_completions/test_parallel_tool_calls.py . [ 66%]
+2026-11-16T05:13:31.7514525Z .....                                                                    [ 66%]
+2026-11-16T05:13:31.7824116Z tests/test_lmdeploy/serve/openai/chat_completions/test_prompt_text.py .. [ 66%]
+2026-11-16T05:13:32.2713760Z ......................                                                   [ 66%]
+2026-11-16T05:13:32.3097621Z tests/test_lmdeploy/serve/openai/chat_completions/test_prompt_token_ids.py . [ 66%]
+2026-11-16T05:13:35.1794067Z .................................................................        [ 67%]
+2026-11-16T05:13:35.4111021Z tests/test_lmdeploy/serve/openai/chat_completions/test_unicode.py ...... [ 67%]
+2026-11-16T05:13:35.7016559Z .......                                                                  [ 67%]
+2026-11-16T05:13:35.7293246Z tests/test_lmdeploy/serve/openai/chat_completions/test_validation.py ... [ 67%]
+2026-11-16T05:13:39.5659928Z .....................................................                    [ 68%]
+2026-11-16T05:13:39.5785855Z tests/test_lmdeploy/serve/openai/completions/test_cached_tokens_usage.py . [ 68%]
+2026-11-16T05:13:39.6698195Z .....                                                                    [ 68%]
+2026-11-16T05:13:39.6887792Z tests/test_lmdeploy/serve/openai/completions/test_preprocessing.py .     [ 68%]
+2026-11-16T05:13:39.7175871Z tests/test_lmdeploy/serve/openai/completions/test_reasoning_tokens.py .. [ 68%]
+2026-11-16T05:13:40.0085194Z ..................                                                       [ 69%]
+2026-11-16T05:13:40.5164348Z tests/test_lmdeploy/serve/openai/responses/test_images.py .............. [ 69%]
+2026-11-16T05:13:45.7272659Z ...................................................                      [ 70%]
+2026-11-16T05:13:49.0444091Z tests/test_lmdeploy/serve/openai/responses/test_openapi.py .             [ 70%]
+2026-11-16T05:13:49.2883551Z tests/test_lmdeploy/serve/openai/responses/test_reasoning_budget.py .... [ 70%]
+2026-11-16T05:13:49.6133658Z ....                                                                     [ 70%]
+2026-11-16T05:13:49.6917832Z tests/test_lmdeploy/serve/openai/responses/test_response.py .......      [ 70%]
+2026-11-16T05:13:49.7160354Z tests/test_lmdeploy/serve/openai/responses/test_responses_request.py ... [ 70%]
+2026-11-16T05:13:49.8946555Z ..................                                                       [ 70%]
+2026-11-16T05:13:50.5390862Z tests/test_lmdeploy/serve/openai/responses/test_serving.py ............. [ 70%]
+2026-11-16T05:13:51.7370761Z ..............................                                           [ 71%]
+2026-11-16T05:13:51.8663630Z tests/test_lmdeploy/serve/openai/responses/test_streaming.py ..........  [ 71%]
+2026-11-16T05:13:51.9013780Z tests/test_lmdeploy/serve/parsers/test_deepseek_v32_tool_parser.py ....  [ 71%]
+2026-11-16T05:13:51.9108588Z tests/test_lmdeploy/serve/parsers/test_deepseek_v3_parser.py ..          [ 71%]
+2026-11-16T05:13:51.9157083Z tests/test_lmdeploy/serve/parsers/test_deepseek_v4_tool_parser.py .      [ 71%]
+2026-11-16T05:13:51.9703124Z tests/test_lmdeploy/serve/parsers/test_glm47_auto_constraints.py ....... [ 71%]
+2026-11-16T05:13:52.5810124Z ....................................................                     [ 72%]
+2026-11-16T05:13:52.7462633Z tests/test_lmdeploy/serve/parsers/test_glm47_parser.py ................. [ 72%]
+2026-11-16T05:13:52.7684493Z ..                                                                       [ 72%]
+2026-11-16T05:13:53.0181000Z tests/test_lmdeploy/serve/parsers/test_glm_token_ids.py ................ [ 72%]
+2026-11-16T05:13:54.1306733Z ........................................................................ [ 73%]
+2026-11-16T05:13:55.4780863Z ........................................................................ [ 74%]
+2026-11-16T05:13:56.1421678Z ........................................................................ [ 75%]
+2026-11-16T05:13:56.8425573Z ........................................................................ [ 77%]
+2026-11-16T05:13:57.5108098Z ........................................................................ [ 78%]
+2026-11-16T05:13:58.4134874Z ........................................................................ [ 79%]
+2026-11-16T05:13:58.6161583Z .......................                                                  [ 79%]
+2026-11-16T05:13:58.6807365Z tests/test_lmdeploy/serve/parsers/test_gpt_oss_parser.py ............... [ 79%]
+2026-11-16T05:13:58.7950313Z .......................                                                  [ 80%]
+2026-11-16T05:13:58.8005641Z tests/test_lmdeploy/serve/parsers/test_interns1_parser.py .              [ 80%]
+2026-11-16T05:13:58.8422134Z tests/test_lmdeploy/serve/parsers/test_json_tool_parser.py .........     [ 80%]
+2026-11-16T05:13:59.3438050Z tests/test_lmdeploy/serve/parsers/test_json_value_scanner.py ........... [ 80%]
+2026-11-16T05:13:59.3455711Z                                                                          [ 80%]
+2026-11-16T05:13:59.3554234Z tests/test_lmdeploy/serve/parsers/test_kimi_k2_tool_parser.py ..         [ 80%]
+2026-11-16T05:13:59.3803531Z tests/test_lmdeploy/serve/parsers/test_llama3_parser.py .....            [ 80%]
+2026-11-16T05:13:59.4494520Z tests/test_lmdeploy/serve/parsers/test_output_channels.py .............. [ 80%]
+2026-11-16T05:13:59.4923318Z .........                                                                [ 80%]
+2026-11-16T05:13:59.5121676Z tests/test_lmdeploy/serve/parsers/test_parser_config.py ....             [ 80%]
+2026-11-16T05:13:59.6386695Z tests/test_lmdeploy/serve/parsers/test_qwen3_5_parser.py .........       [ 80%]
+2026-11-16T05:13:59.8109463Z tests/test_lmdeploy/serve/parsers/test_qwen3_parser.py ................. [ 81%]
+2026-11-16T05:13:59.9470165Z ...............                                                          [ 81%]
+2026-11-16T05:14:00.0870211Z tests/test_lmdeploy/serve/parsers/test_required_tool_choice.py ......... [ 81%]
+2026-11-16T05:14:00.8000371Z ...............................................................          [ 82%]
+2026-11-16T05:14:01.0209401Z tests/test_lmdeploy/serve/test_distributed_weight_readiness.py ........  [ 82%]
+2026-11-16T05:14:01.1282062Z tests/test_lmdeploy/serve/test_generate_logprobs.py .........            [ 82%]
+2026-11-16T05:14:01.2814678Z tests/test_lmdeploy/serve/test_generation_config.py .................... [ 83%]
+2026-11-16T05:14:01.7338768Z ........................................................                 [ 83%]
+2026-11-16T05:14:01.8267625Z tests/test_lmdeploy/serve/test_health_monitor.py .....                   [ 83%]
+2026-11-16T05:14:01.8457903Z tests/test_lmdeploy/serve/test_launch_server.py ...                      [ 83%]
+2026-11-16T05:14:01.8648392Z tests/test_lmdeploy/serve/test_server_errors.py ...                      [ 84%]
+2026-11-16T05:14:01.9205286Z tests/test_lmdeploy/serve/test_session_cleanup.py ...........            [ 84%]
+2026-11-16T05:14:03.1261742Z tests/test_lmdeploy/serve/test_tool_images.py .......................... [ 84%]
+2026-11-16T05:14:05.5864598Z ........................................................................ [ 85%]
+2026-11-16T05:14:06.0606923Z ..............................                                           [ 86%]
+2026-11-16T05:14:07.4560899Z tests/test_lmdeploy/serve/test_user_images.py ........................   [ 86%]
+2026-11-16T05:14:07.6158663Z tests/test_lmdeploy/test_content_merge.py .............................. [ 86%]
+2026-11-16T05:14:07.6311486Z ....                                                                     [ 86%]
+2026-11-16T05:14:07.8358812Z tests/test_lmdeploy/test_decision.py ................................... [ 87%]
+2026-11-16T05:14:07.8501769Z ...                                                                      [ 87%]
+2026-11-16T05:14:09.1622421Z tests/test_lmdeploy/test_decision_admission.py .............             [ 87%]
+2026-11-16T05:14:10.6685957Z tests/test_lmdeploy/test_decision_content.py .......................     [ 88%]
+2026-11-16T05:14:12.7725629Z tests/test_lmdeploy/test_decision_images.py ..........................   [ 88%]
+2026-11-16T05:14:12.9097428Z tests/test_lmdeploy/test_decision_metadata.py .......................... [ 88%]
+2026-11-16T05:14:12.9602144Z ........                                                                 [ 88%]
+2026-11-16T05:14:14.4655769Z tests/test_lmdeploy/test_decision_openai.py ............................ [ 89%]
+2026-11-16T05:14:15.8774943Z ..............................                                           [ 89%]
+2026-11-16T05:14:15.9006343Z tests/test_lmdeploy/test_decision_preprocessing.py sssssssss             [ 89%]
+2026-11-16T05:14:16.1758788Z tests/test_lmdeploy/test_decision_service.py ...                         [ 89%]
+2026-11-16T05:14:17.6332345Z tests/test_lmdeploy/test_decision_startup.py ........................... [ 90%]
+2026-11-16T05:14:18.1144445Z ........................                                                 [ 90%]
+2026-11-16T05:14:19.4439329Z tests/test_lmdeploy/test_decision_systemone.py ......................... [ 91%]
+2026-11-16T05:14:20.7067930Z ..........                                                               [ 91%]
+2026-11-16T05:14:20.7672711Z tests/test_lmdeploy/test_deepseek_v32_encoding.py .........              [ 91%]
+2026-11-16T05:14:20.8293223Z tests/test_lmdeploy/test_deepseek_v4_encoding.py ............            [ 91%]
+2026-11-16T05:14:20.8591730Z tests/test_lmdeploy/test_fp8_kv_cache_policy.py ........                 [ 91%]
+2026-11-16T05:14:21.0334538Z tests/test_lmdeploy/test_glm5_chat_template.py ........................  [ 91%]
+2026-11-16T05:19:01.0035643Z tests/test_lmdeploy/test_grammar.py .......................
+2026-11-16T05:19:01.0127377Z ##[error]The operation was canceled.
+2026-11-16T05:19:01.0255366Z ##[group]Run export workdir=$(pwd)
+2026-11-16T05:19:01.0256058Z [36;1mexport workdir=$(pwd)[0m
+2026-11-16T05:19:01.0256586Z [36;1mcd ..[0m
+2026-11-16T05:19:01.0257052Z [36;1mrm -rf $workdir[0m
+2026-11-16T05:19:01.0257454Z [36;1mmkdir $workdir[0m
+2026-11-16T05:19:01.0257990Z [36;1mchmod -R 777 $workdir[0m
+2026-11-16T05:19:01.0258610Z shell: sh -e {0}
+2026-11-16T05:19:01.0259032Z ##[endgroup]
+2026-11-16T05:19:01.2065202Z Post job cleanup.
+2026-11-16T05:19:01.2077458Z ##[command]/usr/bin/docker exec  ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339 sh -c "cat /etc/*release | grep ^ID"
+2026-11-16T05:19:01.4631344Z Stop and remove container: ea77d9eafa6348ecab0072b72304b7f4_openmmlablmdeploydevcu128_a22630
+2026-11-16T05:19:01.4636391Z ##[command]/usr/bin/docker rm --force ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339
+2026-11-16T05:19:04.9435280Z ac9347ec6145268804c3917871a48d22fd9e4ecf12cbbd71f239729ed0b92339
+2026-11-16T05:19:04.9520188Z Remove container network: github_network_c7a0143d0ef64cdd92358be4952ebda8
+2026-11-16T05:19:04.9537294Z ##[command]/usr/bin/docker network rm github_network_c7a0143d0ef64cdd92358be4952ebda8
+2026-11-16T05:19:05.2118033Z github_network_c7a0143d0ef64cdd92358be4952ebda8
+2026-11-16T05:19:05.2244295Z Cleaning up orphan processes

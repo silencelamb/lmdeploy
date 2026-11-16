@@ -1,0 +1,29 @@
+{
+  "head": "111dbf6b4dc1c1aa9fb2fd0753313e0314858c96",
+  "job": 133098612569,
+  "status": "cancelled after f64 Docker/docs push",
+  "runtime_identical_to_final": true,
+  "tests": {
+    "tests/pytorch/engine/test_model_agent.py": {
+      "progress_lines": [
+        "2026-11-16T05:00:02.9559047Z tests/pytorch/engine/test_model_agent.py ............................... [ 16%]",
+        "2026-11-16T05:00:03.2352534Z ........................................................................ [ 17%]",
+        "2026-11-16T05:00:03.5286190Z ........................................................................ [ 18%]",
+        "2026-11-16T05:00:03.5577753Z .......                                                                  [ 19%]"
+      ],
+      "dots": 182,
+      "skips": 0,
+      "failures": 0
+    },
+    "tests/pytorch/nn/test_rms_norm_gated.py": {
+      "progress_lines": [
+        "2026-11-16T05:11:06.7008593Z tests/pytorch/nn/test_rms_norm_gated.py ................................ [ 49%]",
+        "2026-11-16T05:12:09.2284116Z ...................................................                      [ 50%]"
+      ],
+      "dots": 83,
+      "skips": 0,
+      "failures": 0
+    }
+  },
+  "limit": "Per-file pytest progress only; not a completed full-suite outcome."
+}

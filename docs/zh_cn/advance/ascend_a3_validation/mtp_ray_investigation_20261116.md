@@ -643,3 +643,17 @@ GPU可以从PR #5134开始，但必须同时固定共同上游基线，使用相
 这不是把SDK工具缺失改写为通过：两种检查输出都保留。新增负向对照在独立应用venv放入一个要求不存在依赖的临时元数据包，`python -I -m pip check`正确失败；移除该临时包后检查通过。全新独立venv也实际完成安装，6项GDN状态回归通过，Sage完整21响应与所有top5分数逐位匹配参考。
 
 另一个独立失败出现在未修改的CUDA镜像第三方wheel准备脚本：cu128/Python3.11 job请求router仓库的GitHub release API返回403，随后空响应触发JSONDecodeError。对应CUDA Dockerfile、准备脚本及CUDA requirements与基线字节相同。日志未保留403响应体/配额头，不能武断认定API限流或权限原因；作为继承的外部访问失败单列，不混入Ascend实现修复。
+
+### 最新远端结果与安装入口复核
+
+2026-11-16 13:37 Asia/Shanghai，PR HEAD为`f64ab506`：
+
+- [A3 Docker CI](https://github.com/InternLM/lmdeploy/actions/runs/43809426675/job/133107518767) **整体通过**，包括官方9.1基础镜像构建、应用依赖检查、已安装包导入和Dive。原始日志保留了最终安装版本及`No broken requirements found`，与约束文件一致。
+- [lint CI](https://github.com/InternLM/lmdeploy/actions/runs/43809426629/job/133107518723) **通过**。
+- [完整A100单测](https://github.com/InternLM/lmdeploy/actions/runs/43809426667/job/133107587906)仍在运行，ETE仍排队；不能将本机回归写成这些任务已通过。
+- 前一提交`111dbf6b`的A100任务因随后仅Docker/文档更新而取消。取消前的完整逐文件进度显示model-agent为182/182通过、gated norm为83/83通过；两提交运行时代码完全相同。这支持对应修复及CUDA接口回归，但不是完整套件完成记录。
+- 最新Jetson任务再次失败；按原始日志逐项核对后沿用独立归因，不修改Ascend实现来处理未改变的Jetson依赖路径。
+
+另取官方9.1 arm64镜像的OCI配置，校验配置blob的SHA256；镜像配置包含CANN9.1、NNAL/ATB ABI1路径，ENTRYPOINT加载对应环境脚本。全新应用venv实际执行安装文档中的`tools/ascend/check_runtime.py --require-kernels`也通过，识别SoC251、Torch2.10.0+cpu、TorchNPU2.10.0.post4和原生Ascend backend。该硬件检查运行在本机9.1环境；没有把无NPU的GitHub镜像构建冒充为新Docker容器内的NPU模型验证。
+
+最新状态、取消任务中的逐文件结果和镜像配置均加入[证据索引](evidence/ci-docker-cann91-20261116/index.json)。旧失败日志与各阶段判断原样保留。
