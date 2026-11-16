@@ -12,7 +12,7 @@
 
 最新复查：[Agents gated norm 性能定位](gated_norm_performance_20261116.md)。实际旧/新 NPU kernel 二进制相同，交替对照未稳定复现原来的 C4 −5.15%；流式长停顿已在主机输入提交等待处复现，完整证据与尚未解决的限制单列。
 
-最新交付：[MTP编译器根因、升级验证与PR集成](mtp_ray_investigation_20261116.md)。状态缓冲与同步事件轮转层级错配已定位，官方NPUIR2.0.0验证通过；circular GDN单缓冲修复已纳入PR #5134的`85a05812`。最终PR源码在旧/新编译器下各6项NPU回归、各两轮21响应的完整MTP重复性通过。CPU18的具体softirq/tasklet回调仍待有权限的宿主机取证，H200对照未完成，亲和性规避不是永久修复。
+最新交付：[MTP编译器根因、升级验证与PR集成](mtp_ray_investigation_20261116.md)。状态缓冲与同步事件轮转层级错配已定位，官方NPUIR2.0.0验证通过；circular GDN单缓冲修复已纳入PR #5134的`85a05812`。最终PR源码在旧/新编译器下各6项NPU回归、各两轮21响应的完整MTP重复性通过。CPU18的具体softirq/tasklet回调仍待有权限的宿主机取证，亲和性规避不是永久修复。[Ray后续计划](mtp_ray_investigation_20261116.md#ray-后续调查计划)明确了实验顺序与完成判据；[H200报告](cuda_regression_20261116.md#ray-独立-cpu-对照)新增两轮纯Ray CPU对照，有限窗口未复现，不能据此归因ARM。完整CUDA模型验收仍在执行。
 
 2026-11-14 两个 fork 的迁移主分支已由 `codex/ascend-a3-native` 正式改名为 `dev/ascend-a3-native`；提交历史保留，当前说明和链接已更新。原始证据中的旧分支名是当时的记录，不作回写。Mooncake 集成分支和报告分支沿用原名。
 
