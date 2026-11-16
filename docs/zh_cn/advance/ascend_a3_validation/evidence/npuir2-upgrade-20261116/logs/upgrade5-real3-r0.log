@@ -1,0 +1,11 @@
+[W1116 02:06:54.932438838 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:332: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:332: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+[W1116 02:07:02.115963443 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+Dumping intermediate results to /root/.triton/dump/lXy3UPJkMQOGIz9aCsEI1RaZiBSswmrpkeuQ45YwYDc
+[DEBUG] cmd_list: /root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile /tmp/tmpwk3p_8sp/kernel.ttadapter.mlir --target=Ascend910_9392 --enable-auto-multi-buffer=True --enable-auto-bind-sub-block=True --enable-auto-blockify-loop --enable-hfusion-compile=true --enable-hivm-compile=true --enable-triton-kernel-compile=true --mlir-print-ir-after-failure --mlir-print-stacktrace-on-diagnostic --bishengir-print-ir-after=hivm-graph-sync-solver -o /tmp/tmpwk3p_8sp/kernel
+Dumping precompiled.h to /root/.triton/dump/nFVDSsUejq4B23cJ_ihL1GxGgn8JI2oIAH21acu5_vc
+Dumping launcher_cxx11abi1.cxx to /root/.triton/dump/nFVDSsUejq4B23cJ_ihL1GxGgn8JI2oIAH21acu5_vc
+IR2 upgrade5-real3-r0 state_bad 0 output_bad 0 max_abs 0.0

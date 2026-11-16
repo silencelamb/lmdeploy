@@ -1,0 +1,19 @@
+[
+  "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile",
+  "/tmp/tmpwk3p_8sp/kernel.ttadapter.mlir",
+  "--target=Ascend910_9392",
+  "--enable-auto-multi-buffer=True",
+  "--enable-auto-bind-sub-block=True",
+  "--enable-auto-blockify-loop",
+  "--enable-hfusion-compile=true",
+  "--enable-hivm-compile=true",
+  "--enable-triton-kernel-compile=true",
+  "--mlir-print-ir-after-failure",
+  "--mlir-print-stacktrace-on-diagnostic",
+  "--bishengir-print-ir-after=hivm-graph-sync-solver",
+  "-o",
+  "/tmp/tmpwk3p_8sp/kernel",
+  "--save-temps=/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/upgrade5-real3-r0/compile00/temps",
+  "--mlir-print-ir-after-all",
+  "--mlir-print-ir-module-scope"
+]

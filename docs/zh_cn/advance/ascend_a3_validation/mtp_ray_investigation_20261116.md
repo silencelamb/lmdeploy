@@ -2,11 +2,13 @@
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
-**最新结论：本次 MTP 分歧已定位到编译器源码和 IR 中“状态缓冲轮转层级”与“同步事件轮转层级”不一致；两种独立 IR 修复均通过硬件重放，现有 LMDeploy 单缓冲修复继续保留。CPU 18 的具体 softirq/tasklet 回调仍受宿主机权限限制，已提供可直接在宿主机执行的发现、计时和内核栈采集工具。亲和性规避不是永久修复。**
+**最新结论：已在隔离环境验证官方 AscendNPU-IR 2.0.0 / `efb7141581c0`，启用 `num_stages=3` 的真实 GDN 状态重放及完整 Sage MTP 重复性通过；也验证了 Triton-Ascend 3.2.2.post2 整包升级。原生环境、CANN9.1.0 运行时及迁移 PR 未修改，旧编译器仍可使用研究分支的单缓冲措施。CPU 18 的具体 softirq/tasklet 回调仍受宿主机权限限制，宿主机采集工具已交付；亲和性规避不是永久修复。**
 
-**上游状态补充（2026-11-16）：已查到上游既有修复 `05f2adcf`，当前 master 包含同样的父循环判断修正；本机编译器 commit `042c923d` 不包含它。后续应先验证已有修复的回移/依赖交付，避免重复提交同样代码。详见文末“上游既有修复与提交路径”。**
+**上游状态补充（2026-11-16）：既有修复 `05f2adcf` 已进入 v2.0.0；原随包编译器 `042c923d` 来自另一条 feature/0725 构建线，不包含它。本轮直接验证官方发布二进制，没有重复向上游提交相同补丁。详见文末“AscendNPU-IR 2.0.0 隔离升级验证”。**
 
 最新源码、因果对照和性能数据见本文末尾[编译器错误点与宿主机取证](#编译器错误点与宿主机取证2026-11-16-第三轮)。前两轮结论保留为历史记录，其中尚未完成条目应以最新章节为准。
+
+最新依赖升级结果见[AscendNPU-IR 2.0.0 隔离升级验证](#ascendnpu-ir-200-隔离升级验证)，此前“尚未升级/验证编译器”的表述属于历史阶段。
 
 修复：[dfa3049f](https://github.com/silencelamb/lmdeploy/commit/dfa3049f1575305b7564d6f15c48022661bd902a)，回归夹具补强：[d2d933da](https://github.com/silencelamb/lmdeploy/commit/d2d933dad7c6eb55b26ad5b83667c2077e23ca6c)，分支 `research/ascend-mtp-gdn-state-20261116`；未改动原生迁移 PR。详细实验、限制和复现见本文末尾[接续调查](#接续调查固定状态重放与主机调度定位)。
 
@@ -435,3 +437,100 @@ sudo python3 tools/ascend_a3/diagnostics/analyze_tasklet.py "$TASKLET_OUT"
 对本问题，下一步应先在隔离编译器环境验证现有修复，核对最新源码及回归测试，确认合适的维护分支/发布包。若已经覆盖，则不再重复向master提交相同两行改动；可以补GDN回归测试、请求维护分支回移，或更新实际镜像/编译器包的依赖。最终还要让该修复进入当前Triton-Ascend所调用的编译器二进制，再验证 `num_stages=3` 的状态正确性和性能，才能决定是否撤销LMDeploy单缓冲措施。
 
 本次调查尚未向编译器上游创建Issue或PR，未替换本机编译器，也未将单缓冲与“已修复的多缓冲”混为一组性能结论。
+
+## AscendNPU-IR 2.0.0 隔离升级验证
+
+本轮从 2026-11-16 09:56 Asia/Shanghai 接续。上节“尚未验证新编译器”是当时状态；本轮已经完成官方发布二进制的实际硬件验证。
+[汇总](evidence/npuir2-upgrade-20261116/results/upgrade5-summary-r0.json)、
+[判据](evidence/npuir2-upgrade-20261116/ACCEPTANCE-upgrade5.md)、
+[完整证据索引](evidence/npuir2-upgrade-20261116/index.json)、
+[升级研究分支说明](https://github.com/silencelamb/lmdeploy/blob/research/ascend-npuir2-upgrade-20261116/tools/ascend_a3/compiler_upgrade/README.md)。
+
+### 为什么原编译器分叉，实际升级了什么
+
+`042c923d` 是构建用的 commit，不是本次调查另行创建的编译器分支。其提交主题是将 `a3_fix_kda` 合入 `feature/0725`，父提交为 `8796a8ac1508` 和 `4e9e46609cb4`。
+`05f2adcf...042c923d` 的公共祖先为 `a124ed1743e3`，compare 返回 diverged，head 独有17个提交、base独有173个提交。因此，即使 `042c923d` 的构建日期更晚，也不意味着包含另一开发线的修复。提交历史说明了分叉关系；原镜像为何选取这一构建，现有证据不能进一步确定。
+
+[`v1.2.0`](https://github.com/Ascend/AscendNPU-IR/tree/v1.2.0) 不包含 `05f2adcf`，而
+[`v2.0.0`](https://github.com/Ascend/AscendNPU-IR/tree/v2.0.0) 的实际标签 commit **`efb7141581c009bbd1d676b18941ed15ede62a68`** 包含该修复。
+本轮没有自行编译候选补丁；下载官方 Triton-Ascend wheel 后，包内 `bishengir-compile`、`bishengir-opt` 和 `hivmc` 均报告 **2.0.0 / efb7141581c0 / 2026-10-15**，实际构建与标签一致。
+
+| 组件 | 原固定环境 | 本轮整包升级环境 |
+| --- | --- | --- |
+| Python / 架构 | 3.12.13 / aarch64 | 不变 |
+| Torch / torch_npu | 2.10.0+cpu / 2.10.0.post4 | 不变 |
+| CANN运行时 / npu-smi | 9.1.0 / 25.5.6 | 不变 |
+| Triton-Ascend发行包 | 3.2.2 | **3.2.2.post2** |
+| 实际调用的 AscendNPU-IR | 1.2.0 / 042c923d02a2 | **2.0.0 / efb7141581c0** |
+
+官方包地址：[cp312/aarch64 wheel](https://mirrors.huaweicloud.com/ascend/repos/pypi/triton-ascend/triton_ascend-3.2.2.post2-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl)，SHA256 `ca16e1f6df5850663e430789e1d68462d902bb4701a6f0441c15e175bb132005`。独立串行与分段下载得到相同 SHA256。
+
+注意版本命名的层次：此环境中 `triton.__version__` 仍是3.2.0，另外还有上游 `triton==3.5.0` 的发行元数据。它们不能代替 Ascend 发行包版本或实际编译器构建号。判断本问题是否获得修复，必须检查真正被调用的 `bishengir-compile` 路径、版本和二进制哈希。[整包环境记录](evidence/npuir2-upgrade-20261116/inventory/upgrade5-env-full-r0.json)
+
+### Triton、AscendNPU-IR 与 CANN 的依赖关系
+
+编译路径为 **LMDeploy的Triton kernel → Triton-Ascend前端/Ascend后端 → AscendNPU-IR优化与代码生成 → NPU二进制**；执行则依赖 TorchNPU、CANN运行时和驱动。AscendNPU-IR 是底层编译器组件，并不等于 Triton Python 前端；它也作为 CANN 工具链的组件交付。
+
+这两个 Triton-Ascend 包的 `_get_npucompiler_path()` 都优先选用 `triton/backends/ascend/bishengir/bin/bishengir-compile`，只有该文件不存在时才查 PATH。因此，只更新 PATH 或安装一个独立 NPUIR 包，可能仍然调用旧编译器。本轮隔离环境先复制/替换自己的包目录，再用版本清单和真实编译命令核对实际选择；没有替换共享基线目录。
+
+当前[官方兼容文档](https://ascendnpu-ir.gitcode.com/en/introduction/quick_start/version_compatibility.html)推荐 NPUIR2.0.0 配 CANN9.2.0，也说明可以保留旧 CANN，单独替换新 NPUIR 组件，必要时再配套更新 BiSheng compiler。本轮验证了这一较小更新路径在现有 CANN9.1.0 上的具体场景；**没有验证完整 CANN9.2.0/驱动升级**。v2.0.0 标签中的兼容说明文件仍是旧表，不能把它与当前在线文档的更新时间混为一谈。
+
+### 两套隔离环境及正确性结果
+
+本机根目录仍为 `/root/workspace/a3-mtp-ray-investigation-20261116`。新建分支 `research/ascend-npuir2-upgrade-20261116`，计算源码固定在原 native `5f1b1b3c`，所以 circular GDN 明确运行 `num_stages=3`。两套环境都启用 dlinfer import guard，运行时未发现安装/导入 dlinfer。
+
+1. `envs/upgrade5-ir2`：保留原 Triton 前端，只替换私有 compiler bundle。
+2. `envs/upgrade5-full322p2`：使用完整官方 Triton-Ascend3.2.2.post2 wheel，其余依赖固定不变。
+
+环境中未改变的依赖通过 symlink 复用，**不要在这些环境中执行 pip install/uninstall**，以免误改共享包。已保存构建脚本和实际文件来源；整包升级通过解包到新目录完成，没有自动解析并降级 NumPy 等已有依赖，也不声称无约束的全新 pip 安装已经通过。
+
+| 检查 | 原编译器/3 | 新编译器组件 | 新 Triton 整包 |
+| --- | --- | --- | --- |
+| 无模型最小复现，stage3，100次 | 100次状态错误 | **0次错误，maxabs=0** | 由以下硬件/模型检查覆盖，未重复此项 |
+| stage1最小例子，100次 | 上轮已通过 | **0次错误，maxabs=0** | 未单独重复 |
+| 真实冻结GDN，stage3/graph，200次 | 上轮200/200状态错误 | **状态与输出200/200逐位相同** | 由六形状基准另查状态，未重复此项 |
+| Q1/2/4 × eager/graph硬件回归 | 上轮已复现失败 | **6/6通过** | **6/6通过** |
+| Sage TP2/MTP3/graph/prefix，21回复×64token | 历史有6/21差异 | **两次新进程均21/21相同** | **两次新进程均21/21相同** |
+
+四次 MTP 共84个响应实例，所有 token 和 top5 logprobs 均与先前正确单缓冲的 `mtp-stage1-suite-r0` 完全一致；不是沿已经分歧的生成历史比较后续分数。
+[逐次比较](evidence/npuir2-upgrade-20261116/results/upgrade5-mtp-comparison-r0.json)。
+
+新编译器最终 IR 也给出结构证据：状态缓冲 `%94` 和 MTE3→Vector事件 `%110` 都由内层 token 计数 `%88` 决定；实际状态store读取 `%94`，循环yield也返回 `%94`。原先缓冲与事件各自依赖不同循环层级的问题已消失。
+[IR核对](evidence/npuir2-upgrade-20261116/inventory/upgrade5-ir-verification-r0.json)、
+[最终IR](evidence/npuir2-upgrade-20261116/artifacts/upgrade5-real3-r0/compile00/temps/module.hivm.opt.mlir)。这是完整v2.0.0发布包的验证，不能把所有代码生成变化单独归因于 `05f2adcf` 两行修改。
+
+### 新版正确多缓冲与单缓冲的性能
+
+本表在**同一新 Triton/NPUIR 环境**内比较，六个形状的两种状态结果均正确且 maxabs=0。沿用8轮AB/BA交错、每轮每配置500次graph replay；正值表示多缓冲耗时更长。
+
+| Batch | Q | 新版stage1（µs） | 新版stage3（µs） | stage3相对stage1耗时变化 |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | 2 | 19.275 | 19.222 | −0.28% |
+| 1 | 4 | 23.197 | 23.547 | +1.51% |
+| 4 | 2 | 30.564 | 31.236 | +2.20% |
+| 4 | 4 | 43.773 | 42.672 | −2.51% |
+| 16 | 2 | 76.175 | 77.274 | +1.44% |
+| 16 | 4 | 128.405 | 134.603 | +4.83% |
+
+多缓冲不是必然更快。当前 Ascend 后端把stage1映射为关闭自动多缓冲、stage3映射为开启；这里的3不保证每个值恰好分配三份buffer，实际 IR 可见双地址交替。能否获益取决于流水重叠是否抵消同步、地址轮转和缓冲占用等成本；本轮测得形状间方向不同，未做进一步性能归因或算法优化。[全部轮次](evidence/npuir2-upgrade-20261116/results/upgrade5-full-gdn-perf-r0.json)
+
+另测相同冻结输入、27-token历史、位置、活动GDN/卷积/KV状态和fresh metadata的40层target主干。旧侧为原固定环境＋研究分支stage1，新侧为官方新整包＋原生stage3。每次48重放、前8次预热排除；顺序旧→新、新→旧，测试串行、同一逻辑0/1设备。
+
+| 顺序 | Rank | 旧编译器stage1（ms） | 新整包stage3（ms） | 新相对旧变化 |
+| --- | ---: | ---: | ---: | ---: |
+| 旧→新 | 0 | 12.939 | 13.273 | +2.58% |
+| 旧→新 | 1 | 13.136 | 13.095 | −0.31% |
+| 新→旧 | 0 | 13.357 | 13.065 | −2.18% |
+| 新→旧 | 1 | 13.364 | 13.214 | −1.12% |
+
+同rank各次运行的输入/位置/历史、初始缓存及全部48次输出哈希均一致。两个rank是同一TP请求的两个视角，不能当作独立样本。观察到约13ms、几个百分点的启动间波动，没有一致方向的主干回退；**不能据此承诺零回退或端到端吞吐提升**。这个比较包含Triton前端和编译器共同升级，也不等于单独测 `05f2adcf` 的成本。计时不含lm_head、draft、采样、RPC和HTTP调度。
+
+### 更新方式、保存位置与边界
+
+本次已验证的更新选择是固定 **Triton-Ascend3.2.2.post2官方wheel**，在新环境保留当前Torch/CANN等其余依赖，再核对随包NPUIR实际为2.0.0；不需要为了本问题直接跳到另一个Triton大版本或覆盖宿主机运行时。仅替换compiler bundle的对照也通过，说明这次GDN正确性问题的解决不依赖前端一起变化。
+
+旧原生环境和迁移PR保持原样；旧编译器使用者仍需要已验证的单缓冲措施。新升级环境在本轮覆盖范围内已经可以正确运行stage3。保留两个版本分别使用的编译缓存，不能靠混用旧缓存声称新编译器通过。
+
+全部命令、源码HEAD、环境/二进制哈希、原始结果、最终IR、脚本快照和失败记录见证据索引。官方CANN9.2.0工具包也已下载并核对MD5与OBS ETag一致，SHA256为 `5ca960e94b16922b370f4bc3e6cd8fda6da5ba06347bccf1f4f9d8a302279fc0`，但未安装或用于本轮执行。首次串行CANN下载因过慢取消，未完整文件保留；使用的是独立分段r1下载。大包和模型派生tensor留在A3，公开索引记录其哈希；无模型最小复现可独立执行。
+
+仍未覆盖：完整CANN9.2运行时/驱动组合、其他模型与长上下文/高并发MTP、完整HTTP性能、编译器通用测试套件及x86/H200。CPU18的具体宿主机回调仍待有权限环境执行已有采集工具，本轮CPU亲和性控制没有解决该宿主机根因。没有新增上游Issue/PR；上游修复已存在，本轮完成的是官方依赖交付验证。

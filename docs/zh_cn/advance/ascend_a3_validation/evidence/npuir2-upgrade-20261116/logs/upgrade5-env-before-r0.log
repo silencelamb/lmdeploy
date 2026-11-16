@@ -1,0 +1,59 @@
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:332: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:332: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+[W1116 02:02:59.683236955 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+{
+  "python": "3.12.13 (main, Aug  3 2026, 02:40:28) [GCC 11.4.0]",
+  "executable": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/bin/python",
+  "triton_version": "3.2.0",
+  "triton_path": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/__init__.py",
+  "torch": "2.10.0+cpu",
+  "torch_npu": "2.10.0.post4",
+  "distributions": {
+    "numpy": "2.2.6",
+    "ray": "2.48.0",
+    "torch": "2.10.0+cpu",
+    "triton": "3.5.0"
+  },
+  "selected_compiler": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile",
+  "compiler_subprocess_path": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin:/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+  "binaries": {
+    "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile": {
+      "resolved": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-compile",
+      "sha256": "89655a56941efe9a184e4d5dfccb783ad88458707827ff6fdd146e7bd2d4af5c",
+      "version": "bishengir-compile 1.2.0 (https://gitcode.com/Ascend/AscendNPU-IR.git 042c923d02a2 2026-07-31) \nllvm 19.1.7 cd708029e0b2\nRelease build\n\n",
+      "returncode": 0
+    },
+    "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-opt": {
+      "resolved": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/bishengir-opt",
+      "sha256": "e9982b1006f2a884b06c666a0373ac82b874acd64a169bfaaeee65e23a9d4e9f",
+      "version": "bishengir-opt 1.2.0 (https://gitcode.com/Ascend/AscendNPU-IR.git 042c923d02a2 2026-07-31) \nllvm 19.1.7 cd708029e0b2\nRelease build\n\n",
+      "returncode": 0
+    },
+    "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/hivmc": {
+      "resolved": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/lib/python3.12/site-packages/triton/backends/ascend/bishengir/bin/hivmc",
+      "sha256": "48ff49ad8e86235679a2e06448d6bfad5d8ab8eaed230859d9089f4152262de4",
+      "version": "hivmc 0.3.0 (923475c46003 2026-07-29)\nRelease build\n\n",
+      "returncode": 0
+    },
+    "/usr/local/Ascend/cann-9.1.0/bin/bisheng": {
+      "resolved": "/usr/local/Ascend/cann-9.1.0/tools/bisheng_compiler/bin/bisheng",
+      "sha256": "1cb33347c991d8ec143c0ba080ca126d9cc84167c4edea3e4953ff5865c5f60a",
+      "version": "2026-07-30T20:53:21+08:00 clang version 15.0.5 (clang-5c68a1cb1231 flang-5c68a1cb1231)\nTarget: aarch64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /usr/local/Ascend/cann-9.1.0/bin\n",
+      "returncode": 0
+    }
+  },
+  "dlinfer_installed": false,
+  "dlinfer_imported": false,
+  "cwd": "/root/workspace/a3-native-pr-20261115/lmdeploy",
+  "environment": {
+    "PATH": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2/bin:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/cann-9.1.0/tools/bishengir/bin:/usr/local/Ascend/cann-9.1.0/bin:/usr/local/Ascend/cann-9.1.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.1.0/tools/profiler/bin:/usr/local/Ascend/cann-9.1.0/tools/ascend_system_advisor/asys:/usr/local/Ascend/cann-9.1.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.1.0/tools/msobjdump:/root/.codex/tmp/arg0-linux/codex-arg0tIftP7:/usr/local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-arm64/vendor/aarch64-unknown-linux-musl/codex-path:/root/.local/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/root/.cargo/bin:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/python3.12.13/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LD_LIBRARY_PATH": "/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/cann-9.1.0/lib64:/usr/local/Ascend/cann-9.1.0/lib64/plugin/opskernel:/usr/local/Ascend/cann-9.1.0/lib64/plugin/nnengine:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_tiling/lib/linux/aarch64:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common:/usr/local/Ascend/driver/lib64/driver:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common:/usr/local/Ascend/driver/lib64/driver:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64/plugin:/usr/local/Ascend/ascend-toolkit/latest/lib64:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/opskernel:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/nnengine:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/python3.12.13/lib::/usr/local/lib",
+    "PYTHONPATH": "/root/workspace/a3-mtp-ray-investigation-20261116/guard:/root/workspace/a3-mtp-ray-investigation-20261116/scripts:/root/workspace/a3-native-pr-20261115/lmdeploy:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe",
+    "TRITON_CACHE_DIR": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/upgrade5-ir2-triton-cache",
+    "BISHENG_INSTALL_PATH": null,
+    "ASCEND_HOME_PATH": "/usr/local/Ascend/cann-9.1.0",
+    "VIRTUAL_ENV": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-ir2"
+  }
+}

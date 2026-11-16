@@ -1,0 +1,169 @@
+START upgrade5-full-gdn-perf-r0
+{
+  "label": "upgrade5-full-gdn-perf-r0",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5",
+  "venv": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2",
+  "returncode": 0,
+  "elapsed_seconds": 23.75381456495961
+}
+[W1116 02:12:58.305892941 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:355: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2/lib/python3.12/site-packages/triton/backends/ascend/driver.py:355: SyntaxWarning: invalid escape sequence '\['
+  for m in re.finditer('\[aicore\]', code):
+[W1116 02:13:07.613704378 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+UPGRADE5 1 2 {'stages3_median': 0.0192216796875, 'stages1_median': 0.0192747802734375, 'stages3_range': [0.019121320724487304, 0.01943779945373535], 'stages1_range': [0.019171159744262697, 0.01948415946960449], 'stages1_vs_stages3_change_pct': 0.27625361987502206, 'stages1_vs_stages3_paired_pct': [-0.44887772196944287, 1.6298026180142866, -0.20307720461344436, 1.5916632082192628, -0.7004959635901975, 0.6461717433293934, -0.8494746102077233, 1.8353632994331237]}
+UPGRADE5 1 4 {'stages3_median': 0.02354654026031494, 'stages1_median': 0.023197079658508302, 'stages3_range': [0.02351495933532715, 0.023558160781860352], 'stages1_range': [0.0231533203125, 0.02508736038208008], 'stages1_vs_stages3_change_pct': -1.484127170884697, 'stages1_vs_stages3_paired_pct': [-1.0453415277571265, -1.7184723082120934, -1.3096231998460106, -1.6622926740882504, -1.4042133375771315, -1.4807534775688302, -1.5003771959057888, 6.496237087646972]}
+UPGRADE5 4 2 {'stages3_median': 0.031236000061035156, 'stages1_median': 0.030564340591430664, 'stages3_range': [0.031217399597167968, 0.03131711959838867], 'stages1_range': [0.030526199340820313, 0.030586919784545898], 'stages1_vs_stages3_change_pct': -2.1502736211168827, 'stages1_vs_stages3_paired_pct': [-2.1192728972957986, -2.1794174743054895, -2.066257556588591, -2.2718790545715906, -2.33163146294062, -2.2298510619693457, -2.0225872840490045, -2.23083305100219]}
+UPGRADE5 4 4 {'stages3_median': 0.04267227935791015, 'stages1_median': 0.04377261924743652, 'stages3_range': [0.042654918670654296, 0.042684921264648436], 'stages1_range': [0.04374044036865234, 0.04381452178955078], 'stages1_vs_stages3_change_pct': 2.5785824101341337, 'stages1_vs_stages3_paired_pct': [2.58999239344182, 2.585375298072967, 2.5897744126476496, 2.528199735467962, 2.559604142975025, 2.5029806541088773, 2.7185683504638014, 2.6276194422032884]}
+UPGRADE5 16 2 {'stages3_median': 0.07727392196655272, 'stages1_median': 0.0761754379272461, 'stages3_range': [0.0772430419921875, 0.07783556365966797], 'stages1_range': [0.07610636138916016, 0.07629203796386719], 'stages1_vs_stages3_change_pct': -1.4215456021270612, 'stages1_vs_stages3_paired_pct': [-2.1070150223538198, -1.5208791772915897, -1.256795430366231, -1.4787430683918523, -1.3498182608352116, -1.4123738796829377, -1.4376309871462767, -1.5074226152874348]}
+UPGRADE5 16 4 {'stages3_median': 0.1346033248901367, 'stages1_median': 0.12840453338623048, 'stages3_range': [0.134571044921875, 0.1363232421875], 'stages1_range': [0.12838328552246095, 0.12870152282714845], 'stages1_vs_stages3_change_pct': -4.605229112256836, 'stages1_vs_stages3_paired_pct': [-5.803652978258544, -4.6251826026788905, -4.391118714354603, -4.677920389253498, -4.549708614078241, -4.608355218661675, -4.587533993828041, -4.611067973470728]}
+END upgrade5-full-gdn-perf-r0 0
+START upgrade5-target-old1-r0
+{
+  "label": "upgrade5-target-old1-r0",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-research",
+  "venv": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+  "returncode": 0,
+  "elapsed_seconds": 114.44139648095006
+}
+2026-11-16 02:15:01,938 - lmdeploy - INFO - async_engine.py:188 - updated backend_config=PytorchEngineConfig(dtype='bfloat16', tp=2, dcp=1, dp=1, dp_rank=0, ep=1, session_len=262144, max_batch_size=16, attn_tp_size=None, mlp_tp_size=None, moe_tp_size=None, cache_max_entry_count=0.7, prefill_interval=16, block_size=128, kernel_block_size=128, num_cpu_blocks=0, num_gpu_blocks=9292, adapters=None, max_prefill_token_num=8192, cudagraph_capture_batch_sizes=None, thread_safe=False, enable_prefix_caching=True, prefix_cache_state_budget=16, prefix_cache_decode_state_interval=0, prefix_cache_decode_save_first=False, prefill_save_alignment=128, prefill_save_last_only=True, mooncake_state_save_slots=8, device_type='ascend', eager_mode=False, custom_module_map=None, download_dir=None, revision=None, quant_policy=<QuantPolicy.NONE: 0>, distributed_executor_backend=None, empty_init=False, enable_microbatch=False, enable_eplb=False, enable_mp_engine=False, mp_engine_backend='mp', model_format=None, enable_metrics=True, hf_overrides=None, language_model_only=True, logprobs_mode=None, enable_return_routed_experts=False, enable_transfer_obj_ref=False, dllm_block_length=None, dllm_unmasking_strategy='low_confidence_dynamic', dllm_denoising_steps=None, dllm_confidence_threshold=0.85, role=<EngineRole.Hybrid: 1>, migration_backend=<MigrationBackend.DLSlime: 1>, kv_transfer_config=None, piecewise_cudagraph_max_tokens=None)
+2026-11-16 02:15:02,378 - lmdeploy - INFO - async_engine.py:259 - enable metrics, with dp: 1 dp_rank: 0
+2026-11-16 02:15:02,420 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-16 02:15:02,423 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-16 02:15:02,424 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-16 02:15:02,424 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-16 02:15:02,424 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-16 02:15:02,451 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=27, max_new_tokens=8, prep=True
+2026-11-16 02:15:02,451 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-16 02:15:02,451 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(FrozenTargetWorker pid=1895491)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-research/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+2026-11-16 02:15:06,902 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 02:15:06,903 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 27, output_tokens 8
+CASE smoke OK 4.521305906004272
+[36m(FrozenTargetWorker pid=1895491)[0m FROZEN_TARGET 0 12.93908977508545 True
+2026-11-16 02:15:07,017 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 02:15:07,018 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 02:15:07,018 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 02:15:07,021 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(FrozenTargetWorker pid=1895491)[0m 2026-11-16 02:15:07,020 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1895492)[0m FROZEN_TARGET 1 13.136459827423096 True
+[36m(FrozenTargetWorker pid=1895492)[0m 2026-11-16 02:15:07,020 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1894950 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/upgrade5-target-old1-r0-pipeline.json
+END upgrade5-target-old1-r0 0
+START upgrade5-target-new3-r0
+{
+  "label": "upgrade5-target-new3-r0",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5",
+  "venv": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2",
+  "returncode": 0,
+  "elapsed_seconds": 71.3281687090057
+}
+2026-11-16 02:16:15,987 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-16 02:16:15,991 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-16 02:16:15,991 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-16 02:16:15,991 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-16 02:16:15,991 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-16 02:16:15,994 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=27, max_new_tokens=8, prep=True
+2026-11-16 02:16:15,994 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-16 02:16:15,994 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(FrozenTargetWorker pid=1900306)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+[36m(FrozenTargetWorker pid=1900306)[0m FROZEN_TARGET 0 13.27253007888794 True
+2026-11-16 02:16:17,528 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 02:16:17,528 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 27, output_tokens 8
+CASE smoke OK 1.604915380012244
+2026-11-16 02:16:17,626 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 02:16:17,626 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 02:16:17,627 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 02:16:17,632 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(FrozenTargetWorker pid=1900306)[0m 2026-11-16 02:16:17,630 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1900307)[0m FROZEN_TARGET 1 13.09512996673584 True
+[36m(FrozenTargetWorker pid=1900307)[0m 2026-11-16 02:16:17,631 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1900307)[0m /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(FrozenTargetWorker pid=1900307)[0m   torch.remainder(cache_seqlens, state_slots),
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1899768 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/upgrade5-target-new3-r0-pipeline.json
+END upgrade5-target-new3-r0 0
+START upgrade5-target-new3-r1
+{
+  "label": "upgrade5-target-new3-r1",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5",
+  "venv": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2",
+  "returncode": 0,
+  "elapsed_seconds": 69.48188295104774
+}
+2026-11-16 02:17:25,611 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-16 02:17:25,615 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-16 02:17:25,616 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-16 02:17:25,616 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-16 02:17:25,616 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-16 02:17:25,632 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=27, max_new_tokens=8, prep=True
+2026-11-16 02:17:25,633 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-16 02:17:25,633 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(FrozenTargetWorker pid=1902059)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+[36m(FrozenTargetWorker pid=1902059)[0m FROZEN_TARGET 0 13.064990043640137 True
+2026-11-16 02:17:27,243 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 02:17:27,244 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 27, output_tokens 8
+CASE smoke OK 1.6735237370012328
+2026-11-16 02:17:27,364 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 02:17:27,365 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 02:17:27,367 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 02:17:27,377 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(FrozenTargetWorker pid=1902059)[0m 2026-11-16 02:17:27,370 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1902060)[0m FROZEN_TARGET 1 13.214320182800293 True
+[36m(FrozenTargetWorker pid=1902060)[0m 2026-11-16 02:17:27,373 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1902060)[0m /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-upgrade5/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(FrozenTargetWorker pid=1902060)[0m   torch.remainder(cache_seqlens, state_slots),
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1901528 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/upgrade5-target-new3-r1-pipeline.json
+END upgrade5-target-new3-r1 0
+START upgrade5-target-old1-r1
+{
+  "label": "upgrade5-target-old1-r1",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-research",
+  "venv": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+  "returncode": 0,
+  "elapsed_seconds": 70.98529381497065
+}
+2026-11-16 02:18:37,268 - lmdeploy - INFO - engine_loop.py:726 - Starting executor.
+2026-11-16 02:18:37,272 - lmdeploy - INFO - ray_executor.py:474 - Starting async task RayPrefetchOutput loop.
+2026-11-16 02:18:37,272 - lmdeploy - INFO - engine_loop.py:730 - Starting async task MainLoopPreprocessMessage.
+2026-11-16 02:18:37,272 - lmdeploy - INFO - engine_loop.py:732 - Starting async task MainLoopResponse.
+2026-11-16 02:18:37,272 - lmdeploy - INFO - engine_loop.py:734 - Starting async task MainLoop.
+2026-11-16 02:18:37,275 - lmdeploy - INFO - async_engine.py:606 - session=0, input_tokens=27, max_new_tokens=8, prep=True
+2026-11-16 02:18:37,275 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 1
+2026-11-16 02:18:37,275 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 1
+('Warning: torch.save with "_use_new_zipfile_serialization = False" is not recommended for npu tensor, which may bring unexpected errors and hopefully set "_use_new_zipfile_serialization = True"', 'if it is necessary to use this, please convert the npu tensor to cpu tensor for saving')
+[36m(FrozenTargetWorker pid=1903847)[0m Warning: since the loaded file is not a zipfile, only "torch.device" and "str" type parameters are currently supported for parameter types of map_location. If parameter types of map_location is "Callable[[torch.Tensor, str], torch.Tensor]" or "Dict[str, str]", which is only support for zipfile, all tensors are currently loaded onto the CPU, which may introduce problems.
+/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-research/lmdeploy/pytorch/engine/model_agent/agent.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  v = torch.from_numpy(v)
+2026-11-16 02:18:38,809 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 02:18:38,810 - lmdeploy - INFO - async_engine.py:810 - session 0 finished, reason "length", input_tokens 27, output_tokens 8
+CASE smoke OK 1.5796625899965875
+[36m(FrozenTargetWorker pid=1903847)[0m FROZEN_TARGET 0 13.356509685516357 True
+2026-11-16 02:18:38,916 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 02:18:38,916 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 02:18:38,916 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 02:18:38,921 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(FrozenTargetWorker pid=1903847)[0m 2026-11-16 02:18:38,920 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1903848)[0m FROZEN_TARGET 1 13.364310264587402 True
+[36m(FrozenTargetWorker pid=1903848)[0m 2026-11-16 02:18:38,920 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(FrozenTargetWorker pid=1903848)[0m /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-research/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(FrozenTargetWorker pid=1903848)[0m   torch.remainder(cache_seqlens, state_slots),
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1903303 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/upgrade5-target-old1-r1-pipeline.json
+END upgrade5-target-old1-r1 0

@@ -1,0 +1,56 @@
+{
+  "path": "/root/workspace/a3-mtp-ray-investigation-20261116/artifacts/upgrade5-real3-r0/compile00/temps/module.hivm.opt.mlir",
+  "sha256": "eaf96071ed56d62396cfaf8111415905b628b00c02e1abccaa3ba3397c00f0a4",
+  "compiler": "AscendNPU-IR 2.0.0 efb7141581c0",
+  "evidence": [
+    {
+      "line": 210,
+      "text": "%88 = memref.load %alloca[%c0] {markDCacheInvalidatePatternVisited = 0 : i32} : memref<1xi64>"
+    },
+    {
+      "line": 214,
+      "text": "%92 = arith.remui %88, %c2_i64 : i64"
+    },
+    {
+      "line": 215,
+      "text": "%93 = arith.cmpi eq, %92, %c1_i64 : i64"
+    },
+    {
+      "line": 216,
+      "text": "%94 = arith.select %93, %5, %4 : memref<32x128xf32, #hivm.address_space<ub>>"
+    },
+    {
+      "line": 229,
+      "text": "%107 = arith.remui %88, %c2_i64 : i64"
+    },
+    {
+      "line": 230,
+      "text": "%108 = arith.index_cast %107 : i64 to index"
+    },
+    {
+      "line": 231,
+      "text": "%109 = arith.index_cast %108 : index to i1"
+    },
+    {
+      "line": 232,
+      "text": "%110 = arith.select %109, %c1_i64, %c2_i64 : i64"
+    },
+    {
+      "line": 429,
+      "text": "hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, %110]"
+    },
+    {
+      "line": 473,
+      "text": "%subview_107 = memref.subview %94[0, 0] [%76, %78] [1, 1] : memref<32x128xf32, #hivm.address_space<ub>> to memref<?x?xf32, strided<[128, 1]>, #hivm.address_space<ub>>"
+    },
+    {
+      "line": 478,
+      "text": "hivm.hir.set_flag[<PIPE_MTE3>, <PIPE_V>, %110]"
+    },
+    {
+      "line": 487,
+      "text": "scf.yield %94, %172, %173, %174, %175, %176, %177 : memref<32x128xf32, #hivm.address_space<ub>>, i64, i64, index, index, index, index"
+    }
+  ],
+  "observation": "State UB selection %94 and MTE3-to-Vector event ID %110 both derive from inner-loop counter %88; state store reads %94 and loop yields %94. This is a complete v2.0.0 compiler test, not an isolated cherry-pick of 05f2adcf."
+}

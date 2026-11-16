@@ -1,0 +1,313 @@
+{
+  "original_compiler": "1.2.0 / 042c923d02a22e5845cf10311cf2d192b17a5d77",
+  "new_compiler": "2.0.0 / efb7141581c009bbd1d676b18941ed15ede62a68",
+  "new_full_package": "triton-ascend 3.2.2.post2",
+  "cann_runtime": "9.1.0 unchanged",
+  "wheel_sha256": "ca16e1f6df5850663e430789e1d68462d902bb4701a6f0441c15e175bb132005",
+  "minimal": [
+    {
+      "label": "upgrade5-old-mini3-r0",
+      "iterations": 100,
+      "state_bad": 100,
+      "max_abs": 13.568138122558594
+    },
+    {
+      "label": "upgrade5-mini3-r0",
+      "iterations": 100,
+      "state_bad": 0,
+      "max_abs": 0.0
+    },
+    {
+      "label": "upgrade5-mini1-r0",
+      "iterations": 100,
+      "state_bad": 0,
+      "max_abs": 0.0
+    }
+  ],
+  "real_fixture": {
+    "iterations": 200,
+    "state_exact": 200,
+    "output_exact": 200
+  },
+  "hardware": {
+    "component_only": "6 passed",
+    "full_package": "6 passed"
+  },
+  "mtp": {
+    "reference": "mtp-stage1-suite-r0.json",
+    "comparisons": [
+      {
+        "label": "upgrade5-mtp-r0",
+        "complete": true,
+        "responses": 21,
+        "tokens_exact": 21,
+        "scores_exact": 21,
+        "dlinfer": []
+      },
+      {
+        "label": "upgrade5-mtp-r1",
+        "complete": true,
+        "responses": 21,
+        "tokens_exact": 21,
+        "scores_exact": 21,
+        "dlinfer": []
+      },
+      {
+        "label": "upgrade5-full-mtp-r0",
+        "complete": true,
+        "responses": 21,
+        "tokens_exact": 21,
+        "scores_exact": 21,
+        "dlinfer": []
+      },
+      {
+        "label": "upgrade5-full-mtp-r1",
+        "complete": true,
+        "responses": 21,
+        "tokens_exact": 21,
+        "scores_exact": 21,
+        "dlinfer": []
+      }
+    ]
+  },
+  "micro": [
+    {
+      "batch": 1,
+      "queries": 2,
+      "stages3_us": 19.2216796875,
+      "stages1_us": 19.2747802734375,
+      "stages3_vs_stages1_pct": -0.2754925617008408
+    },
+    {
+      "batch": 1,
+      "queries": 4,
+      "stages3_us": 23.54654026031494,
+      "stages1_us": 23.1970796585083,
+      "stages3_vs_stages1_pct": 1.506485328977436
+    },
+    {
+      "batch": 4,
+      "queries": 2,
+      "stages3_us": 31.236000061035156,
+      "stages1_us": 30.564340591430664,
+      "stages3_vs_stages1_pct": 2.197526452747378
+    },
+    {
+      "batch": 4,
+      "queries": 4,
+      "stages3_us": 42.672279357910156,
+      "stages1_us": 43.77261924743652,
+      "stages3_vs_stages1_pct": -2.5137629605996414
+    },
+    {
+      "batch": 16,
+      "queries": 2,
+      "stages3_us": 77.27392196655272,
+      "stages1_us": 76.1754379272461,
+      "stages3_vs_stages1_pct": 1.4420449283872427
+    },
+    {
+      "batch": 16,
+      "queries": 4,
+      "stages3_us": 134.60332489013672,
+      "stages1_us": 128.40453338623047,
+      "stages3_vs_stages1_pct": 4.827548794761594
+    }
+  ],
+  "target": [
+    {
+      "repeat": 0,
+      "rank": 0,
+      "old_single_ms": 12.93908977508545,
+      "new_multi_ms": 13.27253007888794,
+      "new_vs_old_pct": 2.576999693166493,
+      "fixed_inputs_and_state": {
+        "input_ids": true,
+        "positions": true,
+        "history": true,
+        "state_before_sha256": true,
+        "first_output_sha256": true
+      },
+      "all_48_outputs_identical": true
+    },
+    {
+      "repeat": 0,
+      "rank": 1,
+      "old_single_ms": 13.136459827423096,
+      "new_multi_ms": 13.09512996673584,
+      "new_vs_old_pct": -0.31461947305603255,
+      "fixed_inputs_and_state": {
+        "input_ids": true,
+        "positions": true,
+        "history": true,
+        "state_before_sha256": true,
+        "first_output_sha256": true
+      },
+      "all_48_outputs_identical": true
+    },
+    {
+      "repeat": 1,
+      "rank": 0,
+      "old_single_ms": 13.356509685516357,
+      "new_multi_ms": 13.064990043640137,
+      "new_vs_old_pct": -2.182603455095322,
+      "fixed_inputs_and_state": {
+        "input_ids": true,
+        "positions": true,
+        "history": true,
+        "state_before_sha256": true,
+        "first_output_sha256": true
+      },
+      "all_48_outputs_identical": true
+    },
+    {
+      "repeat": 1,
+      "rank": 1,
+      "old_single_ms": 13.364310264587402,
+      "new_multi_ms": 13.214320182800293,
+      "new_vs_old_pct": -1.1223181654540837,
+      "fixed_inputs_and_state": {
+        "input_ids": true,
+        "positions": true,
+        "history": true,
+        "state_before_sha256": true,
+        "first_output_sha256": true
+      },
+      "all_48_outputs_identical": true
+    }
+  ],
+  "logs": [
+    {
+      "label": "upgrade5-env-before-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 7.3268663070048206,
+      "sha256": "4a4baaf22614d45b43c8b29ff66eaf4150025f17eb1202ffabace43479c4cee8"
+    },
+    {
+      "label": "upgrade5-env-full-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 7.776989286008757,
+      "sha256": "9b2e94ac2df13abc877afb347ef7bf8b55e6339a071395819a77d399fe222c49"
+    },
+    {
+      "label": "upgrade5-env-ir2-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 7.675780802965164,
+      "sha256": "f38478e3878db83b8a139a4fdd571aadd23f4d784d183af659cfb3c94247f18b"
+    },
+    {
+      "label": "upgrade5-full-gdn-perf-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 23.75381456495961,
+      "sha256": "54a4cb47236d72e8c35bcf532b34b12b8f497575d9172cf5a1ed3c0192f0d992"
+    },
+    {
+      "label": "upgrade5-full-hw-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 35.82347208302235,
+      "sha256": "820e9803c781aa5be2bf5fb6d6842b78f29b9d7f51b6f28da1663717f664a384"
+    },
+    {
+      "label": "upgrade5-full-mtp-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 135.69111359200906,
+      "sha256": "51fd4b07e6d0344121425e3c6725155aeea102d32ce5e629ced63b870bc97199"
+    },
+    {
+      "label": "upgrade5-full-mtp-r1",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 81.49134017899632,
+      "sha256": "cce339e55e0dd403d17aa37d5f217d4bdf2a519c359d60952c37d07debaf587e"
+    },
+    {
+      "label": "upgrade5-hw-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 27.355504904000554,
+      "sha256": "f15cf55d1141d36061e65fc5a8b1a188f5644123f72bc38dbd2da633412a074d"
+    },
+    {
+      "label": "upgrade5-mini1-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 13.092560055025388,
+      "sha256": "1da952e0341002288b0a01158c9ddde93c0c707dc6b37515943c95f8aafcae07"
+    },
+    {
+      "label": "upgrade5-mini3-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 22.001595653011464,
+      "sha256": "740e4e75d429fdf1a4756f7faf763c6cda7a3b96d09a3f1e68f005a02e831f25"
+    },
+    {
+      "label": "upgrade5-mtp-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 134.4468892190489,
+      "sha256": "72caa5491e7057c7f031b94215e14354562457d327e07f74c772e7d102d8d52f"
+    },
+    {
+      "label": "upgrade5-mtp-r1",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 78.93287732597673,
+      "sha256": "9ade04daee7e1fe3c9bb15faf21455203381a26715908b804d2ce8ae1aca7894"
+    },
+    {
+      "label": "upgrade5-old-mini3-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 21.6998431480024,
+      "sha256": "14af5a1910011b3d4ec6f4aa06738fcba8d9e6f161736c106d8142538b3d6456"
+    },
+    {
+      "label": "upgrade5-real3-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 30.71128468698589,
+      "sha256": "184ac4487deb9f25150386cd8cfb1e81e2ba5ae4c7cf981a55cf9f704bbdabf1"
+    },
+    {
+      "label": "upgrade5-target-new3-r0",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 71.3281687090057,
+      "sha256": "fb2be26c8af43558cfab61244c22bcbe57504a7f3c96b847a4a984dae8b9e244"
+    },
+    {
+      "label": "upgrade5-target-new3-r1",
+      "returncode": 0,
+      "source": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "elapsed_seconds": 69.48188295104774,
+      "sha256": "7a9c900762fba752ea08034fd6332f2d4b52580db4f0cf8474a6ff4fac658714"
+    },
+    {
+      "label": "upgrade5-target-old1-r0",
+      "returncode": 0,
+      "source": "f9ab50d877c384bfb04ae43afa6af0c388fc451b",
+      "elapsed_seconds": 114.44139648095006,
+      "sha256": "9c816dfd9f7e44feae69211833af0b8d78b71fa59893e1d28e8b6733db0ca6d9"
+    },
+    {
+      "label": "upgrade5-target-old1-r1",
+      "returncode": 0,
+      "source": "f9ab50d877c384bfb04ae43afa6af0c388fc451b",
+      "elapsed_seconds": 70.98529381497065,
+      "sha256": "4b91ae13204e27eda92a33bd21432f016c32ff8ead42ef4786cba4340c2d6500"
+    }
+  ],
+  "limitations": [
+    "CANN9.2 runtime and driver were not upgraded or tested.",
+    "No HTTP throughput / TTFT / TPOT conclusion.",
+    "CPU18 callback still requires privileged host capture.",
+    "A complete v2.0.0 release was tested, not an isolated 05f2adcf cherry-pick."
+  ]
+}
