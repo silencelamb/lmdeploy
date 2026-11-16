@@ -1,0 +1,554 @@
+{
+  "kind": "Post-hoc audit of original frozen-run outputs; no new GPU/model execution.",
+  "base": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "pr": "f64ab5061153b5c5b63721cf2d8d6f1b41b95104",
+  "pairs": 32,
+  "first_score_unequal": 32,
+  "token_sequence_unequal": 28,
+  "rows": [
+    {
+      "case": "eager-p0",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p0-m0-matched-f64-base-r0.json",
+        "glm-eager-p0-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "ed9573d7b24608bb5aea209adf68e83c51f4da5c176463fac6f81dbce59e11fa",
+        "ebf4421f7bf06453d372eaaa6f56619d9afbeae14b7ab54a8ea60d6f4c6a0743"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p0-m0-matched-f64-base-r0.json",
+        "glm-eager-p0-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "ed9573d7b24608bb5aea209adf68e83c51f4da5c176463fac6f81dbce59e11fa",
+        "ebf4421f7bf06453d372eaaa6f56619d9afbeae14b7ab54a8ea60d6f4c6a0743"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p0-m0-matched-f64-pr-r0.json",
+        "glm-eager-p0-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "8d6e1374fe5d2e139370e1401b5c96542080e35d51929a2407fb4818119cd1c5",
+        "c3383a5208506e4bdd1d80dc2264042d6d53780aecb48a3e6ccc875a160381ef"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": true,
+      "first_token_difference": null
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p0-m0-matched-f64-pr-r0.json",
+        "glm-eager-p0-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "8d6e1374fe5d2e139370e1401b5c96542080e35d51929a2407fb4818119cd1c5",
+        "c3383a5208506e4bdd1d80dc2264042d6d53780aecb48a3e6ccc875a160381ef"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 14
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p1-m0-matched-f64-base-r0.json",
+        "glm-eager-p1-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "39c876a37584dcfa498a2f7eb4f095e8fbd76182ddc310b596313c388b2c829e",
+        "b0fe3b41090501ef7f7c79a34e9cf5e7a3ddf04cfeacb3e7d24b1eaa61d75f66"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p1-m0-matched-f64-base-r0.json",
+        "glm-eager-p1-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "39c876a37584dcfa498a2f7eb4f095e8fbd76182ddc310b596313c388b2c829e",
+        "b0fe3b41090501ef7f7c79a34e9cf5e7a3ddf04cfeacb3e7d24b1eaa61d75f66"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 14
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p1-m0-matched-f64-pr-r0.json",
+        "glm-eager-p1-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "263634775e3b610eee0e40e3a3be86ae1e3f37fd04d154bd7c7bd6e866a3acfd",
+        "cb7b43ac2d3f06f9da90264bc723ee308befed879f827914824b904b284ea388"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p1-m0-matched-f64-pr-r0.json",
+        "glm-eager-p1-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "263634775e3b610eee0e40e3a3be86ae1e3f37fd04d154bd7c7bd6e866a3acfd",
+        "cb7b43ac2d3f06f9da90264bc723ee308befed879f827914824b904b284ea388"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p0-m0-matched-f64-base-r0.json",
+        "glm-graph-p0-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "39bbc9190382129850b1fd336cde75d56b57a369465afdf7ca2117e0e9b88102",
+        "3604013c51ba192e2a3b7c2e3642a68f250e0f7860663b666b307392568c98ef"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p0-m0-matched-f64-base-r0.json",
+        "glm-graph-p0-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "39bbc9190382129850b1fd336cde75d56b57a369465afdf7ca2117e0e9b88102",
+        "3604013c51ba192e2a3b7c2e3642a68f250e0f7860663b666b307392568c98ef"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 14
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p0-m0-matched-f64-pr-r0.json",
+        "glm-graph-p0-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "d0a13b5d855dd160e0786c0bf7a2d99d75ff96e948add7fb1be306d828b582b9",
+        "83f276a0387d9964b522464c76470fa3f246cc2a6a6db4eb7aaaa2cbe16538b3"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p0-m0-matched-f64-pr-r0.json",
+        "glm-graph-p0-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "d0a13b5d855dd160e0786c0bf7a2d99d75ff96e948add7fb1be306d828b582b9",
+        "83f276a0387d9964b522464c76470fa3f246cc2a6a6db4eb7aaaa2cbe16538b3"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p1-m0-matched-f64-base-r0.json",
+        "glm-graph-p1-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "4507982c68f5318bf2bebf24888aaf3c15e415971394884750cf523a3a06a50c",
+        "ab78dfd422d20354a2e1f99bad21e2f7e10599b3783f22a150d8d7ce8791518f"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 0,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p1-m0-matched-f64-base-r0.json",
+        "glm-graph-p1-m0-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "4507982c68f5318bf2bebf24888aaf3c15e415971394884750cf523a3a06a50c",
+        "ab78dfd422d20354a2e1f99bad21e2f7e10599b3783f22a150d8d7ce8791518f"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p1-m0-matched-f64-pr-r0.json",
+        "glm-graph-p1-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "74fdb16cd287d04d636e083376e78e0c77f8354016f1bba2e35de267e20642d8",
+        "40b98e2e49e34f9c3a90e4b59dca91b9b6dc5eaaca046b27838787d81beb3d11"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": true,
+      "first_token_difference": null
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 0,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p1-m0-matched-f64-pr-r0.json",
+        "glm-graph-p1-m0-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "74fdb16cd287d04d636e083376e78e0c77f8354016f1bba2e35de267e20642d8",
+        "40b98e2e49e34f9c3a90e4b59dca91b9b6dc5eaaca046b27838787d81beb3d11"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p0-m3-matched-f64-base-r0.json",
+        "glm-eager-p0-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "25ca575730c5397da9a3476d3fbc94cb4e61239ab9886577abb7c009d6158ea9",
+        "ff23c00c0d7528d6ea78259692c26c0fcd85196944240728c4ec401c4ebdd497"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 14
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p0-m3-matched-f64-base-r0.json",
+        "glm-eager-p0-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "25ca575730c5397da9a3476d3fbc94cb4e61239ab9886577abb7c009d6158ea9",
+        "ff23c00c0d7528d6ea78259692c26c0fcd85196944240728c4ec401c4ebdd497"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p0-m3-matched-f64-pr-r0.json",
+        "glm-eager-p0-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "ad8cd4ac6f1f54106aa4ddeb472a175dbaf2187790ccfdb86cd9a8d2ce9e5d40",
+        "a1ccf855ebf10e85ae2f26f98fa3f40ddac77758067c80e6da50448d7214e401"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "eager-p0",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p0-m3-matched-f64-pr-r0.json",
+        "glm-eager-p0-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "ad8cd4ac6f1f54106aa4ddeb472a175dbaf2187790ccfdb86cd9a8d2ce9e5d40",
+        "a1ccf855ebf10e85ae2f26f98fa3f40ddac77758067c80e6da50448d7214e401"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p1-m3-matched-f64-base-r0.json",
+        "glm-eager-p1-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "220efe45736633edfd815f1aab23fd06d4975b179fe4850c683f012a14c89697",
+        "99e1104642a722e31fa011257010e69e7396407d7048815bfff085e640089ddd"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": true,
+      "first_token_difference": null
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p1-m3-matched-f64-base-r0.json",
+        "glm-eager-p1-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "220efe45736633edfd815f1aab23fd06d4975b179fe4850c683f012a14c89697",
+        "99e1104642a722e31fa011257010e69e7396407d7048815bfff085e640089ddd"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-eager-p1-m3-matched-f64-pr-r0.json",
+        "glm-eager-p1-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "8346a86ce8142b2fba450bdd86df5c1b098a15ac601a8a3a34ca0111e73dfe72",
+        "5e8c474c4ec470b9013164f3a8fc6aced4f89d27628bbdb63c8f2cf225d70c25"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "eager-p1",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-eager-p1-m3-matched-f64-pr-r0.json",
+        "glm-eager-p1-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "8346a86ce8142b2fba450bdd86df5c1b098a15ac601a8a3a34ca0111e73dfe72",
+        "5e8c474c4ec470b9013164f3a8fc6aced4f89d27628bbdb63c8f2cf225d70c25"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": true,
+      "first_token_difference": null
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p0-m3-matched-f64-base-r0.json",
+        "glm-graph-p0-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "257feb11d36c6613938bed1a3e5fa0b7917880477e295dc2c0060ab705d47a08",
+        "04a83f644128722c6f7ad3f149edfb27538bc558e9afc25b4abbced38fd45524"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p0-m3-matched-f64-base-r0.json",
+        "glm-graph-p0-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "257feb11d36c6613938bed1a3e5fa0b7917880477e295dc2c0060ab705d47a08",
+        "04a83f644128722c6f7ad3f149edfb27538bc558e9afc25b4abbced38fd45524"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 9
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p0-m3-matched-f64-pr-r0.json",
+        "glm-graph-p0-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "4b0f80688471245f3b5e0c340cb34fdc94e95ba9efcab40609f088c73d10b74e",
+        "3240e92e014197c7e751590eae295783f2130739e7553c8d49224dc2e92bd6c6"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 14
+    },
+    {
+      "case": "graph-p0",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p0-m3-matched-f64-pr-r0.json",
+        "glm-graph-p0-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "4b0f80688471245f3b5e0c340cb34fdc94e95ba9efcab40609f088c73d10b74e",
+        "3240e92e014197c7e751590eae295783f2130739e7553c8d49224dc2e92bd6c6"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p1-m3-matched-f64-base-r0.json",
+        "glm-graph-p1-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "0cb58699ed3e977c2482fd748ab2380ba18ffe331477dfb45fc17e2b46c27fe9",
+        "808050332b45dd1a74f24de94358c8735266e868d3d719937cd427b86dc8b63d"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 3,
+      "role": "base",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p1-m3-matched-f64-base-r0.json",
+        "glm-graph-p1-m3-matched-f64-base-r1.json"
+      ],
+      "source_sha256": [
+        "0cb58699ed3e977c2482fd748ab2380ba18ffe331477dfb45fc17e2b46c27fe9",
+        "808050332b45dd1a74f24de94358c8735266e868d3d719937cd427b86dc8b63d"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 16
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context",
+      "source_files": [
+        "glm-graph-p1-m3-matched-f64-pr-r0.json",
+        "glm-graph-p1-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "f4ee42db8c1e7f8418933e949bcaf26b3a69d39c2da4b95758ea75615b6f8147",
+        "4382bc33f759504742b59eb8eef3573c03abf777731065b93ba328b20891a310"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 14
+    },
+    {
+      "case": "graph-p1",
+      "mtp": 3,
+      "role": "pr",
+      "event": "long-context-replay",
+      "source_files": [
+        "glm-graph-p1-m3-matched-f64-pr-r0.json",
+        "glm-graph-p1-m3-matched-f64-pr-r1.json"
+      ],
+      "source_sha256": [
+        "f4ee42db8c1e7f8418933e949bcaf26b3a69d39c2da4b95758ea75615b6f8147",
+        "4382bc33f759504742b59eb8eef3573c03abf777731065b93ba328b20891a310"
+      ],
+      "first_score_equal": false,
+      "token_sequence_equal": false,
+      "first_token_difference": 2
+    }
+  ]
+}
