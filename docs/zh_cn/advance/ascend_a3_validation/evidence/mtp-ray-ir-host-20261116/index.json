@@ -1605,6 +1605,15 @@
       "source_bytes": 6052,
       "source_sha256": "57ea2978327cb5dc12b8fa0d318105a6325a724b9e06bc47c9524089a41b3a7d",
       "compressed": false
+    },
+    {
+      "path": "inventory/upstream4-fix-audit-r0.json",
+      "source": "/root/workspace/a3-mtp-ray-investigation-20261116/inventory/upstream4-fix-audit-r0.json",
+      "bytes": 2747,
+      "sha256": "777b1bc4b57ca181c5f919a7861d35dfa5103a6fb8c0b5af55170597677d868e",
+      "source_bytes": 2747,
+      "source_sha256": "777b1bc4b57ca181c5f919a7861d35dfa5103a6fb8c0b5af55170597677d868e",
+      "compressed": false
     }
   ],
   "bundles": [
@@ -1633,5 +1642,6 @@
     "Host preflight only; actual tasklet tracing not executed.",
     "Compiler source candidate not built.",
     "Invalid frozen-target diagnostic runs retained and excluded in summary."
-  ]
+  ],
+  "upstream_followup": "2026-11-16: existing fix 05f2adcf found on upstream master; installed 042c923d ancestry diverges. Source presence is not runtime validation."
 }

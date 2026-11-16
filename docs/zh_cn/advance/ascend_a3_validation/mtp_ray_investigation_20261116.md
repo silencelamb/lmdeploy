@@ -4,6 +4,8 @@
 
 **最新结论：本次 MTP 分歧已定位到编译器源码和 IR 中“状态缓冲轮转层级”与“同步事件轮转层级”不一致；两种独立 IR 修复均通过硬件重放，现有 LMDeploy 单缓冲修复继续保留。CPU 18 的具体 softirq/tasklet 回调仍受宿主机权限限制，已提供可直接在宿主机执行的发现、计时和内核栈采集工具。亲和性规避不是永久修复。**
 
+**上游状态补充（2026-11-16）：已查到上游既有修复 `05f2adcf`，当前 master 包含同样的父循环判断修正；本机编译器 commit `042c923d` 不包含它。后续应先验证已有修复的回移/依赖交付，避免重复提交同样代码。详见文末“上游既有修复与提交路径”。**
+
 最新源码、因果对照和性能数据见本文末尾[编译器错误点与宿主机取证](#编译器错误点与宿主机取证2026-11-16-第三轮)。前两轮结论保留为历史记录，其中尚未完成条目应以最新章节为准。
 
 修复：[dfa3049f](https://github.com/silencelamb/lmdeploy/commit/dfa3049f1575305b7564d6f15c48022661bd902a)，回归夹具补强：[d2d933da](https://github.com/silencelamb/lmdeploy/commit/d2d933dad7c6eb55b26ad5b83667c2077e23ca6c)，分支 `research/ascend-mtp-gdn-state-20261116`；未改动原生迁移 PR。详细实验、限制和复现见本文末尾[接续调查](#接续调查固定状态重放与主机调度定位)。
@@ -412,3 +414,24 @@ sudo python3 tools/ascend_a3/diagnostics/analyze_tasklet.py "$TASKLET_OUT"
 - 待宿主机执行：具体 tasklet/softirq 回调及内部调用栈、驱动/内核永久修复。CPU亲和性避让仍只是临时缓解。
 - 待编译器验证：源码候选补丁的实际构建、通用 pass 回归和其他模型/shape/版本；本机安装的编译器未修改。
 - 新失败均保留：IR采集首版误拦截编译器 `--help` 探测；该版本 `--inject-ir-from-file` 被转发到不支持它的 `hivmc`，随后改用显式、字节一致的离线二进制复编译；冻结主干探针的 metadata 别名及入口错误均单列排除。
+
+## 上游既有修复与提交路径：2026-11-16 补充核对
+
+本次核对上游当前 master 和文件历史后，找到既有提交
+[`05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e`](https://github.com/Ascend/AscendNPU-IR/commit/05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e)，
+主题为 `anchor GSS PointerLikeInfo parent loop via hivm::getParentLoop`。它把 PointerCastOp 和 AllocWorkspaceOp 的 parentLoop 均改成 yielded-value-aware helper，与本轮定位的错误点一致。提交说明明确该提交只迁移同步相关部分，没有同时迁移另一提交中的 helper 健壮性修改和测试；这不等于当前 master 没有其他相关测试。
+
+观察到的 master HEAD 为 `fbf6d5ecc72c626100c147f7cf600f5945c04e87`。本机仍使用 `bishengir-compile 1.2.0 / 042c923d02a2`。GitHub compare 显示 `05f2adcf...042c923d` 为 **diverged**，因此本机编译器提交不是这个修复的后继；构建日期不能替代提交包含关系。[核对记录](evidence/mtp-ray-ir-host-20261116/inventory/upstream4-fix-audit-r0.json)
+
+当前需要区分三件事：
+
+- 已验证并采用的 LMDeploy 处理：circular GDN 使用 `num_stages=1`，关闭有问题的自动多缓冲路径。这是正确性修复措施，不是对单缓冲做算法加速。
+- 编译器修复的目标：使启用多缓冲的路径（本机用 `num_stages=3` 触发）正确。两种诊断 IR 编辑已验证；尚未在本机构建并验证包含 `05f2adcf` 的完整编译器。
+- 性能表比较的是旧编译器下的3与1。B16/Q4的单缓冲耗时从140.627µs降到127.031µs，即**减少9.67%**；target主干约0.2%–1.0%的变化也是耗时降低，并非端到端变慢。尚无“修复后的正确多缓冲实现”与单缓冲的性能对照。
+
+上游源码仓库是 [GitCode Ascend/AscendNPU-IR](https://gitcode.com/Ascend/AscendNPU-IR)，[GitHub 仓库](https://github.com/Ascend/AscendNPU-IR)为镜像。
+按[官方贡献指南](https://ascendnpu-ir.gitcode.com/en/contributing_guide/contribute.html)，贡献者完成CLA后，在GitCode讨论Issue、从fork分支提交PR，构建并执行 `ninja check-bishengir`，再通过CI和维护者评审。
+
+对本问题，下一步应先在隔离编译器环境验证现有修复，核对最新源码及回归测试，确认合适的维护分支/发布包。若已经覆盖，则不再重复向master提交相同两行改动；可以补GDN回归测试、请求维护分支回移，或更新实际镜像/编译器包的依赖。最终还要让该修复进入当前Triton-Ascend所调用的编译器二进制，再验证 `num_stages=3` 的状态正确性和性能，才能决定是否撤销LMDeploy单缓冲措施。
+
+本次调查尚未向编译器上游创建Issue或PR，未替换本机编译器，也未将单缓冲与“已修复的多缓冲”混为一组性能结论。

@@ -1,0 +1,36 @@
+{
+  "checked_date_client": "2026-11-16 Asia/Shanghai",
+  "repository": "Ascend/AscendNPU-IR",
+  "canonical_repository": "https://gitcode.com/Ascend/AscendNPU-IR",
+  "github_mirror": "https://github.com/Ascend/AscendNPU-IR",
+  "observed_master": "fbf6d5ecc72c626100c147f7cf600f5945c04e87",
+  "upstream_fix": {
+    "sha": "05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e",
+    "url": "https://github.com/Ascend/AscendNPU-IR/commit/05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e",
+    "subject": "[AscendNPU IR] anchor GSS PointerLikeInfo parent loop via hivm::getParentLoop",
+    "committer_date": "2026-07-16T13:32:06Z",
+    "changed_files": [
+      {
+        "path": "bishengir/lib/Dialect/HIVM/Transforms/GraphSyncSolver/MemInfo.cpp",
+        "patch": "@@ -58,7 +58,7 @@ PointerLikeInfo getPointerLikeInfo(hivm::PointerCastOp pointerCastOp) {\n   if (auto spaceAttr = GetBufferSpaceAttr(pointerCastOp.getResult())) {\n     pointerLikeInfo.addressSpace = spaceAttr->getAddressSpace();\n   }\n-  if (auto parentLoop = pointerCastOp->getParentOfType<LoopLikeOpInterface>()) {\n+  if (auto parentLoop = mlir::hivm::getParentLoop(pointerCastOp.getResult())) {\n     pointerLikeInfo.parentLoop = parentLoop;\n   }\n   return pointerLikeInfo;\n@@ -75,7 +75,7 @@ getPointerLikeInfo(bishengir::memref_ext::AllocWorkspaceOp allocWorkspaceOp) {\n   }\n   pointerLikeInfo.addressSpace = hivm::AddressSpace::GM;\n   if (auto parentLoop =\n-          allocWorkspaceOp->getParentOfType<LoopLikeOpInterface>()) {\n+          mlir::hivm::getParentLoop(allocWorkspaceOp.getResult())) {\n     pointerLikeInfo.parentLoop = parentLoop;\n   }\n   return pointerLikeInfo;"
+      }
+    ],
+    "note": "The commit message says the synchronization part was migrated, while related getParentLoop robustness changes and tests were not migrated in this commit."
+  },
+  "installed_compiler_commit": "042c923d02a22e5845cf10311cf2d192b17a5d77",
+  "ancestry": {
+    "status": "diverged",
+    "ahead_by": 17,
+    "behind_by": 173,
+    "merge_base": "a124ed1743e30bbb2a7e1c049e4b0f1d906986bf",
+    "url": "https://github.com/Ascend/AscendNPU-IR/compare/05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e...042c923d02a22e5845cf10311cf2d192b17a5d77"
+  },
+  "implications": [
+    "The installed compiler commit is not a descendant of the existing upstream fix.",
+    "Current master source uses getParentLoop for PointerCastOp and AllocWorkspaceOp.",
+    "Source presence is not A3 runtime validation of a newly built compiler.",
+    "Prefer verification/backport/dependency delivery or a missing regression test over a duplicate code PR."
+  ],
+  "upstream_issue_or_pr_created_by_this_investigation": false,
+  "contribution_guide": "https://ascendnpu-ir.gitcode.com/en/contributing_guide/contribute.html"
+}
