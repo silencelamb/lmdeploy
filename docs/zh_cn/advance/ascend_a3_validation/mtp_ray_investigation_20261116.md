@@ -2,13 +2,15 @@
 
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
-**最新结论：已在隔离环境验证官方 AscendNPU-IR 2.0.0 / `efb7141581c0`，启用 `num_stages=3` 的真实 GDN 状态重放及完整 Sage MTP 重复性通过；也验证了 Triton-Ascend 3.2.2.post2 整包升级。原生环境、CANN9.1.0 运行时及迁移 PR 未修改，旧编译器仍可使用研究分支的单缓冲措施。CPU 18 的具体 softirq/tasklet 回调仍受宿主机权限限制，宿主机采集工具已交付；亲和性规避不是永久修复。**
+**最新结论：经用户授权，circular GDN 单缓冲修复、硬件回归和可选编译器升级配置已纳入迁移 PR #5134，提交 `85a05812`。正式 PR 源码在旧/新编译器下各6项状态回归通过，各两轮完整 Sage MTP 的21条响应及top5分数均逐位一致。此前官方 AscendNPU-IR2.0.0 的stage3验证也通过；当前PR仅在circular路径默认stage1，其余保留stage3。原运行环境和CANN未改。CPU18具体softirq/tasklet回调仍受宿主机权限限制，亲和性规避不是永久修复。**
 
 **上游状态补充（2026-11-16）：既有修复 `05f2adcf` 已进入 v2.0.0；原随包编译器 `042c923d` 来自另一条 feature/0725 构建线，不包含它。本轮直接验证官方发布二进制，没有重复向上游提交相同补丁。详见文末“AscendNPU-IR 2.0.0 隔离升级验证”。**
 
 最新源码、因果对照和性能数据见本文末尾[编译器错误点与宿主机取证](#编译器错误点与宿主机取证2026-11-16-第三轮)。前两轮结论保留为历史记录，其中尚未完成条目应以最新章节为准。
 
 最新依赖升级结果见[AscendNPU-IR 2.0.0 隔离升级验证](#ascendnpu-ir-200-隔离升级验证)，此前“尚未升级/验证编译器”的表述属于历史阶段。
+
+正式交付和本轮PR源码回归见文末[修复纳入迁移PR](#修复纳入迁移pr)，此前“不修改迁移PR”的约束已由用户本轮明确指令变更。
 
 修复：[dfa3049f](https://github.com/silencelamb/lmdeploy/commit/dfa3049f1575305b7564d6f15c48022661bd902a)，回归夹具补强：[d2d933da](https://github.com/silencelamb/lmdeploy/commit/d2d933dad7c6eb55b26ad5b83667c2077e23ca6c)，分支 `research/ascend-mtp-gdn-state-20261116`；未改动原生迁移 PR。详细实验、限制和复现见本文末尾[接续调查](#接续调查固定状态重放与主机调度定位)。
 
@@ -534,3 +536,34 @@ sudo python3 tools/ascend_a3/diagnostics/analyze_tasklet.py "$TASKLET_OUT"
 全部命令、源码HEAD、环境/二进制哈希、原始结果、最终IR、脚本快照和失败记录见证据索引。官方CANN9.2.0工具包也已下载并核对MD5与OBS ETag一致，SHA256为 `5ca960e94b16922b370f4bc3e6cd8fda6da5ba06347bccf1f4f9d8a302279fc0`，但未安装或用于本轮执行。首次串行CANN下载因过慢取消，未完整文件保留；使用的是独立分段r1下载。大包和模型派生tensor留在A3，公开索引记录其哈希；无模型最小复现可独立执行。
 
 仍未覆盖：完整CANN9.2运行时/驱动组合、其他模型与长上下文/高并发MTP、完整HTTP性能、编译器通用测试套件及x86/H200。CPU18的具体宿主机回调仍待有权限环境执行已有采集工具，本轮CPU亲和性控制没有解决该宿主机根因。没有新增上游Issue/PR；上游修复已存在，本轮完成的是官方依赖交付验证。
+
+## 修复纳入迁移PR
+
+用户于2026-11-16明确要求将修复纳入正式迁移PR，并在正文说明现象、commit、版本升级、效果和详细文档链接。本轮在独立集成工作树完成修改与回归后，将 [85a05812](https://github.com/silencelamb/lmdeploy/commit/85a0581228ad33a695430a1f43a47358a8258131) 纳入 [PR #5134](https://github.com/InternLM/lmdeploy/pull/5134)。没有合并整个研究/报告分支；历史原始证据和固定依赖环境保留。
+
+交付包括五个文件：
+
+- circular GDN的编译策略为 `num_stages = 1 if cache_seqlens_rb is not None else 3`。循环计算、dtype、采样及非circular路径保持已有语义。
+- 迁入 `dfa3049f` 的状态回归以及 `d2d933da` 的固定输入补强。每个中间状态槽都与独立CPU递推参考核对，并覆盖Q=1/2/4、eager/graph、32次恢复初态后的重复运行。
+- 新增可选 `requirements/ascend_triton_npuir2.txt`，固定 `triton-ascend==3.2.2.post2`；中英文安装文档解释 `042c923d` 问题、上游 `05f2adcf`、NPUIR2.0.0/`efb71415`交付、实际编译器路径核对及适用范围。
+
+选择circular路径默认1的依据是旧编译器兼容性和现有形状对照。新编译器已修好多缓冲，但六种实测形状里单缓冲有四种更快；B4/Q4则是多缓冲更快。这里没有引入按形状调参或运行时版本分派，也没有把其他算子的`num_stages`统一改成1。不能宣称单缓冲对所有模型或形状都更快。
+
+升级配置用于已经具备兼容运行依赖的独立环境，以 `--no-deps` 保持已固定的Torch/CANN等组件；它不能与旧 `ascend_kernels.txt` 的Triton精确版本约束同时解析。原Docker配方仍基于CANN8.5，未把它与新编译器的组合冒充为本机CANN9.1.0实验。未自动更换CANN、Torch版本边界或驱动。
+
+对**最终提交85a05812**重新执行的检查：
+
+| 检查 | 结果 |
+| --- | --- |
+| 无torch_npu的Ascend CPU合同测试 | 32通过、1跳过；硬件目录在collection前排除 |
+| 原固定环境：NPUIR1.2.0/042c923d | 6/6真实NPU状态回归通过，启动参数审计均为stage1 |
+| 升级环境：Triton-Ascend3.2.2.post2/NPUIR2.0.0 | 6/6真实NPU状态回归通过，启动参数审计均为stage1 |
+| 原环境完整MTP | 两个全新进程，每轮21响应、1344生成token、6720个top5分数逐位匹配正确参考 |
+| 新环境完整MTP | 两个全新进程，同样每轮21响应及所有token/top5分数逐位匹配 |
+| 五个改动文件的适用pre-commit hooks、diff检查 | 通过 |
+
+四轮模型配置均为Sage-A1.5、TP2、MTP3、BF16、graph、prefix、64输出token，显式固定Python/NumPy/Torch/NPU种子。比较对所有浮点分数检查二进制表示；父进程和worker使用dlinfer导入guard。所有运行的源码HEAD均为85a05812，工作树diff为空。[机器可读汇总](evidence/mtp-pr-integration-20261116/results/pr6-summary-r0.json)、[判据](evidence/mtp-pr-integration-20261116/ACCEPTANCE-pr6.md)、[命令/日志/脚本索引](evidence/mtp-pr-integration-20261116/index.json)。
+
+本轮没有重跑完整迁移验收、Docker构建、GPU模型矩阵或HTTP性能。前述算子及target主干性能仍归属于各自原始源码和编译器版本，不改写成85a05812上的新性能测量。PR正文保留性能形状依赖、完整CANN9.2/驱动组合未测等限制，并链接完整报告。
+
+CPU18当前只有明确的宿主机干扰与权限限制证据，具体回调和永久修复未完成。PR不包含CPU亲和性规避、Ray await删除或同步顺序更改；宿主机采集工具继续保存在独立研究分支。上游编译器修复已经发布，因此没有重复提交相同源码PR。

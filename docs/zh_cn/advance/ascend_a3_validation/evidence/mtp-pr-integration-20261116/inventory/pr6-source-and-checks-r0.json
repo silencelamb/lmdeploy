@@ -1,0 +1,30 @@
+{
+  "time_utc": "2026-11-16T03:24:05.801314+00:00",
+  "source_head": "85a0581228ad33a695430a1f43a47358a8258131",
+  "precommit": {
+    "command": [
+      "/root/workspace/a3-pr-prep-20261115/lint-env/bin/pre-commit",
+      "run",
+      "--config",
+      "/root/workspace/a3-native-pr-20261115/artifacts/applicable-pre-commit.yaml",
+      "--files",
+      "lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py",
+      "tests/pytorch/ascend/hardware/test_gdn_state_writeback.py",
+      "requirements/ascend_triton_npuir2.txt",
+      "docs/en/get_started/ascend/get_started.md",
+      "docs/zh_cn/get_started/ascend/get_started.md"
+    ],
+    "environment": {
+      "PRE_COMMIT_HOME": "/root/workspace/a3-native-pr-20261115/artifacts/pre-commit-cache"
+    },
+    "log": "logs/pr6-precommit-r0.log",
+    "returncode": 0
+  },
+  "file_sha256": {
+    "lmdeploy/pytorch/kernels/ascend/triton_ops/fla/fused_recurrent.py": "dd13b4d1f19485c4db8f1b6540bdf2f4e5cbf1b5cad70a917cb4cd7f20f91faa",
+    "tests/pytorch/ascend/hardware/test_gdn_state_writeback.py": "0b4dbd87e6b38a65fc2bdd622cbb28c6ecfcfbe57afad7dae769113456765e76",
+    "requirements/ascend_triton_npuir2.txt": "6df3e58daef083e3b947dd2760d6f169c06f6ea6f03cd7e10aebee3f4e21bdcd",
+    "docs/en/get_started/ascend/get_started.md": "c3dc67411116fdc566a233ed375aec4ae579b02dad17eb1b8a899b77baf9749c",
+    "docs/zh_cn/get_started/ascend/get_started.md": "d8af04cd3b9863067dbc3f60de6a0527f194f32541435415b8ee86fb38b40e37"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "label": "pr6-new-mtp-r0",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-pr6",
+  "venv": "/root/workspace/a3-mtp-ray-investigation-20261116/envs/upgrade5-full322p2",
+  "returncode": 0,
+  "elapsed_seconds": 137.63246183801675
+}
+2026-11-16 03:26:08,517 - lmdeploy - INFO - async_engine.py:606 - session=17, input_tokens=29, max_new_tokens=64, prep=True
+2026-11-16 03:26:08,517 - lmdeploy - INFO - async_engine.py:606 - session=18, input_tokens=20, max_new_tokens=64, prep=True
+2026-11-16 03:26:08,518 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=24, max_new_tokens=64, prep=True
+2026-11-16 03:26:08,518 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=30, max_new_tokens=64, prep=True
+2026-11-16 03:26:08,519 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-16 03:26:08,519 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-16 03:26:09,738 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 03:26:09,738 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-16 03:26:09,830 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 5
+2026-11-16 03:26:09,830 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-16 03:26:09,830 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-16 03:26:09,831 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 25, output_tokens 64
+2026-11-16 03:26:09,831 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 18, output_tokens 64
+2026-11-16 03:26:09,831 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-16 03:26:09,875 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 03:26:09,876 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-16 03:26:09,905 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 03:26:09,906 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 30, output_tokens 64
+CASE batch-eight-repeat OK 1.4148517689900473
+2026-11-16 03:26:10,048 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 03:26:10,048 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 03:26:10,049 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 03:26:10,054 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(DeepTraceWorker pid=1925685)[0m 2026-11-16 03:26:10,053 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(DeepTraceWorker pid=1925771)[0m 2026-11-16 03:26:10,052 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1924672 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/pr6-new-mtp-r0.json

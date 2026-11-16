@@ -1,0 +1,35 @@
+{
+  "label": "pr6-old-mtp-r1",
+  "cwd": "/root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-pr6",
+  "venv": "/root/workspace/a3-mooncake-pr5030-20261113/envs/native",
+  "returncode": 0,
+  "elapsed_seconds": 77.89147336996393
+}
+2026-11-16 03:27:21,132 - lmdeploy - INFO - async_engine.py:606 - session=19, input_tokens=24, max_new_tokens=64, prep=True
+2026-11-16 03:27:21,133 - lmdeploy - INFO - async_engine.py:606 - session=20, input_tokens=30, max_new_tokens=64, prep=True
+2026-11-16 03:27:21,133 - lmdeploy - INFO - request.py:416 - Receive ADD_SESSION Request: 8
+2026-11-16 03:27:21,133 - lmdeploy - INFO - request.py:416 - Receive ADD_MESSAGE Request: 8
+2026-11-16 03:27:22,438 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 03:27:22,438 - lmdeploy - INFO - async_engine.py:810 - session 17 finished, reason "length", input_tokens 29, output_tokens 64
+2026-11-16 03:27:22,525 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 5
+2026-11-16 03:27:22,526 - lmdeploy - INFO - async_engine.py:810 - session 19 finished, reason "length", input_tokens 24, output_tokens 64
+2026-11-16 03:27:22,526 - lmdeploy - INFO - async_engine.py:810 - session 18 finished, reason "length", input_tokens 20, output_tokens 64
+2026-11-16 03:27:22,527 - lmdeploy - INFO - async_engine.py:810 - session 15 finished, reason "length", input_tokens 25, output_tokens 64
+2026-11-16 03:27:22,527 - lmdeploy - INFO - async_engine.py:810 - session 14 finished, reason "length", input_tokens 18, output_tokens 64
+2026-11-16 03:27:22,527 - lmdeploy - INFO - async_engine.py:810 - session 13 finished, reason "length", input_tokens 27, output_tokens 64
+2026-11-16 03:27:22,570 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 03:27:22,570 - lmdeploy - INFO - async_engine.py:810 - session 16 finished, reason "length", input_tokens 22, output_tokens 64
+2026-11-16 03:27:22,600 - lmdeploy - INFO - request.py:416 - Receive END_SESSION Request: 1
+2026-11-16 03:27:22,600 - lmdeploy - INFO - async_engine.py:810 - session 20 finished, reason "length", input_tokens 30, output_tokens 64
+CASE batch-eight-repeat OK 1.4925170720089227
+2026-11-16 03:27:22,775 - lmdeploy - INFO - engine_loop.py:753 - EngineLoop wait_tasks cancelled.
+2026-11-16 03:27:22,775 - lmdeploy - INFO - ray_executor.py:500 - RayExecutor DP[0] wait_tasks cancelled.
+2026-11-16 03:27:22,776 - lmdeploy - INFO - engine.py:682 - Engine main loop cancelled.
+2026-11-16 03:27:22,782 - lmdeploy - INFO - engine.py:544 - Cleanup executor.
+[36m(DeepTraceWorker pid=1934638)[0m 2026-11-16 03:27:22,779 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(DeepTraceWorker pid=1934639)[0m 2026-11-16 03:27:22,780 - lmdeploy - INFO - guided_process.py:106 - clear guided processors, total_processors=0
+[36m(DeepTraceWorker pid=1934639)[0m /root/workspace/a3-mtp-ray-investigation-20261116/lmdeploy-pr6/lmdeploy/pytorch/backends/ascend/op_backend.py:621: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:423.)
+[36m(DeepTraceWorker pid=1934639)[0m   torch.remainder(cache_seqlens, state_slots),
+/usr/local/python3.12.13/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1934089 is still running
+  _warn("subprocess %s is still running" % self.pid,
+SAVED /root/workspace/a3-mtp-ray-investigation-20261116/results/pr6-old-mtp-r1.json

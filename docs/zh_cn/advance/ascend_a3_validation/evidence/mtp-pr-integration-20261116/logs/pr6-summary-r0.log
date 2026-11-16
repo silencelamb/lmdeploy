@@ -1,0 +1,62 @@
+{
+  "source_head": "85a0581228ad33a695430a1f43a47358a8258131",
+  "reference": "results/mtp-stage1-suite-r0.json",
+  "policy": "num_stages = 1 if cache_seqlens_rb is not None else 3",
+  "hardware": {
+    "old_npuir_1_2_042c923d": 6,
+    "new_npuir_2_0_efb71415": 6
+  },
+  "cpu": {
+    "passed": 32,
+    "skipped": 1
+  },
+  "mtp": [
+    {
+      "label": "pr6-old-mtp-r0",
+      "responses": 21,
+      "token_sequences_exact": 21,
+      "top5_scores_bitwise_exact": 21,
+      "generated_tokens": 1344,
+      "recorded_score_values": 6720,
+      "source_head": "85a0581228ad33a695430a1f43a47358a8258131",
+      "dlinfer_modules": []
+    },
+    {
+      "label": "pr6-old-mtp-r1",
+      "responses": 21,
+      "token_sequences_exact": 21,
+      "top5_scores_bitwise_exact": 21,
+      "generated_tokens": 1344,
+      "recorded_score_values": 6720,
+      "source_head": "85a0581228ad33a695430a1f43a47358a8258131",
+      "dlinfer_modules": []
+    },
+    {
+      "label": "pr6-new-mtp-r0",
+      "responses": 21,
+      "token_sequences_exact": 21,
+      "top5_scores_bitwise_exact": 21,
+      "generated_tokens": 1344,
+      "recorded_score_values": 6720,
+      "source_head": "85a0581228ad33a695430a1f43a47358a8258131",
+      "dlinfer_modules": []
+    },
+    {
+      "label": "pr6-new-mtp-r1",
+      "responses": 21,
+      "token_sequences_exact": 21,
+      "top5_scores_bitwise_exact": 21,
+      "generated_tokens": 1344,
+      "recorded_score_values": 6720,
+      "source_head": "85a0581228ad33a695430a1f43a47358a8258131",
+      "dlinfer_modules": []
+    }
+  ],
+  "compiler_profile": "Optional triton-ascend==3.2.2.post2 for an existing compatible runtime; legacy Docker unchanged.",
+  "performance": "Previous measured results retained with their original source/compiler attribution; no new performance benchmark in this integration.",
+  "limitations": [
+    "CPU18 exact callback still needs privileged host capture; no affinity or Ray RPC order change shipped.",
+    "No full Docker/CANN9.2 runtime upgrade certification or new HTTP throughput result.",
+    "NVIDIA CI/full-model coverage remains attributed to its actual tested commit."
+  ]
+}

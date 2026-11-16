@@ -10,7 +10,7 @@
 
 最新复查：[Agents gated norm 性能定位](gated_norm_performance_20261116.md)。实际旧/新 NPU kernel 二进制相同，交替对照未稳定复现原来的 C4 −5.15%；流式长停顿已在主机输入提交等待处复现，完整证据与尚未解决的限制单列。
 
-继续定位：[MTP 贪婪验证与在线 Ray RPC](mtp_ray_investigation_20261116.md)。897 个请求级验证结果全部符合贪婪规则，首次分歧前 target logits 已不同；真实 HTTP C4 捕获约 484 ms 的共享停顿，主要时间在 worker 输入提交方法开始之前；纯 Ray CPU 对照也出现数百毫秒等待。算子级数值来源、Ray 内部触发条件与 H200 对照仍待完成。
+最新交付：[MTP编译器根因、升级验证与PR集成](mtp_ray_investigation_20261116.md)。状态缓冲与同步事件轮转层级错配已定位，官方NPUIR2.0.0验证通过；circular GDN单缓冲修复已纳入PR #5134的`85a05812`。最终PR源码在旧/新编译器下各6项NPU回归、各两轮21响应的完整MTP重复性通过。CPU18的具体softirq/tasklet回调仍待有权限的宿主机取证，H200对照未完成，亲和性规避不是永久修复。
 
 2026-11-14 两个 fork 的迁移主分支已由 `codex/ascend-a3-native` 正式改名为 `dev/ascend-a3-native`；提交历史保留，当前说明和链接已更新。原始证据中的旧分支名是当时的记录，不作回写。Mooncake 集成分支和报告分支沿用原名。
 
@@ -24,7 +24,7 @@
 | 重构后性能观察          | 原 C4 −5.15% 未稳定复现；实际 kernel 二进制相同；同 worker 8 对交替测量 C1/C4 吞吐中位数变化 −1.40%/+10.88%，区间较宽                          | [性能定位](gated_norm_performance_20261116.md)：主机提交等待已复现，未宣称性能全面通过                                               |
 | 原生 Ascend 启动        | 延迟导出的 callable 被同名子模块覆盖；`6421cefe` 修复，CPU contracts 33/33 通过                                                                | 已修复                                                                                                                               |
 | 非 MTP 数值与缓存       | Sage/Agents 的已记录 token ID、top-k 集合及分数按位一致；真实 prefix 命中；两个模型 261845-token 检索通过                                      | 已测场景通过；原始输出的二进制复核也通过                                                                                             |
-| Sage MTP 长生成         | 基线已有同类非确定性；固定种子重复中基线自身 14/21、native 自身 13/21 一致，原新旧对比 13/21                                                   | 作为基线也存在的非阻塞观察，不认定为已确认的新增迁移回归；不计为按位通过                                                             |
+| Sage MTP 长生成 | 历史基线也不稳定；现已定位到NPUIR自动多缓冲状态写回错误。PR修复在旧/新编译器各两轮21响应及top5分数逐位一致 | `85a05812`纳入circular单缓冲和硬件回归；已测范围通过，其他MTP配置仍未覆盖 |
 | Agents 固定批次引擎对照 | 同请求、同输出长度的 pipeline 对照中，28/28 token 序列一致                                                                                     | 已测场景通过                                                                                                                         |
 | Agents C1 TTFT p95      | 两轮 +5.96%/+5.07%，约 39/35 ms，小样本尾部分位数                                                                                              | 保留观察，不宣称已修复                                                                                                               |
 | Mooncake 0.3.13.post1   | 独立分支使用 PR #5030 适配；fabric 真正写读、跨实例 KV 命中/GDN 状态恢复通过；51/51 对应响应与 2040 个分数完全一致                             | 此路径通过；旧“宿主驱动阻塞”判断已被取代                                                                                             |
@@ -38,7 +38,7 @@
 
 | 仓库 / 分支                                                                                                                                  | 发布源码 HEAD                                                                                         | 用途                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [LMDeploy `pr/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/pr/ascend-a3-native)                                           | [`5f1b1b3c`](https://github.com/silencelamb/lmdeploy/commit/5f1b1b3c12b1c198813f65275f778c7ad292fb02) | 基于最新上游整理的纯迁移 PR；不含完整对比文档                     |
+| [LMDeploy `pr/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/pr/ascend-a3-native)                                           | [`85a05812`](https://github.com/silencelamb/lmdeploy/commit/85a0581228ad33a695430a1f43a47358a8258131) | 基于最新上游整理的迁移、norm重构与GDN修复 PR；不含完整对比文档                     |
 | [LMDeploy `dev/ascend-a3-native`](https://github.com/silencelamb/lmdeploy/tree/dev/ascend-a3-native)                                         | [`7d984d0a`](https://github.com/silencelamb/lmdeploy/commit/7d984d0abce61849237d436ac4243fc964e93e7b) | 原迁移、已测修复、测试隔离、平台名称与编译策略说明；不含 PR #5030 |
 | [dlinfer `dev/ascend-a3-native`](https://github.com/silencelamb/dlinfer/tree/dev/ascend-a3-native)                                           | [`25b81c69`](https://github.com/silencelamb/dlinfer/commit/25b81c69cde38e61afc52c50ea92b1d625793db8)  | patch 清理 + A3 独立功能说明                                      |
 | [LMDeploy `codex/ascend-a3-native-mooncake`](https://github.com/silencelamb/lmdeploy/tree/codex/ascend-a3-native-mooncake)                   | [`2c85cdc8`](https://github.com/silencelamb/lmdeploy/commit/2c85cdc888e313c4c32a15e7f7b2a81cf4d95d2b) | 原生迁移 + 同事 PR #5030 的独立集成验证                           |
