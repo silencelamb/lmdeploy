@@ -49,7 +49,7 @@ Sage/Agents 初始四种 eager/graph × prefix off/on 配置均有两次全新�
 | InternDecision | 用户指定 Intern-Decision-4B `38c9dafb…`，BF16 TP1 | hub 无完整本地权重；官方固定 revision 下载中。决策评分任务不支持 MTP |
 | Sage-A1.5 | `ee49fa73…`，15 分片，BF16 TP1 | 初始 profile 分数不一致已定位到缓存；matched profile 执行中 |
 | Agents-A1 | `604894d0…`，14 分片，BF16 TP1 | 同上 |
-| Intern-S2 | 用户指定 Intern-S2-397B-FP8 `31b460c8…`，95 分片约 406 GB | **未验证**：指定 hub 中仅有 BF16/Preview FP8；不以其替代。外网下载持续断流，已询问精确本地路径 |
+| Intern-S2 | 用户随后授权的 Intern-S2-Preview-397B-FP8 `b9b98067…`，96分片，TP4 | 完整文件已验证，整模型对照执行中；版本明确绑定 Preview |
 | GLM-5.3 | 官方 FP8 `e0b07fd2…`，141 分片，计划 TP8 | 待执行 |
 
 已对四个现有完整 checkpoint 的全部 271 个文件实际读取并计算 SHA256，总计约 1.226 TB；读取前后 size/mtime 稳定，232 个 safetensors 的实测 SHA256 与 HF blob 名一致。
@@ -67,3 +67,18 @@ Sage/Agents 初始四种 eager/graph × prefix off/on 配置均有两次全新�
 判据在运行前写入 `ACCEPTANCE.md`：数值零容差通过后，至少5对预热后AB/BA，持续 >5% 且超出配对噪声需定位；区分算子/target/pipeline/HTTP。当前尚无合格完整性能结论。未向实现 PR 添加报告或调优规避，未自动合并 PR。
 
 后续将追加最终矩阵、逐轮性能与发布证据索引。
+
+已发布阶段证据：[文件/SHA256清单](evidence/cuda-h200-20261116/manifest.json)，
+[分卷1](evidence/cuda-h200-20261116/evidence.tar.gz.part001)、
+[分卷2](evidence/cuda-h200-20261116/evidence.tar.gz.part002)、
+[分卷3](evidence/cuda-h200-20261116/evidence.tar.gz.part003)。下载后按编号拼接再解压。
+归档内每个文件均按归档实际字节重新核对 SHA256；超过阈值的完整逐层 tensor 留在本机，清单明确标为 `published=false` 并给出本机路径与哈希，未声称它们已上传。
+
+### 14:20 阶段更新
+
+- Sage-A1.5 / Agents-A1：`matched-f64` 的非 MTP 与 MTP3，均完成 eager/graph × prefix off/on 四配置；每配置各两次全新进程，双侧自重复和两组跨源码对照全部逐 bit 一致。每模型共 8 配置，每配置每轮 1408 token / 7040 分数。prefix 长请求重放实测命中 32512 个 token。
+- 所有已完成配对实际分配的 KV block 数（不仅配置的 fraction）亦一致，见实际 cache 审计。
+- 未修改的基线整模型使用原 PR 的缓存，可复现原 PR 全部 1408 token / 7040 分数；原始跨缓存差异的源码无关归因已有完整模型交叉控制，不仅是小算子推断。
+- 用户补充授权用 **Intern-S2-Preview-397B-FP8** 作为 Intern-S2 覆盖。固定 `b9b98067e5a0cea541b9e4a2739c0aa7a5ddb667`，96 分片约408 GB，完整文件 SHA256 已保存；TP4 使用 GPU0–3，正在执行完整模型矩阵。该结果绑定 Preview 版本。
+- Decision CPU/协议合同另在共同基线与当前 HEAD 各执行：281 passed、9 skipped；不作为完整权重验证。
+- 算子性能：SiLU/sigmoid × rows1/128/864/4096 × eager/graph，每格5对AB/BA，共160原始样本。各格中位配对差值约−1.46%至+0.22%，无持续>5%；eager包含Python/launch，graph为100次调用图的重放平均。这不替代整模型性能。
