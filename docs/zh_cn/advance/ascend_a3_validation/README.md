@@ -6,7 +6,7 @@
 
 原生迁移已提交：[InternLM/lmdeploy #5134](https://github.com/InternLM/lmdeploy/pull/5134)。范围与本轮检查见 [PR 整理记录](native_pr_20261115.md)，完整对比报告通过链接提供，未加入 PR。
 
-最新交付：PR HEAD为`f64ab506`，Docker与依赖固定到CANN9.1.0，3个由PR引入的sampling单测异常、两条失效来源链接及GitCode构建依赖问题已修复。最新A3 Docker和lint CI通过；完整A100单测仍在执行，Jetson继承的cuDSS ABI问题单列。[CI归因与Docker配套](mtp_ray_investigation_20261116.md#ci修复与cann91-docker配套)记录基线对照与回归；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接交给GPU环境执行。CANN9.2升级已停止。
+最新交付：PR HEAD为`f64ab506`，Docker与依赖固定到CANN9.1.0，3个由PR引入的sampling单测异常、两条失效来源链接及GitCode构建依赖问题已修复。最新A3 Docker、lint、完整A100单测（6427通过/400跳过）和ETE均通过；CUDA矩阵2项通过、1项runner失联后正在单独重跑、5项连带取消未完成，Jetson继承的cuDSS ABI问题单列。[最新CI结果](mtp_ray_investigation_20261116.md#ci首轮完成结果与runner失联复跑)保留归因与限制。[CI归因与Docker配套](mtp_ray_investigation_20261116.md#ci修复与cann91-docker配套)记录基线对照与回归；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接交给GPU环境执行。CANN9.2升级已停止。
 
 本次补充：[RMSNormGated 标准接口重构、历史来源与完整调用者验证](gated_norm_refactor_20261115.md)。公共层现在管理权重，后端只计算；明确补齐 sigmoid/dtype，保留旧 SiLU 数值路径。
 
@@ -87,3 +87,4 @@ Git 中保存选定的数值摘要、CSV、JUnit XML、运行命令、环境/模
 ## 维护方式
 
 新增测试使用新的日期/运行 label，保存完整配置和原始数据，再更新本总览；不覆盖旧失败记录。新的集成依赖或性能优化分别使用独立分支和结果集。将来提 PR 只选择迁移代码分支；若需要给上游补简短验收说明，单独摘取，不 merge 本文档分支。
+

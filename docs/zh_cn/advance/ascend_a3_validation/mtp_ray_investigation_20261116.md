@@ -1,5 +1,7 @@
 # MTP target logits 与 Ray RPC 停顿定位
 
+CI接续：完整A100单测已通过（6427通过、400跳过），ETE也通过；CUDA runner失联与连带取消项见[最新CI结果](#ci首轮完成结果与runner失联复跑)。
+
 日期：2026-11-16，Asia/Shanghai；原始命令、日志时间保留 UTC。
 
 **最新CI/Docker交付：PR现为 `f64ab506`（运行时代码为`111dbf6b`），Dockerfile明确使用CANN9.1.0/Python3.12及匹配依赖。3个sampling单测失败已通过基线对照确认由PR引入，并以`143fa1e6`修复；两条失效来源链接和GitCode浮动依赖也已处理。新提交CI正在执行，尚未宣称全部通过。详见文末“CI修复与CANN9.1 Docker配套”；[GPU验证prompt](gpu_validation_prompt_20261116.txt)可直接复制到GPU环境。CANN9.2升级已按用户决定停止。**
@@ -682,3 +684,25 @@ GPU可以从PR #5134开始，但必须同时固定共同上游基线，使用相
 另取官方9.1 arm64镜像的OCI配置，校验配置blob的SHA256；镜像配置包含CANN9.1、NNAL/ATB ABI1路径，ENTRYPOINT加载对应环境脚本。全新应用venv实际执行安装文档中的`tools/ascend/check_runtime.py --require-kernels`也通过，识别SoC251、Torch2.10.0+cpu、TorchNPU2.10.0.post4和原生Ascend backend。该硬件检查运行在本机9.1环境；没有把无NPU的GitHub镜像构建冒充为新Docker容器内的NPU模型验证。
 
 最新状态、取消任务中的逐文件结果和镜像配置均加入[证据索引](evidence/ci-docker-cann91-20261116/index.json)。旧失败日志与各阶段判断原样保留。
+
+
+### CI首轮完成结果与runner失联复跑
+
+2026-11-16接续核对，PR源码仍为`f64ab506`，没有新增实现修改。本节更新此前“完整A100/ETE仍在运行”的阶段状态。[本轮证据索引](evidence/ci-final-followup-20261116/index.json)保存完整单测/ETE、Docker日志、GitHub annotations、源码对象对照及重跑状态；下载失败也单列保留。
+
+| 检查 | 首轮结果 | 归因与范围 |
+| --- | --- | --- |
+| A100完整unit-test | **6427通过、400跳过、0失败** | [job133107587906](https://github.com/InternLM/lmdeploy/actions/runs/43809426667/job/133107587906)。原3个sampling异常全部消失，新增3项通过；1284条warning如实保留。 |
+| ETE / pr_functions_test | **通过** | [job133107614443](https://github.com/InternLM/lmdeploy/actions/runs/43809426597/job/133107614443)。日志分段为20/13/10/33项通过，两个分段各含1次自动rerun；不代表六模型完整GPU矩阵通过。 |
+| lint、A3 Docker | **通过** | 原通过结果保持；A3构建包含依赖/导入检查及Dive。 |
+| CUDA cu130/Python3.12、cu128/Python3.10 | **通过** | 镜像构建与环境检查完成。 |
+| CUDA cu128/Python3.13 | **失败：GitHub hosted runner失联** | GitHub annotation明确为runner与server失去通信；未留下编译器错误或OOM证据，详见下文。 |
+| 其他5个CUDA矩阵项 | **cancelled，未完成验证** | cu128/Python3.11、3.12及cu130/Python3.10、3.11、3.13。annotations明确因cu128/Python3.13失败被strategy取消，不能按5个独立代码失败计数，也不能计通过。 |
+| Jetson Docker | **失败：既有cuDSS ABI问题** | 镜像构建通过，Torch导入需要`libcudss.so.0`，安装的是提供SONAME1的cuDSS1包；与前述归因一致。 |
+
+CUDA3.13失败的最后日志停在2026-11-16 05:49:24 UTC的TurboMind SM70内核ptxas编译信息；job最终于06:36:03 UTC标记失败。这个时间差不是已经测出的某次编译耗时或OOM发生时刻。runner记录为4个CPU、15.33GiB内存，添加32GiB swap步骤成功；没有实时峰值内存、OOM-killer、内核日志或可判定网络中断原因的证据。因此，**资源压力、runner进程退出及网络中断仍是待验证的候选原因，不能把通用失联提示当成OOM结论。**
+
+本轮核对了CUDA/Jetson Dockerfile、CUDA/common requirements、workflow、build脚本、第三方wheel脚本、setup.py、CMakeLists，以及整个`src`和`cmake` Git tree：均与共同基线`442097e8`的对象SHA相同。可以确定失联发生在未修改的CUDA编译路径；尚无同配置基线镜像重建或runner系统日志，不能据此声称底层根因已完全定位。当前没有新增证据指向Ascend实现回归，不为消除红灯而删除CI、改变同步或混入未验证的构建规避。
+
+已通过GitHub接口单独重跑CUDA3.13，新的[job133270396913](https://github.com/InternLM/lmdeploy/actions/runs/43809426675/job/133270396913)属于attempt2，记录时仍在构建。单项重跑不会补齐另外5个取消项；它们仍需后续恢复验证。Jetson问题按用户要求作为基线依赖问题单列。当前结论是“本PR原有3项单测回归已通过完整CI验证；Docker仍有既有失败及未完成项”，不是所有CI已绿。
+

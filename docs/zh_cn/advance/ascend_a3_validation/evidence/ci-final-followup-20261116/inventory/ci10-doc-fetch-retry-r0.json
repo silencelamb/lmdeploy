@@ -1,0 +1,15 @@
+{
+  "time_utc": "2026-11-16T11:37:21.254473+00:00",
+  "processes": [
+    {
+      "pid": 2089866,
+      "command": "/usr/lib/git-core/git-remote-https https://github.com/silencelamb/lmdeploy.git https://gh-proxy.com/https://github.com/silencelamb/lmdeploy.git ",
+      "action": "terminate own stalled proxy fetch; retry direct per-command, no git global changes"
+    },
+    {
+      "pid": 2089864,
+      "command": "git fetch --no-tags https://github.com/silencelamb/lmdeploy.git refs/heads/docs/ascend-a3-validation-20261114:refs/remotes/ci10-readback/docs ",
+      "action": "terminate own stalled proxy fetch; retry direct per-command, no git global changes"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "time_utc": "2026-11-16T11:43:41.325351+00:00",
+  "head": "f64ab5061153b5c5b63721cf2d8d6f1b41b95104",
+  "first_attempt": {
+    "passed": 6,
+    "failed": 2,
+    "cancelled": 5
+  },
+  "unit_test": {
+    "passed": 6427,
+    "skipped": 400,
+    "failed": 0,
+    "warnings": 1284
+  },
+  "ete": {
+    "conclusion": "success",
+    "section_passed_counts": [
+      20,
+      13,
+      10,
+      33
+    ],
+    "automatic_reruns": 2,
+    "scope": "Selected workflow tests; not six-model GPU certification"
+  },
+  "cuda313": {
+    "status": "hosted runner lost communication",
+    "last_log_utc": "2026-11-16T05:49:24.5545659Z",
+    "job_failed_utc": "2026-11-16T06:36:03Z",
+    "last_activity": "TurboMind SM70 ptxas compilation",
+    "confirmed_oom": false,
+    "underlying_resource_or_network_cause": "unresolved",
+    "rerun_job": 133270396913,
+    "rerun_attempt": 2,
+    "rerun_outcome_at_publication": "in_progress"
+  },
+  "cancelled_matrix": "Five annotations attribute cancellation to cu128/Python3.13 failure",
+  "jetson": "Inherited cuDSS1 SONAME versus Torch libcudss.so.0 requirement; unchanged recipe",
+  "implementation_changes_this_round": false,
+  "limitations": [
+    "No runner kernel/OOM/network telemetry",
+    "No same-configuration CUDA3.13 baseline Docker rebuild on A3",
+    "Five cancelled jobs are not completed validations",
+    "One cancelled-job log download returned unexpected EOF twice; failure retained"
+  ]
+}
