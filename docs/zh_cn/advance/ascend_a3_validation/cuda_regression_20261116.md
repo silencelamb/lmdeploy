@@ -1,5 +1,24 @@
 # PR #5134：H200 CUDA 迁移回归验证
 
+> 执行中。以下主矩阵优先于后面的历史阶段记录；性能尚未完成，不是整项通过声明。
+
+## 当前主矩阵（19:30）
+
+固定共同基线 `442097e83799c2e85df9d6bbce35c7c79ea05dfe`，当前PR `f64ab5061153b5c5b63721cf2d8d6f1b41b95104`。所有数值通过均限定于保存的相同CUDA依赖、GPU与Triton调优缓存。
+
+| 完整模型 | 主验收硬件 | 非MTP | MTP3 | 当前限制 |
+| --- | --- | --- | --- | --- |
+| GLM-5.3-Flash | 单机8×H200，TP8 | 固定70000 cache blocks独占重跑中 | 4配置、双侧2次全新进程通过；实际cache容量一致 | 初轮TP8非MTP资源重叠记录已作废，不计主通过 |
+| Intern-Decision-4B | 单H200，TP1 | 用户路径、固定16000 blocks独占重跑：4配置每轮46响应/57960候选分数全部逐bit一致 | 任务不支持 | 评分不生成token；仍需完成真实prefill graph重放审计 |
+| Sage-A1.5 | 单H200，TP1 | 4配置、双侧2次新进程通过 | 同左 | 正式性能待执行 |
+| Agents-A1 | 单H200，TP1 | 4配置、双侧2次新进程通过 | 同左 | 正式性能待执行 |
+| Intern-S2-Preview-397B-FP8（用户确认版本） | 单机8×H200，TP8 | 4配置、双侧2次新进程通过 | 同左 | 实际cache容量一致；正式性能待执行 |
+| GLM-5.3 | 单机8×H200，TP8，block64 | 21个短/批/混批响应一致；32K长上下文基线/PR均不自重复 | 同类长上下文自重复失败 | 基线默认sparse top-k无序输出问题；不计全模型零容差通过，不做性能通过结论 |
+
+生成模型每种配置每轮23响应、1408 token、7040完整top-5数值；四配置为eager/graph×prefix off/on。新主矩阵机器可读结果保存在本机 `results/primary-matrix.json`，最终归档会更新。原TP4 Flash/S2仅作为补充，不能替代用户要求的TP8。
+
+## 历史阶段与原始证据（保留失败和更正）
+
 执行中，2026-11-16（Asia/Shanghai）。本文件记录实际完成的证据；未完成项不计通过。
 
 ## 固定版本与环境
@@ -82,3 +101,25 @@ Sage/Agents 初始四种 eager/graph × prefix off/on 配置均有两次全新�
 - 用户补充授权用 **Intern-S2-Preview-397B-FP8** 作为 Intern-S2 覆盖。固定 `b9b98067e5a0cea541b9e4a2739c0aa7a5ddb667`，96 分片约408 GB，完整文件 SHA256 已保存；TP4 使用 GPU0–3，正在执行完整模型矩阵。该结果绑定 Preview 版本。
 - Decision CPU/协议合同另在共同基线与当前 HEAD 各执行：281 passed、9 skipped；不作为完整权重验证。
 - 算子性能：SiLU/sigmoid × rows1/128/864/4096 × eager/graph，每格5对AB/BA，共160原始样本。各格中位配对差值约−1.46%至+0.22%，无持续>5%；eager包含Python/launch，graph为100次调用图的重放平均。这不替代整模型性能。
+
+## 用户补充的主验收拓扑
+
+用户要求几百B模型统一单机8卡。本轮后续主验收使用 GLM-5.3-Flash / Intern-S2-Preview-397B-FP8 / GLM-5.3 的 **TP8，GPU0–7**。前述Flash/S2 TP4结果及HTTP试运行只保留为补充证据，不能代替TP8主矩阵或正式性能。TP8重跑使用独立结果名 `matched-f64-tp8`，不覆盖TP4数据。Sage/Agents及Decision的TP1保持不变。
+
+GLM-5.3首次通用block128配置被两版本同一FlashMLA校验拒绝，未进入推理；已保存到`failures/glm-block128`并统一按要求设为64。有效TP8配置的短/批/混批21响应全部一致，但32K长上下文首token分数在**基线与PR各自两次新进程**中也不重复。该项目前是基线重复性问题，不能计通过。已启动所有TP rank的固定chunk KV/位置/indexer/逐层hidden/target-logits采集，保持默认算法，不以确定性模式覆盖原始失败。
+
+## 19:15 资格审计与更正
+
+调度器重启后有一个未随父控制器退出的子队列继续运行。后续审计发现，**初轮Flash TP8非MTP及初轮Decision的实际KV容量不一致**。其数值相等结果保留，但撤销正式合格对照结论；不能用它们满足用户的相同cache条件。原始文件与精确受影响清单保留在`resource-invalidations.json`，没有覆盖或删除。Sage/Agents TP1、此前TP4补充、GLM TP8基线问题诊断、Flash TP8 MTP3、S2 TP8矩阵未受该重叠影响；后两者的每组实际cache block数已核对一致。
+
+启动器现对每个物理GPU使用互斥锁（由子进程继承），同名运行禁止覆盖，并在启动前核对显存空闲。正在独占重跑：Decision单卡TP1、固定16000个block、用户指定目录；Flash非MTP单机TP8、固定70000个block。新结果分别使用`matched-f64-decision-isolated`和`matched-f64-tp8-isolated`标签，并记录实际生效配置。此修正仅控制实验资源与cache容量，未改变模型算法、同步次序或零容差判据。
+
+### GLM长上下文已获得冻结输入的因果证据
+
+所有8个rank的第二个长prefill chunk均已保存。两边input IDs、position IDs、layer0 Q/K/V、有效index score、选中索引集合一致，但索引顺序不同；layer0 attention输出开始不同，后续逐层hidden及target logits不同。
+
+用真实冻结scores、KV和query重放未修改的默认算子：32次selector产生32种索引顺序，集合均相同。分别固定两次原始运行实际产生的顺序，attention各重复3次均逐bit稳定，并分别精确复现原始attention输出。基线和PR源码均复现同一规律，**没有开启deterministic模式、排序后再送入attention、修改kernel或放宽阈值**。原基线的`sparse_index_topk.py`使用原子输出偏移，源码已注明顺序会影响BF16 sparse attention的softmax分块。该问题归属于基线默认算法的长上下文重复性，未混入迁移PR修复，GLM长上下文不计通过。
+
+### Decision固定本机权重
+
+用户指定路径为`/mnt/shared-storage-user/gpfs2-shared-public/huggingface/zskj-hub/models--internlm--Intern-Decision-4B`。21个文件已实测SHA256；模型运行所需的19个文件与已下载官方`38c9dafb…`内容一致，仅README和.gitattributes不同。重跑和后续性能直接使用用户目录。先前首轮数值一致但资源控制不合格的记录仅作历史证据；图配置出现空图警告，已安排独立的真实请求图重放/DOT核查，不仅凭配置名称声称graph覆盖。
