@@ -68,7 +68,7 @@ Native Ascend仍需要TorchNPU、CANN/NNAL/ATB和Triton-Ascend，并保留torch_
 ## 其他已修复项与CI
 
 - 原迁移callable被同名子模块覆盖：直接从定义模块导入，6421cefe修复并有冷启动/导入顺序回归。
-- RMSNormGated统一权重所有权和后端接口，修正Ascend显式sigmoid/dtype处理，CUDA继续使用原FLA计算。
+- RMSNormGated规范化：这次补齐1类算子、3个直接模型调用点，将特殊工厂/平台Module改为公共nn层持有权重、typed BuildSpec和无模型参数的后端实现，对齐已有RMSNorm/LayerNorm组织。Ascend显式sigmoid/dtype处理随参数合同补齐，CUDA继续使用原FLA计算。[设计前后对比](gated_norm_refactor_20261115.md#规范化范围一个算子三个直接模型调用点)。
 - PR新增sampling分支曾引入3个cache_config失败：143fa1e6改按实际NPU tensor处理，不为测试补无关cache配置。当前固定GPU检查中这3项不再失败。
 - CANN9.1安装/镜像对齐并捆绑已验证prefill/L2Norm源码、版权及许可，删除浮动GitCode安装依赖；Jetson单独固定cuDSS ABI并登记动态库目录。
 - 2ccf38a4记录的14/14 CI门禁完成：完整unit7452通过、400跳过，ETE有351次pytest通过记录和1次自动rerun；这不是351个唯一测试函数。CI实际checkout合并预览fea0d6fd，不能把历史模型数据重标到该预览。[全部CI任务、环境与失败恢复](ci_docker_recovery_20261116.md)。

@@ -4,13 +4,44 @@
 
 2026-11-16 补充：[性能定位与 A100 CI 结果](gated_norm_performance_20261116.md)。本文原始测量与失败记录保留；
 新增交替对照没有稳定复现原来的 C4 −5.15%，实际 norm kernel 二进制相同，长停顿在主机提交等待处复现。
-A100 CI 已执行并通过新增 norm 文件的 83 项（含 56 项真实 CUDA/graph），完整 GPU 模型对照仍未完成。
+A100 CI 当时已执行并通过新增 norm 文件的 83 项（含 56 项真实 CUDA/graph），完整 GPU 模型对照尚未完成。
+2026-11-17 更新：后续 H200 完整对照已完成，详见 [GPU 精度与性能报告](cuda_regression_20261116.md)；
+下面保留原始 A3 重构数据及来源，新增设计范围说明，不将旧记录重标为新运行。
 
 本次是在原生迁移 PR [#5134](https://github.com/InternLM/lmdeploy/pull/5134) 上补齐算子组织方式。
 比较对象是冻结的重构前原生 PR `342db85ecff3c0dc864a4bf8613c589c270f4141` 与本次重构，
 最终 PR 提交为 `5f1b1b3c12b1c198813f65275f778c7ad292fb02`，开发分支同步提交为
 `7d984d0abce61849237d436ac4243fc964e93e7b`。不是重新把旧 dlinfer 环境当作本轮基线。历史 dlinfer/native 迁移对照仍见 [原始报告](migration_validation.md)。
 完整报告和原始验证数据只进入 fork 的文档分支。
+
+## 规范化范围：一个算子，三个直接模型调用点
+
+这里需要区分三个计数：
+
+| 计数对象 | 数量与含义 |
+| --- | --- |
+| nn/norm.py中的基础归一化公共Module | 3类：RMSNorm、LayerNorm、RMSNormGated |
+| 本次补齐标准组织方式的算子 | **1类：RMSNormGated**；普通RMSNorm/LayerNorm是已有设计参照，不是本次全部重写 |
+| RMSNormGated的直接模型构造位置 | **3处**：Qwen3NextGatedDeltaNet.norm、Qwen3_5GatedDeltaNet.norm、Glm5NextLinearAttention.o_norm；其派生模型共享这些调用点 |
+
+SiLU、swish、sigmoid是RMSNormGated的activation配置，其中swish是SiLU别名，不是三个独立算子。这里的计数也不把已有量化变体、辅助函数或整个Ascend迁移的其他算子算成此次新增规范化算子。
+
+## 由什么组织方式改成什么组织方式
+
+| 设计维度 | 原有/迁移中间方案 | 最终规范化设计 |
+| --- | --- | --- |
+| 模型创建入口 | build_rmsnorm_gated特殊工厂；CUDA直接返回FLA的FusedRMSNormGated Module，Ascend通过外部patch替换工厂 | 模型统一创建LMDeploy自己的nn.RMSNormGated |
+| 参数所有权 | 由工厂返回的平台Module管理weight；迁移中间方案仍由BuildSpec返回完整Module | 公共nn层创建、持有和加载weight；后端只接收weight参与计算 |
+| 平台选择 | 工厂内部/外部monkey patch决定返回哪种Module | 不可变RMSNormGatedBuildSpec声明hidden_size、eps、activation，由OpsBackend.build_op选择实现 |
+| 计算接口 | 平台Module与模型参数管理耦合 | RMSNormGatedImpl.forward(x, weight, z, residual, prenorm, residual_in_fp32)，无模型Parameter的后端实现 |
+| 文件组织 | nn/gated_delta.py的特殊工厂，迁移中间阶段另有default/gated_norm.py | 接口与实现分别归入nn/norm.py、backends/norm.py及平台norm.py，与已有普通norm一致 |
+| checkpoint兼容 | norm.weight / o_norm.weight | 保持原key，不增加impl.weight层级；scale仍直接乘weight，不改为1+weight |
+| CUDA计算 | FLA Module内部调用FLA functional | 继续调用同一个FLA functional，并保留原调优workaround与参数语义；改变组织方式，不替换CUDA算法 |
+| Ascend配置传递 | 旧工厂忽略显式activation/dtype，固定BF16 Module | 公共层按请求dtype创建权重；BuildSpec/Impl显式传递activation，正确支持GLM-5.3-Flash的sigmoid |
+
+所以，sigmoid/dtype处理是规范化过程中补齐的参数合同，不是这次改动的全部目的。主要设计变化是将“模型参数与加载”“算子合同”“设备计算”分开，使新增平台不再需要替换模型工厂，也不会把平台专有Module结构泄漏到checkpoint命名中。
+
+对应代码：[公共Module](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/nn/norm.py#L30)、[BuildSpec与Impl合同](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/norm.py#L44)、[CUDA复用的FLA adapter](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/default/norm.py#L56)、[Ascend实现](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/ascend/norm.py#L26)。
 
 ## 谁引入了原来的组织方式
 
