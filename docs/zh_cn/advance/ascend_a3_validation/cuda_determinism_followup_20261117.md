@@ -146,16 +146,35 @@ Flash原有配置见[输出投影](https://github.com/InternLM/lmdeploy/blob/442
 
 本节是官方仓库固定SHA的源码审计，没有运行这些引擎做完整模型对比。vLLM固定61c3895fc937b4ffc2a59abe188959de1e459c8a，SGLang固定f534dbaeb2d07c67951d905c628d2888e1ca1673，TensorRT-LLM固定62a91924391ee7fbd66cd000179629d0a90db1ff；不把结论无条件套到其他版本、硬件或通信后端。
 
-| 引擎及被核对路径 | 输入/输出与跨卡读取的数据类型 | 内部累加 |
-| --- | --- | --- |
-| vLLM常见CUDA CustomAllreduce | FP16/BF16输入仍以原类型在共享/P2P缓冲区读取，最后存回原类型 | packed_t的A是float数组；全部rank输入转FP32累加后再转回 |
-| SGLang常见CUDA CustomAllreduce | 同样保留FP16/BF16输入与输出 | 同样使用FP32累加器 |
-| TensorRT-LLM当前ar_fusion oneshot/twoshot | 保留输入DType的通信缓冲区与输出 | 当前源码默认FP32累加；ALL_REDUCE_FUSION_KERNEL_ACC_FP32=0可退回原dtype累加 |
-| 三者各自的NCCL路径 | 按输入tensor dtype调用ncclAllReduce，没有统一、自动升FP32的承诺 | 由选中的NCCL内核决定；不能把“引擎支持FP32自定义归约”套到所有NCCL调用 |
+| 引擎及被核对路径 | 输入/输出与跨卡读取的数据类型 | 内部累加 | 配置边界 |
+| --- | --- | --- | --- |
+| vLLM所查CUDA CustomAllreduce | FP16/BF16输入仍以原类型在共享/P2P缓冲区读取，最后存回原类型 | packed_t的A是float数组；读取后在寄存器中转FP32，全部rank加完后转回 | 所查模板固定float累加器；一/两阶段均按绝对rank输入顺序 |
+| SGLang所查CUDA CustomAllreduce | 同样保留FP16/BF16输入与输出 | 同样只在内核内部使用FP32累加器 | 所查两阶段仍有owner-first输入顺序，FP32本身不保证保序 |
+| TensorRT-LLM所查ar_fusion oneshot/twoshot | 保留输入DType的通信缓冲区与输出 | 默认FP32内部累加，最后转回 | ALL_REDUCE_FUSION_KERNEL_ACC_FP32=0可退回原dtype；这是TensorRT-LLM的开关，不是NCCL开关 |
+| 本次Intern-S2：NCCL2.27.5 BF16 RING_LL | BF16输入、跨卡部分和与输出 | BF16加法，每一步结果回到BF16；没有贯穿全部rank的FP32累加器 | 标准API没有独立acc_dtype；改变Ring/Tree等选择不等于配置累加精度 |
+| 三个外部引擎各自的NCCL路径 | 按输入tensor dtype调用ncclAllReduce，没有统一、自动升FP32的承诺 | 由选中的NCCL内核决定 | 不能把CustomAllreduce或fused AllReduce的精度规则套到所有NCCL调用 |
 
 依据：[vLLM累加器与packed_reduce](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_collective_common.cuh#L83)、[SGLang对应实现](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/aot/csrc/allreduce/custom_all_reduce.cuh#L69)、[TensorRT-LLM累加实现](https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu#L378)及[默认开关](https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu#L723)。NCCL dtype传递分别见[vLLM](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/distributed/device_communicators/pynccl.py)、[SGLang](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/distributed/device_communicators/pynccl.py#L161)、[TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/thop/allreduceOp.cpp#L433)。
 
 FP32寄存器累加并不要求先把整个BF16通信tensor转为FP32：自定义kernel可以读取各rank的BF16贡献，在本地FP32寄存器中完成求和，再只舍入一次。它与前节诊断用的“整块转FP32再调用NCCL”有不同的通信量、工作区和性能取舍，不能把两者都说成payload翻倍。实际速度和拓扑适用性必须测量。
+
+### NCCL累加精度与可配置范围
+
+本次实际调用是NCCL2.27.5的`AllReduce_Sum_bf16_RING_LL`。固定版本[v2.27.5-1 / 3ea7eedf的BF16 Sum实现](https://github.com/NVIDIA/nccl/blob/3ea7eedf3b9b94f1d9f99f4e55536dfcbd23c1ca/src/device/reduce_kernel.h#L422)在H200对应架构使用`__hadd` / `__hadd2`，返回值仍是BF16。旧架构的备用表达式即使临时把两个操作数转为float，也立即将每次加法结果转回BF16；它不等于保留一个FP32累加器直到所有rank求和完成。前述CPU逐步BF16舍入参考精确匹配实际输出，为这次具体路径提供了独立验证。
+
+[NCCL2.27.5标准AllReduce API](https://docs.nvidia.com/deeplearning/nccl/archives/nccl_2275/user-guide/docs/api/colls.html#ncclallreduce)只有通信/缓冲区的`datatype`，没有独立的`acc_dtype`参数。该版本公开的[NCCL_ALGO / NCCL_PROTO配置](https://docs.nvidia.com/deeplearning/nccl/archives/nccl_2275/user-guide/docs/env.html#nccl-algo)选择算法/协议，不是“保留BF16通信、把Ring内部改为FP32累加”的开关；TensorRT-LLM的`ALL_REDUCE_FUSION_KERNEL_ACC_FP32`也不会修改NCCL。
+
+如果仍走标准NCCL并显式将整个tensor转为FP32，通信缓冲区和对应payload也变为FP32，每个元素从2字节变成4字节；最后再转回BF16。这是原冻结实验中的诊断控制，未合入迁移PR。若希望保持BF16跨卡读取而只将累加升为FP32，需要类似上述CustomAllreduce的实现或经过核实的特定通信路径，不能仅改一个未存在的NCCL累加精度选项。这个控制也没有自动固定rank求和顺序。
+
+**不能反过来泛称“NCCL所有路径都只做BF16累加”。** 同一固定源码的NVLS/multimem路径对FP16/BF16可使用[`.acc::f32`硬件归约指令](https://github.com/NVIDIA/nccl/blob/3ea7eedf3b9b94f1d9f99f4e55536dfcbd23c1ca/src/device/reduce_kernel.h#L842)，结果仍返回原数据类型。这是另一条硬件/算法路径；不代表本次已采到的Ring内核，也不是“端到端FP32累加且rank0→7固定顺序”的通用保证。本次没有切换NVLS来替换原验收数据。
+
+### vLLM固定rank顺序的具体位置
+
+所查固定SHA的[一阶段路径](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_all_reduce.cuh#L9)直接传入按rank登记的指针；[两阶段路径](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_all_reduce.cuh#L44)同样设置`ptrs[i] = _dp->ptrs[i]`。实际[packed_reduce求和循环](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_collective_common.cuh#L291)先取rank0，再按1到N−1累加，全部完成后才downcast。两阶段旋转的是结果分发的`tmps`，不是求和输入次序。
+
+因此，用户所说“CustomAllreduce也是内部才FP32累加”是正确的：通信/共享缓冲区可以仍是BF16，FP32是kernel内部的累加器。只有在各rank对同一逻辑元素的局部贡献已经一致、并确实选中这条路径时，固定输入rank顺序才消除本次这种跨chunk求和次序变化；它不能补救上游GEMM已随batch变化的局部结果。
+
+本次重读的五份官方源码及固定URL、字节数、SHA256/Git blob校验值见[通信实现复核清单](evidence/performance-review-20261117/collective-source-manifest.json)。这次是源码复核，没有运行外部引擎或新增通信性能测量。
 
 精度提升本身也不是绝对保序：所查1stage路径对所有元素按固定rank顺序求和；SGLang所查2stage路径仍按分块负责rank旋转读取顺序，并且按消息大小切换实现。本轮重新读取所引用的vLLM文件，2stage的输入指针为ptrs[i]=_dp->ptrs[i]，已使用绝对rank顺序，轮转的是stage2分发使用的tmps；此前将vLLM这一实现也描述成owner-first求和的文本予以更正。要承诺整个模型严格跨batch一致性，仍须约束其他通信后端选择及上游GEMM等，不能仅凭某一归约路径的float累加器推断。[vLLM重新核对的代码](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_all_reduce.cuh#L44)。
 

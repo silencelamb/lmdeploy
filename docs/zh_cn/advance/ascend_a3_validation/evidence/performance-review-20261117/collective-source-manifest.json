@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-17",
+  "nccl_tag": "v2.27.5-1",
+  "nccl_tag_commit": "3ea7eedf3b9b94f1d9f99f4e55536dfcbd23c1ca",
+  "source_audit_only": true,
+  "other_engines_executed": false,
+  "sources": [
+    {
+      "file": "vllm-custom-all-reduce.cuh",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_all_reduce.cuh",
+      "bytes": 14645,
+      "sha256": "02cde1e6f32d5228c25cbbc3076a8f2a0ccf06ff16954425792aa06f1730f045",
+      "git_blob_sha1": "1a4d12ec3269f8b169aea13372f613217253de8c"
+    },
+    {
+      "file": "vllm-custom-collective-common.cuh",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_collective_common.cuh",
+      "bytes": 9841,
+      "sha256": "42ea189bad64b6e49fdf9c733d402bfea9f62bfd8ae2b3dee9fb437b3904adb9",
+      "git_blob_sha1": "8c6a98149d0f4422f2298c705cebd7db85147c7d"
+    },
+    {
+      "file": "nccl-reduce-kernel.h",
+      "url": "https://raw.githubusercontent.com/NVIDIA/nccl/3ea7eedf3b9b94f1d9f99f4e55536dfcbd23c1ca/src/device/reduce_kernel.h",
+      "bytes": 40867,
+      "sha256": "46afe5df2e22fc0be8c5a33735ab228a7e6039e04a51d4557662344082ca70a1",
+      "git_blob_sha1": "d36dfe5a77000caf8638abc2db53ab9f1ac7ae8b"
+    },
+    {
+      "file": "sglang-custom-all-reduce.cuh",
+      "url": "https://raw.githubusercontent.com/sgl-project/sglang/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/aot/csrc/allreduce/custom_all_reduce.cuh",
+      "bytes": 29947,
+      "sha256": "78133d57b21cdfced64427ad569cbe55f83a2ba76861b49abfd6619af457b80d",
+      "git_blob_sha1": "669a9914a1273abf3dfb6ec41fb71c929444624a"
+    },
+    {
+      "file": "trtllm-all-reduce-fusion.cu",
+      "url": "https://raw.githubusercontent.com/NVIDIA/TensorRT-LLM/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu",
+      "bytes": 35787,
+      "sha256": "919b09b6d0a82610ddd8c3ea2b9ec5d558afb0128915fe2d2054e9b06fa3926d",
+      "git_blob_sha1": "a70e1b604ec26e72ca305c3636b076147922a0f7"
+    }
+  ],
+  "api_docs": "https://docs.nvidia.com/deeplearning/nccl/archives/nccl_2275/user-guide/docs/api/colls.html",
+  "environment_docs": "https://docs.nvidia.com/deeplearning/nccl/archives/nccl_2275/user-guide/docs/env.html"
+}

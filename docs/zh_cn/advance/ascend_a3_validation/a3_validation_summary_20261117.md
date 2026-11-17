@@ -79,6 +79,8 @@ Native Ascend仍需要TorchNPU、CANN/NNAL/ATB和Triton-Ascend，并保留torch_
 
 ## 性能与未完成范围
 
+**性能没有整体验收为全部对齐。** 原dlinfer→native的HTTP C4流式输出速度，Sage两组为−12.18%/−5.87%，Agents两组为−7.13%/−8.99%；Agents C1 TTFT p95另有+5.96%/+5.07%的小样本信号。这些历史指标尚未完成因果归因，也没有在当前HEAD上完成相同新旧HTTP复测；后续native norm对照或CPU18绑核不能代替它们。详见[性能复核：原始大幅变化、比较范围与未关闭项](performance_review_20261117.md#a3)。
+
 原Agents norm重构C4吞吐−5.15%等信号在同worker交错对照中未稳定重现；实际旧/新norm NPU二进制相同。现有证据未确认norm因果性能回归，但不能写成端到端性能全部通过。逐轮性能及替换实验首捕获失败保存在[性能调查](gated_norm_performance_20261116.md)。
 
 约半秒主机停顿是独立问题，已有CPU18调度/softirq和纯C++证据，具体回调及永久修复仍开放；详见[独立Ray/主机延迟报告](ray_host_latency_20261117.md)。CPU亲和性、GC关闭和await改序都不是本PR交付的修复。
