@@ -2,6 +2,8 @@
 
 进一步CUDA机制分析：[GLM原子索引、3+1动态合批与S2 BF16 Ring归约](cuda_determinism_followup_20261117.md)。新增冻结算子证据，不替代完整模型修复验收。
 
+待执行的独立任务：[GLM-5.3保序与S2确定性TP归约修复Prompt](cuda_determinism_independent_task_prompt_20261117.md)。基线问题另开实现分支，单机8卡验收，不混入迁移PR。
+
 H200 CUDA固定版本对照已收尾：[完整报告与原始证据](cuda_regression_20261116.md)。固定442097/f64；匹配调优缓存下五个完整checkpoint的迁移对照通过，GLM-5.3长上下文为基线问题；HTTP动态合批/排列、prefix跨命中状态等价性和插桩退出限制单列。该结果不等于所有配置全通过。
 
 更新：2026-11-16，Asia/Shanghai。原始运行时间保留 UTC，便于与日志对应。

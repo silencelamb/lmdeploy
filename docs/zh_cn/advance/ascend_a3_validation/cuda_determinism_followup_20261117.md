@@ -161,6 +161,34 @@ FP32寄存器累加并不要求先把整个BF16通信tensor转为FP32：自定�
 
 六个实际config哈希、11份LMDeploy源文件哈希、10份官方外部源码的固定URL和本地快照哈希见[调用链与外部引擎审计清单](evidence/cuda-engine-paths-20261117/review-manifest.json)。外部源码快照留在本机artifacts/engine-collective-review-20261117；不把这次静态审计计作其他引擎性能或模型验收。
 
+## 8. 其他引擎是否默认让稀疏Top-K保序
+
+不能把一个引擎名称或deterministic参数概括成“所有稀疏Top-K均按逻辑索引保序”。本次继续按前节相同的vLLM/SGLang固定SHA读取CUDA DSA路径，只做源码分析，没有运行其他引擎的完整模型。
+
+- vLLM的SparseIndexerTopk默认decode选择链为cooperative→persistent→per_row；前两者的内核都有用atomicAdd预留输出位置的路径。cooperative将这些顺序写入最终row_output，persistent也直接用原子槽位写最终输出，不能保证完整数组按逻辑索引保序。auto路径还会随工作形状选择实现。依据：[默认分派](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/model_executor/layers/indexer_topk.py#L295)、[cooperative输出](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/cooperative_topk.cuh#L419)、[persistent输出](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/persistent_topk.cuh#L575)。
+- SGLang当前默认启用Top-K v2，SGLANG_TOPK_V2_MODE默认1：保证选择值的正确性，但cutoff同分可选任意候选。mode2/deterministic=True加强到同分按索引选择、选中集合固定。关键是源码把mode2的保证写成selected set相同，其select_smallest_indices仍明确不保证发射顺序，并使用原子输出槽位，因此不能把mode2等同LMDeploy的完整逻辑索引升序发射。依据：[默认配置](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/environ.py#L1663)、[模式契约](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/jit/include/sgl_kernel/deepseek_v4/topk_impl.cuh#L74)、[确定性tie选择仍可无序发射](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/jit/include/sgl_kernel/deepseek_v4/topk_impl.cuh#L396)。
+
+这不等于已实测这些引擎的完整模型必然不重复：还要检查具体模型、后端、prefill/decode分派及attention消费者。本文结论限定为“所查默认selector不提供全路径逻辑索引保序保证”。未来LMDeploy修复的验收应分别检查选中集合和发射顺序，不能只检查排序后的集合相同。8份官方源码的固定URL及本地快照哈希见[selector源码审计清单](evidence/cuda-selector-engines-20261117/review-manifest.json)。
+
+## 9. 固定布局可重复与一阶段/两阶段归约
+
+当前S2反例中，“固定”有两个层次：对一个物理缓冲区分块，Ring使用确定的rank循环顺序；对同一个逻辑请求跨不同batch行位置，其分块可能变化，累加顺序就不再相同。于是迁移前A与迁移后A可以逐位相同，A自身也可重复；但同一请求移动到排列B后，A/B仍可不同。迁移前后均能复现这个限制，与原子竞争导致同一实际输入重复也不稳定的GLM selector不是同一机制。
+
+严格的修复要求是所有逻辑元素都使用同一条FP32求和序列，例如rank0→1→…→7，最后只转回一次BF16；顺序不能随消息大小、行位置、分块owner改变。固定NCCL_ALGO=Ring只固定算法家族，并没有赋予这个更强的数值约束。
+
+这里的一阶段/两阶段指vLLM式自定义AllReduce组织：
+
+| 方案 | 归约与分发过程 | 典型取舍 |
+| --- | --- | --- |
+| 一阶段 | 每张卡读取所有rank的局部贡献，对整个输出独立计算完整和；每卡都按0→7顺序 | 阶段少；同一元素的完整求和在各卡重复，跨卡读取较多，常用于小消息 |
+| 两阶段 | 先将输出划成8块，每卡负责一块并读取所有rank该块的贡献做归约；再all-gather各卡已经求和的块，让每卡拿到完整输出 | 每个元素只需做一份完整归约，减少重复读取/计算，但增加分发和同步阶段，较适合大消息 |
+
+两阶段本身并不要求改变求和顺序。所查vLLM/SGLang两阶段代码用(owner+i)%TP组织输入指针，所以owner变化会轮转加法顺序；未来实现应让每个owner按逻辑rank0→7读取，最后all-gather只复制最终BF16结果。不能直接复制owner-first版本再宣称跨排列保序。NCCL Ring也可分为reduce-scatter/all-gather两个通信阶段，但逐hop处理和舍入方式不等于上述P2P自定义内核。
+
+BF16传输、FP32内部累加只消除这处归约敏感性；若进入归约的各rank局部GEMM结果已随batch形状变化，完整模型仍可能不一致，必须独立记录。
+
+用户要求的后续实现任务已保存为[独立修复Prompt](cuda_determinism_independent_task_prompt_20261117.md)。本次只编写后续任务与核对源码，未创建实现分支、未启动修复。该Prompt要求从固定基线独立分支实施，在单机8卡验证batch大小/排列及性能，并保持与迁移PR隔离。
+
 ## 修复方向与尚未验证部分
 
 - GLM的稳定索引发射分支在本轮真实冻结算子输入上有效；尚未把它启用为正常模型策略，未完成完整模型精度/性能回归。

@@ -1,0 +1,83 @@
+{
+  "reviewed_at_utc": "2026-11-17T04:02:02.609778+00:00",
+  "scope": "Pinned official-source audit only. No other-engine runtime determinism claim and no new GPU experiment. Snapshot hashes refer to local UTF-8 copies, whose terminal newlines may be normalized.",
+  "files": [
+    {
+      "engine": "vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "csrc/cooperative_topk.cuh",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/cooperative_topk.cuh",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/vllm/csrc/cooperative_topk.cuh",
+      "local_snapshot_bytes": 26994,
+      "local_snapshot_sha256": "c63a2dd38dbefe065ef0dc353f4e4c235208e1529f3cf0ae31250f4bc0e7d624"
+    },
+    {
+      "engine": "vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "csrc/persistent_topk.cuh",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/persistent_topk.cuh",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/vllm/csrc/persistent_topk.cuh",
+      "local_snapshot_bytes": 44706,
+      "local_snapshot_sha256": "c2019d0d315dd02a091ac7d689f1e3ca8c33fb1d406c84ed0199b9e2f8854e8b"
+    },
+    {
+      "engine": "vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "vllm/model_executor/layers/indexer_topk.py",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/model_executor/layers/indexer_topk.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/vllm/vllm/model_executor/layers/indexer_topk.py",
+      "local_snapshot_bytes": 26293,
+      "local_snapshot_sha256": "afaf4f401b87eebee18410fd8fab5d16384acbae58832a4a769761fbc1cb2fbf"
+    },
+    {
+      "engine": "vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "vllm/model_executor/layers/sparse_attn_indexer.py",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/model_executor/layers/sparse_attn_indexer.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/vllm/vllm/model_executor/layers/sparse_attn_indexer.py",
+      "local_snapshot_bytes": 73708,
+      "local_snapshot_sha256": "54745778362557d2e7d0ff15ad2e1e4904130aba29e44d684179670fcbf76958"
+    },
+    {
+      "engine": "sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/kernels/jit/include/sgl_kernel/deepseek_v4/topk_impl.cuh",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/jit/include/sgl_kernel/deepseek_v4/topk_impl.cuh",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/sglang/python/sglang/kernels/jit/include/sgl_kernel/deepseek_v4/topk_impl.cuh",
+      "local_snapshot_bytes": 113283,
+      "local_snapshot_sha256": "c091c937de616caa50e2534471c5fb5f412d84675df30f06508f4d05efd81cfe"
+    },
+    {
+      "engine": "sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/kernels/ops/attention/dsv4/topk.py",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/ops/attention/dsv4/topk.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/sglang/python/sglang/kernels/ops/attention/dsv4/topk.py",
+      "local_snapshot_bytes": 18146,
+      "local_snapshot_sha256": "f06413868418665051f6f0f076d61c3cfb6b5802a44e8a2b395658d9ac2aa64c"
+    },
+    {
+      "engine": "sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/srt/environ.py",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/environ.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/sglang/python/sglang/srt/environ.py",
+      "local_snapshot_bytes": 156605,
+      "local_snapshot_sha256": "03fe592c925f3120173ef30bb80e39933933a18ea56a2f74cc89aef362ab624d"
+    },
+    {
+      "engine": "sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/srt/layers/attention/dsa/dsa_topk_backend.py",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/layers/attention/dsa/dsa_topk_backend.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/selector-engine-review-20261117/sglang/python/sglang/srt/layers/attention/dsa/dsa_topk_backend.py",
+      "local_snapshot_bytes": 22036,
+      "local_snapshot_sha256": "80e97e497415b8eee622535a11454c907ee0742d673f49bd69069d77deb6738c"
+    }
+  ],
+  "findings": {
+    "vllm_default_decode": "auto chooses cooperative/persistent/per_row; examined cooperative and persistent paths allocate output slots atomically and do not guarantee ascending logical index order",
+    "sglang_topk_v2": "default exact mode1; mode2 promises deterministic selected set, not universally ascending/stable emission order; deterministic tie emission still uses atomic output slots",
+    "planned_implementation": "Future independent task prompt only; no implementation branch created"
+  }
+}
