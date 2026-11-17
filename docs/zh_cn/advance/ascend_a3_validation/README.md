@@ -2,7 +2,7 @@
 
 PR平台结论详情入口：[A3验证汇总](a3_validation_summary_20261117.md)、[H200验证报告](cuda_regression_20261116.md)。Ray另见[独立主机尾延迟报告](ray_host_latency_20261117.md)。
 
-GLM-5.3已补齐[保序选项的8卡完整模型验证](glm53_stable_selector_fullmodel_20261117.md)：32次新进程、8组匹配配置均逐位一致；跨prefix miss→hit的top-k差异另行保留。该研究控制未合入迁移PR。
+GLM-5.3已补齐[保序选项的8卡完整模型验证](glm53_stable_selector_fullmodel_20261117.md)：32次新进程、8组匹配配置均逐位一致；跨prefix miss→hit的生成top-5变化按非阻塞现象记录，不再排查。该研究控制未合入迁移PR。
 
 PR GPU结果汇总与独立说明：[三类CUDA基线一致性问题、六模型结论和S2归约提交来源](cuda_consistency_findings_20261117.md)。
 
