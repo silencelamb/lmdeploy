@@ -35,6 +35,7 @@
 ## 3. S2：BF16通信、FP32累加、所有元素相同的rank顺序
 
 - 已知首差是第0层 `model.language_model.layers.0.linear_attn.out_proj`。各rank本地量化/FP8 GEMM对应请求的结果相同，原生BF16 NCCL RING_LL在行置换后产生6736/16384个不同元素。固定布局重放稳定；不同块循环rank起点不同。先在当前环境复现这个冻结反例，不把它解释成随机网络到达或浮点atomicAdd竞争。
+- 区分8192输入通道的TP切分和投影后4096维部分和的AllReduce。后者按一维通信缓冲区寻址，不默认对每行独立按列切分。对每个实际batch/shape记录channel、chunk和归约路径，不能假定任意消息都恰好分成总元素数/8，也不能从某个恰好对齐的形状推广全部排列都一致。
 - 参考固定vLLM源码 `61c3895fc937b4ffc2a59abe188959de1e459c8a` 的 `csrc/custom_collective_common.cuh` 与 `csrc/custom_all_reduce.cuh`，记录引用和必要许可证。输入/P2P通信缓冲及最终输出保持BF16，使用FP32累加器；所有逻辑元素始终按TP逻辑rank `0,1,...,7` 进行相同的FP32加法序列，最后只转回一次BF16。
 - 先清点LMDeploy已有communicator及optimized all-reduce能力，优先复用或扩展适当的通信接口；检查blocked-FP8投影当前如何选择归约路径，避免在模型层重复实现整套通信栈。策略接入范围要明确，不能无依据改变所有模型的默认路径。
 - rank顺序必须与请求行位置、消息大小、分块owner和warp/CTA调度无关。先做简单可验证的一阶段方案也可以；如支持两阶段，reduce-scatter各owner仍按全局固定rank顺序累加，all-gather只复制最终结果。不能直接照搬owner-first轮转的两阶段路径，然后声称已经保序。
