@@ -1,0 +1,9 @@
+2026-11-17 10:21:43,196 - lmdeploy.pytorch.kernels.cuda.turbo_quant - INFO - turbo_quant.py:25 - fast_hadamard_transform not installed, falling back to matmul-based Hadamard transform. Install it for better performance.
+{'dataset': 'real', 'deterministic': False, 'graph': False, 'repeats': 32, 'distinct_orders': 32, 'distinct_sets': 1, 'distinct_attention_outputs': 32, 'matches_original_set': True}
+{'dataset': 'real', 'deterministic': False, 'graph': True, 'repeats': 32, 'distinct_orders': 32, 'distinct_sets': 1, 'distinct_attention_outputs': 32, 'matches_original_set': True}
+{'dataset': 'real', 'deterministic': True, 'graph': False, 'repeats': 32, 'distinct_orders': 1, 'distinct_sets': 1, 'distinct_attention_outputs': 1, 'matches_original_set': True}
+{'dataset': 'real', 'deterministic': True, 'graph': True, 'repeats': 32, 'distinct_orders': 1, 'distinct_sets': 1, 'distinct_attention_outputs': 1, 'matches_original_set': True}
+{'dataset': 'all_equal_tie_control', 'deterministic': False, 'graph': False, 'repeats': 32, 'distinct_orders': 29, 'distinct_sets': 1, 'distinct_attention_outputs': None, 'matches_original_set': None}
+{'dataset': 'all_equal_tie_control', 'deterministic': False, 'graph': True, 'repeats': 32, 'distinct_orders': 27, 'distinct_sets': 1, 'distinct_attention_outputs': None, 'matches_original_set': None}
+{'dataset': 'all_equal_tie_control', 'deterministic': True, 'graph': False, 'repeats': 32, 'distinct_orders': 1, 'distinct_sets': 1, 'distinct_attention_outputs': None, 'matches_original_set': None}
+{'dataset': 'all_equal_tie_control', 'deterministic': True, 'graph': True, 'repeats': 32, 'distinct_orders': 1, 'distinct_sets': 1, 'distinct_attention_outputs': None, 'matches_original_set': None}

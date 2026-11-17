@@ -1,0 +1,8 @@
+/home/daixu/data/pr5134-cuda-20261116/envs/cuda-deps/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+flash native [{'input_rows_equal': True, 'output_equal': False, 'different_elements': 20, 'max_abs': 0.0078125}, {'input_rows_equal': True, 'output_equal': False, 'different_elements': 20, 'max_abs': 0.0078125}, {'input_rows_equal': True, 'output_equal': False, 'different_elements': 20, 'max_abs': 0.0078125}]
+flash disable_reduced_precision_reduction [{'input_rows_equal': True, 'output_equal': False, 'different_elements': 20, 'max_abs': 0.0078125}, {'input_rows_equal': True, 'output_equal': False, 'different_elements': 20, 'max_abs': 0.0078125}, {'input_rows_equal': True, 'output_equal': False, 'different_elements': 20, 'max_abs': 0.0078125}]
+flash fp32_compute_then_bf16 [{'input_rows_equal': True, 'output_equal': False, 'different_elements': 1, 'max_abs': 0.00390625}, {'input_rows_equal': True, 'output_equal': False, 'different_elements': 1, 'max_abs': 0.00390625}, {'input_rows_equal': True, 'output_equal': False, 'different_elements': 1, 'max_abs': 0.00390625}]
+s2 native [{'input_rows_equal': True, 'output_equal': False, 'different_elements': 29, 'max_abs': 0.0625}]
+s2 disable_reduced_precision_reduction [{'input_rows_equal': True, 'output_equal': False, 'different_elements': 29, 'max_abs': 0.0625}]
+s2 fp32_compute_then_bf16 [{'input_rows_equal': True, 'output_equal': False, 'different_elements': 1, 'max_abs': 0.03125}]
