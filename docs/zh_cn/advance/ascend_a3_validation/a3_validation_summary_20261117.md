@@ -53,7 +53,9 @@ Native Ascend仍需要TorchNPU、CANN/NNAL/ATB和Triton-Ascend，并保留torch_
 
 **修复：**[85a05812](https://github.com/silencelamb/lmdeploy/commit/85a0581228ad33a695430a1f43a47358a8258131)只将circular路径设为`num_stages=1`，其他路径保留3；保留递推、dtype、采样/接受和回滚规则。新增Q=1/2/4、eager/graph的独立CPU状态oracle，逐个检查全部保存槽。新编译器也保留该安全默认；单缓冲并非所有形状都更快。
 
-上游已发布修复05f2adcf，官方NPUIR2.0.0/efb71415包含它；Triton-Ascend3.2.2.post2携带此编译器。PR提供固定升级配置，但实际加载路径必须核对，不能只看PATH或Python包版本。
+上游已发布[parent-loop修复05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e](https://github.com/Ascend/AscendNPU-IR/commit/05f2adcf3db366377f7c5e6f5bb9bd3c61c36b3e)，官方NPUIR2.0.0/efb71415包含它；Triton-Ascend3.2.2.post2携带此编译器。该提交让GSS的PointerLikeInfo沿指针/工作区值追踪实际parent loop，而不是只取语法嵌套的最近循环，修正了本次多缓冲状态写回问题涉及的循环归属。
+
+使用固定官方wheel不需要另行手动cherry-pick该补丁；若自行替换/构建编译器并恢复多缓冲，应核对实际二进制源码包含05f2adcf，不能仅凭版本字符串或较新的构建日期判断。PR提供固定升级配置，实际加载路径也必须核对，不能只看PATH或Python包版本。单缓冲保护仍支持已测试的旧编译器。
 
 **依赖影响：**单缓冲状态保护本身利用已有compiler选项，不要求先升级编译器，旧/新编译器均已验证。85a05812同时提供可选的固定编译器升级配置`requirements/ascend_triton_npuir2.txt`；后续A3默认安装/镜像也采用Triton-Ascend3.2.2.post2（捆绑NPUIR2.0.0），配合已记录的CANN9.1约束环境。该处理没有新增或改动CUDA依赖，也不等于升级宿主机驱动/CANN到9.2。配置、IR和升级证据仍归属于各自实际测试版本。
 

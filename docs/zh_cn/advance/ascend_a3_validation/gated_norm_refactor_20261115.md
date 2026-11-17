@@ -26,6 +26,89 @@ A100 CI 当时已执行并通过新增 norm 文件的 83 项（含 56 项真实 
 
 SiLU、swish、sigmoid是RMSNormGated的activation配置，其中swish是SiLU别名，不是三个独立算子。这里的计数也不把已有量化变体、辅助函数或整个Ascend迁移的其他算子算成此次新增规范化算子。
 
+## 先看其他算子如何选择后端
+
+先看已有RMSNorm、LayerNorm和GatedDeltaRule的组织，再理解为什么RMSNormGated需要规范化。下面按当前固定PR源码2ccf38a4说明；图片中“RMSNormGated回到default/gated_norm.py并返回FLA Module”的路径属于重构前的342db85e，不能当作当前实现。
+
+### 四层职责
+
+这里的路径均相对于lmdeploy/pytorch：
+
+| 层次 | 职责 | 本次norm重构中的对应物 |
+| --- | --- | --- |
+| `nn` | 提供模型使用的层；通常创建和注册权重、承接checkpoint加载，并按具体层需要处理TP切分等 | `nn.RMSNormGated`持有`weight`，模型只调用公共层 |
+| `backends/*.py` | 定义算子接口和typed `BuildSpec`，描述要构造什么算子 | `RMSNormGatedImpl`和`RMSNormGatedBuildSpec` |
+| `backends/cuda`、`ascend`、`default` | 根据Spec创建对应实现；平台特有逻辑与公共默认实现分开 | `CudaRMSNormGatedImpl`、`AscendRMSNormGatedImpl`、`DefaultRMSNormGatedImpl` |
+| 具体计算层：`kernels`或外部算子库 | 执行计算；可以使用本地kernel，也可以直接调用PyTorch、FLA等库 | CUDA复用FLA functional；Ascend调用原Triton norm kernel |
+
+这是职责分层，不要求所有调用都经过一个本地kernels文件。例如默认LayerNorm直接调用PyTorch，CUDA gated norm的共享adapter直接调用FLA。TP切分也不是每个nn层都必须执行；RMSNormGated由调用者提供相应维度，不因此新增一套TP权重切分规则。
+
+### 两次主要选择：先选平台，再按Spec选算子
+
+1. **选择平台后端类。** `get_backend()`读取当前`DeviceContext.device_type`，显式选择`CudaOpsBackend`、`AscendOpsBackend`等。也可以传入显式`device_type`，在临时设备上下文内进行同样选择。
+2. **构造算子实现。** 选中的后端执行`build_op(spec)`，通过`isinstance(spec, XxxBuildSpec)`匹配请求，直接构造实现或调用该算子的构造函数。部分构造函数内部还会按dtype、形状、硬件能力选择具体provider，这属于算子内部策略。
+
+这里的LMDeploy分派是显式Python逻辑，**不是扫描目录自动注册，也不是在每次forward时根据输入张量猜平台**。被选中实现内部调用PyTorch时，PyTorch自身仍会按张量设备调度底层kernel；这是另一层机制。
+
+源码：[设备选择selector.py](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/selector.py#L7)、[CUDA分派入口](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/cuda/op_backend.py#L33)、[Ascend分派入口](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/ascend/op_backend.py#L173)。
+
+```mermaid
+flowchart TD
+    Context["DeviceContext.device_type<br/>cuda / ascend / ..."] --> Select["get_backend() 选择后端类"]
+    Layer["nn 层创建 BuildSpec"] --> Build["所选后端 build_op(spec)"]
+    Select --> Build
+    Build --> Handles{"该后端处理此 Spec？"}
+    Handles -->|是| Platform["平台实现或构造函数"]
+    Handles -->|否| Default["super().build_op(spec)<br/>DefaultOpsBackend"]
+    Default --> HasDefault{"有默认实现？"}
+    HasDefault -->|是| Shared["默认实现或构造函数"]
+    HasDefault -->|否| Unsupported["报错"]
+    Platform --> Impl["返回实现对象，nn 层保存 self.impl"]
+    Shared --> Impl
+    Impl --> Forward["forward 调用已选实现<br/>传入输入、权重及其他参数"]
+    Forward --> Compute["本地 kernel / PyTorch / 外部算子库"]
+```
+
+### default究竟是什么
+
+CudaOpsBackend和AscendOpsBackend都继承DefaultOpsBackend。某个Spec没有被该平台的分派分支处理时，函数末尾调用super().build_op(spec, ...)，由父类提供默认实现；父类也没有这个Spec时，抛出不支持异常。未知device_type则在selector处直接报错，不是选中default设备。
+
+因此，default是**通过继承共享的默认实现集合**，不是切换到CPU，也不是平台算子运行失败后的自动重试。具体算子若另有provider/fallback策略，需要看它自身实现；不能把那些策略与这个super()分支混为一谈。已匹配平台Spec但不支持某个参数时，也可能直接报错而不走默认实现。
+
+当前代码的回退位置：[CUDA末尾](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/cuda/op_backend.py#L223)、[Ascend末尾](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/ascend/op_backend.py#L317)、[默认分派及不支持报错](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/default/op_backend.py#L17)。
+
+### 普通RMSNorm的构造与计算
+
+以未量化、非融合的普通RMSNorm路径为例：
+
+1. `nn.RMSNorm`创建并注册`weight`；启用该层TP时先确定本rank的维度和加载规则。
+2. 创建`RMSNormBuildSpec(hidden_size, eps)`。
+3. 调用选中后端的`build_op(spec)`，把实现对象保存为`self.impl`。
+4. forward时调用`self.impl.forward(x, self.weight, residual)`。
+
+平台实现对象在**构造阶段**选定，后续forward使用它，而不是每次重新选择设备后端。实现内部仍可以按输入形状选择kernel或调优配置。RMSNorm的量化、TP和通信融合扩展另有分支，这个例子只展示公共参数层与计算实现分离的基本结构。[nn.RMSNorm源码](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/nn/norm.py#L74)。
+
+### 几个已有算子的实际路径
+
+以下是当前源码的四个分派示例，不表示本次同时重构了四个算子：
+
+| 算子请求 | CUDA路径 | Ascend路径 |
+| --- | --- | --- |
+| `RMSNormBuildSpec` | `cuda/norm.py` → `TritonRMSNormImpl` | `ascend/norm.py` → `AscendRMSNormImpl` |
+| `LayerNormBuildSpec` | 未单独匹配，回到`default/norm.py` → `DefaultLayerNormImpl` → PyTorch `layer_norm` | 同样回到`DefaultLayerNormImpl`；没有因此切换到CPU |
+| `GatedDeltaRuleBuildSpec` | `cuda/gated_delta_rule.py` → `CudaGatedDeltaRuleImpl` | `ascend/gated_delta_rule.py` → `AscendGatedDeltaRuleImpl` |
+| `RMSNormGatedBuildSpec`（重构后） | `cuda/norm.py` → `CudaRMSNormGatedImpl`；复用`DefaultRMSNormGatedImpl`中的FLA functional adapter | `ascend/norm.py` → `AscendRMSNormGatedImpl`；参数由公共nn层传入 |
+
+对应分支：[CUDA norm](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/cuda/op_backend.py#L72)、[Ascend norm](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/ascend/op_backend.py#L223)、[默认LayerNorm](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/default/op_backend.py#L48)、[CUDA GDN](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/cuda/op_backend.py#L154)、[Ascend GDN](https://github.com/InternLM/lmdeploy/blob/2ccf38a43f0fdc7415ce4ce9f177852bdacc9966/lmdeploy/pytorch/backends/ascend/op_backend.py#L193)。
+
+### 为什么截图里的gated norm路径需要改变
+
+在重构前的342db85e中，CUDA没有单独处理RMSNormGatedBuildSpec，回到default/gated_norm.py返回整个FLA Module；Ascend直接返回自己的RMSNormGated Module。两者都让平台Module持有模型weight。这个“返回完整平台Module”的特例，才是它与普通RMSNorm组织方式不同的地方。
+
+**使用default本身并不特殊，也不是问题。** LayerNorm就正常复用了默认实现。此次规范化的目标是统一norm的参数所有权和接口合同：公共nn层管理checkpoint参数，BuildSpec返回匹配计算接口的实现对象，平台实现只计算。当前CUDA虽然显式映射到CudaRMSNormGatedImpl，实际计算仍复用共享的FLA adapter；不需要为了“看起来原生”而重写已有CUDA kernel。
+
+重构前源码：[默认返回FLA Module](https://github.com/InternLM/lmdeploy/blob/342db85ecff3c0dc864a4bf8613c589c270f4141/lmdeploy/pytorch/backends/default/gated_norm.py)、[Ascend返回带权重Module](https://github.com/InternLM/lmdeploy/blob/342db85ecff3c0dc864a4bf8613c589c270f4141/lmdeploy/pytorch/backends/ascend/op_backend.py#L175)。下表继续对比最终的职责划分。
+
 ## 由什么组织方式改成什么组织方式
 
 | 设计维度 | 原有/迁移中间方案 | 最终规范化设计 |
