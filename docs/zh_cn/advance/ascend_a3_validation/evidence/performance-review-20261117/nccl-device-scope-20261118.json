@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-18",
+  "commit": "3ea7eedf3b9b94f1d9f99f4e55536dfcbd23c1ca",
+  "tag": "v2.27.5-1",
+  "files": [
+    {
+      "path": "src/device/all_gather.h",
+      "git_blob": "db967861e791110751b4c89c6b14073e7db8b0a5",
+      "bytes": 26495,
+      "acc_f32": [],
+      "sha256": "7270ddefb390fbf7ce4661ee5d9151eee1d81349994bec809ebadd07bf720d5f"
+    },
+    {
+      "path": "src/device/all_reduce.h",
+      "git_blob": "f6b6e9c0e848d744f0e7e13195b5838cd3305f59",
+      "bytes": 39712,
+      "acc_f32": [],
+      "sha256": "0664ba8e4b9bfcd73fbd2bb7e305c09e90196ce4a939a7821472b96c6e2c5d21"
+    },
+    {
+      "path": "src/device/broadcast.h",
+      "git_blob": "5948891f83b625afeeb3a2fc0ab43bc55e5609b1",
+      "bytes": 3492,
+      "acc_f32": [],
+      "sha256": "3572e889c804abdc05c73a613f1b43e33216753c2f8ae2261f8dfeb9ece4cbec"
+    },
+    {
+      "path": "src/device/common.cu",
+      "git_blob": "a8b5ed571f10d9bce95db64877641694572dd7d5",
+      "bytes": 743,
+      "acc_f32": [],
+      "sha256": "4b57d534ff2aadc2287ad5025f9a656b9c75fd442a314885c79e83be70620597"
+    },
+    {
+      "path": "src/device/common.h",
+      "git_blob": "a2884b50c1d59a2c80f7f581f7a858e34ce27bfa",
+      "bytes": 16224,
+      "acc_f32": [],
+      "sha256": "093d862819fb23b4d0d9186198543635f24d824fe4014a2044e7ee67996712ab"
+    },
+    {
+      "path": "src/device/common_kernel.h",
+      "git_blob": "00bb1e333473ef40b6fdb81f07c5cb3525f24f9a",
+      "bytes": 11414,
+      "acc_f32": [],
+      "sha256": "feef90eed73305a9f4bec816cbdb703f728b46fedfbde88ea7bb7a6ebb9d3aee"
+    },
+    {
+      "path": "src/device/network/unpack/unpack.h",
+      "git_blob": "941b4328dfffa72f0072022ae94dcb19d71c2c91",
+      "bytes": 11446,
+      "acc_f32": [],
+      "sha256": "c75f84fef62aeaa9863a268bb2c2c2e64c0d1bc1005575bed60906e0ed22ed3f"
+    },
+    {
+      "path": "src/device/network/unpack/unpack_defs.h",
+      "git_blob": "ecbed01fed3121ab077cfa622ca1872c2d59768f",
+      "bytes": 1944,
+      "acc_f32": [],
+      "sha256": "d23df02c882b892a256595bce32936b054ad2378048872c1f1962d81e772027c"
+    },
+    {
+      "path": "src/device/onerank.cu",
+      "git_blob": "c187dcc44d608ead35927b00c3063e2f5f85130b",
+      "bytes": 3528,
+      "acc_f32": [],
+      "sha256": "961f457b5c99b7a972b435c7913961f29fe2cbdf4227f2ffa9882becdb5342a2"
+    },
+    {
+      "path": "src/device/op128.h",
+      "git_blob": "e7da4812cdbf7582374792a1de12b086ac83aa40",
+      "bytes": 19151,
+      "acc_f32": [],
+      "sha256": "f821a2172995509e00fa4f224a5fa8dfe33056af0a03e87009ed3a9d6a8b8e44"
+    },
+    {
+      "path": "src/device/primitives.h",
+      "git_blob": "3b9f169f77323e8394022427eb8b50a34f393822",
+      "bytes": 6511,
+      "acc_f32": [],
+      "sha256": "ca0b09a273b21e8ac75204708c3df71c7e6ef437dc2680125c5616893b2ef780"
+    },
+    {
+      "path": "src/device/prims_ll.h",
+      "git_blob": "2a0f5564b8cda439e0674ce06bbb99f2fdfecd67",
+      "bytes": 15025,
+      "acc_f32": [],
+      "sha256": "92aed55fe23b109b30e0679b00812a12abfe1d83f8685738d5b62917c7a7a043"
+    },
+    {
+      "path": "src/device/prims_ll128.h",
+      "git_blob": "6985e6771299e47883dc57fa0b05dff745e3fc15",
+      "bytes": 16311,
+      "acc_f32": [],
+      "sha256": "53f613becb3b67c81a7f4dd12087728604fed226045f2612c7ff924543b0d36a"
+    },
+    {
+      "path": "src/device/prims_simple.h",
+      "git_blob": "2ad965bf7aeab8996e91494710b232d382d33c12",
+      "bytes": 52175,
+      "acc_f32": [],
+      "sha256": "8b9cbae7661873ea9f2e5693e65015eed1611e26b8661cf5df9bcae833c72b35"
+    },
+    {
+      "path": "src/device/reduce.h",
+      "git_blob": "f8597a6504c6ffa878c35d25c02f02fd9ad49386",
+      "bytes": 3072,
+      "acc_f32": [],
+      "sha256": "2877f6c392fd7d86c921781bf77723c2432fd48ca64b13131b30c6bdc2a7703f"
+    },
+    {
+      "path": "src/device/reduce_kernel.h",
+      "git_blob": "d36dfe5a77000caf8638abc2db53ab9f1ac7ae8b",
+      "bytes": 40867,
+      "acc_f32": [
+        "843: #define PtxAcc_for_f16 \".acc::f32\"",
+        "844: #define PtxAcc_for_bf16 \".acc::f32\"",
+        "845: #define PtxAcc_for_f16x2 \".acc::f32\"",
+        "846: #define PtxAcc_for_bf16x2 \".acc::f32\""
+      ],
+      "sha256": "46afe5df2e22fc0be8c5a33735ab228a7e6039e04a51d4557662344082ca70a1"
+    },
+    {
+      "path": "src/device/reduce_scatter.h",
+      "git_blob": "63b981b09cb12443f203d5f50e64bd0adaab847e",
+      "bytes": 23242,
+      "acc_f32": [],
+      "sha256": "b0f145e0136121811aac2ad338b113bbdafd769251306d74160292acdb31f69b"
+    },
+    {
+      "path": "src/device/sendrecv.h",
+      "git_blob": "f36a511d8b1700f86562637d8bef524026e499f8",
+      "bytes": 7619,
+      "acc_f32": [],
+      "sha256": "acf4d6fc73cf2359e30a67a8f11d0913f9823035faad2159d7364ac1dbac74ed"
+    },
+    {
+      "path": "src/device/symmetric/all_gather.cuh",
+      "git_blob": "8f81347ecdc6123f18788e8cdfdb38d8d30243df",
+      "bytes": 13179,
+      "acc_f32": [],
+      "sha256": "45312f4ed4512edff50a033756e9b360dce77ab746c88a3951b0556365a36f5e"
+    },
+    {
+      "path": "src/device/symmetric/all_reduce.cuh",
+      "git_blob": "6c5219784dbaa9ab56bd80aa52f543099754a9a8",
+      "bytes": 15364,
+      "acc_f32": [],
+      "sha256": "6c47c9a3242f38faf9e17c4eed3eb99104eac987cad9df590de0c89deada5dbe"
+    },
+    {
+      "path": "src/device/symmetric/kernel.cuh",
+      "git_blob": "f631d51d9ff2802c8c87d428ae8dffd2e461490d",
+      "bytes": 1557,
+      "acc_f32": [],
+      "sha256": "8d0fe787cb8f1081a11200a61d786473c102bf27cbc14dab86a0cd74b32d6fd1"
+    },
+    {
+      "path": "src/device/symmetric/primitives.cuh",
+      "git_blob": "1670244007286614e732e4d422ac05958e70a5ae",
+      "bytes": 15254,
+      "acc_f32": [],
+      "sha256": "64b879e596912d6b966544d4923357fbdd2402b8991471134cd61fbd904d8574"
+    },
+    {
+      "path": "src/device/symmetric/reduce_scatter.cuh",
+      "git_blob": "4fd96093e694541ff70b7a7bc01e015357aefc28",
+      "bytes": 14046,
+      "acc_f32": [],
+      "sha256": "dc74f2ff7f2d172c809b06313d8ef697d582a6c305d30d42ffb5f56a0cb53174"
+    }
+  ],
+  "observed_s2_kernel": "ncclDevKernel_AllReduce_Sum_bf16_RING_LL",
+  "correction": "Not all non-NVLS BF16 paths accumulate in BF16. Symmetric-memory software paths select float with ncclSymAccumType<FuncSum,__nv_bfloat16,false>.",
+  "literal_acc_f32_scope": "Only the multimem macros contain the literal .acc::f32 in these 23 pinned src/device C/CUDA files; this is not an exhaustive criterion for FP32 software accumulation."
+}
