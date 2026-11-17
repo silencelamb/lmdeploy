@@ -40,6 +40,40 @@ H200/x86两个6000次CPU-only对照没有观测到>50ms join，是有限阴性�
 
 CPU18的IRQ清单涉及NVMe、SAS、消息通知等，名字和计数不足以指认责任模块。[IRQ清单](evidence/mtp-ray-deep-20261116/inventory/irq-cpu18-r0.json)。另有107/153ms残余等待与诊断探针自身generation-2 GC重合；只解释对应事件，不能把全部尾延迟归为GC或据此关闭生产GC。
 
+## A3进程绑核：已测设置与复现命令
+
+绑核只作用于启动的命令及其新建子进程，不修改全局IRQ亲和性，也不改变Ray的await、同步顺序或计算算法。实测使用两种设置：限制到CPU40–79；或者从进程当前允许的CPU集合中仅移除CPU18。后者保留了原来就不可用的CPU，例如HTTP记录中CPU172原本也不在允许集合内，因此不能简单把0–319全部重新放开。
+
+| CPU-only控制 | join数 | >50ms | >300ms | 最大join |
+| --- | --- | --- | --- | --- |
+| 默认配置 | 6000 | 16 | 14 | 574.971ms |
+| CPU40–79 | 6000 | 0 | 0 | 46.783ms |
+| 仅从允许集合排除18，r0 | 6000 | 2 | 0 | 138.592ms |
+| 仅从允许集合排除18，r1 | 6000 | 3 | 0 | 120.755ms |
+| 排除18并记录GC | 6000 | 2 | 0 | 152.603ms |
+
+原生Agents-A1、非MTP、TP2、真实HTTP C1/C4各6轮加预热的排除18控制完成30条测量请求和5条预热；3618次RPC join无>50ms，稳定阶段无>100ms SSE间隔。剩余CPU探针107/153ms等待与探针自身GC有关；不以关闭生产GC作为修复。[HTTP缓解证据](evidence/mtp-ray-deep-20261116/results/http-exclude18-r0-summary.json)、[原始CPU控制与边界](mtp_ray_investigation_20261116.md#本机缓解验证与剩余小停顿)。
+
+已交付的[launch_affinity.py源码](evidence/mtp-ray-deep-20261116/scripts/launch_affinity.py.md)先读取`os.sched_getaffinity(0)`，减去指定CPU后调用`os.sched_setaffinity`，再exec原命令。原A3工作目录上的用法如下（其余原启动参数照常传入）：
+
+```bash
+python /root/workspace/a3-mtp-ray-investigation-20261116/scripts/launch_affinity.py \
+  --exclude 18 -- \
+  lmdeploy serve api_server "$MODEL_PATH" --backend pytorch --device ascend --tp 2
+```
+
+不依赖该脚本时，等价地先计算允许集合，再用taskset启动。以下仍是针对已确认CPU18干扰的A3主机示例：
+
+```bash
+A3_RAY_CPU_LIST=$(python -c 'import os; cpus=sorted(os.sched_getaffinity(0)-{18}); assert cpus; print(",".join(map(str,cpus)))')
+taskset -c "$A3_RAY_CPU_LIST" \
+  lmdeploy serve api_server "$MODEL_PATH" --backend pytorch --device ascend --tp 2
+```
+
+如果选用CPU40–79，也应先与当前允许集合求交。驱动进程必须在初始化本任务Ray runtime/worker之前设置亲和性；连接已存在的其他Ray集群不会自动改变那些worker的设置。用`taskset -pc PID`及各线程的`Cpus_allowed_list`核对实际driver/raylet/worker，不能仅根据父进程命令推断。只管理本任务实例，不使用全局ray stop去终止其他用户任务。
+
+这些是本机有限窗口的临时缓解/诊断设置，未作为迁移PR默认策略交付，也没有复制到H200模型验证。具体callback和永久修复仍待取证。
+
 ## H200/x86独立CPU对照
 
 无Torch/NPU环境：Python3.12.14、Ray2.48.0、NumPy2.2.6；复现脚本SHA256为870843b45f906a203ef8639c15d041bed878ea3489e1895889de737b8c8583b5，与参考逐字节相同。保留原提交/等待/确认顺序及默认亲和性，不照搬CPU18避让。

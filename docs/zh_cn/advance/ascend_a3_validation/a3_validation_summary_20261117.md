@@ -55,6 +55,8 @@ Native Ascend仍需要TorchNPU、CANN/NNAL/ATB和Triton-Ascend，并保留torch_
 
 上游已发布修复05f2adcf，官方NPUIR2.0.0/efb71415包含它；Triton-Ascend3.2.2.post2携带此编译器。PR提供固定升级配置，但实际加载路径必须核对，不能只看PATH或Python包版本。
 
+**依赖影响：**单缓冲状态保护本身利用已有compiler选项，不要求先升级编译器，旧/新编译器均已验证。85a05812同时提供可选的固定编译器升级配置`requirements/ascend_triton_npuir2.txt`；后续A3默认安装/镜像也采用Triton-Ascend3.2.2.post2（捆绑NPUIR2.0.0），配合已记录的CANN9.1约束环境。该处理没有新增或改动CUDA依赖，也不等于升级宿主机驱动/CANN到9.2。配置、IR和升级证据仍归属于各自实际测试版本。
+
 | 验证 | 已记录结果 |
 | --- | --- |
 | 最小多缓冲复现 | 旧编译器100/100状态错误；官方2.0.0为0/100 |
