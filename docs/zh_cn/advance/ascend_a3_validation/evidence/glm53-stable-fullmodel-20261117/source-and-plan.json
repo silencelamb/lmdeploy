@@ -1,0 +1,41 @@
+{
+  "recorded_at_utc": "2026-11-17T09:27:25.536153+00:00",
+  "revisions": {
+    "glm-det-base": {
+      "sha": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "parent": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+      "patch_sha256": "bba7a26762b13b786b7eb9e56dd95f2de6f3b188a211de6cd4f3c9de70d4a148",
+      "path": "/home/daixu/data/pr5134-cuda-20261116/worktrees/glm-det-base"
+    },
+    "glm-det-pr": {
+      "sha": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "parent": "f64ab5061153b5c5b63721cf2d8d6f1b41b95104",
+      "patch_sha256": "bba7a26762b13b786b7eb9e56dd95f2de6f3b188a211de6cd4f3c9de70d4a148",
+      "path": "/home/daixu/data/pr5134-cuda-20261116/worktrees/glm-det-pr"
+    }
+  },
+  "model": "GLM-5.3 complete official FP8",
+  "checkpoint_snapshot": "e0b07fd2751b42d5efa199cc02c2b271deadc516",
+  "tp": 8,
+  "gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "acceptance": "Original zero-tolerance complete token/top5-score bit comparator; four pairings per configuration; stop at first comparison failure",
+  "matrix": "non-MTP then MTP3; graph/eager x prefix off/on; each source two fresh processes",
+  "workload": "Original model_case workload:23 responses,1408 output tokens,7040 top5 score values,32603-token long input and replay",
+  "cache_blocks": {
+    "mtp0": 4276,
+    "mtp3": 4097
+  },
+  "cache_blocks_match_original": true,
+  "implementation_pr_modified": false,
+  "source_change": "Only pass deterministic=True at existing CUDA NSA sparse-index selector call; not an engine-wide determinism mode",
+  "tests_started_at_utc": "2026-11-17T09:22:02.741334+00:00"
+}

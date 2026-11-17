@@ -1,0 +1,14 @@
+diff --git a/lmdeploy/pytorch/backends/cuda/nsa.py b/lmdeploy/pytorch/backends/cuda/nsa.py
+index 1c4dfb9e..02b843bd 100644
+--- a/lmdeploy/pytorch/backends/cuda/nsa.py
++++ b/lmdeploy/pytorch/backends/cuda/nsa.py
+@@ -474,7 +474,8 @@ class TritonNSAIndexFP8Impl(NSAIndexFP8Impl):
+                                                     kv_seqlens, self.topk,
+                                                     fill=self.fill,
+                                                     descending=True,
+-                                                    sorted=False)
++                                                    sorted=False,
++                                                    deterministic=True)
+             if self.dcp_world_size == 1:
+                 return local_indices
+             return self._merge_dcp_topk(scores, local_indices)

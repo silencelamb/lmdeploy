@@ -1,0 +1,3553 @@
+{
+  "complete": true,
+  "fresh_full_runs": 32,
+  "configurations": 8,
+  "passed_primary_comparisons": 32,
+  "responses": 736,
+  "generated_tokens": 45056,
+  "top5_score_values": 225280,
+  "worker_selector_audits": 256,
+  "same_versions_all_runs": true,
+  "versions": {
+    "torch": "2.10.0",
+    "triton": "3.6.0",
+    "flash-linear-attention": "0.5.2",
+    "fla-core": "0.5.2",
+    "transformers": "5.16.0",
+    "numpy": "2.2.6",
+    "ray": "2.58.0"
+  },
+  "original_short_control": [
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m0-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m0-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m0-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m0-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m0-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m0-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m0-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m0-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m0-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m0-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m0-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m0-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m0-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m0-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m0-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m0-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m3-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m3-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m3-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p0-m3-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m3-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m3-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m3-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-graph-p1-m3-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m3-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m3-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m3-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p0-m3-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-base-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m3-matched-f64-base-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-pr-r0",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m3-matched-f64-pr-r0.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-pr-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m3-matched-f64-pr-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-base-r1",
+      "old_path": "/home/daixu/data/pr5134-cuda-20261116/results/glm-eager-p1-m3-matched-f64-base-r1.json",
+      "responses": 21,
+      "tokens": 1344,
+      "scores": 6720,
+      "equal": true
+    }
+  ],
+  "long_replay_audit": [
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-base-r0",
+      "prefix": false,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-pr-r0",
+      "prefix": false,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-pr-r1",
+      "prefix": false,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-base-r1",
+      "prefix": false,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-base-r0",
+      "prefix": true,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-pr-r0",
+      "prefix": true,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-pr-r1",
+      "prefix": true,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-base-r1",
+      "prefix": true,
+      "mtp": 0,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-base-r0",
+      "prefix": false,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-pr-r0",
+      "prefix": false,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-pr-r1",
+      "prefix": false,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-base-r1",
+      "prefix": false,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-base-r0",
+      "prefix": true,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-pr-r0",
+      "prefix": true,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-pr-r1",
+      "prefix": true,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-base-r1",
+      "prefix": true,
+      "mtp": 0,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-base-r0",
+      "prefix": false,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-pr-r0",
+      "prefix": false,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-pr-r1",
+      "prefix": false,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-base-r1",
+      "prefix": false,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-base-r0",
+      "prefix": true,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-pr-r0",
+      "prefix": true,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-pr-r1",
+      "prefix": true,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-base-r1",
+      "prefix": true,
+      "mtp": 3,
+      "eager": false,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-base-r0",
+      "prefix": false,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-pr-r0",
+      "prefix": false,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-pr-r1",
+      "prefix": false,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-base-r1",
+      "prefix": false,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        0
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": true,
+      "score_bits_equal": true
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-base-r0",
+      "prefix": true,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-pr-r0",
+      "prefix": true,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-pr-r1",
+      "prefix": true,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-base-r1",
+      "prefix": true,
+      "mtp": 3,
+      "eager": true,
+      "cached_tokens": [
+        0,
+        32576
+      ],
+      "tokens_equal": true,
+      "topk_sets_equal_all_positions": false,
+      "score_bits_equal": false
+    }
+  ],
+  "replay_summary": {
+    "total": 320,
+    "tokens_equal": 320,
+    "score_bits_equal": 304,
+    "same_hit_condition_failures": 0,
+    "different_hit_condition_failures": 16
+  },
+  "commands": [
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 874.336506601423,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 215.4335219413042,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 137.8659766614437,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 100
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m0-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 137.27897269651294,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 130.14130044728518,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 133.36006293818355,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 65
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 100
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 127.55358701199293,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 62
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 100
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m0-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 135.7363272793591,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 196.06477982923388,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 197.0418441966176,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 196.5422326810658,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 100
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m0-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 193.66471480578184,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 189.39024291560054,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 190.73046082258224,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 191.04065665230155,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m0-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 192.2108738720417,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 134.1994380801916,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 132.23905190452933,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 133.43623370677233,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p0-m3-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 133.0284226797521,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 128.34815352782607,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 129.20299827307463,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 130.53761984407902,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-graph-p1-m3-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 129.93854616582394,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 151.61986101046205,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 153.25605195388198,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 152.02804171666503,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 38
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 72
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 100
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p0-m3-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 156.0586681328714,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 64
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-base-r0",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 149.54913150146604,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-pr-r0",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 145.99951047077775,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-pr-r1",
+      "source": "5e51b6718ec31dbcbdbc5fc8092a71b3294e710d",
+      "elapsed_seconds": 148.99741483852267,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    },
+    {
+      "label": "glm-det-full-20261117-eager-p1-m3-base-r1",
+      "source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+      "elapsed_seconds": 145.77273681387305,
+      "gpu_before": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "index": 0,
+          "memory_mib": 116,
+          "util": 0
+        },
+        {
+          "index": 1,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 2,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 3,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 4,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 5,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 6,
+          "memory_mib": 4,
+          "util": 0
+        },
+        {
+          "index": 7,
+          "memory_mib": 4,
+          "util": 0
+        }
+      ]
+    }
+  ]
+}

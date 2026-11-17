@@ -6,6 +6,8 @@
 
 面向PR审阅的[集中说明](cuda_consistency_findings_20261117.md)汇总三类问题及S2实现来源。本次发布核对HEAD为2ccf38a4，与实际已测f64仅有Jetson Docker/CI差异，推理、测试及Python依赖源码树一致；未重新标记历史运行SHA。
 
+后续独立控制已完成[GLM-5.3保序选择器整模型验证](glm53_stable_selector_fullmodel_20261117.md)：在基线与f64各自仅启用既有deterministic=True，32次新进程的8组匹配配置通过全部自重复/跨源码比较；prefix miss→hit仍有共有top-k差异。下文未修改默认路径的原始36/44结果保留，不改标为控制分支结果。
+
 ## 固定版本与判定范围
 
 - 共同基线：**442097e83799c2e85df9d6bbce35c7c79ea05dfe**。GitHub API base 与完整非 shallow 历史的 merge-base 均核实为此 SHA，从未用移动中的 main 替代。

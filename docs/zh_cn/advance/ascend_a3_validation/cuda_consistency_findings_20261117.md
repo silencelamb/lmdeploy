@@ -35,7 +35,7 @@
 
 GLM-5.3当前调用没有传入稳定选项；Flash的KPool调用已经显式保序。稳定选项同时固定同分选择和逻辑索引顺序，不能用仅比较排序后的集合代替验证。原始32组长响应自重复对照均存在首位置分数差异，其中28组随后生成token也分叉。
 
-**归类：基线问题，PR两边都有。** 稳定选项的算子级控制不是完整模型修复验收；没有在迁移PR里启用它或改判原失败。
+**归类：基线问题，PR两边都有。** 最初稳定选项的算子级控制不是完整模型修复验收。后续已在独立研究工作树补齐[32次全新进程的完整模型控制](glm53_stable_selector_fullmodel_20261117.md)，8组匹配配置的自重复与迁移配对均逐位一致；跨prefix miss→hit仍有共有top-k差异。没有在迁移PR中启用此改动或改判原默认路径的失败。
 
 ## 2. Flash/S2：batch形状改变cuBLASLt GEMM选择
 
@@ -97,4 +97,4 @@ Profiler确认实际内核为NCCL2.27.5的`ncclDevKernel_AllReduce_Sum_bf16_RING
 - Agents原HTTP C4 TTFT回退定位到遗漏形状的MoE在线调优；完整预热后未再触发持续回退，但配对TTFT中位仍+7.76%、区间跨0，原样保留。Flash/S2 HTTP C4因token不自重复，不计性能通过；GLM长上下文失败也不进入性能通过统计。
 - 两边共有的GDN单测失败、部分prefix miss→hit分数变化、仅插桩退出挂起等仍按原报告保留。未认证非Preview S2 FP8、用户DP4/EP8/router生产链路、多机、视觉GPU前向、MTP HTTP性能、独立target性能与长期高并发。
 - 两次CPU-only Ray对照未复现>50ms join，只是有限x86对照，不证明ARM根因或宣布Ray已修复。
-- GLM稳定索引与S2确定性归约的修复留在[未来独立分支任务Prompt](cuda_determinism_independent_task_prompt_20261117.md)，不混入Ascend迁移PR；本轮只发布验证与归因，没有实施这些基线修复。
+- GLM稳定选择器后来已完成独立研究工作树的[整模型控制验证](glm53_stable_selector_fullmodel_20261117.md)，未合入迁移PR；正式策略接入、性能评估及S2确定性归约仍按[独立任务Prompt](cuda_determinism_independent_task_prompt_20261117.md)推进，不混入Ascend迁移。
