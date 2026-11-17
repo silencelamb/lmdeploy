@@ -91,4 +91,4 @@ self._sparse_index_topk(..., sorted=False, deterministic=True)
 - [checkpoint核对](evidence/glm53-stable-fullmodel-20261117/checkpoint-recheck.json)、[依赖核对](evidence/glm53-stable-fullmodel-20261117/dependency-recheck.json)
 - [原始证据归档](evidence/glm53-stable-fullmodel-20261117/evidence.tar.gz)、[逐文件SHA清单](evidence/glm53-stable-fullmodel-20261117/manifest.json)
 
-归档1590个文件，共4757662 bytes，SHA256为`d51bd05c986e409717c147026f1a29a5774c75b9db66bcbe11cbb690159cb37b`；已从归档逐文件重新读取并验证SHA。权重没有重复上传，已有权重与原始默认失败记录全部保留。
+归档包含1590个数据文件及files.json索引，共4757662 bytes，SHA256为`d51bd05c986e409717c147026f1a29a5774c75b9db66bcbe11cbb690159cb37b`；已从归档逐文件重新读取并验证SHA。权重没有重复上传，已有权重与原始默认失败记录全部保留。
