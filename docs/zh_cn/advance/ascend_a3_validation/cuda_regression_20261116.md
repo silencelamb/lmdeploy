@@ -2,6 +2,8 @@
 
 执行窗口：2026-11-16 至 2026-11-17，Asia/Shanghai。结果包含**条件通过、基线问题和未验证项**。在有效、相同条件的未插桩迁移对照中，没有发现已证实的 PR 独有 CUDA 数值回归；不能将本报告读作任意缓存、动态合批或全部部署配置的逐位一致保证。
 
+2026-11-17进一步归因见[原子索引、动态合批与TP归约补充报告](cuda_determinism_followup_20261117.md)：已通过完整8卡冻结算子重放把本次S2 out_proj差异定位到BF16 NCCL Ring归约；旧错步数据仍排除，原主矩阵不改标为无条件通过。
+
 ## 固定版本与判定范围
 
 - 共同基线：**442097e83799c2e85df9d6bbce35c7c79ea05dfe**。GitHub API base 与完整非 shallow 历史的 merge-base 均核实为此 SHA，从未用移动中的 main 替代。
@@ -92,15 +94,15 @@ Sage/Agents/Flash初期可各自重复，但跨源码首token分数不同。Sage
 
 此处包含两种因素：四个HTTP请求可能实际合成4或3+1/1+3等批次；即使批量仍为4，请求在批内的行位置也可能不同。缓存固定不能消除这两种数值敏感性。
 
-S2的out_proj是第0层GDN/线性注意力子层经过gated norm后的输出投影，不是最终词表lm_head。在TP8下，各rank先做自己的局部投影，再合成完整hidden维度的结果；本次观察点位于整个模块之后，因而覆盖本地GEMM/量化路径与TP归约。当前没有分开记录归约前的局部输出，不能进一步断言是某个GEMM或NCCL内核造成差异。
+S2的out_proj是第0层GDN/线性注意力子层经过gated norm后的输出投影，不是最终词表lm_head。在TP8下，各rank先做自己的局部投影，再合成完整hidden维度的结果；首轮观察点位于整个模块之后，因而覆盖本地GEMM/量化路径与TP归约，当时没有分开记录归约前的局部输出。2026-11-17新增完整8卡冻结算子重放，已将本次反例定位到BF16 NCCL Ring归约：本地投影逐位对应，只归约已保存的局部输出即可复现差异；详见[进一步归因](cuda_determinism_followup_20261117.md)。
 
-补充证据边界复核：原首差分析来自rank0。现复核两源码×8rank的16组orderA/orderB记录，14组能够按相同首个decode步骤对齐；这些记录中out_proj对应请求的输入相同，移位行的模块输出不同。基线rank3、PR rank4的orderB记录history_lengths为168（目标首decode应为167），且缺少该轮prefill记录，已排除。这两组不能用其他rank代替，也不能据此宣称完成全8卡同一步的归约归因；上游其他rank影响与本地GEMM/归约仍须进一步拆分。[全rank复核及排除原因](evidence/cuda-h200-20261116/outproj-all-rank-input-audit.json)。此补充只限定诊断证据的范围，不改变未插桩主矩阵的原始比较结果。
+补充证据边界复核：原首差分析来自rank0。复核两源码×8rank的16组orderA/orderB记录，14组能够按相同首个decode步骤对齐；这些记录中out_proj对应请求的输入相同，移位行的模块输出不同。基线rank3、PR rank4的orderB记录history_lengths为168（目标首decode应为167），且缺少该轮prefill记录，已排除。这两组不能用其他rank代替，也不能仅凭这批记录宣称完成全8卡同一步的归约归因。[全rank复核及排除原因](evidence/cuda-h200-20261116/outproj-all-rank-input-audit.json)。后续独立控制使用完整orderA的8卡输入构造一致的行置换，没有补写旧缺失记录；它精确重现原有效A/B输出，进一步隔离了本地计算与归约。旧排除项仍有效，未插桩主矩阵原始结果保持不变。
 
 Flash/S2的真实HTTP C4在基线自身也不重复，故不能把这些时序用于合格的迁移性能通过。完整输入、首个数值差异与此前一致的生成历史，以及64份实际TP rank首prefill tensor均保存。
 
 - Flash实际批量4与3的共同请求，首差在第0层fg_a_proj稠密投影；相同批量4的对照，逐层输出和target logits相同。
 - S2实际批量1与4的首差在第0层MoE gate。用真实冻结输入/权重，在基线和PR源码各重放三次：两种形状的实际输出全部精确复现；Flash对应投影同样通过，共24次重放。不是以“BF16误差”忽略差异。
-- S2另有首次decode才出现的变化。控制同一进程的两个批内排列，并保存真实CUDA graph逐层观察buffer、target logits及KV/GDN/卷积状态：相同历史、位置与逻辑状态下，两边均从第0层linear_attn.out_proj输出开始不同；未移动的那一行保持相等。此边界包含本地投影和TP归约，尚未拆分二者的贡献，不声称定位到了某条cuBLAS/NCCL指令。相同排列下跨源码的全部逐层输出和target logits相同；观察器原生dtype重算的前两个top-k分数与原未插桩HTTP记录相同。
+- S2另有首次decode才出现的变化。控制同一进程的两个批内排列，并保存真实CUDA graph逐层观察buffer、target logits及KV/GDN/卷积状态：相同历史、位置与逻辑状态下，两边均从第0层linear_attn.out_proj输出开始不同；未移动的那一行保持相等。首轮只定位到包含本地投影和TP归约的模块边界；后续[完整8卡冻结重放](cuda_determinism_followup_20261117.md)在两份源码均复现BF16 RING_LL归约的6736/16384个差异元素，并用逐步舍入参考精确解释全部输出。相同排列下跨源码的全部逐层输出和target logits相同；观察器原生dtype重算的前两个top-k分数与原未插桩HTTP记录相同。
 
 decode图观察器增加了复制节点，只用于定位；原始性能与正常精度样本不含这些节点。PR观察进程完成8个响应、16个rank tensor后退出卡住，记录并仅清理本任务进程树；没有据此声称正常PR退出回归或正常退出通过。正常主矩阵和性能进程均另有完成记录。该插桩退出异常的归因仍未验证。
 
@@ -184,6 +186,6 @@ Decision不生成token，使用RPS、prefill-token TPS及完整评分响应延�
 
 ## 尚未验证的范围
 
-未认证未获权重的Intern-S2非Preview FP8版本、用户示例DP4/EP8/router生产链路、跨机、真实外网HTTP、视觉模型GPU前向、生产高并发/长时间soak、MTP HTTP性能、target主干独立性能或标准能力榜单。Decision的图为现有piecewise图，部分操作按原设计eager执行。HTTP C4的动态合批/排列不能取得本轮要求的普遍逐位重复性；prefix miss→hit完整数值等价性未被证明。GDN共享单测失败、out_proj内本地计算与TP归约的精细归因，以及仅插桩退出卡住的原因保持开放。
+未认证未获权重的Intern-S2非Preview FP8版本、用户示例DP4/EP8/router生产链路、跨机、真实外网HTTP、视觉模型GPU前向、生产高并发/长时间soak、MTP HTTP性能、target主干独立性能或标准能力榜单。Decision的图为现有piecewise图，部分操作按原设计eager执行。HTTP C4的动态合批/排列不能取得本轮要求的普遍逐位重复性；prefix miss→hit完整数值等价性未被证明。GDN共享单测失败及仅插桩退出卡住的原因保持开放。out_proj此反例已由后续冻结实验定位到BF16 TP Ring归约，但修复方案的完整模型正确性、性能与其他通信配置仍未验证。
 
 这些限制不被改写成迁移通过，也没有为其放宽阈值、启用不同算法或混入基线修复。

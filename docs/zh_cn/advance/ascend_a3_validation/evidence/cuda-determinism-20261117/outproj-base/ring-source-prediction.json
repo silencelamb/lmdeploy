@@ -1,0 +1,74 @@
+{
+  "assumptions": "Observed one-channel RING_LL, 16384 BF16 elements,8ranks; 2048-element chunks; ring0->1->...->7; NCCL runRing reduces chunk c in cyclic order c+1,...,c.",
+  "source_url": "https://github.com/NVIDIA/nccl/blob/v2.27.5-1/src/device/all_reduce.h",
+  "checks": [
+    {
+      "order": "A",
+      "all_elements_equal": true,
+      "elements": 16384
+    },
+    {
+      "order": "B",
+      "all_elements_equal": true,
+      "elements": 16384
+    }
+  ],
+  "example": {
+    "old_row": 3,
+    "new_row": 0,
+    "column": 0,
+    "unchanged_rank_partials": [
+      0.0012969970703125,
+      0.000347137451171875,
+      0.0004405975341796875,
+      0.00122833251953125,
+      0.0017547607421875,
+      -0.001220703125,
+      -0.000152587890625,
+      -0.00014495849609375
+    ],
+    "rank_order_A": [
+      7,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "rank_order_B": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      0
+    ],
+    "rounded_partial_sums_A": [
+      -0.00014495849609375,
+      0.00115203857421875,
+      0.001495361328125,
+      0.0019378662109375,
+      0.003173828125,
+      0.00494384765625,
+      0.00372314453125,
+      0.003570556640625
+    ],
+    "rounded_partial_sums_B": [
+      0.000347137451171875,
+      0.00078582763671875,
+      0.00201416015625,
+      0.0037689208984375,
+      0.0025482177734375,
+      0.0023956298828125,
+      0.00225830078125,
+      0.0035552978515625
+    ],
+    "actual_A": 0.003570556640625,
+    "actual_B": 0.0035552978515625,
+    "fp64_sum": 0.0035495758056640625
+  }
+}

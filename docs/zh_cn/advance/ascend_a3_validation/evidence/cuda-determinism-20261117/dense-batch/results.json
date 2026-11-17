@@ -1,0 +1,116 @@
+[
+  {
+    "model": "flash",
+    "input_rows": [
+      680,
+      510
+    ],
+    "weight_shape": [
+      256,
+      4096
+    ],
+    "common_requests": 3,
+    "original_bf16_reduced_precision_reduction": true,
+    "controls": {
+      "native": [
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 20,
+          "max_abs": 0.0078125
+        },
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 20,
+          "max_abs": 0.0078125
+        },
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 20,
+          "max_abs": 0.0078125
+        }
+      ],
+      "disable_reduced_precision_reduction": [
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 20,
+          "max_abs": 0.0078125
+        },
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 20,
+          "max_abs": 0.0078125
+        },
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 20,
+          "max_abs": 0.0078125
+        }
+      ],
+      "fp32_compute_then_bf16": [
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 1,
+          "max_abs": 0.00390625
+        },
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 1,
+          "max_abs": 0.00390625
+        },
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 1,
+          "max_abs": 0.00390625
+        }
+      ]
+    }
+  },
+  {
+    "model": "s2",
+    "input_rows": [
+      167,
+      668
+    ],
+    "weight_shape": [
+      512,
+      4096
+    ],
+    "common_requests": 1,
+    "original_bf16_reduced_precision_reduction": true,
+    "controls": {
+      "native": [
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 29,
+          "max_abs": 0.0625
+        }
+      ],
+      "disable_reduced_precision_reduction": [
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 29,
+          "max_abs": 0.0625
+        }
+      ],
+      "fp32_compute_then_bf16": [
+        {
+          "input_rows_equal": true,
+          "output_equal": false,
+          "different_elements": 1,
+          "max_abs": 0.03125
+        }
+      ]
+    }
+  }
+]

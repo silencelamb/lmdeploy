@@ -1,0 +1,193 @@
+{
+  "scope": "Actual RequestManager.get_all_requests with synthetic arrival timing; excludes GPU/HTTP performance claims.",
+  "trials": [
+    {
+      "late_fourth": false,
+      "batches": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "events": [
+        {
+          "kind": "enqueue",
+          "id": 0,
+          "ns": 6360
+        },
+        {
+          "kind": "enqueue",
+          "id": 1,
+          "ns": 10992
+        },
+        {
+          "kind": "enqueue",
+          "id": 2,
+          "ns": 13375
+        },
+        {
+          "kind": "enqueue",
+          "id": 3,
+          "ns": 15144
+        },
+        {
+          "kind": "drain",
+          "ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ns": 30567
+        }
+      ]
+    },
+    {
+      "late_fourth": true,
+      "batches": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "events": [
+        {
+          "kind": "enqueue",
+          "id": 0,
+          "ns": 2035
+        },
+        {
+          "kind": "enqueue",
+          "id": 1,
+          "ns": 3242
+        },
+        {
+          "kind": "enqueue",
+          "id": 2,
+          "ns": 4401
+        },
+        {
+          "kind": "drain",
+          "ids": [
+            0,
+            1,
+            2
+          ],
+          "ns": 18851
+        },
+        {
+          "kind": "enqueue",
+          "id": 3,
+          "ns": 1129217
+        },
+        {
+          "kind": "drain",
+          "ids": [
+            3
+          ],
+          "ns": 1140874
+        }
+      ]
+    },
+    {
+      "late_fourth": false,
+      "batches": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "events": [
+        {
+          "kind": "enqueue",
+          "id": 0,
+          "ns": 1799
+        },
+        {
+          "kind": "enqueue",
+          "id": 1,
+          "ns": 3041
+        },
+        {
+          "kind": "enqueue",
+          "id": 2,
+          "ns": 3914
+        },
+        {
+          "kind": "enqueue",
+          "id": 3,
+          "ns": 5450
+        },
+        {
+          "kind": "drain",
+          "ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ns": 13504
+        }
+      ]
+    },
+    {
+      "late_fourth": true,
+      "batches": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "events": [
+        {
+          "kind": "enqueue",
+          "id": 0,
+          "ns": 1115
+        },
+        {
+          "kind": "enqueue",
+          "id": 1,
+          "ns": 2050
+        },
+        {
+          "kind": "enqueue",
+          "id": 2,
+          "ns": 2896
+        },
+        {
+          "kind": "drain",
+          "ids": [
+            0,
+            1,
+            2
+          ],
+          "ns": 12828
+        },
+        {
+          "kind": "enqueue",
+          "id": 3,
+          "ns": 1137415
+        },
+        {
+          "kind": "drain",
+          "ids": [
+            3
+          ],
+          "ns": 1157651
+        }
+      ]
+    }
+  ]
+}

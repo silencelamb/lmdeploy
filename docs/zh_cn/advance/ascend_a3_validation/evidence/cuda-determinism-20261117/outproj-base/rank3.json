@@ -1,0 +1,160 @@
+{
+  "rank": 3,
+  "permutation": [
+    3,
+    0,
+    2,
+    1
+  ],
+  "implementation": "DeepGemmLinearBlockedF8Impl",
+  "scale_fmt": "ue8m0",
+  "x_shape": [
+    1,
+    4,
+    1024
+  ],
+  "x_stride": [
+    4096,
+    1024,
+    1
+  ],
+  "weight_shape": [
+    4096,
+    1024
+  ],
+  "weight_dtype": "torch.float8_e4m3fn",
+  "torch": "2.10.0+cu128",
+  "nccl": [
+    2,
+    27,
+    5
+  ],
+  "experiment": "Both matrix products are from the actual unchanged CUDA provider. Constructed B is P(actual A) on all8ranks. Separate from historical missing-B captures.",
+  "comparisons": {
+    "local_gemm_permutation": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "local_gemm_repeat": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "eager_matches_captured_A": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "eager_matches_captured_B_rank0": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "eager_reduction_permutation": {
+      "equal": false,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16",
+      "unequal_elements": 6736,
+      "max_abs": 0.0078125
+    },
+    "reduction_only_permutation": {
+      "equal": false,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16",
+      "unequal_elements": 6736,
+      "max_abs": 0.0078125
+    },
+    "eager_reduce_repeat": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "graph_matches_captured_A": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "graph_matches_captured_B_rank0": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "graph_reduction_permutation": {
+      "equal": false,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16",
+      "unequal_elements": 6736,
+      "max_abs": 0.0078125
+    },
+    "graph_reduction_only_permutation": {
+      "equal": false,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16",
+      "unequal_elements": 6736,
+      "max_abs": 0.0078125
+    },
+    "graph_repeat": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "fp32_reduction_control_permutation": {
+      "equal": true,
+      "shape": [
+        1,
+        4,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    }
+  }
+}
