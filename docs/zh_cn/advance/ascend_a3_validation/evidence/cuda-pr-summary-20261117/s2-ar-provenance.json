@@ -1,0 +1,102 @@
+{
+  "scope": "Commit provenance, not assignment of intent or sole responsibility. NCCL device arithmetic is provided by NVIDIA NCCL, not an S2-specific handwritten BF16 addition loop.",
+  "commits": [
+    {
+      "label": "shared_fp8",
+      "sha": "ac509e860c1875450378657e8b26595860624b8b",
+      "author_name": "q yao",
+      "github_login": "grimoire",
+      "author_date": "2025-01-08T11:54:34+08:00",
+      "subject": "Support DeepseekV3 fp8 (#2967)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/ac509e860c1875450378657e8b26595860624b8b",
+      "interpretation": "Shared CUDA FP8 projection returns activation dtype and passes it directly to dist.all_reduce.",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "deepgemm",
+      "sha": "e37a76dd325f8cebce96222112cebd7fd3c4c02e",
+      "author_name": "AllentDan",
+      "github_login": "AllentDan",
+      "author_date": "2025-03-22T13:32:23+08:00",
+      "subject": "Add deep gemm with tma pre allocated (#3287)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/e37a76dd325f8cebce96222112cebd7fd3c4c02e",
+      "interpretation": "Adds DeepGemmLinearBlockedF8Impl with out_dtype=x.dtype followed by dist.all_reduce(out).",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "qwen35",
+      "sha": "3bf75ff9fc745798f518e22c5e9e92a2bbf39d23",
+      "author_name": "Q.Yao",
+      "github_login": "grimoire",
+      "author_date": "2026-02-27T15:18:05+08:00",
+      "subject": "Qwen3.5 (#4351)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/3bf75ff9fc745798f518e22c5e9e92a2bbf39d23",
+      "interpretation": "Adds Qwen3.5 GDN out_proj via shared build_o_proj.",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "qwen35_fp8",
+      "sha": "d4e83e160eee52a66e103cbe8f2e042854cfc993",
+      "author_name": "Q.Yao",
+      "github_login": "grimoire",
+      "author_date": "2026-03-28T10:08:28+08:00",
+      "subject": "fix qwen3.5 fp8 support (#4470)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/d4e83e160eee52a66e103cbe8f2e042854cfc993",
+      "interpretation": "Passes quantization_config into Qwen3.5 out_proj.",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "s2_alias",
+      "sha": "df9b428a7712b138b6fdeeabd28fc94ab03ab16f",
+      "author_name": "zxy",
+      "github_login": "CUHKSZzxy",
+      "author_date": "2026-05-09T15:41:40+08:00",
+      "subject": "Support InternS2 Preview (#4575)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/df9b428a7712b138b6fdeeabd28fc94ab03ab16f",
+      "interpretation": "Maps InternS2 Preview architectures to Qwen3.5 MoE.",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "group_fix",
+      "sha": "9f4f842bd00a8fbfed73204c08de81cdd07dc945",
+      "author_name": "Q.Yao",
+      "github_login": "grimoire",
+      "author_date": "2026-06-25T10:59:06+08:00",
+      "subject": "fix triton fp8 all_reduce group (#4702)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/9f4f842bd00a8fbfed73204c08de81cdd07dc945",
+      "interpretation": "Changes all_reduce(out) to all_reduce(out,group=group); does not introduce BF16 accumulation.",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "shared_lifecycle",
+      "sha": "ad242e611a6e8f6191fbd2ce5efb20d1eb724896",
+      "author_name": "Q.Yao",
+      "github_login": "grimoire",
+      "author_date": "2026-08-12T12:14:07+08:00",
+      "subject": "feat(pytorch): add optimized Gluon blocked FP8 GEMM for Hopper (#4830)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/ad242e611a6e8f6191fbd2ce5efb20d1eb724896",
+      "interpretation": "Consolidates CUDA FP8 provider lifecycle; preserves existing output-dtype collective.",
+      "ancestor_of_fixed_base": true
+    },
+    {
+      "label": "flash_fp32_optin",
+      "sha": "b31a0a4985012feeb3db83f0489199bf21558fdb",
+      "author_name": "qescccczmr",
+      "github_login": "qescccczmr",
+      "author_date": "2026-10-16T10:49:57+08:00",
+      "subject": "feat(pytorch): add glm5.3-flash support (#4968)",
+      "url": "https://github.com/InternLM/lmdeploy/commit/b31a0a4985012feeb3db83f0489199bf21558fdb",
+      "interpretation": "Adds opt-in tp_reduce_dtype for GLM Flash; preserves existing defaults for other callers.",
+      "ancestor_of_fixed_base": true
+    }
+  ],
+  "actual_provider": "DeepGemmLinearBlockedF8Impl",
+  "actual_collective": "ncclDevKernel_AllReduce_Sum_bf16_RING_LL",
+  "actual_nccl": "2.27.5",
+  "source_path_unchanged_in_pr": {
+    "lmdeploy/pytorch/backends/cuda/blockedf8_modules.py": true,
+    "lmdeploy/pytorch/distributed.py": true,
+    "lmdeploy/pytorch/nn/linear/base.py": true,
+    "lmdeploy/pytorch/models/module_map.py": true
+  }
+}

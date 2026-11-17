@@ -1,5 +1,7 @@
 # Ascend A3 迁移验证与提交记录
 
+PR GPU结果汇总与独立说明：[三类CUDA基线一致性问题、六模型结论和S2归约提交来源](cuda_consistency_findings_20261117.md)。
+
 进一步CUDA机制分析：[GLM原子索引、3+1动态合批与S2 BF16 Ring归约](cuda_determinism_followup_20261117.md)。新增冻结算子证据，不替代完整模型修复验收。
 
 待执行的独立任务：[GLM-5.3保序与S2确定性TP归约修复Prompt](cuda_determinism_independent_task_prompt_20261117.md)。基线问题另开实现分支，单机8卡验收，不混入迁移PR。

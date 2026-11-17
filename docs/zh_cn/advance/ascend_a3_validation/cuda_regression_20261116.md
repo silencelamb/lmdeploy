@@ -4,6 +4,8 @@
 
 2026-11-17进一步归因见[原子索引、动态合批与TP归约补充报告](cuda_determinism_followup_20261117.md)：已通过完整8卡冻结算子重放把本次S2 out_proj差异定位到BF16 NCCL Ring归约；旧错步数据仍排除，原主矩阵不改标为无条件通过。
 
+面向PR审阅的[集中说明](cuda_consistency_findings_20261117.md)汇总三类问题及S2实现来源。本次发布核对HEAD为2ccf38a4，与实际已测f64仅有Jetson Docker/CI差异，推理、测试及Python依赖源码树一致；未重新标记历史运行SHA。
+
 ## 固定版本与判定范围
 
 - 共同基线：**442097e83799c2e85df9d6bbce35c7c79ea05dfe**。GitHub API base 与完整非 shallow 历史的 merge-base 均核实为此 SHA，从未用移动中的 main 替代。
