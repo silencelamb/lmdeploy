@@ -8,8 +8,8 @@
 | 比较 | 固定源码 | 依赖 | 状态 |
 | --- | --- | --- | --- |
 | Agents 历史迁移 HTTP，128 token | `fb5de87a+3b909634 → 6421cefe` | `legacy` | 不确定 10项 |
-| Agents 当前 PR HTTP，128 token | `fb5de87a+3b909634 → 2ccf38a4` | `stack91` | 待运行；不计通过 |
-| Sage 当前 PR HTTP MTP3，128 token | `fb5de87a+3b909634 → 2ccf38a4` | `stack91` | 待运行；不计通过 |
+| Agents 当前 PR HTTP，128 token | `fb5de87a+3b909634 → 2ccf38a4` | `stack91` | 尚未完成：1/8配对；不计通过 |
+| Sage 当前 PR HTTP MTP3，128 token | `fb5de87a+3b909634 → 2ccf38a4` | `stack91` | 3项计时区间达到等效带；draft入口覆盖待补核，暂不最终验收 |
 | Agents norm pipeline，64 token | `342db85e → 5f1b1b3c` | `legacy` | 待运行；不计通过 |
 | Agents norm pipeline，256 token | `342db85e → 5f1b1b3c` | `legacy` | 待运行；不计通过 |
 | Sage norm pipeline，64 token | `342db85e → 5f1b1b3c` | `legacy` | 待运行；不计通过 |
@@ -24,16 +24,18 @@
 - norm：完整pipeline、prefix OFF、session8192、prefill256、cache0.5、batch8、thinking默认、分别64/256输出token；不能用此替代HTTP对照。
 - 每个新进程至少5个C1/2/3/4预热sweep，最后连续2个无新forward形状、graph capture、Triton compile调用或autotune bench；未直接观测厂商内部全部缓存。
 - 每侧每block测25次C1和8次C4，另有5个固定资格响应。输入/输出token、cache miss、跨进程自重复和无dlinfer的原生环境均需审计通过。
+- 本轮前8轮交错执行C1/C4，其后继续C1；同一配对两侧顺序一致。历史首轮按并发分组执行，因此本轮不是“只改变预热”的单因素因果实验。
 - 以独立进程配对block为统计单位，10000次配对bootstrap、seed20261118；95%区间全部在±5%内才称等效，完全有利可判改善。不是“没有显著回退就算通过”。
 - HTTP流式速度保留历史定义`(输出token数−1)/(末次−首次非空SSE时间)`；norm沿原pipeline定义扣除首chunk token数，不能跨两层直接混合绝对值。
 - 全部失败、慢样本、启动及预热时长保留；pilot不计正式验收。
+- 原MTP forward计数只覆盖target，draft另走独立入口；全局编译/graph捕获记录保留，draft形状直接观测另做同配置补核。按phase记录的driver输出槽数可能包含上一批迟到输出，不能直接解释为逐请求接受率。
 
 [预先判据](evidence/a3-warm-perf-20261118/ACCEPTANCE.md)与原始运行脚本、环境、命令及日志随证据归档。
 
 ## Agents 历史迁移 HTTP，128 token
 
 Label：`agents-historical-r0`；8个全新进程配对，AB/BA各4。
-工作量审计：通过。
+输入/输出及核心环境审计：通过。
 
 | 并发 | 指标 | 配对变化中位数 | 配对95%区间 | 两侧block中位数之比变化 | 结论 |
 | --- | --- | ---: | --- | ---: | --- |
@@ -55,16 +57,40 @@ C4总体TTFT p95：2593.70 → 2613.10 ms；保持配对block的总体分位数�
 
 [逐对值及统计输入哈希](evidence/a3-warm-perf-20261118/agents-historical-r0-statistics.json)；[工作量、缓存、预热和自重复审计](evidence/a3-warm-perf-20261118/agents-historical-r0-work-audit.json)。
 
-## 本轮诊断事实与后续
+## Sage 当前 PR HTTP MTP3，128 token
 
-历史Agents16个服务、496条请求配对全部同输入/输出token，跨进程重放也一致；每个服务完成5轮C1/2/3/4预热，测量期间没有观测到新增编译、图捕获或forward形状。原生worker没有导入dlinfer。全部请求cache miss。
+Label：`sage-current-r0`；8个全新进程配对，AB/BA各4。
+输入/输出及核心环境审计：通过。
+draft入口覆盖补核尚未完成；表内满足等效区间的项暂不发布最终通过。
 
-当前10个主指标均未达到预先约定的等效判据，也没有确认超过5%的持续回退。旧基线自身C1吞吐的进程中位数范围为50.92–59.47token/s，说明跨进程波动仍然存在；不能据此直接把所有差异归因CPU18。
+| 并发 | 指标 | 配对变化中位数 | 配对95%区间 | 两侧block中位数之比变化 | 结论 |
+| --- | --- | ---: | --- | ---: | --- |
+| C1 | 总吞吐 ↑ | -2.13% | [-4.49%, +2.36%] | -1.87% | 计时等效，待draft补核 |
+| C1 | 流式速度 p50 ↑ | -1.67% | [-4.74%, +1.54%] | -1.64% | 计时等效，待draft补核 |
+| C1 | TTFT p50 ↓ | +0.49% | [-8.02%, +4.81%] | +0.16% | 不确定 |
+| C1 | TTFT p95 ↓ | -1.53% | [-10.52%, +41.73%] | +1.82% | 不确定 |
+| C1 | TPOT p50 ↓ | +1.71% | [-1.52%, +4.97%] | +1.66% | 计时等效，待draft补核 |
+| C4 | 总吞吐 ↑ | -0.16% | [-7.40%, +5.47%] | -2.34% | 不确定 |
+| C4 | 流式速度 p50 ↑ | -1.99% | [-10.86%, +6.33%] | -5.05% | 不确定 |
+| C4 | TTFT p50 ↓ | +1.72% | [-8.52%, +5.31%] | -0.51% | 不确定 |
+| C4 | TTFT p95 ↓ | -1.29% | [-5.75%, +7.02%] | +1.66% | 不确定 |
+| C4 | TPOT p50 ↓ | +2.57% | [-5.86%, +11.57%] | +4.84% | 不确定 |
 
-同批C4数据中，148条配对请求的流式速度下降，其中28条的首包和末包其实都更早：该指标的计时窗口会随首包时刻移动。两侧首个driver输出chunk均为1token；两侧各64批C4中，47批按请求索引0/1/2/3到达首包，另外17批有不同顺序。后64token诊断中，C4速度配对中位变化+0.12%，95%区间[−7.34%,+1.96%]，同样不足以证明±5%等效。这些诊断没有替换主指标，也没有删除慢样本。[同批窗口诊断](evidence/a3-warm-perf-20261118/agents-historical-r0-window-diagnostic.json)
+C1总体TTFT p95：758.50 → 751.01 ms；保持配对block的总体分位数变化95%区间 [-7.94%, +44.03%]。该项与上表的逐block p95同时参与验收。
 
-norm入口pilot已通过，170输入/256输出token，engine_config与历史记录逐字段一致；不计正式性能验收。Sage新版编译器的两侧pilot、当前PR HTTP矩阵及norm三组正式矩阵继续运行。Sage旧基线pilot退出时出现MP清理超时告警，worker和driver记录齐全，相关进程随后全部退出；告警原样保留，不计成推理期间失败，也不宣称生命周期无问题。
 
-[完整历史HTTP请求/输出与脚本快照归档](evidence/a3-warm-perf-20261118/agents-historical-r0-raw.tar.gz)含全部正式测量和预热样本、命令元数据及每次运行的工具快照。[归档清单](evidence/a3-warm-perf-20261118/archive-manifest-r0.json)给出成员/归档哈希及完整服务日志的本机路径和哈希；完整服务日志留在A3，不在此包中。
+C4总体TTFT p95：2711.40 → 2679.48 ms；保持配对block的总体分位数变化95%区间 [-9.21%, +7.47%]。该项与上表的逐block p95同时参与验收。
 
-本轮尚无可替换旧结论的性能通过项，旧结果暂仍保留；通过项将按用户要求更新正文，并将对应旧性能叙述移到old/。未验收项继续明确显示。
+[逐对值及统计输入哈希](evidence/a3-warm-perf-20261118/sage-current-r0-statistics.json)；[工作量、缓存、预热和自重复审计](evidence/a3-warm-perf-20261118/sage-current-r0-work-audit.json)。
+
+## Sage补核范围
+
+Sage的8个配对进程、496条请求配对和全测量重放一致，固定源码fb5de87a+dlinfer3b909634对2ccf38a4，共同使用stack91。三个C1计时区间达到等效带，其余7项仍不确定。直接draft计数缺口属于观测工具问题；原始编译/graph记录及输入输出数据保留。将在当前Agents矩阵完成后，用两个全新服务重复相同预热和完整C1/C4请求序列，直接记录draft_model_forward形状并匹配原b00输出。补核的计时不并入8配对统计。
+
+SpecAgent及base/deepseek_mtp/qwen3_5_mtp proposer四个文件在两侧SHA完全相同。首个draft forward保留target输入形状；后续两个AR forward使用每序列一个token。非末尾prefill chunk跳过后续两个AR forward。直接观测用于补齐这条已阅读的源码路径，不能把未记录的draft计数写成已测。[执行计数与源码核对](evidence/a3-warm-perf-20261118/sage-current-r0-execution-counts.json)
+
+按阶段采集的driver槽数存在迟到输出：某些C1阶段出现上一批的多行结果。因此没有用槽数差异宣称MTP接受率下降。事后按前一批并发分层，Sage原生的>1s TTFT为C4之后2/40、C1之后6/160，不支持“只有并发切换才触发”的假设；这一分层不删除样本，也不替代主统计。[前序批次诊断](evidence/a3-warm-perf-20261118/sage-current-r0-previous-batch-diagnostic.json)
+
+[已发布的历史Agents完整请求、命令与工具快照](evidence/a3-warm-perf-20261118/agents-historical-r0-raw.tar.gz)及[归档哈希清单](evidence/a3-warm-perf-20261118/archive-manifest-r0.json)保持不变。Sage完整原始日志和请求文件现保存在A3的`/root/workspace/a3-perf-warm-20261118`，当前先发布汇总与审计，后续一并补充归档。
+
+尚未发布任何最终性能通过项；通过项补核完成后更新正文，并将对应旧性能叙述移至old/。未验收项继续明确显示。
