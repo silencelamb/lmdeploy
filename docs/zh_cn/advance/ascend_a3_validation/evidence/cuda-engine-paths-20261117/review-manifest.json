@@ -1,0 +1,266 @@
+{
+  "checked_at_utc": "2026-11-17T03:30:26.536255+00:00",
+  "fixed_base": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+  "fixed_pr": "f64ab5061153b5c5b63721cf2d8d6f1b41b95104",
+  "scope": "Static checkpoint/config and pinned-source review, plus previously published frozen CUDA experiment evidence. No new full-model or other-engine runtime test. External snapshot hashes describe local UTF-8 text copies; final newlines may be normalized.",
+  "checkpoint_configs": [
+    {
+      "path": "/mnt/shared-storage-user/gpfs2-shared-public/huggingface/hub/models--zai-org--GLM-5.3/snapshots/e0b07fd2751b42d5efa199cc02c2b271deadc516/config.json",
+      "sha256": "3ac72612095574542f7fff847ada8e59d9199dd8af44bdf625d7e02615572e69",
+      "architectures": [
+        "GlmMoeDsaForCausalLM"
+      ],
+      "model_type": "glm_moe_dsa",
+      "text_model_type": "glm_moe_dsa",
+      "index_topk": 2048,
+      "index_kpool": null
+    },
+    {
+      "path": "/mnt/shared-storage-user/gpfs2-shared-public/huggingface/hub/models--zai-org--GLM-5.3-Flash/snapshots/3f1971b7b5f7a528c9c4ef6212c8785298a8c24a/config.json",
+      "sha256": "bb8f01c42cb92a52ca72e65afb4d5bd8d11aef083cd210e8de25dfb904f23e9f",
+      "architectures": [
+        "Glm5NextForConditionalGeneration"
+      ],
+      "model_type": "glm5_next",
+      "text_model_type": "glm5_next_text",
+      "index_topk": 2048,
+      "index_kpool": 4
+    },
+    {
+      "path": "/mnt/shared-storage-user/gpfs2-shared-public/huggingface/hub/models--InternScience--Sage-A1.5/snapshots/ee49fa7353820fff9e59b7e89c51a729e8359a61/config.json",
+      "sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "architectures": [
+        "Qwen3_5MoeForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5_moe",
+      "text_model_type": "qwen3_5_moe_text",
+      "index_topk": null,
+      "index_kpool": null
+    },
+    {
+      "path": "/mnt/shared-storage-user/gpfs2-shared-public/huggingface/hub/models--InternScience--Agents-A1/snapshots/604894d081728ba6616387a2711215b79a95cb03/config.json",
+      "sha256": "5e4d7f74fec2f360eb9cfbfcd6ec0c4c76e684d3a11caaed259d9fd9bfbc7944",
+      "architectures": [
+        "Qwen3_5MoeForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5_moe",
+      "text_model_type": "qwen3_5_moe_text",
+      "index_topk": null,
+      "index_kpool": null
+    },
+    {
+      "path": "/mnt/shared-storage-user/gpfs2-shared-public/huggingface/hub/models--internlm--Intern-S2-Preview-397B-FP8/snapshots/b9b98067e5a0cea541b9e4a2739c0aa7a5ddb667/config.json",
+      "sha256": "96bbf64d8e76c4c4436b781c08fd3ccb4c401e053715197ad92fcb3d9a65d7bd",
+      "architectures": [
+        "InternS2PreviewForConditionalGeneration"
+      ],
+      "model_type": "intern_s2_preview",
+      "text_model_type": "qwen3_5_moe_text",
+      "index_topk": null,
+      "index_kpool": null
+    },
+    {
+      "path": "/mnt/shared-storage-user/gpfs2-shared-public/huggingface/zskj-hub/models--internlm--Intern-Decision-4B/config.json",
+      "sha256": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+      "architectures": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5",
+      "text_model_type": "qwen3_5_text",
+      "index_topk": null,
+      "index_kpool": null
+    }
+  ],
+  "lmdeploy_sources": [
+    {
+      "path": "lmdeploy/pytorch/kernels/cuda/sparse_index_topk.py",
+      "sha256": {
+        "base": "f2fdb71a1d32469b19c0fea1da2efce14e8c1f0e2139743cc26e70c4904a100f",
+        "pr-f64": "f2fdb71a1d32469b19c0fea1da2efce14e8c1f0e2139743cc26e70c4904a100f"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/kernels/cuda/bitonic_topk.py",
+      "sha256": {
+        "base": "f8d8ef98b0282d63cf023aa804f8a90ec73c1ce3f058b10abf81e9f883533b31",
+        "pr-f64": "f8d8ef98b0282d63cf023aa804f8a90ec73c1ce3f058b10abf81e9f883533b31"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/kernels/cuda/sparse_index_dcp_topk.py",
+      "sha256": {
+        "base": "3e4c34122ead3f017cd3d6f1a39f8d5c1baf4eb47b926a4bf94c291e05337554",
+        "pr-f64": "3e4c34122ead3f017cd3d6f1a39f8d5c1baf4eb47b926a4bf94c291e05337554"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/backends/cuda/nsa.py",
+      "sha256": {
+        "base": "9194acf884b707f50fddd8b8e2405ffe4a32e6d5601d2015f542ae0531c941bd",
+        "pr-f64": "9194acf884b707f50fddd8b8e2405ffe4a32e6d5601d2015f542ae0531c941bd"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/backends/cuda/kpool.py",
+      "sha256": {
+        "base": "683118b80454fdc1ffe1cd967d7a8baf3b47b9a14253a61dbee80e0b068e2eec",
+        "pr-f64": "683118b80454fdc1ffe1cd967d7a8baf3b47b9a14253a61dbee80e0b068e2eec"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/backends/cuda/v4_indexer.py",
+      "sha256": {
+        "base": "27b73c9664c27f10811e30c6f3d59118abea6c4be340073d3c59efad5fc282d2",
+        "pr-f64": "27b73c9664c27f10811e30c6f3d59118abea6c4be340073d3c59efad5fc282d2"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/models/glm5_next.py",
+      "sha256": {
+        "base": "cc505cedd20883eaba56b1ec798410f55e0ae3f3fcce8d7b8be3d9f6a4ef5995",
+        "pr-f64": "bbcf4f17adc21b620f3af1fa7f36b46dcf3083d79280ab6a883d0499b3bc585f"
+      },
+      "whole_file_identical": false
+    },
+    {
+      "path": "lmdeploy/pytorch/models/glm_moe_dsa.py",
+      "sha256": {
+        "base": "d885873ff33e1f341ccafbe72221a986de2ef3b07c1a6da7ffd8c0aac57b1442",
+        "pr-f64": "bc9ed8f3ca1ecfcaa9f4b99325a8af159923c58a59b699ccae129f87be0318ca"
+      },
+      "whole_file_identical": false
+    },
+    {
+      "path": "lmdeploy/pytorch/models/qwen3_5.py",
+      "sha256": {
+        "base": "7248df2de93fb44ffce7570a7b5d174b7fb2df007bc545774ef4611eef583657",
+        "pr-f64": "3a2001e1ad494cdda756cd861593434da2f99bdc3104209fa9d02138b5b65d22"
+      },
+      "whole_file_identical": false
+    },
+    {
+      "path": "lmdeploy/pytorch/models/module_map.py",
+      "sha256": {
+        "base": "9df19897a42a0353e50677873ca94193d5add07af9a62fc33dc8e6b8bbee61ec",
+        "pr-f64": "9df19897a42a0353e50677873ca94193d5add07af9a62fc33dc8e6b8bbee61ec"
+      },
+      "whole_file_identical": true
+    },
+    {
+      "path": "lmdeploy/pytorch/nn/linear/base.py",
+      "sha256": {
+        "base": "00ea8c28b4971b1dc32e19e1e0dbf4668028f43b6f007b75005712ecffe42a7b",
+        "pr-f64": "00ea8c28b4971b1dc32e19e1e0dbf4668028f43b6f007b75005712ecffe42a7b"
+      },
+      "whole_file_identical": true
+    }
+  ],
+  "external_sources": [
+    {
+      "engine": "vllm",
+      "repository": "vllm-project/vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "csrc/custom_all_reduce.cuh",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_all_reduce.cuh",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/vllm/csrc/custom_all_reduce.cuh",
+      "local_snapshot_bytes": 14646,
+      "local_snapshot_sha256": "e9fbbe165c3dcd7b72042bc797e643c9d20d9868f419deac45db71c95c4deaa7"
+    },
+    {
+      "engine": "vllm",
+      "repository": "vllm-project/vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "csrc/custom_collective_common.cuh",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_collective_common.cuh",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/vllm/csrc/custom_collective_common.cuh",
+      "local_snapshot_bytes": 9842,
+      "local_snapshot_sha256": "a954b06e708deaacf14a9f2797d512ff33c0d9b2f59f055f2ee33c70f31207ad"
+    },
+    {
+      "engine": "vllm",
+      "repository": "vllm-project/vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "vllm/distributed/device_communicators/custom_all_reduce.py",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/distributed/device_communicators/custom_all_reduce.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/vllm/vllm/distributed/device_communicators/custom_all_reduce.py",
+      "local_snapshot_bytes": 30830,
+      "local_snapshot_sha256": "c0c155caea739177f4f96f5e791e98106e680131a7ed887157934dce0194749f"
+    },
+    {
+      "engine": "vllm",
+      "repository": "vllm-project/vllm",
+      "commit": "61c3895fc937b4ffc2a59abe188959de1e459c8a",
+      "path": "vllm/distributed/device_communicators/pynccl.py",
+      "url": "https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/distributed/device_communicators/pynccl.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/vllm/vllm/distributed/device_communicators/pynccl.py",
+      "local_snapshot_bytes": 25839,
+      "local_snapshot_sha256": "0c9084bb3b1bdc4444396cb20b83e848e1ff42d330971960ab6caf60f29b4d19"
+    },
+    {
+      "engine": "sglang",
+      "repository": "sgl-project/sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/kernels/aot/csrc/allreduce/custom_all_reduce.cuh",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/aot/csrc/allreduce/custom_all_reduce.cuh",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/sglang/python/sglang/kernels/aot/csrc/allreduce/custom_all_reduce.cuh",
+      "local_snapshot_bytes": 29948,
+      "local_snapshot_sha256": "ece8c57a6ab2625b1698ce649d169d19c2db7f42624ba9fd2757a1a7659e3ccb"
+    },
+    {
+      "engine": "sglang",
+      "repository": "sgl-project/sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/srt/distributed/device_communicators/custom_all_reduce.py",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/distributed/device_communicators/custom_all_reduce.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/sglang/python/sglang/srt/distributed/device_communicators/custom_all_reduce.py",
+      "local_snapshot_bytes": 18766,
+      "local_snapshot_sha256": "131d8480d1de58b63e96d9ebbf8af53fe914f8d1665463379369deef82977880"
+    },
+    {
+      "engine": "sglang",
+      "repository": "sgl-project/sglang",
+      "commit": "f534dbaeb2d07c67951d905c628d2888e1ca1673",
+      "path": "python/sglang/srt/distributed/device_communicators/pynccl.py",
+      "url": "https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/distributed/device_communicators/pynccl.py",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/sglang/python/sglang/srt/distributed/device_communicators/pynccl.py",
+      "local_snapshot_bytes": 16654,
+      "local_snapshot_sha256": "e3ee7ae9fef22ff1d856193c7f9a1b54459fa239ab12e5ec299fb25b2c3a8a26"
+    },
+    {
+      "engine": "trtllm",
+      "repository": "NVIDIA/TensorRT-LLM",
+      "commit": "62a91924391ee7fbd66cd000179629d0a90db1ff",
+      "path": "cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/trtllm/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu",
+      "local_snapshot_bytes": 35788,
+      "local_snapshot_sha256": "a7f9974d5136cfbaaee943900df82e5850a9e69e9065608ed1be433dfeff015d"
+    },
+    {
+      "engine": "trtllm",
+      "repository": "NVIDIA/TensorRT-LLM",
+      "commit": "62a91924391ee7fbd66cd000179629d0a90db1ff",
+      "path": "cpp/tensorrt_llm/kernels/customAllReduceKernels.cu",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/customAllReduceKernels.cu",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/trtllm/cpp/tensorrt_llm/kernels/customAllReduceKernels.cu",
+      "local_snapshot_bytes": 86371,
+      "local_snapshot_sha256": "e27bc27576d94e9168e18352b02a3bd7ca356da51155a5c2f763fddd60b1a15b"
+    },
+    {
+      "engine": "trtllm",
+      "repository": "NVIDIA/TensorRT-LLM",
+      "commit": "62a91924391ee7fbd66cd000179629d0a90db1ff",
+      "path": "cpp/tensorrt_llm/thop/allreduceOp.cpp",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/thop/allreduceOp.cpp",
+      "local_snapshot": "/home/daixu/data/pr5134-cuda-20261116/artifacts/engine-collective-review-20261117/trtllm/cpp/tensorrt_llm/thop/allreduceOp.cpp",
+      "local_snapshot_bytes": 118405,
+      "local_snapshot_sha256": "3e4cdd8ff955a424da818f1e4ffc05903e72ece463af473c21472d1941ff878f"
+    }
+  ]
+}

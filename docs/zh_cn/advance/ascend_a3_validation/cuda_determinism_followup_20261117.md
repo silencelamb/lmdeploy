@@ -104,6 +104,63 @@ NCCL的[runRing源码（v2.27.5-1）](https://github.com/NVIDIA/nccl/blob/v2.27.
 
 因此，这个S2 decode反例确实来自TP通信中的BF16归约顺序。它与GLM的随机槽位排列不同：固定同一布局时Ring重放稳定；请求行置换改变的是确定的分块/归约次序。没有证据表明这是通信丢数据，也不能把它泛化成所有TP/NCCL配置都必然有相同问题。
 
+## 5. sparse_index_topk有几种实现、六个模型如何调用
+
+本节按固定442097/f64源码和实际checkpoint配置核对，未更新实现版本。严格按函数名，CUDA目录只有一个公开的sparse_index_topk入口，其TileLang byte-radix实现有两个编译模式：默认deterministic=False用原子槽位无序发射；deterministic=True通过前缀计数按逻辑索引升序发射，同分截断时优先较小逻辑索引。k=512、2048是两个K特化，不是两种独立算法；真实长度≤K时直接输出有效索引也是同一实现内的短路径。
+
+相关但不同的实现还包括Triton bitonic_topk（NSA在TileLang不可用或K不支持时的回退，以及V4的形状/类型回退）和sparse_dcp_global_topk（DCP多分片候选归并）。DCP归并不能修复上游已经不稳定的本地候选选择；本轮DCP=1，不将其列为已验证修复。
+
+| 本次实际模型 | 注意力位置选择路径 | 是否使用共享sparse_index_topk |
+| --- | --- | --- |
+| GLM-5.3，GlmMoeDsaForCausalLM | GlmMoeDsaIndexer → IndexerTopKFP8 → CUDA NSA | 是，K=2048，调用没有传deterministic，默认False |
+| GLM-5.3-Flash，Glm5NextForConditionalGeneration | KPool-4分组选择，短prefill有直接索引路径 | 是，group_topk=2048/4=512，明确deterministic=True |
+| Sage-A1.5 | Qwen3.5 MoE的GDN+全注意力 | 不走该注意力位置选择器 |
+| Agents-A1 | Qwen3.5 MoE的GDN+全注意力 | 不走该注意力位置选择器 |
+| Intern-S2-Preview-397B-FP8 | 映射到Qwen3.5 MoE路径 | 不走该注意力位置选择器 |
+| Intern-Decision-4B | Qwen3.5的GDN+全注意力 | 不走该注意力位置选择器 |
+
+因此，不是只有GLM-5.3使用这个函数；Flash也使用，但已有稳定发射。仓库范围还有DeepSeek V3.2/V4调用者。本表的“top-k”专指注意力KV位置，不能与MoE专家路由或生成采样top-k混为一谈。
+
+源码依据：[默认NSA调用](https://github.com/InternLM/lmdeploy/blob/442097e83799c2e85df9d6bbce35c7c79ea05dfe/lmdeploy/pytorch/backends/cuda/nsa.py#L472)、[KPool稳定调用](https://github.com/InternLM/lmdeploy/blob/442097e83799c2e85df9d6bbce35c7c79ea05dfe/lmdeploy/pytorch/backends/cuda/kpool.py#L353)、[选择器两种发射模式](https://github.com/InternLM/lmdeploy/blob/442097e83799c2e85df9d6bbce35c7c79ea05dfe/lmdeploy/pytorch/kernels/cuda/sparse_index_topk.py#L136)。
+
+若目标是可重复，应明确约定“同一选中集合按逻辑索引升序，同分优先较小逻辑索引”。这比只对最终数组排序更完整：默认路径在cutoff ties时可能已选出不同集合，事后排序无法补救。也不需要为了保序改成按score降序的完整排序；当前deterministic=True已经实现稳定压缩。接口sorted=True表示另一种score排序要求，当前函数会拒绝它。稳定索引只修复这一处机制，仍依赖相同scores，并不能自动解决上游GEMM或下游TP的跨batch数值变化。
+
+## 6. S2是否同一布局重跑就随机、其他模型TP是否免疫
+
+本次NCCL RING_LL反例由缓冲区分块决定rank累加顺序，不是哪个rank先到就先加的原子竞争。固定rank映射、内核、元素数与排列时，冻结重放重复相同；移动请求行后，同一逻辑元素落入另一chunk，使用另一条确定的循环累加顺序。前节的CPU参考精确匹配全部输出，支持的是这一具体机制，不是对任意NCCL配置的全面确定性保证。
+
+两个服务请求即使prompt、seed相同，动态合批的行位置也可能不同，因此未修改的旧服务连续调用仍可能出现不同结果。基线与PR均已复现，且固定排列后96项跨源码tensor比较相同；无需这次迁移改动即可触发。一般而言，改变主机时序的代码可能改变合批从而暴露已有敏感性，但没有证据将本例归类为PR新增的归约算法回归。
+
+其他模型没有天然豁免，必须检查实际通信路径和测试覆盖：
+
+| 模型/条件 | 本轮证据与边界 |
+| --- | --- |
+| Flash，TP8、DP1/EP1 | 固定基线已在KDA/稀疏注意力输出投影设置tp_reduce_dtype=float32，MLP共享投影及MoE最终TP归约也有FP32路径；与S2本次BF16路径不同。Flash仍有此前定位的局部GEMM形状敏感性，不能称完全batch invariant |
+| S2，TP8 | 该GDN out_proj没有上述升精度覆盖，原生BF16 Ring反例已实测定位 |
+| GLM-5.3，TP8 | 长上下文已经在selector先出现首差，不能由此证明后续所有TP归约都不受排列影响 |
+| Sage/Agents/Decision，TP1 | 本轮没有跨卡TP归约，不能把单卡通过延伸成其TP2/4/8也已验证；共享模型路径在多卡下仍需单独检查 |
+
+Flash原有配置见[输出投影](https://github.com/InternLM/lmdeploy/blob/442097e83799c2e85df9d6bbce35c7c79ea05dfe/lmdeploy/pytorch/models/glm5_next.py#L712)与[MoE最终归约](https://github.com/InternLM/lmdeploy/blob/442097e83799c2e85df9d6bbce35c7c79ea05dfe/lmdeploy/pytorch/models/glm5_next.py#L547)。这里没有宣称FP32相加满足结合律或能保证全部输入逐位不变；当前冻结S2控制有效，通用保证还需要稳定的分解和求和顺序。
+
+## 7. 其他引擎的TP归约精度：传输类型与累加类型要分开
+
+本节是官方仓库固定SHA的源码审计，没有运行这些引擎做完整模型对比。vLLM固定61c3895fc937b4ffc2a59abe188959de1e459c8a，SGLang固定f534dbaeb2d07c67951d905c628d2888e1ca1673，TensorRT-LLM固定62a91924391ee7fbd66cd000179629d0a90db1ff；不把结论无条件套到其他版本、硬件或通信后端。
+
+| 引擎及被核对路径 | 输入/输出与跨卡读取的数据类型 | 内部累加 |
+| --- | --- | --- |
+| vLLM常见CUDA CustomAllreduce | FP16/BF16输入仍以原类型在共享/P2P缓冲区读取，最后存回原类型 | packed_t的A是float数组；全部rank输入转FP32累加后再转回 |
+| SGLang常见CUDA CustomAllreduce | 同样保留FP16/BF16输入与输出 | 同样使用FP32累加器 |
+| TensorRT-LLM当前ar_fusion oneshot/twoshot | 保留输入DType的通信缓冲区与输出 | 当前源码默认FP32累加；ALL_REDUCE_FUSION_KERNEL_ACC_FP32=0可退回原dtype累加 |
+| 三者各自的NCCL路径 | 按输入tensor dtype调用ncclAllReduce，没有统一、自动升FP32的承诺 | 由选中的NCCL内核决定；不能把“引擎支持FP32自定义归约”套到所有NCCL调用 |
+
+依据：[vLLM累加器与packed_reduce](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/csrc/custom_collective_common.cuh#L83)、[SGLang对应实现](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/kernels/aot/csrc/allreduce/custom_all_reduce.cuh#L69)、[TensorRT-LLM累加实现](https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu#L378)及[默认开关](https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/kernels/communicationKernels/allReduceFusionKernels.cu#L723)。NCCL dtype传递分别见[vLLM](https://github.com/vllm-project/vllm/blob/61c3895fc937b4ffc2a59abe188959de1e459c8a/vllm/distributed/device_communicators/pynccl.py)、[SGLang](https://github.com/sgl-project/sglang/blob/f534dbaeb2d07c67951d905c628d2888e1ca1673/python/sglang/srt/distributed/device_communicators/pynccl.py#L161)、[TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM/blob/62a91924391ee7fbd66cd000179629d0a90db1ff/cpp/tensorrt_llm/thop/allreduceOp.cpp#L433)。
+
+FP32寄存器累加并不要求先把整个BF16通信tensor转为FP32：自定义kernel可以读取各rank的BF16贡献，在本地FP32寄存器中完成求和，再只舍入一次。它与前节诊断用的“整块转FP32再调用NCCL”有不同的通信量、工作区和性能取舍，不能把两者都说成payload翻倍。实际速度和拓扑适用性必须测量。
+
+精度提升本身也不是绝对保序：vLLM/SGLang所查1stage路径对所有元素按固定rank顺序求和；2stage路径会按分块负责rank旋转读取顺序，并且按消息大小切换实现。因此要承诺严格跨batch一致性，还需要同时约束求和顺序、后端选择及上游GEMM等。不能仅凭源码里出现float累加器就宣称整个引擎逐位一致。
+
+六个实际config哈希、11份LMDeploy源文件哈希、10份官方外部源码的固定URL和本地快照哈希见[调用链与外部引擎审计清单](evidence/cuda-engine-paths-20261117/review-manifest.json)。外部源码快照留在本机artifacts/engine-collective-review-20261117；不把这次静态审计计作其他引擎性能或模型验收。
+
 ## 修复方向与尚未验证部分
 
 - GLM的稳定索引发射分支在本轮真实冻结算子输入上有效；尚未把它启用为正常模型策略，未完成完整模型精度/性能回归。
