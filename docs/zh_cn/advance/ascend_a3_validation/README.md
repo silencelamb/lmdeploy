@@ -1,12 +1,14 @@
 # Ascend A3 迁移验证与提交记录
 
+- [H200 2026-11-18充分预热性能复测](cuda_warm_performance_20261118.md)：最新通过矩阵、动态HTTP C4限制、GLM保序成本、原始数据与复现。
+
 PR平台结论详情入口：[A3验证汇总](a3_validation_summary_20261117.md)、[H200验证报告](cuda_regression_20261116.md)。Ray另见[独立主机尾延迟报告](ray_host_latency_20261117.md)。
 
 GLM-5.3已补齐[保序选项的8卡完整模型验证](glm53_stable_selector_fullmodel_20261117.md)：32次新进程、8组匹配配置均逐位一致；跨prefix miss→hit的生成top-5变化按非阻塞现象记录，不再排查。该研究控制未合入迁移PR。
 
 PR GPU结果汇总与独立说明：[三类CUDA基线一致性问题、六模型结论和S2归约提交来源](cuda_consistency_findings_20261117.md)。
 
-进一步CUDA机制分析：[GLM原子索引、3+1动态合批与S2 BF16 Ring归约](cuda_determinism_followup_20261117.md)。新增冻结算子证据，不替代完整模型修复验收。
+进一步CUDA机制分析：[GLM原子索引、3+1动态合批与S2 BF16 Ring归约](cuda_determinism_followup_20261117.md)。冻结算子证据与后续GLM整模型控制分列，不将其扩展为S2修复验收。
 
 待执行的独立任务：[GLM-5.3保序与S2确定性TP归约修复Prompt](cuda_determinism_independent_task_prompt_20261117.md)。基线问题另开实现分支，单机8卡验收，不混入迁移PR。
 
@@ -46,7 +48,7 @@ H200 CUDA固定版本对照已收尾：[完整报告与原始证据](cuda_regres
 | dlinfer 独立功能        | 无 LMDeploy；16 个 CPU contracts、6 个 >1024 专家 MoE eager/真实 NPUGraph case 通过                                                            | 已测场景通过                                                                                                                         |
 | 共有失败与未覆盖        | 三项 MLA keyRope 连续性失败、MTP 输入评分失败、镜像依赖约束；CUDA、多机、量化等未覆盖                                                          | 保留失败/未验证，不计为通过                                                                                                          |
 
-2026-11-15 已按维护者要求更新 PR 验证摘要。历史测量、原始阈值与 JSON 结果保持原样归档；当前提交说明与 GPU 后续计划见 [PR 整理记录](native_pr_20261115.md)。GPU 待测模型为 GLM-5.3-Flash、InternDecision、Sage-A1.5、Agents-A1、Intern-S2、GLM-5.3，均要求同一 GPU 环境下迁移前后按位一致，尚未计为通过。
+2026-11-15 已按维护者要求更新 PR 验证摘要。历史测量、原始阈值与 JSON 结果保持原样归档；当前提交说明与 GPU 后续计划见 [PR 整理记录](native_pr_20261115.md)。当时列出的六个GPU模型已完成后续对照；当前通过、基线限制及GLM保序控制以[H200报告](cuda_regression_20261116.md)和[11月18日性能复测](cuda_warm_performance_20261118.md)为准。
 
 ## 分支与提交
 

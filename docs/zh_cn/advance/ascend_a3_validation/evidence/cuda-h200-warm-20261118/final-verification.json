@@ -1,0 +1,774 @@
+{
+  "main_complete": true,
+  "option_cost_complete": true,
+  "selected_model_processes": 170,
+  "option_cost_processes": 10,
+  "operator_samples": 160,
+  "short_metric_groups": 34,
+  "operator_source_and_resources_verified": true,
+  "long_metric_groups": 2,
+  "selected_resources_clean": true,
+  "checkpoint_metadata_unchanged": true,
+  "fixed_source_worktrees_clean": true,
+  "referenced_initial_cache_artifacts_unchanged": true,
+  "numerical_qualification_limits": [
+    {
+      "model": "flash",
+      "mtp": 0,
+      "scope": "http",
+      "concurrency": 4,
+      "timed_within_source": {
+        "base": false,
+        "pr": false
+      },
+      "score_failures": [
+        {
+          "kind": "timed_vs_probe",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-flash-http-pair0-base.json",
+          "event": "http-c4-r3",
+          "prompt_hash": "02dd5b922ab6ccb4aa0460f8bb724ff8802af4a8637584b1194726abc131de13",
+          "reason": "Timed token history/input/cache differs from its untimed exact-score probe"
+        },
+        {
+          "kind": "timed_vs_probe",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-flash-http-pair0-pr-f64.json",
+          "event": "http-c4-r0",
+          "prompt_hash": "02dd5b922ab6ccb4aa0460f8bb724ff8802af4a8637584b1194726abc131de13",
+          "reason": "Timed token history/input/cache differs from its untimed exact-score probe"
+        },
+        {
+          "kind": "within_source",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-flash-http-pair0-pr-f64.json",
+          "prompt_hash": "02dd5b922ab6ccb4aa0460f8bb724ff8802af4a8637584b1194726abc131de13",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 0,
+          "left": {
+            "785": {
+              "fp32": "bb940000",
+              "fp64": "bf72800000000000"
+            },
+            "10056": {
+              "fp32": "c0b40000",
+              "fp64": "c016800000000000"
+            },
+            "1986": {
+              "fp32": "c1020000",
+              "fp64": "c020400000000000"
+            },
+            "334": {
+              "fp32": "c1120000",
+              "fp64": "c022400000000000"
+            },
+            "3862": {
+              "fp32": "c11a0000",
+              "fp64": "c023400000000000"
+            }
+          },
+          "right": {
+            "785": {
+              "fp32": "bbc60000",
+              "fp64": "bf78c00000000000"
+            },
+            "10056": {
+              "fp32": "c0b40000",
+              "fp64": "c016800000000000"
+            },
+            "1986": {
+              "fp32": "c0e60000",
+              "fp64": "c01cc00000000000"
+            },
+            "9": {
+              "fp32": "c0ec0000",
+              "fp64": "c01d800000000000"
+            },
+            "334": {
+              "fp32": "c10b0000",
+              "fp64": "c021600000000000"
+            }
+          },
+          "identical_history": []
+        },
+        {
+          "kind": "cross_source",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-flash-http-pair0-pr-f64.json",
+          "prompt_hash": "02dd5b922ab6ccb4aa0460f8bb724ff8802af4a8637584b1194726abc131de13",
+          "repeat": 0,
+          "reason": "complete returned top-k set or score bits",
+          "index": 0,
+          "left": {
+            "785": {
+              "fp32": "bbc60000",
+              "fp64": "bf78c00000000000"
+            },
+            "10056": {
+              "fp32": "c0b40000",
+              "fp64": "c016800000000000"
+            },
+            "1986": {
+              "fp32": "c0e60000",
+              "fp64": "c01cc00000000000"
+            },
+            "9": {
+              "fp32": "c0ec0000",
+              "fp64": "c01d800000000000"
+            },
+            "334": {
+              "fp32": "c10b0000",
+              "fp64": "c021600000000000"
+            }
+          },
+          "right": {
+            "785": {
+              "fp32": "bb940000",
+              "fp64": "bf72800000000000"
+            },
+            "10056": {
+              "fp32": "c0b40000",
+              "fp64": "c016800000000000"
+            },
+            "1986": {
+              "fp32": "c1020000",
+              "fp64": "c020400000000000"
+            },
+            "334": {
+              "fp32": "c1120000",
+              "fp64": "c022400000000000"
+            },
+            "3862": {
+              "fp32": "c11a0000",
+              "fp64": "c023400000000000"
+            }
+          },
+          "identical_history": []
+        },
+        {
+          "kind": "within_source",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-flash-http-pair1-base.json",
+          "prompt_hash": "6c49aaeb324f8da173a254d2f02788f423a7aceced0b20471f69c476b6c33ed9",
+          "repeat": 2,
+          "reason": "complete returned top-k set or score bits",
+          "index": 0,
+          "left": {
+            "785": {
+              "fp32": "bc430000",
+              "fp64": "bf88600000000000"
+            },
+            "10056": {
+              "fp32": "c0900000",
+              "fp64": "c012000000000000"
+            },
+            "1986": {
+              "fp32": "c10c0000",
+              "fp64": "c021800000000000"
+            },
+            "154842": {
+              "fp32": "c1160000",
+              "fp64": "c022c00000000000"
+            },
+            "258": {
+              "fp32": "c1190000",
+              "fp64": "c023200000000000"
+            }
+          },
+          "right": {
+            "785": {
+              "fp32": "bc8d0000",
+              "fp64": "bf91a00000000000"
+            },
+            "10056": {
+              "fp32": "c0850000",
+              "fp64": "c010a00000000000"
+            },
+            "1986": {
+              "fp32": "c1080000",
+              "fp64": "c021000000000000"
+            },
+            "258": {
+              "fp32": "c1090000",
+              "fp64": "c021200000000000"
+            },
+            "22405": {
+              "fp32": "c1100000",
+              "fp64": "c022000000000000"
+            }
+          },
+          "identical_history": []
+        },
+        {
+          "kind": "cross_source",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-flash-http-pair1-base.json",
+          "prompt_hash": "6c49aaeb324f8da173a254d2f02788f423a7aceced0b20471f69c476b6c33ed9",
+          "repeat": 2,
+          "reason": "complete returned top-k set or score bits",
+          "index": 0,
+          "left": {
+            "785": {
+              "fp32": "bc430000",
+              "fp64": "bf88600000000000"
+            },
+            "10056": {
+              "fp32": "c0900000",
+              "fp64": "c012000000000000"
+            },
+            "1986": {
+              "fp32": "c10c0000",
+              "fp64": "c021800000000000"
+            },
+            "154842": {
+              "fp32": "c1160000",
+              "fp64": "c022c00000000000"
+            },
+            "258": {
+              "fp32": "c1190000",
+              "fp64": "c023200000000000"
+            }
+          },
+          "right": {
+            "785": {
+              "fp32": "bc8d0000",
+              "fp64": "bf91a00000000000"
+            },
+            "10056": {
+              "fp32": "c0850000",
+              "fp64": "c010a00000000000"
+            },
+            "1986": {
+              "fp32": "c1080000",
+              "fp64": "c021000000000000"
+            },
+            "258": {
+              "fp32": "c1090000",
+              "fp64": "c021200000000000"
+            },
+            "22405": {
+              "fp32": "c1100000",
+              "fp64": "c022000000000000"
+            }
+          },
+          "identical_history": []
+        }
+      ]
+    },
+    {
+      "model": "glm",
+      "mtp": 0,
+      "scope": "http",
+      "concurrency": 4,
+      "timed_within_source": {
+        "base": false,
+        "pr": false
+      },
+      "score_failures": [
+        {
+          "kind": "timed_vs_probe",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-glm-http-pair0-glm-det-base.json",
+          "event": "http-c4-r0",
+          "prompt_hash": "02dd5b922ab6ccb4aa0460f8bb724ff8802af4a8637584b1194726abc131de13",
+          "reason": "Timed token history/input/cache differs from its untimed exact-score probe"
+        },
+        {
+          "kind": "within_source",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-glm-http-pair0-glm-det-base.json",
+          "prompt_hash": "2a467d7d1c0b08e949ba478544bc1e92cefd7bb9ce44281d771d7b7e0ad89619",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1196": {
+              "fp32": "b9a40000",
+              "fp64": "bf34800000000000"
+            },
+            "3405": {
+              "fp32": "c1040000",
+              "fp64": "c020800000000000"
+            },
+            "3738": {
+              "fp32": "c12c0000",
+              "fp64": "c025800000000000"
+            },
+            "1681": {
+              "fp32": "c13a0000",
+              "fp64": "c027400000000000"
+            },
+            "9929": {
+              "fp32": "c1440000",
+              "fp64": "c028800000000000"
+            }
+          },
+          "right": {
+            "1196": {
+              "fp32": "b9980000",
+              "fp64": "bf33000000000000"
+            },
+            "3405": {
+              "fp32": "c1060000",
+              "fp64": "c020c00000000000"
+            },
+            "3738": {
+              "fp32": "c1280000",
+              "fp64": "c025000000000000"
+            },
+            "1681": {
+              "fp32": "c13a0000",
+              "fp64": "c027400000000000"
+            },
+            "9929": {
+              "fp32": "c1440000",
+              "fp64": "c028800000000000"
+            }
+          },
+          "identical_history": [
+            785
+          ]
+        },
+        {
+          "kind": "cross_source",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-glm-http-pair0-glm-det-base.json",
+          "prompt_hash": "2a467d7d1c0b08e949ba478544bc1e92cefd7bb9ce44281d771d7b7e0ad89619",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1196": {
+              "fp32": "b9a40000",
+              "fp64": "bf34800000000000"
+            },
+            "3405": {
+              "fp32": "c1040000",
+              "fp64": "c020800000000000"
+            },
+            "3738": {
+              "fp32": "c12c0000",
+              "fp64": "c025800000000000"
+            },
+            "1681": {
+              "fp32": "c13a0000",
+              "fp64": "c027400000000000"
+            },
+            "9929": {
+              "fp32": "c1440000",
+              "fp64": "c028800000000000"
+            }
+          },
+          "right": {
+            "1196": {
+              "fp32": "b9980000",
+              "fp64": "bf33000000000000"
+            },
+            "3405": {
+              "fp32": "c1060000",
+              "fp64": "c020c00000000000"
+            },
+            "3738": {
+              "fp32": "c1280000",
+              "fp64": "c025000000000000"
+            },
+            "1681": {
+              "fp32": "c13a0000",
+              "fp64": "c027400000000000"
+            },
+            "9929": {
+              "fp32": "c1440000",
+              "fp64": "c028800000000000"
+            }
+          },
+          "identical_history": [
+            785
+          ]
+        },
+        {
+          "kind": "timed_vs_probe",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-glm-http-pair0-glm-det-pr.json",
+          "event": "http-c4-r0",
+          "prompt_hash": "02dd5b922ab6ccb4aa0460f8bb724ff8802af4a8637584b1194726abc131de13",
+          "reason": "Timed token history/input/cache differs from its untimed exact-score probe"
+        },
+        {
+          "kind": "within_source",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-glm-http-pair0-glm-det-pr.json",
+          "prompt_hash": "6c49aaeb324f8da173a254d2f02788f423a7aceced0b20471f69c476b6c33ed9",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1196": {
+              "fp32": "ba0b0000",
+              "fp64": "bf41600000000000"
+            },
+            "3405": {
+              "fp32": "c0fc0000",
+              "fp64": "c01f800000000000"
+            },
+            "3738": {
+              "fp32": "c1120000",
+              "fp64": "c022400000000000"
+            },
+            "1681": {
+              "fp32": "c1360000",
+              "fp64": "c026c00000000000"
+            },
+            "3383": {
+              "fp32": "c13a0000",
+              "fp64": "c027400000000000"
+            }
+          },
+          "right": {
+            "1196": {
+              "fp32": "b9ef0000",
+              "fp64": "bf3de00000000000"
+            },
+            "3405": {
+              "fp32": "c1000000",
+              "fp64": "c020000000000000"
+            },
+            "3738": {
+              "fp32": "c1160000",
+              "fp64": "c022c00000000000"
+            },
+            "1681": {
+              "fp32": "c1380000",
+              "fp64": "c027000000000000"
+            },
+            "3383": {
+              "fp32": "c13c0000",
+              "fp64": "c027800000000000"
+            }
+          },
+          "identical_history": [
+            785
+          ]
+        },
+        {
+          "kind": "cross_source",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-glm-http-pair0-glm-det-pr.json",
+          "prompt_hash": "6c49aaeb324f8da173a254d2f02788f423a7aceced0b20471f69c476b6c33ed9",
+          "repeat": 0,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1196": {
+              "fp32": "b9ef0000",
+              "fp64": "bf3de00000000000"
+            },
+            "3405": {
+              "fp32": "c1000000",
+              "fp64": "c020000000000000"
+            },
+            "3738": {
+              "fp32": "c1160000",
+              "fp64": "c022c00000000000"
+            },
+            "1681": {
+              "fp32": "c1380000",
+              "fp64": "c027000000000000"
+            },
+            "3383": {
+              "fp32": "c13c0000",
+              "fp64": "c027800000000000"
+            }
+          },
+          "right": {
+            "1196": {
+              "fp32": "ba0b0000",
+              "fp64": "bf41600000000000"
+            },
+            "3405": {
+              "fp32": "c0fc0000",
+              "fp64": "c01f800000000000"
+            },
+            "3738": {
+              "fp32": "c1120000",
+              "fp64": "c022400000000000"
+            },
+            "1681": {
+              "fp32": "c1360000",
+              "fp64": "c026c00000000000"
+            },
+            "3383": {
+              "fp32": "c13a0000",
+              "fp64": "c027400000000000"
+            }
+          },
+          "identical_history": [
+            785
+          ]
+        }
+      ]
+    },
+    {
+      "model": "s2",
+      "mtp": 0,
+      "scope": "http",
+      "concurrency": 4,
+      "timed_within_source": {
+        "base": false,
+        "pr": false
+      },
+      "score_failures": [
+        {
+          "kind": "timed_vs_probe",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-base.json",
+          "event": "http-c4-r0",
+          "prompt_hash": "38268f9cdd079e786687dc03ebf34055d86207bf6530e022bd6aee65298e27a9",
+          "reason": "Timed token history/input/cache differs from its untimed exact-score probe"
+        },
+        {
+          "kind": "within_source",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-base.json",
+          "prompt_hash": "19687b1beb410703eaa4bfcf9c88af43b3507c296d69e3b9b24004c413179049",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1156": {
+              "fp32": "b7fd0000",
+              "fp64": "beffa00000000000"
+            },
+            "3296": {
+              "fp32": "c12e0000",
+              "fp64": "c025c00000000000"
+            },
+            "9640": {
+              "fp32": "c14a0000",
+              "fp64": "c029400000000000"
+            },
+            "51623": {
+              "fp32": "c1520000",
+              "fp64": "c02a400000000000"
+            },
+            "5286": {
+              "fp32": "c15e0000",
+              "fp64": "c02bc00000000000"
+            }
+          },
+          "right": {
+            "1156": {
+              "fp32": "b7b90000",
+              "fp64": "bef7200000000000"
+            },
+            "3296": {
+              "fp32": "c1340000",
+              "fp64": "c026800000000000"
+            },
+            "9640": {
+              "fp32": "c14a0000",
+              "fp64": "c029400000000000"
+            },
+            "51623": {
+              "fp32": "c1600000",
+              "fp64": "c02c000000000000"
+            },
+            "5286": {
+              "fp32": "c1620000",
+              "fp64": "c02c400000000000"
+            }
+          },
+          "identical_history": [
+            760
+          ]
+        },
+        {
+          "kind": "cross_source",
+          "role": "base",
+          "result": "clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-base.json",
+          "prompt_hash": "19687b1beb410703eaa4bfcf9c88af43b3507c296d69e3b9b24004c413179049",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1156": {
+              "fp32": "b7fd0000",
+              "fp64": "beffa00000000000"
+            },
+            "3296": {
+              "fp32": "c12e0000",
+              "fp64": "c025c00000000000"
+            },
+            "9640": {
+              "fp32": "c14a0000",
+              "fp64": "c029400000000000"
+            },
+            "51623": {
+              "fp32": "c1520000",
+              "fp64": "c02a400000000000"
+            },
+            "5286": {
+              "fp32": "c15e0000",
+              "fp64": "c02bc00000000000"
+            }
+          },
+          "right": {
+            "1156": {
+              "fp32": "b7b90000",
+              "fp64": "bef7200000000000"
+            },
+            "3296": {
+              "fp32": "c1340000",
+              "fp64": "c026800000000000"
+            },
+            "9640": {
+              "fp32": "c14a0000",
+              "fp64": "c029400000000000"
+            },
+            "51623": {
+              "fp32": "c1600000",
+              "fp64": "c02c000000000000"
+            },
+            "5286": {
+              "fp32": "c1620000",
+              "fp64": "c02c400000000000"
+            }
+          },
+          "identical_history": [
+            760
+          ]
+        },
+        {
+          "kind": "timed_vs_probe",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-pr-f64.json",
+          "event": "http-c4-r0",
+          "prompt_hash": "8926507ae21be15945021a7e7274aa3ceeebaaece9bc476bcb86cbb88a2b9f92",
+          "reason": "Timed token history/input/cache differs from its untimed exact-score probe"
+        },
+        {
+          "kind": "within_source",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-pr-f64.json",
+          "prompt_hash": "38268f9cdd079e786687dc03ebf34055d86207bf6530e022bd6aee65298e27a9",
+          "repeat": 1,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1156": {
+              "fp32": "b7b10000",
+              "fp64": "bef6200000000000"
+            },
+            "3296": {
+              "fp32": "c1360000",
+              "fp64": "c026c00000000000"
+            },
+            "9640": {
+              "fp32": "c1520000",
+              "fp64": "c02a400000000000"
+            },
+            "51623": {
+              "fp32": "c1540000",
+              "fp64": "c02a800000000000"
+            },
+            "97237": {
+              "fp32": "c15e0000",
+              "fp64": "c02bc00000000000"
+            }
+          },
+          "right": {
+            "1156": {
+              "fp32": "b88f0000",
+              "fp64": "bf11e00000000000"
+            },
+            "3296": {
+              "fp32": "c1200000",
+              "fp64": "c024000000000000"
+            },
+            "9640": {
+              "fp32": "c1420000",
+              "fp64": "c028400000000000"
+            },
+            "5286": {
+              "fp32": "c1520000",
+              "fp64": "c02a400000000000"
+            },
+            "3377": {
+              "fp32": "c1520000",
+              "fp64": "c02a400000000000"
+            }
+          },
+          "identical_history": [
+            760
+          ]
+        },
+        {
+          "kind": "cross_source",
+          "role": "pr",
+          "result": "clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-pr-f64.json",
+          "prompt_hash": "38268f9cdd079e786687dc03ebf34055d86207bf6530e022bd6aee65298e27a9",
+          "repeat": 0,
+          "reason": "complete returned top-k set or score bits",
+          "index": 1,
+          "left": {
+            "1156": {
+              "fp32": "b7fc0000",
+              "fp64": "beff800000000000"
+            },
+            "3296": {
+              "fp32": "c12e0000",
+              "fp64": "c025c00000000000"
+            },
+            "9640": {
+              "fp32": "c1500000",
+              "fp64": "c02a000000000000"
+            },
+            "51623": {
+              "fp32": "c1500000",
+              "fp64": "c02a000000000000"
+            },
+            "97237": {
+              "fp32": "c15e0000",
+              "fp64": "c02bc00000000000"
+            }
+          },
+          "right": {
+            "1156": {
+              "fp32": "b7b10000",
+              "fp64": "bef6200000000000"
+            },
+            "3296": {
+              "fp32": "c1360000",
+              "fp64": "c026c00000000000"
+            },
+            "9640": {
+              "fp32": "c1520000",
+              "fp64": "c02a400000000000"
+            },
+            "51623": {
+              "fp32": "c1540000",
+              "fp64": "c02a800000000000"
+            },
+            "97237": {
+              "fp32": "c15e0000",
+              "fp64": "c02bc00000000000"
+            }
+          },
+          "identical_history": [
+            760
+          ]
+        }
+      ]
+    }
+  ],
+  "qualified_performance_signals_requiring_localization": [],
+  "operator_signals_requiring_localization": [],
+  "long_context_signals_requiring_localization": [],
+  "long_qualified": true,
+  "option_cost_comparability": {
+    "1": true,
+    "32": false
+  },
+  "implementation_pr_modified": false,
+  "merged": false
+}

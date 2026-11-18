@@ -1,0 +1,3 @@
+# Predeclared GLM long-context performance control
+
+Recorded before any GLM performance process starts. In each planned GLM pipeline process (non-MTP and MTP3), add the exact previous 32603-input-token long prompt, 32 generated tokens, prefix off and matching stable-selector worktrees. Save exact top-k probes before/after, three streaming warmups and five measured batches. Summarize each fresh process before the same five-pair AB/BA analysis. Keep these results separate from C1/C4 short workloads and from any unmeasured default-vs-stable-selector overhead. No source/algorithm/dependency changes.

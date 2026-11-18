@@ -104,9 +104,9 @@ self._sparse_index_topk(..., sorted=False, deterministic=True)
 
 ## 性能和交付边界
 
-本轮目标是完整模型正确性验证，没有做保序选项的五对AB/BA性能实验。每轮耗时包含加载、编译和验证请求；首轮冷加载约852秒、整轮约874秒，后续缓存加载更快，**这些elapsed不能作为推理性能回退或加速结论**。原迁移性能结论和独立基线修复的性能问题仍分开。
+2026-11-18已补充五对AB/BA的短请求和32K保序迁移性能对照，并将同一基线保序开/关的独立开销另列。[最新性能、范围与原始证据](cuda_warm_performance_20261118.md)。初次正确性运行的加载/编译耗时仅属历史执行记录，不用于推理性能结论。
 
-保序控制没有写入PR #5134，Intern-S2的BF16通信/FP32累加/固定rank顺序方案也没有在本轮实现。后续生产策略接入、一般batch不变性及性能代价仍见[独立任务Prompt](cuda_determinism_independent_task_prompt_20261117.md)；上述已记录的GLM跨prefix miss→hit数值现象不再作为本次排查或新增修复要求。
+保序控制没有写入PR #5134，Intern-S2的BF16通信/FP32累加/固定rank顺序方案也没有在本轮实现。后续生产策略接入、一般batch不变性及当前成本实验未覆盖的性能范围仍见[独立任务Prompt](cuda_determinism_independent_task_prompt_20261117.md)；上述已记录的GLM跨prefix miss→hit数值现象不再作为本次排查或新增修复要求。
 
 用户断网期间，GPU主机的独立后台守护持续观测任务；本轮原控制器正常完成，没有重启续跑或覆盖失败。任务结束时8卡恢复初始空闲占用（GPU0约116MiB，其他约4MiB）。
 

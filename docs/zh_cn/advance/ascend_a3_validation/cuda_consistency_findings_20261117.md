@@ -94,7 +94,7 @@ Profiler确认实际内核为NCCL2.27.5的`ncclDevKernel_AllReduce_Sum_bf16_RING
 ## 性能、剩余限制与后续边界
 
 - 正确性合格的工作负载预热后做至少5对AB/BA交错，记录TPS、TTFT、TPOT及显存。合格对照未触发预先约定的持续>5%且超出噪声的回退判据；不等于每个指标都已证明≤5%。
-- Agents原HTTP C4 TTFT回退定位到遗漏形状的MoE在线调优；完整预热后未再触发持续回退，但配对TTFT中位仍+7.76%、区间跨0，原样保留。Flash/S2 HTTP C4因token不自重复，不计性能通过；GLM长上下文失败也不进入性能通过统计。
+- 2026-11-18已完成新的充分预热性能矩阵。Agents HTTP和Intern-S2 HTTP C1的旧增幅不再作为当前问题；GLM保序控制已补短请求/32K性能。动态HTTP C4的Flash、Intern-S2和GLM仍有本轮确认的基线重复性限制。[最新性能结论与数据](cuda_warm_performance_20261118.md)
 - 两边共有的GDN单测失败、部分prefix miss→hit分数变化、仅插桩退出挂起等仍按原报告保留。未认证非Preview S2 FP8、用户DP4/EP8/router生产链路、多机、视觉GPU前向、MTP HTTP性能、独立target性能与长期高并发。
 - 两次CPU-only Ray对照未复现>50ms join，只是有限x86对照，不证明ARM根因或宣布Ray已修复。
 - GLM稳定选择器后来已完成独立研究工作树的[整模型控制验证](glm53_stable_selector_fullmodel_20261117.md)，未合入迁移PR；正式策略接入、性能评估及S2确定性归约仍按[独立任务Prompt](cuda_determinism_independent_task_prompt_20261117.md)推进，不混入Ascend迁移。

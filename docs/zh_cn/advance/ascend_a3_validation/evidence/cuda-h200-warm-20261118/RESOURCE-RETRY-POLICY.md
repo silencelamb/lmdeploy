@@ -1,0 +1,3 @@
+# External-resource admission and retries
+
+Added after GPU PID monitoring detected two external eight-GPU Ray bursts during Agents HTTP. Only sampled external GPU PIDs can invalidate a pair. Retain every invalid attempt, rerun both roles in the same predeclared AB/BA order under a fresh attempt label, and require five admitted pairs. Never retry or select on performance values or numerical equality. Stop after four externally overlapped attempts for a pair. Exact selections and all reasons are saved as JSON. Earlier completed stages are audited with the same rule and contaminated pairs are completed separately.

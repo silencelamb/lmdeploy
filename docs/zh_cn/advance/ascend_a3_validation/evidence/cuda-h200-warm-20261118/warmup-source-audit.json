@@ -1,0 +1,14 @@
+{
+  "source_sha": "f64ab5061153b5c5b63721cf2d8d6f1b41b95104",
+  "same_runtime_tree_at_head": "2ccf38a43f0fdc7415ce4ce9f177852bdacc9966",
+  "files": {
+    "lmdeploy/pytorch/engine/model_agent/agent.py": "a361f4b48a476729c0a865bd060e9e12dd5e91a2d081bc374294b9cad820bfcd",
+    "lmdeploy/pytorch/backends/cuda/graph_runner/runner.py": "65bdb1717173102e0e4d69c78c8f6ce97f353f281208cdac9bc0ad8bc1978b9d"
+  },
+  "findings": [
+    "BaseModelAgent.warmup visits every get_capture_batch_sizes entry and synchronizes each capture before returning.",
+    "For max_batch_size8 the regular non-MTP graph buckets are1,2,4,8; observed S2 HTTP log completes4/4 before application requests.",
+    "Real workload warmups additionally cover C1/C4 and full C4 prefill size; the latter is needed because ordinary dummy prefill does not necessarily exercise MoE hint2."
+  ],
+  "representative_log": "logs/clean-20261118-h200-reperf-20261117-perf-s2-http-pair0-base.log"
+}

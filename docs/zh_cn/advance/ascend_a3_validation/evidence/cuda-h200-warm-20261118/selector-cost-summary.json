@@ -1,0 +1,160 @@
+[
+  {
+    "scope": "full-model fixed-input prefill",
+    "input_tokens": 32603,
+    "output_tokens": 1,
+    "tp": 8,
+    "mtp": 0,
+    "prefix": false,
+    "base_source": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+    "stable_source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+    "paired_processes": 5,
+    "measured_batches_per_process": 5,
+    "stable_scores_repeat": true,
+    "default_scores_repeat": false,
+    "all_generated_histories_identical": true,
+    "timing_comparable": true,
+    "explanation": "Single output token has no generated history fed into another model step; compare full prefill TTFT.",
+    "metrics": {
+      "ttft": {
+        "default": [
+          3.235905848443508,
+          3.264879133552313,
+          3.1795797869563103,
+          3.231203857809305,
+          3.205458592623472
+        ],
+        "stable": [
+          3.222898628562689,
+          3.211997479200363,
+          3.2336251474916935,
+          3.2055654413998127,
+          3.2474833205342293
+        ],
+        "default_median": 3.231203857809305,
+        "stable_median": 3.222898628562689,
+        "paired_pct": [
+          -0.401965337992638,
+          -1.6197124667954421,
+          1.6997642505180988,
+          -0.7934632891554827,
+          1.3110363680088
+        ],
+        "paired_median_pct": -0.401965337992638,
+        "ci95": [
+          -1.6197124667954421,
+          1.6997642505180988
+        ]
+      }
+    }
+  },
+  {
+    "scope": "full-model 32-token generation",
+    "input_tokens": 32603,
+    "output_tokens": 32,
+    "tp": 8,
+    "mtp": 0,
+    "prefix": false,
+    "base_source": "442097e83799c2e85df9d6bbce35c7c79ea05dfe",
+    "stable_source": "f06316de64fe8d3c23f72d17bd94180965a4558e",
+    "paired_processes": 5,
+    "measured_batches_per_process": 5,
+    "stable_scores_repeat": true,
+    "default_scores_repeat": false,
+    "all_generated_histories_identical": false,
+    "timing_comparable": false,
+    "explanation": "Interpret end-to-end cost only if all actual generated histories match.",
+    "metrics": {
+      "ttft": {
+        "default": [
+          3.3777064457535744,
+          3.283386919647455,
+          3.205686405301094,
+          3.3394730538129807,
+          3.208373125642538
+        ],
+        "stable": [
+          3.236862100660801,
+          3.24190766364336,
+          3.259029407054186,
+          3.237167939543724,
+          3.244664967060089
+        ],
+        "default_median": 3.283386919647455,
+        "stable_median": 3.24190766364336,
+        "paired_pct": [
+          -4.169821959212639,
+          -1.2633069759731108,
+          1.6640118529648085,
+          -3.06351069826557,
+          1.1311602483979444
+        ],
+        "paired_median_pct": -1.2633069759731108,
+        "ci95": [
+          -4.169821959212639,
+          1.6640118529648085
+        ]
+      },
+      "throughput": {
+        "default": [
+          7.888400408703066,
+          8.07265773576447,
+          8.23326735087684,
+          7.962909091428213,
+          8.22814443867528
+        ],
+        "stable": [
+          8.14420647193217,
+          8.131796534520953,
+          8.099068545716671,
+          8.142173162469682,
+          8.12756953151305
+        ],
+        "default_median": 8.07265773576447,
+        "stable_median": 8.131796534520953,
+        "paired_pct": [
+          3.2428128641502463,
+          0.7325815201415065,
+          -1.629958064532877,
+          2.251238447949122,
+          -1.222327924744382
+        ],
+        "paired_median_pct": 0.7325815201415065,
+        "ci95": [
+          -1.629958064532877,
+          3.2428128641502463
+        ]
+      },
+      "tpot": {
+        "default": [
+          0.02186764740655499,
+          0.02190878266288388,
+          0.02186677340538271,
+          0.021904808018476732,
+          0.021930760313426296
+        ],
+        "stable": [
+          0.022314131019576904,
+          0.02231103326043775,
+          0.022311767743479823,
+          0.022292447666968068,
+          0.022314422433414766
+        ],
+        "default_median": 0.021904808018476732,
+        "stable_median": 0.022311767743479823,
+        "paired_pct": [
+          2.0417542167251,
+          1.836024409678072,
+          2.035025149103964,
+          1.7696555393882596,
+          1.7494246186877005
+        ],
+        "paired_median_pct": 1.836024409678072,
+        "ci95": [
+          1.7494246186877005,
+          2.0417542167251
+        ]
+      }
+    }
+  }
+]
