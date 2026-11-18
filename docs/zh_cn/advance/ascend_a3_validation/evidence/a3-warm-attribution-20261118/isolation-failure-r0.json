@@ -1,0 +1,11 @@
+{
+  "label": "agents-norm-isolation-r0",
+  "returncode": 1,
+  "stage": "warmup C3 in diagnostic legacy graph pool",
+  "error": "aclnnInplaceCopy: destination shape4 vs state_ids shape3 after first capture",
+  "scope": "Second graph pool created by diagnostic substitution; primary runs use normal startup pre-capture and are unchanged",
+  "next_label": "agents-norm-isolation-r1",
+  "change": "Warm C1,C2,C4 before C3 in both modes; same measured C1/C4 workload",
+  "source_code_changed": false,
+  "npu_processes_after_failure": "none visible, inventory/npu-after-isolation-failure-r0.txt"
+}

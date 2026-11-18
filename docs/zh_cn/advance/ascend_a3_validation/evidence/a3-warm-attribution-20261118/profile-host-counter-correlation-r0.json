@@ -1,0 +1,494 @@
+{
+  "scope": "2s host-counter overlap is association only; endpoint CPUs do not identify all CPUs visited or every stall cause",
+  "records": [
+    {
+      "session": "agents-historical-profile-r0-new-b00",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 24,
+        "end_phase": 24,
+        "begin_ns": 626237188284358,
+        "end_ns": 626237755553581,
+        "host_ms": 567.269223,
+        "thread_cpu_activity_ms": 13.79938,
+        "begin_cpu": 160,
+        "end_cpu": 280,
+        "tid": 2895110
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626236302487926,
+          "end_ns": 626238312748404,
+          "cpu18_softirq_pct": 22.957198443579767,
+          "cpu18_busy_pct": 33.0739299610895,
+          "cpu18_tasklet_delta": 35,
+          "cpu18_net_rx_delta": 3,
+          "seconds": 2.010260478
+        }
+      ]
+    },
+    {
+      "session": "agents-historical-profile-r0-new-b01",
+      "role": "worker",
+      "rank": 1,
+      "event": {
+        "name": "model_enqueue",
+        "phase": 32,
+        "end_phase": 32,
+        "begin_ns": 626519235805881,
+        "end_ns": 626520007392119,
+        "host_ms": 771.586238,
+        "thread_cpu_activity_ms": 761.48457,
+        "begin_cpu": 219,
+        "end_cpu": 219,
+        "tid": 2899717,
+        "decoding": false,
+        "input_tokens": 43,
+        "device_sampled": false,
+        "phase_call": 8
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626519008629521,
+          "end_ns": 626521012027745,
+          "cpu18_softirq_pct": 29.081632653061224,
+          "cpu18_busy_pct": 42.857142857142854,
+          "cpu18_tasklet_delta": 19,
+          "cpu18_net_rx_delta": 60,
+          "seconds": 2.003398224
+        }
+      ]
+    },
+    {
+      "session": "agents-historical-profile-r0-new-b01",
+      "role": "worker",
+      "rank": 0,
+      "event": {
+        "name": "model_enqueue",
+        "phase": 32,
+        "end_phase": 32,
+        "begin_ns": 626519236338373,
+        "end_ns": 626520007166668,
+        "host_ms": 770.828295,
+        "thread_cpu_activity_ms": 187.08771,
+        "begin_cpu": 18,
+        "end_cpu": 19,
+        "tid": 2899716,
+        "decoding": false,
+        "input_tokens": 43,
+        "device_sampled": false,
+        "phase_call": 8
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626519008629521,
+          "end_ns": 626521012027745,
+          "cpu18_softirq_pct": 29.081632653061224,
+          "cpu18_busy_pct": 42.857142857142854,
+          "cpu18_tasklet_delta": 19,
+          "cpu18_net_rx_delta": 60,
+          "seconds": 2.003398224
+        }
+      ]
+    },
+    {
+      "session": "agents-historical-profile-r0-new-b01",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 31,
+        "end_phase": 31,
+        "begin_ns": 626516452276167,
+        "end_ns": 626517041693485,
+        "host_ms": 589.417318,
+        "thread_cpu_activity_ms": 13.78103,
+        "begin_cpu": 5,
+        "end_cpu": 9,
+        "tid": 2898578
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626515001371201,
+          "end_ns": 626517004755205,
+          "cpu18_softirq_pct": 28.426395939086294,
+          "cpu18_busy_pct": 38.07106598984772,
+          "cpu18_tasklet_delta": 0,
+          "cpu18_net_rx_delta": 1,
+          "seconds": 2.003384004
+        },
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626517004755205,
+          "end_ns": 626519008629521,
+          "cpu18_softirq_pct": 1.530612244897959,
+          "cpu18_busy_pct": 23.979591836734695,
+          "cpu18_tasklet_delta": 19,
+          "cpu18_net_rx_delta": 20,
+          "seconds": 2.003874316
+        }
+      ]
+    },
+    {
+      "session": "agents-historical-profile-r0-new-b01",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 47,
+        "end_phase": 47,
+        "begin_ns": 626565099295438,
+        "end_ns": 626565665228420,
+        "host_ms": 565.932982,
+        "thread_cpu_activity_ms": 11.73552,
+        "begin_cpu": 253,
+        "end_cpu": 240,
+        "tid": 2898578
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626563116946315,
+          "end_ns": 626565127637487,
+          "cpu18_softirq_pct": 1.5151515151515151,
+          "cpu18_busy_pct": 19.696969696969695,
+          "cpu18_tasklet_delta": 13,
+          "cpu18_net_rx_delta": 14,
+          "seconds": 2.010691172
+        },
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626565127637487,
+          "end_ns": 626567131533856,
+          "cpu18_softirq_pct": 27.5,
+          "cpu18_busy_pct": 40.5,
+          "cpu18_tasklet_delta": 12,
+          "cpu18_net_rx_delta": 35,
+          "seconds": 2.003896369
+        }
+      ]
+    },
+    {
+      "session": "agents-historical-profile-r0-new-b01",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 49,
+        "end_phase": 49,
+        "begin_ns": 626570412982810,
+        "end_ns": 626571393285387,
+        "host_ms": 980.302577,
+        "thread_cpu_activity_ms": 5.26573,
+        "begin_cpu": 211,
+        "end_cpu": 237,
+        "tid": 2898578
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626569134844512,
+          "end_ns": 626571138377289,
+          "cpu18_softirq_pct": 17.647058823529413,
+          "cpu18_busy_pct": 24.789915966386555,
+          "cpu18_tasklet_delta": 12,
+          "cpu18_net_rx_delta": 11,
+          "seconds": 2.003532777
+        },
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626571138377289,
+          "end_ns": 626573141999697,
+          "cpu18_softirq_pct": 7.511737089201878,
+          "cpu18_busy_pct": 24.413145539906104,
+          "cpu18_tasklet_delta": 13,
+          "cpu18_net_rx_delta": 40,
+          "seconds": 2.003622408
+        }
+      ]
+    },
+    {
+      "session": "agents-historical-profile-r0-old-b01",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 45,
+        "end_phase": 45,
+        "begin_ns": 626808224748702,
+        "end_ns": 626808816704065,
+        "host_ms": 591.955363,
+        "thread_cpu_activity_ms": 590.32922,
+        "begin_cpu": 99,
+        "end_cpu": 95,
+        "tid": 2901868
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r1.jsonl",
+          "start_ns": 626807768280549,
+          "end_ns": 626809772309569,
+          "cpu18_softirq_pct": 25.61576354679803,
+          "cpu18_busy_pct": 34.48275862068966,
+          "cpu18_tasklet_delta": 11,
+          "cpu18_net_rx_delta": 0,
+          "seconds": 2.00402902
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-old-b00",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 41,
+        "end_phase": 41,
+        "begin_ns": 627069677526565,
+        "end_ns": 627070182768850,
+        "host_ms": 505.242285,
+        "thread_cpu_activity_ms": 2.58159,
+        "begin_cpu": 212,
+        "end_cpu": 214,
+        "tid": 2909647
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627067890003286,
+          "end_ns": 627069893610249,
+          "cpu18_softirq_pct": 10.85972850678733,
+          "cpu18_busy_pct": 31.221719457013574,
+          "cpu18_tasklet_delta": 67,
+          "cpu18_net_rx_delta": 30,
+          "seconds": 2.003606963
+        },
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627069893610249,
+          "end_ns": 627071910398052,
+          "cpu18_softirq_pct": 13.852813852813853,
+          "cpu18_busy_pct": 16.450216450216452,
+          "cpu18_tasklet_delta": 94,
+          "cpu18_net_rx_delta": 30,
+          "seconds": 2.016787803
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-old-b00",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 45,
+        "end_phase": 45,
+        "begin_ns": 627075060121771,
+        "end_ns": 627075633562141,
+        "host_ms": 573.44037,
+        "thread_cpu_activity_ms": 3.06164,
+        "begin_cpu": 159,
+        "end_cpu": 159,
+        "tid": 2909647
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627073914048116,
+          "end_ns": 627075928655168,
+          "cpu18_softirq_pct": 29.64824120603015,
+          "cpu18_busy_pct": 42.71356783919598,
+          "cpu18_tasklet_delta": 56,
+          "cpu18_net_rx_delta": 28,
+          "seconds": 2.014607052
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-new-b00",
+      "role": "worker",
+      "rank": 0,
+      "event": {
+        "name": "model_enqueue",
+        "phase": 43,
+        "end_phase": 43,
+        "begin_ns": 627222023483563,
+        "end_ns": 627222825696367,
+        "host_ms": 802.212804,
+        "thread_cpu_activity_ms": 255.39345,
+        "begin_cpu": 80,
+        "end_cpu": 88,
+        "tid": 2911422,
+        "decoding": false,
+        "input_tokens": 170,
+        "device_sampled": true,
+        "phase_call": 1,
+        "device_enqueue_interval_ms": 802.2822265625
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627220279544003,
+          "end_ns": 627222283160208,
+          "cpu18_softirq_pct": 13.333333333333334,
+          "cpu18_busy_pct": 33.84615384615385,
+          "cpu18_tasklet_delta": 10,
+          "cpu18_net_rx_delta": 1,
+          "seconds": 2.003616205
+        },
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627222283160208,
+          "end_ns": 627224293869776,
+          "cpu18_softirq_pct": 14.427860696517413,
+          "cpu18_busy_pct": 36.318407960199,
+          "cpu18_tasklet_delta": 15,
+          "cpu18_net_rx_delta": 1,
+          "seconds": 2.010709568
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-new-b00",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 29,
+        "end_phase": 29,
+        "begin_ns": 627200974827495,
+        "end_ns": 627201556853732,
+        "host_ms": 582.026237,
+        "thread_cpu_activity_ms": 3.49618,
+        "begin_cpu": 160,
+        "end_cpu": 160,
+        "tid": 2911877
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627200230174565,
+          "end_ns": 627202233489658,
+          "cpu18_softirq_pct": 29.64824120603015,
+          "cpu18_busy_pct": 38.19095477386934,
+          "cpu18_tasklet_delta": 55,
+          "cpu18_net_rx_delta": 13,
+          "seconds": 2.003315093
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-new-b00",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 35,
+        "end_phase": 35,
+        "begin_ns": 627211231826093,
+        "end_ns": 627211820934514,
+        "host_ms": 589.108421,
+        "thread_cpu_activity_ms": 5.16479,
+        "begin_cpu": 64,
+        "end_cpu": 64,
+        "tid": 2911877
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627210256800328,
+          "end_ns": 627212260220612,
+          "cpu18_softirq_pct": 29.14572864321608,
+          "cpu18_busy_pct": 50.25125628140704,
+          "cpu18_tasklet_delta": 3,
+          "cpu18_net_rx_delta": 15,
+          "seconds": 2.003420284
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-new-b00",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 43,
+        "end_phase": 43,
+        "begin_ns": 627222018368199,
+        "end_ns": 627222577160255,
+        "host_ms": 558.792056,
+        "thread_cpu_activity_ms": 3.2235,
+        "begin_cpu": 193,
+        "end_cpu": 240,
+        "tid": 2911877
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627220279544003,
+          "end_ns": 627222283160208,
+          "cpu18_softirq_pct": 13.333333333333334,
+          "cpu18_busy_pct": 33.84615384615385,
+          "cpu18_tasklet_delta": 10,
+          "cpu18_net_rx_delta": 1,
+          "seconds": 2.003616205
+        },
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627222283160208,
+          "end_ns": 627224293869776,
+          "cpu18_softirq_pct": 14.427860696517413,
+          "cpu18_busy_pct": 36.318407960199,
+          "cpu18_tasklet_delta": 15,
+          "cpu18_net_rx_delta": 1,
+          "seconds": 2.010709568
+        }
+      ]
+    },
+    {
+      "session": "agents-norm-short-profile-r1-old-b01",
+      "role": "driver",
+      "rank": null,
+      "event": {
+        "name": "forward_async",
+        "phase": 44,
+        "end_phase": 44,
+        "begin_ns": 627510991654020,
+        "end_ns": 627511578431746,
+        "host_ms": 586.777726,
+        "thread_cpu_activity_ms": 4.31887,
+        "begin_cpu": 22,
+        "end_cpu": 161,
+        "tid": 2916618
+      },
+      "host_counter_intervals": [
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627509023616787,
+          "end_ns": 627511027107848,
+          "cpu18_softirq_pct": 2.512562814070352,
+          "cpu18_busy_pct": 17.587939698492463,
+          "cpu18_tasklet_delta": 7,
+          "cpu18_net_rx_delta": 46,
+          "seconds": 2.003491061
+        },
+        {
+          "file": "host-counters-r3.jsonl",
+          "start_ns": 627511027107848,
+          "end_ns": 627513030437968,
+          "cpu18_softirq_pct": 26.865671641791046,
+          "cpu18_busy_pct": 42.78606965174129,
+          "cpu18_tasklet_delta": 12,
+          "cpu18_net_rx_delta": 9,
+          "seconds": 2.00333012
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,686 @@
+{
+  "label": "chunk-o-binary-pair-r0",
+  "seed": 42,
+  "cache_override": "/root/workspace/a3-perf-warm-20261118/artifacts/chunk-o-binary-pair-r0-isolated-cache",
+  "metadata_identical": true,
+  "ir_identical": true,
+  "source_files": {
+    "before": {
+      "path": "/root/workspace/a3-perf-warm-20261118/artifacts/triton-norm-before-legacy/4_-xofxzDht83buZGTxTBLK5o2DG7BoUlk-Mgvckh0s/chunk_fwd_kernel_o.npubin",
+      "sha256": "49d5fcd6800135cade9510e20bd58d87cc92c44bfed7bdda7d8b86b26aa78625",
+      "function": "281470436880264",
+      "module": "281471445975040"
+    },
+    "after": {
+      "path": "/root/workspace/a3-perf-warm-20261118/artifacts/triton-norm-after-legacy/4_-xofxzDht83buZGTxTBLK5o2DG7BoUlk-Mgvckh0s/chunk_fwd_kernel_o.npubin",
+      "sha256": "2c1825029260996857764da12f9acf4c3cc747a31169d00395265aecea8d7fda",
+      "function": "281470436880288",
+      "module": "281471445987328"
+    }
+  },
+  "cases": [
+    {
+      "sequence_lengths": [
+        43
+      ],
+      "grid": [
+        1,
+        16,
+        1
+      ],
+      "correctness": {
+        "before": {
+          "max_abs_error": 7.62939453125e-06,
+          "finite": true
+        },
+        "after": {
+          "max_abs_error": 7.62939453125e-06,
+          "finite": true
+        }
+      },
+      "rounds": [
+        {
+          "repeat": 0,
+          "microseconds_per_call": {
+            "before": 11.653599739074707,
+            "after": 11.386200189590454
+          }
+        },
+        {
+          "repeat": 1,
+          "microseconds_per_call": {
+            "after": 11.390000581741333,
+            "before": 11.695200204849243
+          }
+        },
+        {
+          "repeat": 2,
+          "microseconds_per_call": {
+            "before": 11.672600507736206,
+            "after": 11.383999586105347
+          }
+        },
+        {
+          "repeat": 3,
+          "microseconds_per_call": {
+            "after": 11.348600387573242,
+            "before": 11.667399406433105
+          }
+        },
+        {
+          "repeat": 4,
+          "microseconds_per_call": {
+            "before": 11.649199724197388,
+            "after": 11.40339970588684
+          }
+        },
+        {
+          "repeat": 5,
+          "microseconds_per_call": {
+            "after": 11.333999633789062,
+            "before": 11.719000339508057
+          }
+        },
+        {
+          "repeat": 6,
+          "microseconds_per_call": {
+            "before": 11.723999977111816,
+            "after": 11.332999467849731
+          }
+        },
+        {
+          "repeat": 7,
+          "microseconds_per_call": {
+            "after": 11.389800310134888,
+            "before": 11.73840045928955
+          }
+        },
+        {
+          "repeat": 8,
+          "microseconds_per_call": {
+            "before": 11.647200584411621,
+            "after": 11.372400522232056
+          }
+        },
+        {
+          "repeat": 9,
+          "microseconds_per_call": {
+            "after": 11.412999629974365,
+            "before": 11.67240023612976
+          }
+        },
+        {
+          "repeat": 10,
+          "microseconds_per_call": {
+            "before": 11.762800216674805,
+            "after": 11.386200189590454
+          }
+        },
+        {
+          "repeat": 11,
+          "microseconds_per_call": {
+            "after": 11.4628005027771,
+            "before": 11.678800582885742
+          }
+        },
+        {
+          "repeat": 12,
+          "microseconds_per_call": {
+            "before": 11.613399982452393,
+            "after": 11.419199705123901
+          }
+        },
+        {
+          "repeat": 13,
+          "microseconds_per_call": {
+            "after": 11.420999765396118,
+            "before": 11.643400192260742
+          }
+        },
+        {
+          "repeat": 14,
+          "microseconds_per_call": {
+            "before": 11.72700047492981,
+            "after": 11.42199993133545
+          }
+        },
+        {
+          "repeat": 15,
+          "microseconds_per_call": {
+            "after": 11.390800476074219,
+            "before": 11.72260046005249
+          }
+        },
+        {
+          "repeat": 16,
+          "microseconds_per_call": {
+            "before": 11.719000339508057,
+            "after": 11.331000328063965
+          }
+        },
+        {
+          "repeat": 17,
+          "microseconds_per_call": {
+            "after": 11.40660047531128,
+            "before": 11.647599935531616
+          }
+        },
+        {
+          "repeat": 18,
+          "microseconds_per_call": {
+            "before": 11.680200099945068,
+            "after": 11.353199481964111
+          }
+        },
+        {
+          "repeat": 19,
+          "microseconds_per_call": {
+            "after": 11.337599754333496,
+            "before": 11.680400371551514
+          }
+        }
+      ],
+      "bitwise_ab": true,
+      "paired_median_time_change_pct": -2.605227280499911
+    },
+    {
+      "sequence_lengths": [
+        128
+      ],
+      "grid": [
+        1,
+        16,
+        1
+      ],
+      "correctness": {
+        "before": {
+          "max_abs_error": 7.62939453125e-06,
+          "finite": true
+        },
+        "after": {
+          "max_abs_error": 7.62939453125e-06,
+          "finite": true
+        }
+      },
+      "rounds": [
+        {
+          "repeat": 0,
+          "microseconds_per_call": {
+            "before": 13.368799686431885,
+            "after": 13.056800365447998
+          }
+        },
+        {
+          "repeat": 1,
+          "microseconds_per_call": {
+            "after": 13.111599683761597,
+            "before": 13.410600423812866
+          }
+        },
+        {
+          "repeat": 2,
+          "microseconds_per_call": {
+            "before": 13.398200273513794,
+            "after": 13.216999769210815
+          }
+        },
+        {
+          "repeat": 3,
+          "microseconds_per_call": {
+            "after": 13.051600456237793,
+            "before": 13.361200094223022
+          }
+        },
+        {
+          "repeat": 4,
+          "microseconds_per_call": {
+            "before": 13.450000286102295,
+            "after": 13.156800270080566
+          }
+        },
+        {
+          "repeat": 5,
+          "microseconds_per_call": {
+            "after": 13.093600273132324,
+            "before": 13.451999425888062
+          }
+        },
+        {
+          "repeat": 6,
+          "microseconds_per_call": {
+            "before": 13.453199863433838,
+            "after": 13.088799715042114
+          }
+        },
+        {
+          "repeat": 7,
+          "microseconds_per_call": {
+            "after": 13.107199668884277,
+            "before": 13.415199518203735
+          }
+        },
+        {
+          "repeat": 8,
+          "microseconds_per_call": {
+            "before": 13.377200365066528,
+            "after": 13.086800575256348
+          }
+        },
+        {
+          "repeat": 9,
+          "microseconds_per_call": {
+            "after": 13.063199520111084,
+            "before": 13.431199789047241
+          }
+        },
+        {
+          "repeat": 10,
+          "microseconds_per_call": {
+            "before": 13.438400030136108,
+            "after": 13.082400560379028
+          }
+        },
+        {
+          "repeat": 11,
+          "microseconds_per_call": {
+            "after": 13.102400302886963,
+            "before": 13.40939998626709
+          }
+        },
+        {
+          "repeat": 12,
+          "microseconds_per_call": {
+            "before": 13.42460036277771,
+            "after": 13.179800510406494
+          }
+        },
+        {
+          "repeat": 13,
+          "microseconds_per_call": {
+            "after": 13.101400136947632,
+            "before": 13.409199714660645
+          }
+        },
+        {
+          "repeat": 14,
+          "microseconds_per_call": {
+            "before": 13.386600017547607,
+            "after": 13.129600286483765
+          }
+        },
+        {
+          "repeat": 15,
+          "microseconds_per_call": {
+            "after": 13.091800212860107,
+            "before": 13.463200330734253
+          }
+        },
+        {
+          "repeat": 16,
+          "microseconds_per_call": {
+            "before": 13.513000011444092,
+            "after": 13.07479977607727
+          }
+        },
+        {
+          "repeat": 17,
+          "microseconds_per_call": {
+            "after": 13.106399774551392,
+            "before": 13.432400226593018
+          }
+        },
+        {
+          "repeat": 18,
+          "microseconds_per_call": {
+            "before": 13.478599786758423,
+            "after": 13.106000423431396
+          }
+        },
+        {
+          "repeat": 19,
+          "microseconds_per_call": {
+            "after": 13.137199878692627,
+            "before": 13.416399955749512
+          }
+        }
+      ],
+      "bitwise_ab": true,
+      "paired_median_time_change_pct": -2.3065282648320142
+    },
+    {
+      "sequence_lengths": [
+        170
+      ],
+      "grid": [
+        1,
+        16,
+        1
+      ],
+      "correctness": {
+        "before": {
+          "max_abs_error": 1.52587890625e-05,
+          "finite": true
+        },
+        "after": {
+          "max_abs_error": 1.52587890625e-05,
+          "finite": true
+        }
+      },
+      "rounds": [
+        {
+          "repeat": 0,
+          "microseconds_per_call": {
+            "before": 15.20300030708313,
+            "after": 14.890600442886353
+          }
+        },
+        {
+          "repeat": 1,
+          "microseconds_per_call": {
+            "after": 14.819400310516357,
+            "before": 15.156999826431274
+          }
+        },
+        {
+          "repeat": 2,
+          "microseconds_per_call": {
+            "before": 15.214400291442871,
+            "after": 14.83199954032898
+          }
+        },
+        {
+          "repeat": 3,
+          "microseconds_per_call": {
+            "after": 14.87779974937439,
+            "before": 15.195800065994263
+          }
+        },
+        {
+          "repeat": 4,
+          "microseconds_per_call": {
+            "before": 15.165599584579468,
+            "after": 14.88759994506836
+          }
+        },
+        {
+          "repeat": 5,
+          "microseconds_per_call": {
+            "after": 14.881600141525269,
+            "before": 15.121400356292725
+          }
+        },
+        {
+          "repeat": 6,
+          "microseconds_per_call": {
+            "before": 15.171200037002563,
+            "after": 14.841200113296509
+          }
+        },
+        {
+          "repeat": 7,
+          "microseconds_per_call": {
+            "after": 15.044000148773193,
+            "before": 15.13759970664978
+          }
+        },
+        {
+          "repeat": 8,
+          "microseconds_per_call": {
+            "before": 15.222200155258179,
+            "after": 14.902600049972534
+          }
+        },
+        {
+          "repeat": 9,
+          "microseconds_per_call": {
+            "after": 14.818400144577026,
+            "before": 15.2701997756958
+          }
+        },
+        {
+          "repeat": 10,
+          "microseconds_per_call": {
+            "before": 15.245399475097656,
+            "after": 14.936399459838867
+          }
+        },
+        {
+          "repeat": 11,
+          "microseconds_per_call": {
+            "after": 14.79580044746399,
+            "before": 15.282800197601318
+          }
+        },
+        {
+          "repeat": 12,
+          "microseconds_per_call": {
+            "before": 15.300600528717041,
+            "after": 14.935599565505981
+          }
+        },
+        {
+          "repeat": 13,
+          "microseconds_per_call": {
+            "after": 14.843599796295166,
+            "before": 15.1882004737854
+          }
+        },
+        {
+          "repeat": 14,
+          "microseconds_per_call": {
+            "before": 15.151200294494629,
+            "after": 14.849200248718262
+          }
+        },
+        {
+          "repeat": 15,
+          "microseconds_per_call": {
+            "after": 14.889600276947021,
+            "before": 15.18280029296875
+          }
+        },
+        {
+          "repeat": 16,
+          "microseconds_per_call": {
+            "before": 15.16819953918457,
+            "after": 14.829800128936768
+          }
+        },
+        {
+          "repeat": 17,
+          "microseconds_per_call": {
+            "after": 14.842400550842285,
+            "before": 15.256600379943848
+          }
+        },
+        {
+          "repeat": 18,
+          "microseconds_per_call": {
+            "before": 15.168999433517456,
+            "after": 14.8580002784729
+          }
+        },
+        {
+          "repeat": 19,
+          "microseconds_per_call": {
+            "after": 14.966399669647217,
+            "before": 15.227199792861938
+          }
+        }
+      ],
+      "bitwise_ab": true,
+      "paired_median_time_change_pct": -2.096125679131849
+    },
+    {
+      "sequence_lengths": [
+        170,
+        86
+      ],
+      "grid": [
+        1,
+        32,
+        1
+      ],
+      "correctness": {
+        "before": {
+          "max_abs_error": 1.52587890625e-05,
+          "finite": true
+        },
+        "after": {
+          "max_abs_error": 1.52587890625e-05,
+          "finite": true
+        }
+      },
+      "rounds": [
+        {
+          "repeat": 0,
+          "microseconds_per_call": {
+            "before": 22.308800220489502,
+            "after": 22.21179962158203
+          }
+        },
+        {
+          "repeat": 1,
+          "microseconds_per_call": {
+            "after": 23.12839984893799,
+            "before": 22.268400192260742
+          }
+        },
+        {
+          "repeat": 2,
+          "microseconds_per_call": {
+            "before": 22.18600034713745,
+            "after": 22.199199199676514
+          }
+        },
+        {
+          "repeat": 3,
+          "microseconds_per_call": {
+            "after": 22.197000980377197,
+            "before": 22.503600120544434
+          }
+        },
+        {
+          "repeat": 4,
+          "microseconds_per_call": {
+            "before": 22.137999534606934,
+            "after": 22.386000156402588
+          }
+        },
+        {
+          "repeat": 5,
+          "microseconds_per_call": {
+            "after": 22.113800048828125,
+            "before": 22.17780113220215
+          }
+        },
+        {
+          "repeat": 6,
+          "microseconds_per_call": {
+            "before": 22.101600170135498,
+            "after": 22.156200408935547
+          }
+        },
+        {
+          "repeat": 7,
+          "microseconds_per_call": {
+            "after": 22.10439920425415,
+            "before": 22.156400680541992
+          }
+        },
+        {
+          "repeat": 8,
+          "microseconds_per_call": {
+            "before": 21.992599964141846,
+            "after": 22.142798900604248
+          }
+        },
+        {
+          "repeat": 9,
+          "microseconds_per_call": {
+            "after": 22.080600261688232,
+            "before": 22.168800830841064
+          }
+        },
+        {
+          "repeat": 10,
+          "microseconds_per_call": {
+            "before": 22.213199138641357,
+            "after": 22.16939926147461
+          }
+        },
+        {
+          "repeat": 11,
+          "microseconds_per_call": {
+            "after": 23.599801063537598,
+            "before": 22.715599536895752
+          }
+        },
+        {
+          "repeat": 12,
+          "microseconds_per_call": {
+            "before": 22.430601119995117,
+            "after": 22.18400001525879
+          }
+        },
+        {
+          "repeat": 13,
+          "microseconds_per_call": {
+            "after": 22.050600051879883,
+            "before": 24.45739984512329
+          }
+        },
+        {
+          "repeat": 14,
+          "microseconds_per_call": {
+            "before": 22.081000804901123,
+            "after": 22.164599895477295
+          }
+        },
+        {
+          "repeat": 15,
+          "microseconds_per_call": {
+            "after": 22.106399536132812,
+            "before": 22.071399688720703
+          }
+        },
+        {
+          "repeat": 16,
+          "microseconds_per_call": {
+            "before": 22.172200679779053,
+            "after": 22.12519884109497
+          }
+        },
+        {
+          "repeat": 17,
+          "microseconds_per_call": {
+            "after": 22.269599437713623,
+            "before": 22.228000164031982
+          }
+        },
+        {
+          "repeat": 18,
+          "microseconds_per_call": {
+            "before": 22.143800258636475,
+            "after": 22.003400325775146
+          }
+        },
+        {
+          "repeat": 19,
+          "microseconds_per_call": {
+            "after": 22.193000316619873,
+            "before": 22.05820083618164
+          }
+        }
+      ],
+      "bitwise_ab": true,
+      "paired_median_time_change_pct": -0.06884385131607496
+    }
+  ],
+  "complete": true,
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.01
+  },
+  "performance_requires_bitwise_ab": true
+}

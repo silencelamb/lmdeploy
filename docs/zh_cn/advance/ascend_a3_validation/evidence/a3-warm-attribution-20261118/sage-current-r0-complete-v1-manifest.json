@@ -1,0 +1,2782 @@
+{
+  "matrix": "sage-current-r0",
+  "cases": [
+    "sage-current-r0-old-b00",
+    "sage-current-r0-new-b00",
+    "sage-current-r0-new-b01",
+    "sage-current-r0-old-b01",
+    "sage-current-r0-old-b02",
+    "sage-current-r0-new-b02",
+    "sage-current-r0-new-b03",
+    "sage-current-r0-old-b03",
+    "sage-current-r0-old-b04",
+    "sage-current-r0-new-b04",
+    "sage-current-r0-new-b05",
+    "sage-current-r0-old-b05",
+    "sage-current-r0-old-b06",
+    "sage-current-r0-new-b06",
+    "sage-current-r0-new-b07",
+    "sage-current-r0-old-b07"
+  ],
+  "members": [
+    {
+      "path": "artifacts/sage-current-r0-new-b00-observer/driver-2646379.json",
+      "bytes": 89743,
+      "sha256": "d55cf3e2cfcfe5b2d5a10ba3a9ae13771c7d1e4ce23c0239510b2f023411eb08"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-observer/events-2647402.jsonl",
+      "bytes": 5329,
+      "sha256": "eef90857ca66ec0326eba30e50979da0962a09e9a4dce339972475d0998f8bc6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-observer/events-2647406.jsonl",
+      "bytes": 5329,
+      "sha256": "fad381573141f6719b22953cb19abfd547b847ce11a66a450020ceda3a5dd759"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-observer/summary-2647402.json",
+      "bytes": 43695,
+      "sha256": "48f1fdecce88eb77bcd15f20a1c60b037943ebaa56e5065f1cf1d75f15b82b3d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-observer/summary-2647406.json",
+      "bytes": 43695,
+      "sha256": "20811c3979e793908dd236fa2fe6e18341467d89bbf7791b6d2307d9d252cbad"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-observer/tokens-2646139.jsonl",
+      "bytes": 322487,
+      "sha256": "aad6a6a8cb36e60767355e6ea1af1d412847335dc5980db78abac2931d745299"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b00-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-observer/driver-2649928.json",
+      "bytes": 90149,
+      "sha256": "5f13ed9c23a34e080cc529a85b91b2eb55a3103857b44db3707a53fe745c9fef"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-observer/events-2650995.jsonl",
+      "bytes": 5329,
+      "sha256": "b71ec449f580ea031dde70719b1f72c5fbb86640e51d159513b12b2c97690d88"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-observer/events-2650997.jsonl",
+      "bytes": 5329,
+      "sha256": "121dc05874484a8d72766591316aef83e79a19659701550eee71e2a1f779a291"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-observer/summary-2650995.json",
+      "bytes": 43695,
+      "sha256": "0fb7d543c8678d12d2b45d9d764c25eef754ee2414c0e8379488557a16d9b921"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-observer/summary-2650997.json",
+      "bytes": 43695,
+      "sha256": "ac55ed83f0e492b02a1354b46cfd81658c2b9709480f23f63427cf7da7f0473b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-observer/tokens-2649678.jsonl",
+      "bytes": 322487,
+      "sha256": "a8be456b7344e0e26fa1af8dc2de3d57db955f2313b2cb09e2a5751ca0b468fa"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b01-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-observer/driver-2660609.json",
+      "bytes": 89742,
+      "sha256": "9ef305f38431b189b13ead8d325a6742d1ca69da6bc5b6b8d0faa3e2cd33afe0"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-observer/events-2661633.jsonl",
+      "bytes": 5329,
+      "sha256": "0331acc97a199b895c9beb324f476f3adc3c733276969e7fd33b704b6b66865e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-observer/events-2661641.jsonl",
+      "bytes": 5329,
+      "sha256": "f6692c9f3739736a6b656169e459812e8d4a0856ca3b2035308f8079014ea1e6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-observer/summary-2661633.json",
+      "bytes": 43695,
+      "sha256": "7d0656ccf65ecfaab8e9709d23582bddc5c9658f79718882369b6216f6b966e4"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-observer/summary-2661641.json",
+      "bytes": 43695,
+      "sha256": "20472eeea3876359854df7b239b9e456cded4a9b47a3806ff89cb542efc8d82d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-observer/tokens-2660445.jsonl",
+      "bytes": 322487,
+      "sha256": "e64d8f4189d46d62d699103ea053110be90f9960aa751bb2b099c3ede90122cf"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b02-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-observer/driver-2664149.json",
+      "bytes": 89841,
+      "sha256": "27a7db1116c03ebc2b2e166a7d65254b2842a270b094fd55febeb99ed0697b30"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-observer/events-2665174.jsonl",
+      "bytes": 5329,
+      "sha256": "65e54e20b3af565a37f88cb054cacb39d3ceacb157a389ea9f69e3bec084017c"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-observer/events-2665175.jsonl",
+      "bytes": 5329,
+      "sha256": "50426481a810936d12383f48fbb8c9fc6d3e5907246cb1d9553f2681361f7b0c"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-observer/summary-2665174.json",
+      "bytes": 43695,
+      "sha256": "3ebebbe25188d2086b8861278c3d21345a64b16d666b26384471bd18fa0a497d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-observer/summary-2665175.json",
+      "bytes": 43695,
+      "sha256": "6923051f9981921d367aa894372fc9d03430f90b7e18652f40a80a5b037ab743"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-observer/tokens-2663977.jsonl",
+      "bytes": 322487,
+      "sha256": "090aae929c44a3ecba65702fb6a8fe6d849e9185339db4c49b35648616819f32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/profile_observer.py",
+      "bytes": 4791,
+      "sha256": "3acb7b511fc9f5be35852dd78301ac078d4b297366667e0f79622efbf52d3783"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b03-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-observer/driver-2674892.json",
+      "bytes": 90050,
+      "sha256": "8511b9f05f2096f346888ae0257ee6f6a11f57ebecb938724abf25567379f7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-observer/events-2676009.jsonl",
+      "bytes": 5329,
+      "sha256": "0e7bd2335a744e90ee4a343672704352777c93d8e772d8bdf078ffbd9882422a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-observer/events-2676010.jsonl",
+      "bytes": 5329,
+      "sha256": "ed6244d189286d91675545f8053a13a26a8ec39d2eb6f44cd2e6a9e0a1bfb652"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-observer/summary-2676009.json",
+      "bytes": 43695,
+      "sha256": "cf7d39842047d854a8a66755eccb435426a79b485139b54712852997477ff944"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-observer/summary-2676010.json",
+      "bytes": 43695,
+      "sha256": "b5775af3c4b387b6986dad1fbc7263c67da799f85670899e65094ad03f85b727"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-observer/tokens-2674728.jsonl",
+      "bytes": 319942,
+      "sha256": "4a65f69c34002dcc3df1eeb839adc559926ee08831a802d65fbe1d2edd874489"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b04-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-observer/driver-2678602.json",
+      "bytes": 89709,
+      "sha256": "06d0df35b722750218505a948d00e734ad02687c1cc888cb596be940ae86001a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-observer/events-2679628.jsonl",
+      "bytes": 5329,
+      "sha256": "2a73d58fc6c2aa7c1f1b5e7e69f5f8bbcf1f628b6658692acec75cef452bb95c"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-observer/events-2679629.jsonl",
+      "bytes": 5329,
+      "sha256": "dfc9e48a50b0dbf3e18cf2e6dcacc9e2a5f9ceda941fdbabe32deb2401127f26"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-observer/summary-2679628.json",
+      "bytes": 43695,
+      "sha256": "1fec9dcd0d90b85048ce8efca8091a1ca848eb526cd4ad379bd3985c13ca523d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-observer/summary-2679629.json",
+      "bytes": 43695,
+      "sha256": "5acc3acbc6c71d5975a482b2f5d3bd2594ddf79d0559a2e33ddb7b73d5c95eab"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-observer/tokens-2678321.jsonl",
+      "bytes": 322487,
+      "sha256": "3722ff186a820a137b7d4c00695e9eb8e8a8e071aee56d0d287b4ccb884997da"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/audit_work.py",
+      "bytes": 8490,
+      "sha256": "09fe1d8f59415b187400afe2fffa10c5484838c4d0113a2aff01da4f7d367c7a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b05-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-observer/driver-2689329.json",
+      "bytes": 89951,
+      "sha256": "820cfb2a3d4cd7a6bf4f0fb89f4548a0274fb2d47f3839e98f59f07a03f66fd5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-observer/events-2690358.jsonl",
+      "bytes": 5329,
+      "sha256": "540a75dfe184af602ef1cb4c9cc35ac44c67f134f932cde37e71a0da788339bd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-observer/events-2690359.jsonl",
+      "bytes": 5329,
+      "sha256": "ff37136d2b5ae56cb39914cd0efb7cc21a405636261014b70651f504a7658a06"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-observer/summary-2690358.json",
+      "bytes": 43695,
+      "sha256": "645470c2e0b36e861b581bff9e3529c19a0c8d6560340d71727f553c3dc2de53"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-observer/summary-2690359.json",
+      "bytes": 43695,
+      "sha256": "15319d96aa101b0d334106ac1cebc3334543a9a579e5eeb9371b11a335b0c2e5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-observer/tokens-2689155.jsonl",
+      "bytes": 320929,
+      "sha256": "fdfa4d2417538bb81f30011bf784a721b31a3dd83ede691d1a1333bd58214797"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/audit_work.py",
+      "bytes": 8490,
+      "sha256": "09fe1d8f59415b187400afe2fffa10c5484838c4d0113a2aff01da4f7d367c7a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b06-scripts/watch_audits.py",
+      "bytes": 2679,
+      "sha256": "c63113f3c0c6ed44592b18450c8bcfa6ae57feed4cde9929b75ee1bf2cf1463e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-observer/driver-2692896.json",
+      "bytes": 89951,
+      "sha256": "22dd71eaac46debe61d7505d503677083fd22df7cf22c5ece6ff939e0f820244"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-observer/events-2694031.jsonl",
+      "bytes": 5329,
+      "sha256": "f17729f3b8bb76fd69ed885f38ebbf7fdd6204ad961eb99b6f4ac8c163eb4411"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-observer/events-2694033.jsonl",
+      "bytes": 5329,
+      "sha256": "0df11b491db171e0a2ff3b5ba444d076d902168e5f95b0a3fc9d5d6f6d993323"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-observer/summary-2694031.json",
+      "bytes": 43695,
+      "sha256": "e7c9c32551e708519b395b83ce04731c6aef642c89408a5c4d999f5fe82f2d82"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-observer/summary-2694033.json",
+      "bytes": 43695,
+      "sha256": "693b3ba11f0cbefdb766aa9a02e7cc856c0df01710d0859eefaa139c1b416890"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-observer/tokens-2692749.jsonl",
+      "bytes": 320907,
+      "sha256": "4f80c0273e9319015e4f11a3578b2e75869f23d559876eb083e79afd988c8fd0"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/audit_work.py",
+      "bytes": 8490,
+      "sha256": "09fe1d8f59415b187400afe2fffa10c5484838c4d0113a2aff01da4f7d367c7a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-new-b07-scripts/watch_audits.py",
+      "bytes": 2679,
+      "sha256": "c63113f3c0c6ed44592b18450c8bcfa6ae57feed4cde9929b75ee1bf2cf1463e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-observer/driver-2642572.json",
+      "bytes": 89940,
+      "sha256": "5f801ac32645eb247510775eb008470b24d26a67666dd5e07bf3cef9adb64805"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-observer/events-2643728.jsonl",
+      "bytes": 5329,
+      "sha256": "0d7fb1896a14a840091d5517d62d6b6a4a1f6662cbb17b6cc265a25ff5a564e4"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-observer/events-2643729.jsonl",
+      "bytes": 5329,
+      "sha256": "7d3f23c87710d2f4fe4c989e5e482150473aee20975e74b69ab6d268557e5ce5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-observer/summary-2643728.json",
+      "bytes": 45223,
+      "sha256": "85c2183f6842bde7fb6e74f51e5d025cf761f0719f1143ac2f8d258721869fb4"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-observer/summary-2643729.json",
+      "bytes": 45223,
+      "sha256": "cb05f3d12bbff4a8367413905b6a66e906cd08093b8390d33b2c587d69bb5ea0"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-observer/tokens-2642044.jsonl",
+      "bytes": 322487,
+      "sha256": "04ac962be0fabddb474ad1d1f9084dc8e9c286ec2ca403702dec9cb44608ade5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b00-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-observer/driver-2653476.json",
+      "bytes": 89753,
+      "sha256": "9a028dd028d4d9e7faf57f7b8dbadea09e110348b7f603b62b75d33b80718d19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-observer/events-2654533.jsonl",
+      "bytes": 5329,
+      "sha256": "7af32978d1df4d630df2696df410fe1cf5e4a932ae79516a0d4ae387ec75f4c8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-observer/events-2654535.jsonl",
+      "bytes": 5329,
+      "sha256": "52d185365cc6aead9706970f41bd705a3428a9924f1d2fe5b84c507199d56b30"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-observer/summary-2654533.json",
+      "bytes": 45223,
+      "sha256": "0c920605ea8ca3abd9bdb8b580f13d2d473e63fc6bffb87a502fc2366d9d9055"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-observer/summary-2654535.json",
+      "bytes": 45223,
+      "sha256": "358399aa7d874be14ec3d0a5c565faa7fd568fe13b142976d6a17e890cde53dd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-observer/tokens-2653304.jsonl",
+      "bytes": 322487,
+      "sha256": "d7d7175326815b8d1c50f1c7c160b69d533f7dde0212adde8530c9dd4defc9a0"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b01-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-observer/driver-2657088.json",
+      "bytes": 89720,
+      "sha256": "5a0af7bceda410330d3083d1cc19ab60ef13960223637ec9e18bb6794158e77f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-observer/events-2658148.jsonl",
+      "bytes": 5329,
+      "sha256": "9f8a1df4feb71cb807659cfa99902bf09c972f3471e75c4ef0cc1e9814f685c3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-observer/events-2658149.jsonl",
+      "bytes": 5329,
+      "sha256": "ae8331088353cf08d673ecfe6c0a7eec92caf38e9428f63669265cdaff5a0a2a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-observer/summary-2658148.json",
+      "bytes": 45223,
+      "sha256": "5ff81d453d566c3c6505bbeb7ba763beabe61b939ad62f6cefa7d6925477ce70"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-observer/summary-2658149.json",
+      "bytes": 45223,
+      "sha256": "4dc06f823beb21322202e23b46e99cf40b8e8e952ba3089757fc280b6f74c0ee"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-observer/tokens-2656939.jsonl",
+      "bytes": 322487,
+      "sha256": "9cb5e5b3c74278385e22bace676eb264bb4bb7b13425251a66a3b9e5b4368683"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b02-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-observer/driver-2667733.json",
+      "bytes": 90050,
+      "sha256": "4fd38c14c193314543a02883c21a21c524721983f420cda092b39d61141e4111"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-observer/events-2668855.jsonl",
+      "bytes": 5329,
+      "sha256": "281e60e80fcd5b9ca97d656c81e050808d9e4db16c2bc44a4dfeafcc20e3d5bc"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-observer/events-2668856.jsonl",
+      "bytes": 5329,
+      "sha256": "b4dc5ff2dc20c74acfb12b540bec097391ac42c72d12b7dd16edf9bc4982f49e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-observer/summary-2668855.json",
+      "bytes": 45223,
+      "sha256": "8601f950d468b79b8b92e12be55efa5bca4a8b1f4396d8320af8c3b6411cccaf"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-observer/summary-2668856.json",
+      "bytes": 45223,
+      "sha256": "21f1401464d914c264e1327518c36706810a78313fe2479664ac1a7b378d212f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-observer/tokens-2667571.jsonl",
+      "bytes": 322487,
+      "sha256": "540c50abde65e2d460a0eecb561f5d20e9e2328c39ca71b53972d41c2e2247b5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/host_sample.py",
+      "bytes": 1290,
+      "sha256": "35cca862bac702bd5d6327d9101ab48dd87a9df313495ff76fd2d22e75fb9e16"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/profile_observer.py",
+      "bytes": 4791,
+      "sha256": "3acb7b511fc9f5be35852dd78301ac078d4b297366667e0f79622efbf52d3783"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b03-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-observer/driver-2671334.json",
+      "bytes": 89940,
+      "sha256": "8c85020757b4538f91034cc95f7e7ebea9e922d173ab4516b89c5b8f86c01697"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-observer/events-2672486.jsonl",
+      "bytes": 5329,
+      "sha256": "4a545d41d8909d90f4b156791a0ce9d59e8c607d7f3ce27b4dec9556a29f77df"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-observer/events-2672487.jsonl",
+      "bytes": 5329,
+      "sha256": "2323e63b2fee40839ddfaf77448bb5bd43db1adee93d55f93d4d96658f705243"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-observer/summary-2672486.json",
+      "bytes": 45223,
+      "sha256": "4099dc4ccd346de12da135a6d316554210481413da6e1edc812c2aa5681a1a93"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-observer/summary-2672487.json",
+      "bytes": 45223,
+      "sha256": "2397d218730fa4bdee016a51494224a259a967cf0b6a00040c4063684c825dcf"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-observer/tokens-2671183.jsonl",
+      "bytes": 322487,
+      "sha256": "00db7c68b330ecba9c09bd9c93eeba86d86fe93cef6721a956b052e9ebe39c29"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/audit_work.py",
+      "bytes": 7903,
+      "sha256": "654e070b27ef01ff3b056efba6740363fbe02ec1bbeb9d92e5357dcf321efa3b"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b04-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-observer/driver-2682232.json",
+      "bytes": 89841,
+      "sha256": "3cafff0a8e0ff9b177efea3295a7f690c3496003e6710fb94c9474d5452023ad"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-observer/events-2683268.jsonl",
+      "bytes": 5329,
+      "sha256": "83108de1ab1b485fd7b1ca61f235b0efa000b245f3eb529dabb7a7c35bbdb718"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-observer/events-2683269.jsonl",
+      "bytes": 5329,
+      "sha256": "ba5edeee37e0c55099c8cb8401d94bf2b6e4b331b3fd9b0a000e37ec26b564e6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-observer/summary-2683268.json",
+      "bytes": 45223,
+      "sha256": "ef25aeb49e6e519b78538d1de3ace959263eaf2654d9d297c5c14d119552477e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-observer/summary-2683269.json",
+      "bytes": 45223,
+      "sha256": "a482930be226c1df35b829ec22a0bcc33ae736b47cd824f7b6177ddfefb9a140"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-observer/tokens-2682072.jsonl",
+      "bytes": 322487,
+      "sha256": "3ac8685647df1dd9f2c7bce9b7271ac44e403a1f48776f019ec1fd4743d5a5d4"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/audit_work.py",
+      "bytes": 8490,
+      "sha256": "09fe1d8f59415b187400afe2fffa10c5484838c4d0113a2aff01da4f7d367c7a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b05-scripts/watch_audits.py",
+      "bytes": 2679,
+      "sha256": "c63113f3c0c6ed44592b18450c8bcfa6ae57feed4cde9929b75ee1bf2cf1463e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-observer/driver-2685774.json",
+      "bytes": 89742,
+      "sha256": "4924d15bdca1a4f3e533397bbcfd01807ce7b13b8d116191da13314d04a2610c"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-observer/events-2686794.jsonl",
+      "bytes": 5329,
+      "sha256": "a2e8e8c5d60e0956560ed048b4ff36275a71f54f3df0e1105f44cf44e59a71bb"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-observer/events-2686796.jsonl",
+      "bytes": 5329,
+      "sha256": "21ff9c828f01d726fb29569b3e8e7bc1cfff505a0269382e8cc3f206a0e084bd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-observer/summary-2686794.json",
+      "bytes": 45223,
+      "sha256": "124ef998011da1ad4174ce8081402383e25b39db5539a65ae733d341f1f6783d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-observer/summary-2686796.json",
+      "bytes": 45223,
+      "sha256": "e566404e366d71fc7741407876ddd7590735575ea67742b4e9dfa8b943bf09f1"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-observer/tokens-2685605.jsonl",
+      "bytes": 322487,
+      "sha256": "8134205f6b353c5a5b340725b9bb0c7bb74ed9476ff971af78c93b71946aae28"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/audit_work.py",
+      "bytes": 8490,
+      "sha256": "09fe1d8f59415b187400afe2fffa10c5484838c4d0113a2aff01da4f7d367c7a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b06-scripts/watch_audits.py",
+      "bytes": 2679,
+      "sha256": "c63113f3c0c6ed44592b18450c8bcfa6ae57feed4cde9929b75ee1bf2cf1463e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-observer/driver-2696530.json",
+      "bytes": 89808,
+      "sha256": "37974ec5e5be7531e4966777a36118c9ea26dd2dbed26ef5c926e12d02e1201a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-observer/events-2697650.jsonl",
+      "bytes": 5329,
+      "sha256": "bb3c884ef2601a76de91229088f980d8bccd41857e226ecb4721eb06e00550ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-observer/events-2697651.jsonl",
+      "bytes": 5329,
+      "sha256": "f8aa8eeaade9dad06ea33e76503dc82caafea49cfe9f0b1e9858682dc8c205bd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-observer/summary-2697650.json",
+      "bytes": 45223,
+      "sha256": "b5dd56d0f72a27f9ee06c84ba5dd1a60f8bdb50b211ed192582bf51b0c1f2134"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-observer/summary-2697651.json",
+      "bytes": 45223,
+      "sha256": "96b6cb9e2d89c3105e87b06c06954ba0287112a11c9f82252ccbc16aba088459"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-observer/tokens-2696351.jsonl",
+      "bytes": 322487,
+      "sha256": "107e44eb481fc272b256cdeadcf4f0a73ed0bc7119a4b5b6e09786a6796bfff5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/analyze_pairs.py",
+      "bytes": 4723,
+      "sha256": "eb7921cec761c636b76786e7376854be5793fd96485709e8719afda6ea1953f5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/audit_work.py",
+      "bytes": 8490,
+      "sha256": "09fe1d8f59415b187400afe2fffa10c5484838c4d0113a2aff01da4f7d367c7a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/diagnose_http_windows.py",
+      "bytes": 5150,
+      "sha256": "021a180f56c413294ba829ee1a0471c68cb53a3651185e76bc15315d2b55d7fd"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/guard/sitecustomize.py",
+      "bytes": 747,
+      "sha256": "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/host_sample.py",
+      "bytes": 1696,
+      "sha256": "3256b28e0b02f4abd46c376c6b2ab0ede10256614695457caa1c9aa8c60c9614"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/http_profile_case.py",
+      "bytes": 9993,
+      "sha256": "e700a0aaa70ab1b690525331afad53c2d8480357440e0e363f38ea61faf3d145"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/http_warm_case.py",
+      "bytes": 9677,
+      "sha256": "303c263befda3b4e8d33c2bf77918141c78e83204871751c1d0a2e3f9cc3dfb6"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/pipeline_warm_case.py",
+      "bytes": 6012,
+      "sha256": "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/profile_observer.py",
+      "bytes": 4878,
+      "sha256": "47f336c76820fd13ed534adf44c2b6c390874081f807d51450e6e619f251e0b3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/profile_serve.py",
+      "bytes": 388,
+      "sha256": "af63c0cd209f552e042a8feec98b7ab9daa04be1c9f7c9dbd133c21aaa84f732"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/publish_docs.py",
+      "bytes": 3674,
+      "sha256": "715e004a51aa3601051b5b46f1e2a64a46291d5ded2e6c2f8fbf0e806f66ce32"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/render_report.py",
+      "bytes": 6661,
+      "sha256": "891662546b24e435b879039df515e8207667da448c953f0a0197de7f72b57b6a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_case.py",
+      "bytes": 5117,
+      "sha256": "75032e3161aeb9edf0ca6e32f8c0104d5338e3ebb17b5a70a7df258385fc3e2d"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_case_current.py",
+      "bytes": 5128,
+      "sha256": "124b66e114b515a9782ae01b5de5c9fd236a85160afb46ae1b4c113648fc2e8a"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_matrix.py",
+      "bytes": 4828,
+      "sha256": "ed0668d79b023127cdebcf9c7788423ed0ffb0c15ad7671da0933ab25a7e15d8"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_matrix_current.py",
+      "bytes": 4844,
+      "sha256": "9e08b6fb818ce43e26be3aefabdfc1e025bdc45699a85f1fc319fcc7d5725cc3"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_norm_short.py",
+      "bytes": 329,
+      "sha256": "8985b14889948ea6beac5ee641cbb6ca203a464df7f68c54687d5d5dda05ab5e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_profile_after.py",
+      "bytes": 2305,
+      "sha256": "33041b55a7e2c590b930b6307247703060fbd50adcf16ecd674a73144ff3e815"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_profile_matrix.py",
+      "bytes": 5031,
+      "sha256": "ffc296ae8cedbf32cac4050021ea56b13f4e24467a788d2d2c037ed13294ee1f"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_remaining.py",
+      "bytes": 3331,
+      "sha256": "d68592cc0a7b39bf271270cd9ca3757010414b0805d455c55d8dedafefbba003"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/run_short_after.py",
+      "bytes": 1772,
+      "sha256": "3f82f2450eb5da079a55c3a078805293acb385888a0c14e494e137911f231d7e"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/setup_current_stack.py",
+      "bytes": 1986,
+      "sha256": "b93bd8329b96f9c1ac50e4fbad7a471bd653d33d422759ec64cfbd6c944732ec"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/setup_profiles.py",
+      "bytes": 2350,
+      "sha256": "78f6327a89eb222d2a8eff5719833ccd535d2b69b1278467322a127cb898e653"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/warm_observer.py",
+      "bytes": 6806,
+      "sha256": "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/warm_serve.py",
+      "bytes": 315,
+      "sha256": "4b5e5fbb6d7bcf33da7dfb9d271fbfca3a262d0dd4d096980f5e6ba401715f19"
+    },
+    {
+      "path": "artifacts/sage-current-r0-old-b07-scripts/watch_audits.py",
+      "bytes": 2679,
+      "sha256": "c63113f3c0c6ed44592b18450c8bcfa6ae57feed4cde9929b75ee1bf2cf1463e"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b00.json",
+      "bytes": 8395,
+      "sha256": "7a33c43efbac7d0e4e34e188aef4c2ff53180ec95f50101ca159c3abca854e42"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b01.json",
+      "bytes": 8394,
+      "sha256": "180549defd09b9440346a54301d1267a45020b963048840ed2e3d323934e1d72"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b02.json",
+      "bytes": 8394,
+      "sha256": "36b168a61bd9f264c9b985d23d14659e94cdd1434fe403cf422b7da1d43493a4"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b03.json",
+      "bytes": 8678,
+      "sha256": "f4d687625716a4bab54029bed071322f95f4e17206abda42ef63c3453f8dcbd3"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b04.json",
+      "bytes": 8871,
+      "sha256": "a19c8bf800508ab9fb5ea94784258bffb2beeaeb9b12ccabd4fd48659cb36b2f"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b05.json",
+      "bytes": 8869,
+      "sha256": "58553ff32acdd64607685c6def38846edfc361cb3c42e89cf096dcbf45802958"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b06.json",
+      "bytes": 8962,
+      "sha256": "94259d4fb7b92e2752783bd1fc2b2e2fe50aabd88d6459f7b02841c4d9ba6957"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b07.json",
+      "bytes": 8961,
+      "sha256": "141b5feddf057110181322029312d1439aca090a28713983af2ebe791ed5cd52"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b00.json",
+      "bytes": 8429,
+      "sha256": "c31d332d5d41538ac167ee1db9b6331f92cd8d692aa41548d1ec2629eabd13d4"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b01.json",
+      "bytes": 8429,
+      "sha256": "b293269dba3baecfc9e35f248e6c5d0a416918a6a1b7bd244b320101b706095e"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b02.json",
+      "bytes": 8428,
+      "sha256": "b2ce81497ba3eec87c5afcd60e612bea4262eac6b4af628fc44bafd1d3b49f36"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b03.json",
+      "bytes": 8712,
+      "sha256": "6da16bd4e28cace6dc3bac6b49397788dbd3277450275038c1367bb20032046f"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b04.json",
+      "bytes": 8905,
+      "sha256": "64a92a1ef95385e666581a6d0565fbbfb78e603a54fce18377ca1efa1b8da66d"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b05.json",
+      "bytes": 8995,
+      "sha256": "550987621cb14eebe42ab20b39f68ecb1c84e0160c61dbbfce3b8aed0758ea2c"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b06.json",
+      "bytes": 8996,
+      "sha256": "1c02e1de1c520d0fce05626eb1dd4599caa10d0b133d1c745379c21baa0fe03d"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b07.json",
+      "bytes": 8995,
+      "sha256": "c1d2a926d17608f506ed7c6efda508cd40b484b6f4462be3b18c45b70cd2b29d"
+    },
+    {
+      "path": "results/sage-current-r0-new-b00.json",
+      "bytes": 2040580,
+      "sha256": "28ef907d7e043aea0ed5b230022d50419b7dc36ef5aa8de7c80b9c86c8b23d24"
+    },
+    {
+      "path": "results/sage-current-r0-new-b01.json",
+      "bytes": 2041107,
+      "sha256": "0477a1d067a5d997e05ea0b270c0ea3df31bfc6fb2254a22323ffa9fa4b87d62"
+    },
+    {
+      "path": "results/sage-current-r0-new-b02.json",
+      "bytes": 2040702,
+      "sha256": "4d1d8dc97aee17a3946edd497c2d2894f3e0cb63c8ba8cbd27bf709b1e698e0a"
+    },
+    {
+      "path": "results/sage-current-r0-new-b03.json",
+      "bytes": 2040452,
+      "sha256": "f69b6e99ef3d3cb1b4d723f3fd608a731c9cadb6969879bc0284300f3ae1158f"
+    },
+    {
+      "path": "results/sage-current-r0-new-b04.json",
+      "bytes": 2018723,
+      "sha256": "745ca8e186f61bc888f209bf94b7a222888e1f32d2fe030f2f5d227a578ea83c"
+    },
+    {
+      "path": "results/sage-current-r0-new-b05.json",
+      "bytes": 2040208,
+      "sha256": "ca0856592c37602bdbef6dfd2ad350ff2e2c13f2825bf6a7cb91eacee7a24c82"
+    },
+    {
+      "path": "results/sage-current-r0-new-b06.json",
+      "bytes": 2027070,
+      "sha256": "66bc57ccc9fb327ecaf1fbff7e20b616c30403eeef5003191bb294fa066164de"
+    },
+    {
+      "path": "results/sage-current-r0-new-b07.json",
+      "bytes": 2027072,
+      "sha256": "82a781be1630aec01836106d0b8baae307dabdc6bbe5665c101ffa5bc06b7843"
+    },
+    {
+      "path": "results/sage-current-r0-old-b00.json",
+      "bytes": 2044123,
+      "sha256": "3cb95a93a03dbcae3bd9d7f41f405ea7a217acf3d72b78e7f4a26e9681632248"
+    },
+    {
+      "path": "results/sage-current-r0-old-b01.json",
+      "bytes": 2043732,
+      "sha256": "7522ab54da88010ebd74130f740d952136414204c5e04589a54019b47bb15e2e"
+    },
+    {
+      "path": "results/sage-current-r0-old-b02.json",
+      "bytes": 2043903,
+      "sha256": "ed04fcdceb4746c4ce69b229217dd6ee3a57caf4ad340c96942c4f255e2be1b6"
+    },
+    {
+      "path": "results/sage-current-r0-old-b03.json",
+      "bytes": 2044159,
+      "sha256": "a52aa75453927f9f47b084bd5d61730d567971c539220d5d9ffe50f61611a7f9"
+    },
+    {
+      "path": "results/sage-current-r0-old-b04.json",
+      "bytes": 2044163,
+      "sha256": "9db10eefda180db08e822fc3ef9d49c18a6eea80416b592060a212ad599383ef"
+    },
+    {
+      "path": "results/sage-current-r0-old-b05.json",
+      "bytes": 2043968,
+      "sha256": "4497b964f18e077a81e10a6d0b25bcce43a841f1f7f8a2473f6d49c4927669e5"
+    },
+    {
+      "path": "results/sage-current-r0-old-b06.json",
+      "bytes": 2044039,
+      "sha256": "5c291d1f4d3f05a79983081da2d8000bd3b933e7c1007b4b26fa62101862833c"
+    },
+    {
+      "path": "results/sage-current-r0-old-b07.json",
+      "bytes": 2043605,
+      "sha256": "87acb629fa50852e7fdafed0b65904676816cecee86c81352ee697e04a2a386c"
+    },
+    {
+      "path": "results/sage-current-r0-progress.json",
+      "bytes": 13447,
+      "sha256": "4d715b390a01b79067be512e44356d658f7d8b699c7b4ddd2adac9a8e5bfc07c"
+    },
+    {
+      "path": "results/sage-current-r0-statistics.json",
+      "bytes": 14636,
+      "sha256": "bbe939831fde7c6ade4bb87dbfea5ef9133a5165e97b42f1200afc6a6386bcbe"
+    },
+    {
+      "path": "results/sage-current-r0-work-audit.json",
+      "bytes": 183133,
+      "sha256": "bbe0137031b79f40db3f07599813176832c4bf37e635e53143d7886fc21ce6d8"
+    }
+  ],
+  "full_service_logs": "Retained unchanged on A3; hashes below, not included in this public archive",
+  "local_full_logs": [
+    {
+      "path": "logs/sage-current-r0-old-b00-launcher.log",
+      "bytes": 85,
+      "sha256": "b475f3153a37bcdf2da7d95e33b978a410216f85c7913d9e588ee8c3d77ddf3b"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b00.log",
+      "bytes": 1990,
+      "sha256": "896315c4f4502d7a39d955807c742884915f9bf5ce256ce748482cb8e49783e1"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b00-server.log",
+      "bytes": 61755,
+      "sha256": "54ffe935cd6506e19b70fe7a93aa06768feb5c4ff3087ee849ac9086c01887bf"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b00-launcher.log",
+      "bytes": 85,
+      "sha256": "3bbbfc20caba2ca4bbad6683644cba4418920419e1dba3d8ea1638f35b814f44"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b00.log",
+      "bytes": 1989,
+      "sha256": "dc3d89e2d2b16e348716b67b9590bb224b36d72f5a3d574f50252acc525761b4"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b00-server.log",
+      "bytes": 60596,
+      "sha256": "ecb0f38f7d09a51f2733e884c376f43c23db22b052fa8a04d83f743d8096dff2"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b01-launcher.log",
+      "bytes": 84,
+      "sha256": "2e42154c39185db4581161dfc7ebb93db1efcd3305abd3cc86b3c3590d92eb55"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b01.log",
+      "bytes": 1991,
+      "sha256": "e2d9e7d2fa4bb5b34edc56fdf0072ed9f4bfd5a553c1119f5fbbd0ca288868ff"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b01-server.log",
+      "bytes": 61566,
+      "sha256": "fe91f5f87bcd307ba479f6b566ab05ed28fc6880b732099ee84380d1fdf94260"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b01-launcher.log",
+      "bytes": 85,
+      "sha256": "9ffa9ce397e042a9a38e7e23e564ffac90d037a5bda7a2061a30b8766537a215"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b01.log",
+      "bytes": 1990,
+      "sha256": "70a1ed25d6af59c8c64b2f3620c73990628436028e11e00e68a3ac2c58f2a549"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b01-server.log",
+      "bytes": 63114,
+      "sha256": "a7b64d5c49697ae6511b390724c091c443e79cb21b34964d5c7aca4d220e2064"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b02-launcher.log",
+      "bytes": 84,
+      "sha256": "0ebf5ee9b70fb7da25081548344a0aa8573f343906d5a4e8fadc3816e3125287"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b02.log",
+      "bytes": 1991,
+      "sha256": "3f1b259214656fd1486e82cff9e00c2c8862a55d63837083378bfb728eb191fd"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b02-server.log",
+      "bytes": 60663,
+      "sha256": "fec57e7897f258b647f3454cfa38b2388cf93b13f669f3dc18311d4200aa614c"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b02-launcher.log",
+      "bytes": 84,
+      "sha256": "76517d13e9e8305c5fd04fec0ed4d64f34a045327abd1724e176273bdd049b53"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b02.log",
+      "bytes": 1995,
+      "sha256": "afc4a26f70ef16a04bea65f996c9bfa66e89f1d2db9e9400f16b514a7551dc62"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b02-server.log",
+      "bytes": 60567,
+      "sha256": "37f0289d7d1e4bde1ef1cb97dfd4001db70a22919169803bcc1a4df5f3586293"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b03-launcher.log",
+      "bytes": 85,
+      "sha256": "df02b9dd571eac7209e0633b6ecd3dcd6b17ba19b70980e86327fd21103e7841"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b03.log",
+      "bytes": 1986,
+      "sha256": "1c1483c9e3d4b2fd755b7b4efacb1a85c9e49522f97d09b65fc61f074c78fb7c"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b03-server.log",
+      "bytes": 61911,
+      "sha256": "614f531132decaf1cc7392015cdec0ba2cba8da7ad060b94d65b715fd1950a9e"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b03-launcher.log",
+      "bytes": 85,
+      "sha256": "7e652388e9a7195ea0e51a2ccf9c636fb54d818962223599d27bd71122569250"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b03.log",
+      "bytes": 1988,
+      "sha256": "944c43a11d01eb4714a6397fc8abe252f80ed56a62cb631fb6f6db74f6d2fb3a"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b03-server.log",
+      "bytes": 63238,
+      "sha256": "7edba2f39fd4e683857d541979f4e8069b41ff0c034a536c6eca54ada4320677"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b04-launcher.log",
+      "bytes": 85,
+      "sha256": "19bce4875923d0ba203f5439e6079c26dd2b2416833d8467d1dbaae53bbeae2b"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b04.log",
+      "bytes": 1986,
+      "sha256": "b02ac05e7dfbd5a03518ecbbdb6d0cb00a25f4c9f4e374f8d8e56d37da81cbe7"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b04-server.log",
+      "bytes": 62637,
+      "sha256": "a5f9d6eb775576153ebaac9f72211f5e1e265ed0aa9da1033cbfcc044261a9ec"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b04-launcher.log",
+      "bytes": 85,
+      "sha256": "c96acf03b61ce74280167dad1cf44a936ba82e5961cbb91280bc678d107c81c2"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b04.log",
+      "bytes": 1987,
+      "sha256": "69cc45dbd87ff2084008e7e818492d33552cec61dbcd7319939b4fd37cc369e8"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b04-server.log",
+      "bytes": 60910,
+      "sha256": "43ce0ffe55b340c104508aed90fab09fc8345fe2ca4141365d7075d44fed97cd"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b05-launcher.log",
+      "bytes": 83,
+      "sha256": "926467be78d1b9753eebaff76e5b88471ccd1807158cdd624f29f9e8c2429201"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b05.log",
+      "bytes": 1988,
+      "sha256": "b7c052cbccf04c0489cbac816f0d4d90bd5ab15809ef9ecf1d1441a1f0c9bfdc"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b05-server.log",
+      "bytes": 61939,
+      "sha256": "f264cf9b48e912b557ed7ef16555222f1fe00c0fec3d9926be58940d7d273c3b"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b05-launcher.log",
+      "bytes": 84,
+      "sha256": "259393043cf23cc5740afa6ae492115bcc46544e751c74dc6f7933b26b7ea738"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b05.log",
+      "bytes": 1986,
+      "sha256": "cdae0ba816f01cacfc3229d450c6da97fb4f13006fced869373f1026770c7ae8"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b05-server.log",
+      "bytes": 62765,
+      "sha256": "3ba1ee1cf1bebeeb5f15574fc55b525eba0326f1fb7b982abcc48edc204b48ca"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b06-launcher.log",
+      "bytes": 85,
+      "sha256": "6476ad064d0d10e0e3c5e978f0256fac525d2440970939a1ff067b226c05bc43"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b06.log",
+      "bytes": 1988,
+      "sha256": "5ba64cc7bde9b0f853c3c9d2c20501fc8eb055da56ba30f88550ee55611422e4"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b06-server.log",
+      "bytes": 62759,
+      "sha256": "4153b7906544524d4f794068a31d11a4802cad1aae81944a173fa91e01c77bd8"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b06-launcher.log",
+      "bytes": 85,
+      "sha256": "d60e0290c247a61fa85741ed27143c129e225809a799a88240882623946c14a6"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b06.log",
+      "bytes": 1989,
+      "sha256": "121718deddf6eb1e78df0214e1355f90399433cfaddc3223e4822511103ea18a"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b06-server.log",
+      "bytes": 61941,
+      "sha256": "07ace44dfec6e5c4847d81f9a83b552bc5f79252a89cb33101a24a2b58264afc"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b07-launcher.log",
+      "bytes": 84,
+      "sha256": "24f3d9ba0e7f2b3a110d9accde1b1df45d1355a237a1c12795f611b4cbdba586"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b07.log",
+      "bytes": 1983,
+      "sha256": "b514d45c9cf9ecc63f74596d93f4e32474b34723ed94a3676739005126ff266f"
+    },
+    {
+      "path": "logs/sage-current-r0-new-b07-server.log",
+      "bytes": 60912,
+      "sha256": "3cf91d8c8c6a088d9e00af02d04042abc749b99800d8e57afd9d5ba293e764f6"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b07-launcher.log",
+      "bytes": 84,
+      "sha256": "65a64d58a6162cb19c9d25cef18d396678c3b77fcf9b76da0f2517616b7731a4"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b07.log",
+      "bytes": 1990,
+      "sha256": "1a429e68b3ce1867a58a54e067c3768e9e994a626d2f228501bbc7bc3a8fefe9"
+    },
+    {
+      "path": "logs/sage-current-r0-old-b07-server.log",
+      "bytes": 63109,
+      "sha256": "4683c09c8d79bb8a01e9ecc3ea2f9c285ca7342b7554b8c9735602b4a19dd7a6"
+    }
+  ],
+  "archive": {
+    "name": "sage-current-r0-complete-v1.tar.gz",
+    "bytes": 3895400,
+    "sha256": "c9c9d34dedb238cee0e81bd5bc262303fe64d384066a82deb3e9d2bcd4990be6"
+  },
+  "member_bytes_verified": true
+}
