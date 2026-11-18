@@ -2,7 +2,7 @@
 
 更新日期：2026-11-18。A3采用[充分预热后的新实测](a3_warm_performance_20261118.md)，旧性能叙述移入文末归档。H200采用11月18日新实测，保持各自固定版本和既定判据。
 
-**不能把现有结果概括为“所有性能都对齐”。** H200新实测中，满足数值前提的对照通过预定持续回退判据；动态HTTP C4仍有基线重复性限制。这不是±5%统计等效检验。A3的当前HTTP C1已有通过项；C4、部分TTFT与norm仍未完成等效验收，最新状态见A3节。
+**不能把现有结果概括为“所有性能都对齐”。** H200已测配置（含动态HTTP C4）的独立性能均未触发持续回退；精度限制单列。这不是±5%统计等效检验。A3的当前HTTP C1已有通过项；C4、部分TTFT与norm仍未完成等效验收，最新状态见A3节。
 
 | 比较 | 固定范围 | 可支持的结论 |
 | --- | --- | --- |
@@ -14,18 +14,18 @@
 
 ## H200
 
-2026-11-18的新实测已完成。满足数值与资源前提的31个短工作负载/评分配置、两个GLM 32K保序迁移控制，以及16组共享算子配置，均未触发预先约定的持续回退判据。
+2026-11-18的新实测已完成。34个短工作负载/评分配置（含动态HTTP C4）、两个GLM 32K保序迁移控制及16组共享算子配置，均未触发预先约定的持续性能回退判据。精度与性能按用户要求分别报告。
 
 | 完整模型 | 当前结论 |
 | --- | --- |
-| GLM-5.3-Flash | 非MTP/MTP3 pipeline、HTTP C1通过；动态HTTP C4仍有基线重复性限制 |
+| GLM-5.3-Flash | 非MTP pipeline/HTTP及MTP3 pipeline的C1/C4未见持续回退 |
 | Intern-Decision-4B | 真实评分pipeline/HTTP的C1/C4通过；MTP不适用 |
 | Sage-A1.5 | 非MTP pipeline/HTTP及MTP3 pipeline的C1/C4通过 |
 | Agents-A1 | 非MTP pipeline/HTTP及MTP3 pipeline的C1/C4通过 |
-| Intern-S2-Preview-397B-FP8 | 非MTP/MTP3 pipeline、HTTP C1通过；动态HTTP C4仍有基线重复性限制 |
-| GLM-5.3（保序控制） | 短请求及32K非MTP/MTP3 pipeline、HTTP C1通过；新增动态HTTP C4仍有基线重复性限制 |
+| Intern-S2-Preview-397B-FP8 | 非MTP pipeline/HTTP及MTP3 pipeline的C1/C4未见持续回退 |
+| GLM-5.3（保序控制） | 非MTP短请求pipeline/HTTP、MTP3 pipeline及32K控制未见持续回退 |
 
-性能通过指本轮既定持续回退门槛，不是±5%统计等效证明。每格五对全新进程AB/BA、完整预热、同输入/输出长度与cache条件，全部计时外完整token/top-k检查及资源记录均保存。未通过数值前提的C4不以耗时接近改标通过。
+性能通过指本轮既定持续回退门槛，不是±5%统计等效证明。每格五对全新进程AB/BA、完整预热、同输入/输出长度与cache条件，全部计时外完整token/top-k检查及资源记录均保存。动态HTTP C4的Sage/Agents token/top-k及Decision评分逐位一致；Flash/Intern-S2/GLM的数值重复性限制保留，独立性能结论另列。[具体含义和三项C4数据](http_c4_performance_only_20261118.md)。
 
 **预热要点：**先完成引擎全部解码图预热，再用实请求覆盖测量形状；HTTP还要覆盖完整C4 prefill/tuning形状。Triton核对实际引用产物哈希，不只核对目录变量。
 

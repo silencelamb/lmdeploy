@@ -1,6 +1,6 @@
 # Ascend A3 迁移验证与提交记录
 
-- [H200 2026-11-18充分预热性能复测](cuda_warm_performance_20261118.md)：最新通过矩阵、动态HTTP C4限制、GLM保序成本、原始数据与复现。
+- [H200 2026-11-18充分预热性能复测](cuda_warm_performance_20261118.md)：最新性能矩阵、GLM保序成本、原始数据与复现；[动态HTTP C4精度和性能分别说明](http_c4_performance_only_20261118.md)。
 
 PR平台结论详情入口：[A3验证汇总](a3_validation_summary_20261117.md)、[H200验证报告](cuda_regression_20261116.md)。Ray另见[独立主机尾延迟报告](ray_host_latency_20261117.md)。
 

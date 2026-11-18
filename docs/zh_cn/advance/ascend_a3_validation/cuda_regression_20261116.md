@@ -102,7 +102,7 @@ S2的out_proj是第0层GDN/线性注意力子层经过gated norm后的输出投�
 
 补充证据边界复核：原首差分析来自rank0。复核两源码×8rank的16组orderA/orderB记录，14组能够按相同首个decode步骤对齐；这些记录中out_proj对应请求的输入相同，移位行的模块输出不同。基线rank3、PR rank4的orderB记录history_lengths为168（目标首decode应为167），且缺少该轮prefill记录，已排除。这两组不能用其他rank代替，也不能仅凭这批记录宣称完成全8卡同一步的归约归因。[全rank复核及排除原因](evidence/cuda-h200-20261116/outproj-all-rank-input-audit.json)。后续独立控制使用完整orderA的8卡输入构造一致的行置换，没有补写旧缺失记录；它精确重现原有效A/B输出，进一步隔离了本地计算与归约。旧排除项仍有效，未插桩主矩阵原始结果保持不变。
 
-Flash/S2的真实HTTP C4在基线自身也不重复，故不能把这些时序用于合格的迁移性能通过。完整输入、首个数值差异与此前一致的生成历史，以及64份实际TP rank首prefill tensor均保存。
+Flash/S2的真实HTTP C4在基线自身也不重复；这是数值一致性限制。后续[独立性能复核](http_c4_performance_only_20261118.md)已按相同请求工作负载给出性能结论。完整输入、首个数值差异与此前一致的生成历史，以及64份实际TP rank首prefill tensor均保存。
 
 - Flash实际批量4与3的共同请求，首差在第0层fg_a_proj稠密投影；相同批量4的对照，逐层输出和target logits相同。
 - S2实际批量1与4的首差在第0层MoE gate。用真实冻结输入/权重，在基线和PR源码各重放三次：两种形状的实际输出全部精确复现；Flash对应投影同样通过，共24次重放。不是以“BF16误差”忽略差异。
@@ -118,9 +118,9 @@ decode图观察器增加了复制节点，只用于定位；原始性能与正�
 
 本节以[2026-11-18充分预热复测](cuda_warm_performance_20261118.md)为准。原先较大的TTFT增幅已由新结果取代，不继续作为当前问题清单。
 
-新一轮固定原源码、依赖、checkpoint、GPU与cache配置，完成170个选定模型进程、每格五对AB/BA。满足数值前提的31个短/评分配置及GLM的两项32K保序迁移控制均通过既定持续回退判据；16组RMSNormGated算子配置也未触发回退。GLM的保序开/关成本与迁移对照分开记录。
+新一轮固定原源码、依赖、checkpoint、GPU与cache配置，完成170个选定模型进程、每格五对AB/BA。34个短/评分配置及GLM的两项32K保序迁移控制，在独立性能维度均未触发既定持续回退判据；16组RMSNormGated算子配置也未触发回退。GLM的保序开/关成本与迁移对照分开记录。
 
-动态HTTP C4的GLM-5.3-Flash、Intern-S2及本轮新增GLM，在两份源码各自重放时仍出现token/完整分数差异；这些配置不签署严格性能通过。没有改变算法、同步、collective精度或阈值来消除该限制。
+精度另列：动态HTTP C4的GLM-5.3-Flash、Intern-S2及GLM-5.3，在两份源码各自重放时仍出现token/完整分数差异；Sage、Agents及Decision的已测C4逐位一致。按用户要求，三项C4的独立性能已核对相同实际工作量并补齐数值，均未见持续回退；没有改变算法、同步、collective精度或阈值。[分别说明与证据](http_c4_performance_only_20261118.md)。
 
 预热覆盖引擎所有解码图桶与真实prefill/tuning形状；加载、编译、预热和数值探针不计入稳态性能。完整数值、区间、显存采样、首差及复现脚本均在新报告中。旧性能表只保留于[历史归档](old/cuda_performance_before_rerun_20261118.md)。
 
