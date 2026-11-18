@@ -1,0 +1,502 @@
+{
+  "agents": {
+    "4": {
+      "consecutive_ab": {
+        "slots": [
+          0,
+          1
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 115,
+              "left": 13597,
+              "right": 10327
+            }
+          ]
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -0.8976391072602952
+      },
+      "consecutive_ba": {
+        "slots": [
+          3,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 115,
+              "left": 10327,
+              "right": 13597
+            }
+          ]
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": 1.7764028281116229
+      },
+      "same_order_a": {
+        "slots": [
+          0,
+          2
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -5.820502839265718
+      },
+      "same_order_b": {
+        "slots": [
+          3,
+          1
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": 7.096364999935334
+      },
+      "old_restart_other_order": {
+        "slots": [
+          0,
+          3
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 115,
+              "left": 13597,
+              "right": 10327
+            }
+          ]
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -7.464309462977992
+      },
+      "new_restart_other_order": {
+        "slots": [
+          1,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 115,
+              "left": 10327,
+              "right": 13597
+            }
+          ]
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -4.967453537593858
+      }
+    },
+    "8": {
+      "consecutive_ab": {
+        "slots": [
+          0,
+          1
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 47,
+              "left": 74307,
+              "right": 30576
+            }
+          ]
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -1.1258300362187446
+      },
+      "consecutive_ba": {
+        "slots": [
+          3,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 47,
+              "left": 30576,
+              "right": 74307
+            }
+          ]
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": 0.44624196558007423
+      },
+      "same_order_a": {
+        "slots": [
+          0,
+          2
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -7.766212202523071
+      },
+      "same_order_b": {
+        "slots": [
+          3,
+          1
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": 7.677880714767071
+      },
+      "old_restart_other_order": {
+        "slots": [
+          0,
+          3
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 47,
+              "left": 74307,
+              "right": 30576
+            }
+          ]
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -8.175969560829666
+      },
+      "new_restart_other_order": {
+        "slots": [
+          1,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 63,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 47,
+              "left": 30576,
+              "right": 74307
+            }
+          ]
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -6.715992830824035
+      }
+    }
+  },
+  "sage": {
+    "4": {
+      "consecutive_ab": {
+        "slots": [
+          0,
+          1
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -1.718233205858677
+      },
+      "consecutive_ba": {
+        "slots": [
+          3,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -7.308462549497374
+      },
+      "same_order_a": {
+        "slots": [
+          0,
+          2
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -7.4317483605893075
+      },
+      "same_order_b": {
+        "slots": [
+          3,
+          1
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -1.58733792459137
+      },
+      "old_restart_other_order": {
+        "slots": [
+          0,
+          3
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -0.13300654459179606
+      },
+      "new_restart_other_order": {
+        "slots": [
+          1,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 4,
+          "matched": 4,
+          "differences": []
+        },
+        "throughput_pct": -5.813402975038107
+      }
+    },
+    "8": {
+      "consecutive_ab": {
+        "slots": [
+          0,
+          1
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": 0.489086992844201
+      },
+      "consecutive_ba": {
+        "slots": [
+          3,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": 1.4567634564658594
+      },
+      "same_order_a": {
+        "slots": [
+          0,
+          2
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -7.750559079885133
+      },
+      "same_order_b": {
+        "slots": [
+          3,
+          1
+        ],
+        "identical_schedule": true,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": 10.5188001932502
+      },
+      "old_restart_other_order": {
+        "slots": [
+          0,
+          3
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -9.075119511674323
+      },
+      "new_restart_other_order": {
+        "slots": [
+          1,
+          2
+        ],
+        "identical_schedule": false,
+        "measured": {
+          "total": 64,
+          "matched": 64,
+          "differences": []
+        },
+        "qualification": {
+          "total": 8,
+          "matched": 8,
+          "differences": []
+        },
+        "throughput_pct": -8.199543173594638
+      }
+    }
+  }
+}

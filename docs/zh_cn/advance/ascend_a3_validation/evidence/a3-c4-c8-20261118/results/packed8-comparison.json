@@ -1,0 +1,5022 @@
+{
+  "agents": {
+    "sessions": [
+      {
+        "label": "packed8-r0-agents-old-s0",
+        "slot": 0,
+        "side": "old",
+        "reservation_ns": [
+          643724547638154,
+          643962711622525
+        ],
+        "measure_ns": [
+          643890116268953,
+          643951940481347
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "1": 16,
+              "0": 16
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 233.24380073407997,
+              "stream_tps_p50": 67.40588819225054,
+              "ttft_p50": 0.2990648839622736,
+              "ttft_p95": 0.3631759091920683,
+              "tpot_p50": 0.014835653015812054
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "1": 8,
+              "0": 8
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 420.6368578936635,
+              "stream_tps_p50": 61.633618572457074,
+              "ttft_p50": 0.35942025296390057,
+              "ttft_p95": 0.3837746413773857,
+              "tpot_p50": 0.016225891894070567
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 16,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 86,
+              "left": 93868,
+              "right": 318
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "f25f14edd2f55e37a2717048b302534ad61ffca0fc9415f4894acfadaeb94083",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "a52f6acf14e92318a4f703e5bafe3636b4456a960f10b335519b8f663150304d",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "a080295531c5eadf575c496a767617bb8e10defd445b4d12536285eabe93bd9a",
+              "first_different_token": 48,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "bd08dd1cbaee50a0ee91f7aeefba7e6cd984ced5d4ed5e83e7a14cd4260504e0",
+              "first_different_token": 95,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "b207fcd9c8d027fd694b26dbffe7c21d7c49148ddfb1b2fa29f4b9cbd483d13d",
+              "first_different_token": 64,
+              "left": 7976,
+              "right": 10327
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 1,
+              "left": 5374,
+              "right": 2500
+            },
+            {
+              "input_sha256": "592d35e5b9e3f5887dd39a82192c4040d333a4861a2fa1a65c458c16c15f4406",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 94,
+              "left": 1345,
+              "right": 13
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "576582dae51aa7cdb02a4a28e3dcf02fa498a4bd9197110d60258f64bedd7d6a",
+              "first_different_token": 96,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 34,
+              "left": 321,
+              "right": 8
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 32,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 83,
+              "left": 14542,
+              "right": 1204
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "cda8400b937d9d7e4317ea9fd9d00584dbea435e379347141145c7f0806b1361",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "fc985f2543b02025c17254dd04f650bbf07ac0795c5bc50185b942406f0669b2",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 115,
+              "left": 2972,
+              "right": 2716
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 58,
+              "left": 54799,
+              "right": 51954
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 11,
+              "left": 2972,
+              "right": 4478
+            },
+            {
+              "input_sha256": "3b89ea30335a27bd6d205c0a9d5d3023529d4b02210f04f7df92afcda50921b9",
+              "first_different_token": 56,
+              "left": 411,
+              "right": 279
+            },
+            {
+              "input_sha256": "5ee824d3127cc9eaf102d1213e176c006fbbf594fa93606d51e0e2a81a1eced7",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 6,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 85,
+              "left": 1715,
+              "right": 1315
+            },
+            {
+              "input_sha256": "5dfd2d3d9c2345651888a81d10467a79a178520254bd0b0f463882f12c9d23dc",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 42,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "cc7e952c358bb6f8ed13bfb302fd11b9e78ef84b1e31cd1c09993613419da5c9",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 85,
+              "left": 1315,
+              "right": 1715
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "984485b84fa83e56155193889984c59378cae4d4fd5219f536d6b2acc53539ff",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 15,
+              "left": 15958,
+              "right": 36151
+            },
+            {
+              "input_sha256": "f45c08809eed26189985a0f6de259f1dd7e475eddfd6fc7b5b96a39d23da144a",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 6,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            }
+          ]
+        }
+      },
+      {
+        "label": "packed8-r0-agents-new-s1",
+        "slot": 1,
+        "side": "new",
+        "reservation_ns": [
+          644353389172481,
+          644600650099564
+        ],
+        "measure_ns": [
+          644525096257250,
+          644589370071353
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "1": 16,
+              "0": 16
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 231.1501131634306,
+              "stream_tps_p50": 66.02892555170027,
+              "ttft_p50": 0.29678293701726943,
+              "ttft_p95": 0.3483153403678443,
+              "tpot_p50": 0.015144878114283996
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "1": 8,
+              "0": 8
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 415.90120180408985,
+              "stream_tps_p50": 60.59282072064346,
+              "ttft_p50": 0.36720320594031364,
+              "ttft_p95": 0.3939465653267689,
+              "tpot_p50": 0.01650602668138793
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 16,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 47,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "f25f14edd2f55e37a2717048b302534ad61ffca0fc9415f4894acfadaeb94083",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "a52f6acf14e92318a4f703e5bafe3636b4456a960f10b335519b8f663150304d",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "a080295531c5eadf575c496a767617bb8e10defd445b4d12536285eabe93bd9a",
+              "first_different_token": 48,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "bd08dd1cbaee50a0ee91f7aeefba7e6cd984ced5d4ed5e83e7a14cd4260504e0",
+              "first_different_token": 95,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "b207fcd9c8d027fd694b26dbffe7c21d7c49148ddfb1b2fa29f4b9cbd483d13d",
+              "first_different_token": 64,
+              "left": 7976,
+              "right": 10327
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 1,
+              "left": 5374,
+              "right": 2500
+            },
+            {
+              "input_sha256": "592d35e5b9e3f5887dd39a82192c4040d333a4861a2fa1a65c458c16c15f4406",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 94,
+              "left": 1345,
+              "right": 13
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "576582dae51aa7cdb02a4a28e3dcf02fa498a4bd9197110d60258f64bedd7d6a",
+              "first_different_token": 96,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 34,
+              "left": 321,
+              "right": 8
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 32,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 83,
+              "left": 14542,
+              "right": 1204
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "cda8400b937d9d7e4317ea9fd9d00584dbea435e379347141145c7f0806b1361",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "fc985f2543b02025c17254dd04f650bbf07ac0795c5bc50185b942406f0669b2",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 115,
+              "left": 2972,
+              "right": 2716
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 58,
+              "left": 54799,
+              "right": 51954
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 11,
+              "left": 2972,
+              "right": 4478
+            },
+            {
+              "input_sha256": "3b89ea30335a27bd6d205c0a9d5d3023529d4b02210f04f7df92afcda50921b9",
+              "first_different_token": 56,
+              "left": 411,
+              "right": 279
+            },
+            {
+              "input_sha256": "5ee824d3127cc9eaf102d1213e176c006fbbf594fa93606d51e0e2a81a1eced7",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 6,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 85,
+              "left": 1715,
+              "right": 1315
+            },
+            {
+              "input_sha256": "5dfd2d3d9c2345651888a81d10467a79a178520254bd0b0f463882f12c9d23dc",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 42,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "cc7e952c358bb6f8ed13bfb302fd11b9e78ef84b1e31cd1c09993613419da5c9",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 85,
+              "left": 1315,
+              "right": 1715
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "984485b84fa83e56155193889984c59378cae4d4fd5219f536d6b2acc53539ff",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 15,
+              "left": 15958,
+              "right": 36151
+            },
+            {
+              "input_sha256": "f45c08809eed26189985a0f6de259f1dd7e475eddfd6fc7b5b96a39d23da144a",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 6,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            }
+          ]
+        }
+      },
+      {
+        "label": "packed8-r0-agents-new-s2",
+        "slot": 2,
+        "side": "new",
+        "reservation_ns": [
+          644908756417272,
+          645161256059545
+        ],
+        "measure_ns": [
+          645082319941739,
+          645149478939270
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "0": 16,
+              "1": 16
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 219.66783868994156,
+              "stream_tps_p50": 62.97189214151531,
+              "ttft_p50": 0.29274064052151516,
+              "ttft_p95": 0.3907901628233957,
+              "tpot_p50": 0.015880100894261034
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "0": 8,
+              "1": 8
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 387.96930690761616,
+              "stream_tps_p50": 57.64137104663824,
+              "ttft_p50": 0.4224938280531205,
+              "ttft_p95": 0.4515502524038311,
+              "tpot_p50": 0.017351683539496073
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 16,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 86,
+              "left": 93868,
+              "right": 318
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "f25f14edd2f55e37a2717048b302534ad61ffca0fc9415f4894acfadaeb94083",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "a52f6acf14e92318a4f703e5bafe3636b4456a960f10b335519b8f663150304d",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "a080295531c5eadf575c496a767617bb8e10defd445b4d12536285eabe93bd9a",
+              "first_different_token": 48,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "bd08dd1cbaee50a0ee91f7aeefba7e6cd984ced5d4ed5e83e7a14cd4260504e0",
+              "first_different_token": 95,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "b207fcd9c8d027fd694b26dbffe7c21d7c49148ddfb1b2fa29f4b9cbd483d13d",
+              "first_different_token": 64,
+              "left": 7976,
+              "right": 10327
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 1,
+              "left": 5374,
+              "right": 2500
+            },
+            {
+              "input_sha256": "592d35e5b9e3f5887dd39a82192c4040d333a4861a2fa1a65c458c16c15f4406",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 94,
+              "left": 1345,
+              "right": 13
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "576582dae51aa7cdb02a4a28e3dcf02fa498a4bd9197110d60258f64bedd7d6a",
+              "first_different_token": 96,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 34,
+              "left": 321,
+              "right": 8
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 32,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 83,
+              "left": 14542,
+              "right": 1204
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "cda8400b937d9d7e4317ea9fd9d00584dbea435e379347141145c7f0806b1361",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "fc985f2543b02025c17254dd04f650bbf07ac0795c5bc50185b942406f0669b2",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 115,
+              "left": 2972,
+              "right": 2716
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 58,
+              "left": 54799,
+              "right": 51954
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 11,
+              "left": 2972,
+              "right": 4478
+            },
+            {
+              "input_sha256": "3b89ea30335a27bd6d205c0a9d5d3023529d4b02210f04f7df92afcda50921b9",
+              "first_different_token": 56,
+              "left": 411,
+              "right": 279
+            },
+            {
+              "input_sha256": "5ee824d3127cc9eaf102d1213e176c006fbbf594fa93606d51e0e2a81a1eced7",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 6,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 85,
+              "left": 1715,
+              "right": 1315
+            },
+            {
+              "input_sha256": "5dfd2d3d9c2345651888a81d10467a79a178520254bd0b0f463882f12c9d23dc",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 42,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "cc7e952c358bb6f8ed13bfb302fd11b9e78ef84b1e31cd1c09993613419da5c9",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 85,
+              "left": 1315,
+              "right": 1715
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "984485b84fa83e56155193889984c59378cae4d4fd5219f536d6b2acc53539ff",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 15,
+              "left": 15958,
+              "right": 36151
+            },
+            {
+              "input_sha256": "f45c08809eed26189985a0f6de259f1dd7e475eddfd6fc7b5b96a39d23da144a",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 6,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            }
+          ]
+        }
+      },
+      {
+        "label": "packed8-r0-agents-old-s3",
+        "slot": 3,
+        "side": "old",
+        "reservation_ns": [
+          645781126974897,
+          646031654313680
+        ],
+        "measure_ns": [
+          645953725188290,
+          646019416578961
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "1": 16,
+              "0": 16
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "4,4": 2048
+                },
+                "draft": {},
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 215.8337616440765,
+              "stream_tps_p50": 62.779355142552475,
+              "ttft_p50": 0.3350585075095296,
+              "ttft_p95": 0.3624339707079343,
+              "tpot_p50": 0.015928826389254958
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "1": 8,
+              "0": 8
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "8,8": 1024
+                },
+                "draft": {},
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 386.24571643064724,
+              "stream_tps_p50": 56.43097328749378,
+              "ttft_p50": 0.38727167254546657,
+              "ttft_p95": 0.4093972504080739,
+              "tpot_p50": 0.017721122984158417
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 16,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 47,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "f25f14edd2f55e37a2717048b302534ad61ffca0fc9415f4894acfadaeb94083",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "a52f6acf14e92318a4f703e5bafe3636b4456a960f10b335519b8f663150304d",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "a080295531c5eadf575c496a767617bb8e10defd445b4d12536285eabe93bd9a",
+              "first_different_token": 48,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "bd08dd1cbaee50a0ee91f7aeefba7e6cd984ced5d4ed5e83e7a14cd4260504e0",
+              "first_different_token": 95,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "b207fcd9c8d027fd694b26dbffe7c21d7c49148ddfb1b2fa29f4b9cbd483d13d",
+              "first_different_token": 64,
+              "left": 7976,
+              "right": 10327
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 1,
+              "left": 5374,
+              "right": 2500
+            },
+            {
+              "input_sha256": "592d35e5b9e3f5887dd39a82192c4040d333a4861a2fa1a65c458c16c15f4406",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 94,
+              "left": 1345,
+              "right": 13
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "576582dae51aa7cdb02a4a28e3dcf02fa498a4bd9197110d60258f64bedd7d6a",
+              "first_different_token": 96,
+              "left": 15500,
+              "right": 6008
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 34,
+              "left": 321,
+              "right": 8
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 32,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 83,
+              "left": 14542,
+              "right": 1204
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "cda8400b937d9d7e4317ea9fd9d00584dbea435e379347141145c7f0806b1361",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "fc985f2543b02025c17254dd04f650bbf07ac0795c5bc50185b942406f0669b2",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 115,
+              "left": 2972,
+              "right": 2716
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 58,
+              "left": 54799,
+              "right": 51954
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 11,
+              "left": 2972,
+              "right": 4478
+            },
+            {
+              "input_sha256": "3b89ea30335a27bd6d205c0a9d5d3023529d4b02210f04f7df92afcda50921b9",
+              "first_different_token": 56,
+              "left": 411,
+              "right": 279
+            },
+            {
+              "input_sha256": "5ee824d3127cc9eaf102d1213e176c006fbbf594fa93606d51e0e2a81a1eced7",
+              "first_different_token": 56,
+              "left": 1204,
+              "right": 279
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 6,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 32,
+              "left": 30576,
+              "right": 74307
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 85,
+              "left": 1715,
+              "right": 1315
+            },
+            {
+              "input_sha256": "5dfd2d3d9c2345651888a81d10467a79a178520254bd0b0f463882f12c9d23dc",
+              "first_different_token": 58,
+              "left": 51954,
+              "right": 54799
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 42,
+              "left": 74307,
+              "right": 30576
+            },
+            {
+              "input_sha256": "cc7e952c358bb6f8ed13bfb302fd11b9e78ef84b1e31cd1c09993613419da5c9",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 103,
+              "left": 93868,
+              "right": 332
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 85,
+              "left": 1315,
+              "right": 1715
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 0,
+              "left": 2,
+              "right": 56074
+            },
+            {
+              "input_sha256": "984485b84fa83e56155193889984c59378cae4d4fd5219f536d6b2acc53539ff",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 15,
+              "left": 15958,
+              "right": 36151
+            },
+            {
+              "input_sha256": "f45c08809eed26189985a0f6de259f1dd7e475eddfd6fc7b5b96a39d23da144a",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 6,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 56,
+              "left": 279,
+              "right": 1204
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 0,
+              "left": 56074,
+              "right": 2
+            }
+          ]
+        }
+      }
+    ],
+    "levels": {
+      "4": {
+        "comparisons": {
+          "pair_ab": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 115,
+                  "left": 13597,
+                  "right": 10327
+                }
+              ]
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -0.8976391072602952,
+              "stream_tps_p50": -2.042792814513461,
+              "ttft_p50": -0.7630273787985198,
+              "ttft_p95": -4.091837715029967,
+              "tpot_p50": 2.0843376300481387
+            }
+          },
+          "pair_ba": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 115,
+                  "left": 10327,
+                  "right": 13597
+                }
+              ]
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": 1.7764028281116229,
+              "stream_tps_p50": 0.3066883986394098,
+              "ttft_p50": -12.629993281639285,
+              "ttft_p95": 7.823822932512048,
+              "tpot_p50": -0.3058950722621523
+            }
+          },
+          "old_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 115,
+                  "left": 13597,
+                  "right": 10327
+                }
+              ]
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -7.464309462977992,
+              "stream_tps_p50": -6.863692733344873,
+              "ttft_p50": 12.035389468125079,
+              "ttft_p95": -0.20429176753065104,
+              "tpot_p50": 7.368555818053868
+            }
+          },
+          "new_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 115,
+                  "left": 10327,
+                  "right": 13597
+                }
+              ]
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -4.967453537593858,
+              "stream_tps_p50": -4.629839702285199,
+              "ttft_p50": -1.3620380391070275,
+              "ttft_p95": 12.19435882746225,
+              "tpot_p50": 4.854596877102679
+            }
+          }
+        },
+        "absolute": {
+          "old": {
+            "throughput": 224.53878118907824,
+            "stream_tps_p50": 65.09262166740152,
+            "ttft_p50": 0.3170616957359016,
+            "ttft_p95": 0.3628049399500013,
+            "tpot_p50": 0.015382239702533506
+          },
+          "new": {
+            "throughput": 225.40897592668608,
+            "stream_tps_p50": 64.5004088466078,
+            "ttft_p50": 0.2947617887693923,
+            "ttft_p95": 0.36955275159561995,
+            "tpot_p50": 0.015512489504272515
+          }
+        }
+      },
+      "8": {
+        "comparisons": {
+          "pair_ab": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 47,
+                  "left": 74307,
+                  "right": 30576
+                }
+              ]
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -1.1258300362187446,
+              "stream_tps_p50": -1.6886852920862339,
+              "ttft_p50": 2.165418590697721,
+              "ttft_p95": 2.6504940276605327,
+              "tpot_p50": 1.72646772914673
+            }
+          },
+          "pair_ba": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 47,
+                  "left": 30576,
+                  "right": 74307
+                }
+              ]
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": 0.44624196558007423,
+              "stream_tps_p50": 2.144917389565415,
+              "ttft_p50": 9.094947553521049,
+              "ttft_p95": 10.296356888997305,
+              "tpot_p50": -2.0847405945582542
+            }
+          },
+          "old_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 47,
+                  "left": 74307,
+                  "right": 30576
+                }
+              ]
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -8.175969560829666,
+              "stream_tps_p50": -8.441245874355108,
+              "ttft_p50": 7.748984469265108,
+              "ttft_p95": 6.6764726660228035,
+              "tpot_p50": 9.215093381919125
+            }
+          },
+          "new_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 63,
+              "differences": [
+                {
+                  "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+                  "first_different_token": 47,
+                  "left": 30576,
+                  "right": 74307
+                }
+              ]
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -6.715992830824035,
+              "stream_tps_p50": -4.870956061960796,
+              "ttft_p50": 15.057227501928171,
+              "ttft_p95": 14.62220822493563,
+              "tpot_p50": 5.123321768658595
+            }
+          }
+        },
+        "absolute": {
+          "old": {
+            "throughput": 403.4412871621554,
+            "stream_tps_p50": 59.032295929975426,
+            "ttft_p50": 0.37334596275468357,
+            "ttft_p95": 0.3965859458927298,
+            "tpot_p50": 0.016973507439114494
+          },
+          "new": {
+            "throughput": 401.935254355853,
+            "stream_tps_p50": 59.11709588364085,
+            "ttft_p50": 0.3948485169967171,
+            "ttft_p95": 0.4227484088653,
+            "tpot_p50": 0.016928855110442002
+          }
+        }
+      }
+    }
+  },
+  "sage": {
+    "sessions": [
+      {
+        "label": "packed8-r0-sage-old-s0",
+        "slot": 0,
+        "side": "old",
+        "reservation_ns": [
+          643404213529005,
+          643646289571395
+        ],
+        "measure_ns": [
+          643586242420471,
+          643634033899091
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "1": 16,
+              "0": 16
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "1,1,1": 65,
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,8,2": 15,
+                  "1,2,2": 30
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "1,1,1": 65,
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,8,2": 15,
+                  "1,2,2": 30
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 307.00603159637234,
+              "stream_tps_p50": 99.70140197416643,
+              "ttft_p50": 0.3183918584836647,
+              "ttft_p95": 0.3378408398479223,
+              "tpot_p50": 0.010029951787432729
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "1": 8,
+              "0": 8
+            },
+            "actual_shapes": {
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "1,1,1": 11,
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 24,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "1,1,1": 11,
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 24,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "1": [],
+              "0": []
+            },
+            "metrics": {
+              "throughput": 499.45524998553174,
+              "stream_tps_p50": 83.9338584075901,
+              "ttft_p50": 0.4059362450498156,
+              "ttft_p95": 0.45619349739863535,
+              "tpot_p50": 0.01191414310230221
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 20,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "12d72e38da29a815057567ab02dfa61bc7139937ca13402ffaae5e9a1ec7f7df",
+              "first_different_token": 21,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "975e3837465d465e669fbf28f5fbe008a7b5a941c7f2b43c92a2f359c280c615",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "157eba953dcfb34cf8926847eba0b4cb655a8758acbd4ca2e339e112bfa80d28",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "1055809d3290719bef74a935928ca6291767d01bb3352cfb63809dfab513fbda",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 37,
+              "left": 1061,
+              "right": 20543
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "31397dd3175bfd52ab328dfd415652284ebeb21b000ada5510f458320c0f447d",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 99,
+              "left": 279,
+              "right": 2279
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 40,
+              "left": 31838,
+              "right": 2708
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 47,
+              "left": 25,
+              "right": 488
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 89,
+              "left": 16569,
+              "right": 4778
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "2a41885ec364a5a3659598bf7c2257e9731f3bc53f4316dbb6385a01591c91c4",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "b0e49b5ee433126419700141fa0ba1b820811c7d44c3f1ad8a37820690176fef",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "9606bebc59d2eaca751dca8159e9eb0db3cde6e4dc4b4a14f829734b43924d8e",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "4908660784eaa68d45afefa248651f555d8621f0fc9896bcd9181bc1d83b54ae",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "f949cbfb62c1a21a8955228f50858106fcaea0d131dd7f5b8adbf0f2d902d8e6",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "fdd716e4a68b44f7760a10471656a9c5f47bdaf437a88780d5505dab25465143",
+              "first_different_token": 47,
+              "left": 488,
+              "right": 25
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            }
+          ]
+        }
+      },
+      {
+        "label": "packed8-r0-sage-new-s1",
+        "slot": 1,
+        "side": "new",
+        "reservation_ns": [
+          644012591065368,
+          644255483895280
+        ],
+        "measure_ns": [
+          644195899662269,
+          644245051412359
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "0": 16,
+              "1": 16
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "1,1,1": 62,
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 31,
+                  "1,8,2": 15,
+                  "1,2,2": 30
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "1,1,1": 61,
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,8,2": 15,
+                  "1,2,2": 30
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 301.7309520174945,
+              "stream_tps_p50": 97.38757687925025,
+              "ttft_p50": 0.3058966545504518,
+              "ttft_p95": 0.3576364430482499,
+              "tpot_p50": 0.01026825014571476
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "0": 8,
+              "1": 8
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 6,
+                  "1,1,1": 12,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 24,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,1,1": 13,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 24,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 501.8980206482884,
+              "stream_tps_p50": 82.56947186887896,
+              "ttft_p50": 0.3936540320282802,
+              "ttft_p95": 0.42231058949837463,
+              "tpot_p50": 0.012111021516070972
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 20,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "12d72e38da29a815057567ab02dfa61bc7139937ca13402ffaae5e9a1ec7f7df",
+              "first_different_token": 21,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "975e3837465d465e669fbf28f5fbe008a7b5a941c7f2b43c92a2f359c280c615",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "157eba953dcfb34cf8926847eba0b4cb655a8758acbd4ca2e339e112bfa80d28",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "1055809d3290719bef74a935928ca6291767d01bb3352cfb63809dfab513fbda",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 37,
+              "left": 1061,
+              "right": 20543
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "31397dd3175bfd52ab328dfd415652284ebeb21b000ada5510f458320c0f447d",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 99,
+              "left": 279,
+              "right": 2279
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 40,
+              "left": 31838,
+              "right": 2708
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 47,
+              "left": 25,
+              "right": 488
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 89,
+              "left": 16569,
+              "right": 4778
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "2a41885ec364a5a3659598bf7c2257e9731f3bc53f4316dbb6385a01591c91c4",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "b0e49b5ee433126419700141fa0ba1b820811c7d44c3f1ad8a37820690176fef",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "9606bebc59d2eaca751dca8159e9eb0db3cde6e4dc4b4a14f829734b43924d8e",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "4908660784eaa68d45afefa248651f555d8621f0fc9896bcd9181bc1d83b54ae",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "f949cbfb62c1a21a8955228f50858106fcaea0d131dd7f5b8adbf0f2d902d8e6",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "fdd716e4a68b44f7760a10471656a9c5f47bdaf437a88780d5505dab25465143",
+              "first_different_token": 47,
+              "left": 488,
+              "right": 25
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            }
+          ]
+        }
+      },
+      {
+        "label": "packed8-r0-sage-new-s2",
+        "slot": 2,
+        "side": "new",
+        "reservation_ns": [
+          644680243758705,
+          644908755683128
+        ],
+        "measure_ns": [
+          644844048225730,
+          644896462255035
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "0": 16,
+              "1": 16
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "1,1,1": 64,
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,8,2": 15,
+                  "1,2,2": 32
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "1,1,1": 64,
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,8,2": 15,
+                  "1,2,2": 33
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 284.19011587629865,
+              "stream_tps_p50": 92.33752398586927,
+              "ttft_p50": 0.3455580400186591,
+              "ttft_p95": 0.3877833879552781,
+              "tpot_p50": 0.010829854134184228
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "0": 8,
+              "1": 8
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "1,1,1": 12,
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 22,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "1,1,1": 12,
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 21,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 460.7446757578151,
+              "stream_tps_p50": 74.34596589079001,
+              "ttft_p50": 0.4234708500443958,
+              "ttft_p95": 0.46614690439892004,
+              "tpot_p50": 0.01345153448014249
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 20,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "12d72e38da29a815057567ab02dfa61bc7139937ca13402ffaae5e9a1ec7f7df",
+              "first_different_token": 21,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "975e3837465d465e669fbf28f5fbe008a7b5a941c7f2b43c92a2f359c280c615",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "157eba953dcfb34cf8926847eba0b4cb655a8758acbd4ca2e339e112bfa80d28",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "1055809d3290719bef74a935928ca6291767d01bb3352cfb63809dfab513fbda",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 37,
+              "left": 1061,
+              "right": 20543
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "31397dd3175bfd52ab328dfd415652284ebeb21b000ada5510f458320c0f447d",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 99,
+              "left": 279,
+              "right": 2279
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 40,
+              "left": 31838,
+              "right": 2708
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 47,
+              "left": 25,
+              "right": 488
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 89,
+              "left": 16569,
+              "right": 4778
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "2a41885ec364a5a3659598bf7c2257e9731f3bc53f4316dbb6385a01591c91c4",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "b0e49b5ee433126419700141fa0ba1b820811c7d44c3f1ad8a37820690176fef",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "9606bebc59d2eaca751dca8159e9eb0db3cde6e4dc4b4a14f829734b43924d8e",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "4908660784eaa68d45afefa248651f555d8621f0fc9896bcd9181bc1d83b54ae",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "f949cbfb62c1a21a8955228f50858106fcaea0d131dd7f5b8adbf0f2d902d8e6",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "fdd716e4a68b44f7760a10471656a9c5f47bdaf437a88780d5505dab25465143",
+              "first_different_token": 47,
+              "left": 488,
+              "right": 25
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            }
+          ]
+        }
+      },
+      {
+        "label": "packed8-r0-sage-old-s3",
+        "slot": 3,
+        "side": "old",
+        "reservation_ns": [
+          645386721279833,
+          645597522597532
+        ],
+        "measure_ns": [
+          645536398264295,
+          645586934077231
+        ],
+        "warmup_qualified": true,
+        "measurement_qualified": true,
+        "levels": {
+          "4": {
+            "fully_packed_per_rank": {
+              "0": 16,
+              "1": 16
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,1,1": 64,
+                  "1,8,2": 15,
+                  "1,2,2": 30
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "396,4": 16
+                },
+                "decode": {
+                  "16,4": 704,
+                  "12,3": 8,
+                  "4,1": 32,
+                  "8,2": 15
+                },
+                "draft": {
+                  "0,396,4": 16,
+                  "1,4,4": 1440,
+                  "1,16,4": 704,
+                  "1,12,3": 8,
+                  "1,3,3": 16,
+                  "1,4,1": 32,
+                  "1,1,1": 64,
+                  "1,8,2": 15,
+                  "1,2,2": 30
+                },
+                "full_decode_batches": 16,
+                "per_batch_prefills": {
+                  "0": {
+                    "396,4": 1
+                  },
+                  "1": {
+                    "396,4": 1
+                  },
+                  "2": {
+                    "396,4": 1
+                  },
+                  "3": {
+                    "396,4": 1
+                  },
+                  "4": {
+                    "396,4": 1
+                  },
+                  "5": {
+                    "396,4": 1
+                  },
+                  "6": {
+                    "396,4": 1
+                  },
+                  "7": {
+                    "396,4": 1
+                  },
+                  "8": {
+                    "396,4": 1
+                  },
+                  "9": {
+                    "396,4": 1
+                  },
+                  "10": {
+                    "396,4": 1
+                  },
+                  "11": {
+                    "396,4": 1
+                  },
+                  "12": {
+                    "396,4": 1
+                  },
+                  "13": {
+                    "396,4": 1
+                  },
+                  "14": {
+                    "396,4": 1
+                  },
+                  "15": {
+                    "396,4": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 306.5976934820576,
+              "stream_tps_p50": 99.47256235242085,
+              "ttft_p50": 0.33232340204995126,
+              "ttft_p95": 0.7382514914730539,
+              "tpot_p50": 0.01005302422852292
+            },
+            "requests": 64,
+            "batches": 16
+          },
+          "8": {
+            "fully_packed_per_rank": {
+              "0": 8,
+              "1": 8
+            },
+            "actual_shapes": {
+              "0": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,1,1": 10,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 24,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              },
+              "1": {
+                "prefill": {
+                  "792,8": 8
+                },
+                "decode": {
+                  "32,8": 349,
+                  "20,5": 4,
+                  "12,3": 2,
+                  "4,1": 5,
+                  "28,7": 3,
+                  "16,4": 4,
+                  "8,2": 12,
+                  "24,6": 5
+                },
+                "draft": {
+                  "0,792,8": 8,
+                  "1,8,8": 714,
+                  "1,32,8": 349,
+                  "1,20,5": 4,
+                  "1,5,5": 8,
+                  "1,12,3": 2,
+                  "1,3,3": 4,
+                  "1,4,1": 5,
+                  "1,1,1": 10,
+                  "1,28,7": 3,
+                  "1,7,7": 6,
+                  "1,16,4": 4,
+                  "1,4,4": 8,
+                  "1,8,2": 12,
+                  "1,2,2": 24,
+                  "1,24,6": 5,
+                  "1,6,6": 10
+                },
+                "full_decode_batches": 8,
+                "per_batch_prefills": {
+                  "0": {
+                    "792,8": 1
+                  },
+                  "1": {
+                    "792,8": 1
+                  },
+                  "2": {
+                    "792,8": 1
+                  },
+                  "3": {
+                    "792,8": 1
+                  },
+                  "4": {
+                    "792,8": 1
+                  },
+                  "5": {
+                    "792,8": 1
+                  },
+                  "6": {
+                    "792,8": 1
+                  },
+                  "7": {
+                    "792,8": 1
+                  }
+                }
+              }
+            },
+            "warm_missing": {
+              "0": [],
+              "1": []
+            },
+            "metrics": {
+              "throughput": 454.12908914201296,
+              "stream_tps_p50": 70.7601337109495,
+              "ttft_p50": 0.42534400353906676,
+              "ttft_p95": 0.4774297483963892,
+              "tpot_p50": 0.014134006964328781
+            },
+            "requests": 64,
+            "batches": 8
+          }
+        },
+        "same_input_c4_c8": {
+          "total": 64,
+          "matched": 20,
+          "differences": [
+            {
+              "input_sha256": "1cd03d22b96884b4cdbec1b9a2c06574d07944fba8a236ba9d3618660c62f076",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "4aba248ea3683ff5168cb7706f50004b07c3c9b5f8d59fb23a352258bdbc97ee",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "8decbcd041d885bb1afb142f23ac5d6ff98b4b84be3f353390bbcb53847d16c3",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d6121cafc512c197d84b3e0813efa728fe8d1756d5c62b90c6bc2fd002994b2",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "d6e8c880e7086dd9e25a04eaa6acbcb91bc48f265f07b6766404b0ee724b8b50",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "12d72e38da29a815057567ab02dfa61bc7139937ca13402ffaae5e9a1ec7f7df",
+              "first_different_token": 21,
+              "left": 2972,
+              "right": 67528
+            },
+            {
+              "input_sha256": "cfe55ac284fd6657ca62e70f1717264a6367123b7d3a0085ae89c8e6b1a2cddb",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "e9648cbc01d9510b770584001dc855aef5c0f7895143a3279800dc92631a97e9",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "6c4589084c2f935c8caaa3710129c29d269f1bf6ea5d5933edd01fa485727933",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "fe93fdff990999b98321f017e5b0a91713742490b921b69861f4a844f8774f48",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "dc656fb93640cb96dfd2e21960e4954747b02422014027dbb9cde2cf95e1ece4",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "975e3837465d465e669fbf28f5fbe008a7b5a941c7f2b43c92a2f359c280c615",
+              "first_different_token": 63,
+              "left": 32784,
+              "right": 15500
+            },
+            {
+              "input_sha256": "dd28b95e8e2ffb236e470cc525d65d21bbea417d0ec7937b2978270f793472e8",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "157eba953dcfb34cf8926847eba0b4cb655a8758acbd4ca2e339e112bfa80d28",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "4d14509d37b1cbfe8b4557fc1b144d912b30b73f961851500a6dcb492c40c4e9",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "590742dda68255ca1b7529cdf53a1c14eea02c2d7fe475e262facc4d8add01db",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "3ff10326ea166d3e4fd35af957d0ef3b9f3dd67bba64c48c9caf74165549cdc7",
+              "first_different_token": 125,
+              "left": 22584,
+              "right": 9266
+            },
+            {
+              "input_sha256": "41177938d81441cae2a1928baffa11ed44b978cac1e7bcd737913f42307b9cc4",
+              "first_different_token": 5,
+              "left": 271,
+              "right": 25
+            },
+            {
+              "input_sha256": "1055809d3290719bef74a935928ca6291767d01bb3352cfb63809dfab513fbda",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "0b132e60d7f05b32735269840b37c5594f002df67f64ef662f8d5d872decb651",
+              "first_different_token": 37,
+              "left": 1061,
+              "right": 20543
+            },
+            {
+              "input_sha256": "0b84e53ab8a3f7f4662034fa21014fc542a0b427ac13d81fbeaa27a95633247b",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "f72cd67918e2e2cbed343f8696d1a6c411180f69c3b89b54d4aafec590f15664",
+              "first_different_token": 40,
+              "left": 2708,
+              "right": 11346
+            },
+            {
+              "input_sha256": "8cc782f6a3bcdedba45702015daf271dcf7f6d9ed938abc10984499f616c8391",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            },
+            {
+              "input_sha256": "08b1f07d446956adb58cd613be1d124b6b0ee5a90bed56d2634311b624112ade",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "31397dd3175bfd52ab328dfd415652284ebeb21b000ada5510f458320c0f447d",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "4c27a3f8fd80fb9d4072bcf8f6dd15bfd78908c3e062bafb074d2a5e96b674a0",
+              "first_different_token": 99,
+              "left": 279,
+              "right": 2279
+            },
+            {
+              "input_sha256": "412b4b65dc4246154fe6be26b5edc9ec63e6593d522935eda07931ff24c15b9e",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "92cadf197a9693cba2c03919888db291b41d7277adf520890fef6194e6729a7b",
+              "first_different_token": 40,
+              "left": 31838,
+              "right": 2708
+            },
+            {
+              "input_sha256": "9fe8a7de1878e6217b8f6706ca61391757fa5d423cf9b2019241c56b6f578465",
+              "first_different_token": 47,
+              "left": 25,
+              "right": 488
+            },
+            {
+              "input_sha256": "0af31a909773e30e4cc48b782152725041b20d85cbbe1eae9d2e6d8b467f81b3",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "3238726c6dfc8332d87901555f6d67cf7459940a250cbde8368bd13bf67ce8f3",
+              "first_different_token": 89,
+              "left": 16569,
+              "right": 4778
+            },
+            {
+              "input_sha256": "f15882ab7eee03923ee98d620b8cecd4c06b3977675141123c620b331bacb951",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "2a41885ec364a5a3659598bf7c2257e9731f3bc53f4316dbb6385a01591c91c4",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "1de7206388824e12985adbdc74eddc050006f20352f42c7823baa31b80b7a426",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "b0e49b5ee433126419700141fa0ba1b820811c7d44c3f1ad8a37820690176fef",
+              "first_different_token": 21,
+              "left": 67528,
+              "right": 2972
+            },
+            {
+              "input_sha256": "9606bebc59d2eaca751dca8159e9eb0db3cde6e4dc4b4a14f829734b43924d8e",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "4908660784eaa68d45afefa248651f555d8621f0fc9896bcd9181bc1d83b54ae",
+              "first_different_token": 89,
+              "left": 4778,
+              "right": 16569
+            },
+            {
+              "input_sha256": "b19203be78e93f3025e29526a5eb0c840c152cf09d9834b46fce1a046c7a1efc",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "62e2e5ca3263049e486ec2763d5907a857ecaa1d4a36d0bdc811eecb70466c69",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "f949cbfb62c1a21a8955228f50858106fcaea0d131dd7f5b8adbf0f2d902d8e6",
+              "first_different_token": 63,
+              "left": 15500,
+              "right": 32784
+            },
+            {
+              "input_sha256": "0a4da976a21944a7e5a17320e8eb6ddbe52d7e4b218c4c48de2489115cf97ca5",
+              "first_different_token": 5,
+              "left": 25,
+              "right": 271
+            },
+            {
+              "input_sha256": "fdd716e4a68b44f7760a10471656a9c5f47bdaf437a88780d5505dab25465143",
+              "first_different_token": 47,
+              "left": 488,
+              "right": 25
+            },
+            {
+              "input_sha256": "f3de5d701a55161853af694e4b97e74b8574f9a7b41777ca4d7cf238f27ae8a6",
+              "first_different_token": 37,
+              "left": 20543,
+              "right": 1061
+            },
+            {
+              "input_sha256": "a441a318188f9fc7843f9d71efaf1ecee88be3de9a542a6b8a5ac7bd10d459f8",
+              "first_different_token": 125,
+              "left": 9266,
+              "right": 22584
+            }
+          ]
+        }
+      }
+    ],
+    "levels": {
+      "4": {
+        "comparisons": {
+          "pair_ab": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -1.718233205858677,
+              "stream_tps_p50": -2.3207548230021025,
+              "ttft_p50": -3.924473443737253,
+              "ttft_p95": 5.859446480549391,
+              "tpot_p50": 2.375867435181611
+            }
+          },
+          "pair_ba": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -7.308462549497374,
+              "stream_tps_p50": -7.172870787497054,
+              "ttft_p50": 3.982457415598595,
+              "ttft_p95": -47.47272542836005,
+              "tpot_p50": 7.727325509245753
+            }
+          },
+          "old_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -0.13300654459179606,
+              "stream_tps_p50": -0.2295249788010767,
+              "ttft_p50": 4.375596672802895,
+              "ttft_p95": 118.52049971382232,
+              "tpot_p50": 0.2300354137205307
+            }
+          },
+          "new_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 4,
+              "matched": 4,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -5.813402975038107,
+              "stream_tps_p50": -5.185520633337537,
+              "ttft_p50": 12.965615961539045,
+              "ttft_p95": 8.429494670642669,
+              "tpot_p50": 5.469325157644733
+            }
+          }
+        },
+        "absolute": {
+          "old": {
+            "throughput": 306.801862539215,
+            "stream_tps_p50": 99.58698216329364,
+            "ttft_p50": 0.325357630266808,
+            "ttft_p95": 0.5380461656604881,
+            "tpot_p50": 0.010041488007977824
+          },
+          "new": {
+            "throughput": 292.9605339468966,
+            "stream_tps_p50": 94.86255043255976,
+            "ttft_p50": 0.32572734728455544,
+            "ttft_p95": 0.372709915501764,
+            "tpot_p50": 0.010549052139949493
+          }
+        }
+      },
+      "8": {
+        "comparisons": {
+          "pair_ab": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": 0.489086992844201,
+              "stream_tps_p50": -1.625549646586666,
+              "ttft_p50": -3.0256507447439684,
+              "ttft_p95": -7.427310580591817,
+              "tpot_p50": 1.6524764901532762
+            }
+          },
+          "pair_ba": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": 1.4567634564658594,
+              "stream_tps_p50": 5.067588190955652,
+              "ttft_p50": -0.44038554184036016,
+              "ttft_p95": -2.3632469563043434,
+              "tpot_p50": -4.828584603847352
+            }
+          },
+          "old_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -9.075119511674323,
+              "stream_tps_p50": -15.69536411952831,
+              "ttft_p50": 4.780986848530722,
+              "ttft_p95": 4.655097260011343,
+              "tpot_p50": 18.632173904287065
+            }
+          },
+          "new_restart": {
+            "measure": {
+              "total": 64,
+              "matched": 64,
+              "differences": []
+            },
+            "qualify": {
+              "total": 8,
+              "matched": 8,
+              "differences": []
+            },
+            "change_pct": {
+              "throughput": -8.199543173594638,
+              "stream_tps_p50": -9.959499306411878,
+              "ttft_p50": 7.574371298189453,
+              "ttft_p95": 10.380112644727824,
+              "tpot_p50": 11.068537548981272
+            }
+          }
+        },
+        "absolute": {
+          "old": {
+            "throughput": 476.79216956377235,
+            "stream_tps_p50": 77.3469960592698,
+            "ttft_p50": 0.4156401242944412,
+            "ttft_p95": 0.46681162289751227,
+            "tpot_p50": 0.013024075033315496
+          },
+          "new": {
+            "throughput": 481.3213482030518,
+            "stream_tps_p50": 78.45771887983449,
+            "ttft_p50": 0.408562441036338,
+            "ttft_p95": 0.44422874694864734,
+            "tpot_p50": 0.01278127799810673
+          }
+        }
+      }
+    }
+  }
+}
