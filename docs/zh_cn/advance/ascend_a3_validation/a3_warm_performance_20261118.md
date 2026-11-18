@@ -3,13 +3,13 @@
 当前结论只取自本页的新配对测试；尚未完成、工作量不一致和区间过宽的项都不计为通过。
 保留默认CPU亲和性（包括CPU18）、原Ray await顺序、GC和全部慢样本。旧测量叙述另行归档，原始证据不改。
 
-## 已确认的通过项
+## 当前结论
 
-当前PR `2ccf38a4` 的真实HTTP C1已有明确通过项：Sage MTP3的总吞吐、流式速度p50和TPOT，以及Agents的总吞吐和TPOT，配对95%区间均在±5%内。两组各8个全新进程配对、496条对应响应逐token一致；Sage的直接draft形状观测也已补核通过。
+当前PR `2ccf38a4` 的真实HTTP C1已通过：Sage MTP3总吞吐、流式速度p50、TPOT，以及Agents总吞吐、TPOT。两组各8个全新进程配对、496条对应响应逐token一致；Sage直接draft形状补核通过。独立norm重构对照（342db85e→5f1b1b3c、64输出token）的C1流式速度和TPOT也通过±5%等效判据。
 
-**仍未整体验收为全部持平。** HTTP C4、TTFT和Agents256-token norm仍有统计不确定项；后者C1 TTFT配对变化+5.40%，95%区间[−2.63%,+7.91%]。Sage/Agents64-token norm继续复测。历史Agents旧依赖HTTP的8配对也未证明±5%等效。当前没有统计确认超过5%的持续回退，不代表所有项已通过。
+**不能宣布所有性能持平。** norm64出现需优先定位的不利信号：C4总吞吐配对中位−5.35%，95%区间[−7.82%,−2.92%]，7/8配对下降；C1 TTFT+6.25%，区间[+2.87%,+9.33%]，7/8上升。本轮区间支持不利方向，退化幅度是否稳定超过5%以及具体代码归因仍待核验。它们不能用其他通过指标关闭。
 
-完整版本、逐项区间、补核和原始证据以[最新A3性能结果](a3_warm_performance_20261118.md)为准。旧性能叙述已移至`old/`，当前未验收项仍列在最新主表；不能用norm或CPU18亲和性控制替代HTTP验收。
+六个主矩阵均已完成，输入输出、缓存、固定版本及重复性检查通过。HTTP C4、其他TTFT及norm仍有未验收项；独立主机/设备计时正在执行。完整逐项区间与证据以[最新A3性能结果](a3_warm_performance_20261118.md)为准。旧性能叙述已移至old/，原始数据保留。
 
 ## 最新状态
 
@@ -18,9 +18,9 @@
 | Agents 历史迁移 HTTP，128 token | `fb5de87a+3b909634 → 6421cefe` | `legacy` | 不确定 10项 |
 | Agents 当前 PR HTTP，128 token | `fb5de87a+3b909634 → 2ccf38a4` | `stack91` | 通过：等效 2项；不确定 8项 |
 | Sage 当前 PR HTTP MTP3，128 token | `fb5de87a+3b909634 → 2ccf38a4` | `stack91` | 通过：等效 3项；不确定 7项 |
-| Agents norm pipeline，64 token | `342db85e → 5f1b1b3c` | `legacy` | 待运行；不计通过 |
+| Agents norm pipeline，64 token | `342db85e → 5f1b1b3c` | `legacy` | 通过：等效 2项；不确定 8项 |
 | Agents norm pipeline，256 token | `342db85e → 5f1b1b3c` | `legacy` | 不确定 10项 |
-| Sage norm pipeline，64 token | `342db85e → 5f1b1b3c` | `legacy` | 尚未完成：1/8配对；不计通过 |
+| Sage norm pipeline，64 token | `342db85e → 5f1b1b3c` | `legacy` | 不确定 10项 |
 
 ## 比较与判据
 
@@ -115,6 +115,31 @@ C4总体TTFT p95：2711.40 → 2679.48 ms；保持配对block的总体分位数�
 
 [逐对值及统计输入哈希](evidence/a3-warm-perf-20261118/sage-current-r0-statistics.json)；[工作量、缓存、预热和自重复审计](evidence/a3-warm-perf-20261118/sage-current-r0-work-audit.json)。
 
+## Agents norm pipeline，64 token
+
+Label：`agents-norm-short-r0`；8个全新进程配对，AB/BA各4。
+输入/输出及核心环境审计：通过。
+
+| 并发 | 指标 | 配对变化中位数 | 配对95%区间 | 两侧block中位数之比变化 | 结论 |
+| --- | --- | ---: | --- | ---: | --- |
+| C1 | 总吞吐 ↑ | -2.51% | [-6.41%, +1.18%] | -1.19% | 不确定 |
+| C1 | 流式速度 p50 ↑ | -2.01% | [-4.75%, +1.64%] | -1.58% | 通过：等效 |
+| C1 | TTFT p50 ↓ | +6.25% | [+2.87%, +9.33%] | +4.67% | 不确定 |
+| C1 | TTFT p95 ↓ | -3.06% | [-40.65%, +9.29%] | -6.23% | 不确定 |
+| C1 | TPOT p50 ↓ | +2.06% | [-1.62%, +4.99%] | +1.60% | 通过：等效 |
+| C4 | 总吞吐 ↑ | -5.35% | [-7.82%, -2.92%] | -4.34% | 不确定 |
+| C4 | 流式速度 p50 ↑ | -5.11% | [-8.23%, +6.03%] | -1.67% | 不确定 |
+| C4 | TTFT p50 ↓ | +5.61% | [-13.34%, +22.69%] | +4.98% | 不确定 |
+| C4 | TTFT p95 ↓ | +10.61% | [-7.84%, +18.82%] | +12.36% | 不确定 |
+| C4 | TPOT p50 ↓ | +5.39% | [-5.88%, +9.20%] | +1.69% | 不确定 |
+
+C1总体TTFT p95：312.73 → 306.56 ms；保持配对block的总体分位数变化95%区间 [-42.51%, +5.01%]。该项与上表的逐block p95同时参与验收。
+
+
+C4总体TTFT p95：1031.29 → 1090.67 ms；保持配对block的总体分位数变化95%区间 [-3.53%, +14.51%]。该项与上表的逐block p95同时参与验收。
+
+[逐对值及统计输入哈希](evidence/a3-warm-perf-20261118/agents-norm-short-r0-statistics.json)；[工作量、缓存、预热和自重复审计](evidence/a3-warm-perf-20261118/agents-norm-short-r0-work-audit.json)。
+
 ## Agents norm pipeline，256 token
 
 Label：`agents-norm-r0`；8个全新进程配对，AB/BA各4。
@@ -140,16 +165,44 @@ C4总体TTFT p95：1096.41 → 1120.41 ms；保持配对block的总体分位数�
 
 [逐对值及统计输入哈希](evidence/a3-warm-perf-20261118/agents-norm-r0-statistics.json)；[工作量、缓存、预热和自重复审计](evidence/a3-warm-perf-20261118/agents-norm-r0-work-audit.json)。
 
+## Sage norm pipeline，64 token
+
+Label：`sage-norm-r0`；8个全新进程配对，AB/BA各4。
+输入/输出及核心环境审计：通过。
+
+| 并发 | 指标 | 配对变化中位数 | 配对95%区间 | 两侧block中位数之比变化 | 结论 |
+| --- | --- | ---: | --- | ---: | --- |
+| C1 | 总吞吐 ↑ | -2.20% | [-6.20%, +11.06%] | -1.78% | 不确定 |
+| C1 | 流式速度 p50 ↑ | -2.50% | [-6.17%, +11.65%] | -1.73% | 不确定 |
+| C1 | TTFT p50 ↓ | +2.19% | [-9.32%, +8.41%] | +3.84% | 不确定 |
+| C1 | TTFT p95 ↓ | +0.70% | [-13.06%, +9.58%] | +1.92% | 不确定 |
+| C1 | TPOT p50 ↓ | +2.57% | [-10.44%, +6.58%] | +1.77% | 不确定 |
+| C4 | 总吞吐 ↑ | -3.53% | [-8.30%, +6.23%] | -2.27% | 不确定 |
+| C4 | 流式速度 p50 ↑ | +2.41% | [-0.57%, +14.08%] | +2.99% | 不确定 |
+| C4 | TTFT p50 ↓ | +6.44% | [-18.65%, +12.24%] | +5.21% | 不确定 |
+| C4 | TTFT p95 ↓ | -1.39% | [-9.01%, +24.50%] | +4.01% | 不确定 |
+| C4 | TPOT p50 ↓ | -2.28% | [-12.42%, +0.57%] | -2.83% | 不确定 |
+
+C1总体TTFT p95：317.51 → 315.22 ms；保持配对block的总体分位数变化95%区间 [-9.22%, +8.43%]。该项与上表的逐block p95同时参与验收。
+
+
+C4总体TTFT p95：1093.82 → 1124.54 ms；保持配对block的总体分位数变化95%区间 [-4.23%, +22.10%]。该项与上表的逐block p95同时参与验收。
+
+[逐对值及统计输入哈希](evidence/a3-warm-perf-20261118/sage-norm-r0-statistics.json)；[工作量、缓存、预热和自重复审计](evidence/a3-warm-perf-20261118/sage-norm-r0-work-audit.json)。
+
 ## Sage直接draft覆盖补核
 
 补核已通过。两侧各一个全新服务，执行与正式测试相同的5轮预热及完整C1/C4请求序列；62条请求配对也匹配各侧原b00输出。每侧每个worker测量中记录到5019次draft forward；16种实际target/draft测量形状全部已在预热中出现，没有测量期新编译、graph捕获或新形状。原生没有dlinfer导入，全部请求cache miss。[直接覆盖审计](evidence/a3-warm-perf-20261118/sage-draft-coverage-audit-r0.json)
 
 补核计时未并入原8配对统计。原target入口的形状计数与全局编译/graph记录保留；draft走独立函数的观测缺口及修正过程也保留。按阶段统计的输出槽数可能包含上一批迟到结果，因此未把它当作逐请求接受率。[源码与执行计数范围](evidence/a3-warm-perf-20261118/sage-current-r0-execution-counts.json)
 
-## 尚未完成的定位
 
-仍需完成两组64-token norm及独立主机/设备计时。主机约半秒停顿的具体softirq/tasklet回调和永久修复仍开放；本轮没有避开CPU18、关闭GC或修改Ray await顺序。旧依赖Agents的15个Triton缓存变体中14个npubin完全相同，一个prefill变体的规范化IR相同但机器码不同；尚未量化其影响，不能将它认定为回退根因。
+## 不利信号与下一步定位
 
-完整请求、命令、工具快照和服务日志持续保存在`/root/workspace/a3-perf-warm-20261118`。当前已发布[历史Agents完整请求归档](evidence/a3-warm-perf-20261118/agents-historical-r0-raw.tar.gz)；其他完整包将在主计时结束后补传，避免大批归档传输干扰计时。目前先提供逐对统计、审计及[所有已完成正式运行的本机原始文件哈希](evidence/a3-warm-perf-20261118/completed-raw-manifest-r3.json)。
+Agents64-token norm的C1 TTFT和C4吞吐各7/8配对呈不利方向，必须继续定位；正式统计标签仍遵守原±5%区间规则，没有因为区间未完全超过5%就把这些变化写成通过。主测试没有删除任何慢样本。
 
-历史数字及旧分析见[归档入口](old/performance_review_before_warm_20261118.md)，当前主表中的不确定和未完成项仍然开放。
+已开始独立的历史HTTP主机/设备计时；norm诊断优先匹配64-token场景。诊断保留原await顺序，只在退出时同步收集稀疏NPU事件；事件区间包含host enqueue间隙，不是纯kernel时间，诊断吞吐不并入主统计。
+
+部分“未证等效”的区间只向改善方向越界。例如Agents256-token C4吞吐区间[−1.85%,+10.52%]，其不利端仍在5%内；这与norm64的明确不利方向不同。该解释不改变预先规定的验收状态，也不将未证等效的行改绿。
+
+全部完整原始JSON、日志和脚本快照仍在A3目录`/root/workspace/a3-perf-warm-20261118`，待计时诊断结束后补传大归档。当前已发布[历史Agents完整请求包](evidence/a3-warm-perf-20261118/agents-historical-r0-raw.tar.gz)，各组逐对统计与工作量审计均可直接查看。旧分析见[历史归档](old/performance_review_before_warm_20261118.md)，当前未验收项继续列明。

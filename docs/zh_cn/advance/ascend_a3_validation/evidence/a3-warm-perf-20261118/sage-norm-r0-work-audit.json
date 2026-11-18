@@ -1,0 +1,3905 @@
+{
+  "comparison": "sage-norm",
+  "complete": true,
+  "sessions": [
+    {
+      "label": "sage-norm-r0-old-b00",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "5fd7e516a8c7384c81566de6acd1801029230ac6fabacac2b02e9fa509cf8881",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 621052486609188,
+          "end_monotonic_ns": 621052780852575,
+          "gap_ms": 294.243387
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621052258688623,
+          "end_monotonic_ns": 621052780911636,
+          "gap_ms": 522.223013
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621052019259141,
+          "end_monotonic_ns": 621052780970506,
+          "gap_ms": 761.711365
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621054365953896,
+          "end_monotonic_ns": 621055421051765,
+          "gap_ms": 1055.097869
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621054080383982,
+          "end_monotonic_ns": 621055421102945,
+          "gap_ms": 1340.718963
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 621059447129098,
+          "end_monotonic_ns": 621059702414422,
+          "gap_ms": 255.285324
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621059215130313,
+          "end_monotonic_ns": 621059702483283,
+          "gap_ms": 487.35297
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621058967771949,
+          "end_monotonic_ns": 621059702546263,
+          "gap_ms": 734.774314
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 621061391450771,
+          "end_monotonic_ns": 621061656647666,
+          "gap_ms": 265.196895
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621061124340117,
+          "end_monotonic_ns": 621061656719826,
+          "gap_ms": 532.379709
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621060900058551,
+          "end_monotonic_ns": 621061656787557,
+          "gap_ms": 756.729006
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621065822359797,
+          "end_monotonic_ns": 621066056085851,
+          "gap_ms": 233.726054
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621065603142747,
+          "end_monotonic_ns": 621066056151462,
+          "gap_ms": 453.008715
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621065374783101,
+          "end_monotonic_ns": 621066056212682,
+          "gap_ms": 681.429581
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621067804147161,
+          "end_monotonic_ns": 621068562972068,
+          "gap_ms": 758.824907
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621067534842966,
+          "end_monotonic_ns": 621068563025058,
+          "gap_ms": 1028.182092
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621067284975919,
+          "end_monotonic_ns": 621068563076089,
+          "gap_ms": 1278.10017
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 621072693265878,
+          "end_monotonic_ns": 621072982898888,
+          "gap_ms": 289.63301
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621072681003106,
+          "end_monotonic_ns": 621072982959968,
+          "gap_ms": 301.956862
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621072160987039,
+          "end_monotonic_ns": 621072983034189,
+          "gap_ms": 822.04715
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621074745424852,
+          "end_monotonic_ns": 621075027003551,
+          "gap_ms": 281.578699
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621074739754713,
+          "end_monotonic_ns": 621075027066171,
+          "gap_ms": 287.311458
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621074307009272,
+          "end_monotonic_ns": 621075027121961,
+          "gap_ms": 720.112689
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b00",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "38299c221f7d85e1ac739b42b1ca97721e8f728508e669472eea939c147738e3",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 621195714669609,
+          "end_monotonic_ns": 621196003502478,
+          "gap_ms": 288.832869
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621195454584515,
+          "end_monotonic_ns": 621196003555048,
+          "gap_ms": 548.970533
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621195237009765,
+          "end_monotonic_ns": 621196003604479,
+          "gap_ms": 766.594714
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 621197809845284,
+          "end_monotonic_ns": 621198056931243,
+          "gap_ms": 247.085959
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621197801735473,
+          "end_monotonic_ns": 621198056992183,
+          "gap_ms": 255.25671
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621197258793430,
+          "end_monotonic_ns": 621198057050613,
+          "gap_ms": 798.257183
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 621202163841612,
+          "end_monotonic_ns": 621202395828374,
+          "gap_ms": 231.986762
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621201952227263,
+          "end_monotonic_ns": 621202395887675,
+          "gap_ms": 443.660412
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621201742943606,
+          "end_monotonic_ns": 621202395950785,
+          "gap_ms": 653.007179
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 621204120914950,
+          "end_monotonic_ns": 621204347135293,
+          "gap_ms": 226.220343
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621203890291585,
+          "end_monotonic_ns": 621204347200963,
+          "gap_ms": 456.909378
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621203664676805,
+          "end_monotonic_ns": 621204347262694,
+          "gap_ms": 682.585889
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621208334004846,
+          "end_monotonic_ns": 621208612605444,
+          "gap_ms": 278.600598
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621208090146884,
+          "end_monotonic_ns": 621208612662554,
+          "gap_ms": 522.51567
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621207781061733,
+          "end_monotonic_ns": 621208612715264,
+          "gap_ms": 831.653531
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621210509178496,
+          "end_monotonic_ns": 621210808093226,
+          "gap_ms": 298.91473
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621210234782140,
+          "end_monotonic_ns": 621210808152856,
+          "gap_ms": 573.370716
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621210226671659,
+          "end_monotonic_ns": 621210808209137,
+          "gap_ms": 581.537478
+        },
+        {
+          "phase": 34,
+          "session_id": 84,
+          "start_monotonic_ns": 621212120464137,
+          "end_monotonic_ns": 621212706025235,
+          "gap_ms": 585.561098
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 621215592793020,
+          "end_monotonic_ns": 621215895547020,
+          "gap_ms": 302.754
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621215581690824,
+          "end_monotonic_ns": 621215895612830,
+          "gap_ms": 313.922006
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621215026199348,
+          "end_monotonic_ns": 621215895679520,
+          "gap_ms": 869.480172
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621217945651748,
+          "end_monotonic_ns": 621218294226439,
+          "gap_ms": 348.574691
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621217497620964,
+          "end_monotonic_ns": 621218294285539,
+          "gap_ms": 796.664575
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621217491359802,
+          "end_monotonic_ns": 621218294341469,
+          "gap_ms": 802.981667
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b01",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "dffbf13680a579a78624c1d06902a0164167d1b64a9212855c9207105ff59ee5",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 621341095681955,
+          "end_monotonic_ns": 621341352167416,
+          "gap_ms": 256.485461
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621340896363142,
+          "end_monotonic_ns": 621341352231597,
+          "gap_ms": 455.868455
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621340694116263,
+          "end_monotonic_ns": 621341352290177,
+          "gap_ms": 658.173914
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621342917806259,
+          "end_monotonic_ns": 621343431015352,
+          "gap_ms": 513.209093
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621342908674183,
+          "end_monotonic_ns": 621343431072903,
+          "gap_ms": 522.39872
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621347025093897,
+          "end_monotonic_ns": 621347496155669,
+          "gap_ms": 471.061772
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621346826402907,
+          "end_monotonic_ns": 621347496217509,
+          "gap_ms": 669.814602
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621349000937675,
+          "end_monotonic_ns": 621349516255489,
+          "gap_ms": 515.317814
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621348992048650,
+          "end_monotonic_ns": 621349516308059,
+          "gap_ms": 524.259409
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621353156025864,
+          "end_monotonic_ns": 621353391360968,
+          "gap_ms": 235.335104
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621352955129702,
+          "end_monotonic_ns": 621353391425709,
+          "gap_ms": 436.296007
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621352753856809,
+          "end_monotonic_ns": 621353391488229,
+          "gap_ms": 637.63142
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621354976973161,
+          "end_monotonic_ns": 621355218768309,
+          "gap_ms": 241.795148
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621354773305486,
+          "end_monotonic_ns": 621355218856419,
+          "gap_ms": 445.550933
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621354764951334,
+          "end_monotonic_ns": 621355218970060,
+          "gap_ms": 454.018726
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 621359087056974,
+          "end_monotonic_ns": 621359320456399,
+          "gap_ms": 233.399425
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621358840700704,
+          "end_monotonic_ns": 621359320514189,
+          "gap_ms": 479.813485
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621358830316731,
+          "end_monotonic_ns": 621359320572009,
+          "gap_ms": 490.255278
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621360889978921,
+          "end_monotonic_ns": 621361105350475,
+          "gap_ms": 215.371554
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621360693161340,
+          "end_monotonic_ns": 621361105412185,
+          "gap_ms": 412.250845
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621360496662911,
+          "end_monotonic_ns": 621361105469856,
+          "gap_ms": 608.806945
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b01",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "c4a1ea018e59eac0742d6d364336abcd0dc555a71551da0afe1630bf6a591d19",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 621487486454402,
+          "end_monotonic_ns": 621487769974971,
+          "gap_ms": 283.520569
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621487476229411,
+          "end_monotonic_ns": 621487770031131,
+          "gap_ms": 293.80172
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621486977834347,
+          "end_monotonic_ns": 621487770081062,
+          "gap_ms": 792.246715
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 621489701421537,
+          "end_monotonic_ns": 621490006138081,
+          "gap_ms": 304.716544
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621489458717292,
+          "end_monotonic_ns": 621490006192532,
+          "gap_ms": 547.47524
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621489219649956,
+          "end_monotonic_ns": 621490006245172,
+          "gap_ms": 786.595216
+        },
+        {
+          "phase": 28,
+          "session_id": 69,
+          "start_monotonic_ns": 621495283197659,
+          "end_monotonic_ns": 621495798248637,
+          "gap_ms": 515.050978
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 621494853871601,
+          "end_monotonic_ns": 621495133994723,
+          "gap_ms": 280.123122
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 621495283263290,
+          "end_monotonic_ns": 621495798337287,
+          "gap_ms": 515.073997
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621494847630780,
+          "end_monotonic_ns": 621495134051053,
+          "gap_ms": 286.420273
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621495283310140,
+          "end_monotonic_ns": 621495798393358,
+          "gap_ms": 515.083218
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621494336734943,
+          "end_monotonic_ns": 621495134105153,
+          "gap_ms": 797.37021
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621495283354420,
+          "end_monotonic_ns": 621495798445588,
+          "gap_ms": 515.091168
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 621497455943102,
+          "end_monotonic_ns": 621497776779168,
+          "gap_ms": 320.836066
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621497163501399,
+          "end_monotonic_ns": 621497776835698,
+          "gap_ms": 613.334299
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621496865263426,
+          "end_monotonic_ns": 621497776888178,
+          "gap_ms": 911.624752
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621502022652735,
+          "end_monotonic_ns": 621502304654627,
+          "gap_ms": 282.001892
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621502014114713,
+          "end_monotonic_ns": 621502304707087,
+          "gap_ms": 290.592374
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621501539992340,
+          "end_monotonic_ns": 621502304754247,
+          "gap_ms": 764.761907
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621504002280562,
+          "end_monotonic_ns": 621504243641720,
+          "gap_ms": 241.361158
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621503784439182,
+          "end_monotonic_ns": 621504243691100,
+          "gap_ms": 459.251918
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621503565666467,
+          "end_monotonic_ns": 621504243736850,
+          "gap_ms": 678.070383
+        },
+        {
+          "phase": 34,
+          "session_id": 84,
+          "start_monotonic_ns": 621506078087790,
+          "end_monotonic_ns": 621506636289833,
+          "gap_ms": 558.202043
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 621509079691318,
+          "end_monotonic_ns": 621509387407940,
+          "gap_ms": 307.716622
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621508797928686,
+          "end_monotonic_ns": 621509387464610,
+          "gap_ms": 589.535924
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621508525602989,
+          "end_monotonic_ns": 621509387516990,
+          "gap_ms": 861.914001
+        },
+        {
+          "phase": 37,
+          "session_id": 93,
+          "start_monotonic_ns": 621511704550315,
+          "end_monotonic_ns": 621512222674527,
+          "gap_ms": 518.124212
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621511269095302,
+          "end_monotonic_ns": 621511510186424,
+          "gap_ms": 241.091122
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621511704625855,
+          "end_monotonic_ns": 621512222789207,
+          "gap_ms": 518.163352
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621511049145695,
+          "end_monotonic_ns": 621511510239244,
+          "gap_ms": 461.093549
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621511704673816,
+          "end_monotonic_ns": 621512222854127,
+          "gap_ms": 518.180311
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621510785341421,
+          "end_monotonic_ns": 621511510295345,
+          "gap_ms": 724.953924
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621511704719846,
+          "end_monotonic_ns": 621512222914508,
+          "gap_ms": 518.194662
+        },
+        {
+          "phase": 45,
+          "session_id": 101,
+          "start_monotonic_ns": 621522717215089,
+          "end_monotonic_ns": 621523262979487,
+          "gap_ms": 545.764398
+        },
+        {
+          "phase": 54,
+          "session_id": 110,
+          "start_monotonic_ns": 621533402051221,
+          "end_monotonic_ns": 621533994154689,
+          "gap_ms": 592.103468
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b02",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "ed8a3e51418d107ceef386de0c4679455be9d4fdc02b27f45d70c74d6aaa9e61",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 621639659734952,
+          "end_monotonic_ns": 621639951168369,
+          "gap_ms": 291.433417
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621639346496389,
+          "end_monotonic_ns": 621639951232289,
+          "gap_ms": 604.7359
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621639083943744,
+          "end_monotonic_ns": 621639951289179,
+          "gap_ms": 867.345435
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621641413617513,
+          "end_monotonic_ns": 621641896946132,
+          "gap_ms": 483.328619
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621641193984594,
+          "end_monotonic_ns": 621641896999763,
+          "gap_ms": 703.015169
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 621646253299931,
+          "end_monotonic_ns": 621646990026707,
+          "gap_ms": 736.726776
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621646238760314,
+          "end_monotonic_ns": 621646990084547,
+          "gap_ms": 751.324233
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621645724107089,
+          "end_monotonic_ns": 621646990139967,
+          "gap_ms": 1266.032878
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 621648775985637,
+          "end_monotonic_ns": 621649062000546,
+          "gap_ms": 286.014909
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621648569052046,
+          "end_monotonic_ns": 621649062073646,
+          "gap_ms": 493.0216
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621648364481457,
+          "end_monotonic_ns": 621649062148957,
+          "gap_ms": 697.6675
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621653435509835,
+          "end_monotonic_ns": 621653699094435,
+          "gap_ms": 263.5846
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621653208132126,
+          "end_monotonic_ns": 621653699149386,
+          "gap_ms": 491.01726
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621652935412977,
+          "end_monotonic_ns": 621653699200576,
+          "gap_ms": 763.787599
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621655436494590,
+          "end_monotonic_ns": 621655686790820,
+          "gap_ms": 250.29623
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621655217002582,
+          "end_monotonic_ns": 621655686921670,
+          "gap_ms": 469.919088
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621654987551192,
+          "end_monotonic_ns": 621655686994341,
+          "gap_ms": 699.443149
+        },
+        {
+          "phase": 34,
+          "session_id": 84,
+          "start_monotonic_ns": 621657341796329,
+          "end_monotonic_ns": 621657870304377,
+          "gap_ms": 528.508048
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 621660703501902,
+          "end_monotonic_ns": 621660984935586,
+          "gap_ms": 281.433684
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621660433604098,
+          "end_monotonic_ns": 621660984992726,
+          "gap_ms": 551.388628
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621660201038611,
+          "end_monotonic_ns": 621660985044097,
+          "gap_ms": 784.005486
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621662644440499,
+          "end_monotonic_ns": 621663198921354,
+          "gap_ms": 554.480855
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621662634839829,
+          "end_monotonic_ns": 621663198989065,
+          "gap_ms": 564.149236
+        },
+        {
+          "phase": 54,
+          "session_id": 110,
+          "start_monotonic_ns": 621683993059407,
+          "end_monotonic_ns": 621684522490800,
+          "gap_ms": 529.431393
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b02",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "aadeff940dd3994a58f16bd77c885a362286492ad79ea4da0fa9b12e0d3fa695",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 621788660163565,
+          "end_monotonic_ns": 621788891248815,
+          "gap_ms": 231.08525
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621788410099563,
+          "end_monotonic_ns": 621788891301866,
+          "gap_ms": 481.202303
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621788399187405,
+          "end_monotonic_ns": 621788891352036,
+          "gap_ms": 492.164631
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 621791124569902,
+          "end_monotonic_ns": 621791423892943,
+          "gap_ms": 299.323041
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621790422649359,
+          "end_monotonic_ns": 621791423971323,
+          "gap_ms": 1001.321964
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621790164065564,
+          "end_monotonic_ns": 621791424043204,
+          "gap_ms": 1259.97764
+        },
+        {
+          "phase": 26,
+          "session_id": 64,
+          "start_monotonic_ns": 621793441325687,
+          "end_monotonic_ns": 621793784152827,
+          "gap_ms": 342.82714
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621795259151363,
+          "end_monotonic_ns": 621795808447305,
+          "gap_ms": 549.295942
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621795049955517,
+          "end_monotonic_ns": 621795808515296,
+          "gap_ms": 758.559779
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 621797609952729,
+          "end_monotonic_ns": 621797843128156,
+          "gap_ms": 233.175427
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621797599520046,
+          "end_monotonic_ns": 621797843190296,
+          "gap_ms": 243.67025
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621797090724608,
+          "end_monotonic_ns": 621797843255597,
+          "gap_ms": 752.530989
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621801917184111,
+          "end_monotonic_ns": 621802198836963,
+          "gap_ms": 281.652852
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621801661694982,
+          "end_monotonic_ns": 621802198920473,
+          "gap_ms": 537.225491
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621801405421288,
+          "end_monotonic_ns": 621802198992464,
+          "gap_ms": 793.571176
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621803843631026,
+          "end_monotonic_ns": 621804057552405,
+          "gap_ms": 213.921379
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621803638248589,
+          "end_monotonic_ns": 621804057616316,
+          "gap_ms": 419.367727
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621803628617380,
+          "end_monotonic_ns": 621804057669376,
+          "gap_ms": 429.051996
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621807724944898,
+          "end_monotonic_ns": 621808216059237,
+          "gap_ms": 491.114339
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621807508504265,
+          "end_monotonic_ns": 621808216123537,
+          "gap_ms": 707.619272
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621810564649582,
+          "end_monotonic_ns": 621810785370296,
+          "gap_ms": 220.720714
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621810303535294,
+          "end_monotonic_ns": 621810785423746,
+          "gap_ms": 481.888452
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621810057130320,
+          "end_monotonic_ns": 621810785471787,
+          "gap_ms": 728.341467
+        },
+        {
+          "phase": 43,
+          "session_id": 99,
+          "start_monotonic_ns": 621817716364192,
+          "end_monotonic_ns": 621817909921919,
+          "gap_ms": 193.557727
+        },
+        {
+          "phase": 45,
+          "session_id": 101,
+          "start_monotonic_ns": 621820134568359,
+          "end_monotonic_ns": 621820720030264,
+          "gap_ms": 585.461905
+        },
+        {
+          "phase": 54,
+          "session_id": 110,
+          "start_monotonic_ns": 621830876412122,
+          "end_monotonic_ns": 621831389105294,
+          "gap_ms": 512.693172
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b03",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "5b40ea278650374cd3e737842ffcee768f33c8fb1ab2d2769194692c105f914a",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 621938253090142,
+          "end_monotonic_ns": 621938758664347,
+          "gap_ms": 505.574205
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 621938017287965,
+          "end_monotonic_ns": 621938758735318,
+          "gap_ms": 741.447353
+        },
+        {
+          "phase": 25,
+          "session_id": 63,
+          "start_monotonic_ns": 621941031345639,
+          "end_monotonic_ns": 621941216641851,
+          "gap_ms": 185.296212
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 621940668153340,
+          "end_monotonic_ns": 621940915973068,
+          "gap_ms": 247.819728
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 621941031426459,
+          "end_monotonic_ns": 621941216752292,
+          "gap_ms": 185.325833
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621940414156111,
+          "end_monotonic_ns": 621940916040778,
+          "gap_ms": 501.884667
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 621941031480729,
+          "end_monotonic_ns": 621941216821202,
+          "gap_ms": 185.340473
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621940176638486,
+          "end_monotonic_ns": 621940916095818,
+          "gap_ms": 739.457332
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 621941031531079,
+          "end_monotonic_ns": 621941216891433,
+          "gap_ms": 185.360354
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 621945394062262,
+          "end_monotonic_ns": 621945695483119,
+          "gap_ms": 301.420857
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 621945111394469,
+          "end_monotonic_ns": 621945695546270,
+          "gap_ms": 584.151801
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 621944822332264,
+          "end_monotonic_ns": 621945695602900,
+          "gap_ms": 873.270636
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 621947557134201,
+          "end_monotonic_ns": 621947872105917,
+          "gap_ms": 314.971716
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 621947289564304,
+          "end_monotonic_ns": 621947872160737,
+          "gap_ms": 582.596433
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 621947282241068,
+          "end_monotonic_ns": 621947872213798,
+          "gap_ms": 589.97273
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 621952194505838,
+          "end_monotonic_ns": 621952411391179,
+          "gap_ms": 216.885341
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 621951980770161,
+          "end_monotonic_ns": 621952411453420,
+          "gap_ms": 430.683259
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 621951729953629,
+          "end_monotonic_ns": 621952411508450,
+          "gap_ms": 681.554821
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 621954114510093,
+          "end_monotonic_ns": 621954398385293,
+          "gap_ms": 283.8752
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 621953894669187,
+          "end_monotonic_ns": 621954398440523,
+          "gap_ms": 503.771336
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 621953697792156,
+          "end_monotonic_ns": 621954398489323,
+          "gap_ms": 700.697167
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 621958628137906,
+          "end_monotonic_ns": 621958932393188,
+          "gap_ms": 304.255282
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 621958283288690,
+          "end_monotonic_ns": 621958932449878,
+          "gap_ms": 649.161188
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 621958276472846,
+          "end_monotonic_ns": 621958932504369,
+          "gap_ms": 656.031523
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 621960716076604,
+          "end_monotonic_ns": 621960949958521,
+          "gap_ms": 233.881917
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 621960706268117,
+          "end_monotonic_ns": 621960950015022,
+          "gap_ms": 243.746905
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 621960264498269,
+          "end_monotonic_ns": 621960950072422,
+          "gap_ms": 685.574153
+        },
+        {
+          "phase": 40,
+          "session_id": 96,
+          "start_monotonic_ns": 621965282085212,
+          "end_monotonic_ns": 621965885986828,
+          "gap_ms": 603.901616
+        },
+        {
+          "phase": 51,
+          "session_id": 107,
+          "start_monotonic_ns": 621978843196089,
+          "end_monotonic_ns": 621979455622807,
+          "gap_ms": 612.426718
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b03",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "86cd745ad8c90418206b3a726beb1dab8b64677859edcbc77babc68a14863c2c",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 622088999795466,
+          "end_monotonic_ns": 622089230308627,
+          "gap_ms": 230.513161
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622088716174487,
+          "end_monotonic_ns": 622089230366227,
+          "gap_ms": 514.19174
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622088707739246,
+          "end_monotonic_ns": 622089230419087,
+          "gap_ms": 522.679841
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622091221563293,
+          "end_monotonic_ns": 622091568686406,
+          "gap_ms": 347.123113
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622090708617153,
+          "end_monotonic_ns": 622091568739726,
+          "gap_ms": 860.122573
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622090468953471,
+          "end_monotonic_ns": 622091568789406,
+          "gap_ms": 1099.835935
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622095485844417,
+          "end_monotonic_ns": 622095761518897,
+          "gap_ms": 275.67448
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622095235624943,
+          "end_monotonic_ns": 622095761573087,
+          "gap_ms": 525.948144
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622095007484928,
+          "end_monotonic_ns": 622095761623967,
+          "gap_ms": 754.139039
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622097397866658,
+          "end_monotonic_ns": 622097647978112,
+          "gap_ms": 250.111454
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622097165512692,
+          "end_monotonic_ns": 622097648048842,
+          "gap_ms": 482.53615
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622096930062091,
+          "end_monotonic_ns": 622097648100142,
+          "gap_ms": 718.038051
+        },
+        {
+          "phase": 30,
+          "session_id": 74,
+          "start_monotonic_ns": 622099220793130,
+          "end_monotonic_ns": 622099749163606,
+          "gap_ms": 528.370476
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 622101954041462,
+          "end_monotonic_ns": 622102192924510,
+          "gap_ms": 238.883048
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622101740298487,
+          "end_monotonic_ns": 622102192973920,
+          "gap_ms": 452.675433
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622101516829475,
+          "end_monotonic_ns": 622102193021740,
+          "gap_ms": 676.192265
+        },
+        {
+          "phase": 33,
+          "session_id": 83,
+          "start_monotonic_ns": 622104609379999,
+          "end_monotonic_ns": 622105079348817,
+          "gap_ms": 469.968818
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622103894682824,
+          "end_monotonic_ns": 622104159939572,
+          "gap_ms": 265.256748
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622104609450390,
+          "end_monotonic_ns": 622105079429458,
+          "gap_ms": 469.979068
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622103660765100,
+          "end_monotonic_ns": 622104159992563,
+          "gap_ms": 499.227463
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622104609499590,
+          "end_monotonic_ns": 622105079482398,
+          "gap_ms": 469.982808
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622103421573440,
+          "end_monotonic_ns": 622104160053953,
+          "gap_ms": 738.480513
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622104609545360,
+          "end_monotonic_ns": 622105079531028,
+          "gap_ms": 469.985668
+        },
+        {
+          "phase": 35,
+          "session_id": 85,
+          "start_monotonic_ns": 622107149977501,
+          "end_monotonic_ns": 622107640952543,
+          "gap_ms": 490.975042
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622109033517111,
+          "end_monotonic_ns": 622109278712191,
+          "gap_ms": 245.19508
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622108783781000,
+          "end_monotonic_ns": 622109278774871,
+          "gap_ms": 494.993871
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622108535456095,
+          "end_monotonic_ns": 622109278833991,
+          "gap_ms": 743.377896
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622110679703981,
+          "end_monotonic_ns": 622111213987197,
+          "gap_ms": 534.283216
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622110471559245,
+          "end_monotonic_ns": 622111214042547,
+          "gap_ms": 742.483302
+        },
+        {
+          "phase": 42,
+          "session_id": 98,
+          "start_monotonic_ns": 622117592755260,
+          "end_monotonic_ns": 622118146970104,
+          "gap_ms": 554.214844
+        },
+        {
+          "phase": 44,
+          "session_id": 100,
+          "start_monotonic_ns": 622120238991723,
+          "end_monotonic_ns": 622120694834691,
+          "gap_ms": 455.842968
+        },
+        {
+          "phase": 55,
+          "session_id": 111,
+          "start_monotonic_ns": 622133242392342,
+          "end_monotonic_ns": 622133725732837,
+          "gap_ms": 483.340495
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b04",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "0f87fdd03335f0c73109271d7276293341b2a16c564417520899fa83f1a69444",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 622236825911103,
+          "end_monotonic_ns": 622237073571130,
+          "gap_ms": 247.660027
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622236591370811,
+          "end_monotonic_ns": 622237073631900,
+          "gap_ms": 482.261089
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622236325083303,
+          "end_monotonic_ns": 622237073685271,
+          "gap_ms": 748.601968
+        },
+        {
+          "phase": 25,
+          "session_id": 63,
+          "start_monotonic_ns": 622239217184242,
+          "end_monotonic_ns": 622239721938222,
+          "gap_ms": 504.75398
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622238783536452,
+          "end_monotonic_ns": 622239080216849,
+          "gap_ms": 296.680397
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622239217438483,
+          "end_monotonic_ns": 622239722039903,
+          "gap_ms": 504.60142
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622238775679503,
+          "end_monotonic_ns": 622239080280020,
+          "gap_ms": 304.600517
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622239217543444,
+          "end_monotonic_ns": 622239722097563,
+          "gap_ms": 504.554119
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622238253063245,
+          "end_monotonic_ns": 622239080340360,
+          "gap_ms": 827.277115
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622239217628604,
+          "end_monotonic_ns": 622239722152823,
+          "gap_ms": 504.524219
+        },
+        {
+          "phase": 28,
+          "session_id": 69,
+          "start_monotonic_ns": 622244590047430,
+          "end_monotonic_ns": 622245183059644,
+          "gap_ms": 593.012214
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622243704899061,
+          "end_monotonic_ns": 622243968090324,
+          "gap_ms": 263.191263
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622244590224861,
+          "end_monotonic_ns": 622245183304675,
+          "gap_ms": 593.079814
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622243480868720,
+          "end_monotonic_ns": 622243968157595,
+          "gap_ms": 487.288875
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622244590296871,
+          "end_monotonic_ns": 622245183379205,
+          "gap_ms": 593.082334
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622243253918275,
+          "end_monotonic_ns": 622243968214195,
+          "gap_ms": 714.29592
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622244590364422,
+          "end_monotonic_ns": 622245183447395,
+          "gap_ms": 593.082973
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622246373891014,
+          "end_monotonic_ns": 622246650312322,
+          "gap_ms": 276.421308
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622246107724547,
+          "end_monotonic_ns": 622246650366453,
+          "gap_ms": 542.641906
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622245866929354,
+          "end_monotonic_ns": 622246650418783,
+          "gap_ms": 783.489429
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 622250816908894,
+          "end_monotonic_ns": 622251098485017,
+          "gap_ms": 281.576123
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622250558564514,
+          "end_monotonic_ns": 622251098543807,
+          "gap_ms": 539.979293
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622250295199960,
+          "end_monotonic_ns": 622251098599898,
+          "gap_ms": 803.399938
+        },
+        {
+          "phase": 33,
+          "session_id": 83,
+          "start_monotonic_ns": 622253190079464,
+          "end_monotonic_ns": 622253614296048,
+          "gap_ms": 424.216584
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622252937562473,
+          "end_monotonic_ns": 622253614396308,
+          "gap_ms": 676.833835
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622252677561195,
+          "end_monotonic_ns": 622253614454789,
+          "gap_ms": 936.893594
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622252442054808,
+          "end_monotonic_ns": 622253614507529,
+          "gap_ms": 1172.452721
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622257637651265,
+          "end_monotonic_ns": 622257898295436,
+          "gap_ms": 260.644171
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622257370319012,
+          "end_monotonic_ns": 622257898360926,
+          "gap_ms": 528.041914
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622257117134638,
+          "end_monotonic_ns": 622257898422597,
+          "gap_ms": 781.287959
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622259758802757,
+          "end_monotonic_ns": 622260032478182,
+          "gap_ms": 273.675425
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622259750953928,
+          "end_monotonic_ns": 622260032538772,
+          "gap_ms": 281.584844
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622259236727932,
+          "end_monotonic_ns": 622260032598252,
+          "gap_ms": 795.87032
+        },
+        {
+          "phase": 40,
+          "session_id": 96,
+          "start_monotonic_ns": 622264212923951,
+          "end_monotonic_ns": 622264573452652,
+          "gap_ms": 360.528701
+        },
+        {
+          "phase": 49,
+          "session_id": 105,
+          "start_monotonic_ns": 622274391886392,
+          "end_monotonic_ns": 622274833785223,
+          "gap_ms": 441.898831
+        },
+        {
+          "phase": 55,
+          "session_id": 111,
+          "start_monotonic_ns": 622282202059775,
+          "end_monotonic_ns": 622282725624727,
+          "gap_ms": 523.564952
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b04",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "c0241eea297adc69df30ac6f188ec873955565ff68afd29ab5d1250a62c3428a",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 23,
+          "session_id": 55,
+          "start_monotonic_ns": 622384469405658,
+          "end_monotonic_ns": 622384631595873,
+          "gap_ms": 162.190215
+        },
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 622386204170839,
+          "end_monotonic_ns": 622386453282830,
+          "gap_ms": 249.111991
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622385958523635,
+          "end_monotonic_ns": 622386453339050,
+          "gap_ms": 494.815415
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622385718340988,
+          "end_monotonic_ns": 622386453393590,
+          "gap_ms": 735.052602
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622388294436132,
+          "end_monotonic_ns": 622388559022448,
+          "gap_ms": 264.586316
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622388048596507,
+          "end_monotonic_ns": 622388559081509,
+          "gap_ms": 510.485002
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622387800978944,
+          "end_monotonic_ns": 622388559137529,
+          "gap_ms": 758.158585
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622392460311066,
+          "end_monotonic_ns": 622392718737603,
+          "gap_ms": 258.426537
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622392248107176,
+          "end_monotonic_ns": 622392718790313,
+          "gap_ms": 470.683137
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622392019640047,
+          "end_monotonic_ns": 622392718840603,
+          "gap_ms": 699.200556
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622394524706363,
+          "end_monotonic_ns": 622394769417402,
+          "gap_ms": 244.711039
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622394258781949,
+          "end_monotonic_ns": 622394769469922,
+          "gap_ms": 510.687973
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622394013602338,
+          "end_monotonic_ns": 622394769517362,
+          "gap_ms": 755.915024
+        },
+        {
+          "phase": 31,
+          "session_id": 75,
+          "start_monotonic_ns": 622397582343976,
+          "end_monotonic_ns": 622397936402421,
+          "gap_ms": 354.058445
+        },
+        {
+          "phase": 32,
+          "session_id": 79,
+          "start_monotonic_ns": 622399987886744,
+          "end_monotonic_ns": 622400581102201,
+          "gap_ms": 593.215457
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 622398853874267,
+          "end_monotonic_ns": 622399111329359,
+          "gap_ms": 257.455092
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 622399987964295,
+          "end_monotonic_ns": 622400581190812,
+          "gap_ms": 593.226517
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622398629770729,
+          "end_monotonic_ns": 622399111394379,
+          "gap_ms": 481.62365
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622399988037475,
+          "end_monotonic_ns": 622400581244682,
+          "gap_ms": 593.207207
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622398419417198,
+          "end_monotonic_ns": 622399111456869,
+          "gap_ms": 692.039671
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622399988096215,
+          "end_monotonic_ns": 622400581294212,
+          "gap_ms": 593.197997
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622401470547430,
+          "end_monotonic_ns": 622401722948477,
+          "gap_ms": 252.401047
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622401247084485,
+          "end_monotonic_ns": 622401723006127,
+          "gap_ms": 475.921642
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622400985992215,
+          "end_monotonic_ns": 622401723065607,
+          "gap_ms": 737.073392
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622405600351907,
+          "end_monotonic_ns": 622405877552156,
+          "gap_ms": 277.200249
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622405379413175,
+          "end_monotonic_ns": 622405877624056,
+          "gap_ms": 498.210881
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622405163359566,
+          "end_monotonic_ns": 622405877692567,
+          "gap_ms": 714.333001
+        },
+        {
+          "phase": 37,
+          "session_id": 93,
+          "start_monotonic_ns": 622408166175271,
+          "end_monotonic_ns": 622408719393922,
+          "gap_ms": 553.218651
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622407743046157,
+          "end_monotonic_ns": 622408004680330,
+          "gap_ms": 261.634173
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622408166258691,
+          "end_monotonic_ns": 622408719480392,
+          "gap_ms": 553.221701
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622407520977929,
+          "end_monotonic_ns": 622408004732940,
+          "gap_ms": 483.755011
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622408166312122,
+          "end_monotonic_ns": 622408719533533,
+          "gap_ms": 553.221411
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622407292843111,
+          "end_monotonic_ns": 622408004781900,
+          "gap_ms": 711.938789
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622408166361102,
+          "end_monotonic_ns": 622408719586723,
+          "gap_ms": 553.225621
+        },
+        {
+          "phase": 43,
+          "session_id": 99,
+          "start_monotonic_ns": 622416075516300,
+          "end_monotonic_ns": 622416630072697,
+          "gap_ms": 554.556397
+        },
+        {
+          "phase": 45,
+          "session_id": 101,
+          "start_monotonic_ns": 622418681780451,
+          "end_monotonic_ns": 622419181400070,
+          "gap_ms": 499.619619
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b05",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "38fa2d27268c0998c92c5f0b9a7dcd27f5e36e77a14be8148c89fa3ce1ade204",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622534368097056,
+          "end_monotonic_ns": 622535380930109,
+          "gap_ms": 1012.833053
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622534100403592,
+          "end_monotonic_ns": 622535380992139,
+          "gap_ms": 1280.588547
+        },
+        {
+          "phase": 25,
+          "session_id": 63,
+          "start_monotonic_ns": 622537531854329,
+          "end_monotonic_ns": 622537725896121,
+          "gap_ms": 194.041792
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622537231621205,
+          "end_monotonic_ns": 622537453530024,
+          "gap_ms": 221.908819
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622537531941849,
+          "end_monotonic_ns": 622537725968892,
+          "gap_ms": 194.027043
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622536990343680,
+          "end_monotonic_ns": 622537453596235,
+          "gap_ms": 463.252555
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622537531992129,
+          "end_monotonic_ns": 622537726016412,
+          "gap_ms": 194.024283
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622536719218799,
+          "end_monotonic_ns": 622537453657735,
+          "gap_ms": 734.438936
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622537532052730,
+          "end_monotonic_ns": 622537726062802,
+          "gap_ms": 194.010072
+        },
+        {
+          "phase": 28,
+          "session_id": 69,
+          "start_monotonic_ns": 622542559112221,
+          "end_monotonic_ns": 622543144140099,
+          "gap_ms": 585.027878
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622542559182412,
+          "end_monotonic_ns": 622543144229309,
+          "gap_ms": 585.046897
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622541418997702,
+          "end_monotonic_ns": 622541984420783,
+          "gap_ms": 565.423081
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622542559233072,
+          "end_monotonic_ns": 622543144282659,
+          "gap_ms": 585.049587
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622541179959679,
+          "end_monotonic_ns": 622541984470693,
+          "gap_ms": 804.511014
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622542559279362,
+          "end_monotonic_ns": 622543144331860,
+          "gap_ms": 585.052498
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622544068826418,
+          "end_monotonic_ns": 622544570280789,
+          "gap_ms": 501.454371
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622543814119159,
+          "end_monotonic_ns": 622544570327589,
+          "gap_ms": 756.20843
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 622548782543395,
+          "end_monotonic_ns": 622549080138778,
+          "gap_ms": 297.595383
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622548773905574,
+          "end_monotonic_ns": 622549080193328,
+          "gap_ms": 306.287754
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622548232808856,
+          "end_monotonic_ns": 622549080245619,
+          "gap_ms": 847.436763
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622550817247315,
+          "end_monotonic_ns": 622551070814648,
+          "gap_ms": 253.567333
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622550810506843,
+          "end_monotonic_ns": 622551070866499,
+          "gap_ms": 260.359656
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622550348488199,
+          "end_monotonic_ns": 622551070916849,
+          "gap_ms": 722.42865
+        },
+        {
+          "phase": 35,
+          "session_id": 85,
+          "start_monotonic_ns": 622553554484599,
+          "end_monotonic_ns": 622553824116339,
+          "gap_ms": 269.63174
+        },
+        {
+          "phase": 36,
+          "session_id": 89,
+          "start_monotonic_ns": 622556384914346,
+          "end_monotonic_ns": 622556935617650,
+          "gap_ms": 550.703304
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622555460166796,
+          "end_monotonic_ns": 622555751481879,
+          "gap_ms": 291.315083
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622556384980396,
+          "end_monotonic_ns": 622556935716170,
+          "gap_ms": 550.735774
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622555213655015,
+          "end_monotonic_ns": 622555751535489,
+          "gap_ms": 537.880474
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622556385028156,
+          "end_monotonic_ns": 622556935772431,
+          "gap_ms": 550.744275
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622554942777969,
+          "end_monotonic_ns": 622555751585459,
+          "gap_ms": 808.80749
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622556385072736,
+          "end_monotonic_ns": 622556935824411,
+          "gap_ms": 550.751675
+        },
+        {
+          "phase": 37,
+          "session_id": 93,
+          "start_monotonic_ns": 622558944914729,
+          "end_monotonic_ns": 622559520661772,
+          "gap_ms": 575.747043
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622558090781254,
+          "end_monotonic_ns": 622558378781721,
+          "gap_ms": 288.000467
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622558945035159,
+          "end_monotonic_ns": 622559520839173,
+          "gap_ms": 575.804014
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622557839273710,
+          "end_monotonic_ns": 622558378839141,
+          "gap_ms": 539.565431
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622558945110239,
+          "end_monotonic_ns": 622559520927983,
+          "gap_ms": 575.817744
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622557580650802,
+          "end_monotonic_ns": 622558378891012,
+          "gap_ms": 798.24021
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622558945188300,
+          "end_monotonic_ns": 622559521018223,
+          "gap_ms": 575.829923
+        },
+        {
+          "phase": 39,
+          "session_id": 95,
+          "start_monotonic_ns": 622561752533537,
+          "end_monotonic_ns": 622562310611656,
+          "gap_ms": 558.078119
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b05",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "9383f3bc61b90168cb14a0aec5899572693bf665052c4b412fb45305feb55dee",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622685052833267,
+          "end_monotonic_ns": 622685605784083,
+          "gap_ms": 552.950816
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622684796066110,
+          "end_monotonic_ns": 622685605835864,
+          "gap_ms": 809.769754
+        },
+        {
+          "phase": 25,
+          "session_id": 63,
+          "start_monotonic_ns": 622687704694415,
+          "end_monotonic_ns": 622688315910619,
+          "gap_ms": 611.216204
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622687292967226,
+          "end_monotonic_ns": 622687567414562,
+          "gap_ms": 274.447336
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622687704793136,
+          "end_monotonic_ns": 622688316034650,
+          "gap_ms": 611.241514
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622687054004058,
+          "end_monotonic_ns": 622687567471722,
+          "gap_ms": 513.467664
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622687704852986,
+          "end_monotonic_ns": 622688316105080,
+          "gap_ms": 611.252094
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622686806733090,
+          "end_monotonic_ns": 622687567524242,
+          "gap_ms": 760.791152
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622687704906816,
+          "end_monotonic_ns": 622688316162391,
+          "gap_ms": 611.255575
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622692162669996,
+          "end_monotonic_ns": 622692442209573,
+          "gap_ms": 279.539577
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622691938606360,
+          "end_monotonic_ns": 622692442271864,
+          "gap_ms": 503.665504
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622691718225406,
+          "end_monotonic_ns": 622692442329824,
+          "gap_ms": 724.104418
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622694035403859,
+          "end_monotonic_ns": 622694293253853,
+          "gap_ms": 257.849994
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622693823251556,
+          "end_monotonic_ns": 622694293317833,
+          "gap_ms": 470.066277
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622693611677446,
+          "end_monotonic_ns": 622694293378703,
+          "gap_ms": 681.701257
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622697805925678,
+          "end_monotonic_ns": 622698287232634,
+          "gap_ms": 481.306956
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622697595476815,
+          "end_monotonic_ns": 622698287283444,
+          "gap_ms": 691.806629
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622700039367026,
+          "end_monotonic_ns": 622700308348528,
+          "gap_ms": 268.981502
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622700028553719,
+          "end_monotonic_ns": 622700308419898,
+          "gap_ms": 279.866179
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622699533322258,
+          "end_monotonic_ns": 622700308488399,
+          "gap_ms": 775.166141
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622704030820942,
+          "end_monotonic_ns": 622704535801873,
+          "gap_ms": 504.980931
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622704024060490,
+          "end_monotonic_ns": 622704535849914,
+          "gap_ms": 511.789424
+        },
+        {
+          "phase": 37,
+          "session_id": 93,
+          "start_monotonic_ns": 622706752534779,
+          "end_monotonic_ns": 622706858773161,
+          "gap_ms": 106.238382
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622706289430904,
+          "end_monotonic_ns": 622706533616174,
+          "gap_ms": 244.18527
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622706752614209,
+          "end_monotonic_ns": 622706858839052,
+          "gap_ms": 106.224843
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622706062457330,
+          "end_monotonic_ns": 622706533669724,
+          "gap_ms": 471.212394
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622706752669059,
+          "end_monotonic_ns": 622706858886862,
+          "gap_ms": 106.217803
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622705816205868,
+          "end_monotonic_ns": 622706533721175,
+          "gap_ms": 717.515307
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622706752718540,
+          "end_monotonic_ns": 622706858931232,
+          "gap_ms": 106.212692
+        },
+        {
+          "phase": 53,
+          "session_id": 109,
+          "start_monotonic_ns": 622725375758064,
+          "end_monotonic_ns": 622725904086519,
+          "gap_ms": 528.328455
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b06",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "687a20479d5efeb239dbd89e4d8264cce2213590cc636faa61ac450ef73d5d4e",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 622831372599722,
+          "end_monotonic_ns": 622831641411430,
+          "gap_ms": 268.811708
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622831362493614,
+          "end_monotonic_ns": 622831641470340,
+          "gap_ms": 278.976726
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622830884129893,
+          "end_monotonic_ns": 622831641526370,
+          "gap_ms": 757.396477
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622833515401826,
+          "end_monotonic_ns": 622833809097657,
+          "gap_ms": 293.695831
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622833266259463,
+          "end_monotonic_ns": 622833809159738,
+          "gap_ms": 542.900275
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622832987552938,
+          "end_monotonic_ns": 622833809219718,
+          "gap_ms": 821.66678
+        },
+        {
+          "phase": 28,
+          "session_id": 69,
+          "start_monotonic_ns": 622838768361197,
+          "end_monotonic_ns": 622839339701337,
+          "gap_ms": 571.34014
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622837910433997,
+          "end_monotonic_ns": 622838153138133,
+          "gap_ms": 242.704136
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 622838768527168,
+          "end_monotonic_ns": 622839339812577,
+          "gap_ms": 571.285409
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622837661010292,
+          "end_monotonic_ns": 622838153202293,
+          "gap_ms": 492.192001
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622838768613108,
+          "end_monotonic_ns": 622839339875538,
+          "gap_ms": 571.26243
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622837383214073,
+          "end_monotonic_ns": 622838153262154,
+          "gap_ms": 770.048081
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622838768693799,
+          "end_monotonic_ns": 622839339935688,
+          "gap_ms": 571.241889
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622840557497882,
+          "end_monotonic_ns": 622840844855316,
+          "gap_ms": 287.357434
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622840282734230,
+          "end_monotonic_ns": 622840844947267,
+          "gap_ms": 562.213037
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622840007812447,
+          "end_monotonic_ns": 622840845048997,
+          "gap_ms": 837.23655
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622844682026335,
+          "end_monotonic_ns": 622845200689700,
+          "gap_ms": 518.663365
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622844463353139,
+          "end_monotonic_ns": 622845200741390,
+          "gap_ms": 737.388251
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622846935905702,
+          "end_monotonic_ns": 622847178996871,
+          "gap_ms": 243.091169
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622846662681140,
+          "end_monotonic_ns": 622847179061081,
+          "gap_ms": 516.379941
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622846424719121,
+          "end_monotonic_ns": 622847179123741,
+          "gap_ms": 754.40462
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622851104901654,
+          "end_monotonic_ns": 622851388477677,
+          "gap_ms": 283.576023
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622850897846464,
+          "end_monotonic_ns": 622851388550017,
+          "gap_ms": 490.703553
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622850688595122,
+          "end_monotonic_ns": 622851388615878,
+          "gap_ms": 700.020756
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 622853094164358,
+          "end_monotonic_ns": 622853365308229,
+          "gap_ms": 271.143871
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 622852829124833,
+          "end_monotonic_ns": 622853365362139,
+          "gap_ms": 536.237306
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 622852621039927,
+          "end_monotonic_ns": 622853365412609,
+          "gap_ms": 744.372682
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b06",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "158791efcf78b80cc0b44fe8b38cc532bedc8698f428fcee513dc953e1ec9629",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 622978919575462,
+          "end_monotonic_ns": 622979218752582,
+          "gap_ms": 299.17712
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 622978671258041,
+          "end_monotonic_ns": 622979218809843,
+          "gap_ms": 547.551802
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 622978421139471,
+          "end_monotonic_ns": 622979218863973,
+          "gap_ms": 797.724502
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 622981021147113,
+          "end_monotonic_ns": 622981254642781,
+          "gap_ms": 233.495668
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 622980741409448,
+          "end_monotonic_ns": 622981254712431,
+          "gap_ms": 513.302983
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 622980454833919,
+          "end_monotonic_ns": 622981254780292,
+          "gap_ms": 799.946373
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 622985094840330,
+          "end_monotonic_ns": 622985602810717,
+          "gap_ms": 507.970387
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 622985084813631,
+          "end_monotonic_ns": 622985602872058,
+          "gap_ms": 518.058427
+        },
+        {
+          "phase": 29,
+          "session_id": 73,
+          "start_monotonic_ns": 622987708727440,
+          "end_monotonic_ns": 622987838183487,
+          "gap_ms": 129.456047
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622987355250223,
+          "end_monotonic_ns": 622987630530976,
+          "gap_ms": 275.280753
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 622987708846581,
+          "end_monotonic_ns": 622987838274237,
+          "gap_ms": 129.427656
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622987127173821,
+          "end_monotonic_ns": 622987630592536,
+          "gap_ms": 503.418715
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 622987708909471,
+          "end_monotonic_ns": 622987838329707,
+          "gap_ms": 129.420236
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622986879714025,
+          "end_monotonic_ns": 622987630649596,
+          "gap_ms": 750.935571
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 622987708967901,
+          "end_monotonic_ns": 622987838382368,
+          "gap_ms": 129.414467
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 622991697035157,
+          "end_monotonic_ns": 622992276959968,
+          "gap_ms": 579.924811
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 622991423976235,
+          "end_monotonic_ns": 622992277031219,
+          "gap_ms": 853.054984
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 622994103357557,
+          "end_monotonic_ns": 622994393241412,
+          "gap_ms": 289.883855
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 622993841870792,
+          "end_monotonic_ns": 622994393295682,
+          "gap_ms": 551.42489
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 622993574639368,
+          "end_monotonic_ns": 622994393346833,
+          "gap_ms": 818.707465
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 622999228416628,
+          "end_monotonic_ns": 622999511842292,
+          "gap_ms": 283.425664
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 622998951012127,
+          "end_monotonic_ns": 622999511905353,
+          "gap_ms": 560.893226
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 622998113199011,
+          "end_monotonic_ns": 622999511967693,
+          "gap_ms": 1398.768682
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 623001370443018,
+          "end_monotonic_ns": 623001611151668,
+          "gap_ms": 240.70865
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 623001089185828,
+          "end_monotonic_ns": 623001611207718,
+          "gap_ms": 522.02189
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 623001081743162,
+          "end_monotonic_ns": 623001611260848,
+          "gap_ms": 529.517686
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-new-b07",
+      "side": "new",
+      "source_head": "5f1b1b3c12b1c198813f65275f778c7ad292fb02",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "44d80383b9d2bd92629d1610965a6b71e0b3c77a011181fb899dc9d93599492e",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 623125207136902,
+          "end_monotonic_ns": 623125436723376,
+          "gap_ms": 229.586474
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 623125007574727,
+          "end_monotonic_ns": 623125436772956,
+          "gap_ms": 429.198229
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 623124791790751,
+          "end_monotonic_ns": 623125436817886,
+          "gap_ms": 645.027135
+        },
+        {
+          "phase": 25,
+          "session_id": 62,
+          "start_monotonic_ns": 623127230003121,
+          "end_monotonic_ns": 623127454671260,
+          "gap_ms": 224.668139
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 623126984070456,
+          "end_monotonic_ns": 623127454724710,
+          "gap_ms": 470.654254
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 623126974656980,
+          "end_monotonic_ns": 623127454777661,
+          "gap_ms": 480.120681
+        },
+        {
+          "phase": 28,
+          "session_id": 69,
+          "start_monotonic_ns": 623132454366208,
+          "end_monotonic_ns": 623132949109021,
+          "gap_ms": 494.742813
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 623131665642253,
+          "end_monotonic_ns": 623131945197284,
+          "gap_ms": 279.555031
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 623132454463238,
+          "end_monotonic_ns": 623132949207161,
+          "gap_ms": 494.743923
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 623131654200067,
+          "end_monotonic_ns": 623131945258294,
+          "gap_ms": 291.058227
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 623132454522519,
+          "end_monotonic_ns": 623132949268012,
+          "gap_ms": 494.745493
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 623131152319119,
+          "end_monotonic_ns": 623131945316124,
+          "gap_ms": 792.997005
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 623132454576249,
+          "end_monotonic_ns": 623132949333242,
+          "gap_ms": 494.756993
+        },
+        {
+          "phase": 29,
+          "session_id": 72,
+          "start_monotonic_ns": 623134288161753,
+          "end_monotonic_ns": 623134613459189,
+          "gap_ms": 325.297436
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 623134276701856,
+          "end_monotonic_ns": 623134613526999,
+          "gap_ms": 336.825143
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 623133730078417,
+          "end_monotonic_ns": 623134613587660,
+          "gap_ms": 883.509243
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 623138299500730,
+          "end_monotonic_ns": 623138527723697,
+          "gap_ms": 228.222967
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 623138095193461,
+          "end_monotonic_ns": 623138527776217,
+          "gap_ms": 432.582756
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 623137895511095,
+          "end_monotonic_ns": 623138527827227,
+          "gap_ms": 632.316132
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 623140319919167,
+          "end_monotonic_ns": 623140594841384,
+          "gap_ms": 274.922217
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 623140058439935,
+          "end_monotonic_ns": 623140594896404,
+          "gap_ms": 536.456469
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 623139776488653,
+          "end_monotonic_ns": 623140594948415,
+          "gap_ms": 818.459762
+        },
+        {
+          "phase": 35,
+          "session_id": 85,
+          "start_monotonic_ns": 623143149583639,
+          "end_monotonic_ns": 623143752379915,
+          "gap_ms": 602.796276
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 623145291264024,
+          "end_monotonic_ns": 623145550289933,
+          "gap_ms": 259.025909
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 623145073967121,
+          "end_monotonic_ns": 623145550363214,
+          "gap_ms": 476.396093
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 623145058689936,
+          "end_monotonic_ns": 623145550436264,
+          "gap_ms": 491.746328
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 623147383222564,
+          "end_monotonic_ns": 623147660385912,
+          "gap_ms": 277.163348
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 623147141345010,
+          "end_monotonic_ns": 623147660453453,
+          "gap_ms": 519.108443
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 623147131490461,
+          "end_monotonic_ns": 623147660516173,
+          "gap_ms": 529.025712
+        },
+        {
+          "phase": 47,
+          "session_id": 103,
+          "start_monotonic_ns": 623159799065651,
+          "end_monotonic_ns": 623160406210619,
+          "gap_ms": 607.144968
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "sage-norm-r0-old-b07",
+      "side": "old",
+      "source_head": "342db85ecff3c0dc864a4bf8613c589c270f4141",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": "legacy",
+      "result_sha256": "f8d478547f30560b16077318cb600c164f95f32d4e5d734cf9a477d7eb108daf",
+      "warmup_sweeps": 5,
+      "input_lengths": {
+        "170": 62
+      },
+      "cache_tokens": {
+        "0": 62
+      },
+      "qualified_responses": 5,
+      "measured_responses": 57,
+      "forward_counts": {
+        "0": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        },
+        "1": {
+          "['Qwen3_5MoeForConditionalGeneration', False, 170, 1]": 57,
+          "['Qwen3_5MoeForConditionalGeneration', True, 1, 1]": 1600,
+          "['Qwen3_5MoeForConditionalGeneration', True, 4, 4]": 512
+        }
+      },
+      "output_slots": {
+        "[1]": 1657,
+        "[1, 1, 1, 1]": 512
+      },
+      "token_delivery_gaps_over_100ms": [
+        {
+          "phase": 24,
+          "session_id": 58,
+          "start_monotonic_ns": 623273671649266,
+          "end_monotonic_ns": 623273956193072,
+          "gap_ms": 284.543806
+        },
+        {
+          "phase": 24,
+          "session_id": 57,
+          "start_monotonic_ns": 623273412520856,
+          "end_monotonic_ns": 623273956248152,
+          "gap_ms": 543.727296
+        },
+        {
+          "phase": 24,
+          "session_id": 56,
+          "start_monotonic_ns": 623273151334965,
+          "end_monotonic_ns": 623273956299402,
+          "gap_ms": 804.964437
+        },
+        {
+          "phase": 25,
+          "session_id": 61,
+          "start_monotonic_ns": 623275311975430,
+          "end_monotonic_ns": 623275829739419,
+          "gap_ms": 517.763989
+        },
+        {
+          "phase": 25,
+          "session_id": 60,
+          "start_monotonic_ns": 623275111272986,
+          "end_monotonic_ns": 623275829809929,
+          "gap_ms": 718.536943
+        },
+        {
+          "phase": 28,
+          "session_id": 68,
+          "start_monotonic_ns": 623279926553338,
+          "end_monotonic_ns": 623280198950004,
+          "gap_ms": 272.396666
+        },
+        {
+          "phase": 28,
+          "session_id": 67,
+          "start_monotonic_ns": 623279655047947,
+          "end_monotonic_ns": 623280199018614,
+          "gap_ms": 543.970667
+        },
+        {
+          "phase": 28,
+          "session_id": 66,
+          "start_monotonic_ns": 623279639118229,
+          "end_monotonic_ns": 623280199082055,
+          "gap_ms": 559.963826
+        },
+        {
+          "phase": 29,
+          "session_id": 71,
+          "start_monotonic_ns": 623281689452553,
+          "end_monotonic_ns": 623282151271647,
+          "gap_ms": 461.819094
+        },
+        {
+          "phase": 29,
+          "session_id": 70,
+          "start_monotonic_ns": 623281447448206,
+          "end_monotonic_ns": 623282151333968,
+          "gap_ms": 703.885762
+        },
+        {
+          "phase": 32,
+          "session_id": 79,
+          "start_monotonic_ns": 623286764721390,
+          "end_monotonic_ns": 623287287356843,
+          "gap_ms": 522.635453
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 623286061379601,
+          "end_monotonic_ns": 623286369079440,
+          "gap_ms": 307.699839
+        },
+        {
+          "phase": 32,
+          "session_id": 78,
+          "start_monotonic_ns": 623286764802931,
+          "end_monotonic_ns": 623287287443193,
+          "gap_ms": 522.640262
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 623285788646284,
+          "end_monotonic_ns": 623286369143900,
+          "gap_ms": 580.497616
+        },
+        {
+          "phase": 32,
+          "session_id": 77,
+          "start_monotonic_ns": 623286764859981,
+          "end_monotonic_ns": 623287287494594,
+          "gap_ms": 522.634613
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 623285520166577,
+          "end_monotonic_ns": 623286369208711,
+          "gap_ms": 849.042134
+        },
+        {
+          "phase": 32,
+          "session_id": 76,
+          "start_monotonic_ns": 623286764909621,
+          "end_monotonic_ns": 623287287542504,
+          "gap_ms": 522.632883
+        },
+        {
+          "phase": 33,
+          "session_id": 83,
+          "start_monotonic_ns": 623289310065382,
+          "end_monotonic_ns": 623289899127100,
+          "gap_ms": 589.061718
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 623288456503746,
+          "end_monotonic_ns": 623288728690601,
+          "gap_ms": 272.186855
+        },
+        {
+          "phase": 33,
+          "session_id": 82,
+          "start_monotonic_ns": 623289310135612,
+          "end_monotonic_ns": 623289899217801,
+          "gap_ms": 589.082189
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 623288220527369,
+          "end_monotonic_ns": 623288728746021,
+          "gap_ms": 508.218652
+        },
+        {
+          "phase": 33,
+          "session_id": 81,
+          "start_monotonic_ns": 623289310183992,
+          "end_monotonic_ns": 623289899273361,
+          "gap_ms": 589.089369
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 623288010200807,
+          "end_monotonic_ns": 623288728804271,
+          "gap_ms": 718.603464
+        },
+        {
+          "phase": 33,
+          "session_id": 80,
+          "start_monotonic_ns": 623289310227752,
+          "end_monotonic_ns": 623289899326291,
+          "gap_ms": 589.098539
+        },
+        {
+          "phase": 35,
+          "session_id": 85,
+          "start_monotonic_ns": 623292442129290,
+          "end_monotonic_ns": 623292682022226,
+          "gap_ms": 239.892936
+        },
+        {
+          "phase": 36,
+          "session_id": 88,
+          "start_monotonic_ns": 623293476536822,
+          "end_monotonic_ns": 623293706519530,
+          "gap_ms": 229.982708
+        },
+        {
+          "phase": 36,
+          "session_id": 87,
+          "start_monotonic_ns": 623293468883295,
+          "end_monotonic_ns": 623293706614341,
+          "gap_ms": 237.731046
+        },
+        {
+          "phase": 36,
+          "session_id": 86,
+          "start_monotonic_ns": 623293012917029,
+          "end_monotonic_ns": 623293706711151,
+          "gap_ms": 693.794122
+        },
+        {
+          "phase": 37,
+          "session_id": 92,
+          "start_monotonic_ns": 623295315276409,
+          "end_monotonic_ns": 623295532283823,
+          "gap_ms": 217.007414
+        },
+        {
+          "phase": 37,
+          "session_id": 91,
+          "start_monotonic_ns": 623295306694207,
+          "end_monotonic_ns": 623295532336563,
+          "gap_ms": 225.642356
+        },
+        {
+          "phase": 37,
+          "session_id": 90,
+          "start_monotonic_ns": 623294871900235,
+          "end_monotonic_ns": 623295532388774,
+          "gap_ms": 660.488539
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "qualifier_mismatches": [],
+  "measurement_replay_mismatches": [],
+  "errors": [],
+  "core_script_sha256": {
+    "warm_observer.py": [
+      "4a55f0adf002569bf2c04c6189d4b48ce98c564eba6e069997f40cfff4b9b779"
+    ],
+    "pipeline_warm_case.py": [
+      "6643a2dc96685aaf3b91fbe4ef4ee89503053626705345c3f8632b410c2393c5"
+    ],
+    "guard/sitecustomize.py": [
+      "59581913a1e70b9b9a2551baafefb42d237fba9f0cf2482a38c055ef92591b4a"
+    ]
+  },
+  "worker_versions": [
+    {
+      "numpy": "2.2.6",
+      "ray": "2.48.0",
+      "torch": "2.10.0+cpu",
+      "torch-npu": "2.10.0.post4",
+      "transformers": "5.14.1",
+      "triton-ascend": "3.2.2"
+    }
+  ],
+  "source_heads": {
+    "old": [
+      "342db85ecff3c0dc864a4bf8613c589c270f4141"
+    ],
+    "new": [
+      "5f1b1b3c12b1c198813f65275f778c7ad292fb02"
+    ]
+  },
+  "qualified": true
+}
