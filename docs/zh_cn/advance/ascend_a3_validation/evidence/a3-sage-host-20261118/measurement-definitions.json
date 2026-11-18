@@ -1,0 +1,87 @@
+{
+  "model": "Sage-A1.5",
+  "A3": {
+    "lmdeploy_old": "fb5de87a45df9999a19a569ed9441df8edfa6975",
+    "dlinfer_old": "3b9096341a41e9d067104a39d914e47ca2d7ec50",
+    "lmdeploy_new": "2ccf38a43f0fdc7415ce4ce9f177852bdacc9966",
+    "ttft": "first SSE nonempty content or reasoning_content",
+    "parsers": "default + qwen3coder",
+    "TP": 2,
+    "MTP": 3,
+    "requests_per_process": 100,
+    "pairs": 10,
+    "input_tokens": 171,
+    "output_tokens": 128,
+    "cache_hits": 0,
+    "prefill_chunks": [
+      128,
+      43
+    ],
+    "confidence_unit": "paired fresh processes",
+    "bootstrap_replicates": 10000,
+    "seed": 20261118,
+    "equivalence_band_pct": [
+      -5,
+      5
+    ]
+  },
+  "h200_agents_http": {
+    "archive_sha256": "12737f8e1b79d4e1e3582ff932f70773ce85feaf2e268b396baa8dfc3dad1d62",
+    "source_hashes": [
+      "0de6d88134efcacbb66f5d871fa1aa01017c64c45104000651afda0311dbc089",
+      "1e04cbac3530482ed3dd0b58e9876921dd33a12e81807abbb910f905fbf9a26d",
+      "fb61579521747597620e1e34d8e1534f6c549102989135f1cae6c4d653696659"
+    ],
+    "ttft": "first SSE output_ids, return_token_ids enabled",
+    "parser": "serve() receives neither reasoning_parser nor tool_call_parser",
+    "endpoint": "/v1/chat/completions",
+    "checked_services": 10,
+    "TP": 1,
+    "input_tokens": 167,
+    "output_tokens": 256
+  },
+  "ray_cpu_probe_sha256": "870843b45f906a203ef8639c15d041bed878ea3489e1895889de737b8c8583b5",
+  "isolated_parser_timings": {
+    "old": {
+      "tags": [
+        "<think>",
+        "</think>"
+      ],
+      "vocabulary": 248077,
+      "ids": [
+        248068,
+        248069
+      ],
+      "parser_sha256": "3d83f14486eb44bf3b62c3270219eb3913cbc4e43776269526a19a953471a95d",
+      "medians_ms": {
+        "parser": 116.18346149999999,
+        "full_export_and_lookup": 115.9456955,
+        "direct_tag_lookup": 0.01381
+      }
+    },
+    "new": {
+      "tags": [
+        "<think>",
+        "</think>"
+      ],
+      "vocabulary": 248077,
+      "ids": [
+        248068,
+        248069
+      ],
+      "parser_sha256": "3d83f14486eb44bf3b62c3270219eb3913cbc4e43776269526a19a953471a95d",
+      "medians_ms": {
+        "parser": 118.0239295,
+        "full_export_and_lookup": 118.989889,
+        "direct_tag_lookup": 0.01331
+      }
+    }
+  },
+  "formal_script_sha256": {
+    "tail_case.py": "9a6416020147ca0438c73243a801ecb8982d566e283637d964d948826f156598",
+    "warm_observer.py": "c6edee466197aa98d24e862f2c2ecfb41ee15e1529ca39bbfce1f147cd04bdd4",
+    "draft_shape_observer.py": "da7299ff28ab0d457950e8fcee7235b8fc33fe4d70e0e1d1be84603f648c3a1b",
+    "draft_shape_serve.py": "ec33142b817a0a8f4baff8139297fc415846ec62d83f4b76bb07c3af6b816d5f",
+    "run_case_current.py": "21122e25ce3ea969d919c35f22c4bf312f7f70acf4d87dbd51950f1ea9c6a17b"
+  }
+}
