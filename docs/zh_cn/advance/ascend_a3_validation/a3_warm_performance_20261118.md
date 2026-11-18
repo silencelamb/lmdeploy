@@ -249,3 +249,6 @@ R1 的 C4 预填充新侧慢约 46–52 ms，R2 增加组件计时后方向反�
 历史 Agents C4 有一项 390.71 ms 的窗口变化残差。检查 b01、新侧、rep6，四个请求的各 128 个 token 均能与 SSE 文本逐项对应；第 118 到 119 个 token 的服务端间隔为 12.06–13.77 ms，客户端间隔为 527.98–529.77 ms。该次长间隔出现在服务端 generate 输出后的交付或观察环节，尚不能进一步区分 SSE 服务、socket 与客户端线程。它和预填充、Ray/worker 的等待分属不同测量边界。[逐请求配对](evidence/a3-warm-attribution-20261118/http-driver-sse-windows-r0.json) · [长间隔逐 token 审计](evidence/a3-warm-attribution-20261118/http-largest-window-residual-r0.json)
 
 上述均为归因诊断。正式 ±5% 判据、七个已通过分项、方向性回退及其余未证等效项保留原判。CPU18 的具体宿主回调仍缺少 tracefs/宿主采集证据。本轮未修改生产代码。[复现与数据目录](evidence/a3-warm-attribution-20261118/README.md)
+
+
+**正式 C4 的 CPU18 重叠窗口。** 复核 norm64 全部 128 个 C4 批次。用服务端四个请求最早至最晚首 token 的单调时钟时间，与 CPU18 每两秒采样的 softirq 时钟滴答按重叠时长加权。服务端首 token 跨度变长的七个进程对中，估算的 CPU18 softirq 占比三对升高、四对降低；跨度缩短的第八对占比上升 0.97 个百分点。八对的占比差依次为 +0.31、+1.44、−9.17、−6.19、+1.82、−10.97、−0.50、+0.97 个百分点。可观测的 CPU18 平均负载变化无法统一解释本组跨版本方向。该估算假定各两秒区间内的占比均匀；原始样本没有给出 worker 在具体慢调用期间的连续 CPU 驻留轨迹。此前单次长停顿与 softirq 重叠的观测继续保留。[128 批时间边界与估算](evidence/a3-warm-attribution-20261118/norm-cpu18-window-r0.json) · [原始计数摘录及来源 SHA256](evidence/a3-warm-attribution-20261118/norm-cpu18-counter-extract-r0.json)
