@@ -1,0 +1,19 @@
+{
+  "equal_source_files": {
+    "lmdeploy/pytorch/kernels/ascend/triton_ops/causal_conv1d.py": "0b0fc8917909fae69b2169e7d6dc91292ea6e93378adfe27eb0e76b6f8b7d4a9",
+    "lmdeploy/pytorch/kernels/ascend/triton_ops/fla/chunk.py": "dc89042cd45f028da1a4694afc00deababfddd9fe3458e7b8bcb90e30e9d2375",
+    "lmdeploy/pytorch/backends/ascend/causal_conv1d.py": "22b149fa64eb1f9dfc162485eee3024f21f9b22f93bdef428c9ed0c2a4e68cb8",
+    "lmdeploy/pytorch/backends/ascend/gated_delta_rule.py": "81dcf13e65b6982a8019bc98b4d803faaa9680502ec4d8a20262ab31a3b6f5bb"
+  },
+  "external_snapshot": {
+    "triton_ascend_kernels/attention/fla/chunk.py": "b1b7c8017bff4e7d3d431b280b6cf6583de1b0c920c8f67d278fec1015d35ea6",
+    "triton_ascend_kernels/attention/fla/utils.py": "c34b510c8c3f59d6fd77bd4e3bd41b4c7385997e0c3d88b009964caf95ee5d5e",
+    "triton_ascend_kernels/attention/fla/chunk_scaled_dot_kkt.py": "deee3303efb0c1a5b749de36f28b82fa7a3d5226208675474289625c6cb2b510",
+    "triton_ascend_kernels/attention/fla/cumsum.py": "14bb192a09b8cb0404fd920c47833f1f0d555889d1e80c15c0093b070ae5d28b",
+    "triton_ascend_kernels/attention/fla/solve_tril.py": "c76e78198766020f4e69ee6c6c392f627fac3dfc93454f2d82615bff1e441196",
+    "triton_ascend_kernels/attention/fla/wy_fast.py": "48654bbdd2f2e86f4c5abf60f94a3ecfe600dea592e28e9a957d7b109b7de416",
+    "triton_ascend_kernels/attention/fla/chunk_delta_h.py": "f04a3550ca46717e64e9619a7c5d9194c13eb4f3aa84f47664d82f66448a4ae0",
+    "triton_ascend_kernels/attention/fla/chunk_o.py": "1a8acca0106d52b51b4c2e7b104738cc6bd3169a4c1724f15323c8bc02627bc1"
+  },
+  "scope": "norm-before vs norm-after only"
+}
