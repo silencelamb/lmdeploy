@@ -12,6 +12,7 @@ from typing import Any
 
 import torch
 
+from lmdeploy.pytorch import envs
 from lmdeploy.pytorch.backends.kda import KdaImpl
 
 from .gated_delta_rule import GatedDeltaStepMetaUpdater, _state_scatter, _state_select
@@ -39,6 +40,10 @@ class CudaKdaImpl(KdaImpl):
 
     def __init__(self, indexed_state: bool = False):
         self.indexed_state = indexed_state
+        self.flashkda_prefill = None
+        if indexed_state and envs.glm53_flashkda_library and torch.cuda.get_device_capability() == (9, 0):
+            from .flashkda import load_flashkda_prefill
+            self.flashkda_prefill = load_flashkda_prefill(envs.glm53_flashkda_library)
         try:
             from fla.modules.conv.triton.ops import (
                 causal_conv1d_fwd,
@@ -345,10 +350,6 @@ class CudaKdaImpl(KdaImpl):
             mixed_qkv, conv_weight, conv_bias, conv_state, metadata, 'silu')
         q, k, v = [x.unflatten(-1, (num_heads, head_dim))
                    for x in mixed.split(num_heads * head_dim, dim=-1)]
-        # Chunk prefill requires dense inputs; the recurrent decode kernel
-        # already accepts Q/K/V strides. Avoid three payload copies in decode.
-        if not metadata.is_decoding:
-            q, k, v = [x.contiguous() for x in (q, k, v)]
         gate = raw_gate.unflatten(-1, (num_heads, head_dim)).contiguous()
         beta = raw_beta.contiguous()
         if metadata.is_decoding:
@@ -360,8 +361,14 @@ class CudaKdaImpl(KdaImpl):
                 initial_state=recurrent_state, output_final_state=True,
                 state_indices=ids.input_state_ids, output_state_indices=ids.output_state_ids)
             return output.flatten(0, 1).unsqueeze(0)
-        from lmdeploy.pytorch.kernels.cuda.indexed_chunk_gated_delta import indexed_chunk_kda
         prefill = metadata.ssm_prefill_meta
+        if (self.flashkda_prefill is not None and head_dim == 128 and q.dtype == torch.bfloat16
+                and recurrent_state.dtype in (torch.float32, torch.bfloat16) and lower_bound is not None
+                and recurrent_state[0].is_contiguous()):
+            return self.flashkda_prefill(q, k, v, gate, beta, recurrent_state, ids.input_state_ids,
+                                         ids.output_state_ids[:, 0], prefill, a_log, dt_bias, lower_bound)
+        # indexed_chunk_kda normalizes projection views for FLA's chunk math.
+        from lmdeploy.pytorch.kernels.cuda.indexed_chunk_gated_delta import indexed_chunk_kda
         return indexed_chunk_kda(
             q, k, v, gate, beta, recurrent_state, ids.input_state_ids, ids.output_state_ids[:, 0],
             A_log=a_log, dt_bias=dt_bias, use_qk_l2norm_in_kernel=True, use_gate_in_kernel=True,

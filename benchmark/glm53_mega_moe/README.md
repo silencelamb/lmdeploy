@@ -126,6 +126,29 @@ Check idle memory and the per-GPU peak on the same workloads. LMDeploy's
 and runtime reservations, so a common fraction yields different total
 allocations.
 
+### FlashKDA prefill on H200
+
+The default KDA prefill uses FLA. Set `LMDEPLOY_GLM53_FLASHKDA_LIBRARY` to
+the worker-visible path of the FlashKDA shared object to enable its indexed
+prefill adapter. The benchmark used the stable-ABI extension from vLLM
+commit `5328ae2fef`, built against FlashKDA `9d9e928e`. Its SHA256 is
+`108f236bf5732ab1a643cb2ede54003d0d8a282c89e0f9a3c6b355daa23db250`.
+
+```bash
+unzip -j "$VLLM_WHEEL" 'vllm/_flashkda_C.abi3.so' -d "$PROVIDER_PREFIX"
+export LMDEPLOY_GLM53_FLASHKDA_LIBRARY="$PROVIDER_PREFIX/_flashkda_C.abi3.so"
+python benchmark/glm53_mega_moe/bench_kda_prefill.py \
+  --library "$LMDEPLOY_GLM53_FLASHKDA_LIBRARY" --output kda-prefill.json
+```
+
+The adapter passes row-strided Q/K/V directly from the convolution. It
+snapshots indexed inputs before running the fused recurrence, then exports
+final states and interior prefix checkpoints to the scheduler's reserved
+units. A terminal checkpoint uses the final state, including partial tiles.
+The measured path uses BF16 activations, 128 channels per head and FP32
+recurrent state. FlashKDA changes prefill rounding. For comparisons, hold
+the MoE backend, prefill capacity, MTP depth and KV blocks fixed.
+
 ## AgentX
 
 Start the same sticky-least-loaded router for each backend and point the
@@ -243,3 +266,26 @@ expert collective using live DP metadata.
 - [The GLM-5.3 adapter in vLLM](https://github.com/vllm-project/vllm/pull/66812)
 - [The FlashInfer SM90 FP8 integration in vLLM](https://github.com/vllm-project/vllm/pull/62603)
 - [FlashInfer SM90 tuning](https://github.com/flashinfer-ai/flashinfer/blob/main/flashinfer/moe_ep/shims/sm90/cutedsl_megamoe/TUNING.md)
+
+Set `LMDEPLOY_DP_SYNC_METADATA=1` to measure synchronous completion of the CPU DP metadata collective in low-concurrency decode. Measure the higher-concurrency tradeoff before enabling it. See the [execution results](../../docs/zh_cn/benchmark/glm53_tpot.md).
+
+### Measuring prefill interference with MTP
+
+With eight worker URLs in DP-rank order, use the following client for each
+MTP5 server. It runs two cold 8K/256 rolling loads at C=64 and measures the
+same 32 warm probes with and without a new wave of 24 long prefills. The
+second repetition reverses the arm order. Each probe emits exactly 512 tokens.
+
+```bash
+python benchmark/glm53_mega_moe/mtp_interference.py \
+  --api generate --urls "${LMDEPLOY_URLS[@]}" --monitor-port 20980 \
+  --tokenizer "$MODEL_SNAPSHOT" --output "$LMD_RUN/fixed"
+python benchmark/glm53_mega_moe/mtp_interference.py \
+  --api completions --urls "${VLLM_URLS[@]}" \
+  --tokenizer "$MODEL_SNAPSHOT" --output "$VLLM_RUN/fixed"
+```
+
+The measured runs use the lifecycle runner's `exit_code` file. After checking
+both runs completed successfully, summarize their per-request latency pairs,
+cache/acceptance counters and streaming gaps with
+`python benchmark/glm53_mega_moe/summarize_mtp_interference.py "$LMD_RUN" "$VLLM_RUN"`.

@@ -766,6 +766,8 @@ class BaseModelAgent:
         If all inputs are dummy inputs, skip forward. If any of the inputs is prefill, then do prefill. Set padding
         batch size for decoding.
         """
+        from lmdeploy.pytorch.envs import dp_sync_metadata
+
         world_size = self.dist_config.world_size
         is_decoding = inputs.is_decoding
         num_tokens = inputs.input_ids.numel()
@@ -806,8 +808,9 @@ class BaseModelAgent:
             device=device,
             group=group,
         )
+        values = gathered_meta.wait() if dp_sync_metadata else await gathered_meta.async_wait()
         gathered_meta = GatheredDPForwardMeta.from_values(
-            (await gathered_meta.async_wait()).cpu(),
+            values.cpu(),
             is_spec_enabled=is_spec_enabled,
             is_microbatch_enabled=is_microbatch_enabled,
         )

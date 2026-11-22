@@ -24,6 +24,10 @@ class DistGatherScalar:
     async def async_wait(self, timeout: float = 0.001):
         while not self.worker.is_completed():
             await asyncio.sleep(timeout)
+        return self.wait()
+
+    def wait(self):
+        """Await the already-issued host collective."""
         self.worker.wait()
         return self.all_vals
 
