@@ -1,0 +1,243 @@
+--- a/csrc/apis/gemm.hpp
++++ b/csrc/apis/gemm.hpp
+@@ -206,7 +206,8 @@
+                                                  const bool& use_psum_layout,
+                                                  const bool& ensure_zero_padding,
+                                                  const std::optional<int>& expected_m_for_psum_layout,
+-                                                 const std::shared_ptr<EpilogueClass>& epilogue_class) {
++                                                 const std::shared_ptr<EpilogueClass>& epilogue_class,
++                                                 const bool gate_up_interleaved = false) {
+     // Shape must be `[M, K] @ [G, N, K].mT`
+     const auto major_a = get_major_type_ab(a.first);
+     const auto major_b = get_major_type_ab(b.first);
+@@ -223,6 +224,13 @@
+     DG_HOST_ASSERT(m == m_ and n == n_ and k == k_);
+     DG_HOST_ASSERT(n > 0 and k > 0 and num_groups > 0);
+     DG_HOST_ASSERT(d.scalar_type() == torch::headeronly::ScalarType::BFloat16);
++    if (gate_up_interleaved) {
++        DG_HOST_ASSERT(arch_major == 9 and n % 256 == 0 and k % 128 == 0);
++        DG_HOST_ASSERT(a.first.scalar_type() == torch::headeronly::ScalarType::Float8_e4m3fn and
++                       b.first.scalar_type() == torch::headeronly::ScalarType::Float8_e4m3fn);
++        DG_HOST_ASSERT(a.second.scalar_type() == torch::headeronly::ScalarType::Float and
++                       b.second.scalar_type() == torch::headeronly::ScalarType::Float);
++    }
+     DG_HOST_ASSERT(grouped_layout.scalar_type() == torch::headeronly::ScalarType::Int);
+ 
+     // Layout checks
+@@ -254,7 +262,8 @@
+         DG_HOST_ASSERT(epilogue_class == nullptr and "Custom epilogues require SM100");
+         sm90_m_grouped_fp8_gemm_contiguous_1d2d(a.first, sfa, b.first, sfb, d, grouped_layout,
+                                                 num_groups, m, n, k, major_a, major_b, major_sfb,
+-                                                compiled_dims, use_psum_layout, expected_m_for_psum_layout);
++                                                compiled_dims, use_psum_layout, expected_m_for_psum_layout,
++                                                gate_up_interleaved);
+     } else if (arch_major == 10 and sfa.scalar_type() == torch::headeronly::ScalarType::Int) {
+         sm100_m_grouped_fp8_fp4_gemm_contiguous_1d1d(a.first, sfa, b.first, sfb, d, grouped_layout,
+                                                      num_groups, m, n, k, gran_k_a, gran_k_b, major_a, major_b,
+@@ -1011,6 +1020,14 @@
+         compiled_dims, disable_ue8m0_cast, use_psum_layout, ensure_zero_padding, epilogue_class::unwrap(epilogue_kind, epilogue_alpha, epilogue_sfd));
+ }
+ 
++static void sm90_fp8_grouped_gate_up(const torch::stable::Tensor& a, const torch::stable::Tensor& sfa,
++                                    const torch::stable::Tensor& b, const torch::stable::Tensor& sfb,
++                                    const torch::stable::Tensor& d, const torch::stable::Tensor& grouped_layout) {
++    gemm::m_grouped_fp8_fp4_gemm_nt_contiguous(
++        {a, sfa}, {b, sfb}, d, grouped_layout, std::make_tuple(1, 128, 128), std::nullopt, std::nullopt,
++        "nk", false, false, true, std::nullopt, nullptr, true);
++}
++
+ static void m_grouped_fp8_fp4_gemm_nt_masked(const torch::stable::Tensor& a, const torch::stable::Tensor& sfa,
+     const torch::stable::Tensor& b, const torch::stable::Tensor& sfb,
+     const torch::stable::Tensor& d, const torch::stable::Tensor& masked_m,
+@@ -1186,6 +1203,7 @@
+         "fp8_fp4_gemm_tn(Tensor a, Tensor sfa, Tensor b, Tensor sfb, Tensor(d!) d, Tensor? c=None, int[3]? recipe=None, int[2]? recipe_a=None, int[2]? recipe_b=None, str compiled_dims='mn', bool disable_ue8m0_cast=False, float? alpha=None, int epilogue_kind=0, float? epilogue_alpha=None, Tensor? epilogue_sfd=None) -> ()");
+     m.def(
+         "fp8_fp4_gemm_tt(Tensor a, Tensor sfa, Tensor b, Tensor sfb, Tensor(d!) d, Tensor? c=None, int[3]? recipe=None, int[2]? recipe_a=None, int[2]? recipe_b=None, str compiled_dims='mn', bool disable_ue8m0_cast=False, float? alpha=None, int epilogue_kind=0, float? epilogue_alpha=None, Tensor? epilogue_sfd=None) -> ()");
++    m.def("sm90_fp8_grouped_gate_up(Tensor a, Tensor sfa, Tensor b, Tensor sfb, Tensor(d!) d, Tensor grouped_layout) -> ()");
+     m.def(
+         "m_grouped_fp8_fp4_gemm_nt_contiguous(Tensor a, Tensor sfa, Tensor b, Tensor sfb, Tensor(d!) d, Tensor grouped_layout, int[3]? recipe=None, int[2]? recipe_a=None, int[2]? recipe_b=None, str compiled_dims='nk', bool disable_ue8m0_cast=False, bool use_psum_layout=False, bool ensure_zero_padding=True, int? expected_m_for_psum_layout=None, int epilogue_kind=0, float? epilogue_alpha=None, Tensor? epilogue_sfd=None) -> ()");
+     m.def(
+@@ -1235,6 +1253,7 @@
+     m.impl("fp8_fp4_gemm_tn", TORCH_BOX(&fp8_fp4_gemm_tn));
+     m.impl("fp8_fp4_gemm_tt", TORCH_BOX(&fp8_fp4_gemm_tt));
+     m.impl("m_grouped_fp8_fp4_gemm_nt_contiguous", TORCH_BOX(&m_grouped_fp8_fp4_gemm_nt_contiguous));
++    m.impl("sm90_fp8_grouped_gate_up", TORCH_BOX(&sm90_fp8_grouped_gate_up));
+     m.impl("m_grouped_fp8_fp4_gemm_nn_contiguous", TORCH_BOX(&m_grouped_fp8_fp4_gemm_nn_contiguous));
+     m.impl("m_grouped_fp8_fp4_gemm_nt_masked", TORCH_BOX(&m_grouped_fp8_fp4_gemm_nt_masked));
+     m.impl("k_grouped_fp8_gemm_tn_contiguous", TORCH_BOX(&k_grouped_fp8_gemm_tn_contiguous));
+--- a/csrc/jit_kernels/heuristics/config.hpp
++++ b/csrc/jit_kernels/heuristics/config.hpp
+@@ -41,6 +41,7 @@
+ 
+     // Shape for heuristic generation
+     int expected_m = 0, expected_n = 0, expected_k = 0, expected_num_groups = 0;
++    bool gate_up_interleaved = false;
+     int get_expected_m() const { return expected_m > 0 ? expected_m : m; }
+     int get_expected_n() const { return expected_n > 0 ? expected_n : n; }
+     int get_expected_k() const { return expected_k > 0 ? expected_k : k; }
+--- a/csrc/jit_kernels/heuristics/sm90.hpp
++++ b/csrc/jit_kernels/heuristics/sm90.hpp
+@@ -80,6 +80,10 @@
+ 
+                 for (int block_m: block_m_candidates) {
+                     for (int block_n: block_n_candidates) {
++                        // Each physical 256-row region contains a complete 128-row
++                        // checkpoint block from both gate and up.
++                        if (desc.gate_up_interleaved and (block_n > 128 or 256 % block_n != 0))
++                            continue;
+                         // 1D2D kernel unroll requirement
+                         if (desc.kernel_type == KernelType::Kernel1D2D and block_n > block_k and (block_n % (block_n - block_k) != 0 and block_k % (block_n - block_k) != 0))
+                             continue;
+@@ -166,7 +170,7 @@
+             0 : align(layout.block_n * static_cast<int>(sizeof(float)), 128);
+ 
+         // Extra SFB sizes for 1D2D kernels
+-        const int use_uniform_sfb = layout.block_k % layout.block_n == 0 ? 1 : 2;
++        const int use_uniform_sfb = layout.block_k % layout.block_n == 0 and not desc.gate_up_interleaved ? 1 : 2;
+         const int smem_extra_sfb = desc.kernel_type != KernelType::Kernel1D2D ?
+             0 : align<int>(ceil_div(desc.k, layout.block_k) * static_cast<int>(sizeof(float)) * use_uniform_sfb, 8);
+ 
+--- a/csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
++++ b/csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
+@@ -44,6 +44,7 @@
+         {}, {},
+         {}, {},
+         {}, {},
++        {},
+         {}
+     >);
+ }};
+@@ -59,7 +60,8 @@
+         args.gemm_config.launch_config.num_tma_threads, args.gemm_config.launch_config.num_math_threads,
+         args.gemm_config.layout.get_cluster_size(), args.gemm_config.layout.cluster_n > 1,
+         args.gemm_config.launch_config.num_sms, to_string(args.gemm_desc.gemm_type),
+-        to_string(args.gemm_desc.cd_dtype)));
++        to_string(args.gemm_desc.cd_dtype),
++        args.gemm_desc.gate_up_interleaved));
+ 
+         // Launch
+         jit->launch(
+@@ -145,7 +147,8 @@
+                                                     const cute::UMMA::Major& major_a, const cute::UMMA::Major& major_b, const cute::UMMA::Major& major_sfb,
+                                                     const std::string& compiled_dims,
+                                                     const bool& use_psum_layout,
+-                                                    const std::optional<int>& expected_m_for_psum_layout) {
++                                                    const std::optional<int>& expected_m_for_psum_layout,
++                                                    const bool gate_up_interleaved = false) {
+     DG_HOST_ASSERT(d.scalar_type() == torch::headeronly::ScalarType::BFloat16);
+     DG_HOST_ASSERT(major_a == cute::UMMA::Major::K and major_b == cute::UMMA::Major::K);
+ 
+@@ -169,7 +172,8 @@
+         .compiled_dims = compiled_dims,
+         .expected_m = expected_m_for_psum_layout.value_or(m),
+         .expected_n = n, .expected_k = k,
+-        .expected_num_groups = expected_m_for_psum_layout.has_value() ? num_groups : 1
++        .expected_num_groups = expected_m_for_psum_layout.has_value() ? num_groups : 1,
++        .gate_up_interleaved = gate_up_interleaved
+     };
+     const auto config = get_best_config<SM90ArchSpec>(desc);
+ 
+--- a/deep_gemm/_C.py
++++ b/deep_gemm/_C.py
+@@ -146,6 +146,11 @@
+             *_unpack_epilogue(epilogue),
+         )
+ 
++    def sm90_fp8_grouped_gate_up(a, b, d, grouped_layout):
++        """Grouped SM90 FC1 with 8-row gate/up interleave and canonical block scales."""
++        a_tensor, sfa, b_tensor, sfb = _unpack_ab_pair(a, b)
++        return _torch_ops.sm90_fp8_grouped_gate_up(a_tensor, sfa, b_tensor, sfb, d, grouped_layout)
++
+     def m_grouped_fp8_fp4_gemm_nt_masked(a, b, d, masked_m, expected_m, recipe=None, recipe_a=None, recipe_b=None,
+                                          compiled_dims='nk', disable_ue8m0_cast=False, epilogue=None):
+         a_tensor, sfa, b_tensor, sfb = _unpack_ab_pair(a, b)
+@@ -207,6 +212,7 @@
+         'm_grouped_fp8_fp4_gemm_nn_contiguous': m_grouped_fp8_fp4_gemm_nn_contiguous,
+         'm_grouped_fp8_fp4_gemm_nt_masked': m_grouped_fp8_fp4_gemm_nt_masked,
+         'm_grouped_fp8_gemm_nt_contiguous': m_grouped_fp8_fp4_gemm_nt_contiguous,
++        'sm90_fp8_grouped_gate_up': sm90_fp8_grouped_gate_up,
+         'm_grouped_fp8_gemm_nn_contiguous': m_grouped_fp8_fp4_gemm_nn_contiguous,
+         'm_grouped_fp8_gemm_nt_masked': m_grouped_fp8_fp4_gemm_nt_masked,
+         'k_grouped_fp8_gemm_tn_contiguous': k_grouped_fp8_gemm_tn_contiguous,
+--- a/deep_gemm/__init__.py
++++ b/deep_gemm/__init__.py
+@@ -41,6 +41,7 @@
+     fp8_fp4_gemm_nt, fp8_fp4_gemm_nn,
+     fp8_fp4_gemm_tn, fp8_fp4_gemm_tt,
+     m_grouped_fp8_fp4_gemm_nt_contiguous,
++    sm90_fp8_grouped_gate_up,
+     m_grouped_fp8_fp4_gemm_nn_contiguous,
+     m_grouped_fp8_fp4_gemm_nt_masked,
+     # FP8/FP4 GEMMs (alias)
+--- a/deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
++++ b/deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
+@@ -43,7 +43,7 @@
+           uint32_t kNumTMAThreads, uint32_t kNumMathThreads,
+           uint32_t kNumTMAMulticast, bool kIsTMAMulticastOnA,
+           uint32_t kNumSMs, GemmType kGemmType,
+-          typename cd_dtype_t>
++          typename cd_dtype_t, bool kGateUpInterleaved = false>
+ CUTLASS_GLOBAL __launch_bounds__(kNumTMAThreads + kNumMathThreads, 1) void
+ sm90_fp8_gemm_1d2d_impl(float* sfb, int* grouped_layout,
+                         uint32_t shape_m, uint32_t shape_n, uint32_t shape_k,
+@@ -72,7 +72,9 @@
+     shape_k = SHAPE_K != 0 ? SHAPE_K : shape_k;
+ 
+     // Shared memory
+-    static constexpr bool kMustUseUniformedScaleB = (BLOCK_K % BLOCK_N == 0);
++    static constexpr bool kMustUseUniformedScaleB = BLOCK_K % BLOCK_N == 0 and not kGateUpInterleaved;
++    DG_STATIC_ASSERT(not kGateUpInterleaved or (BLOCK_N <= 128 and 256 % BLOCK_N == 0),
++                     "Interleaved FC1 tiles must not cross a logical scale block");
+     static constexpr uint32_t SMEM_D_SIZE = math::constexpr_align(BLOCK_M * BLOCK_N * static_cast<uint32_t>(sizeof(__nv_bfloat16)), 1024u);
+     static constexpr uint32_t SMEM_A_SIZE_PER_STAGE = BLOCK_M * BLOCK_K * sizeof(__nv_fp8_e4m3);
+     static constexpr uint32_t SMEM_B_SIZE_PER_STAGE = BLOCK_N * BLOCK_K * sizeof(__nv_fp8_e4m3);
+@@ -228,11 +230,11 @@
+             // Decide the number of scales B to load
+             DG_TRAP_ONLY_DEVICE_ASSERT(shape_n % 8 == 0);
+             uint32_t num_former_iters = BLOCK_N / 8, num_full_iters = num_former_iters;
+-            if constexpr (not kMustUseUniformedScaleB) {
++            if constexpr (not kMustUseUniformedScaleB and not kGateUpInterleaved) {
+                 num_former_iters = min(BLOCK_N, BLOCK_K - n_block_idx * BLOCK_N % BLOCK_K) / 8;
+                 num_full_iters = min(shape_n - n_block_idx * BLOCK_N, BLOCK_N) / 8;
+             }
+-            uint32_t num_sfb = shape_k_scales * (num_former_iters >= num_full_iters ? 1 : 2);
++            uint32_t num_sfb = shape_k_scales * (kGateUpInterleaved or num_former_iters < num_full_iters ? 2 : 1);
+ 
+             // Load B scales with math warp-groups
+             // NOTES: except the first warp, we want to overlap loading B scales with TMA stores between tasks
+@@ -240,11 +242,14 @@
+                 auto previous_group_offset = scheduler.template get_global_idx<true, sched::IndexType::SF_K>(shape_n_sfb * shape_k_scales, 0, 0, m_block_idx);
+                 const uint32_t stride_n_sfb = kMajorSFB == cute::UMMA::Major::MN ? 1 : shape_k_scales;
+                 const uint32_t stride_k_sfb = kMajorSFB == cute::UMMA::Major::MN ? shape_n_sfb : 1;
+-                auto local_sfb = sfb + previous_group_offset + ((n_block_idx * BLOCK_N) / BLOCK_K) * stride_n_sfb;
++                const uint32_t scale_tile_width = kGateUpInterleaved ? 2 * BLOCK_K : BLOCK_K;
++                const uint32_t second_scale_offset = kGateUpInterleaved ? shape_n_sfb / 2 : 1;
++                auto local_sfb = sfb + previous_group_offset + (n_block_idx * BLOCK_N / scale_tile_width) * stride_n_sfb;
+ 
+                 #pragma unroll
+                 for (uint32_t i = threadIdx.x - 32; i < num_sfb; i += kNumMathThreads - 32)
+-                    ptx::st_shared(smem_sfb + i, i < shape_k_scales ? local_sfb[i * stride_k_sfb] : local_sfb[(i - shape_k_scales) * stride_k_sfb + stride_n_sfb]);
++                    ptx::st_shared(smem_sfb + i, i < shape_k_scales ? local_sfb[i * stride_k_sfb] :
++                        local_sfb[(i - shape_k_scales) * stride_k_sfb + second_scale_offset * stride_n_sfb]);
+             }
+             cutlass::arch::NamedBarrier::sync(kNumMathThreads, 0);
+ 
+@@ -271,7 +276,8 @@
+             // Skip useless computations
+             if (scheduler.is_computation_valid(m_block_idx, math_wg_idx * WGMMA::M)) {
+                 // The compiler must know the dynamic variable `num_former_iters`'s real value
+-                constexpr bool kShouldOptimize = BLOCK_K / math::constexpr_gcd(BLOCK_K, BLOCK_N) <= 4 and not kMustUseUniformedScaleB;
++                constexpr bool kShouldOptimize = BLOCK_K / math::constexpr_gcd(BLOCK_K, BLOCK_N) <= 4 and
++                    not kMustUseUniformedScaleB and not kGateUpInterleaved;
+                 constexpr uint32_t kGap = math::constexpr_gcd(BLOCK_K, BLOCK_N) / 8;
+                 constexpr uint32_t kEnd = kShouldOptimize ? BLOCK_K / 8 : 0;
+ 
+@@ -337,7 +343,7 @@
+                             #pragma unroll
+                             for (uint32_t i = 0; i < WGMMA::kNumAccum / 4; ++ i) {
+                                 // NOTES: for unrolled `num_former_iters` cases, we expect the compiler to automatically make it a constant
+-                                const bool predicate = kMustUseUniformedScaleB or i < num_former_iters;
++                                const bool predicate = kGateUpInterleaved ? i % 2 == 0 : kMustUseUniformedScaleB or i < num_former_iters;
+                                 shifted_accum[i * 4 + 0] += (predicate ? scale_0_0 : scale_0_1) * accum[i * 4 + 0];
+                                 shifted_accum[i * 4 + 1] += (predicate ? scale_0_0 : scale_0_1) * accum[i * 4 + 1];
+                                 shifted_accum[i * 4 + 2] += (predicate ? scale_1_0 : scale_1_1) * accum[i * 4 + 2];

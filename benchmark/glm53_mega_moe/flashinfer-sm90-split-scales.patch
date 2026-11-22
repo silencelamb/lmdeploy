@@ -1,0 +1,308 @@
+diff --git a/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/backend.py b/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/backend.py
+index 3a5b45e3..d7221800 100644
+--- a/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/backend.py
++++ b/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/backend.py
+@@ -196,6 +196,7 @@ class Sm90PullFp8MegaKernelBackend(MegaKernelBackend):
+             "kind": k.kind,
+             "fp8_scale_mode": k.fp8_scale_mode,
+             "fp8_accum_mode": k.fp8_accum_mode,
++            "fc1_split_weight_scales": k.fc1_split_weight_scales,
+             "knobs": self._workspace_knobs(fleet_params),
+             "swap_ab": k.swap_ab,
+             "pingpong": k.pingpong,
+diff --git a/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/config.py b/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/config.py
+index 7d684188..a6103bc7 100644
+--- a/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/config.py
++++ b/flashinfer/moe_ep/backends/mega/kernel/sm90/fp8_fp8_bf16_pull_cutedsl/config.py
+@@ -47,6 +47,9 @@ class Sm90_Fp8_Fp8_Bf16_PullCutedsl_MegaMoeConfig:
+     kind: Literal["fp8_e4m3", "fp8_e5m2"] = "fp8_e4m3"
+     fp8_scale_mode: Literal["per_tensor", "blockwise"] = "per_tensor"
+     fp8_accum_mode: Literal["1xacc", "2xacc"] = "1xacc"
++    # FC1 scale rows are [gate_0, up_0, gate_1, up_1, ...]. Two
++    # interleaved 128-row weight tiles consume the same pair.
++    fc1_split_weight_scales: bool = False
+     # Kernel tuning knobs (see kernel_src...pull_style_cutedsl_megakernel
+     # shim/tuner.py).  None -> knob-cache lookup, else the drop's
+     # token-bucket heuristic table; a dict applies those knobs; "auto" runs
+diff --git a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/shim/hopper_fp8.py b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/shim/hopper_fp8.py
+index 12944169..28fd069b 100644
+--- a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/shim/hopper_fp8.py
++++ b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/shim/hopper_fp8.py
+@@ -126,6 +126,7 @@ class MegaMoEHopperFp8Config:
+ 
+     kind: Literal["fp8_e4m3", "fp8_e5m2"] = "fp8_e4m3"
+     fp8_scale_mode: Literal["per_tensor", "blockwise"] = "per_tensor"
++    fc1_split_weight_scales: bool = False
+     fp8_accum_mode: Literal["1xacc", "2xacc"] = "1xacc"
+     swap_ab: bool = False
+     # Ping-pong task-tile scheduling: two WGMMA+epilogue warpgroups alternate
+@@ -229,6 +230,10 @@ class MegaMoEHopperFp8Config:
+                 "fp8_scale_mode must be 'per_tensor' or 'blockwise', "
+                 f"got {self.fp8_scale_mode!r}."
+             )
++        if self.fc1_split_weight_scales and (
++            self.fp8_scale_mode != "blockwise" or self.intermediate % 128
++        ):
++            raise ValueError("Split FC1 weight scales require complete 128-row FP8 blocks.")
+         if self.fp8_accum_mode not in ("1xacc", "2xacc"):
+             raise ValueError(
+                 "fp8_accum_mode must be '1xacc' or '2xacc', "
+@@ -690,6 +695,7 @@ class MegaMoEHopperFp8Frontend:
+             FUSED_COMM_OPTIMIZATION_VERSION,
+             c.kind,
+             c.fp8_scale_mode,
++            c.fc1_split_weight_scales,
+             c.fp8_accum_mode,
+             c.swap_ab,
+             c.pingpong,
+@@ -816,6 +822,7 @@ class MegaMoEHopperFp8Frontend:
+             sf_vec_size=Fp8E8M0SfVecSize,
+             fp8_scale_mode=c.fp8_scale_mode,
+             fp8_accum_mode=c.fp8_accum_mode,
++            fc1_split_weight_scales=c.fc1_split_weight_scales,
+             pingpong=c.pingpong,
+             world_size=c.world_size,
+             local_rank=c.rank,
+@@ -1395,6 +1402,7 @@ def resolve_hopper_fp8_mega_moe_config(
+     kind: HopperFp8Kind = "fp8_e4m3",
+     fp8_scale_mode: Literal["per_tensor", "blockwise"] = "per_tensor",
+     fp8_accum_mode: Literal["1xacc", "2xacc"] = "1xacc",
++    fc1_split_weight_scales: bool = False,
+     knobs: Optional[Any] = None,
+     swap_ab: Optional[bool] = None,
+     pingpong: Optional[bool] = None,
+@@ -1544,6 +1552,7 @@ def resolve_hopper_fp8_mega_moe_config(
+         kind=kind,
+         fp8_scale_mode=fp8_scale_mode,
+         fp8_accum_mode=fp8_accum_mode,
++        fc1_split_weight_scales=fc1_split_weight_scales,
+         swap_ab=swap_ab,
+         pingpong=pingpong,
+         mma_tiler_mnk=mma_tiler_mnk,
+@@ -1592,6 +1601,7 @@ def get_symm_buffer_for_hopper_fp8_mega_moe(
+     kind: HopperFp8Kind = "fp8_e4m3",
+     fp8_scale_mode: Literal["per_tensor", "blockwise"] = "per_tensor",
+     fp8_accum_mode: Literal["1xacc", "2xacc"] = "1xacc",
++    fc1_split_weight_scales: bool = False,
+     # knobs=None resolves the knob cache (offline-tuned winners) and falls
+     # back to the heuristic table; a dict applies those knobs directly;
+     # "auto" starts from the resolved knobs and re-tunes at the first
+@@ -1665,6 +1675,7 @@ def get_symm_buffer_for_hopper_fp8_mega_moe(
+         kind=kind,
+         fp8_scale_mode=fp8_scale_mode,
+         fp8_accum_mode=fp8_accum_mode,
++        fc1_split_weight_scales=fc1_split_weight_scales,
+         knobs=knobs,
+         swap_ab=swap_ab,
+         pingpong=pingpong,
+diff --git a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12.py b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12.py
+index 1008d41a..7cc600ff 100644
+--- a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12.py
++++ b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12.py
+@@ -615,7 +615,12 @@ class Sm90SwigluFp8Fc12Kernel:
+     def _weight_sf_bytes_per_stage(self) -> int:
+         if self.fp8_scale_mode != "blockwise":
+             return 0
+-        return self.wgmma_warpgroup_count * cutlass.Float32.width // 8
++        return self._weight_sf_rows() * cutlass.Float32.width // 8
++
++    fc1_split_weight_scales: bool = False
++
++    def _weight_sf_rows(self) -> int:
++        return self.wgmma_warpgroup_count * (2 if self.fc1_split_weight_scales else 1)
+ 
+     def _smem_misc_budget_bytes(self) -> int:
+         """Per-CTA SMEM reserved outside the AB-stage pipeline.
+@@ -1169,29 +1174,39 @@ class Sm90SwigluFp8Fc12Kernel:
+         accum_temp: cute.Tensor,
+         activation_scales: cute.Tensor,
+         weight_scale: Float32,
++        weight_scale_up=None,
+     ) -> None:
+         accum_regs_per_m64 = self.wgmma_tile_n // 2  # n // 8 * 4 = n // 2
+         groups_per_m64 = self.wgmma_tile_n // 8
+         for m_sub in cutlass.range_constexpr(self.wgmma_m_fragments):
+             row0_scale = activation_scales[m_sub * 2] * weight_scale
+             row1_scale = activation_scales[m_sub * 2 + 1] * weight_scale
++            if cutlass.const_expr(weight_scale_up is not None):
++                row0_scale_up = activation_scales[m_sub * 2] * weight_scale_up
++                row1_scale_up = activation_scales[m_sub * 2 + 1] * weight_scale_up
+             for group_idx in cutlass.range_constexpr(groups_per_m64):
++                # The N fragments advance by eight columns. Gate and up
++                # therefore alternate at the register group boundary.
++                if cutlass.const_expr(weight_scale_up is not None and group_idx % 2 == 1):
++                    scale0, scale1 = row0_scale_up, row1_scale_up
++                else:
++                    scale0, scale1 = row0_scale, row1_scale
+                 base = m_sub * accum_regs_per_m64 + group_idx * 4
+                 accumulators[base + 0] = (
+                     accumulators[base + 0]
+-                    + accum_temp[base + 0] * row0_scale
++                    + accum_temp[base + 0] * scale0
+                 )
+                 accumulators[base + 1] = (
+                     accumulators[base + 1]
+-                    + accum_temp[base + 1] * row0_scale
++                    + accum_temp[base + 1] * scale0
+                 )
+                 accumulators[base + 2] = (
+                     accumulators[base + 2]
+-                    + accum_temp[base + 2] * row1_scale
++                    + accum_temp[base + 2] * scale1
+                 )
+                 accumulators[base + 3] = (
+                     accumulators[base + 3]
+-                    + accum_temp[base + 3] * row1_scale
++                    + accum_temp[base + 3] * scale1
+                 )
+ 
+     def _activation_scale_rmem_layout(self) -> cute.Layout:
+@@ -1228,12 +1243,14 @@ class Sm90SwigluFp8Fc12Kernel:
+         accum_temp: cute.Tensor,
+         activation_scales: cute.Tensor,
+         weight_scale: Float32,
++        weight_scale_up=None,
+     ) -> None:
+         self._promote_accum_temp_blockwise_rows(
+             accumulators=accumulators,
+             accum_temp=accum_temp,
+             activation_scales=activation_scales,
+             weight_scale=weight_scale,
++            weight_scale_up=weight_scale_up,
+         )
+ 
+     @cute.jit
+@@ -1356,6 +1373,12 @@ class Sm90SwigluFp8Fc12Kernel:
+                 weight_scale = Float32(
+                     smem_weight_sf[n_half, ab_consumer_state.index]
+                 )
++                if cutlass.const_expr(self.fc1_split_weight_scales):
++                    weight_scale_up = Float32(smem_weight_sf[
++                        n_half + self.wgmma_warpgroup_count, ab_consumer_state.index
++                    ])
++                else:
++                    weight_scale_up = None
+                 weight_sf_pipeline.consumer_release(ab_consumer_state)
+                 if iket_active:
+                     iket.range_push("wgmma_wait_release")
+@@ -1368,6 +1391,7 @@ class Sm90SwigluFp8Fc12Kernel:
+                     accum_temp=accum_temp,
+                     activation_scales=activation_scales,
+                     weight_scale=weight_scale,
++                    weight_scale_up=weight_scale_up,
+                 )
+             else:
+                 half_k_blocks = num_k_blocks // 2
+@@ -1624,8 +1648,15 @@ class Sm90SwigluFp8Fc12Kernel:
+     ) -> None:
+         """Copy one K128 weight scale per WGMMA warpgroup into this stage."""
+         lane_idx = tidx % cutlass.Int32(32)
+-        if lane_idx < cutlass.Int32(self.wgmma_warpgroup_count):
+-            output_scale_block = output_scale_block_base + lane_idx
++        scale_lanes = cutlass.Int32(self.wgmma_warpgroup_count)
++        output_scale_block = output_scale_block_base + lane_idx
++        if cutlass.const_expr(self.fc1_split_weight_scales):
++            if work_tile_info.phase == cutlass.Int32(BlockPhase.Linear1):
++                half = lane_idx // scale_lanes
++                tile = output_scale_block_base + lane_idx % scale_lanes
++                output_scale_block = tile // 2 * 2 + half
++                scale_lanes *= 2
++        if lane_idx < scale_lanes:
+             gmem_scale = cute.make_tensor(
+                 weight_sf_gemm.iterator
+                 + cute.crd2idx(
+@@ -3053,8 +3084,8 @@ class Sm90SwigluFp8Fc12Kernel:
+         )
+         if cutlass.const_expr(self.fp8_scale_mode == "blockwise"):
+             weight_sf_smem_layout_staged = cute.make_layout(
+-                (self.wgmma_warpgroup_count, self.num_ab_stage),
+-                stride=(1, self.wgmma_warpgroup_count),
++                (self._weight_sf_rows(), self.num_ab_stage),
++                stride=(1, self._weight_sf_rows()),
+             )
+             sActivationSf = smem.allocate_tensor(
+                 element_type=cutlass.Float32,
+diff --git a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12_swapab.py b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12_swapab.py
+index b41ff858..37b631f3 100644
+--- a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12_swapab.py
++++ b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/kernel_fp8_glu_fc12_swapab.py
+@@ -415,8 +415,8 @@ class Sm90SwapABSwigluFp8Fc12Kernel(_Sm90Fp8Fc12KernelBase):
+ 
+     def _weight_aux_smem_layout_staged(self) -> cute.Layout:
+         return cute.make_layout(
+-            (self.wgmma_warpgroup_count, self.num_ab_stage),
+-            stride=(1, self.wgmma_warpgroup_count),
++            (self._weight_sf_rows(), self.num_ab_stage),
++            stride=(1, self._weight_sf_rows()),
+         )
+ 
+     def _weight_sf_stage_count(self) -> int:
+@@ -751,12 +751,20 @@ class Sm90SwapABSwigluFp8Fc12Kernel(_Sm90Fp8Fc12KernelBase):
+         accum_temp: cute.Tensor,
+         activation_scales: cute.Tensor,
+         weight_scale: Float32,
++        weight_scale_up=None,
+     ) -> None:
+         accum_regs_per_m64 = self.wgmma_tile_n // 2  # n // 8 * 4 = n // 2
+         token_group_count = self.wgmma_tile_n // 8
+         for token_group in cutlass.range_constexpr(token_group_count):
+             token0_scale = activation_scales[token_group * 2] * weight_scale
+             token1_scale = activation_scales[token_group * 2 + 1] * weight_scale
++            if cutlass.const_expr(weight_scale_up is not None):
++                # Swap-AB puts gate in the first WGMMA row and up in the
++                # second row, eight weight channels apart.
++                token0_scale_up = activation_scales[token_group * 2] * weight_scale_up
++                token1_scale_up = activation_scales[token_group * 2 + 1] * weight_scale_up
++            else:
++                token0_scale_up, token1_scale_up = token0_scale, token1_scale
+             for m_sub in cutlass.range_constexpr(2):
+                 m_sub_base = m_sub * accum_regs_per_m64
+                 base = m_sub_base + token_group * 4
+@@ -767,10 +775,10 @@ class Sm90SwapABSwigluFp8Fc12Kernel(_Sm90Fp8Fc12KernelBase):
+                     accumulators[base + 1] + accum_temp[base + 1] * token1_scale
+                 )
+                 accumulators[base + 2] = (
+-                    accumulators[base + 2] + accum_temp[base + 2] * token0_scale
++                    accumulators[base + 2] + accum_temp[base + 2] * token0_scale_up
+                 )
+                 accumulators[base + 3] = (
+-                    accumulators[base + 3] + accum_temp[base + 3] * token1_scale
++                    accumulators[base + 3] + accum_temp[base + 3] * token1_scale_up
+                 )
+ 
+     @cute.jit
+@@ -780,12 +788,14 @@ class Sm90SwapABSwigluFp8Fc12Kernel(_Sm90Fp8Fc12KernelBase):
+         accum_temp: cute.Tensor,
+         activation_scales: cute.Tensor,
+         weight_scale: Float32,
++        weight_scale_up=None,
+     ) -> None:
+         self._promote_accum_temp_blockwise_token_pairs(
+             accumulators=accumulators,
+             accum_temp=accum_temp,
+             activation_scales=activation_scales,
+             weight_scale=weight_scale,
++            weight_scale_up=weight_scale_up,
+         )
+ 
+     @cute.jit
+diff --git a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/megamoe_kernel_fp8.py b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/megamoe_kernel_fp8.py
+index 93de3dc3..71dd6c24 100644
+--- a/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/megamoe_kernel_fp8.py
++++ b/flashinfer/moe_ep/kernel_src/sm90/pull_style_cutedsl_megakernel/src/moe_hopper_fp8/megamoe_kernel_fp8.py
+@@ -137,6 +137,7 @@ class Sm90MegaMoEFp8Kernel(Sm90SwigluFp8Fc12Kernel):
+         sf_vec_size: int = Fp8E8M0SfVecSize,
+         fp8_scale_mode: str = "per_tensor",
+         fp8_accum_mode: str = "1xacc",
++        fc1_split_weight_scales: bool = False,
+         pingpong: bool = False,
+         scenario: str = "2Dx3D",
+         # MegaMoE-specific independent constants.
+@@ -198,6 +199,7 @@ class Sm90MegaMoEFp8Kernel(Sm90SwigluFp8Fc12Kernel):
+                 "score was already absorbed before fc2."
+             )
+ 
++        self.fc1_split_weight_scales = fc1_split_weight_scales
+         super().__init__(
+             mma_tiler_mnk=mma_tiler_mnk,
+             cluster_shape_mnk=cluster_shape_mnk,
