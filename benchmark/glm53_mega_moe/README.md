@@ -272,16 +272,16 @@ Set `LMDEPLOY_DP_SYNC_METADATA=1` to measure synchronous completion of the CPU D
 ### Measuring prefill interference with MTP
 
 With eight worker URLs in DP-rank order, use the following client for each
-MTP5 server. It runs two cold 8K/256 rolling loads at C=64 and measures the
+MTP3 or MTP5 server. Pass the same `--draft-depth` as the server. It runs two cold 8K/256 rolling loads at C=64 and measures the
 same 32 warm probes with and without a new wave of 24 long prefills. The
 second repetition reverses the arm order. Each probe emits exactly 512 tokens.
 
 ```bash
 python benchmark/glm53_mega_moe/mtp_interference.py \
-  --api generate --urls "${LMDEPLOY_URLS[@]}" --monitor-port 20980 \
+  --draft-depth 3 --api generate --urls "${LMDEPLOY_URLS[@]}" --monitor-port 20980 \
   --tokenizer "$MODEL_SNAPSHOT" --output "$LMD_RUN/fixed"
 python benchmark/glm53_mega_moe/mtp_interference.py \
-  --api completions --urls "${VLLM_URLS[@]}" \
+  --draft-depth 3 --api completions --urls "${VLLM_URLS[@]}" \
   --tokenizer "$MODEL_SNAPSHOT" --output "$VLLM_RUN/fixed"
 ```
 

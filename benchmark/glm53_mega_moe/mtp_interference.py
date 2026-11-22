@@ -1,4 +1,4 @@
-"""Two matched MTP5 diagnostics: rolling fixed I/O and a controlled prefill arrival."""
+"""Measure fixed I/O and controlled prefill arrivals at a selected MTP depth."""
 
 import argparse
 import asyncio
@@ -64,10 +64,10 @@ async def counters(session, args, tag):
     return {k: sum(r.get(k, 0) for r in ranks) for k in COUNTERS}
 
 
-def difference(before, after):
+def difference(before, after, draft_depth):
     d = {k: after[k] - before[k] for k in COUNTERS}
     nd, nt, na = (d[k] for k in COUNTERS[:3])
-    assert nd > 0 and 0 <= na <= nt and 0 < nt <= 5 * nd, d
+    assert nd > 0 and 0 <= na <= nt and 0 < nt <= draft_depth * nd, d
     d["proposed_per_draft"] = nt / nd
     d["accepted_fraction"] = na / nt
     d["submitted_per_draft"] = 1 + na / nd
@@ -184,7 +184,7 @@ async def interference(session, args, tokenizer, repeat, inject):
         extra_count=len(extra),
         tpot_ms=fixed_io.quantiles(tpot),
         max_chunk_gap_ms_per_probe=fixed_io.quantiles(gaps),
-        spec=difference(before, after),
+        spec=difference(before, after, args.draft_depth),
     )
     save(args.output / (tag + "-summary.json"), result)
     print(tag, result["tpot_ms"], result["max_chunk_gap_ms_per_probe"], flush=True)
@@ -192,6 +192,7 @@ async def interference(session, args, tokenizer, repeat, inject):
 
 async def main(args):
     args.output.mkdir(exist_ok=False, parents=True)
+    save(args.output / "workload.json", {"draft_depth": args.draft_depth, "workers": len(args.urls)})
     tokenizer = Tokenizer.from_file(str(args.tokenizer / "tokenizer.json"))
     args.random_tokens = True
     args.placement = "least-loaded"
@@ -209,7 +210,7 @@ async def main(args):
             assert ok
             await asyncio.sleep(1)
             after = await counters(session, args, tag + "-after")
-            save(args.output / (tag + "-counters.json"), difference(before, after))
+            save(args.output / (tag + "-counters.json"), difference(before, after, args.draft_depth))
         for repeat, order in enumerate(((False, True), (True, False))):
             for inject in order:
                 await interference(session, args, tokenizer, repeat, inject)
@@ -217,6 +218,7 @@ async def main(args):
 
 if __name__ == "__main__":
     cli = argparse.ArgumentParser(description=__doc__)
+    cli.add_argument("--draft-depth", type=int, choices=(3, 5), required=True)
     cli.add_argument("--urls", nargs=8, required=True)
     cli.add_argument("--monitor-port", type=int, default=20980, help="First LMDeploy worker monitoring port")
     cli.add_argument("--tokenizer", type=Path, required=True)

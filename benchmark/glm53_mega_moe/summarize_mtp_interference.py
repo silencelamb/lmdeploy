@@ -1,4 +1,4 @@
-"""Rebuild MTP5 service and prefill-interference measurements from raw token arrivals."""
+"""Rebuild MTP service and prefill-interference measurements from raw token arrivals."""
 
 import argparse
 import gzip
@@ -163,6 +163,9 @@ if __name__ == "__main__":
     cli.add_argument("lmd", type=Path)
     cli.add_argument("vllm", type=Path)
     args = cli.parse_args()
+    configs = [run / "fixed" / "workload.json" for run in (args.lmd, args.vllm)]
+    if any(path.exists() for path in configs):
+        assert all(path.is_file() for path in configs) and read(configs[0]) == read(configs[1]), configs
     d = {"lmdeploy": arm(args.lmd), "vllm": arm(args.vllm)}
     assert d["lmdeploy"]["rolling"]["seeds"] == d["vllm"]["rolling"]["seeds"]
     hashes = d["lmdeploy"]["probe32"]["alone"]["probe_ids"]
