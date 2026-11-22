@@ -20,6 +20,19 @@
 
 8K/256、C=64 下，LMDeploy 的同配置吞吐提高 21.7%。同一台机器上的滚动请求对照也显示，长输入补入时首 token 前等待显著影响整机结果。
 
+## 同驻留显存与冷长输入
+
+在约 125,451 MiB/rank 的相近就绪驻留下，以单布局和原生 prefill 比较三种 decode 后端。以下为 C=32、固定输出 1,024 tokens、每档两轮的端到端输出吞吐。长 prompt 的冷 prefill 以及生成中出现的停顿均计入墙钟时间。
+
+| 输入长度 | 原生 tok/s | DeepGEMM tok/s | FlashInfer tok/s |
+| --- | ---: | ---: | ---: |
+| 2K | 1,956 | 2,088 | 1,967 |
+| 8K | 1,680 | 1,822 | 1,690 |
+| 32K | 952 | 968 | 971 |
+| 64K | 703 | 658 | 629 |
+
+在这组原生 prefill 对照中，两种融合后端均未改善 64K 冷输入的端到端吞吐。另有双布局、固定 49,152 个物理块的完整矩阵，覆盖 2K–64K、C=8/32/64，全部 2,496 条请求通过流式 token 计数校验。两组的吞吐、延迟分位数与显存峰值均保存在 [结构化结果](../../../benchmark/glm53_mega_moe/results/h200_megamoe.json)。
+
 ## AgentX 长窗与 MTP
 
 Weka 256K 公开 trace，C=32，seed 42，每 lane 预热 10 条，每组一个 1,800 秒正式窗口。这组使用本地 prefix cache 和 sticky-least-loaded 路由。各组通过调节 KV 块数对齐约 125,451 MiB/rank 的就绪驻留预算。逐请求 SLO 是 TTFT 3 秒、每用户输出 40 tok/s。
@@ -30,6 +43,8 @@ Weka 256K 公开 trace，C=32，seed 42，每 lane 预热 10 条，每组一个 
 | 3 | 966.51 | 1,052.21 | 8.87% | 17.83 → 15.01 ms | 1,424 → 1,698 |
 | 5 | 1,045.56 | 1,096.64 | 4.89% | 16.12 → 13.77 ms | 1,579 → 1,796 |
 
+在 MTP0 下仅融合 decode 时，DeepGEMM 和 FlashInfer 的 C=32 长窗分别为 601.31 和 562.91 tok/s，原生为 575.86 tok/s。表内 645.22 tok/s 则包含 DeepGEMM prefill 融合。
+
 MTP3 和 MTP5 的 MegaMoE 候选在每次验证中平均可提交 3.079 / 3.769 个 token。在相近驻留显存下，MTP3 保有 3,178,624 个可用 KV tokens/rank，MTP5 为 2,331,456。跨深度增加 4.22% 全机输出吞吐的同时，每 rank 可用 KV 减少 847,168 tokens。MTP3 因而是高并发、长上下文部署值得优先评估的深度。闭环轨迹会随执行速度推进到不同回合，结构化结果也保留各组请求数、缓存命中率及客户端错误计数。
 
 ## 固定形状和数值边界
@@ -37,3 +52,5 @@ MTP3 和 MTP5 的 MegaMoE 候选在每次验证中平均可提交 3.079 / 3.769 
 单 rank 先做 8 条真实的 65,536-token prefill，再沿相同 token 历史运行 512 步。prefill 使用原生路径时，原生、DeepGEMM 和 FlashInfer 的整步 decode 约为 18.66、17.24、18.48 ms，以三轮中最慢 rank 的轮均值计量。与原生对照，DeepGEMM 和 FlashInfer 的 argmax 匹配约 97.72% 和 97.78%。42 个 routed MoE 层之外，模型还有线性投影、KDA、MLA 和 KPool，它们共同决定整步耗时。
 
 开启融合 prefill 后，整组 64K prefill 的 rank 中位时间从 53.58 秒降至 47.40 秒。64 条输入有 32 条首 token 匹配原生，沿参考轨迹的 decode argmax 匹配 97.26%。最大 rank 的采样 logits 相对 L2 为 19.16%。完整 GSM8K 的配对 5-shot greedy 自由生成中，保留原生 prefill 时答对 1,219/1,319，启用融合 prefill 时答对 1,216/1,319，差 −0.23 个百分点，配对 bootstrap 95% 区间为 [−1.36, +0.91] 个百分点。需要逐 token 复现的部署应使用已验证的参考路径。固定形状工具将 KV 存储字节与 MLA/KPool 数值采样分别报告。
+
+MTP3 配合 RDMA Mooncake 的 QA 对照采用独立的 seed 和阶梯条件。[MTP3 + Mooncake 阶梯复验](glm53_agentx_mooncake.md)
