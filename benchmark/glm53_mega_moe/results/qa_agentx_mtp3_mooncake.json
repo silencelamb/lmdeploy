@@ -1,0 +1,146 @@
+{
+  "scenario": "inferencex-agentx-mvp",
+  "dataset": "semianalysis_cc_traces_weka_062126_256k",
+  "seed": 20260707,
+  "context_limit": 256000,
+  "window_s": 1800,
+  "thresholds": {
+    "ttft_p50_ms_lt": 3000,
+    "tpot_p50_ms_lt": 25,
+    "qa_goodput_ttft_ms": 3000,
+    "qa_goodput_user_tps": 40,
+    "qa_goodput_target_rps": 0.0074468
+  },
+  "environment": {
+    "hardware": "single node, 8 NVIDIA H200",
+    "dp": 8,
+    "ep": 8,
+    "tp": 1,
+    "mtp": 3,
+    "model_revision": "3f1971b7b5f7a528c9c4ef6212c8785298a8c24a",
+    "moe": "deepgemm_mega_moe, interleaved, shared expert fused, prefill capacity 8192",
+    "kda_prefill": "FlashKDA",
+    "kv_dtype": "BF16 MLA",
+    "max_batch_size_per_rank": 32,
+    "max_prefill_tokens_per_rank": 8192,
+    "session_len": 524288,
+    "cache_fraction": 0.7,
+    "prefix_checkpoint_budget": 32,
+    "prefill_save_alignment": 64,
+    "prefill_save_last_only": true,
+    "decode_save_first": true,
+    "decode_checkpoint_interval": 1024,
+    "mooncake": {
+      "connector": "MooncakeStoreConnector",
+      "role": "kv_both",
+      "protocol": "rdma",
+      "metadata": "P2PHANDSHAKE",
+      "segment_gib_per_rank": 160,
+      "local_buffer_gib_per_rank": 4,
+      "ssd_offload": false
+    },
+    "router": "sticky_least_loaded",
+    "lifecycle": "fresh server and Mooncake store at each level"
+  },
+  "points": [
+    {
+      "concurrency": 70,
+      "formal_seconds": 1800,
+      "duration_s": 1828.2181770240002,
+      "completed": 2307.0,
+      "good_requests": 1797.0,
+      "attainment": 0.7789336801040312,
+      "goodput_rps": 0.9766295724027729,
+      "decode_tok_s": 1285.2227781708104,
+      "ttft_ms": {
+        "p50": 695.8017689999999,
+        "p95": 2786.8496022999993,
+        "p99": 10786.95624262002
+      },
+      "tpot_ms": {
+        "p50": 15.18923959159159,
+        "p95": 47.56601921825171,
+        "p99": 101.85779146804835
+      },
+      "user_tps_p50": 65.56814001488786,
+      "both_medians_pass": true,
+      "cached_token_ratio": 0.9224129841673113,
+      "outcomes": {
+        "warmup": {
+          "completed": 28,
+          "InvalidInferenceResultError": 43
+        },
+        "profiling": {
+          "completed": 2307
+        }
+      },
+      "aiperf_version": "0.12.0",
+      "submission_valid": true,
+      "coverage": {
+        "required_ratio": 0.95,
+        "ttft_ratio": 0.9979475645155556,
+        "inter_token_latency_ratio": 1.0
+      },
+      "server_formal_counters": {
+        "external_prefix_cache_hits": 2535488,
+        "external_prefix_cache_queries": 26950187,
+        "spec_decode_num_drafts": 760654,
+        "spec_decode_num_draft_tokens": 2281962,
+        "spec_decode_num_accepted_tokens": 1560069
+      },
+      "mean_submitted_per_draft": 3.0509574655493825,
+      "idle_max_gpu_mib": 125655,
+      "peak_gpu_mib": 132753,
+      "usable_kv_tokens_per_rank_min": 3072320,
+      "usable_kv_tokens_per_rank_max": 3078528,
+      "store_cross_worker_smoke_cached_tokens": 6592
+    }
+  ],
+  "comparison": {
+    "70": {
+      "lmdeploy": {
+        "old": {
+          "completed": 2297.0,
+          "request_rps": 1.25,
+          "goodput_rps": 0.6978,
+          "attainment_percent": 55.9,
+          "ttft_p50_ms": 997.5,
+          "ttft_p90_ms": 2535.71,
+          "ttft_p99_ms": 11615.03,
+          "reported_itl_avg_ms": 30.72,
+          "reported_itl_p99_ms": 173.99,
+          "user_decode_p50_tps": 46.26,
+          "decode_tok_s": 1206.72,
+          "cached_percent": 91.68
+        },
+        "new_vs_old_decode_fraction": 0.06505467562550593,
+        "new_vs_old_ttft_p50_fraction": -0.3024543669172933,
+        "new_vs_old_goodput_fraction": 0.3995837953608097,
+        "attainment_delta_pp": 21.993368010403124
+      },
+      "vllm_0_33_0": {
+        "old": {
+          "completed": 2456.0,
+          "request_rps": 1.33,
+          "goodput_rps": 0.9598,
+          "attainment_percent": 71.9,
+          "ttft_p50_ms": 814.03,
+          "ttft_p90_ms": 1788.36,
+          "ttft_p99_ms": 9058.83,
+          "reported_itl_avg_ms": 21.9,
+          "reported_itl_p99_ms": 89.67,
+          "user_decode_p50_tps": 55.74,
+          "decode_tok_s": 1299.5,
+          "cached_percent": 92.65
+        },
+        "new_vs_old_decode_fraction": -0.010986703985524815,
+        "new_vs_old_ttft_p50_fraction": -0.14523817426876162,
+        "new_vs_old_goodput_fraction": 0.017534457598221476,
+        "attainment_delta_pp": 5.993368010403117
+      }
+    }
+  },
+  "history_note": "Historical QA reference uses vLLM 0.33.0 as identified by the operator. The report publishes user throughput p50 and ITL average/p99, but no TPOT p50 or complete per-engine server manifest.",
+  "highest_tested_pass": 70,
+  "first_tested_slo_miss": null
+}

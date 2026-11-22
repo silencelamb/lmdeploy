@@ -17,6 +17,36 @@
 
 与历史 QA 对齐的是客户端场景、数据、种子、窗口与评估目标。旧 QA 表给出 LMDeploy 与 vLLM 0.33.0 的汇总，未附双方完整服务端命令、显存配额及硬件快照。历史表列出 ITL 平均值和 p99、单用户速率 p50；其中没有可直接比较的 TPOT p50。跨部署差值包含上述实现及配置差异。
 
+本次服务使用 Mooncake 0.3.12.post1。RDMA 运行环境提供对应设备、足够的锁页内存以及 NUMA 绑定权限。下面示例中的 `/config/mooncake.json` 对所有 worker 可见，实际 NIC 与 master 地址按部署填写。
+
+```json
+{
+  "mode": "embedded",
+  "metadata_server": "P2PHANDSHAKE",
+  "master_server_address": "127.0.0.1:50051",
+  "protocol": "rdma",
+  "device_name": "mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7",
+  "global_segment_size": "160GB",
+  "local_buffer_size": "4GB",
+  "enable_offload": false
+}
+```
+
+启动独立 master 后，使用下列 worker 配置。GPU 通信走单节点 NVLink，Mooncake Store 独立使用 RDMA。对齐生产实例时还需复核实际 worker URL 和管理端口。
+
+```bash
+mooncake_master -rpc_port=50051 -rpc_thread_num=4 -default_kv_lease_ttl=30000 \
+  -eviction_high_watermark_ratio=0.95 -eviction_ratio=0.1 -logtostderr
+# 在另一个终端运行 worker，DeepGEMM 与 FlashKDA provider 已安装。
+export GLM53_SPEC_TOKENS=3 GLM53_SESSION_LEN=524288 GLM53_MAX_BATCH_SIZE=32
+export GLM53_MAX_PREFILL_TOKENS=8192 LMDEPLOY_GLM53_MEGA_PREFILL_CAPACITY=8192
+export LMDEPLOY_GLM53_DEEPGEMM_WEIGHT_LAYOUT=interleaved LMDEPLOY_GLM53_DEEPGEMM_FUSE_SHARED=1
+export LMDEPLOY_GLM53_FLASHKDA_LIBRARY="$FLASHKDA_SO" MOONCAKE_CONFIG_PATH=/config/mooncake.json
+bash benchmark/glm53_mega_moe/serve.sh "$MODEL_SNAPSHOT" deepgemm_mega_moe \
+  --cache-max-entry-count 0.7 --prefill-save-last-only \
+  --kv-transfer-config '{"kv_connector":"MooncakeStoreConnector","kv_role":"kv_both","kv_connector_extra_config":{"mooncake_config_path":"/config/mooncake.json","model_name":"glm53-flash"}}'
+```
+
 以下为可移植的客户端参数。服务端需使用与集群 NIC 相符的 RDMA 配置，`WORKER_METRICS` 是八个 worker 的监控 URL。
 
 ```bash
@@ -33,3 +63,28 @@ python benchmark/glm53_mega_moe/agentx_slo.py "$RUN/profile_export_aiperf.json"
 ```
 
 评分工具在两项中位数均通过时返回 0，在有效窗口首次越过阈值时返回 10。不可用的提交或错误的正式窗口长度会单独报错。[评分实现](../../../benchmark/glm53_mega_moe/agentx_slo.py)
+
+## 本轮结果
+
+所有列均来自正式 profiling 窗。每个并发档跑一个完整窗口，输入／输出长度和实际到达回合会随闭环回放速度变化。
+
+| 总并发 | 正式有效请求 | TTFT p50 / p95 ms | TPOT p50 / p95 ms | 输出 tok/s | Goodput req/s | 逐请求达标率 | 双 p50 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 70 | 2307 | 695.80 / 2,786.85 | 15.19 / 47.57 | 1,285.22 | 0.9766 | 77.89% | 通过 |
+
+阶段性记录：目前已通过 C=70。阶梯继续进行，最终边界待首个正式未达档确定。
+
+### 与历史 QA 表对照
+
+| C | 部署 | 历史 TTFT p50 ms | 历史输出 tok/s | 当前相对历史输出变化 | 历史 Goodput req/s | 当前相对历史达标率变化 |
+| ---: | --- | ---: | ---: | ---: | ---: | ---: |
+| 70 | 旧 LMDeploy | 997.50 | 1,206.72 | +6.51% | 0.6978 | +21.99 个百分点 |
+| 70 | vLLM 0.33.0 | 814.03 | 1,299.50 | -1.10% | 0.9598 | +5.99 个百分点 |
+
+### 实际缓存和提交计数
+
+| C | 客户端缓存读取 tokens 比例 | Mooncake 外部命中 / 查询 tokens | 每轮平均可提交 tokens | 最低可用 KV tokens/rank | 最高就绪 / 峰值 MiB | 正式 / 预热错误 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 70 | 92.24% | 2,535,488 / 26,950,187 | 3.051 | 3,072,320 | 125,655 / 132,753 | 0 / 43 |
+
+外部计数取正式窗口八个 worker 的增量，客户端的缓存读取比例包含本地前缀。HBM 峰值取整个回放的 NVML 样本。每档开始前均观察到了跨 worker 恢复的 cached tokens。正式与预热错误按客户端导出分别统计。历史 QA 与本轮的差值为部署级比较，单独隔离 MegaMoE 的增益见[同深度对照](glm53_sm90_megamoe.md)。[机器可读结果](../../../benchmark/glm53_mega_moe/results/qa_agentx_mtp3_mooncake.json)
