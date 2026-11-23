@@ -4,8 +4,9 @@ import argparse
 import ast
 import json
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
+from random import Random
 from statistics import quantiles
 
 from compare_agentx_scheduling import paired, read_profile
@@ -55,6 +56,36 @@ def tail(rows):
     return result
 
 
+def matched_tail_interval(reference, before, after, repeats=1000):
+    """Resample whole Weka source trajectories among turns scored on both sides."""
+    keys = sorted(before.keys() & after.keys(), key=str)
+    index = {key: i for i, key in enumerate(keys)}
+    groups = defaultdict(list)
+    with (reference / 'profile_export.jsonl').open() as stream:
+        for line in stream:
+            meta = json.loads(line)['metadata']
+            if meta['benchmark_phase'] != 'profiling':
+                continue
+            key = tuple(meta.get(k) for k in ('conversation_id', 'turn_index', 'source_outer_idx', 'source_inner_idx'))
+            if key in index:
+                groups[meta.get('source_trace_id') or key[0]].append(index[key])
+    units = list(groups.values())
+    if len(units) < 2:
+        return None
+    assert sum(map(len, units)) == len(keys)
+    times = [(before[k]['ttft'], after[k]['ttft'], before[k]['tpot'], after[k]['tpot']) for k in keys]
+    rng = Random(20260707)
+    draws = []
+    for _ in range(repeats):
+        sample = [times[i] for unit in rng.choices(units, k=len(units)) for i in unit]
+        ref_ttft, cand_ttft, ref_tpot, cand_tpot = [quantiles(col, n=100, method='inclusive') for col in zip(*sample)]
+        draws.append((cand_ttft[94] - ref_ttft[94], cand_tpot[49] - ref_tpot[49], cand_tpot[94] - ref_tpot[94]))
+    bounds = [quantiles(col, n=40, method='inclusive') for col in zip(*draws)]
+    intervals = [[round(quant[0], 3), round(quant[-1], 3)] for quant in bounds]
+    return dict(source_traces=len(units), turns=len(keys), resamples=repeats, seed=20260707,
+                delta_ms=dict(zip(('ttft_p95', 'tpot_p50', 'tpot_p95'), intervals)))
+
+
 def agentx_delta(reference, candidate):
     original_setup, original, before = read_profile(reference)
     new_setup, changed, after = read_profile(candidate)
@@ -75,7 +106,8 @@ def agentx_delta(reference, candidate):
     delta = {key: round(100 * (changed[key] / original[key] - 1), 3) for key in
              ('ttft_p95_ms', 'tpot_p50_ms', 'tpot_p95_ms', 'output_tokens_per_s', 'goodput_rps')}
     return dict(reference=original, candidate=changed, change_percent=delta, common_turns=tail(common),
-                common_equal_input_output_cache=tail(same_work), common_by_reference_uncached_tokens=buckets)
+                common_equal_input_output_cache=tail(same_work), common_by_reference_uncached_tokens=buckets,
+                matched_source_bootstrap_95=matched_tail_interval(reference, before, after))
 
 
 if __name__ == '__main__':
