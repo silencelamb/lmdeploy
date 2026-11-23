@@ -209,3 +209,40 @@ def test_long_overlap_only_borrows_a_protected_turn_for_its_existing_chunk(enabl
     assert task.state.active_chunk_deferred == (not expected)
     maker.long_context_chunker.initial_query_tokens = 1024
     assert not maker.can_overlap_long_continuation()
+
+
+@pytest.mark.parametrize(('previous', 'following', 'selected', 'expect_mix'), [
+    ('long', None, 'long', True),   # The final chunk cleared its owner during selection.
+    (None, 'long', 'long', True),   # A newly admitted, post-match long prompt.
+    ('long', 'long', 'short', False),  # A different waiter won the normal short-prefill quota.
+])
+def test_selective_mixed_dispatch_follows_the_submitted_prompt_identity(previous, following, selected, expect_mix):
+    from lmdeploy.pytorch.engine.inputs_maker import InputsMakerAsync
+
+    maker = InputsMakerAsync.__new__(InputsMakerAsync)
+    maker.config = SimpleNamespace(mixed_forward=True, mixed_long_overlap=True, mixed_long_threshold=32768,
+                                   interleaved_prefill_tokens=0, enable_decode_checkpoints=False)
+    seqs = {'long': SimpleNamespace(session_id=1), 'short': SimpleNamespace(session_id=2), None: None}
+    owner = [seqs[previous]]
+    maker._confirmed_long_prompt = lambda: owner[0]
+    maker.running_seqs = []
+    maker.scheduler = SimpleNamespace(resume_completed_migrations=lambda: None, tick=lambda: None)
+    maker.do_prefill = lambda: True
+    prompt = inputs([10], [1], [0], False)
+    copied = []
+
+    def select(prefill, enable_empty):
+        owner[0] = seqs[following]
+        return dict(inputs=prompt, delta=None, cache_inputs=None, running=[seqs[selected]])
+
+    async def forward(packet):
+        copied.append(dict(packet))
+
+    maker._make_forward_inputs = select
+    maker._prepare_mixed_decode = lambda packet, rows: (object(), ['decode'])
+    maker.executor = SimpleNamespace(forward_async=forward)
+    host, rows = asyncio.run(maker._send_next_inputs_impl())
+    assert rows == [seqs[selected]]
+    assert ('mixed_decode' in copied[0]) is expect_mix
+    assert 'mixed_running' not in copied[0]
+    assert host.get('mixed_running') == (['decode'] if expect_mix else None)
