@@ -54,6 +54,7 @@ from lmdeploy.serve.openai.protocol import (
 from lmdeploy.tokenizer import Tokenizer
 from lmdeploy.utils import FlattenedTensorBucket, FlattenedTensorMetadata, get_logger, init_custom_process_group
 
+from ..mixed_inputs import MixedDecodeInputs
 from .dp_utils import DistGatherScalar, DPForwardMeta, GatheredDPForwardMeta
 from .inputs_maker import build_inputs_maker
 from .kv_connector import finish_kv_connector_step, start_kv_connector_save, start_kv_connector_step
@@ -63,7 +64,8 @@ from .scoring import compute_input_ce_loss
 logger = get_logger('lmdeploy')
 
 _H2D_TRANSFER_KEY = '_h2d_transfer'
-_H2D_INPUT_KEYS = ('inputs', 'delta', 'cache_inputs', 'sampling_inputs', 'stopping_criteria', 'extra_inputs')
+_H2D_INPUT_KEYS = ('inputs', 'delta', 'cache_inputs', 'sampling_inputs', 'stopping_criteria',
+                   'extra_inputs', 'mixed_decode')
 _MTP_CACHE_PREFIX = 'mtp.'
 
 
@@ -129,6 +131,7 @@ class BatchedOutputs:
     decode_checkpoint_mask: torch.Tensor | None = None
     ssm_state_access_id: int | None = None
     dp_schedule_round: int | None = None
+    mixed_decode: 'BatchedOutputs | None' = None
 
     @classmethod
     def connector_only(cls, output: KVConnectorOutput | None) -> 'BatchedOutputs':
@@ -225,16 +228,7 @@ def _save_cache_checkpoint(inputs: ModelInputs, cache_inputs: CacheCheckpointInp
 
 
 @torch.inference_mode()
-def model_forward(
-    model: torch.nn.Module,
-    inputs: ModelInputs,
-    model_config: ModelConfig,
-    cache_engine: CacheEngine,
-    state_cache_engine: StateCacheEngine,
-    stream: torch.cuda.Stream = None,
-    cache_inputs: CacheCheckpointInputs | None = None,
-):
-    """Perform model forward."""
+def _check_cache_inputs(inputs, cache_inputs, state_cache_engine):
     compact = inputs.ssm_state_meta
     if compact is not None and inputs.is_decoding and compact.partial_bank:
         raise ValueError('Compact decode requires a fully admitted bank rebind after prefill.')
@@ -248,23 +242,41 @@ def model_forward(
     if compact is not None and cache_inputs is not None and (
             cache_inputs.state_restore_plan is not None or cache_inputs.state_save_plan is not None):
         raise ValueError('Compact execution cannot use legacy state-copy plans.')
+
+
+def _build_target_context(ctx_mgr, inputs, model_config, cache_engine, state_cache_engine):
+    context = ctx_mgr.build_context(inputs=inputs, model_config=model_config, cache_config=cache_engine.cache_config,
+                                    kv_caches=cache_engine.gpu_cache, state_caches=state_cache_engine.state_caches,
+                                    kv_quant_policy=cache_engine.cache_config.quant_policy)
+    context.block_caches = cache_engine.block_caches
+    context.named_state_caches = state_cache_engine.named_state_caches
+    return context
+
+
+def model_forward(
+    model: torch.nn.Module,
+    inputs: ModelInputs,
+    model_config: ModelConfig,
+    cache_engine: CacheEngine,
+    state_cache_engine: StateCacheEngine,
+    stream: torch.cuda.Stream = None,
+    cache_inputs: CacheCheckpointInputs | None = None,
+    mixed_inputs: ModelInputs | None = None,
+    mixed_cache: CacheCheckpointInputs | None = None,
+):
+    """Perform model forward."""
+    _check_cache_inputs(inputs, cache_inputs, state_cache_engine)
+    if mixed_inputs is not None:
+        _check_cache_inputs(mixed_inputs, mixed_cache, state_cache_engine)
     stream = stream or torch.cuda.current_stream()
     with torch.cuda.stream(stream), step_ctx_manager(model.ctx_mgr):
         # forward
         ctx_mgr = model.ctx_mgr
-        context = ctx_mgr.build_context(
-            inputs=inputs,
-            model_config=model_config,
-            cache_config=cache_engine.cache_config,
-            kv_caches=cache_engine.gpu_cache,
-            state_caches=state_cache_engine.state_caches,
-            kv_quant_policy=cache_engine.cache_config.quant_policy,
-        )
-
-        # Attach operator-owned block caches and configured state caches.
-        context.block_caches = cache_engine.block_caches
-        context.named_state_caches = state_cache_engine.named_state_caches
-
+        context = _build_target_context(ctx_mgr, inputs, model_config, cache_engine, state_cache_engine)
+        if mixed_inputs is not None:
+            decode_context = _build_target_context(ctx_mgr, mixed_inputs, model_config, cache_engine,
+                                                   state_cache_engine)
+            _restore_cache_checkpoint(mixed_inputs, mixed_cache, cache_engine, state_cache_engine)
         with ctx_mgr.context(context):
             # Some backends synchronize while building context. Queue restore
             # afterward so that synchronization does not absorb copy latency;
@@ -279,6 +291,9 @@ def model_forward(
                 past_key_values=cache_engine.gpu_cache,
                 context=context,
             )
+            if mixed_inputs is not None:
+                input_dict['input_ids'] = torch.cat((inputs.input_ids, mixed_inputs.input_ids), dim=1)
+                input_dict['mixed_decode'] = (inputs.input_ids.numel(), decode_context)
             output = model(**input_dict)
             if not isinstance(output, dict):
                 output = dict(hidden_states=output)
@@ -290,6 +305,9 @@ def model_forward(
             output['seq_length'] = context.q_seqlens[:len(inputs.seq_length)]
             # for draft model reuse
             output['position_ids'] = context.position_ids
+            if mixed_inputs is not None:
+                _save_cache_checkpoint(mixed_inputs, mixed_cache, cache_engine, state_cache_engine)
+                output['decode_position_ids'] = decode_context.position_ids
             return output
 
 
@@ -377,6 +395,7 @@ class BaseModelAgent:
 
         self.dist_ctx = dist_ctx
         self._dp_schedule_round = 0
+        self._mixed_forward_count = 0
         self.device_ctx = device_ctx
 
         device = 'cuda'
@@ -660,6 +679,33 @@ class BaseModelAgent:
         ret['logits'] = logits
         return ret
 
+    def _mixed_model_forward(self, prefill, decode, prefill_cache, decode_cache):
+        """Run the shared target stack once and project only the required rows."""
+        combined = model_forward(self.patched_model, prefill, self.model_config, self.cache_engine,
+                                 self.state_cache_engine, self.stream, prefill_cache, decode, decode_cache)
+        split_at = prefill.input_ids.numel()
+        hidden = combined['hidden_states']
+        prompt_out = dict(hidden_states=hidden[:, :split_at], seq_length=prefill.seq_length,
+                          position_ids=combined['position_ids'], model_metas=combined['model_metas'])
+        decode_out = dict(hidden_states=hidden[:, split_at:], seq_length=decode.seq_length,
+                          position_ids=combined['decode_position_ids'], model_metas=None)
+        if 'target_inputs_embeds' in combined:
+            embeds = combined['target_inputs_embeds']
+            prompt_out['target_inputs_embeds'] = embeds[:, :split_at]
+            decode_out['target_inputs_embeds'] = embeds[:, split_at:]
+        if not self.spec_agent.is_enabled():
+            prompt_out = self._postprocess_forward_output(prompt_out, prefill)
+        prompt_hidden, prompt_out = self.spec_agent.update_main_model_outputs(prompt_out, prefill)
+        decode_hidden, decode_out = self.spec_agent.update_main_model_outputs(decode_out, decode)
+        logits = self.get_logits(torch.cat((prompt_hidden, decode_hidden), dim=1))
+        prompt_out['logits'], decode_out['logits'] = logits.split((prompt_hidden.size(1), decode_hidden.size(1)), dim=1)
+        self._mixed_forward_count += 1
+        count = self._mixed_forward_count
+        if _envs.dp_prefill_trace or (count & (count - 1)) == 0:
+            logger.info('Mixed target forward rank=%d count=%d prefill_tokens=%d decode_rows=%d verify_width=%d',
+                        self.rank, count, split_at, decode.seq_length.numel(), decode.max_q_seqlen)
+        return prompt_out, decode_out
+
     def _get_outputs_with_logprobs(
         self,
         input_logits: torch.Tensor | None,
@@ -763,7 +809,7 @@ class BaseModelAgent:
             yield handle
 
     @record_function('prepare_dp')
-    async def _prepare_dp_v1(self, inputs: ModelInputs):
+    async def _prepare_dp_v1(self, inputs: ModelInputs, mixed_inputs: ModelInputs | None = None):
         """Prepare dp.
 
         If all inputs are dummy inputs, skip forward. If any of the inputs is prefill, then do prefill. Set padding
@@ -772,12 +818,16 @@ class BaseModelAgent:
         world_size = self.dist_config.world_size
         is_decoding = inputs.is_decoding
         num_tokens = inputs.input_ids.numel()
+        if mixed_inputs is not None:
+            num_tokens += mixed_inputs.input_ids.numel()
         is_dummy = inputs.is_dummy
         is_spec_enabled = self.spec_agent.is_enabled()
         is_microbatch_enabled = self.enable_microbatch
 
         # gather dp forward metadata
         batch_size = inputs.seq_length.numel()
+        if mixed_inputs is not None:
+            batch_size += mixed_inputs.seq_length.numel()
         is_sleeping = self.state.is_sleeping
         draft_num_tokens = num_tokens if is_spec_enabled else None
 
@@ -848,7 +898,12 @@ class BaseModelAgent:
             inputs.enable_microbatch = gathered_meta.global_enable_microbatch
 
         # update dp meta
-        inputs.build_dp_meta(all_num_tokens)
+        if mixed_inputs is None:
+            inputs.build_dp_meta(all_num_tokens)
+        else:
+            from lmdeploy.pytorch.model_inputs import DPMeta
+            inputs.dp_meta = DPMeta.build(num_tokens, all_num_tokens)
+            mixed_inputs.dp_meta = inputs.dp_meta
         inputs.dp_meta.dp_batches = all_batch_sizes
         inputs.dp_meta.dp_is_decoding = global_is_decoding
         if is_spec_enabled:
@@ -922,7 +977,8 @@ class BaseModelAgent:
                                             return_ce_loss: bool = False,
                                             seq_length: torch.Tensor = None,
                                             all_routed_experts: Any = None,
-                                            extra_inputs: ExtraInputs = None):
+                                            extra_inputs: ExtraInputs = None,
+                                            sampled=None):
         """Step postprocess with output."""
         rank = self.rank
         logger.debug(f'<ForwardTask> rank[{rank}]: Sampling.')
@@ -934,12 +990,15 @@ class BaseModelAgent:
             if inputs.is_chunk:
                 self._prev_chunk_last_logit = None if inputs.is_last_chunk else logits[-1:].clone()
 
-        (next_token_ids, logprobs, output_token_ids, extra_inputs) = await self.async_sampling_logits(
-            last_logits, inputs, extra_inputs, sampling_inputs)
-        with self._broadcast_next_token(next_token_ids, extra_inputs, enable=need_broadcast_next):
-            logger.debug(f'<ForwardTask> rank[{rank}]: synchronize token ids')
+        if sampled is None:
+            (next_token_ids, logprobs, output_token_ids, extra_inputs) = await self.async_sampling_logits(
+                last_logits, inputs, extra_inputs, sampling_inputs)
+            with self._broadcast_next_token(next_token_ids, extra_inputs, enable=need_broadcast_next):
+                logger.debug(f'<ForwardTask> rank[{rank}]: synchronize token ids')
 
-        extra_inputs = await self.spec_agent.async_model_forward(inputs, extra_inputs, sampling_inputs)
+            extra_inputs = await self.spec_agent.async_model_forward(inputs, extra_inputs, sampling_inputs)
+        else:
+            next_token_ids, logprobs, output_token_ids, extra_inputs = sampled
 
         if inputs.is_dummy:
             return inputs, extra_inputs, stopping_criteria, None, next_token_ids, None
@@ -1051,6 +1110,7 @@ class BaseModelAgent:
         extra_inputs: ExtraInputs = None,
         cache_inputs: CacheCheckpointInputs | None = None,
         kv_connector_metadata=None,
+        mixed_decode: MixedDecodeInputs | None = None,
     ):
         """Asyc forward task."""
 
@@ -1101,6 +1161,14 @@ class BaseModelAgent:
                 delta,
             )
 
+        decode_inputs = None
+        if mixed_decode is not None:
+            decode_inputs, decode_extra, decode_stop, decode_sampling = self._get_inputs_from_delta(
+                mixed_decode.delta, mixed_decode.sampling_inputs)
+            decode_ticket = mixed_decode.cache_inputs.ssm_state_access_id if mixed_decode.cache_inputs else None
+            if (not decode_inputs.is_decoding
+                    or (decode_ticket is not None) != (decode_inputs.ssm_state_meta is not None)):
+                raise ValueError('Mixed decode requires its own retained rows and compact completion ticket.')
         if ssm_state_access_id is not None:
             if inputs.is_dummy or inputs.ssm_state_meta is None:
                 raise ValueError('Compact access identity requires real compact model inputs.')
@@ -1109,7 +1177,10 @@ class BaseModelAgent:
 
         if dp > 1:
             # update inputs for dp
-            inputs, is_all_sleeping = await self._prepare_dp_v1(inputs)
+            if decode_inputs is None:
+                inputs, is_all_sleeping = await self._prepare_dp_v1(inputs)
+            else:
+                inputs, is_all_sleeping = await self._prepare_dp_v1(inputs, decode_inputs)
             # skip dummy forward.
             if inputs is None:
                 start_kv_connector_save(self.kv_connector, connector_step)
@@ -1147,11 +1218,36 @@ class BaseModelAgent:
             mtp_cache_engine = self.spec_agent.cache_engine
             if mtp_cache_engine is not None and cache_inputs.kv_restore_plan is not None:
                 mtp_cache_engine.copy_logical_blocks(cache_inputs.kv_restore_plan)
-        output = await self._async_model_forward(
-            inputs,
-            return_logits=return_logits or return_ce_loss,
-            cache_inputs=cache_inputs,
-        )
+        decode_output = None
+        prompt_sample = decode_sample = None
+        if mixed_decode is None:
+            output = await self._async_model_forward(inputs, return_logits=return_logits or return_ce_loss,
+                                                     cache_inputs=cache_inputs)
+        else:
+            output, decode_forward = self._mixed_model_forward(inputs, decode_inputs, cache_inputs,
+                                                               mixed_decode.cache_inputs)
+            decode_logits = decode_forward['logits'][0]
+            decode_extra = self.agent_strategy.slice_extra_inputs(decode_extra, decode_inputs, decode_forward)
+            if self.spec_agent.is_enabled():
+                prompt_extra = self.agent_strategy.slice_extra_inputs(extra_inputs, inputs, output)
+                prompt_sample = await self.async_sampling_logits(
+                    output['logits'][0], inputs, prompt_extra, sampling_inputs)
+                decode_sample = await self.async_sampling_logits(
+                    decode_logits, decode_inputs, decode_extra, decode_sampling)
+                prompt_extra, decode_extra = await self._shield_postprocess(self.spec_agent.async_mixed_model_forward(
+                    inputs, decode_inputs, prompt_sample[-1], decode_sample[-1]))
+                prompt_sample = (*prompt_sample[:3], prompt_extra)
+                decode_sample = (*decode_sample[:3], decode_extra)
+            decode_result = await self._shield_postprocess(self._step_postprocess_with_output(
+                self._slice_outs(decode_logits, decode_inputs.seq_length), decode_logits, decode_inputs,
+                decode_sampling, decode_stop, None, False, extra_inputs=decode_extra, sampled=decode_sample))
+            _, decode_extra, decode_stop, decode_next_extra, decode_next, decode_output = decode_result
+            if mixed_decode.cache_inputs is not None:
+                decode_output.ssm_state_access_id = mixed_decode.cache_inputs.ssm_state_access_id
+                if mixed_decode.cache_inputs.decode_save_plan is not None:
+                    self._save_decode_checkpoints(mixed_decode.cache_inputs, decode_inputs, decode_output)
+            self.step_inputs.step_decode(decode_inputs, decode_extra, decode_stop, decode_sampling.get_delta(),
+                                         decode_next, None, decode_next_extra)
 
         if inputs.is_dummy and not self.spec_agent.is_enabled():
             # skip dummy forward output
@@ -1226,6 +1322,7 @@ class BaseModelAgent:
                     seq_length=seq_length,
                     all_routed_experts=all_routed_experts,
                     extra_inputs=extra_inputs,
+                    sampled=prompt_sample,
                 ))
         else:
             batched_output = None
@@ -1271,6 +1368,7 @@ class BaseModelAgent:
             batched_output = BatchedOutputs(next_token_ids=None, stopped=None)
         if batched_output is not None:
             batched_output.kv_connector_output = connector_output
+            batched_output.mixed_decode = decode_output
             if _envs.dp_prefill_period > 1 and dp > 1:
                 batched_output.dp_schedule_round = self._dp_schedule_round
             batched_output.ssm_state_access_id = ssm_state_access_id
@@ -1494,6 +1592,8 @@ class BaseModelAgent:
             event.wait()
             out = out.to_cpu()
             out.new_token_timestamp = time.time()
+            if getattr(out, 'mixed_decode', None) is not None:
+                out.mixed_decode.new_token_timestamp = out.new_token_timestamp
         self._release_completed_h2d_transfers()
         return out
 

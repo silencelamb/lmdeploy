@@ -276,6 +276,8 @@ class CUDAGraphRunner(GraphRunner):
         step_context = self.ctx_mgr.current_context()
         _update_deepep_mode(step_context)
 
+        if kwargs.get('mixed_decode') is not None:
+            return self._forward_eager(**kwargs)
         if self._should_use_full_graph(step_context, kwargs):
             return self._forward_full_graph(**kwargs)
 

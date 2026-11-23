@@ -22,6 +22,7 @@ from ..engine.cache_engine.plan import build_block_cache_plan
 from ..engine.logits_process import FusedLogitsProcessor, SamplingInputs, _torch_topk
 from ..engine.model_agent.agent import BatchedLogProbs
 from ..model_inputs import DPMeta, ModelInputs
+from ..strategies.ar.model_inputs import merge_block_offsets
 from ..strategies.ar_spec.model_agent import ARSpecExtraInputs
 from ..strategies.base.model_agent import ExtraInputs
 from .base import BaseSpecModelAgent
@@ -468,8 +469,41 @@ class SpecModelAgent(BaseSpecModelAgent):
         with record_function('spec_rejection_sampling'):
             return await self._rejection_sampling(model_inputs, extra_inputs, sampling_inputs)
 
+    async def async_mixed_model_forward(self, prefill, decode, prompt_extra, decode_extra):
+        """Shift each lane with its own accepted/known token, then run one draft batch on every rank."""
+        # Per-lane shifts retain the accepted replacement location for verification and the
+        # prompt lookahead for a nonfinal chunk. Only the joined draft batch participates in DP.
+        prompt, _ = self._prepare_inputs_from_main(prefill.clone(dp_meta=None), prompt_extra)
+        verify, _ = self._prepare_inputs_from_main(decode.clone(dp_meta=None), decode_extra)
+        ids = torch.cat((prompt.input_ids, verify.input_ids), dim=1)
+        embeds = None
+        if prompt.target_inputs_embeds is not None:
+            embeds = torch.cat((prompt.target_inputs_embeds, verify.target_inputs_embeds), dim=1)
+        joined = prompt.clone(
+            input_ids=ids, seq_length=torch.cat((prompt.seq_length, verify.seq_length)),
+            history_lengths=torch.cat((prompt.history_lengths, verify.history_lengths)),
+            num_ignored_history=torch.cat((prompt.num_ignored_history, verify.num_ignored_history)),
+            block_offsets=merge_block_offsets(prompt.block_offsets, verify.block_offsets),
+            max_q_seqlen=max(prompt.max_q_seqlen, verify.max_q_seqlen),
+            max_kv_seqlen=max(prompt.max_kv_seqlen, verify.max_kv_seqlen),
+            sum_kv_seqlen=prompt.sum_kv_seqlen + verify.sum_kv_seqlen,
+            target_hidden_states=torch.cat((prompt.target_hidden_states, verify.target_hidden_states), dim=1),
+            target_position_ids=torch.cat((prompt.target_position_ids, verify.target_position_ids), dim=1),
+            target_inputs_embeds=embeds, is_chunk=False, is_first_chunk=False, is_last_chunk=False,
+            dp_meta=self._build_dp_meta_from_main(ids, prefill.dp_meta))
+        verify_indices = prompt.input_ids.numel() + decode_extra.last_token_indices
+        extra = ARSpecExtraInputs(
+            last_token_indices=torch.cat((prompt_extra.last_token_indices, verify_indices)),
+            num_rejected_tokens=torch.cat((prompt_extra.num_rejected_tokens, decode_extra.num_rejected_tokens)))
+        rows = prompt.seq_length.numel()
+        discarded_rows = rows if prefill.is_chunk and not prefill.is_last_chunk else 0
+        result = await self._async_autoregressive_model_forward(joined, extra, None, discarded_rows=discarded_rows)
+        drafts = result.output_draft_token_ids
+        return (prompt_extra.clone(output_draft_token_ids=drafts[:rows]),
+                decode_extra.clone(output_draft_token_ids=drafts[rows:]))
+
     async def _async_autoregressive_model_forward(self, inputs: ModelInputs, extra_inputs: ARSpecExtraInputs,
-                                                  sampling_inputs: SamplingInputs):
+                                                  sampling_inputs: SamplingInputs | None, discarded_rows: int = 0):
         """Default autoregressive draft model forward.
 
         Args:
@@ -531,8 +565,12 @@ class SpecModelAgent(BaseSpecModelAgent):
                 # for dp > 1, need to update dp_meta and model inputs for next loop
                 dp_meta, padding_batch_size = __build_dp_meta(inputs)
                 # pad block_offsets for non-last chunks dummy run when dp>1
-                if dp_meta is not None and inputs.is_chunk and not inputs.is_last_chunk:
+                if discarded_rows or (dp_meta is not None and inputs.is_chunk and not inputs.is_last_chunk):
                     inputs.block_offsets = torch.nn.functional.pad(inputs.block_offsets, (0, 1), value=0)
+                    if discarded_rows:
+                        # These proposals are discarded. The first draft already wrote the known
+                        # lookahead; subsequent dummy AR steps must not write private prompt KV.
+                        inputs.block_offsets[:discarded_rows].zero_()
                 for loop_idx in range(loop_count):
                     inputs = _update_dp_model_inputs(inputs, dp_meta, padding_batch_size)
                     outputs = self._forward_impl(inputs)

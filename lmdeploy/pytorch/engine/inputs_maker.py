@@ -32,6 +32,7 @@ from lmdeploy.pytorch.model_inputs import ModelInputs, ModelInputsDelta, VisionM
 from lmdeploy.utils import get_logger
 
 from .cache_inputs import CacheCheckpointInputs, StateCacheCopyPlan
+from .mixed_inputs import MixedDecodeInputs
 
 if TYPE_CHECKING:
     from lmdeploy.pytorch.adapter.adapter import AdapterManager
@@ -141,6 +142,8 @@ class InputsMakerConfig:
     interleaved_prefill_tokens: int = 0
     interleaved_decode_rounds: int = 1
     dp_prefill_period: int = 0
+    mixed_forward: bool = False
+    mixed_long_threshold: int = 0
 
     @staticmethod
     def from_engine(engine: 'Engine'):
@@ -170,6 +173,15 @@ class InputsMakerConfig:
             interleaved_prefill_tokens=max(0, _envs.interleaved_prefill_tokens),
             interleaved_decode_rounds=max(0, _envs.interleaved_decode_rounds),
             dp_prefill_period=max(0, _envs.dp_prefill_period),
+            mixed_long_threshold=max(0, _envs.glm53_mixed_long_threshold),
+            mixed_forward=(_envs.glm53_mixed_forward and cache_config.role == EngineRole.Hybrid
+                           and engine.engine_config.device_type == 'cuda' and engine.dist_config.attn_tp == 1
+                           and not engine.dist_config.enable_microbatch
+                           and (engine.specdecode_config is None or
+                                (engine.specdecode_config.method == 'deepseek_mtp'
+                                 and engine.specdecode_config.num_speculative_tokens == 3))
+                           and engine.misc_config.memdecode_config is None
+                           and getattr(model_config.hf_config, 'model_type', None) == 'glm5_next'),
             use_mrope=model_config.use_mrope,
             **kwargs,
         )
@@ -209,6 +221,7 @@ class LongContextChunker:
         """Set the sequence currently being chunked."""
         self.seq = seq
         self.next_step = seq.num_history_ids
+        self.initial_query_tokens = seq.num_token_ids
 
         input_mm = seq.get_input_multimodals()
         # Only remaining multimodals are emitted by next_chunk_size().
@@ -244,6 +257,7 @@ class LongContextChunker:
         self.seq: SchedulerSequence = None
         self.multimodals: MultiModalInputs = defaultdict(list)
         self.next_step: int = 0
+        self.initial_query_tokens = 0
         self.max_prefill_num: int = self.max_prefill_token_num
         self.has_multimodal = False
 
@@ -1580,9 +1594,8 @@ class InputsMakerAsync:
         if is_decoding:
             self.running_seqs = running
         else:
-            for seq in running:
-                if seq.sampling_param.max_new_tokens > 0:
-                    self.running_seqs.append(seq)
+            # A decode completion may still own the previous list as its row map.
+            self.running_seqs = self.running_seqs + [seq for seq in running if seq.sampling_param.max_new_tokens > 0]
 
     def preempt_invalid_decode_seqs(self):
         """Return decode sequences rejected during prefetch to waiting."""
@@ -1596,7 +1609,17 @@ class InputsMakerAsync:
     @record_function('make_forward_inputs')
     def _make_forward_inputs(self, prefill: bool, enable_empty: bool = False):
         """Make forward inputs for ModelAgent._async_step_background()"""
-        return _ForwardInputsTask(self, prefill, enable_empty, self.busy_prefill_budget()).run()
+        budget = self.busy_prefill_budget()
+        if (getattr(self.config, 'mixed_forward', False) and self.running_seqs
+                and (prefill or self.long_context_chunker.enabled())):
+            width = self.engine_strategy.get_num_decode_tokens()
+            active = sum(seq.status == MessageStatus.RUNNING for seq in self.running_seqs)
+            if active:
+                # The busy-turn cap applies to prompt work. Decode consumes the remaining
+                # engine budget. Subtracting it twice creates tiny residual chunks.
+                room = max(1, self.config.max_prefill_token_num - active * width)
+                budget = min(budget or self.config.max_prefill_token_num, room)
+        return _ForwardInputsTask(self, prefill, enable_empty, budget).run()
 
     def busy_prefill_budget(self) -> int | None:
         """Limit admission and first-chunk allocation only while real decode rows exist."""
@@ -1670,8 +1693,64 @@ class InputsMakerAsync:
         """
         return not self.scheduler.has_ready() and not self.protect_decode_turn()
 
+    @staticmethod
+    def _supports_mixed_generation(seq):
+        return (not seq.return_logits and not seq.return_routed_experts and not seq.return_ce_loss
+                and not seq.adapter_name and seq.sampling_param.max_new_tokens > 0
+                and not seq.sampling_param.response_format)
+
+    def _prepare_mixed_decode(self, payload, prefill_rows):
+        inputs = payload['inputs']
+        if (inputs is None or inputs.is_dummy or inputs.vision_inputs is not None
+                or inputs.logits_indices is not None or inputs.mrope_pos_ids is not None or not self.running_seqs):
+            return None, None
+        active = [seq for seq in self.running_seqs if seq.status == MessageStatus.RUNNING]
+        width = self.engine_strategy.get_num_decode_tokens()
+        if not active or inputs.input_ids.numel() + width * len(active) > self.config.max_prefill_token_num:
+            return None, None
+        if not all(self._supports_mixed_generation(seq) for seq in (*prefill_rows, *active)):
+            return None, None
+        work = _ForwardInputsTask(self, prefill=False)
+        work._try_decode()
+        if work.result.delta is None:
+            return None, None
+        # The primary payload owns the connector poll. The two disjoint sets
+        # of request banks have independent completion tickets on one event.
+        decode = work._build_payload()
+        rows = decode['running']
+        self._prepare_decode_checkpoint(decode, rows)
+        self._last_compact_decode_banks = None
+        return MixedDecodeInputs(decode['delta'], decode['sampling_inputs'], decode['cache_inputs']), rows
+
+    def _prepare_decode_checkpoint(self, payload, running):
+        if self.config.enable_decode_checkpoints:
+            carrier = payload['cache_inputs'] or CacheCheckpointInputs()
+            snapshot = self.scheduler.decode_checkpoints.prepare(
+                running, payload['inputs'], payload['delta'], access_id=carrier.ssm_state_access_id)
+            if snapshot is not None:
+                batch_id, plan = snapshot
+                payload['cache_inputs'] = replace(carrier, decode_save_plan=plan, decode_save_id=batch_id)
+
+    def _refresh_mixed_chunk_budget(self):
+        """Grow confirmed long text suffixes after the first chunk's KV reservation is consumed."""
+        threshold = self.config.mixed_long_threshold
+        chunker = self.long_context_chunker
+        if (not threshold or not chunker.enabled() or chunker.initial_query_tokens < threshold or chunker.has_multimodal
+                or self.config.use_mrope or not self._supports_mixed_generation(chunker.seq)):
+            return
+        active = sum(seq.status == MessageStatus.RUNNING for seq in self.running_seqs)
+        room = self.config.max_prefill_token_num - active * self.engine_strategy.get_num_decode_tokens()
+        if room < self.config.block_size:
+            return
+        # Preserve page-aligned continuation boundaries and budget the actual
+        # verification width. The normal planner still enforces checkpoint cuts.
+        room -= room % self.config.block_size
+        chunker.max_prefill_num = get_long_context_chunk_capacity(chunker.seq, room)
+
     async def _send_next_inputs_impl(self, enable_empty: bool = False):
         self.scheduler.resume_completed_migrations()
+        if getattr(self.config, 'mixed_forward', False):
+            self._refresh_mixed_chunk_budget()
         prefill = self.do_prefill()
         forward_inputs = self._make_forward_inputs(prefill, enable_empty)
         if forward_inputs is None:
@@ -1682,13 +1761,12 @@ class InputsMakerAsync:
             logger.debug(f'Sending forward inputs: {inputs.log_info()}')
             session_ids = [seq.session_id for seq in next_running]
             logger.debug(f'Forward session_ids: {session_ids}')
-        if self.config.enable_decode_checkpoints:
-            carrier = forward_inputs['cache_inputs'] or CacheCheckpointInputs()
-            snapshot = self.scheduler.decode_checkpoints.prepare(
-                next_running, inputs, forward_inputs['delta'], access_id=carrier.ssm_state_access_id)
-            if snapshot is not None:
-                batch_id, plan = snapshot
-                forward_inputs['cache_inputs'] = replace(carrier, decode_save_plan=plan, decode_save_id=batch_id)
+        self._prepare_decode_checkpoint(forward_inputs, next_running)
+        mixed_rows = None
+        if getattr(self.config, 'mixed_forward', False):
+            mixed, mixed_rows = self._prepare_mixed_decode(forward_inputs, next_running)
+            if mixed is not None:
+                forward_inputs['mixed_decode'] = mixed
         try:
             await self.executor.forward_async(forward_inputs)
         except BaseException:
@@ -1700,6 +1778,9 @@ class InputsMakerAsync:
         if getattr(self.config, 'interleaved_prefill_tokens', 0) and self.config.role == EngineRole.Hybrid:
             self._record_interleaved_dispatch(inputs)
         self.scheduler.tick()
+        if mixed_rows is not None:
+            # Request objects stay on the host, including for in-process executors.
+            forward_inputs = dict(forward_inputs, mixed_running=mixed_rows)
         self.forward_inputs = forward_inputs
         return forward_inputs, next_running
 

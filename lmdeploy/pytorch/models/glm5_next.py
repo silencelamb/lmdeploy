@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Iterable, Sequence
+from dataclasses import dataclass
 from functools import partial
 from typing import TYPE_CHECKING, Any
 
@@ -708,6 +709,15 @@ class Glm5NextQKVConv1d(nn.Module):
                                       dtype=target.dtype))
 
 
+@dataclass
+class MixedAttentionRows:
+    prefill_tokens: int
+    attn_metadata: Any
+    state_ids: torch.Tensor
+    kda_metadata: GatedDeltaMeta
+    kpool_metadata: Any
+
+
 class Glm5NextLinearAttention(nn.Module):
     """GLM-5.3 Kimi Delta Attention projections and backend dispatch."""
 
@@ -822,14 +832,8 @@ class Glm5NextLinearAttention(nn.Module):
             self.o_proj.tp_reduce_dtype = torch.float32
         self.kda = Kda()
 
-    def forward(self, hidden_states: torch.Tensor,
-                past_key_value: Sequence[torch.Tensor],
-                kda_metadata: GatedDeltaMeta) -> torch.Tensor:
-        mixed_qkv = self.qkv_proj(hidden_states)
-        raw_beta = self.b_proj(hidden_states)
-        raw_gate, norm_gate = self.fg_b_proj(self.fg_a_proj(hidden_states))
-
-        core_output = self.kda(
+    def _recur(self, mixed_qkv, raw_gate, raw_beta, past_key_value, kda_metadata):
+        return self.kda(
             mixed_qkv=mixed_qkv,
             raw_gate=raw_gate,
             raw_beta=raw_beta,
@@ -844,6 +848,21 @@ class Glm5NextLinearAttention(nn.Module):
             head_dim=self.head_dim,
             lower_bound=self.lower_bound,
         )
+
+    def forward(self, hidden_states: torch.Tensor,
+                past_key_value: Sequence[torch.Tensor],
+                kda_metadata: GatedDeltaMeta, mixed: MixedAttentionRows | None = None) -> torch.Tensor:
+        mixed_qkv = self.qkv_proj(hidden_states)
+        raw_beta = self.b_proj(hidden_states)
+        raw_gate, norm_gate = self.fg_b_proj(self.fg_a_proj(hidden_states))
+
+        if mixed is None:
+            core_output = self._recur(mixed_qkv, raw_gate, raw_beta, past_key_value, kda_metadata)
+        else:
+            n = mixed.prefill_tokens
+            prefix = self._recur(mixed_qkv[:, :n], raw_gate[:, :n], raw_beta[:, :n], past_key_value, kda_metadata)
+            decode = self._recur(mixed_qkv[:, n:], raw_gate[:, n:], raw_beta[:, n:], past_key_value, mixed.kda_metadata)
+            core_output = torch.cat((prefix, decode), dim=1)
         norm_gate = norm_gate.unflatten(-1,
                                         (self.local_num_heads, self.head_dim))
         output_shape = core_output.shape
@@ -1319,6 +1338,7 @@ class Glm5NextSparseAttention(DeepseekV32Attention):
         topk_indices_buffer: DSATopKIndicesBuffer | None = None,
         skip_topk: bool = False,
         kpool_metadata: Any = None,
+        mixed: MixedAttentionRows | None = None,
     ) -> torch.Tensor:
         dist_ctx = get_dist_manager().current_context()
         num_heads = self.num_heads // dist_ctx.dist_config.attn_tp
@@ -1326,13 +1346,26 @@ class Glm5NextSparseAttention(DeepseekV32Attention):
         (unabsorbed_query, key_states, value_states,
          q_lora) = self._qkv_proj_unabsorbed(
              hidden_states, num_heads=num_heads)
-        attn_output = self.kpool_attention.forward(
-            hidden_states, q_lora, unabsorbed_query, key_states, value_states,
-            past_key_value=past_key_value, attn_metadata=attn_metadata,
-            tail_k=None if kpool_tail_state is None else kpool_tail_state[0],
-            tail_score=None if kpool_tail_state is None else kpool_tail_state[1],
-            state_ids=state_ids, topk_indices_buffer=topk_indices_buffer, skip_topk=skip_topk,
-            kpool_metadata=kpool_metadata)
+        if mixed is None:
+            attn_output = self.kpool_attention.forward(
+                hidden_states, q_lora, unabsorbed_query, key_states, value_states,
+                past_key_value=past_key_value, attn_metadata=attn_metadata,
+                tail_k=None if kpool_tail_state is None else kpool_tail_state[0],
+                tail_score=None if kpool_tail_state is None else kpool_tail_state[1],
+                state_ids=state_ids, topk_indices_buffer=topk_indices_buffer, skip_topk=skip_topk,
+                kpool_metadata=kpool_metadata)
+        else:
+            n = mixed.prefill_tokens
+            tail_k, tail_score = kpool_tail_state
+            prefix = self.kpool_attention.forward(
+                hidden_states[:, :n], q_lora[:, :n], unabsorbed_query[:n], key_states[:n], value_states[:n],
+                past_key_value=past_key_value, attn_metadata=attn_metadata, tail_k=tail_k, tail_score=tail_score,
+                state_ids=state_ids, kpool_metadata=kpool_metadata)
+            decode = self.kpool_attention.forward(
+                hidden_states[:, n:], q_lora[:, n:], unabsorbed_query[n:], key_states[n:], value_states[n:],
+                past_key_value=past_key_value, attn_metadata=mixed.attn_metadata, tail_k=tail_k, tail_score=tail_score,
+                state_ids=mixed.state_ids, kpool_metadata=mixed.kpool_metadata)
+            attn_output = torch.cat((prefix, decode), dim=0)
         return self.o_proj(attn_output.flatten(-2, -1)[None])
 
     def _forward_attention(self, hidden_states, q_lora, unabsorbed_query, key_states, value_states,
@@ -1533,6 +1566,7 @@ class Glm5NextDecoderLayer(nn.Module):
                 kpool_metadata: Any = None,
                 hc_input_fp32: torch.Tensor | None = None,
                 prepare_hc_fp32: bool = False,
+                mixed: MixedAttentionRows | None = None,
                 all_routed_experts: torch.Tensor | None = None) -> tuple[torch.Tensor, torch.Tensor | None]:
         residual = hidden_states
         hidden_states, post, comb = self._hc_pre(
@@ -1547,14 +1581,14 @@ class Glm5NextDecoderLayer(nn.Module):
         if self.is_linear_attention:
             hidden_states = self.self_attn(hidden_states,
                                            past_key_value=past_key_value,
-                                           kda_metadata=kda_metadata)
+                                           kda_metadata=kda_metadata, mixed=mixed)
         else:
             hidden_states = self.self_attn(hidden_states,
                                            past_key_value=past_key_value,
                                            attn_metadata=attn_metadata,
                                            kpool_tail_state=kpool_tail_state,
                                            state_ids=state_ids,
-                                           kpool_metadata=kpool_metadata)
+                                           kpool_metadata=kpool_metadata, mixed=mixed)
         hidden_states, hc_input_fp32 = self._hc_post(hidden_states, residual,
                                                     post, comb, prepare_hc_fp32)
 
@@ -1607,6 +1641,25 @@ class Glm5NextModel(nn.Module):
                             dtype=dtype,
                             device=device)
 
+    def _attention_metadata(self, num_tokens, attn_metadata, state_ids):
+        kda_metadata = self.gated_delta_meta_builder(num_tokens,
+                                      self.config.linear_conv_kernel_dim,
+                                      state_ids, attn_metadata)
+        kpool_metadata = None
+        if state_ids.is_cuda and (attn_metadata.is_decoding or attn_metadata.max_kv_seqlen > self.config.index_topk):
+            first_full_layer = next(layer for layer in self.layers if not layer.is_linear_attention)
+            page_size = first_full_layer.self_attn.indexer.get_block_cache().size(1)
+            if attn_metadata.is_decoding:
+                kpool_metadata = kpool_decode_metadata_cuda(
+                    attn_metadata, num_tokens, self.config.index_kpool,
+                    get_tp_world_rank('attn')[1] == 0, page_size=page_size)
+            else:
+                kpool_metadata = kpool_prefill_metadata_cuda(
+                    attn_metadata.q_seqlens, attn_metadata.kv_seqlens,
+                    attn_metadata.block_offsets, num_tokens,
+                    self.config.index_kpool, page_size=page_size)
+        return kda_metadata, kpool_metadata
+
     def forward(
         self,
         input_ids: torch.LongTensor,
@@ -1616,6 +1669,7 @@ class Glm5NextModel(nn.Module):
         state_ids: torch.Tensor,
         inputs_embeds: torch.Tensor | None = None,
         all_routed_experts: torch.Tensor | None = None,
+        mixed_decode: tuple[int, StepContext] | None = None,
     ) -> torch.Tensor:
         del position_ids  # GLM-5.3 text attention has qk_rope_head_dim == 0.
         if state_ids is None:
@@ -1625,27 +1679,20 @@ class Glm5NextModel(nn.Module):
 
         hidden_states = inputs_embeds.unsqueeze(2).repeat(
             1, 1, self.config.hc_mult, 1)
-        kda_metadata = self.gated_delta_meta_builder(hidden_states.size(1),
-                                      self.config.linear_conv_kernel_dim,
-                                      state_ids, attn_metadata)
         if len(past_key_values) != len(self.layers):
             raise RuntimeError(
                 f'GLM-5.3 expects {len(self.layers)} layer caches, got {len(past_key_values)}.'
             )
-        kpool_metadata = None
-        if hidden_states.is_cuda and (attn_metadata.is_decoding
-                                      or attn_metadata.max_kv_seqlen > self.config.index_topk):
-            first_full_layer = next(layer for layer in self.layers if not layer.is_linear_attention)
-            page_size = first_full_layer.self_attn.indexer.get_block_cache().size(1)
-            if attn_metadata.is_decoding:
-                kpool_metadata = kpool_decode_metadata_cuda(
-                    attn_metadata, hidden_states.size(1), self.config.index_kpool,
-                    get_tp_world_rank('attn')[1] == 0, page_size=page_size)
-            else:
-                kpool_metadata = kpool_prefill_metadata_cuda(
-                    attn_metadata.q_seqlens, attn_metadata.kv_seqlens,
-                    attn_metadata.block_offsets, hidden_states.size(1),
-                    self.config.index_kpool, page_size=page_size)
+        num_tokens = hidden_states.size(1)
+        prefill_tokens = num_tokens if mixed_decode is None else mixed_decode[0]
+        kda_metadata, kpool_metadata = self._attention_metadata(prefill_tokens, attn_metadata, state_ids)
+        mixed = None
+        if mixed_decode is not None:
+            decode_ctx = mixed_decode[1]
+            with get_step_ctx_manager().context(decode_ctx):
+                kda, kpool = self._attention_metadata(num_tokens - prefill_tokens, decode_ctx.attn_metadata,
+                                                      decode_ctx.state_offsets)
+            mixed = MixedAttentionRows(prefill_tokens, decode_ctx.attn_metadata, decode_ctx.state_offsets, kda, kpool)
         hc_input_fp32 = None
         prepare_hc_fp32 = hidden_states.is_cuda and hidden_states.size(0) * hidden_states.size(1) <= 32
         for layer, past_key_value in zip(self.layers, past_key_values):
@@ -1661,6 +1708,7 @@ class Glm5NextModel(nn.Module):
                                   kpool_metadata=kpool_metadata,
                                   hc_input_fp32=hc_input_fp32,
                                   prepare_hc_fp32=prepare_hc_fp32,
+                                  mixed=mixed,
                                   all_routed_experts=all_routed_experts)
         hidden_states = hidden_states.mean(dim=2)
         return self.norm(hidden_states)
@@ -1722,6 +1770,7 @@ class Glm5NextForConditionalGeneration(DeepseekV32ForCausalLM, PiecewiseCudaGrap
         vision_prompt_order: list[int] | None = None,
         multimodal_mask: torch.Tensor | None = None,
         return_input_embeds: bool = False,
+        mixed_decode: tuple[int, StepContext] | None = None,
         **kwargs,
     ) -> torch.Tensor:
         if inputs_embeds is None and (vision_groups or
@@ -1775,6 +1824,7 @@ class Glm5NextForConditionalGeneration(DeepseekV32ForCausalLM, PiecewiseCudaGrap
                           attn_metadata=attn_metadata,
                           inputs_embeds=inputs_embeds,
                           state_ids=state_ids,
+                          mixed_decode=mixed_decode,
                           all_routed_experts=all_routed_experts)
         if all_routed_experts is None and not return_input_embeds:
             return hidden_states

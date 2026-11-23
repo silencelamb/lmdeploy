@@ -269,6 +269,8 @@ with set_envs():
     # Hybrid-engine latency control: bound prefill service while decode is runnable.
     interleaved_prefill_tokens = env_to_int('LMDEPLOY_INTERLEAVED_PREFILL_TOKENS', 0)
     interleaved_decode_rounds = env_to_int('LMDEPLOY_INTERLEAVED_DECODE_ROUNDS', 1)
+    glm53_mixed_forward = env_to_bool('LMDEPLOY_GLM53_MIXED_FORWARD', False)
+    glm53_mixed_long_threshold = env_to_int('LMDEPLOY_GLM53_MIXED_LONG_THRESHOLD', 0)
     dp_prefill_period = env_to_int('LMDEPLOY_DP_PREFILL_PERIOD', 0)
     dp_prefill_trace = env_to_bool('LMDEPLOY_DP_PREFILL_TRACE', False)
 

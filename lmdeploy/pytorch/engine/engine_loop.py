@@ -11,6 +11,7 @@ import torch
 from torch.profiler import record_function
 
 from lmdeploy.messages import RequestMetrics
+from lmdeploy.pytorch import envs as _envs
 from lmdeploy.pytorch.disagg.config import EngineRole
 from lmdeploy.pytorch.disagg.messages import MigrationExecutionBatch
 from lmdeploy.pytorch.messages import MessageStatus, UpdateTokenMode
@@ -513,15 +514,8 @@ class EngineLoop:
         self.scheduler.release_completed_prefill_reservations(running)
         return step_outputs
 
-    async def _main_loop_get_outputs(
-        self,
-        running: 'SeqList',
-        forward_inputs: dict[str, Any],
-    ):
-        """Get outputs and prefetch."""
-        model_inputs = forward_inputs['inputs']
-        delta = forward_inputs['delta']
-        cache_inputs = forward_inputs['cache_inputs']
+    def _publish_forward(self, running, model_inputs, delta, cache_inputs):
+        """Publish one lane's submitted cache identities before prefetch."""
         ssm_state_access_id = cache_inputs.ssm_state_access_id if cache_inputs is not None else None
         has_compact_checkpoints = (
             (delta is not None and delta.ssm_checkpoint_state_ids is not None) or
@@ -548,13 +542,11 @@ class EngineLoop:
             )
         if has_compact_checkpoints:
             self.state_checkpoints.publish_forward(ssm_state_access_id)
-        forward_inputs, next_running = await self._prefetch_next_inputs()
-        out = await self.executor.get_output_async()
-        observed_round = getattr(out, 'dp_schedule_round', None)
-        if observed_round is not None:
-            # One forward can already be prefetched behind this result.
-            # This is an admission hint, never a collective ordering contract.
-            self.inputs_maker.observe_dp_round(observed_round, prefetched=next_running is not None)
+        return ssm_state_access_id, has_model_work, has_compact_checkpoints
+
+    def _complete_forward(self, out, running, model_inputs, delta, cache_inputs, published):
+        """Retire the same immutable access that was published for these rows."""
+        ssm_state_access_id, has_model_work, has_compact_checkpoints = published
         completed_access_id = out.ssm_state_access_id if out is not None else None
         if completed_access_id != ssm_state_access_id:
             raise RuntimeError('Compact completion does not match the submitted forward access.')
@@ -587,9 +579,40 @@ class EngineLoop:
                 cache_inputs.decode_save_id, out.decode_checkpoint_mask if out is not None else None)
         if step_outputs is not None:
             self.resp_queue.put_nowait(step_outputs)
-        # out might come from shared memory, need to explicitly delete to release memory in time
-        del out
 
+    async def _main_loop_get_outputs(
+        self,
+        running: 'SeqList',
+        forward_inputs: dict[str, Any],
+    ):
+        """Prefetch once and retire each row group against its own host state."""
+        model_inputs = forward_inputs['inputs']
+        delta = forward_inputs['delta']
+        cache_inputs = forward_inputs['cache_inputs']
+        mixed = forward_inputs.get('mixed_decode')
+        if mixed is not None:
+            mixed_rows = forward_inputs['mixed_running']
+            # The GPU first advances retained rows, then appends newly completed prompts.
+            decode_published = self._publish_forward(mixed_rows, None, mixed.delta, mixed.cache_inputs)
+        published = self._publish_forward(running, model_inputs, delta, cache_inputs)
+        forward_inputs, next_running = await self._prefetch_next_inputs()
+        out = await self.executor.get_output_async()
+        observed_round = getattr(out, 'dp_schedule_round', None)
+        if observed_round is not None:
+            self.inputs_maker.observe_dp_round(observed_round, prefetched=next_running is not None)
+        if mixed is not None:
+            if (out is None or out.mixed_decode is None or out.ssm_state_access_id != published[0]
+                    or out.mixed_decode.ssm_state_access_id != decode_published[0]
+                    or not isinstance(out.mixed_decode.next_token_ids, torch.Tensor)
+                    or out.mixed_decode.next_token_ids.size(0) != len(mixed_rows)):
+                raise RuntimeError('Mixed target completion does not match the submitted prompt and decode rows.')
+            if _envs.dp_prefill_trace and mixed.delta.max_q_seqlen > 1:
+                accepted = (out.mixed_decode.next_token_ids >= 0).sum(dim=1) - 1
+                logger.info('Mixed verify accepted histogram=%s',
+                            torch.bincount(accepted[accepted >= 0], minlength=mixed.delta.max_q_seqlen).tolist())
+            self._complete_forward(out.mixed_decode, mixed_rows, None, mixed.delta, mixed.cache_inputs,
+                                   decode_published)
+        self._complete_forward(out, running, model_inputs, delta, cache_inputs, published)
         return forward_inputs, next_running
 
     async def main_loop(self):

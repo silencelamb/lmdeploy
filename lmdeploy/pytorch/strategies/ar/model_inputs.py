@@ -51,19 +51,18 @@ def get_model_inputs_next_decoding(inputs: ModelInputs, input_ids: torch.Tensor,
     )
 
 
+def merge_block_offsets(first: torch.Tensor, second: torch.Tensor) -> torch.Tensor:
+    """Concatenate independently allocated row tables without changing logical page numbers."""
+    width = max(first.size(1), second.size(1))
+    if first.size(1) != width:
+        first = torch.nn.functional.pad(first, (0, width - first.size(1)))
+    if second.size(1) != width:
+        second = torch.nn.functional.pad(second, (0, width - second.size(1)))
+    return torch.cat((first, second), dim=0)
+
+
 def merge_model_inputs(inputs: ModelInputs, other: ModelInputs) -> ModelInputs:
     """Merge model inputs."""
-
-    def __try_pad_block_offsets(block_offsets: torch.Tensor, target_size: int):
-        """Try pad block offsets to target size."""
-        cur_size = block_offsets.size(1)
-        if cur_size < target_size:
-            pad_size = target_size - cur_size
-            pad_tensor = torch.zeros((block_offsets.size(0), pad_size),
-                                     dtype=block_offsets.dtype,
-                                     device=block_offsets.device)
-            block_offsets = torch.cat([block_offsets, pad_tensor], dim=1)
-        return block_offsets
 
     assert inputs.is_decoding and other.is_decoding, 'Only support merge in decoding.'
     input_ids = torch.cat([inputs.input_ids, other.input_ids], dim=-1)
@@ -71,10 +70,7 @@ def merge_model_inputs(inputs: ModelInputs, other: ModelInputs) -> ModelInputs:
     history_lengths = torch.cat([inputs.history_lengths, other.history_lengths], dim=0)
 
     # block offsets
-    max_blocks = max(inputs.block_offsets.size(1), other.block_offsets.size(1))
-    block_offsets0 = __try_pad_block_offsets(inputs.block_offsets, max_blocks)
-    block_offsets1 = __try_pad_block_offsets(other.block_offsets, max_blocks)
-    block_offsets = torch.cat([block_offsets0, block_offsets1], dim=0)
+    block_offsets = merge_block_offsets(inputs.block_offsets, other.block_offsets)
     num_ignored_history = torch.cat([inputs.num_ignored_history, other.num_ignored_history], dim=0)
 
     # lora adapter ids
