@@ -179,3 +179,33 @@ def test_adaptive_chunk_uses_post_match_suffix_and_reserves_verify_width(suffix,
     maker._refresh_mixed_chunk_budget()
     assert maker.long_context_chunker.max_prefill_num == expected
     assert expected + 7 * 4 <= maker.config.max_prefill_token_num
+
+
+@pytest.mark.parametrize(('enabled', 'phase_protected', 'expected'), [
+    (True, True, ['continuation']), (True, False, []), (False, True, []),
+])
+def test_long_overlap_only_borrows_a_protected_turn_for_its_existing_chunk(enabled, phase_protected, expected):
+    from lmdeploy.pytorch.engine.inputs_maker import InputsMakerAsync, _ForwardInputsTask
+    from lmdeploy.pytorch.messages import MessageStatus
+
+    maker = InputsMakerAsync.__new__(InputsMakerAsync)
+    maker.config = SimpleNamespace(mixed_forward=enabled, mixed_long_overlap=True, mixed_long_threshold=32768,
+                                   use_mrope=False, max_prefill_token_num=8192)
+    seq = SimpleNamespace(status=MessageStatus.RUNNING, return_logits=False, return_ce_loss=False,
+                          return_routed_experts=False, adapter_name=None,
+                          sampling_param=SimpleNamespace(max_new_tokens=300, response_format=None))
+    maker.long_context_chunker = SimpleNamespace(seq=seq, initial_query_tokens=64000, enabled=lambda: True,
+                                                 has_multimodal=False, next_chunk_size=lambda: (4096, None))
+    maker.running_seqs = [seq]
+    maker.engine_strategy = SimpleNamespace(get_num_decode_tokens=lambda: 4)
+    maker.protect_decode_turn = lambda: phase_protected
+    maker.scheduler = None
+    task = _ForwardInputsTask(maker, prefill=False)
+    task._should_defer_active_chunk = lambda: True
+    calls = []
+    task._try_active_chunk = lambda: calls.append('continuation')
+    task._select_active_chunk_work()
+    assert calls == expected
+    assert task.state.active_chunk_deferred == (not expected)
+    maker.long_context_chunker.initial_query_tokens = 1024
+    assert not maker.can_overlap_long_continuation()

@@ -144,6 +144,7 @@ class InputsMakerConfig:
     dp_prefill_period: int = 0
     mixed_forward: bool = False
     mixed_long_threshold: int = 0
+    mixed_long_overlap: bool = False
 
     @staticmethod
     def from_engine(engine: 'Engine'):
@@ -174,6 +175,7 @@ class InputsMakerConfig:
             interleaved_decode_rounds=max(0, _envs.interleaved_decode_rounds),
             dp_prefill_period=max(0, _envs.dp_prefill_period),
             mixed_long_threshold=max(0, _envs.glm53_mixed_long_threshold),
+            mixed_long_overlap=_envs.glm53_mixed_long_overlap,
             mixed_forward=(_envs.glm53_mixed_forward and cache_config.role == EngineRole.Hybrid
                            and engine.engine_config.device_type == 'cuda' and engine.dist_config.attn_tp == 1
                            and not engine.dist_config.enable_microbatch
@@ -481,7 +483,12 @@ class _ForwardInputsTask:
 
     def _select_active_chunk_work(self):
         if self._should_defer_active_chunk():
-            self.state.active_chunk_deferred = True
+            if self.maker.protect_decode_turn() and self.maker.can_overlap_long_continuation():
+                # This rank would otherwise send only a decode delta. Spend the
+                # same validation turn on both groups without admitting a new waiter.
+                self._try_active_chunk()
+            else:
+                self.state.active_chunk_deferred = True
         elif self._should_try_short_prefill_first():
             # After a decode turn, keep the short/normal prefill quota in front
             # of active long chunks; otherwise decode -> long can repeat and
@@ -1731,6 +1738,29 @@ class InputsMakerAsync:
                 batch_id, plan = snapshot
                 payload['cache_inputs'] = replace(carrier, decode_save_plan=plan, decode_save_id=batch_id)
 
+    def _confirmed_long_prompt(self):
+        threshold = getattr(self.config, 'mixed_long_threshold', 0)
+        chunker = self.long_context_chunker
+        if (threshold > 0 and chunker.enabled() and chunker.initial_query_tokens >= threshold
+                and chunker.seq.status in (MessageStatus.READY, MessageStatus.RUNNING)):
+            return chunker.seq
+        return None
+
+    def can_overlap_long_continuation(self):
+        if (not getattr(self.config, 'mixed_forward', False) or not getattr(self.config, 'mixed_long_overlap', False)
+                or self._confirmed_long_prompt() is None):
+            return False
+        chunker = self.long_context_chunker
+        if (chunker.has_multimodal or self.config.use_mrope or not self._supports_mixed_generation(chunker.seq)
+                or chunker.seq.status != MessageStatus.RUNNING):
+            return False
+        active = [seq for seq in self.running_seqs if seq.status == MessageStatus.RUNNING]
+        if not active or not all(self._supports_mixed_generation(seq) for seq in active):
+            return False
+        prompt_tokens, _ = chunker.next_chunk_size()
+        required = prompt_tokens + len(active) * self.engine_strategy.get_num_decode_tokens()
+        return required <= self.config.max_prefill_token_num
+
     def _refresh_mixed_chunk_budget(self):
         """Grow confirmed long text suffixes after the first chunk's KV reservation is consumed."""
         threshold = self.config.mixed_long_threshold
@@ -1749,7 +1779,13 @@ class InputsMakerAsync:
 
     async def _send_next_inputs_impl(self, enable_empty: bool = False):
         self.scheduler.resume_completed_migrations()
-        if getattr(self.config, 'mixed_forward', False):
+        selective = (getattr(self.config, 'mixed_forward', False) and self.config.mixed_long_overlap
+                     and self.config.mixed_long_threshold > 0)
+        long_before = self._confirmed_long_prompt() if selective else None
+        if long_before is not None and self.running_seqs and self.config.interleaved_prefill_tokens:
+            self.long_context_chunker.max_prefill_num = get_long_context_chunk_capacity(
+                long_before, min(self.config.interleaved_prefill_tokens, self.config.max_prefill_token_num))
+        elif getattr(self.config, 'mixed_forward', False) and not selective:
             self._refresh_mixed_chunk_budget()
         prefill = self.do_prefill()
         forward_inputs = self._make_forward_inputs(prefill, enable_empty)
@@ -1763,7 +1799,10 @@ class InputsMakerAsync:
             logger.debug(f'Forward session_ids: {session_ids}')
         self._prepare_decode_checkpoint(forward_inputs, next_running)
         mixed_rows = None
-        if getattr(self.config, 'mixed_forward', False):
+        if (getattr(self.config, 'mixed_forward', False) and
+                (not selective or
+                 (len(next_running) == 1 and (next_running[0] is long_before
+                                              or next_running[0] is self._confirmed_long_prompt())))):
             mixed, mixed_rows = self._prepare_mixed_decode(forward_inputs, next_running)
             if mixed is not None:
                 forward_inputs['mixed_decode'] = mixed
@@ -1775,6 +1814,10 @@ class InputsMakerAsync:
             self._last_compact_decode_banks = None
             raise
         self._last_forward_kind = self._forward_kind(inputs, forward_inputs['delta'])
+        if selective and mixed_rows is not None and self._last_forward_kind == 'long_context_chunk':
+            # The in-flight rows already verified. At the next normal phase,
+            # ordinary short-prefill quota and admission can run as usual.
+            self._last_forward_kind = 'mixed_long_context_chunk'
         if getattr(self.config, 'interleaved_prefill_tokens', 0) and self.config.role == EngineRole.Hybrid:
             self._record_interleaved_dispatch(inputs)
         self.scheduler.tick()
