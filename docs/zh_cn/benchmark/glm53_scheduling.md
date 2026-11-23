@@ -117,12 +117,13 @@ MTP0 采用独立本地轮转后，首次排队变短，但已经进入生成的
 
 ## 复现
 
-每个策略用独立的服务和相同模型。MTP3 的 C90 候选在启动 LMDeploy 之前设置下列变量，DP8、EP8 保持与基线一致。
+每个策略用独立的服务和相同模型。MTP3 的 C90 对齐版使用 DP8、EP8 和 `--max-prefill-token-num 8192`。在当前分支上，启动 LMDeploy 前设置下列变量可复现这个调度配置。
 
 ```bash
 export LMDEPLOY_INTERLEAVED_PREFILL_TOKENS=4096
 export LMDEPLOY_INTERLEAVED_DECODE_ROUNDS=1
 export LMDEPLOY_DP_PREFILL_PERIOD=2
+export LMDEPLOY_GLM53_MIXED_FORWARD=0
 ```
 
 本地轮转对照将周期设为 0，原调度对照将忙时 prefill 预算设为 0。MTP0 的周期 4 实验采用 8,192 token 的忙时预算。测量同一轮处理 prefill 的 rank 数时，对照和候选都启用 `LMDEPLOY_DP_PREFILL_TRACE=1`。执行设置统一使用 MegaMoE 和 FlashKDA，两个 runtime 增量可单独合并。[执行基线](https://github.com/silencelamb/lmdeploy/tree/ae81066e66481aeb3972c67332bdcee3c07673f1) · [调度增量](https://github.com/silencelamb/lmdeploy/commit/8ff9e72d)

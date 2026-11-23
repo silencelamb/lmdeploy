@@ -1,6 +1,18 @@
 # GLM-5.3-Flash 同一 rank 的混合前向
 
-本实验比较两种 MTP3 服务。参考配置使用 8×H200、DP8 + EP8 + TP1，忙时 prefill 预算 4,096 个 token，各 rank 按两轮周期对齐准入。候选保留这组设置，把同一 rank 上已经开始生成的请求一并放进实际目标模型前向。部署验收看 AgentX C90 的 TTFT p95、TPOT p50/p95 和整机输出吞吐。[对齐版的测量与配置](glm53_scheduling.md)
+部署验收使用 GLM-5.3-Flash、8×H200、DP8 + EP8 + TP1、MTP3 和 RDMA Mooncake。目标是在 AgentX C90 降低 TTFT p95，同时保住 TPOT p50/p95 和整机输出吞吐。
+
+## 怎样读两行对照
+
+**已发布的对齐版**是此前已推到 `silencelamb/lmdeploy` 的调度提交 `8ff9e72d`。8 个 rank 共同参与专家并行计算。调度器沿用 worker 已有的集体前向轮次编号，尽量让忙碌 rank 在同一相位接纳 prefill，周期设为 2。一次含 prefill 的集体轮次可以同时服务更多 rank，其余轮次给在途请求做 decode 或 MTP 验证。空闲 rank 可以立即接单，忙碌 rank 也有等待上限。固定负载里，每个含 prefill 的轮次平均处理 prefill 的 rank 数从独立轮转时的 2.44 增至 3.60–3.91。[调度提交](https://github.com/silencelamb/lmdeploy/commit/8ff9e72dbe39f528c2b4da1ffa8a15ff23fde9bc) · [轮次测量](glm53_scheduling.md)
+
+**同代码关闭混批**是在含混批实现的工作树中设置 `LMDEPLOY_GLM53_MIXED_FORWARD=0`，保留 4K 忙时预算和周期 2 的跨 rank 对齐。每个 rank 一次前向选择 prefill 或生成验证。不同 rank 在同一个集体轮次可以各做不同的工作。表中这两行分别来自独立冷启动，TTFT p95 为 3,602.19 和 3,603.04 ms。
+
+| 数值 | 实际含义 |
+| --- | --- |
+| 4K | 两行对照都用 `LMDEPLOY_INTERLEAVED_PREFILL_TOKENS=4096`。某个 rank 已有在途生成时，新准入的文本 prefill 一轮最多使用 4,096 个 token，前缀命中后按剩余计算量计费。 |
+| 8K | 两行都用 `--max-prefill-token-num 8192`。这是引擎每个 rank 一次前向的总预算，空闲 rank 可用满 8,192 个 token。 |
+| 8K/256、C64 | 这是单独的固定负载，每条请求输入 8,192、输出 256 个 token。AgentX C90 使用 Weka 256K 轨迹，输入长度随请求变化。 |
 
 ## 一个前向里做了什么
 
@@ -37,11 +49,15 @@
 
 对齐版 C90 中，TTFT ≥ 3.602 秒的 153 条请求里，119 条在减去已读缓存后仍有至少 32,768 个输入 token。基于这个分布，额外测试按实际未缓存后缀选择块长。首块沿用已有的准入预算。对确认很长的后缀，后续块可在预留所有在途验证 query 后使用剩余引擎额度，并遵守 KV 页边界与 checkpoint 切分规则。已缓存的长历史不会单独触发扩块。
 
-同一组 16 条冷 64K 输入、32 条在途探针的独立流式测量中，普通 4K 混批的 TTFT p50/p95 为 7.30/8.75 秒，仅长后缀扩块后为 8.86/10.80 秒。两者检索均为 16/16。另一个只在已确认长后缀的验证轮中补入 prompt 的候选已在本机实现，64K 服务实验为节点交接而中止，没有完整数据或 C90 结论。
+同一组 16 条冷 64K 输入、32 条在途探针的独立流式测量中，普通 4K 混批的 TTFT p50/p95 为 7.30/8.75 秒，仅长后缀扩块后为 8.86/10.80 秒。两者检索均为 16/16。
+
+选择性混批仍用 4K 块长。只有已确认未缓存后缀至少 32K 的请求符合条件。活跃长请求本来要让出本轮给 decode，而全部在途验证行和下一块 prompt 合计能装进 8K 预算时，可在同一个 rank 的一次目标前向里推进两者。普通新请求继续按周期 2 准入。[选择性混批实现](https://github.com/silencelamb/lmdeploy/commit/5558b6af44720dd824e4e1e45348dee8c5b13009)
+
+重新独立启动后，选择性混批的 16 条冷 64K 输入获得 16/16 个正确答案，32 条在途流各交付 512 个 token。首 token 的 p50/p95 为 **6.62/7.74 秒**，普通 4K 混批为 **7.30/8.75 秒**。在 rank 0 上，两个注入波次各有 16 个连续集体轮次同时执行长输入和验证，共 30 对相邻轮次。普通 4K 混批的相同测量为 0 对。这里比较的是定点检索的受控注入。
 
 ## 复现
 
-在对齐配置的服务启动前设置下列变量。4K 混合对照将长后缀门槛设为 0，长后缀实验设为 32768。
+下列环境建立 4K 普通混批，服务端共同使用 `--max-prefill-token-num 8192`。长后缀扩块将门槛设为 32768。选择性借验证轮同时设置门槛 32768 和 `LMDEPLOY_GLM53_MIXED_LONG_OVERLAP=1`。
 
 ```bash
 export LMDEPLOY_INTERLEAVED_PREFILL_TOKENS=4096
@@ -49,6 +65,7 @@ export LMDEPLOY_INTERLEAVED_DECODE_ROUNDS=1
 export LMDEPLOY_DP_PREFILL_PERIOD=2
 export LMDEPLOY_GLM53_MIXED_FORWARD=1
 export LMDEPLOY_GLM53_MIXED_LONG_THRESHOLD=0
+export LMDEPLOY_GLM53_MIXED_LONG_OVERLAP=0
 ```
 
 对齐参考使用同样的部署配置并关闭 `LMDEPLOY_GLM53_MIXED_FORWARD`。正式窗使用 Weka 256K、seed 20260707、RDMA Mooncake 160 GiB/worker、每档冷启动后正式计时 1,800 秒。固定负载的工作树可启用 `LMDEPLOY_DP_PREFILL_TRACE=1`，从 worker 记录的实际 prompt token、decode 行数及验证宽度核实混合前向。正式窗关闭逐步 trace，worker 周期性报告累计混合前向数。
