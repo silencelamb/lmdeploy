@@ -7,10 +7,9 @@ from pathlib import Path
 from time import perf_counter
 
 import aiohttp
-from tokenizers import Tokenizer
-
 import fixed_io
 import mtp_interference
+from tokenizers import Tokenizer
 
 
 def steady_window(rows):
@@ -70,8 +69,9 @@ async def run(args):
                 if args.draft_depth:
                     delta = mtp_interference.difference(before, after, args.draft_depth)
                     chunks = sum(len(row['arrivals_s']) - 1 for row in rows)
-                    if chunks != delta['spec_decode_num_drafts_total']:
-                        raise ValueError(f'{tag}: {chunks} decode chunks, {delta["spec_decode_num_drafts_total"]} drafts')
+                    worker_rounds = delta['spec_decode_num_drafts_total']
+                    if chunks != worker_rounds:
+                        raise ValueError(f'{tag}: {chunks} decode chunks, {worker_rounds} worker rounds')
                     summary['worker_submitted_per_draft'] = delta['submitted_per_draft']
                 elif any(n != 1 for r in rows for _, n in r['arrivals_s']):
                     raise ValueError('Expected a single delivered token per MTP0 step.')
