@@ -2,6 +2,8 @@
 
 这里在相同 DeepGEMM MegaMoE 基础上改变 KDA prefill 实现，并单独测量已有服务在 MTP5 下的执行与混部表现。[MegaMoE 基线](glm53_sm90_megamoe.md) · [执行测量数据](../../../benchmark/glm53_mega_moe/results/h200_execution.json) · [FlashKDA 启用与复现](../../../benchmark/glm53_mega_moe/README.md#flashkda-prefill-on-h200)
 
+MTP3 草稿词表分片、原调度同形状开关与 AgentX C90 四组集成结果见[草稿投影实测](glm53_mtp_draft_head.md)。
+
 ## FlashKDA prefill
 
 GLM 的 45 层中有 34 层 KDA。单 H200、8,192 tokens、64 个 128 维 head 的递推（含 indexed state 读写）从 FLA 2.256 ms 降到 FlashKDA 0.640 ms。每条 64K prompt 分为 8 个 chunk，按单层耗时差估算可节约 0.440 秒；整模稳定段实际节约 0.423 秒。每 rank 处理 8 条 64K 输入的整组 prefill 从 47.22 降为 44.02 秒。MTP0 的 8K/256、C=64 滚动吞吐由 1,622 升至 1,702 tok/s（+4.92%）。每组两次启动、每次 256 条成功请求。
