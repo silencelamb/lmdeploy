@@ -8,6 +8,19 @@
 
 本 checkpoint 的 gate 和 up 各有独立 FP32 scale。interleaved 权重布局避免每 rank 多存 23.625 GiB 的 FC1 副本，prefill 的 grouped GEMM 直接读交错布局。FlashInfer 要精确保留两组 scale，需要应用随附的 split-scale 扩展。模型继续使用 FP32 noaux 路由、2.5 倍 routed scale 与 shared expert。[后端与依赖补丁](../../../benchmark/glm53_mega_moe/README.md)
 
+## 单层消融
+
+取真实 checkpoint 首个 routed 层，EP8，在 rank 0 记录三轮原生 DeepEP 与候选的 CUDA 时间。混合形状为 `[1024, 8, 8, 8, 8, 8, 8, 1]`，最后一个 rank 参与 collective。以下为轮中位数。
+
+| 形状 | 候选 | 原生 µs | 候选 µs | 层输出相对 L2 |
+| --- | --- | ---: | ---: | ---: |
+| 单 rank 1K prefill 混合 | DeepGEMM | 997.9 | 379.7 | 1.77% |
+| 单 rank 1K prefill 混合 | FlashInfer | 1,102.3 | 773.3 | 2.08% |
+| 所有 rank 8K prefill | DeepGEMM | 6,771.4 | 5,076.6 | 1.78% |
+| 所有 rank 8K prefill | FlashInfer | 6,815.6 | 5,621.1 | 2.08% |
+
+另在 B=8 的完整 MoE 层上，原生 DeepEP 为 234.67 µs。DeepGEMM 融合 routed expert、保留独立 shared expert 时为 222.46 µs，连同 shared expert 融合后为 208.01 µs。省下了额外量化、shared GEMM 与累加的独立调度。实际整模收益还取决于 attention、KDA、其余投影与服务端调度。[层测试入口](../../../benchmark/glm53_mega_moe/bench_prefill.py)
+
 ## 同机固定输入输出
 
 每个 rank 配置 8,192-token prefill 预算、32 个请求槽，关闭 MTP。使用相同输入 token ID、滚动并发、按当前在途请求数分流，每档 4 倍并发数的请求。LMDeploy 每 rank 49,152 个物理 KV 块，与 vLLM 均约 314 万可用 KV tokens。vLLM 参照为同机合并提交 `5328ae2fef`。吞吐取全部有效输出 token 数除以窗口墙钟时间。
