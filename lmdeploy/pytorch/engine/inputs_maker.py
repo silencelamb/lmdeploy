@@ -1701,7 +1701,7 @@ class InputsMakerAsync:
 
     def _prepare_mixed_decode(self, payload, prefill_rows):
         inputs = payload['inputs']
-        if (inputs is None or inputs.is_dummy or inputs.vision_inputs is not None
+        if (inputs is None or inputs.is_dummy or inputs.vision_inputs is not None or inputs.is_chunk_multimodal
                 or inputs.logits_indices is not None or inputs.mrope_pos_ids is not None or not self.running_seqs):
             return None, None
         active = [seq for seq in self.running_seqs if seq.status == MessageStatus.RUNNING]

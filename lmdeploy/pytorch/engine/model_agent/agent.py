@@ -1163,6 +1163,8 @@ class BaseModelAgent:
 
         decode_inputs = None
         if mixed_decode is not None:
+            if need_update_inputs or inputs.is_decoding or inputs.is_dummy or need_broadcast_next:
+                raise ValueError('A mixed packet requires a real prompt batch and local attention TP1.')
             decode_inputs, decode_extra, decode_stop, decode_sampling = self._get_inputs_from_delta(
                 mixed_decode.delta, mixed_decode.sampling_inputs)
             decode_ticket = mixed_decode.cache_inputs.ssm_state_access_id if mixed_decode.cache_inputs else None
