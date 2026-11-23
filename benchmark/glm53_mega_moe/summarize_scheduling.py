@@ -5,6 +5,7 @@ import gzip
 import json
 import re
 import shlex
+from bisect import bisect_right
 from pathlib import Path
 from statistics import median, quantiles
 
@@ -41,12 +42,24 @@ def percentiles(values):
     return {f'p{q}': round(percentiles[q - 1], 3) for q in (50, 95, 99)}
 
 
+def decode_only_window(probes):
+    """Count delivered tokens on a shared clock while all 32 probes are still generating."""
+    times = [[r['started_s'] + t for t, count in r['arrivals_s'] for _ in range(count)] for r in probes]
+    start = max(t[32] for t in times)
+    end = min(t[447] for t in times)
+    if end <= start:
+        return None
+    count = sum(bisect_right(t, end) - bisect_right(t, start) for t in times)
+    return dict(seconds=round(end - start, 4), output_tokens=count, output_tok_s=round(count / (end - start), 2))
+
+
 def summarize_probes(fixed, repeats, depth):
     arms = {}
     metrics = {}
     for arm in ('alone', 'with-prefill'):
         probes = []
         extra_wave_seconds = []
+        decode_windows = []
         for rep in range(repeats):
             tag = f'probe32-r{rep}-{arm}'
             batch = streams(fixed / f'{tag}-probes.jsonl.gz', 32, 1024, 512)
@@ -60,11 +73,15 @@ def summarize_probes(fixed, repeats, depth):
                 first = min(row['started_s'] for row in extra)
                 assert first >= marker
                 extra_wave_seconds.append(round(max(row['finished_s'] for row in extra) - first, 3))
+            if arm == 'alone':
+                decode_windows.append(decode_only_window(batch))
             probes.extend(batch)
         arms[arm] = probes
         gaps = [1000 * max(b[0] - a[0] for a, b in zip(r['arrivals_s'], r['arrivals_s'][1:])) for r in probes]
         metrics[arm] = dict(requests=len(probes), tpot_ms=percentiles([tpot(r) for r in probes]),
                             max_inter_chunk_gap_ms=percentiles(gaps))
+        if decode_windows:
+            metrics[arm]['all_active_decode_windows'] = decode_windows
         if extra_wave_seconds:
             metrics[arm]['extra_prefill_wave_s'] = extra_wave_seconds
     paired = list(zip(arms['alone'], arms['with-prefill']))
@@ -100,7 +117,7 @@ def summarize(run):
     assert len(cases) == (2 if depth else 1), run
     all_rows, rates, seeds, windows = [], [], [], []
     elapsed = 0.0
-    drafts = proposed = accepted = 0
+    drafts = proposed = accepted = preemptions = 0
     sums = dict.fromkeys(PHASES, 0.0)
     for rep, case in enumerate(cases):
         summary = read_json(case / 'summary.json')
@@ -115,6 +132,7 @@ def summarize(run):
         if depth:
             stat = read_json(fixed / f'rolling-r{rep}-counters.json')
             assert stat['time_to_first_token_seconds_count'] == len(rows) and 0 < stat['proposed_per_draft'] <= depth
+            preemptions += stat['num_preemptions_total']
             drafts += stat['spec_decode_num_drafts_total']
             proposed += stat['spec_decode_num_draft_tokens_total']
             accepted += stat['spec_decode_num_accepted_tokens_total']
@@ -140,14 +158,19 @@ def summarize(run):
         assert 0 < proposed <= depth * drafts and 0 <= accepted <= proposed
         if backend == 'lmdeploy':
             assert proposed == depth * drafts
+        result['reported_preemptions'] = int(preemptions)
         result['mean_tokens_per_verification'] = round(1 + accepted / drafts, 4)
         result['probes'] = summarize_probes(fixed, len(cases), depth)
     if overrides.get('LMDEPLOY_DP_PREFILL_TRACE') == '1':
+        clocks = fixed / 'rolling-clock.json'
+        if clocks.exists():
+            windows = read_json(clocks)
+        assert len(windows) == len(cases) and all(lo < hi for lo, hi in windows)
         with (run / 'server.log').open() as log:
             trace = [m.groups() for line in log if (m := DP_TRACE.search(line))]
         ranks = [int(n) for _, t, n in trace if int(n) and any(lo <= float(t) <= hi for lo, hi in windows)]
         assert ranks and all(1 <= n <= 8 for n in ranks)
-        result['dp_trace'] = dict(prefill_rounds=len(ranks), rank_prefills=sum(ranks),
+        result['dp_trace'] = dict(rolling_clock_unix_s=windows, prefill_rounds=len(ranks), rank_prefills=sum(ranks),
                                   mean_prefill_ranks=round(sum(ranks) / len(ranks), 3))
     return result
 

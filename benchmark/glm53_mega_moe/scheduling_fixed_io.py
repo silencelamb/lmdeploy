@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import json
 from pathlib import Path
+from time import time
 from urllib.parse import urlsplit
 
 import aiohttp
@@ -48,7 +49,11 @@ async def main(args):
             name = f'i8192-o{output}-c{concurrency}'
             await warmup_case(args, tokenizer, 8192, concurrency, args.output)
             before = await snapshot(client, args, f'{name}-before')
+            started = time()
             valid = await run_case(args, tokenizer, 8192, concurrency, 0, args.output, count)
+            finished = time()
+            if output == 256:
+                (args.output / 'rolling-clock.json').write_text(json.dumps([[started, finished]]) + '\n')
             await asyncio.sleep(1)
             after = await snapshot(client, args, f'{name}-after')
             if not valid:
