@@ -337,6 +337,12 @@
   "history_note": "Historical QA reference uses vLLM 0.33.0 as identified by the operator. The report publishes user throughput p50 and ITL average/p99, but no TPOT p50 or complete per-engine server manifest.",
   "highest_tested_pass": 90,
   "first_tested_slo_miss": null,
+  "early_stop": {
+    "concurrency": 100,
+    "profiling_seconds": 457.6,
+    "reason": "operator requested stopping early to begin scheduler development",
+    "formal_window": false
+  },
   "best_measured_goodput_at_70pct_attainment": {
     "concurrency": 70,
     "goodput_rps": 0.9766295724027729,

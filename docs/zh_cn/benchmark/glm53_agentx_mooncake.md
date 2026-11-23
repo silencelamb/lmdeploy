@@ -1,4 +1,4 @@
-# GLM-5.3-Flash 部署对照：MTP3、Mooncake 和 AgentX
+# GLM-5.3-Flash 的 MTP3、Mooncake 与 AgentX 部署对照
 
 这组实验考察当前组合部署的负载边界。目标模型运行 DeepGEMM MegaMoE，开启融合 prefill 和 shared expert，KDA prefill 使用另一个执行优化分支的 FlashKDA。单独衡量 MegaMoE 收益的同深度对照见[基础测量](glm53_sm90_megamoe.md)。本次测试的模型运行时代码可从[执行分支的固定提交](https://github.com/silencelamb/lmdeploy/tree/7b28f6db1b0be75fce186e8522a82bde306d4d97)复核。
 
@@ -74,7 +74,13 @@ python benchmark/glm53_mega_moe/agentx_slo.py "$RUN/profile_export_aiperf.json"
 | 80 | 2650 | 714.00 / 2,963.41 | 19.18 / 52.94 | 1,322.31 | 0.9440 | 65.55% | 通过 |
 | 90 | 2910 | 764.13 / 3,380.09 | 22.87 / 68.45 | 1,360.57 | 0.8435 | 53.33% | 通过 |
 
-目前已通过 C=90。阶梯继续进行，最终边界待首个正式未达档确定。 在已测且逐请求达标率至少 70% 的档位中，最高 Goodput 为 0.9766 req/s（C=70，达标率 77.89%）。
+最高完整通过档为 C=90。C=100 在正式窗口约 458 秒时按要求停止，样本没有计入比较，实际首次越界并发尚未测定。 在已测且逐请求达标率至少 70% 的档位中，最高 Goodput 为 0.9766 req/s（C=70，达标率 77.89%）。
+
+从 C=70 到 C=90，单用户输出速率 p50 从 65.57 到 43.67 tok/s。全机输出吞吐变化 +5.86%，逐请求达标率变化 -24.56 个百分点。同期平均输入长度从 88,631 变为 78,404 tokens，平均输出长度从 1,025 变为 860 tokens。闭环窗口中不同配置推进到了不同回合。
+
+![Measured TTFT, TPOT, output throughput and request SLO attainment by concurrency](../_static/image/glm53_agentx_mtp3_mooncake.png)
+
+图中虚线阈值对应两项 p50 目标，曲线只包含完整正式窗口。历史 QA 参照表只列出了至 C=80 的数值。图可通过 `benchmark/glm53_mega_moe/plot_qa_ladder.py` 从配套 JSON 重新生成。
 
 ### 与历史 QA 表对照
 
