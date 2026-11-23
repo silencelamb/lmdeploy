@@ -18,6 +18,7 @@
     "tp": 1,
     "mtp": 3,
     "model_revision": "3f1971b7b5f7a528c9c4ef6212c8785298a8c24a",
+    "lmdeploy_public_runtime_commit": "7b28f6db1b0be75fce186e8522a82bde306d4d97",
     "moe": "deepgemm_mega_moe, interleaved, shared expert fused, prefill capacity 8192",
     "kda_prefill": "FlashKDA",
     "kv_dtype": "BF16 MLA",
@@ -95,6 +96,13 @@
       "usable_kv_tokens_per_rank_max": 3078528,
       "store_cross_worker_smoke_cached_tokens": 6592,
       "input_length_avg": 88631.3276983095,
+      "prefill_tok_s": 111126.24589545216,
+      "request_rate_per_s": 1.253803240697383,
+      "request_latency_ms": {
+        "p50": 8412.6464,
+        "p95": 65218.131488699975,
+        "p99": 136387.42163238005
+      },
       "output_length_avg": 1025.0593844820112,
       "per_user_tps_p95": 112.85860553794497,
       "peak_sampled_mooncake_store_percent": 85.7
@@ -152,9 +160,79 @@
       "usable_kv_tokens_per_rank_max": 3078528,
       "store_cross_worker_smoke_cached_tokens": 6592,
       "input_length_avg": 81675.51811320755,
+      "prefill_tok_s": 117630.34523251602,
+      "request_rate_per_s": 1.4402154764353348,
+      "request_latency_ms": {
+        "p50": 10856.0485415,
+        "p95": 69086.99319509995,
+        "p99": 147642.25800542964
+      },
       "output_length_avg": 918.1320754716982,
       "per_user_tps_p95": 103.58735046865996,
       "peak_sampled_mooncake_store_percent": 94.7
+    },
+    {
+      "concurrency": 90,
+      "formal_seconds": 1800,
+      "duration_s": 1824.519832832,
+      "completed": 2910.0,
+      "good_requests": 1552.0,
+      "attainment": 0.5333333333333333,
+      "goodput_rps": 0.8434776076419992,
+      "decode_tok_s": 1360.565794141823,
+      "ttft_ms": {
+        "p50": 764.130108,
+        "p95": 3380.085583349993,
+        "p99": 11402.022345589992
+      },
+      "tpot_ms": {
+        "p50": 22.866927640555758,
+        "p95": 68.45261265355374,
+        "p99": 123.30547268632421
+      },
+      "user_tps_p50": 43.67327913127436,
+      "both_medians_pass": true,
+      "cached_token_ratio": 0.9055314264793307,
+      "outcomes": {
+        "warmup": {
+          "completed": 38,
+          "InvalidInferenceResultError": 51
+        },
+        "profiling": {
+          "completed": 2910
+        }
+      },
+      "aiperf_version": "0.12.0",
+      "submission_valid": true,
+      "coverage": {
+        "required_ratio": 0.95,
+        "ttft_ratio": 1.0,
+        "inter_token_latency_ratio": 1.0
+      },
+      "server_formal_counters": {
+        "external_prefix_cache_hits": 4048896,
+        "external_prefix_cache_queries": 36278012,
+        "spec_decode_num_drafts": 854827,
+        "spec_decode_num_draft_tokens": 2564481,
+        "spec_decode_num_accepted_tokens": 1657611
+      },
+      "mean_submitted_per_draft": 2.9391186754746865,
+      "idle_max_gpu_mib": 125471,
+      "peak_gpu_mib": 131577,
+      "usable_kv_tokens_per_rank_min": 3072320,
+      "usable_kv_tokens_per_rank_max": 3078528,
+      "store_cross_worker_smoke_cached_tokens": 6592,
+      "input_length_avg": 78404.29518900343,
+      "prefill_tok_s": 123998.00125289574,
+      "request_rate_per_s": 1.5815205143287485,
+      "request_latency_ms": {
+        "p50": 12574.1531605,
+        "p95": 77954.6887816498,
+        "p99": 163810.4651103097
+      },
+      "output_length_avg": 860.2896907216494,
+      "per_user_tps_p95": 93.21589428886573,
+      "peak_sampled_mooncake_store_percent": 95.0
     }
   ],
   "comparison": {
@@ -253,10 +331,11 @@
         "new_vs_old_goodput_fraction": 0.13655247289669048,
         "attainment_delta_pp": 10.447169811320755
       }
-    }
+    },
+    "90": {}
   },
   "history_note": "Historical QA reference uses vLLM 0.33.0 as identified by the operator. The report publishes user throughput p50 and ITL average/p99, but no TPOT p50 or complete per-engine server manifest.",
-  "highest_tested_pass": 80,
+  "highest_tested_pass": 90,
   "first_tested_slo_miss": null,
   "best_measured_goodput_at_70pct_attainment": {
     "concurrency": 70,
