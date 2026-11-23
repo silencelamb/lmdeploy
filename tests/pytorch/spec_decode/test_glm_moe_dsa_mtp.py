@@ -1,5 +1,6 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import asyncio
+from types import SimpleNamespace
 
 import pytest
 import torch
@@ -198,3 +199,55 @@ def test_topk_buffer_does_not_reuse_stale_indices_for_dense_prefill():
     buffer.write(None)
 
     assert buffer.read(num_tokens=1, device=rows.device) is None
+
+
+@pytest.mark.parametrize('rank', [0, 1, 2])
+@pytest.mark.parametrize('seed_pass', [False, True])
+def test_sharded_draft_head_returns_full_logits_to_ragged_row_owner(monkeypatch, rank, seed_pass):
+    from lmdeploy.pytorch.model_inputs import DPMeta
+
+    sizes = (2, 0, 3)
+    batch = max(sizes)
+    hidden_size = 4
+    width = 8
+    world = len(sizes)
+    weight = torch.arange(world * width * hidden_size, dtype=torch.float32).reshape(-1, hidden_size)
+    hidden = torch.arange(world * batch * hidden_size, dtype=torch.float32).reshape(world, batch, hidden_size)
+    padded = hidden.clone()
+    for peer, rows in enumerate(sizes):
+        padded[peer, rows:] = 0
+
+    group = SimpleNamespace(rank=lambda: rank, size=lambda: world)
+    proposer = object.__new__(DeepseekMTP)
+    proposer._draft_head_group = group
+    proposer.target_model = SimpleNamespace(lm_head=SimpleNamespace(weight=weight, vocab_size=weight.shape[0]))
+
+    def gather(out, local, *, group):
+        torch.testing.assert_close(local, padded[rank])
+        out.copy_(padded.flatten(0, 1))
+
+    def exchange(out, sent, *, group):
+        shard = weight.narrow(0, rank * width, width)
+        torch.testing.assert_close(sent, padded.flatten(0, 1) @ shard.T)
+        from_peers = [padded[rank] @ w.T for w in weight.split(width)]
+        out.copy_(torch.cat(from_peers))
+
+    monkeypatch.setattr(torch.distributed, 'all_gather_into_tensor', gather)
+    monkeypatch.setattr(torch.distributed, 'all_to_all_single', exchange)
+    meta = DPMeta(dp_is_decoding=True, dp_batches=list(sizes) if seed_pass else None,
+                  dp_token_counts=tuple(rows * (4 if seed_pass else 1) for rows in sizes))
+    local = hidden[rank, :sizes[rank]].unsqueeze(0)
+    got = proposer._get_mtp_logits(local, SimpleNamespace(dp_meta=meta))
+    torch.testing.assert_close(got, local @ weight.T, atol=0, rtol=0)
+
+
+@pytest.mark.parametrize('decoding,sizes', [(False, [1, 2]), (True, [1, 17]), (True, None)])
+def test_sharded_draft_head_uses_local_projection_outside_small_global_decode(decoding, sizes):
+    from lmdeploy.pytorch.model_inputs import DPMeta
+
+    proposer = object.__new__(DeepseekMTP)
+    proposer._draft_head_group = object()
+    proposer.target_model = SimpleNamespace(get_logits=lambda x: x + 1)
+    meta = DPMeta(dp_is_decoding=decoding, dp_batches=sizes)
+    hidden = torch.zeros(1, 1, 4)
+    assert torch.equal(proposer._get_mtp_logits(hidden, SimpleNamespace(dp_meta=meta)), hidden + 1)
