@@ -25,6 +25,7 @@ class DeepseekMTP(BaseSpecProposer):
                     draft_model, 'set_input_embeddings'):
             draft_model.set_input_embeddings(target_model.get_input_embeddings())
 
+        self._draft_head_group = None
         if (envs.glm53_dp_draft_head and build_model_ctx is not None
                 and build_model_ctx.moe_backend == 'deepgemm_mega_moe' and not build_model_ctx.enable_deterministic):
             head = target_model.lm_head
@@ -39,15 +40,15 @@ class DeepseekMTP(BaseSpecProposer):
     def _get_mtp_logits(self, hidden_states: torch.Tensor, model_inputs: ModelInputs) -> torch.Tensor:
         """Project a shared vocabulary shard for every DP row and return each owner's complete logits."""
         group = self._draft_head_group
-        if group is None or model_inputs.dp_meta is None or not model_inputs.dp_meta.dp_is_decoding:
+        meta = getattr(model_inputs, 'dp_meta', None) if group is not None else None
+        if meta is None or not meta.dp_is_decoding:
             return self.target_model.get_logits(hidden_states)
-        meta = model_inputs.dp_meta
         # The seed pass carries a batch count separate from its multi-token
         # query count. Each subsequent AR pass has one query per request.
         sizes = meta.dp_batches or meta.dp_token_counts
-        if not sizes or max(sizes) > 16:
+        batch = max(sizes) if sizes else 0
+        if not 1 <= batch <= 16:
             return self.target_model.get_logits(hidden_states)
-        batch = max(sizes)
         local = hidden_states[0].contiguous()
         rows, hidden_size = local.shape
         if rows < batch:
