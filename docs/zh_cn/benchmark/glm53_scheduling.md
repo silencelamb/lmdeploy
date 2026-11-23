@@ -113,7 +113,7 @@ MTP0 采用独立本地轮转后，首次排队变短，但已经进入生成的
 
 ## 同一 forward 混批的实现边界
 
-真正共用一次 forward 还需从 GPU 端保留的 `StepInputs` 取出已有 decode 行。MTP3 每行要同时携带目标 token、草稿和实际拒绝数。计划先让 MTP0 使用按行的 query 长度和 KV 预留，给两个阶段分别构造 KDA/MLA 所需的元数据，再合用其余层的前向。随后为 MTP3 覆盖零接受、部分接受、停止和 prefix/compact-state 恢复。纯 decode 窗口、滚动服务和集中注入的测量分别报告，便于定位收益来源。
+本页对齐策略按轮次选择工作。后续 PR2 增量已将同一 rank 的 MTP0 decode 行和 MTP3 四位置验证行接入同一次目标模型前向，并分别确认两组缓存与采样结果。[混合前向实现与 C90 对照](glm53_mixed_forward.md)
 
 ## 复现
 

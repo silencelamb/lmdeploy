@@ -1,0 +1,53 @@
+# GLM-5.3-Flash 同一 rank 的混合前向
+
+本实验比较两种 MTP3 服务。参考配置使用 8×H200、DP8 + EP8 + TP1，忙时 prefill 预算 4,096 个 token，各 rank 按两轮周期对齐准入。候选保留这组设置，把同一 rank 上已经开始生成的请求一并放进实际目标模型前向。部署验收看 AgentX C90 的 TTFT p95、TPOT p50/p95 和整机输出吞吐。[对齐版的测量与配置](glm53_scheduling.md)
+
+## 一个前向里做了什么
+
+1. Host 在前缀匹配后确定本轮 prompt 行和 KV 预留，同时给已经在途的生成行预留实际验证宽度。MTP0 每行 1 个 query，MTP3 每行 4 个 query。每个混合前向的总 query 数受引擎的 8,192-token 上限约束。模型不支持的请求组合沿用已有调度。
+2. Worker 从保留的 `StepInputs` 取最新 decode token、草稿、位置和状态库行号。目标模型只调用一次。mHC、线性投影、FFN 和跨卡 MoE 处理拼在一起的 token。KDA 和 KPool/MLA 使用各组自己的 prefill 或 decode 元数据访问缓存。输出层在同一次投影中计算每个 prompt 最后一个位置及在途行的全部验证位置。
+3. MTP3 为新 prompt 和在途请求分别移位。非末尾 prompt chunk 使用已知的下一个输入 token，验证行根据实际拒绝数写入替换或奖励 token。两组共用草稿模型的批次。Host 按独立完成编号确认两组 compact-state 和 checkpoint，先推进原有行，再把完成 prefill 的新行加入下一轮。采样、停止和交付均保留请求自己的行映射。
+
+这一实现面向 CUDA 上的 GLM-5.3 混部文本生成、attention TP1、MTP0 或三草稿 DeepSeek MTP。纯 decode 继续使用原有 CUDA Graph。输入打分、返回全部 logits、特殊适配器、受约束生成与多模态输入等组合选用原先的前向路径。[调度和模型实现](https://github.com/silencelamb/lmdeploy/commit/435130da)
+
+## AgentX C90 实测
+
+| C90，MTP3 + Mooncake | TTFT p50 / p95 ms | TPOT p50 / p95 ms | 输出 tok/s | Goodput req/s | 达标 / 正式可评分请求 | 正式空内容请求 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 已发布的对齐版 | 726.71 / 3,602.19 | 22.45 / 58.13 | 1,433.65 | 0.9277 | 1,707 / 3,042 | 0 |
+| 4K 混批 | 780.47 / 3,683.09 | 23.32 / 56.72 | 1,391.44 | 0.8603 | 1,583 / 2,965 | 2 |
+| 长后缀扩块混批 | 796.16 / 3,628.92 | 23.78 / 67.29 | 1,377.98 | 0.7967 | 1,466 / 2,929 | 0 |
+
+三个窗口均使用相同的 QA 服务端参数、Weka 256K、seed 20260707、1,800 秒正式计时和 160 GiB/worker 的 RDMA Mooncake。TTFT 与 TPOT 分别取请求分位数，输出吞吐与 goodput 直接取 AIPerf 正式导出。4K 混批的两条空内容错误不进入该导出的可评分请求数。对应服务端记录都以长度上限结束，分别生成了 1,094 和 291 个 token。客户端没有解析到可计时内容，原始失败流的 token 内容尚不能由计数还原。
+
+在已发布对齐版与 4K 混批的 2,956 个共同评分 turn 上，TTFT p95 从 3,640.29 变为 3,691.29 ms，TPOT p95 从 58.21 变为 56.64 ms。进一步限定实际输入、输出和已读缓存长度均相同后有 1,083 对，TTFT p95 为 4,020.14 / 3,711.98 ms。闭环回放的请求构成会变化，部署判定采用上表整个窗口。
+
+## 固定负载与正确性
+
+在相同的 8K 输入、256 输出、C64 回放中，4K 混批两轮合并为 1,555.14 tok/s，TTFT p95 5.71 秒，TPOT p95 47.16 ms。原对齐版两次独立服务合并为 1,454.05 tok/s，TTFT p95 5.32–5.43 秒、TPOT p95 53.55–54.52 ms。全局改用 6K 后为 1,224.28 tok/s、7.51 秒、62.79 ms。固定形状的生成提速没有直接转化成 AgentX 的整机吞吐收益。
+
+两种深度都在 8 个 rank 的 worker 日志中观察到混合前向。一个 MTP0 前向含 8,185 个 prompt token 和 7 个 decode token，一个 MTP3 前向含 4,096 个 prompt token 和 7 行四位置验证。MTP0 和 MTP3 分别在有在途用户时完成 16/16 个 65,536-token 定点检索，每种深度的 32 条生成探针都完整返回 512 个 token。MTP3 检索期间，记录到每行接受 0 / 1 / 2 / 3 个草稿的次数分别为 26 / 21 / 10 / 468。发布工作树中与目标模型、调度、MTP、compact-state 和 Mooncake 相关的 1,008 项回归在 H200 上全部通过。
+
+## 长输入
+
+对齐版 C90 中，TTFT ≥ 3.602 秒的 153 条请求里，119 条在减去已读缓存后仍有至少 32,768 个输入 token。基于这个分布，额外测试按实际未缓存后缀选择块长。首块沿用已有的准入预算。对确认很长的后缀，后续块可在预留所有在途验证 query 后使用剩余引擎额度，并遵守 KV 页边界与 checkpoint 切分规则。已缓存的长历史不会单独触发扩块。
+
+## 复现
+
+在对齐配置的服务启动前设置下列变量。4K 混合对照将长后缀门槛设为 0，长后缀实验设为 32768。
+
+```bash
+export LMDEPLOY_INTERLEAVED_PREFILL_TOKENS=4096
+export LMDEPLOY_INTERLEAVED_DECODE_ROUNDS=1
+export LMDEPLOY_DP_PREFILL_PERIOD=2
+export LMDEPLOY_GLM53_MIXED_FORWARD=1
+export LMDEPLOY_GLM53_MIXED_LONG_THRESHOLD=0
+```
+
+对齐参考使用同样的部署配置并关闭 `LMDEPLOY_GLM53_MIXED_FORWARD`。正式窗使用 Weka 256K、seed 20260707、RDMA Mooncake 160 GiB/worker、每档冷启动后正式计时 1,800 秒。固定负载的工作树可启用 `LMDEPLOY_DP_PREFILL_TRACE=1`，从 worker 记录的实际 prompt token、decode 行数及验证宽度核实混合前向。正式窗关闭逐步 trace，worker 周期性报告累计混合前向数。
+
+```bash
+python benchmark/glm53_mega_moe/summarize_mixed_forward.py \
+  --reference "$ALIGNED/agentx-c90" --candidate "$MIXED/agentx-c90" \
+  --server-log "$MIXED/server.log"
+```
