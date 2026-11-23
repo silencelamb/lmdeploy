@@ -93,7 +93,68 @@
       "peak_gpu_mib": 132753,
       "usable_kv_tokens_per_rank_min": 3072320,
       "usable_kv_tokens_per_rank_max": 3078528,
-      "store_cross_worker_smoke_cached_tokens": 6592
+      "store_cross_worker_smoke_cached_tokens": 6592,
+      "input_length_avg": 88631.3276983095,
+      "output_length_avg": 1025.0593844820112,
+      "per_user_tps_p95": 112.85860553794497,
+      "peak_sampled_mooncake_store_percent": 85.7
+    },
+    {
+      "concurrency": 80,
+      "formal_seconds": 1800,
+      "duration_s": 1824.371390208,
+      "completed": 2650.0,
+      "good_requests": 1737.0,
+      "attainment": 0.6554716981132076,
+      "goodput_rps": 0.9440204839879911,
+      "decode_tok_s": 1322.3080245060344,
+      "ttft_ms": {
+        "p50": 713.9986944999999,
+        "p95": 2963.409351849999,
+        "p99": 9079.896680859976
+      },
+      "tpot_ms": {
+        "p50": 19.17952686288616,
+        "p95": 52.93633505882197,
+        "p99": 99.44899196789348
+      },
+      "user_tps_p50": 52.02865633973887,
+      "both_medians_pass": true,
+      "cached_token_ratio": 0.9127316195435723,
+      "outcomes": {
+        "warmup": {
+          "completed": 32,
+          "InvalidInferenceResultError": 47
+        },
+        "profiling": {
+          "completed": 2650,
+          "InvalidInferenceResultError": 1
+        }
+      },
+      "aiperf_version": "0.12.0",
+      "submission_valid": true,
+      "coverage": {
+        "required_ratio": 0.95,
+        "ttft_ratio": 0.99982920192,
+        "inter_token_latency_ratio": 1.0
+      },
+      "server_formal_counters": {
+        "external_prefix_cache_hits": 2749440,
+        "external_prefix_cache_queries": 31284998,
+        "spec_decode_num_drafts": 805780,
+        "spec_decode_num_draft_tokens": 2417340,
+        "spec_decode_num_accepted_tokens": 1574726
+      },
+      "mean_submitted_per_draft": 2.9542877708555686,
+      "idle_max_gpu_mib": 125543,
+      "peak_gpu_mib": 132419,
+      "usable_kv_tokens_per_rank_min": 3072320,
+      "usable_kv_tokens_per_rank_max": 3078528,
+      "store_cross_worker_smoke_cached_tokens": 6592,
+      "input_length_avg": 81675.51811320755,
+      "output_length_avg": 918.1320754716982,
+      "per_user_tps_p95": 103.58735046865996,
+      "peak_sampled_mooncake_store_percent": 94.7
     }
   ],
   "comparison": {
@@ -111,7 +172,10 @@
           "reported_itl_p99_ms": 173.99,
           "user_decode_p50_tps": 46.26,
           "decode_tok_s": 1206.72,
-          "cached_percent": 91.68
+          "cached_percent": 91.68,
+          "prefill_tok_s": 113041.07,
+          "input_length_avg": 90551.02,
+          "output_length_avg": 966.64
         },
         "new_vs_old_decode_fraction": 0.06505467562550593,
         "new_vs_old_ttft_p50_fraction": -0.3024543669172933,
@@ -131,16 +195,72 @@
           "reported_itl_p99_ms": 89.67,
           "user_decode_p50_tps": 55.74,
           "decode_tok_s": 1299.5,
-          "cached_percent": 92.65
+          "cached_percent": 92.65,
+          "prefill_tok_s": 124456.55,
+          "input_length_avg": 93241.17,
+          "output_length_avg": 973.57
         },
         "new_vs_old_decode_fraction": -0.010986703985524815,
         "new_vs_old_ttft_p50_fraction": -0.14523817426876162,
         "new_vs_old_goodput_fraction": 0.017534457598221476,
         "attainment_delta_pp": 5.993368010403117
       }
+    },
+    "80": {
+      "lmdeploy": {
+        "old": {
+          "completed": 2530.0,
+          "request_rps": 1.38,
+          "goodput_rps": 0.5891,
+          "attainment_percent": 42.8,
+          "ttft_p50_ms": 1007.48,
+          "ttft_p90_ms": 2873.54,
+          "ttft_p99_ms": 14936.58,
+          "reported_itl_avg_ms": 36.87,
+          "reported_itl_p99_ms": 176.73,
+          "user_decode_p50_tps": 36.89,
+          "decode_tok_s": 1296.4,
+          "cached_percent": 90.29,
+          "prefill_tok_s": 112533.1,
+          "input_length_avg": 81842.31,
+          "output_length_avg": 942.84
+        },
+        "new_vs_old_decode_fraction": 0.019984591565901155,
+        "new_vs_old_ttft_p50_fraction": -0.2913023638186367,
+        "new_vs_old_goodput_fraction": 0.6024791783873555,
+        "attainment_delta_pp": 22.74716981132076
+      },
+      "vllm_0_33_0": {
+        "old": {
+          "completed": 2757.0,
+          "request_rps": 1.51,
+          "goodput_rps": 0.8306,
+          "attainment_percent": 55.1,
+          "ttft_p50_ms": 883.52,
+          "ttft_p90_ms": 1943.68,
+          "ttft_p99_ms": 10745.14,
+          "reported_itl_avg_ms": 28.09,
+          "reported_itl_p99_ms": 104.14,
+          "user_decode_p50_tps": 43.88,
+          "decode_tok_s": 1438.04,
+          "cached_percent": 90.81,
+          "prefill_tok_s": 126490.75,
+          "input_length_avg": 83960.17,
+          "output_length_avg": 954.52
+        },
+        "new_vs_old_decode_fraction": -0.08047896824425305,
+        "new_vs_old_ttft_p50_fraction": -0.19187036569630578,
+        "new_vs_old_goodput_fraction": 0.13655247289669048,
+        "attainment_delta_pp": 10.447169811320755
+      }
     }
   },
   "history_note": "Historical QA reference uses vLLM 0.33.0 as identified by the operator. The report publishes user throughput p50 and ITL average/p99, but no TPOT p50 or complete per-engine server manifest.",
-  "highest_tested_pass": 70,
-  "first_tested_slo_miss": null
+  "highest_tested_pass": 80,
+  "first_tested_slo_miss": null,
+  "best_measured_goodput_at_70pct_attainment": {
+    "concurrency": 70,
+    "goodput_rps": 0.9766295724027729,
+    "attainment": 0.7789336801040312
+  }
 }
