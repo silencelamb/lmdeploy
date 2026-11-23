@@ -248,6 +248,7 @@ with set_envs():
     # Set before startup: use unrotated BF16 KPool queries/cache instead of FP8.
     glm53_kpool_bf16 = env_to_bool('LMDEPLOY_GLM53_KPOOL_BF16', False)
     glm53_flashkda_library = os.getenv('LMDEPLOY_GLM53_FLASHKDA_LIBRARY', '')
+    glm53_dp_draft_head = env_to_bool('LMDEPLOY_GLM53_DP_DRAFT_HEAD', False)
     glm53_deepgemm_fuse_shared = env_to_bool('LMDEPLOY_GLM53_DEEPGEMM_FUSE_SHARED', False)
     glm53_deepgemm_weight_layout = os.getenv('LMDEPLOY_GLM53_DEEPGEMM_WEIGHT_LAYOUT', 'dual')
     glm53_flashinfer_exact_scales = env_to_bool('LMDEPLOY_GLM53_FLASHINFER_EXACT_SCALES', False)
