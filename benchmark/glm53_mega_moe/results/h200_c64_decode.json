@@ -1,0 +1,2239 @@
+{
+  "seed": 819289152,
+  "context": 8192,
+  "requests": 64,
+  "output_length": 256,
+  "requests_per_rank": 8,
+  "raw_root": "/nvme1/home/daixu/glm53-mega-moe/parallel-20261123/execution/runs",
+  "server": {
+    "vllm_m0": {
+      "run": "exec-c64-vllm-m0-02",
+      "windows": [
+        {
+          "all_started": 5.448558121919632,
+          "first_finish": 8.972952164709568,
+          "request_intervals": 12224,
+          "tokens": 12224,
+          "ms_per_request_token": 14.66816801642414,
+          "ms_per_round": 14.66816801642414,
+          "actual_submitted": 1.0,
+          "all_12224_native_intervals": true
+        },
+        {
+          "all_started": 2.3454806208610535,
+          "first_finish": 6.00703976675868,
+          "request_intervals": 12224,
+          "tokens": 12224,
+          "ms_per_request_token": 14.643731137252466,
+          "ms_per_round": 14.643731137252466,
+          "actual_submitted": 1.0,
+          "all_12224_native_intervals": true
+        }
+      ],
+      "profile": {
+        "steps": 16,
+        "trace": "profile-rank0.json.gz",
+        "all_kernels": {
+          "kernel_union_ms": 14.30061163330078,
+          "calls": 980.0,
+          "groups": {
+            "other": {
+              "calls": 221.0,
+              "sum_ms": 0.5438045625000016
+            },
+            "mhc": {
+              "calls": 181.0,
+              "sum_ms": 0.9812589374999979
+            },
+            "dense_matmul": {
+              "calls": 325.0,
+              "sum_ms": 4.434101062499975
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 0.7623241874999992
+            },
+            "other_fp8_gemm": {
+              "calls": 23.0,
+              "sum_ms": 0.20075025000000002
+            },
+            "mla_and_indexer": {
+              "calls": 78.0,
+              "sum_ms": 0.4415049999999984
+            },
+            "moe_router_topk": {
+              "calls": 42.0,
+              "sum_ms": 0.14586368749999973
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 6.856031187500008
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.8560311875000055,
+            "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8886518124999994,
+            "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8415980000000005,
+            "fused_recurrent_gated_delta_rule_fwd_kernel": 0.6542579374999993,
+            "mhc_fused_tilelang_kernel": 0.5115276875000011,
+            "mhc_pre_big_fuse_with_norm_tilelang_kernel": 0.46198731249999425,
+            "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_splitK_TNT": 0.39429493749999966,
+            "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.30020925,
+            "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.24138299999999982,
+            "void flashinfer::mla::hopper::BatchMLAPageAttentionHopperKernel": 0.23477906250000002,
+            "nvjet_sm90_tst_64x8_64x16_2x1_v_bz_TNT": 0.20512931250000097,
+            "void cublasLt::splitKreduce_kernel": 0.2024739375000001,
+            "kernel_cutlass_kernel_vllmmodel_executorkernelslinearcute_dsl_ll_bf16_splitkLLBf16SplitK_object_at__tensorptrbf16_gmem_align16_o_i64_div81_tensorptrbf16_gmem_align16_o_i64_div81_tensorptr_0": 0.1640681875000001,
+            "void vllm::moe::single_group_topk::detail::single_group_topk_block_kernel": 0.14586368749999995,
+            "void deep_gemm::fp8_gemm_kernel_swapAB": 0.14406781250000003,
+            "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.129620125
+          },
+          "family_breakdown": {
+            "other": {
+              "kernel_cutlass_kernel_vllmmodel_executorkernelslinearcute_dsl_ll_bf16_splitkLLBf16SplitK_object_at__tensorptrbf16_gmem_align16_o_i64_div81_tensorptrbf16_gmem_align16_o_i64_div81_tensorptr_0": 0.1640681875000001,
+              "_prepare_megamoe_inputs_kernel": 0.07491556249999969,
+              "layer_norm_gated_fwd_kernel": 0.0640108125,
+              "_gumbel_sample_kernel": 0.04086575,
+              "void at::native::unrolled_elementwise_kernel": 0.03349537500000001,
+              "triton_per_fused__to_copy_native_layer_norm_0": 0.02894206249999999,
+              "Kernel": 0.018465499999999992,
+              "_expand_pools_and_append_tail_kernel": 0.01471962500000001
+            },
+            "mhc": {
+              "mhc_fused_tilelang_kernel": 0.5115276875000011,
+              "mhc_pre_big_fuse_with_norm_tilelang_kernel": 0.46198731249999425,
+              "void deep_gemm::sm90_tf32_hc_prenorm_gemm_impl": 0.0039039375,
+              "mhc_post_tilelang_kernel": 0.0038399999999999997
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8886518124999994,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8415980000000005,
+              "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_splitK_TNT": 0.39429493749999966,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.30020925,
+              "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.24138299999999982,
+              "nvjet_sm90_tst_64x8_64x16_2x1_v_bz_TNT": 0.20512931250000097,
+              "void cublasLt::splitKreduce_kernel": 0.2024739375000001,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.129620125
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_fwd_kernel": 0.6542579374999993,
+              "_causal_conv1d_update_kernel": 0.1080662500000002
+            },
+            "other_fp8_gemm": {
+              "void deep_gemm::fp8_gemm_kernel_swapAB": 0.14406781250000003,
+              "void deep_gemm::sm90_fp8_paged_mqa_logits": 0.04475237499999998,
+              "void tensorrt_llm::kernels::fp8_blockscale_gemm::scale_1x128_kernel": 0.011930062500000012
+            },
+            "mla_and_indexer": {
+              "void flashinfer::mla::hopper::BatchMLAPageAttentionHopperKernel": 0.23477906250000002,
+              "_fwht_quant_kernel": 0.05573199999999992,
+              "void vllm::cooperative::cooperative_topk_cs8": 0.05512587499999997,
+              "sparse_mla_index_remap_kernel": 0.03346006250000002,
+              "_kpool_decode_update_batched_kernel": 0.02509387500000001,
+              "void vllm::concat_and_cache_mla_kernel": 0.01996375000000001,
+              "_pack_topk_indices": 0.015920187499999978,
+              "_kpool_tail_slot_mapping_kernel": 0.0014301874999999998
+            },
+            "moe_router_topk": {
+              "void vllm::moe::single_group_topk::detail::single_group_topk_block_kernel": 0.14586368749999995
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.8560311875000055
+            }
+          }
+        },
+        "target_graphs": [
+          1892
+        ],
+        "target_graph": {
+          "kernel_union_ms": 13.899681945800781,
+          "calls": 950.0,
+          "groups": {
+            "other": {
+              "calls": 193.0,
+              "sum_ms": 0.44451450000000187
+            },
+            "mhc": {
+              "calls": 181.0,
+              "sum_ms": 0.9812589374999979
+            },
+            "dense_matmul": {
+              "calls": 324.0,
+              "sum_ms": 4.133891812499971
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 0.7623241874999992
+            },
+            "other_fp8_gemm": {
+              "calls": 23.0,
+              "sum_ms": 0.20075025000000002
+            },
+            "mla_and_indexer": {
+              "calls": 77.0,
+              "sum_ms": 0.44007481249999836
+            },
+            "moe_router_topk": {
+              "calls": 42.0,
+              "sum_ms": 0.14586368749999973
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 6.856031187500008
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.8560311875000055,
+            "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8886518124999994,
+            "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8415980000000005,
+            "fused_recurrent_gated_delta_rule_fwd_kernel": 0.6542579374999993,
+            "mhc_fused_tilelang_kernel": 0.5115276875000011,
+            "mhc_pre_big_fuse_with_norm_tilelang_kernel": 0.46198731249999425,
+            "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_splitK_TNT": 0.39429493749999966,
+            "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.24138299999999982,
+            "void flashinfer::mla::hopper::BatchMLAPageAttentionHopperKernel": 0.23477906250000002,
+            "nvjet_sm90_tst_64x8_64x16_2x1_v_bz_TNT": 0.20512931250000097,
+            "void cublasLt::splitKreduce_kernel": 0.2024739375000001,
+            "kernel_cutlass_kernel_vllmmodel_executorkernelslinearcute_dsl_ll_bf16_splitkLLBf16SplitK_object_at__tensorptrbf16_gmem_align16_o_i64_div81_tensorptrbf16_gmem_align16_o_i64_div81_tensorptr_0": 0.1640681875000001,
+            "void vllm::moe::single_group_topk::detail::single_group_topk_block_kernel": 0.14586368749999995,
+            "void deep_gemm::fp8_gemm_kernel_swapAB": 0.14406781250000003,
+            "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.129620125,
+            "_causal_conv1d_update_kernel": 0.1080662500000002
+          },
+          "family_breakdown": {
+            "other": {
+              "kernel_cutlass_kernel_vllmmodel_executorkernelslinearcute_dsl_ll_bf16_splitkLLBf16SplitK_object_at__tensorptrbf16_gmem_align16_o_i64_div81_tensorptrbf16_gmem_align16_o_i64_div81_tensorptr_0": 0.1640681875000001,
+              "_prepare_megamoe_inputs_kernel": 0.07491556249999969,
+              "layer_norm_gated_fwd_kernel": 0.0640108125,
+              "void at::native::unrolled_elementwise_kernel": 0.0326694375,
+              "triton_per_fused__to_copy_native_layer_norm_0": 0.02894206249999999,
+              "Kernel": 0.016743562499999993,
+              "_expand_pools_and_append_tail_kernel": 0.01471962500000001,
+              "void vllm::act_and_mul_kernel": 0.010870437499999996
+            },
+            "mhc": {
+              "mhc_fused_tilelang_kernel": 0.5115276875000011,
+              "mhc_pre_big_fuse_with_norm_tilelang_kernel": 0.46198731249999425,
+              "void deep_gemm::sm90_tf32_hc_prenorm_gemm_impl": 0.0039039375,
+              "mhc_post_tilelang_kernel": 0.0038399999999999997
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8886518124999994,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8415980000000005,
+              "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_splitK_TNT": 0.39429493749999966,
+              "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.24138299999999982,
+              "nvjet_sm90_tst_64x8_64x16_2x1_v_bz_TNT": 0.20512931250000097,
+              "void cublasLt::splitKreduce_kernel": 0.2024739375000001,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.129620125,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_NNT": 0.0746373125
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_fwd_kernel": 0.6542579374999993,
+              "_causal_conv1d_update_kernel": 0.1080662500000002
+            },
+            "other_fp8_gemm": {
+              "void deep_gemm::fp8_gemm_kernel_swapAB": 0.14406781250000003,
+              "void deep_gemm::sm90_fp8_paged_mqa_logits": 0.04475237499999998,
+              "void tensorrt_llm::kernels::fp8_blockscale_gemm::scale_1x128_kernel": 0.011930062500000012
+            },
+            "mla_and_indexer": {
+              "void flashinfer::mla::hopper::BatchMLAPageAttentionHopperKernel": 0.23477906250000002,
+              "_fwht_quant_kernel": 0.05573199999999992,
+              "void vllm::cooperative::cooperative_topk_cs8": 0.05512587499999997,
+              "sparse_mla_index_remap_kernel": 0.03346006250000002,
+              "_kpool_decode_update_batched_kernel": 0.02509387500000001,
+              "void vllm::concat_and_cache_mla_kernel": 0.01996375000000001,
+              "_pack_topk_indices": 0.015920187499999978
+            },
+            "moe_router_topk": {
+              "void vllm::moe::single_group_topk::detail::single_group_topk_block_kernel": 0.14586368749999995
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.8560311875000055
+            }
+          }
+        },
+        "r11_output_calls_per_step": 0.0,
+        "ordered_mhc_projection_calls_per_step": 0.0,
+        "fused_mhc_scale_calls_per_step": 0.0
+      },
+      "unprofiled_ms_per_submitted": 14.655949576838303,
+      "source": {
+        "version": "0.34.0rc1.dev964+g5328ae2fe",
+        "worker_before_sha256": "8be0e35c282b19853143334f484178144d30efc18eb0b434a74a3ec34279690d",
+        "worker_after_sha256": "cd2f6b374223c4e44e55b1ba18c1128450cb0ace71f62f896c1f599ed692542f",
+        "image": "sha256:d245394ca3af75c73e513b2d7d3848685d1348d127477eb7782940e55e9ea79a"
+      },
+      "profile_input_offsets": [
+        80,
+        99
+      ],
+      "profile_submitted_histogram": {
+        "1": 128
+      },
+      "profile_mean_submitted": 1
+    },
+    "lmd_m0": {
+      "run": "exec-c64-lmd-m0-01",
+      "windows": [
+        {
+          "all_started": 8.589353065937757,
+          "first_finish": 12.738838728517294,
+          "request_intervals": 12224,
+          "tokens": 12224,
+          "ms_per_request_token": 16.288686492199965,
+          "ms_per_round": 16.288686492199965,
+          "actual_submitted": 1.0,
+          "all_12224_native_intervals": true
+        },
+        {
+          "all_started": 2.2370152585208416,
+          "first_finish": 6.318193320184946,
+          "request_intervals": 12224,
+          "tokens": 12224,
+          "ms_per_request_token": 16.170009931961456,
+          "ms_per_round": 16.170009931961456,
+          "actual_submitted": 1.0,
+          "all_12224_native_intervals": true
+        }
+      ],
+      "profile": {
+        "steps": 16,
+        "trace": "profile-rank0.json.gz",
+        "all_kernels": {
+          "kernel_union_ms": 15.776914001464844,
+          "calls": 1646.8125,
+          "groups": {
+            "other": {
+              "calls": 463.8125,
+              "sum_ms": 0.913556437500002
+            },
+            "mhc": {
+              "calls": 450.0,
+              "sum_ms": 1.3292094999999768
+            },
+            "dense_matmul": {
+              "calls": 492.0,
+              "sum_ms": 4.824814874999967
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 0.7932959375000016
+            },
+            "other_fp8_gemm": {
+              "calls": 3.0,
+              "sum_ms": 0.08463175000000002
+            },
+            "mla_and_indexer": {
+              "calls": 44.0,
+              "sum_ms": 0.6766841250000012
+            },
+            "moe_router_topk": {
+              "calls": 42.0,
+              "sum_ms": 0.17335225000000035
+            },
+            "moe_staging": {
+              "calls": 42.0,
+              "sum_ms": 0.08248249999999985
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 6.898991000000001
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.898990999999994,
+            "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8515259374999993,
+            "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8374083750000002,
+            "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6779621875,
+            "void sm90::fwd::sparse_attn_fwd_kernel": 0.6292520625000003,
+            "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.51445575,
+            "hc_pre_fused_kernel_kernel": 0.4106575000000048,
+            "_hc_project_partial_kernel": 0.39987274999999844,
+            "void cublasLt::splitKreduce_kernel": 0.33320762499999473,
+            "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.29883881250000005,
+            "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19568643750000028,
+            "_hc_scale_mixes_kernel": 0.18491399999999755,
+            "void at::native::vectorized_elementwise_kernel": 0.18387862499999993,
+            "_hc_post_expand_kernel": 0.1752710000000005,
+            "_fused_noaux_tc_kernel": 0.1733522500000006,
+            "_hc_project_reduce_kernel": 0.158494249999999
+          },
+          "family_breakdown": {
+            "other": {
+              "void at::native::vectorized_elementwise_kernel": 0.18387862499999993,
+              "_quant_fp8_kernel": 0.11519731249999994,
+              "void at::native::unrolled_elementwise_kernel": 0.09944468749999963,
+              "sparse_index_topk_byte_radix_kernel__kernel": 0.08425343750000008,
+              "layer_norm_gated_fwd_kernel": 0.06616606249999998,
+              "void at::native::elementwise_kernel": 0.0638557500000002,
+              "_score_pages": 0.04319012500000004,
+              "add_rms_norm_kernel": 0.0426695625
+            },
+            "mhc": {
+              "hc_pre_fused_kernel_kernel": 0.4106575000000048,
+              "_hc_project_partial_kernel": 0.39987274999999844,
+              "_hc_scale_mixes_kernel": 0.18491399999999755,
+              "_hc_post_expand_kernel": 0.1752710000000005,
+              "_hc_project_reduce_kernel": 0.158494249999999
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8515259374999993,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8374083750000002,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.51445575,
+              "void cublasLt::splitKreduce_kernel": 0.33320762499999473,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.29883881250000005,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19568643750000028,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15445743750000057,
+              "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.1477541250000001
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6779621875,
+              "causal_conv1d_update_main_kernel": 0.11533374999999996
+            },
+            "other_fp8_gemm": {
+              "_fp8_gemm_nt_single_partition_kernel": 0.08463174999999998
+            },
+            "mla_and_indexer": {
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6292520625000003,
+              "_update_raw_kpool_kernel": 0.019830812500000003,
+              "_compress_kpool_kernel": 0.01385149999999999,
+              "_rotate_kpool_query_kernel": 0.013749749999999998
+            },
+            "moe_router_topk": {
+              "_fused_noaux_tc_kernel": 0.1733522500000006
+            },
+            "moe_staging": {
+              "_stage_mega_moe": 0.08248249999999967
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.898990999999994
+            }
+          }
+        },
+        "target_graphs": [
+          8
+        ],
+        "target_graph": {
+          "kernel_union_ms": 15.435836853027343,
+          "calls": 1616.0,
+          "groups": {
+            "other": {
+              "calls": 434.0,
+              "sum_ms": 0.871317875000002
+            },
+            "mhc": {
+              "calls": 450.0,
+              "sum_ms": 1.3292094999999768
+            },
+            "dense_matmul": {
+              "calls": 491.0,
+              "sum_ms": 4.5259760624999705
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 0.7932959375000016
+            },
+            "other_fp8_gemm": {
+              "calls": 3.0,
+              "sum_ms": 0.08463175000000002
+            },
+            "mla_and_indexer": {
+              "calls": 44.0,
+              "sum_ms": 0.6766841250000012
+            },
+            "moe_router_topk": {
+              "calls": 42.0,
+              "sum_ms": 0.17335225000000035
+            },
+            "moe_staging": {
+              "calls": 42.0,
+              "sum_ms": 0.08248249999999985
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 6.898991000000001
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.898990999999994,
+            "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8515259374999993,
+            "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8374083750000002,
+            "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6779621875,
+            "void sm90::fwd::sparse_attn_fwd_kernel": 0.6292520625000003,
+            "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.51445575,
+            "hc_pre_fused_kernel_kernel": 0.4106575000000048,
+            "_hc_project_partial_kernel": 0.39987274999999844,
+            "void cublasLt::splitKreduce_kernel": 0.33320762499999473,
+            "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19568643750000028,
+            "_hc_scale_mixes_kernel": 0.18491399999999755,
+            "_hc_post_expand_kernel": 0.1752710000000005,
+            "_fused_noaux_tc_kernel": 0.1733522500000006,
+            "void at::native::vectorized_elementwise_kernel": 0.17170656249999983,
+            "_hc_project_reduce_kernel": 0.158494249999999,
+            "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15445743750000057
+          },
+          "family_breakdown": {
+            "other": {
+              "void at::native::vectorized_elementwise_kernel": 0.17170656249999983,
+              "_quant_fp8_kernel": 0.11519731249999994,
+              "void at::native::unrolled_elementwise_kernel": 0.09741456249999964,
+              "sparse_index_topk_byte_radix_kernel__kernel": 0.08425343750000008,
+              "layer_norm_gated_fwd_kernel": 0.06616606249999998,
+              "void at::native::elementwise_kernel": 0.06140762500000015,
+              "_score_pages": 0.04319012500000004,
+              "add_rms_norm_kernel": 0.0426695625
+            },
+            "mhc": {
+              "hc_pre_fused_kernel_kernel": 0.4106575000000048,
+              "_hc_project_partial_kernel": 0.39987274999999844,
+              "_hc_scale_mixes_kernel": 0.18491399999999755,
+              "_hc_post_expand_kernel": 0.1752710000000005,
+              "_hc_project_reduce_kernel": 0.158494249999999
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8515259374999993,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8374083750000002,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.51445575,
+              "void cublasLt::splitKreduce_kernel": 0.33320762499999473,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19568643750000028,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15445743750000057,
+              "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.1477541250000001,
+              "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.12611393750000022
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6779621875,
+              "causal_conv1d_update_main_kernel": 0.11533374999999996
+            },
+            "other_fp8_gemm": {
+              "_fp8_gemm_nt_single_partition_kernel": 0.08463174999999998
+            },
+            "mla_and_indexer": {
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6292520625000003,
+              "_update_raw_kpool_kernel": 0.019830812500000003,
+              "_compress_kpool_kernel": 0.01385149999999999,
+              "_rotate_kpool_query_kernel": 0.013749749999999998
+            },
+            "moe_router_topk": {
+              "_fused_noaux_tc_kernel": 0.1733522500000006
+            },
+            "moe_staging": {
+              "_stage_mega_moe": 0.08248249999999967
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.898990999999994
+            }
+          }
+        },
+        "r11_output_calls_per_step": 0.0,
+        "ordered_mhc_projection_calls_per_step": 90.0,
+        "fused_mhc_scale_calls_per_step": 0.0
+      },
+      "unprofiled_ms_per_submitted": 16.229348212080712,
+      "source_commit": "7f064b1165012c17a99665e6428527eea28d05c9",
+      "profile_input_offsets": [
+        83,
+        98
+      ],
+      "profile_submitted_histogram": {
+        "1": 128
+      },
+      "profile_mean_submitted": 1
+    },
+    "lmd_m3_on": {
+      "run": "exec-c64-lmd-m3-01",
+      "windows": [
+        {
+          "all_started": 7.967504613101482,
+          "first_finish": 9.477427374571562,
+          "request_intervals": 3027,
+          "tokens": 11550,
+          "ms_per_request_token": 6.119856037747808,
+          "ms_per_round": 23.3512841876403,
+          "actual_submitted": 3.815659068384539,
+          "all_12224_native_intervals": null
+        },
+        {
+          "all_started": 2.069307368248701,
+          "first_finish": 3.513975504785776,
+          "request_intervals": 3039,
+          "tokens": 11226,
+          "ms_per_request_token": 6.312195039753308,
+          "ms_per_round": 23.317111390678065,
+          "actual_submitted": 3.693978282329714,
+          "all_12224_native_intervals": null
+        }
+      ],
+      "profile": {
+        "steps": 16,
+        "trace": "profile-rank0.json.gz",
+        "all_kernels": {
+          "kernel_union_ms": 22.330411743164063,
+          "calls": 1971.1875,
+          "groups": {
+            "other": {
+              "calls": 718.1875,
+              "sum_ms": 1.7442917500000017
+            },
+            "mhc": {
+              "calls": 450.0,
+              "sum_ms": 1.8915694375000125
+            },
+            "dense_matmul": {
+              "calls": 545.0,
+              "sum_ms": 5.524287249999976
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 2.130140874999999
+            },
+            "other_fp8_gemm": {
+              "calls": 7.0,
+              "sum_ms": 0.3963804375000001
+            },
+            "mla_and_indexer": {
+              "calls": 54.0,
+              "sum_ms": 0.8807678749999998
+            },
+            "moe_router_topk": {
+              "calls": 45.0,
+              "sum_ms": 0.18922106250000018
+            },
+            "moe_staging": {
+              "calls": 42.0,
+              "sum_ms": 0.08886625000000009
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 9.485073312499996
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.485073312499994,
+            "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9018433124999996,
+            "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7531139999999996,
+            "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.9141655625000009,
+            "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8774095625000007,
+            "_hc_project_partial_kernel": 0.8535473750000006,
+            "void sm90::fwd::sparse_attn_fwd_kernel": 0.803976,
+            "hc_pre_fused_kernel_kernel": 0.41021543750000455,
+            "void cublasLt::splitKreduce_kernel": 0.3524426874999941,
+            "nvjet_sm90_tst_256x32_64x5_2x1_v_bz_TNT": 0.30709693750000006,
+            "_grouped_fp8_gemm_nt_masked_kernel": 0.29988893749999995,
+            "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.26763893750000206,
+            "_hc_post_expand_kernel": 0.26585831250000114,
+            "void at::native::vectorized_elementwise_kernel": 0.24189412500000204,
+            "causal_conv1d_update_main_kernel": 0.22829756250000005,
+            "void at::native::elementwise_kernel": 0.21735468750000148
+          },
+          "family_breakdown": {
+            "other": {
+              "void at::native::vectorized_elementwise_kernel": 0.24189412500000204,
+              "void at::native::elementwise_kernel": 0.21735468750000148,
+              "_quant_fp8_kernel": 0.15302618750000033,
+              "void at::native::unrolled_elementwise_kernel": 0.12302637499999984,
+              "_score_pages": 0.10082100000000004,
+              "sparse_index_topk_byte_radix_kernel__kernel": 0.09235218750000003,
+              "add_rms_norm_kernel": 0.0913086875000001,
+              "layer_norm_gated_fwd_kernel": 0.0900075625
+            },
+            "mhc": {
+              "_hc_project_partial_kernel": 0.8535473750000006,
+              "hc_pre_fused_kernel_kernel": 0.41021543750000455,
+              "_hc_post_expand_kernel": 0.26585831250000114,
+              "_hc_scale_mixes_kernel": 0.19654524999999798,
+              "_hc_project_reduce_kernel": 0.165403062500002
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7531139999999996,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.9141655625000009,
+              "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8774095625000007,
+              "void cublasLt::splitKreduce_kernel": 0.3524426874999941,
+              "nvjet_sm90_tst_256x32_64x5_2x1_v_bz_TNT": 0.30709693750000006,
+              "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.26763893750000206,
+              "nvjet_sm90_tss_32x64_64x16_4x1_v_bz_splitK_TNN": 0.2012808750000002,
+              "nvjet_sm90_tst_32x64_64x16_2x1_v_bz_splitK_TNN": 0.1531553125000003
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9018433124999996,
+              "causal_conv1d_update_main_kernel": 0.22829756250000005
+            },
+            "other_fp8_gemm": {
+              "_grouped_fp8_gemm_nt_masked_kernel": 0.29988893749999995,
+              "_fp8_gemm_nt_single_partition_kernel": 0.09649150000000004
+            },
+            "mla_and_indexer": {
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.803976,
+              "_compress_kpool_kernel": 0.028904375000000013,
+              "_update_raw_kpool_kernel": 0.02702756249999999,
+              "_rotate_kpool_query_kernel": 0.016279999999999992,
+              "_update_kpool_kernel": 0.004579937500000002
+            },
+            "moe_router_topk": {
+              "_fused_noaux_tc_kernel": 0.18922106250000015
+            },
+            "moe_staging": {
+              "_stage_mega_moe": 0.08886625
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.485073312499994
+            }
+          }
+        },
+        "target_graphs": [
+          8
+        ],
+        "target_graph": {
+          "kernel_union_ms": 20.146812072753907,
+          "calls": 1650.0,
+          "groups": {
+            "other": {
+              "calls": 468.0,
+              "sum_ms": 1.0879443125000008
+            },
+            "mhc": {
+              "calls": 450.0,
+              "sum_ms": 1.8915694375000125
+            },
+            "dense_matmul": {
+              "calls": 491.0,
+              "sum_ms": 4.4923025000000365
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 2.130140874999999
+            },
+            "other_fp8_gemm": {
+              "calls": 3.0,
+              "sum_ms": 0.09649150000000004
+            },
+            "mla_and_indexer": {
+              "calls": 44.0,
+              "sum_ms": 0.6976618749999998
+            },
+            "moe_router_topk": {
+              "calls": 42.0,
+              "sum_ms": 0.17691900000000013
+            },
+            "moe_staging": {
+              "calls": 42.0,
+              "sum_ms": 0.08886625000000009
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 9.485073312499996
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.485073312499994,
+            "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9018433124999996,
+            "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7531139999999996,
+            "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8556256875000008,
+            "_hc_project_partial_kernel": 0.8535473750000006,
+            "void sm90::fwd::sparse_attn_fwd_kernel": 0.6331802499999999,
+            "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.518762125,
+            "hc_pre_fused_kernel_kernel": 0.41021543750000455,
+            "void cublasLt::splitKreduce_kernel": 0.32890262499999456,
+            "_hc_post_expand_kernel": 0.26585831250000114,
+            "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.2585771250000018,
+            "causal_conv1d_update_main_kernel": 0.22829756250000005,
+            "nvjet_sm90_tss_32x64_64x16_4x1_v_bz_splitK_TNN": 0.1966768125000002,
+            "_hc_scale_mixes_kernel": 0.19654524999999798,
+            "_fused_noaux_tc_kernel": 0.17691900000000008,
+            "void at::native::elementwise_kernel": 0.17497493750000084
+          },
+          "family_breakdown": {
+            "other": {
+              "void at::native::elementwise_kernel": 0.17497493750000084,
+              "void at::native::vectorized_elementwise_kernel": 0.1717188750000013,
+              "_quant_fp8_kernel": 0.11632625000000017,
+              "void at::native::unrolled_elementwise_kernel": 0.10020843749999979,
+              "_score_pages": 0.09265125000000003,
+              "layer_norm_gated_fwd_kernel": 0.0900075625,
+              "sparse_index_topk_byte_radix_kernel__kernel": 0.08470606250000004,
+              "add_rms_norm_kernel": 0.044763625000000064
+            },
+            "mhc": {
+              "_hc_project_partial_kernel": 0.8535473750000006,
+              "hc_pre_fused_kernel_kernel": 0.41021543750000455,
+              "_hc_post_expand_kernel": 0.26585831250000114,
+              "_hc_scale_mixes_kernel": 0.19654524999999798,
+              "_hc_project_reduce_kernel": 0.165403062500002
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7531139999999996,
+              "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8556256875000008,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.518762125,
+              "void cublasLt::splitKreduce_kernel": 0.32890262499999456,
+              "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.2585771250000018,
+              "nvjet_sm90_tss_32x64_64x16_4x1_v_bz_splitK_TNN": 0.1966768125000002,
+              "nvjet_sm90_tst_32x64_64x16_2x1_v_bz_splitK_TNN": 0.1531553125000003,
+              "nvjet_sm90_tst_128x32_64x10_2x1_v_bz_TNT": 0.13578681249999983
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9018433124999996,
+              "causal_conv1d_update_main_kernel": 0.22829756250000005
+            },
+            "other_fp8_gemm": {
+              "_fp8_gemm_nt_single_partition_kernel": 0.09649150000000004
+            },
+            "mla_and_indexer": {
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6331802499999999,
+              "_update_raw_kpool_kernel": 0.02702756249999999,
+              "_compress_kpool_kernel": 0.02254212500000001,
+              "_rotate_kpool_query_kernel": 0.014911937499999995
+            },
+            "moe_router_topk": {
+              "_fused_noaux_tc_kernel": 0.17691900000000008
+            },
+            "moe_staging": {
+              "_stage_mega_moe": 0.08886625
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.485073312499994
+            }
+          }
+        },
+        "r11_output_calls_per_step": 0.0,
+        "ordered_mhc_projection_calls_per_step": 90.0,
+        "fused_mhc_scale_calls_per_step": 0.0,
+        "phase_kernel_ms": {
+          "target": 20.46912843749965,
+          "rejection": 0.04317568749999996,
+          "draft": 1.7857847499999993,
+          "state_io_dp": 0.032509375000000014
+        }
+      },
+      "unprofiled_ms_per_submitted": 6.214657479463375,
+      "source_commit": "7f064b1165012c17a99665e6428527eea28d05c9",
+      "profile_input_offsets": [
+        119,
+        196
+      ],
+      "profile_submitted_histogram": {
+        "4": 128
+      },
+      "profile_mean_submitted": 4
+    },
+    "lmd_m3_off": {
+      "run": "exec-c64-lmd-m3-off-01",
+      "windows": [
+        {
+          "all_started": 8.0766706392169,
+          "first_finish": 9.631020177155733,
+          "request_intervals": 3026,
+          "tokens": 11545,
+          "ms_per_request_token": 6.287096239442483,
+          "ms_per_round": 23.986955084059307,
+          "actual_submitted": 3.8152676801057503,
+          "all_12224_native_intervals": null
+        },
+        {
+          "all_started": 1.929079595953226,
+          "first_finish": 3.3883802220225334,
+          "request_intervals": 3021,
+          "tokens": 11395,
+          "ms_per_request_token": 6.302101953922002,
+          "ms_per_round": 23.771086317425095,
+          "actual_submitted": 3.7719298245614037,
+          "all_12224_native_intervals": null
+        }
+      ],
+      "profile": {
+        "steps": 16,
+        "trace": "profile-rank0.json.gz",
+        "all_kernels": {
+          "kernel_union_ms": 22.938708618164064,
+          "calls": 1962.1875,
+          "groups": {
+            "other": {
+              "calls": 709.1875,
+              "sum_ms": 1.6338545624999978
+            },
+            "mhc": {
+              "calls": 450.0,
+              "sum_ms": 1.891248812500011
+            },
+            "dense_matmul": {
+              "calls": 545.0,
+              "sum_ms": 6.262922749999942
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 2.1284638125
+            },
+            "other_fp8_gemm": {
+              "calls": 7.0,
+              "sum_ms": 0.4022885000000001
+            },
+            "mla_and_indexer": {
+              "calls": 54.0,
+              "sum_ms": 0.8796472500000001
+            },
+            "moe_router_topk": {
+              "calls": 45.0,
+              "sum_ms": 0.18879093750000045
+            },
+            "moe_staging": {
+              "calls": 42.0,
+              "sum_ms": 0.08898612500000012
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 9.462733125000005
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.462733124999986,
+            "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9010668750000026,
+            "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7508791249999982,
+            "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.9003151875000014,
+            "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.8990991250000001,
+            "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8769510625000002,
+            "_hc_project_partial_kernel": 0.8540045000000007,
+            "void sm90::fwd::sparse_attn_fwd_kernel": 0.8030971875000001,
+            "hc_pre_fused_kernel_kernel": 0.4096506250000045,
+            "void cublasLt::splitKreduce_kernel": 0.35473887499999573,
+            "nvjet_sm90_tst_256x32_64x5_2x1_v_bz_TNT": 0.3071549375,
+            "_grouped_fp8_gemm_nt_masked_kernel": 0.3057670000000001,
+            "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.27126581250000137,
+            "_hc_post_expand_kernel": 0.2656962500000016,
+            "void at::native::vectorized_elementwise_kernel": 0.24195862500000268,
+            "causal_conv1d_update_main_kernel": 0.22739693750000015
+          },
+          "family_breakdown": {
+            "other": {
+              "void at::native::vectorized_elementwise_kernel": 0.24195862500000268,
+              "void at::native::elementwise_kernel": 0.20281368750000112,
+              "_quant_fp8_kernel": 0.15288350000000034,
+              "void at::native::unrolled_elementwise_kernel": 0.12286443749999999,
+              "_score_pages": 0.09969268749999996,
+              "sparse_index_topk_byte_radix_kernel__kernel": 0.09209962500000007,
+              "add_rms_norm_kernel": 0.09095350000000016,
+              "layer_norm_gated_fwd_kernel": 0.08981868749999991
+            },
+            "mhc": {
+              "_hc_project_partial_kernel": 0.8540045000000007,
+              "hc_pre_fused_kernel_kernel": 0.4096506250000045,
+              "_hc_post_expand_kernel": 0.2656962500000016,
+              "_hc_scale_mixes_kernel": 0.19653693749999798,
+              "_hc_project_reduce_kernel": 0.16536050000000183
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7508791249999982,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.9003151875000014,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.8990991250000001,
+              "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8769510625000002,
+              "void cublasLt::splitKreduce_kernel": 0.35473887499999573,
+              "nvjet_sm90_tst_256x32_64x5_2x1_v_bz_TNT": 0.3071549375,
+              "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.27126581250000137,
+              "nvjet_sm90_tss_32x64_64x16_4x1_v_bz_splitK_TNN": 0.2011155
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9010668750000026,
+              "causal_conv1d_update_main_kernel": 0.22739693750000015
+            },
+            "other_fp8_gemm": {
+              "_grouped_fp8_gemm_nt_masked_kernel": 0.3057670000000001,
+              "_fp8_gemm_nt_single_partition_kernel": 0.09652149999999998
+            },
+            "mla_and_indexer": {
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.8030971875000001,
+              "_compress_kpool_kernel": 0.02913568750000001,
+              "_update_raw_kpool_kernel": 0.02661393749999999,
+              "_rotate_kpool_query_kernel": 0.01629031249999999,
+              "_update_kpool_kernel": 0.004510125000000003
+            },
+            "moe_router_topk": {
+              "_fused_noaux_tc_kernel": 0.18879093750000028
+            },
+            "moe_staging": {
+              "_stage_mega_moe": 0.08898612499999994
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.462733124999986
+            }
+          }
+        },
+        "target_graphs": [
+          8
+        ],
+        "target_graph": {
+          "kernel_union_ms": 20.1214169921875,
+          "calls": 1650.0,
+          "groups": {
+            "other": {
+              "calls": 468.0,
+              "sum_ms": 1.0870251874999988
+            },
+            "mhc": {
+              "calls": 450.0,
+              "sum_ms": 1.891248812500011
+            },
+            "dense_matmul": {
+              "calls": 491.0,
+              "sum_ms": 4.493266687500019
+            },
+            "kda_core": {
+              "calls": 68.0,
+              "sum_ms": 2.1284638125
+            },
+            "other_fp8_gemm": {
+              "calls": 3.0,
+              "sum_ms": 0.09652149999999998
+            },
+            "mla_and_indexer": {
+              "calls": 44.0,
+              "sum_ms": 0.6967815624999997
+            },
+            "moe_router_topk": {
+              "calls": 42.0,
+              "sum_ms": 0.17656893750000038
+            },
+            "moe_staging": {
+              "calls": 42.0,
+              "sum_ms": 0.08898612500000012
+            },
+            "mega_moe": {
+              "calls": 42.0,
+              "sum_ms": 9.462733125000005
+            }
+          },
+          "top_families_ms": {
+            "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.462733124999986,
+            "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9010668750000026,
+            "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7508791249999982,
+            "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8552370625000002,
+            "_hc_project_partial_kernel": 0.8540045000000007,
+            "void sm90::fwd::sparse_attn_fwd_kernel": 0.6323637500000002,
+            "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5177329374999997,
+            "hc_pre_fused_kernel_kernel": 0.4096506250000045,
+            "void cublasLt::splitKreduce_kernel": 0.33119943749999603,
+            "_hc_post_expand_kernel": 0.2656962500000016,
+            "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.26217187500000094,
+            "causal_conv1d_update_main_kernel": 0.22739693750000015,
+            "_hc_scale_mixes_kernel": 0.19653693749999798,
+            "nvjet_sm90_tss_32x64_64x16_4x1_v_bz_splitK_TNN": 0.19649156249999994,
+            "_fused_noaux_tc_kernel": 0.1765689375000003,
+            "void at::native::elementwise_kernel": 0.17484912500000072
+          },
+          "family_breakdown": {
+            "other": {
+              "void at::native::elementwise_kernel": 0.17484912500000072,
+              "void at::native::vectorized_elementwise_kernel": 0.17186525000000144,
+              "_quant_fp8_kernel": 0.1161495625000001,
+              "void at::native::unrolled_elementwise_kernel": 0.10010812499999996,
+              "_score_pages": 0.09181062499999995,
+              "layer_norm_gated_fwd_kernel": 0.08981868749999991,
+              "sparse_index_topk_byte_radix_kernel__kernel": 0.08445356250000005,
+              "add_rms_norm_kernel": 0.04426337500000006
+            },
+            "mhc": {
+              "_hc_project_partial_kernel": 0.8540045000000007,
+              "hc_pre_fused_kernel_kernel": 0.4096506250000045,
+              "_hc_post_expand_kernel": 0.2656962500000016,
+              "_hc_scale_mixes_kernel": 0.19653693749999798,
+              "_hc_project_reduce_kernel": 0.16536050000000183
+            },
+            "dense_matmul": {
+              "nvjet_sm90_tst_192x32_64x7_2x1_v_bz_TNT": 1.7508791249999982,
+              "nvjet_sm90_tst_128x32_64x10_4x1_v_bz_splitK_TNT": 0.8552370625000002,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5177329374999997,
+              "void cublasLt::splitKreduce_kernel": 0.33119943749999603,
+              "nvjet_sm90_tst_32x64_64x16_4x1_v_bz_splitK_TNN": 0.26217187500000094,
+              "nvjet_sm90_tss_32x64_64x16_4x1_v_bz_splitK_TNN": 0.19649156249999994,
+              "nvjet_sm90_tst_32x64_64x16_2x1_v_bz_splitK_TNN": 0.1527420625000002,
+              "nvjet_sm90_tst_128x32_64x10_2x1_v_bz_TNT": 0.13559581249999966
+            },
+            "kda_core": {
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 1.9010668750000026,
+              "causal_conv1d_update_main_kernel": 0.22739693750000015
+            },
+            "other_fp8_gemm": {
+              "_fp8_gemm_nt_single_partition_kernel": 0.09652149999999998
+            },
+            "mla_and_indexer": {
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6323637500000002,
+              "_update_raw_kpool_kernel": 0.02661393749999999,
+              "_compress_kpool_kernel": 0.02290962500000001,
+              "_rotate_kpool_query_kernel": 0.014894249999999989
+            },
+            "moe_router_topk": {
+              "_fused_noaux_tc_kernel": 0.1765689375000003
+            },
+            "moe_staging": {
+              "_stage_mega_moe": 0.08898612499999994
+            },
+            "mega_moe": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 9.462733124999986
+            }
+          }
+        },
+        "r11_output_calls_per_step": 0.0,
+        "ordered_mhc_projection_calls_per_step": 90.0,
+        "fused_mhc_scale_calls_per_step": 0.0,
+        "phase_kernel_ms": {
+          "target": 20.443894687499643,
+          "rejection": 0.0428838125,
+          "draft": 2.419370124999998,
+          "state_io_dp": 0.032787249999999976
+        }
+      },
+      "unprofiled_ms_per_submitted": 6.294550037022872,
+      "source_commit": "7f064b1165012c17a99665e6428527eea28d05c9",
+      "profile_input_offsets": [
+        119,
+        196
+      ],
+      "profile_submitted_histogram": {
+        "4": 128
+      },
+      "profile_mean_submitted": 4
+    }
+  },
+  "m3_output_match": {
+    "time0": {
+      "outputs_identical": 64,
+      "outputs_and_submit_pattern_identical": 64
+    },
+    "time1": {
+      "outputs_identical": 31,
+      "outputs_and_submit_pattern_identical": 21
+    },
+    "prof": {
+      "outputs_identical": 40,
+      "outputs_and_submit_pattern_identical": 31
+    },
+    "same_profiled_rank0_row_multiset_rounds": 16
+  },
+  "historical_1k_c1": {
+    "lmdeploy": {
+      "kernel_union_ms": 9.727768188476562,
+      "groups": {
+        "other": {
+          "kernels_per_step": 462.0,
+          "sum_ms_per_step": 0.7197681874999983
+        },
+        "mhc": {
+          "kernels_per_step": 450.0,
+          "sum_ms_per_step": 1.2298084999999905
+        },
+        "dense_matmul": {
+          "kernels_per_step": 481.0,
+          "sum_ms_per_step": 4.400148375000097
+        },
+        "kda_core": {
+          "kernels_per_step": 68.0,
+          "sum_ms_per_step": 0.31455506249999904
+        },
+        "other_fp8_gemm": {
+          "kernels_per_step": 3.0,
+          "sum_ms_per_step": 0.07817781249999999
+        },
+        "mla_and_indexer": {
+          "kernels_per_step": 44.0,
+          "sum_ms_per_step": 0.6833517500000003
+        },
+        "moe_router_topk": {
+          "kernels_per_step": 42.0,
+          "sum_ms_per_step": 0.1753575000000002
+        },
+        "moe_staging": {
+          "kernels_per_step": 42.0,
+          "sum_ms_per_step": 0.08246562499999993
+        },
+        "mega_moe": {
+          "kernels_per_step": 42.0,
+          "sum_ms_per_step": 2.0441248125000007
+        }
+      }
+    },
+    "vllm": {
+      "kernel_union_ms": 8.424397216796875,
+      "groups": {
+        "other": {
+          "kernels_per_step": 232.0,
+          "sum_ms_per_step": 0.452328562499999
+        },
+        "mla_and_indexer": {
+          "kernels_per_step": 78.0,
+          "sum_ms_per_step": 0.30831718750000053
+        },
+        "mhc": {
+          "kernels_per_step": 181.0,
+          "sum_ms_per_step": 0.9565448749999993
+        },
+        "dense_matmul": {
+          "kernels_per_step": 314.0,
+          "sum_ms_per_step": 4.136536624999969
+        },
+        "kda_core": {
+          "kernels_per_step": 68.0,
+          "sum_ms_per_step": 0.2673340624999997
+        },
+        "other_fp8_gemm": {
+          "kernels_per_step": 23.0,
+          "sum_ms_per_step": 0.18992393749999978
+        },
+        "moe_router_topk": {
+          "kernels_per_step": 42.0,
+          "sum_ms_per_step": 0.14522324999999972
+        },
+        "mega_moe": {
+          "kernels_per_step": 42.0,
+          "sum_ms_per_step": 2.0196608125
+        }
+      }
+    }
+  },
+  "historical_c64_client_ms": {
+    "kda-prefill-flash-a": 16.273210947865046,
+    "kda-prefill-flash-c": 16.25283481004643,
+    "kda-prefill-vllm": 14.528301229678505,
+    "gap-vllm-dg": 14.570183069774325
+  },
+  "forced": {
+    "run": "exec-c64-forced-variants-01",
+    "checked_ids_positions": 1024,
+    "alignment": [
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.0,
+        "max_start_skew_ms": 0.0,
+        "runner_up_ms": 14.753791
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.7432190000000001,
+        "max_start_skew_ms": 0.84054,
+        "runner_up_ms": 14.029746
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.7445394999999999,
+        "max_start_skew_ms": 0.801863,
+        "runner_up_ms": 14.074636
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.6455365,
+        "max_start_skew_ms": 0.770199,
+        "runner_up_ms": 14.058605
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.7694265,
+        "max_start_skew_ms": 0.893558,
+        "runner_up_ms": 14.0103785
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.7364459999999999,
+        "max_start_skew_ms": 2.450333,
+        "runner_up_ms": 14.058672999999999
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.662355,
+        "max_start_skew_ms": 2.182797,
+        "runner_up_ms": 14.1169315
+      },
+      {
+        "offset": 0,
+        "median_start_skew_ms": 0.6246309999999999,
+        "max_start_skew_ms": 2.087038,
+        "runner_up_ms": 14.0977175
+      }
+    ],
+    "modes": {
+      "base": {
+        "epoch_mean_ms": [
+          16.38415813446045,
+          16.401227831840515,
+          16.388278126716614
+        ],
+        "max_rank_step_ms": 16.39122136433919,
+        "total_logits": 158597120,
+        "different_logits": 0,
+        "max_abs": 0.0,
+        "max_relative_l2": 0.0,
+        "argmax": [
+          1024,
+          1024
+        ],
+        "all_cache_state_bits_exact": true,
+        "profile": {
+          "steps": 16,
+          "trace": "profile-base-rank0.json.gz",
+          "all_kernels": {
+            "kernel_union_ms": 15.653235534667969,
+            "calls": 1632.0,
+            "groups": {
+              "other": {
+                "calls": 449.0,
+                "sum_ms": 0.8788206875000072
+              },
+              "mhc": {
+                "calls": 450.0,
+                "sum_ms": 1.3288914374999892
+              },
+              "dense_matmul": {
+                "calls": 492.0,
+                "sum_ms": 4.814776562499963
+              },
+              "kda_core": {
+                "calls": 68.0,
+                "sum_ms": 0.7929228750000015
+              },
+              "other_fp8_gemm": {
+                "calls": 3.0,
+                "sum_ms": 0.08494356250000001
+              },
+              "mla_and_indexer": {
+                "calls": 44.0,
+                "sum_ms": 0.6865218125000004
+              },
+              "moe_router_topk": {
+                "calls": 42.0,
+                "sum_ms": 0.17366625000000024
+              },
+              "moe_staging": {
+                "calls": 42.0,
+                "sum_ms": 0.08527056249999997
+              },
+              "mega_moe": {
+                "calls": 42.0,
+                "sum_ms": 6.807553062499995
+              }
+            },
+            "top_families_ms": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.807553062500007,
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8436566249999993,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8372475625,
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6773643125,
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6301557500000006,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5133804375000001,
+              "hc_pre_fused_kernel_kernel": 0.4090575000000036,
+              "_hc_project_partial_kernel": 0.39968162499999776,
+              "void cublasLt::splitKreduce_kernel": 0.333908374999995,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.29860918750000004,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19638749999999988,
+              "_hc_scale_mixes_kernel": 0.18459049999999796,
+              "_hc_post_expand_kernel": 0.17523437500000066,
+              "void at::native::vectorized_elementwise_kernel": 0.17488424999999974,
+              "_fused_noaux_tc_kernel": 0.1736662500000005,
+              "_hc_project_reduce_kernel": 0.1603274374999999
+            },
+            "family_breakdown": {
+              "other": {
+                "void at::native::vectorized_elementwise_kernel": 0.17488424999999974,
+                "_quant_fp8_kernel": 0.11573987500000009,
+                "void at::native::unrolled_elementwise_kernel": 0.09953643749999996,
+                "sparse_index_topk_byte_radix_kernel__kernel": 0.08430912500000003,
+                "layer_norm_gated_fwd_kernel": 0.06608312500000005,
+                "void at::native::elementwise_kernel": 0.06275606250000014,
+                "_score_pages": 0.0433998125,
+                "add_rms_norm_kernel": 0.0427891875
+              },
+              "mhc": {
+                "hc_pre_fused_kernel_kernel": 0.4090575000000036,
+                "_hc_project_partial_kernel": 0.39968162499999776,
+                "_hc_scale_mixes_kernel": 0.18459049999999796,
+                "_hc_post_expand_kernel": 0.17523437500000066,
+                "_hc_project_reduce_kernel": 0.1603274374999999
+              },
+              "dense_matmul": {
+                "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8436566249999993,
+                "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8372475625,
+                "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5133804375000001,
+                "void cublasLt::splitKreduce_kernel": 0.333908374999995,
+                "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.29860918750000004,
+                "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19638749999999988,
+                "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15486412500000063,
+                "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.1483042499999998
+              },
+              "kda_core": {
+                "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6773643125,
+                "causal_conv1d_update_main_kernel": 0.11555856250000002
+              },
+              "other_fp8_gemm": {
+                "_fp8_gemm_nt_single_partition_kernel": 0.08494356250000003
+              },
+              "mla_and_indexer": {
+                "void sm90::fwd::sparse_attn_fwd_kernel": 0.6301557500000006,
+                "_compress_kpool_kernel": 0.022583562500000015,
+                "_update_raw_kpool_kernel": 0.02035406250000001,
+                "_rotate_kpool_query_kernel": 0.013428437499999973
+              },
+              "moe_router_topk": {
+                "_fused_noaux_tc_kernel": 0.1736662500000005
+              },
+              "moe_staging": {
+                "_stage_mega_moe": 0.08527056250000015
+              },
+              "mega_moe": {
+                "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.807553062500007
+              }
+            }
+          },
+          "target_graphs": [
+            2
+          ],
+          "target_graph": {
+            "kernel_union_ms": 15.330422729492188,
+            "calls": 1616.0,
+            "groups": {
+              "other": {
+                "calls": 434.0,
+                "sum_ms": 0.8546169375000068
+              },
+              "mhc": {
+                "calls": 450.0,
+                "sum_ms": 1.3288914374999892
+              },
+              "dense_matmul": {
+                "calls": 491.0,
+                "sum_ms": 4.5161673749999665
+              },
+              "kda_core": {
+                "calls": 68.0,
+                "sum_ms": 0.7929228750000015
+              },
+              "other_fp8_gemm": {
+                "calls": 3.0,
+                "sum_ms": 0.08494356250000001
+              },
+              "mla_and_indexer": {
+                "calls": 44.0,
+                "sum_ms": 0.6865218125000004
+              },
+              "moe_router_topk": {
+                "calls": 42.0,
+                "sum_ms": 0.17366625000000024
+              },
+              "moe_staging": {
+                "calls": 42.0,
+                "sum_ms": 0.08527056249999997
+              },
+              "mega_moe": {
+                "calls": 42.0,
+                "sum_ms": 6.807553062499995
+              }
+            },
+            "top_families_ms": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.807553062500007,
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8436566249999993,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8372475625,
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6773643125,
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6301557500000006,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5133804375000001,
+              "hc_pre_fused_kernel_kernel": 0.4090575000000036,
+              "_hc_project_partial_kernel": 0.39968162499999776,
+              "void cublasLt::splitKreduce_kernel": 0.333908374999995,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19638749999999988,
+              "_hc_scale_mixes_kernel": 0.18459049999999796,
+              "_hc_post_expand_kernel": 0.17523437500000066,
+              "_fused_noaux_tc_kernel": 0.1736662500000005,
+              "void at::native::vectorized_elementwise_kernel": 0.17067212499999992,
+              "_hc_project_reduce_kernel": 0.1603274374999999,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15486412500000063
+            },
+            "family_breakdown": {
+              "other": {
+                "void at::native::vectorized_elementwise_kernel": 0.17067212499999992,
+                "_quant_fp8_kernel": 0.11573987500000009,
+                "void at::native::unrolled_elementwise_kernel": 0.09743649999999997,
+                "sparse_index_topk_byte_radix_kernel__kernel": 0.08430912500000003,
+                "layer_norm_gated_fwd_kernel": 0.06608312500000005,
+                "void at::native::elementwise_kernel": 0.061658000000000136,
+                "_score_pages": 0.0433998125,
+                "add_rms_norm_kernel": 0.0427891875
+              },
+              "mhc": {
+                "hc_pre_fused_kernel_kernel": 0.4090575000000036,
+                "_hc_project_partial_kernel": 0.39968162499999776,
+                "_hc_scale_mixes_kernel": 0.18459049999999796,
+                "_hc_post_expand_kernel": 0.17523437500000066,
+                "_hc_project_reduce_kernel": 0.1603274374999999
+              },
+              "dense_matmul": {
+                "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8436566249999993,
+                "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.8372475625,
+                "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5133804375000001,
+                "void cublasLt::splitKreduce_kernel": 0.333908374999995,
+                "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19638749999999988,
+                "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15486412500000063,
+                "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.1483042499999998,
+                "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.1258276875000002
+              },
+              "kda_core": {
+                "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6773643125,
+                "causal_conv1d_update_main_kernel": 0.11555856250000002
+              },
+              "other_fp8_gemm": {
+                "_fp8_gemm_nt_single_partition_kernel": 0.08494356250000003
+              },
+              "mla_and_indexer": {
+                "void sm90::fwd::sparse_attn_fwd_kernel": 0.6301557500000006,
+                "_compress_kpool_kernel": 0.022583562500000015,
+                "_update_raw_kpool_kernel": 0.02035406250000001,
+                "_rotate_kpool_query_kernel": 0.013428437499999973
+              },
+              "moe_router_topk": {
+                "_fused_noaux_tc_kernel": 0.1736662500000005
+              },
+              "moe_staging": {
+                "_stage_mega_moe": 0.08527056250000015
+              },
+              "mega_moe": {
+                "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.807553062500007
+              }
+            }
+          },
+          "r11_output_calls_per_step": 0.0,
+          "ordered_mhc_projection_calls_per_step": 90.0,
+          "fused_mhc_scale_calls_per_step": 0.0
+        }
+      },
+      "r11": {
+        "epoch_mean_ms": [
+          16.33531391620636,
+          16.29070818424225,
+          16.287044167518616
+        ],
+        "max_rank_step_ms": 16.304355422655743,
+        "total_logits": 158597120,
+        "different_logits": 0,
+        "max_abs": 0.0,
+        "max_relative_l2": 0.0,
+        "argmax": [
+          1024,
+          1024
+        ],
+        "all_cache_state_bits_exact": true,
+        "profile": {
+          "steps": 16,
+          "trace": "profile-r11-rank0.json.gz",
+          "all_kernels": {
+            "kernel_union_ms": 15.571551940917969,
+            "calls": 1632.0,
+            "groups": {
+              "other": {
+                "calls": 483.0,
+                "sum_ms": 0.9210185000000105
+              },
+              "mhc": {
+                "calls": 450.0,
+                "sum_ms": 1.3311453749999944
+              },
+              "dense_matmul": {
+                "calls": 458.0,
+                "sum_ms": 4.6849023124999745
+              },
+              "kda_core": {
+                "calls": 68.0,
+                "sum_ms": 0.7924108750000008
+              },
+              "other_fp8_gemm": {
+                "calls": 3.0,
+                "sum_ms": 0.0843896875
+              },
+              "mla_and_indexer": {
+                "calls": 44.0,
+                "sum_ms": 0.6858843125000008
+              },
+              "moe_router_topk": {
+                "calls": 42.0,
+                "sum_ms": 0.17431200000000016
+              },
+              "moe_staging": {
+                "calls": 42.0,
+                "sum_ms": 0.08501543749999999
+              },
+              "mega_moe": {
+                "calls": 42.0,
+                "sum_ms": 6.812551437500003
+              }
+            },
+            "top_families_ms": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.81255143749999,
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8427266249999998,
+              "glm53_kda_output_r11": 0.7749543749999992,
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6769003125000009,
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6289241250000002,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5130089999999998,
+              "hc_pre_fused_kernel_kernel": 0.4076751875000031,
+              "_hc_project_partial_kernel": 0.4000776249999981,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.29853106250000006,
+              "void cublasLt::splitKreduce_kernel": 0.26968106249999707,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19556100000000032,
+              "_hc_scale_mixes_kernel": 0.18668443749999747,
+              "void at::native::vectorized_elementwise_kernel": 0.17638031249999894,
+              "_hc_post_expand_kernel": 0.1752355000000002,
+              "_fused_noaux_tc_kernel": 0.17431200000000058,
+              "_hc_project_reduce_kernel": 0.1614726250000006
+            },
+            "family_breakdown": {
+              "other": {
+                "void at::native::vectorized_elementwise_kernel": 0.17638031249999894,
+                "_quant_fp8_kernel": 0.11563575,
+                "void at::native::unrolled_elementwise_kernel": 0.09997643749999968,
+                "sparse_index_topk_byte_radix_kernel__kernel": 0.084083375,
+                "layer_norm_gated_fwd_kernel": 0.06660931249999998,
+                "void at::native::elementwise_kernel": 0.06296831250000012,
+                "add_rms_norm_kernel": 0.043051562500000036,
+                "_score_pages": 0.04291543749999998
+              },
+              "mhc": {
+                "hc_pre_fused_kernel_kernel": 0.4076751875000031,
+                "_hc_project_partial_kernel": 0.4000776249999981,
+                "_hc_scale_mixes_kernel": 0.18668443749999747,
+                "_hc_post_expand_kernel": 0.1752355000000002,
+                "_hc_project_reduce_kernel": 0.1614726250000006
+              },
+              "dense_matmul": {
+                "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8427266249999998,
+                "glm53_kda_output_r11": 0.7749543749999992,
+                "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5130089999999998,
+                "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.29853106250000006,
+                "void cublasLt::splitKreduce_kernel": 0.26968106249999707,
+                "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19556100000000032,
+                "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15405212500000048,
+                "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.1474713124999999
+              },
+              "kda_core": {
+                "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6769003125000009,
+                "causal_conv1d_update_main_kernel": 0.11551056250000008
+              },
+              "other_fp8_gemm": {
+                "_fp8_gemm_nt_single_partition_kernel": 0.08438968749999999
+              },
+              "mla_and_indexer": {
+                "void sm90::fwd::sparse_attn_fwd_kernel": 0.6289241250000002,
+                "_compress_kpool_kernel": 0.022991624999999988,
+                "_update_raw_kpool_kernel": 0.020548062499999995,
+                "_rotate_kpool_query_kernel": 0.013420499999999972
+              },
+              "moe_router_topk": {
+                "_fused_noaux_tc_kernel": 0.17431200000000058
+              },
+              "moe_staging": {
+                "_stage_mega_moe": 0.0850154375000001
+              },
+              "mega_moe": {
+                "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.81255143749999
+              }
+            }
+          },
+          "target_graphs": [
+            5
+          ],
+          "target_graph": {
+            "kernel_union_ms": 15.248541198730468,
+            "calls": 1616.0,
+            "groups": {
+              "other": {
+                "calls": 468.0,
+                "sum_ms": 0.8965383125000099
+              },
+              "mhc": {
+                "calls": 450.0,
+                "sum_ms": 1.3311453749999944
+              },
+              "dense_matmul": {
+                "calls": 457.0,
+                "sum_ms": 4.386371249999983
+              },
+              "kda_core": {
+                "calls": 68.0,
+                "sum_ms": 0.7924108750000008
+              },
+              "other_fp8_gemm": {
+                "calls": 3.0,
+                "sum_ms": 0.0843896875
+              },
+              "mla_and_indexer": {
+                "calls": 44.0,
+                "sum_ms": 0.6858843125000008
+              },
+              "moe_router_topk": {
+                "calls": 42.0,
+                "sum_ms": 0.17431200000000016
+              },
+              "moe_staging": {
+                "calls": 42.0,
+                "sum_ms": 0.08501543749999999
+              },
+              "mega_moe": {
+                "calls": 42.0,
+                "sum_ms": 6.812551437500003
+              }
+            },
+            "top_families_ms": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.81255143749999,
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8427266249999998,
+              "glm53_kda_output_r11": 0.7749543749999992,
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6769003125000009,
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6289241250000002,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5130089999999998,
+              "hc_pre_fused_kernel_kernel": 0.4076751875000031,
+              "_hc_project_partial_kernel": 0.4000776249999981,
+              "void cublasLt::splitKreduce_kernel": 0.26968106249999707,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19556100000000032,
+              "_hc_scale_mixes_kernel": 0.18668443749999747,
+              "_hc_post_expand_kernel": 0.1752355000000002,
+              "_fused_noaux_tc_kernel": 0.17431200000000058,
+              "void at::native::vectorized_elementwise_kernel": 0.17215043749999898,
+              "_hc_project_reduce_kernel": 0.1614726250000006,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15405212500000048
+            },
+            "family_breakdown": {
+              "other": {
+                "void at::native::vectorized_elementwise_kernel": 0.17215043749999898,
+                "_quant_fp8_kernel": 0.11563575,
+                "void at::native::unrolled_elementwise_kernel": 0.09788837499999967,
+                "sparse_index_topk_byte_radix_kernel__kernel": 0.084083375,
+                "layer_norm_gated_fwd_kernel": 0.06660931249999998,
+                "void at::native::elementwise_kernel": 0.06193412500000013,
+                "add_rms_norm_kernel": 0.043051562500000036,
+                "_score_pages": 0.04291543749999998
+              },
+              "mhc": {
+                "hc_pre_fused_kernel_kernel": 0.4076751875000031,
+                "_hc_project_partial_kernel": 0.4000776249999981,
+                "_hc_scale_mixes_kernel": 0.18668443749999747,
+                "_hc_post_expand_kernel": 0.1752355000000002,
+                "_hc_project_reduce_kernel": 0.1614726250000006
+              },
+              "dense_matmul": {
+                "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8427266249999998,
+                "glm53_kda_output_r11": 0.7749543749999992,
+                "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5130089999999998,
+                "void cublasLt::splitKreduce_kernel": 0.26968106249999707,
+                "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19556100000000032,
+                "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15405212500000048,
+                "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.1474713124999999,
+                "nvjet_sm90_tst_128x8_64x12_2x1_v_bz_TNT": 0.12601506250000014
+              },
+              "kda_core": {
+                "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6769003125000009,
+                "causal_conv1d_update_main_kernel": 0.11551056250000008
+              },
+              "other_fp8_gemm": {
+                "_fp8_gemm_nt_single_partition_kernel": 0.08438968749999999
+              },
+              "mla_and_indexer": {
+                "void sm90::fwd::sparse_attn_fwd_kernel": 0.6289241250000002,
+                "_compress_kpool_kernel": 0.022991624999999988,
+                "_update_raw_kpool_kernel": 0.020548062499999995,
+                "_rotate_kpool_query_kernel": 0.013420499999999972
+              },
+              "moe_router_topk": {
+                "_fused_noaux_tc_kernel": 0.17431200000000058
+              },
+              "moe_staging": {
+                "_stage_mega_moe": 0.0850154375000001
+              },
+              "mega_moe": {
+                "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.81255143749999
+              }
+            }
+          },
+          "r11_output_calls_per_step": 34.0,
+          "ordered_mhc_projection_calls_per_step": 90.0,
+          "fused_mhc_scale_calls_per_step": 0.0
+        }
+      },
+      "mhc_cublas": {
+        "epoch_mean_ms": [
+          16.98260772228241,
+          16.9691299200058,
+          16.992493867874146
+        ],
+        "max_rank_step_ms": 16.98141050338745,
+        "total_logits": 158597120,
+        "different_logits": 0,
+        "max_abs": 0.0,
+        "max_relative_l2": 0.0,
+        "argmax": [
+          1024,
+          1024
+        ],
+        "all_cache_state_bits_exact": true,
+        "profile": {
+          "steps": 16,
+          "trace": "profile-mhc_cublas-rank0.json.gz",
+          "all_kernels": {
+            "kernel_union_ms": 16.230133178710936,
+            "calls": 1632.0,
+            "groups": {
+              "other": {
+                "calls": 449.0,
+                "sum_ms": 0.8743214375000052
+              },
+              "dense_matmul": {
+                "calls": 672.0,
+                "sum_ms": 5.955895937499981
+              },
+              "mhc": {
+                "calls": 270.0,
+                "sum_ms": 0.7779088124999942
+              },
+              "kda_core": {
+                "calls": 68.0,
+                "sum_ms": 0.7913283750000031
+              },
+              "other_fp8_gemm": {
+                "calls": 3.0,
+                "sum_ms": 0.08461975
+              },
+              "mla_and_indexer": {
+                "calls": 44.0,
+                "sum_ms": 0.6860691874999996
+              },
+              "moe_router_topk": {
+                "calls": 42.0,
+                "sum_ms": 0.17371187500000052
+              },
+              "moe_staging": {
+                "calls": 42.0,
+                "sum_ms": 0.083925875
+              },
+              "mega_moe": {
+                "calls": 42.0,
+                "sum_ms": 6.802397312499999
+              }
+            },
+            "top_families_ms": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.802397312500004,
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8415201875000002,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.83716425,
+              "void cublasLt::splitKreduce_kernel": 0.801009250000006,
+              "void cutlass::Kernel2": 0.7246343750000009,
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6760624375000005,
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6290716875,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5131455624999999,
+              "hc_pre_fused_kernel_kernel": 0.4092525625000036,
+              "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.298720875,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19625962499999997,
+              "_hc_scale_mixes_kernel": 0.19255331249999702,
+              "_hc_post_expand_kernel": 0.17610293750000036,
+              "_fused_noaux_tc_kernel": 0.17371187500000046,
+              "void at::native::vectorized_elementwise_kernel": 0.17151943750000123,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15443625000000047
+            },
+            "family_breakdown": {
+              "other": {
+                "void at::native::vectorized_elementwise_kernel": 0.17151943750000123,
+                "_quant_fp8_kernel": 0.1154716875000001,
+                "void at::native::unrolled_elementwise_kernel": 0.09978112499999968,
+                "sparse_index_topk_byte_radix_kernel__kernel": 0.08392131250000005,
+                "layer_norm_gated_fwd_kernel": 0.0656871875,
+                "void at::native::elementwise_kernel": 0.06311975000000013,
+                "_score_pages": 0.043255937500000036,
+                "add_rms_norm_kernel": 0.04226993749999998
+              },
+              "dense_matmul": {
+                "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8415201875000002,
+                "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.83716425,
+                "void cublasLt::splitKreduce_kernel": 0.801009250000006,
+                "void cutlass::Kernel2": 0.7246343750000009,
+                "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5131455624999999,
+                "nvjet_sm90_tst_256x8_64x6_2x1_v_bz_TNT": 0.298720875,
+                "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19625962499999997,
+                "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15443625000000047
+              },
+              "mhc": {
+                "hc_pre_fused_kernel_kernel": 0.4092525625000036,
+                "_hc_scale_mixes_kernel": 0.19255331249999702,
+                "_hc_post_expand_kernel": 0.17610293750000036
+              },
+              "kda_core": {
+                "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6760624375000005,
+                "causal_conv1d_update_main_kernel": 0.1152659375000001
+              },
+              "other_fp8_gemm": {
+                "_fp8_gemm_nt_single_partition_kernel": 0.08461975000000002
+              },
+              "mla_and_indexer": {
+                "void sm90::fwd::sparse_attn_fwd_kernel": 0.6290716875,
+                "_compress_kpool_kernel": 0.023028000000000003,
+                "_update_raw_kpool_kernel": 0.020381562500000013,
+                "_rotate_kpool_query_kernel": 0.013587937499999984
+              },
+              "moe_router_topk": {
+                "_fused_noaux_tc_kernel": 0.17371187500000046
+              },
+              "moe_staging": {
+                "_stage_mega_moe": 0.08392587499999979
+              },
+              "mega_moe": {
+                "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.802397312500004
+              }
+            }
+          },
+          "target_graphs": [
+            8
+          ],
+          "target_graph": {
+            "kernel_union_ms": 15.907071899414062,
+            "calls": 1616.0,
+            "groups": {
+              "other": {
+                "calls": 434.0,
+                "sum_ms": 0.8499809375000055
+              },
+              "dense_matmul": {
+                "calls": 671.0,
+                "sum_ms": 5.657175062499979
+              },
+              "mhc": {
+                "calls": 270.0,
+                "sum_ms": 0.7779088124999942
+              },
+              "kda_core": {
+                "calls": 68.0,
+                "sum_ms": 0.7913283750000031
+              },
+              "other_fp8_gemm": {
+                "calls": 3.0,
+                "sum_ms": 0.08461975
+              },
+              "mla_and_indexer": {
+                "calls": 44.0,
+                "sum_ms": 0.6860691874999996
+              },
+              "moe_router_topk": {
+                "calls": 42.0,
+                "sum_ms": 0.17371187500000052
+              },
+              "moe_staging": {
+                "calls": 42.0,
+                "sum_ms": 0.083925875
+              },
+              "mega_moe": {
+                "calls": 42.0,
+                "sum_ms": 6.802397312499999
+              }
+            },
+            "top_families_ms": {
+              "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.802397312500004,
+              "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8415201875000002,
+              "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.83716425,
+              "void cublasLt::splitKreduce_kernel": 0.801009250000006,
+              "void cutlass::Kernel2": 0.7246343750000009,
+              "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6760624375000005,
+              "void sm90::fwd::sparse_attn_fwd_kernel": 0.6290716875,
+              "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5131455624999999,
+              "hc_pre_fused_kernel_kernel": 0.4092525625000036,
+              "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19625962499999997,
+              "_hc_scale_mixes_kernel": 0.19255331249999702,
+              "_hc_post_expand_kernel": 0.17610293750000036,
+              "_fused_noaux_tc_kernel": 0.17371187500000046,
+              "void at::native::vectorized_elementwise_kernel": 0.16732706250000107,
+              "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15443625000000047,
+              "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.14793756249999998
+            },
+            "family_breakdown": {
+              "other": {
+                "void at::native::vectorized_elementwise_kernel": 0.16732706250000107,
+                "_quant_fp8_kernel": 0.1154716875000001,
+                "void at::native::unrolled_elementwise_kernel": 0.09769318749999967,
+                "sparse_index_topk_byte_radix_kernel__kernel": 0.08392131250000005,
+                "layer_norm_gated_fwd_kernel": 0.0656871875,
+                "void at::native::elementwise_kernel": 0.06207775000000011,
+                "_score_pages": 0.043255937500000036,
+                "add_rms_norm_kernel": 0.04226993749999998
+              },
+              "dense_matmul": {
+                "nvjet_sm90_tst_256x8_64x6_4x1_v_bz_TNT": 1.8415201875000002,
+                "nvjet_sm90_tst_128x8_64x12_4x1_v_bz_splitK_TNT": 0.83716425,
+                "void cublasLt::splitKreduce_kernel": 0.801009250000006,
+                "void cutlass::Kernel2": 0.7246343750000009,
+                "void deep_gemm::sm90_fp8_gemm_1d2d_impl": 0.5131455624999999,
+                "nvjet_sm90_tss_64x8_64x16_4x1_v_bz_splitK_TNT": 0.19625962499999997,
+                "nvjet_sm90_tst_64x8_64x16_4x1_v_bz_splitK_TNT": 0.15443625000000047,
+                "nvjet_sm90_tst_64x8_64x16_1x1_h_bz_splitK_TNT": 0.14793756249999998
+              },
+              "mhc": {
+                "hc_pre_fused_kernel_kernel": 0.4092525625000036,
+                "_hc_scale_mixes_kernel": 0.19255331249999702,
+                "_hc_post_expand_kernel": 0.17610293750000036
+              },
+              "kda_core": {
+                "fused_recurrent_gated_delta_rule_transposed_main_kernel": 0.6760624375000005,
+                "causal_conv1d_update_main_kernel": 0.1152659375000001
+              },
+              "other_fp8_gemm": {
+                "_fp8_gemm_nt_single_partition_kernel": 0.08461975000000002
+              },
+              "mla_and_indexer": {
+                "void sm90::fwd::sparse_attn_fwd_kernel": 0.6290716875,
+                "_compress_kpool_kernel": 0.023028000000000003,
+                "_update_raw_kpool_kernel": 0.020381562500000013,
+                "_rotate_kpool_query_kernel": 0.013587937499999984
+              },
+              "moe_router_topk": {
+                "_fused_noaux_tc_kernel": 0.17371187500000046
+              },
+              "moe_staging": {
+                "_stage_mega_moe": 0.08392587499999979
+              },
+              "mega_moe": {
+                "void deep_gemm::sm90_fp8_fp4_mega_moe_impl": 6.802397312500004
+              }
+            }
+          },
+          "r11_output_calls_per_step": 0.0,
+          "ordered_mhc_projection_calls_per_step": 0.0,
+          "fused_mhc_scale_calls_per_step": 0.0
+        }
+      }
+    },
+    "extra_packed_bytes_per_rank": 2281701376,
+    "request_order_by_rank": [
+      [
+        0,
+        8,
+        16,
+        24,
+        32,
+        40,
+        48,
+        56
+      ],
+      [
+        1,
+        9,
+        17,
+        25,
+        33,
+        41,
+        49,
+        57
+      ],
+      [
+        2,
+        10,
+        18,
+        26,
+        34,
+        42,
+        50,
+        58
+      ],
+      [
+        3,
+        11,
+        19,
+        27,
+        35,
+        43,
+        51,
+        59
+      ],
+      [
+        4,
+        12,
+        20,
+        28,
+        36,
+        44,
+        52,
+        60
+      ],
+      [
+        5,
+        13,
+        21,
+        29,
+        37,
+        45,
+        53,
+        61
+      ],
+      [
+        6,
+        14,
+        22,
+        30,
+        38,
+        54,
+        46,
+        62
+      ],
+      [
+        7,
+        15,
+        23,
+        31,
+        39,
+        47,
+        55,
+        63
+      ]
+    ],
+    "first_query_positions_by_rank": [
+      [
+        8276,
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272
+      ],
+      [
+        8276,
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272
+      ],
+      [
+        8276,
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272
+      ],
+      [
+        8276,
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272
+      ],
+      [
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272,
+        8272
+      ],
+      [
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272,
+        8272
+      ],
+      [
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272,
+        8272
+      ],
+      [
+        8275,
+        8275,
+        8274,
+        8274,
+        8273,
+        8273,
+        8272,
+        8272
+      ]
+    ],
+    "prompt_manifest_sha256": "bf55fc424b3111af59e29506ee218ae847d122b29b92c46cff1272b5a6cedbdb",
+    "rank_tape_sha256": [
+      "03c87026844a19e827a65982d3abf4b9241f4942d0ea5121c213bb19380438eb",
+      "2e1faafdc21feab944f0d7f79369827ad076ae4775f03ab6003c4122aa072783",
+      "3bb93d3b742205cbcb42c4088a428bec7c0f0fbfb57a13165b79fd086172e727",
+      "c33629a50344aab664bb8ef1042e3d430c129bf98f4fd9112f730b54f37d8f69",
+      "ec270259043f40540c4907b769e1972d9f5744aa3b7401db97723bf93fe5929c",
+      "3e5410a2be3189254dd8bd3847fe54c35ff64038fafd162350d5bc40fcb38cf3",
+      "059426de81d6b2096cb650f3478e0079595797d8490158e6ca2e97b1b38ce942",
+      "dd72d4f804a1ac0dacf651c3f1f22320ecf403cd8e7dc01ee07c73e98649138c"
+    ],
+    "direct_projection": {
+      "layers_per_rank": 34,
+      "elements": 8912896,
+      "different": 0,
+      "max_abs": 0.0,
+      "max_relative_l2": 0.0
+    }
+  },
+  "mhc_reduce_rms_ablation": {
+    "run": "exec-c64-fused-mhc-01",
+    "modes": {
+      "base": {
+        "epoch_mean_ms": [
+          16.380892276763916,
+          16.391866087913513,
+          16.386138319969177,
+          16.3849880695343
+        ],
+        "max_rank_step_ms": 16.385971188545227,
+        "total_logits": 158597120,
+        "different_logits": 0,
+        "max_abs": 0.0,
+        "argmax": [
+          1024,
+          1024
+        ],
+        "all_cache_state_bits_exact": true,
+        "fused_calls_per_step": 0.0,
+        "mhc_kernel_ms": 1.3308359374999927
+      },
+      "fused_mhc": {
+        "epoch_mean_ms": [
+          16.43904197216034,
+          16.36462163925171,
+          16.372390151023865,
+          16.362133860588074
+        ],
+        "max_rank_step_ms": 16.384546905755997,
+        "total_logits": 158597120,
+        "different_logits": 0,
+        "max_abs": 0.0,
+        "argmax": [
+          1024,
+          1024
+        ],
+        "all_cache_state_bits_exact": true,
+        "fused_calls_per_step": 90.0,
+        "mhc_kernel_ms": 1.3359164375000017
+      }
+    }
+  },
+  "r11_reference": {
+    "report": "/nvme1/home/daixu/glm53-monokernel-20261115/R11-GPT6.2-Sol/reports/R11-GPT6.2-Sol.md",
+    "context": 65536,
+    "rows_per_rank": 8,
+    "mtp": 0,
+    "r10_ms": 12.37926077,
+    "r11_ms": 12.3490934,
+    "compact_output_128cta_ms": 12.35352817,
+    "stage_kda_ms": [
+      3.4595,
+      3.4292
+    ],
+    "packed_output_bytes_per_rank": 2281701376,
+    "provider_sha256": {
+      "kda_output.cubin": "79378537a83f10867c2378375d7d2c96cdaf3af84ff5c7a55dd11807119115e8",
+      "libkda_output.so": "22fabcd3d1e15b611640b7bc5631c228cc4d7148184debc20a9c66e97900dae7",
+      "manifest.json": "7c294b56e000cf15a279d9adc3b6ce6ffd7f0156059d22e73c2155ae02b5615a"
+    }
+  }
+}
