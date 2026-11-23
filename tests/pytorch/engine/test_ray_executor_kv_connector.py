@@ -220,3 +220,23 @@ def test_ray_executor_sleep_clears_dropped_output_steps(ray_components):
         KVConnectorOutput(finished_receiving={11}),
     ])
     assert output.finished_receiving is None
+
+
+@pytest.mark.parametrize('replica_ticket', [None, 18, 19])
+def test_ray_executor_requires_all_mixed_decode_tickets(ray_components, replica_ticket):
+    _, _, ray_executor_cls = ray_components
+    primary = BatchedOutputs(torch.tensor([5]), torch.tensor([False]), ssm_state_access_id=12,
+                             mixed_decode=BatchedOutputs(torch.tensor([7]), torch.tensor([False]),
+                                                         ssm_state_access_id=18))
+    replica = BatchedOutputs(None, None, ssm_state_access_id=12)
+    if replica_ticket is not None:
+        replica.mixed_decode = BatchedOutputs(None, None, ssm_state_access_id=replica_ticket)
+    executor = ray_executor_cls.__new__(ray_executor_cls)
+    executor.workers = [_OutputWorker(primary), _OutputWorker(replica)]
+    executor._output_steps = deque([(False, 12)])
+    if replica_ticket == 18:
+        result = asyncio.run(executor.get_output_async())
+        assert result.mixed_decode.ssm_state_access_id == 18
+    else:
+        with pytest.raises(RuntimeError, match='Mixed decode completion'):
+            asyncio.run(executor.get_output_async())

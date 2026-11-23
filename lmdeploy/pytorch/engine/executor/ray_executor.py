@@ -621,7 +621,8 @@ class RayExecutor(ExecutorBase):
         connector_step, access_id = self._output_steps.popleft()
         if not connector_step and access_id is None:
             ret = await self.workers[0].get_outputs.remote()
-            if ret.ssm_state_access_id is not None:
+            if (ret.ssm_state_access_id is not None or
+                    (ret.mixed_decode is not None and ret.mixed_decode.ssm_state_access_id is not None)):
                 raise RuntimeError('Unexpected compact completion on a legacy worker step.')
             return ret.to_tensor()
 
@@ -636,6 +637,11 @@ class RayExecutor(ExecutorBase):
         # owner identity only after every shard completes; dispatch RPCs and
         # leader-only D2H do not establish this condition.
         output = outputs[0]
+        for replica in outputs[1:]:
+            if ((output.mixed_decode is None) != (replica.mixed_decode is None) or
+                    (output.mixed_decode is not None
+                     and replica.mixed_decode.ssm_state_access_id != output.mixed_decode.ssm_state_access_id)):
+                raise RuntimeError('Mixed decode completion identity mismatch across workers.')
         if connector_step:
             output.kv_connector_output = self._kv_output_aggregator.aggregate([
                 rank_output.kv_connector_output for rank_output in outputs
