@@ -151,6 +151,7 @@ class BackendConfig:
     device_type: str = 'cuda'
     piecewise_cudagraph_max_tokens: int | None = None
     enable_deterministic: bool = False
+    moe_backend: str = 'default'
 
 
 @dataclass
