@@ -67,9 +67,9 @@ class R11Projection(SpecializedExecutor):
             return ()
         return (DecodePlan('r11-kda-output', batch_size=8, max_kv_len=66048, graph_safe=True),)
 
-    def __init__(self, ctx):
+    def __init__(self, ctx, *, native_dir=None):
         super().__init__(ctx)
-        root = Path(os.environ['GLM53_R11_PROJECTION_DIR'])
+        root = native_dir if native_dir is not None else Path(os.environ['GLM53_R11_PROJECTION_DIR'])
         self.driver = ctypes.CDLL(str(root / 'libglm53_projection_v1.so'))
         address = ctypes.c_void_p
         self.driver.glm53_projection_open_v1.argtypes = [ctypes.c_char_p, ctypes.POINTER(address),
@@ -98,8 +98,12 @@ class R11Projection(SpecializedExecutor):
         output = x.new_empty((1, 8, 4096))
         _check(self.driver.glm53_output_launch(self.function, x.data_ptr(), self.weights[layer_idx].data_ptr(),
                                                partials.data_ptr(), torch.cuda.current_stream(x.device).cuda_stream))
-        _reduce[(128,)](partials, output, 8 * 4096, 256)
+        self.reduce_partials(partials, output)
         return output
+
+    @staticmethod
+    def reduce_partials(partials, output):
+        _reduce[(128,)](partials, output, 8 * 4096, 256)
 
     def run(self, plan, **model_inputs):
         return self.model(**model_inputs, kda_output_projection=self.project)

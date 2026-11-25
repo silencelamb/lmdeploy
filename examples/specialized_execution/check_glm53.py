@@ -56,7 +56,7 @@ def main(args):
     _finalize_sparse_mla_cache_policy([mc], cc)
     if mc.update_cache_config_func:
         mc.update_cache_config_func(cc)
-    bc = BackendConfig(eager_mode=args.eager, specialized_executor='glm53_r11:R11Projection',
+    bc = BackendConfig(eager_mode=args.eager, specialized_executor=args.executor,
                        moe_backend=args.moe_backend)
     agent = BaseModelAgent(args.model, mc, cc, bc, MiscConfig(language_model_only=True), ctx, DeviceContext(),
                            trust_remote_code=True)
@@ -74,6 +74,8 @@ def main(args):
         assert any(isinstance(key[-1], DecodePlan) for key in warm_keys), warm_keys
         assert any(not isinstance(key[-1], DecodePlan) for key in warm_keys), warm_keys
     execution = agent.specialized_execution
+    # Cache allocation initializes the reserved cursor on the construction stream.
+    agent.stream.wait_stream(torch.cuda.current_stream())
     with agent.all_context(), torch.cuda.stream(agent.stream):
         standard_config = replace(bc, specialized_executor=None)
         standard = get_backend().build_graph_runner(candidate.get_model(), mc, cc, standard_config, agent.device)
@@ -196,6 +198,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('model')
+    parser.add_argument('--executor', default='glm53_r11:R11Projection')
     parser.add_argument('--context', type=int, default=63)
     parser.add_argument('--eager', action='store_true')
     parser.add_argument('--prewarm', action='store_true', help='Capture both routes in normal engine warmup.')

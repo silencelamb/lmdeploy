@@ -72,6 +72,10 @@ class SpecializedExecutor(ABC):
         """Release provider resources after all users and graphs are
         retired."""
 
+    def prepare_distributed(self, ctx: BuildContext) -> None:
+        """Initialize collective resources after every worker completed local
+        preparation."""
+
 
 @dataclass
 class SpecializedExecution:
@@ -161,4 +165,10 @@ def build_specialized_execution(path: str, ctx: BuildContext) -> SpecializedExec
         if executor is not None:
             executor.close()
         raise RuntimeError(f'Specialized executor preparation failed on workers: {failures}') from error
+    try:
+        executor.prepare_distributed(ctx)
+    except Exception:
+        # Collective failures are worker failures. Never retry a different protocol.
+        executor.close()
+        raise
     return SpecializedExecution(plans, executor, ctx.dist.dist_config.dp)

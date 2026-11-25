@@ -61,10 +61,12 @@ def _run_server(gpu_ids: list[int], model_path: str, **kwargs):
     os.setpgrp()
     if gpu_ids:
         config = kwargs.get('backend_config')
-        if getattr(config, 'moe_backend', 'default') != 'default':
+        explicit_peers = (os.getenv('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES')
+                          if getattr(config, 'specialized_executor', None) else None)
+        if explicit_peers or getattr(config, 'moe_backend', 'default') != 'default':
             # This frontend owns one Ray GPU resource. Its actor still needs
             # the same device ordinals as the other EP ranks for symmetric IPC.
-            visible = os.environ.get('CUDA_VISIBLE_DEVICES')
+            visible = explicit_peers or os.environ.get('CUDA_VISIBLE_DEVICES')
             peers = visible.split(',') if visible is not None else list(map(str, range(config.dp)))
             if len(peers) < config.dp:
                 raise ValueError(f'MegaMoE requires {config.dp} peer GPUs, got {peers}.')

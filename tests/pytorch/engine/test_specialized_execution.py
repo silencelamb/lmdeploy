@@ -176,3 +176,25 @@ def test_refresh_retires_graphs_before_repacking(monkeypatch):
     agent._finalize_updated_weights()
     assert events == [('weights', model), 'sync', 'sync', 'retire graphs', 'close', ('prepare', model)]
     assert agent.patched_model.specialized_execution is agent.specialized_execution
+
+
+def test_distributed_setup_follows_successful_local_agreement(monkeypatch):
+    events = []
+    path = f'{__name__}:Example'
+    ctx = SimpleNamespace(model=object(), dist=SimpleNamespace(dist_config=SimpleNamespace(dp=8, world_size=8)))
+    monkeypatch.setattr(api, '_gather', lambda ctx, x: events.append('agree') or [x] * 8)
+    monkeypatch.setattr(Example, 'prepare_distributed', lambda self, context: events.append('prepare EP'))
+    assert api.build_specialized_execution(path, ctx).dp_size == 8
+    assert events == ['agree', 'agree', 'prepare EP']
+
+
+def test_collective_failure_retires_prepared_executor(monkeypatch):
+    ctx = SimpleNamespace(model=object(), dist=SimpleNamespace(dist_config=SimpleNamespace(dp=1, world_size=1)))
+    closed = []
+    def fail(self, ctx):
+        raise RuntimeError('collective setup failed')
+    monkeypatch.setattr(Example, 'prepare_distributed', fail)
+    monkeypatch.setattr(Example, 'close', lambda self: closed.append(True))
+    with pytest.raises(RuntimeError, match='collective setup failed'):
+        api.build_specialized_execution(f'{__name__}:Example', ctx)
+    assert closed == [True]
