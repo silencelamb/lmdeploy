@@ -58,7 +58,7 @@ async def main(args):
     async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=1200), trust_env=False) as client:
         # Exercise live dummy-rank fallback without warming the B8 path.
         await generate(client, urls[0], prompts[0][:64], 4)
-        waves = [('clean', 512)] if args.client_only else [('clean', 512), ('profiled', 192)]
+        waves = [('clean', 512)] if args.client_only or args.one_wave else [('clean', 512), ('profiled', 192)]
         for label, limit in waves:
             if label == 'profiled':
                 count = len(json.loads((args.output / 'clean-rank0.json').read_text()))
@@ -71,7 +71,7 @@ async def main(args):
             if not args.client_only:
                 await dump(args.output, label)
             print(label, sum(len(r['tokens']) for r in outputs), flush=True)
-        if args.client_only:
+        if args.client_only or args.one_wave:
             return
         for _ in range(300):
             if (args.output / 'worker-trace.json.gz').is_file():
@@ -85,6 +85,8 @@ if __name__ == '__main__':
     parser.add_argument('model')
     parser.add_argument('output', type=Path)
     parser.add_argument('--client-only', action='store_true', help='Measure a plain FullR11 server without probes.')
+    parser.add_argument('--one-wave', action='store_true',
+                        help='Skip the separate CUPTI wave after collecting timestamps.')
     parser.add_argument('--host', required=True)
     parser.add_argument('--port', type=int, default=24620)
     asyncio.run(main(parser.parse_args()))

@@ -279,7 +279,9 @@ class RayExecutor(ExecutorBase):
             self._ep_visible_devices = None
             if device_type == 'cuda':
                 use_mega_moe = backend_config.moe_backend != 'default'
-                if use_mega_moe or getattr(backend_config, 'specialized_executor', None):
+                use_specialized_ep = (getattr(backend_config, 'specialized_executor', None)
+                                      and dist_config.dp == dist_config.ep > 1 and dist_config.attn_tp == 1)
+                if use_mega_moe or use_specialized_ep:
                     self._ep_visible_devices = os.environ.get('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES')
                 self._needs_symm_mem_device_setup = (bool(self._ep_visible_devices) or use_mega_moe
                                                      or _needs_symm_mem_device_setup(dist_config))

@@ -275,4 +275,11 @@ if __name__ == '__main__':
     parser.add_argument('--require-frozen-tokens', action='store_true')
     parser.add_argument('--prefill-snapshot', type=Path, help='Diagnostic replay from archived real prefill pools')
     parser.add_argument('--frozen', type=Path, help='Optional original raw_recheck directory for token verification')
-    main(parser.parse_args())
+    args = parser.parse_args()
+    if args.route == 'full' and args.reference is None:
+        parser.error('--route full requires --reference')
+    if args.require_frozen_tokens and not args.frozen:
+        parser.error('--require-frozen-tokens requires --frozen')
+    if args.repeats < 1:
+        parser.error('--repeats must be positive')
+    main(args)

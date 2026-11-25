@@ -30,17 +30,17 @@
 
 `r10.py::_Planner` 在 capture 之前为 EP group 建立 symmetric memory 和 peer pointers。准备核交换带代数的位图/原始槽序并写本地连续 pull 任务表。每个消费者等待对应源 rank 的就绪信号。`routed_r11.cu` 以 132 CTA、384 线程调度 patched DeepGEMM 的完整 routed body。M32、K-major FP8、WGMMA 和 TMA stage 释放次序来自 R6。R5 返回区以成对 BF16 NaN 位型 `0xffffffff` 为 sentinel，依赖真实有限输出、单消费者重置、代际顺序及所有 peer 到齐。系统作用域 release/acquire 发布跨卡工作，局部 fence 和 barrier 处理同卡 shared-memory 可见性。共享专家和上一步的缓冲都必须在复用前完成。`r10.py` 还写死了 432 个物理槽、128 token/rank 的池容量及 `15104×4096` 激活布局。容量字段不能用作可支持的实时 batch 上限。
 
-单节点 NVSwitch 上的压力回放涉及负载偏斜、拥挤路由与连续重放。若某 rank 改走 DeepEP、使用另一代 workspace、跳过某层或缺席，另一端可能永久等信号。原实验对不合规的部分输入直接报错，某些层有局部 fallback。这些分支没有形成任意混合 batch 下的全组协议。新接口在进入 forward 前协商，本轮只接入本地投影，专家通信由所选 LMDeploy MoE 后端承担。
+单节点 NVSwitch 上的压力回放涉及负载偏斜、拥挤路由与连续重放。若某 rank 改走 DeepEP、使用另一代 workspace、跳过某层或缺席，另一端可能永久等信号。原实验对不合规的部分输入直接报错，某些层有局部 fallback。这些分支没有形成任意混合 batch 下的全组协议。新接口在进入 forward 前协商。最小投影示例复用 LMDeploy 的 MoE 路径，完整 `FullR11` provider 已接入这里的 132-CTA 专家协议。
 
 ## Shape、图和正确性的边界
 
-| 结论                              | 证据与适用范围                                                                                                                                                                                                                                                    |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **历史整模已验证**                | 单节点 8×H200，DP8/EP8/TP1，每 rank 恰好 8 个真实 decode token、每请求 q=1，固定槽/预分配页。原始 64K prefill 后连续 512 步，自回归产生全部 32,768 个 token。每行历史长度逐步从 65,536 增长。固定 batch 和内存几何并不冻结逻辑长度                                |
-| **局部长度能力已实现**            | KPool score 与 radix Top-K 读每行有效长度，短行填 `-1`，R09 的 `topk_r09.cu` 对大于 17,408 **组**的行转 leader CTA 顺序算法。该数是算法分支点。稀疏 MLA 读物理页映射和掩码。真实快照及局部变长/ties 测试见 R09 的 `reports/topk_oracle.json` 与 `mla_oracle.json` |
-| **整条 R11 在生产输入上尚无验收** | 不同 rank 的真实 B、dummy、slot 回收、混合 phase、动态页重用、连接器迁移、任意 1M 上下文、在线换权和 NPU。模型配置的最大位置数 1,048,576 只描述模型。原有图依赖预热后的地址、打包权重与固定通信组                                                                 |
-| **已运行的研究变体**              | 512-CTA cooperative KDA 实际做了 QKV/gate/Sinkhorn/卷积/递推/输出。与 42 个 cooperative MoE 合用得到 13.20317 ms/步。无损 FP8 编解码能还原原字节，提前展开版整模 18.17616 ms。PDL、L2 预取及更大融合区分别有微测和整模消融，未进入正式路径                        |
-| **尚未实现**                      | 把 45 层所有算术变成一个常驻 kernel。整条 R11 的 target verify、draft、按接受数提交/回滚，以及任意负载的专家协议。A3 上的该算法也尚无实现                                                                                                                         |
+| 结论                       | 证据与适用范围                                                                                                                                                                                                                                                    |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **历史整模已验证**         | 单节点 8×H200，DP8/EP8/TP1，每 rank 恰好 8 个真实 decode token、每请求 q=1，固定槽/预分配页。原始 64K prefill 后连续 512 步，自回归产生全部 32,768 个 token。每行历史长度逐步从 65,536 增长。固定 batch 和内存几何并不冻结逻辑长度                                |
+| **局部长度能力已实现**     | KPool score 与 radix Top-K 读每行有效长度，短行填 `-1`，R09 的 `topk_r09.cu` 对大于 17,408 **组**的行转 leader CTA 顺序算法。该数是算法分支点。稀疏 MLA 读物理页映射和掩码。真实快照及局部变长/ties 测试见 R09 的 `reports/topk_oracle.json` 与 `mla_oracle.json` |
+| **冻结研究版本的验收边界** | 不同 rank 的真实 B、dummy、slot 回收、混合 phase、动态页重用、连接器迁移、任意 1M 上下文、在线换权和 NPU。模型配置的最大位置数 1,048,576 只描述模型。原有图依赖预热后的地址、打包权重与固定通信组                                                                 |
+| **已运行的研究变体**       | 512-CTA cooperative KDA 实际做了 QKV/gate/Sinkhorn/卷积/递推/输出。与 42 个 cooperative MoE 合用得到 13.20317 ms/步。无损 FP8 编解码能还原原字节，提前展开版整模 18.17616 ms。PDL、L2 预取及更大融合区分别有微测和整模消融，未进入正式路径                        |
+| **尚未实现**               | 把 45 层所有算术变成一个常驻 kernel。整条 R11 的 target verify、draft、按接受数提交/回滚，以及任意负载的专家协议。A3 上的该算法也尚无实现                                                                                                                         |
 
 `whole_step.py` 预热模型，捕获 forward、head、argmax、token/history/SSM 反馈与记录，捕获期间临时将内层 graph replay 展开为 prepared callable。`native/whole_step/device_loop.cu` 的计时标记使用 `%globaltimer`，finish 节点按步数做 device graph tail launch。GPU 自循环中的 host 标量、页表容量和请求集均预先确定。实际 Serving 由 scheduler 决定下一步成员，因而本轮接口只接管一次模型 forward。研究用 `r11_source.install` 及命令队列可在同一进程切换实验开关，正式服务也需要独立的默认图。
 
@@ -81,3 +81,5 @@ python3 ../r8/scripts/measurements.py results/reproduce-v1 reports/reproduce-v1.
 ```
 
 `release/benchmark/glm53_monokernel/README.md` 按 R4–R11 给出从源重建命令，`build_r11.py --r10-include ... --provider-include ...` 生成末级 `manifest.json`。研究 archive/模型权重由持有者另行分发。当前 PR 随附的小范围实现可在独立 LMDeploy checkout 构建并运行，详见其接入与测试入口。[本轮接口设计](specialized_execution.md) · [接入示例](../../../examples/specialized_execution/README.md)
+
+完整 R11 在新版引擎中的验证使用新的分支与独立结果目录，含 64K×512、全词表与缓存对照、真实客户端和路由计数。[新版集成实测](glm53_full_r11_results.md)

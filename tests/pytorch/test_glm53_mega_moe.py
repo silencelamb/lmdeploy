@@ -32,11 +32,15 @@ def test_unknown_moe_backend_raises():
         PytorchEngineConfig(moe_backend='unknown')
 
 
-def test_mega_moe_frontend_keeps_the_peer_device_order(monkeypatch):
+@pytest.mark.parametrize('specialized', [False, True])
+def test_ep_frontend_keeps_the_peer_device_order(monkeypatch, specialized):
     launcher = importlib.import_module('lmdeploy.serve.openai.launch_server')
     order = '6,5,4,3,2,1,0,7'
     monkeypatch.setenv('CUDA_VISIBLE_DEVICES', order)
-    monkeypatch.delenv('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES', raising=False)
+    if specialized:
+        monkeypatch.setenv('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES', order)
+    else:
+        monkeypatch.delenv('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES', raising=False)
     monkeypatch.setattr(os, 'setpgrp', lambda: None)
     seen = {}
 
@@ -45,7 +49,8 @@ def test_mega_moe_frontend_keeps_the_peer_device_order(monkeypatch):
         seen['peers'] = os.environ['LMDEPLOY_EP_CUDA_VISIBLE_DEVICES']
 
     monkeypatch.setattr(launcher, 'serve', mock_serve)
-    config = PytorchEngineConfig(dp=8, ep=8, tp=1, moe_backend='deepgemm_mega_moe')
+    config = PytorchEngineConfig(dp=8, ep=8, tp=1, moe_backend='default' if specialized else 'deepgemm_mega_moe',
+                                 specialized_executor='example:Full' if specialized else None)
     launcher._run_server([2], 'glm53', backend_config=config)
     assert seen == {'frontend': '4', 'peers': order}
 

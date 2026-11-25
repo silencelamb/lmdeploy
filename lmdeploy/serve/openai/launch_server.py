@@ -61,8 +61,9 @@ def _run_server(gpu_ids: list[int], model_path: str, **kwargs):
     os.setpgrp()
     if gpu_ids:
         config = kwargs.get('backend_config')
-        explicit_peers = (os.getenv('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES')
-                          if getattr(config, 'specialized_executor', None) else None)
+        use_specialized_ep = (getattr(config, 'specialized_executor', None) and config.device_type == 'cuda'
+                              and config.dp == config.ep > 1 and config.tp == 1)
+        explicit_peers = os.getenv('LMDEPLOY_EP_CUDA_VISIBLE_DEVICES') if use_specialized_ep else None
         if explicit_peers or getattr(config, 'moe_backend', 'default') != 'default':
             # This frontend owns one Ray GPU resource. Its actor still needs
             # the same device ordinals as the other EP ranks for symmetric IPC.
