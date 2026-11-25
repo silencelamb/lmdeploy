@@ -1612,7 +1612,8 @@ class BaseModelAgent:
             self._prepare_specialized_execution(patched_model)
 
     def _prepare_specialized_execution(self, model):
-        """Prepare target weights before cache sizing, or after an explicit refresh."""
+        """Prepare target weights before cache sizing, or after an explicit
+        refresh."""
         if (self.backend_config.device_type != 'cuda' or self.model_config.model_paradigm != 'ar'
                 or self.spec_agent.is_enabled() or self.memdecode_agent is not None or self.adapters
                 or self.model_config.enable_replayssm):

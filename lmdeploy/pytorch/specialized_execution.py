@@ -21,8 +21,8 @@ if TYPE_CHECKING:
 class DecodePlan:
     """One exact, unpadded, single-query batch per participating rank.
 
-    max_kv_len bounds every row including the current token. None accepts
-    the entire engine-supported range. Plans are tried in declaration order.
+    max_kv_len bounds every row including the current token. None accepts the entire engine-supported range. Plans are
+    tried in declaration order.
     """
 
     name: str
@@ -33,7 +33,10 @@ class DecodePlan:
 
 @dataclass(frozen=True)
 class BuildContext:
-    """Borrowed deployment objects. Model parameters are in backend layout."""
+    """Borrowed deployment objects.
+
+    Model parameters are in backend layout.
+    """
 
     model: torch.nn.Module
     model_config: ModelConfig
@@ -52,18 +55,22 @@ class SpecializedExecutor(ABC):
     @classmethod
     @abstractmethod
     def describe(cls, ctx: BuildContext) -> tuple[DecodePlan, ...]:
-        """Inspect static support without allocating, mutating or communicating."""
+        """Inspect static support without allocating, mutating or
+        communicating."""
 
     def __init__(self, ctx: BuildContext):
-        """Prepare derived weights and workspace before KV capacity is measured."""
+        """Prepare derived weights and workspace before KV capacity is
+        measured."""
         self.model = ctx.model
 
     @abstractmethod
     def run(self, plan: DecodePlan, **model_inputs) -> Any:
-        """Return the model's forward output and perform the same state writes."""
+        """Return the model's forward output and perform the same state
+        writes."""
 
     def close(self) -> None:
-        """Release provider resources after all users and graphs are retired."""
+        """Release provider resources after all users and graphs are
+        retired."""
 
 
 @dataclass
@@ -73,7 +80,10 @@ class SpecializedExecution:
     dp_size: int
 
     def propose(self, inputs: ModelInputs | StepContext, batch_size: int) -> int:
-        """Zero means standard execution. Use only host-resident metadata."""
+        """Zero means standard execution.
+
+        Use only host-resident metadata.
+        """
         if (not inputs.is_decoding or inputs.is_dummy or inputs.is_chunk or inputs.enable_microbatch
                 or inputs.vision_inputs is not None
                 or inputs.max_q_seqlen != 1 or inputs.input_ids.numel() != batch_size
@@ -126,7 +136,10 @@ def _gather(ctx: BuildContext, value):
 
 
 def build_specialized_execution(path: str, ctx: BuildContext) -> SpecializedExecution | None:
-    """Agree on coverage before preparation. Propagate rank-local startup errors."""
+    """Agree on coverage before preparation.
+
+    Propagate rank-local startup errors.
+    """
     error = None
     try:
         provider, plans = _describe(path, ctx)

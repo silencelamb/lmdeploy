@@ -590,7 +590,8 @@ class Glm5NextMoE(DeepseekV2MoE):
         return (self._mega_shared_gate_up, self._mega_shared_gate_up_scale), (weight, scale)
 
     def process_weights_after_loading(self):
-        """Prepare the SM90 decode weights and scales after checkpoint loading."""
+        """Prepare the SM90 decode weights and scales after checkpoint
+        loading."""
         if self.mega_moe is not None:
             (gate, gate_scale), (_, down_scale) = self.mega_moe.prepare_weights(self.experts, self.mega_moe_weights)
             # Derived buffers follow the model on sleep/wakeup. Resolve

@@ -1,4 +1,7 @@
-"""Compare both runners from one real prefill. Run with torchrun on eight H200s."""
+"""Compare both runners from one real prefill.
+
+Run with torchrun on eight H200s.
+"""
 import argparse
 import asyncio
 import json

@@ -120,7 +120,10 @@ def _stage_mega_moe(hidden, ids, weights, x, x_sf, route_ids, route_weights, val
 
 
 class Sm90MegaMoE:
-    """Model-owned runner. All MoE layers enqueue on the same compute stream."""
+    """Model-owned runner.
+
+    All MoE layers enqueue on the same compute stream.
+    """
 
     merge_gate_up_scales = False
     fuses_shared_expert = False
@@ -218,7 +221,8 @@ class Sm90MegaMoE:
         return self.forward(hidden, topk_weights, topk_ids, weights, **kwargs)
 
     def for_step(self, context):
-        """Every EP rank selects the same runner, regardless of its local phase."""
+        """Every EP rank selects the same runner, regardless of its local
+        phase."""
         if context.global_is_decoding():
             return self
         if self.prefill_capacity and context.dp_meta is not None:

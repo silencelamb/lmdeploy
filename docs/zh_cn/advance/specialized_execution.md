@@ -10,13 +10,13 @@ LMDeploy 已有两处需要复用的边界。`model_forward` 构建 `StepContext
 
 ## 生成物和引擎各自承诺什么
 
-| 时点 | 引擎提供 | 生成物负责 |
-| --- | --- | --- |
-| 静态探测 `describe(ctx)` | `BuildContext(model, model_config, cache_config, backend_config, dist, device)`。原模型已完成 HF 加载、sharding、量化模块的 `update_weights` 和 post-load hooks | 核对模型族/层图、真实张量 shape/dtype/stride、量化及 scale、设备 ISA、拓扑、权重版本约束和可执行模式。用无副作用的 `tuple[DecodePlan, ...]` 声明覆盖，空元组表示当前部署走默认路径 |
-| 准备 `__init__(ctx)` | 确认各 rank 的实现路径、API 版本、生成物标识和有序计划一致，再建立实例。初始准备位于 KV 容量测量之前 | 打包本 rank 的派生权重，建立本地 scratch、加载 native 库并使资源对 forward stream 可见。V1 构造阶段只做本地工作。跨 rank 计算可使用已建立的引擎进程组。需要新的 collective 分配协议时须有全组有序初始化和失败收敛 |
-| 选路 | `DecodePlan(name, batch_size, max_kv_len, graph_safe)`。正整数 batch，含当前 token 的 KV 上界或 `None`，按声明顺序取第一个匹配项 | 每个计划覆盖所有满足条件的行长度、槽号和值。仅支持等长历史、某种页排列、特定下界或其他 V1 无法表达的 kernel 应声明空覆盖或在静态绑定时证明条件恒成立 |
-| 执行 `run(plan, **model_inputs)` | 同一 target 的 `prepare_inputs_for_generation` 产物，当前 `StepContext`、执行流和既有后端。Graph 路径传稳定缓冲绑定后的参数 | 保留 forward 的输出张量或字典、形状、dtype 和可选字段，以及对权威 KV/状态的全部写入。辅助 stream 进入前等待生产者，返回前把依赖接回调用流。保持需要的 `record_stream`/存活期 |
-| 结束 `close()` | 先退休 graph 并排空设备上的使用者，随后丢弃 executor。权重刷新重新从完成处理的参数构造，sleep/wake 按当前资源重新准备 | 释放设备 module、派生权重和 workspace。不得将同地址的原地权重更新、同名缓存或重用 arena 视为同一代数据 |
+| 时点                             | 引擎提供                                                                                                                                                        | 生成物负责                                                                                                                                                                                                        |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 静态探测 `describe(ctx)`         | `BuildContext(model, model_config, cache_config, backend_config, dist, device)`。原模型已完成 HF 加载、sharding、量化模块的 `update_weights` 和 post-load hooks | 核对模型族/层图、真实张量 shape/dtype/stride、量化及 scale、设备 ISA、拓扑、权重版本约束和可执行模式。用无副作用的 `tuple[DecodePlan, ...]` 声明覆盖，空元组表示当前部署走默认路径                                |
+| 准备 `__init__(ctx)`             | 确认各 rank 的实现路径、API 版本、生成物标识和有序计划一致，再建立实例。初始准备位于 KV 容量测量之前                                                            | 打包本 rank 的派生权重，建立本地 scratch、加载 native 库并使资源对 forward stream 可见。V1 构造阶段只做本地工作。跨 rank 计算可使用已建立的引擎进程组。需要新的 collective 分配协议时须有全组有序初始化和失败收敛 |
+| 选路                             | `DecodePlan(name, batch_size, max_kv_len, graph_safe)`。正整数 batch，含当前 token 的 KV 上界或 `None`，按声明顺序取第一个匹配项                                | 每个计划覆盖所有满足条件的行长度、槽号和值。仅支持等长历史、某种页排列、特定下界或其他 V1 无法表达的 kernel 应声明空覆盖或在静态绑定时证明条件恒成立                                                              |
+| 执行 `run(plan, **model_inputs)` | 同一 target 的 `prepare_inputs_for_generation` 产物，当前 `StepContext`、执行流和既有后端。Graph 路径传稳定缓冲绑定后的参数                                     | 保留 forward 的输出张量或字典、形状、dtype 和可选字段，以及对权威 KV/状态的全部写入。辅助 stream 进入前等待生产者，返回前把依赖接回调用流。保持需要的 `record_stream`/存活期                                      |
+| 结束 `close()`                   | 先退休 graph 并排空设备上的使用者，随后丢弃 executor。权重刷新重新从完成处理的参数构造，sleep/wake 按当前资源重新准备                                           | 释放设备 module、派生权重和 workspace。不得将同地址的原地权重更新、同名缓存或重用 arena 视为同一代数据                                                                                                            |
 
 Python 接口只依赖框架模型、配置与设备对象。CUDA driver handle、cubin、stream ID 和 Triton 均在 H200 示例中。V1 由 NVIDIA CUDA runner 实现 dispatch，A3 继续使用 `AscendGraphRunner`。NPU 方可实现同样的 `describe/run/close` 并在自己的 runner 绑定相应 eager/graph callable。需要在该设备上验证地址稳定性、stream/event、通信和缓存写回。API 版本由 `SpecializedExecutor.api_version` 声明，生成器用 `artifact_id` 标识实际程序、权重布局与通信协议，原生库 ABI 和编译器/驱动兼容性随生成包交付。[接口类型](../../../lmdeploy/pytorch/specialized_execution.py) · [A3 runner](../../../lmdeploy/pytorch/backends/ascend/graph_runner.py)
 
