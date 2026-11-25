@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 import re
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from functools import partial
 from typing import TYPE_CHECKING, Any
 
@@ -827,7 +827,8 @@ class Glm5NextLinearAttention(nn.Module):
 
     def forward(self, hidden_states: torch.Tensor,
                 past_key_value: Sequence[torch.Tensor],
-                kda_metadata: GatedDeltaMeta) -> torch.Tensor:
+                kda_metadata: GatedDeltaMeta,
+                output_projection: Callable | None = None) -> torch.Tensor:
         mixed_qkv = self.qkv_proj(hidden_states)
         raw_beta = self.b_proj(hidden_states)
         raw_gate, norm_gate = self.fg_b_proj(self.fg_a_proj(hidden_states))
@@ -857,6 +858,8 @@ class Glm5NextLinearAttention(nn.Module):
         core_output = self.o_norm(core_output.reshape(-1, self.head_dim),
                                   norm_gate.reshape(-1, self.head_dim))
         core_output = core_output.view(output_shape).flatten(-2, -1)
+        if output_projection is not None:
+            return output_projection(self.layer_idx, core_output)
         return self.o_proj(core_output)
 
 
@@ -1540,7 +1543,8 @@ class Glm5NextDecoderLayer(nn.Module):
                 kpool_metadata: Any = None,
                 hc_input_fp32: torch.Tensor | None = None,
                 prepare_hc_fp32: bool = False,
-                all_routed_experts: torch.Tensor | None = None) -> tuple[torch.Tensor, torch.Tensor | None]:
+                all_routed_experts: torch.Tensor | None = None,
+                kda_output_projection: Callable | None = None) -> tuple[torch.Tensor, torch.Tensor | None]:
         residual = hidden_states
         hidden_states, post, comb = self._hc_pre(
             hidden_states,
@@ -1554,7 +1558,8 @@ class Glm5NextDecoderLayer(nn.Module):
         if self.is_linear_attention:
             hidden_states = self.self_attn(hidden_states,
                                            past_key_value=past_key_value,
-                                           kda_metadata=kda_metadata)
+                                           kda_metadata=kda_metadata,
+                                           output_projection=kda_output_projection)
         else:
             hidden_states = self.self_attn(hidden_states,
                                            past_key_value=past_key_value,
@@ -1623,6 +1628,7 @@ class Glm5NextModel(nn.Module):
         state_ids: torch.Tensor,
         inputs_embeds: torch.Tensor | None = None,
         all_routed_experts: torch.Tensor | None = None,
+        kda_output_projection: Callable | None = None,
     ) -> torch.Tensor:
         del position_ids  # GLM-5.3 text attention has qk_rope_head_dim == 0.
         if state_ids is None:
@@ -1668,7 +1674,8 @@ class Glm5NextModel(nn.Module):
                                   kpool_metadata=kpool_metadata,
                                   hc_input_fp32=hc_input_fp32,
                                   prepare_hc_fp32=prepare_hc_fp32,
-                                  all_routed_experts=all_routed_experts)
+                                  all_routed_experts=all_routed_experts,
+                                  kda_output_projection=kda_output_projection)
         hidden_states = hidden_states.mean(dim=2)
         return self.norm(hidden_states)
 
@@ -1729,6 +1736,7 @@ class Glm5NextForConditionalGeneration(DeepseekV32ForCausalLM, PiecewiseCudaGrap
         vision_prompt_order: list[int] | None = None,
         multimodal_mask: torch.Tensor | None = None,
         return_input_embeds: bool = False,
+        kda_output_projection: Callable | None = None,
         **kwargs,
     ) -> torch.Tensor:
         if inputs_embeds is None and (vision_groups or
@@ -1782,7 +1790,8 @@ class Glm5NextForConditionalGeneration(DeepseekV32ForCausalLM, PiecewiseCudaGrap
                           attn_metadata=attn_metadata,
                           inputs_embeds=inputs_embeds,
                           state_ids=state_ids,
-                          all_routed_experts=all_routed_experts)
+                          all_routed_experts=all_routed_experts,
+                          kda_output_projection=kda_output_projection)
         if all_routed_experts is None and not return_input_embeds:
             return hidden_states
         outputs = dict(hidden_states=hidden_states)

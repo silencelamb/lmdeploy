@@ -163,6 +163,8 @@ class SubCliServe:
         ArgumentHelper.dcp(pt_group)
         ArgumentHelper.enable_microbatch(pt_group)
         ArgumentHelper.enable_eplb(pt_group)
+        pt_group.add_argument('--specialized-executor', metavar='MODULE:CLASS',
+                              help='Load a model-specialized target decode provider on each worker.')
         pt_group.add_argument('--moe-backend',
                               choices=['default', 'deepgemm_mega_moe', 'flashinfer_mega_moe'],
                               default='default',
@@ -276,6 +278,9 @@ class SubCliServe:
                              'set --backend pytorch to enable a KV connector')
 
         moe_backend = getattr(args, 'moe_backend', 'default')
+        specialized_executor = getattr(args, 'specialized_executor', None)
+        if specialized_executor and backend != 'pytorch':
+            raise ValueError('--specialized-executor requires the PyTorch engine.')
         if moe_backend != 'default' and (backend != 'pytorch' or args.nnodes != 1):
             raise ValueError('--moe-backend requires the PyTorch engine on a single node.')
 
@@ -314,6 +319,7 @@ class SubCliServe:
                 enable_microbatch=args.enable_microbatch,
                 enable_eplb=args.enable_eplb,
                 moe_backend=moe_backend,
+                specialized_executor=specialized_executor,
                 enable_metrics=not args.disable_metrics,
                 role=EngineRole[args.role],
                 migration_backend=MigrationBackend[args.migration_backend],

@@ -145,6 +145,8 @@ class TestGlm5NextRoutedExperts:
         moe.gate = Gate()
         moe.experts = Experts()
         moe.shared_experts = None
+        moe.mega_moe = None
+        moe._piecewise_mega_forward = None
         moe._all_reduce = False
         moe._fp32_tp_reduce = False
         x = torch.randn(1, 5, 4)

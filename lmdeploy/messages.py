@@ -568,6 +568,8 @@ class PytorchEngineConfig:
         enable_microbatch: enable microbatch for specified model
         enable_eplb: enable eplb for specified model
         moe_backend: Routed MoE backend for GLM-5.3-Flash decode on SM90.
+        specialized_executor: Optional module:Class implementing the target decode
+            interface in lmdeploy.pytorch.specialized_execution.
         enable_metrics: enable metrics system
         role: role of engin, options: ['Hybrid', 'Prefill',
             'Decode']. Default to `EngineRole.Hybrid`.
@@ -658,6 +660,7 @@ class PytorchEngineConfig:
     piecewise_cudagraph_max_tokens: int | None = None
     communication_backend: Literal['nccl', 'auto'] = 'nccl'
     moe_backend: Literal['default', 'deepgemm_mega_moe', 'flashinfer_mega_moe'] = 'default'
+    specialized_executor: str | None = None
 
     def __post_init__(self):
         """Check input validation."""

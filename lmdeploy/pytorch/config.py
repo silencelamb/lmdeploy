@@ -152,6 +152,7 @@ class BackendConfig:
     piecewise_cudagraph_max_tokens: int | None = None
     enable_deterministic: bool = False
     moe_backend: str = 'default'
+    specialized_executor: str | None = None
 
 
 @dataclass

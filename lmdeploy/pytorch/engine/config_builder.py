@@ -108,6 +108,7 @@ class ConfigBuilder:
             device_type=engine_config.device_type,
             piecewise_cudagraph_max_tokens=engine_config.piecewise_cudagraph_max_tokens,
             moe_backend=engine_config.moe_backend,
+            specialized_executor=engine_config.specialized_executor,
         )
         return backend_config
 
