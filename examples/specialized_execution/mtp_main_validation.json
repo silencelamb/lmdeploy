@@ -365,7 +365,16 @@
     "rounds": 760654,
     "proposed": 2281962,
     "accepted": 1560069,
-    "mean_logical_tokens_per_request_round": 3.0509574655493825
+    "mean_logical_tokens_per_request_round": 3.0509574655493825,
+    "run": "c70-r3",
+    "moe": "deepgemm_mega_moe, interleaved, shared expert fused",
+    "kda_prefill": "FlashKDA",
+    "formal_requests": 2307,
+    "output_tokens": 2364812,
+    "output_intervals_after_first": 2362505,
+    "sum_request_decode_ms": 39257912.245050944,
+    "interval_weighted_tpot_ms": 16.61707054378761,
+    "request_mean_tpot_ms": 20.140962461929085
   },
   "per_rank_records_and_synthetic_http_token_ids": {
     "file": "mtp_verification_samples.json.gz",

@@ -1,5 +1,7 @@
 # GLM-5.3 的专用 decode、MTP3 验证与 AgentX 上线选择
 
+GLM-5.3-Flash 自带的 NextN predictor 及原生 MTP 已在上游 main。本文的八卡实验验证本轮新增的 target 专用执行入口。各阶段的职责、参考实现和 C70 计时口径见[从 draft 到接受前缀](glm53_mtp_execution_flow.md)。
+
 ## main 与 MegaMoE 的关系
 
 接口只接管一次 target forward。PR 的父提交是 LMDeploy main `2ff1d1f97c855e795ad91336b69cf97113fa7bab`，包含 A3 后端 `6a4daf62`。#5186 的 `42dc6d31` 是另一条分支，提供 SM90 的可选 MegaMoE 后端。接口不导入它，也不要求设置 MoE backend。加载器、输入、状态槽和输出契约使用引擎已有类型。当前接入点只启用 PyTorch CUDA target，A3 继续使用原后端。[接口](../../../lmdeploy/pytorch/specialized_execution.py) · [A3 提交](https://github.com/InternLM/lmdeploy/commit/6a4daf62) · [SM90 MegaMoE PR](https://github.com/InternLM/lmdeploy/pull/5186)
@@ -70,7 +72,7 @@ python examples/specialized_execution/verify_mtp_serving.py "$MODEL" results/liv
 
 **以现有 MTP3 + MegaMoE 为 AgentX 生产基线，先优化它的 target verify。** 同时保留完整 R11 AR，作为固定长上下文、低接受率或明确禁用投机的独立候选。这样可以用同一套接口做两个可独立回退的计划。MTP3 的每卡 B8 包含 32 个 target 输入位置。先用真实 C70 轨迹统计可覆盖的 B/Q、KV 长度和各 rank 的最低覆盖，再选择要生成的形状。8 行投影样例验证了接线和状态契约，B2×Q4 在生产上的覆盖和加速仍需另测。
 
-**固定步时和线上每 token 时间有不同的计时边界。** 可复核的 Weka 256K、Mooncake、seed 20260707 的 C70、1,800 秒窗口报告了 2,307 个完成请求、1,285.22 输出 token/s、0.97663 个满足联合 SLO 的请求/s。该轮 AIPerf 的 inter-token latency 平均 20.141 ms、p50 15.189 ms、p95 47.566 ms，缓存命中口径的已读取 token 比例 92.24%。其他回放的“十几毫秒”应按该回放的平均/分位、流式口径与缓存状态解读。C32 的另一份同深度实验中，原生 MTP3 与 DeepGEMM MTP3 分别为 966.51 和 1,052.21 输出 token/s。C32 和 C70 的缓存、seed 与负载条件各有差异。[C70 配置和结果](https://github.com/silencelamb/lmdeploy/blob/d16aabc6fef030419745db1cb5d7d4204a64e735/benchmark/glm53_mega_moe/results/qa_agentx_mtp3_mooncake.json) · [C32 对照](https://github.com/silencelamb/lmdeploy/blob/d16aabc6fef030419745db1cb5d7d4204a64e735/benchmark/glm53_mega_moe/results/h200_megamoe.json)
+**固定步时和线上每 token 时间有不同的计时边界。** 可复核的 Weka 256K、Mooncake、seed 20260707 的 C70、1,800 秒窗口报告了 2,307 个完成请求、1,285.22 输出 token/s、0.97663 个满足联合 SLO 的请求/s。该轮启用 DeepGEMM MegaMoE 和 FlashKDA prefill。按输出 token 间隔加权，TPOT 为 **16.617 ms/token**。各请求等权时，均值为 20.141 ms、p50 15.189 ms、p95 47.566 ms。缓存命中口径的已读取 token 比例为 92.24%。C32 的另一份同深度实验中，原生 MTP3 与 DeepGEMM MTP3 分别为 966.51 和 1,052.21 输出 token/s。C32 和 C70 的缓存、seed 与负载条件各有差异。[C70 配置和结果](https://github.com/silencelamb/lmdeploy/blob/d16aabc6fef030419745db1cb5d7d4204a64e735/benchmark/glm53_mega_moe/results/qa_agentx_mtp3_mooncake.json) · [C32 对照](https://github.com/silencelamb/lmdeploy/blob/d16aabc6fef030419745db1cb5d7d4204a64e735/benchmark/glm53_mega_moe/results/h200_megamoe.json)
 
 C70 的服务计数是 760,654 请求轮、2,281,962 个草稿位置、1,560,069 个接受。平均每请求轮逻辑上推进 `1 + 1,560,069 / 760,654 = 3.051` 个 token。EOS、最大输出和客户端截断应使用实际交付的 token 数核算。对同一可比请求群，若整轮暴露时间为 T、平均推进数为 A，则每 token 计算成本约为 T/A。T 应覆盖 draft、target verify、拒绝/提交和暴露的调度/通信间隙，重叠部分只算一次。假设接受率和组批相同、所有轮命中，每轮 verify 节省 1 ms 约折合 0.328 ms/token。若只命中部分轮，按命中轮的请求量、实际产出和关键路径加权。多路服务吞吐用全局输出 token 除墙钟时长，逐请求同时看 TTFT、TPOT 和 goodput。
 
